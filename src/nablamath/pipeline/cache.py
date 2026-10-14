@@ -17,7 +17,7 @@ class LocalCache:
         digest = self.blobs.put(json.dumps(output, sort_keys=True, allow_nan=False).encode())
         self.index.mkdir(parents=True, exist_ok=True)
         entry = self.index / key
-        if entry.exists() and entry.read_text() != digest:
+        if entry.exists() and entry.read_text(encoding='utf-8') != digest:
             raise ValueError("Resultado divergente para mesmos parâmetros e versão")
         entry.write_text(digest, encoding="ascii")
         return key

@@ -36,7 +36,7 @@ def find_lake(project):
     if executable:
         return Path(executable)
     project=Path(project).resolve()
-    pin=(project/'lean-toolchain').read_text().strip() if (project/'lean-toolchain').is_file() else ''
+    pin=(project/'lean-toolchain').read_text(encoding='utf-8').strip() if (project/'lean-toolchain').is_file() else ''
     match=re.fullmatch(r'leanprover/lean4:v([0-9]+\.[0-9]+\.[0-9]+)',pin)
     if match:
         candidate=project.parent.parent/'.tools'/'lean'/f'lean-{match[1]}-linux'/'bin'/'lake'

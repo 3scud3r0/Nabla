@@ -1,0 +1,83 @@
+{
+  "all_ten_workflows_passed": true,
+  "branch": "feat/scientific-phases-9-12",
+  "installer_passed": true,
+  "observation_timezone": "America/Sao_Paulo",
+  "observed_at": "2026-10-14T20:42:11-03:00",
+  "python_matrix": {
+    "os": [
+      "ubuntu-latest",
+      "windows-latest"
+    ],
+    "python": [
+      "3.10",
+      "3.12",
+      "3.14"
+    ]
+  },
+  "python_matrix_passed": true,
+  "source": "Read-only public GitHub workflow status; no authenticated logs or API access",
+  "verified_code_commit": "22bdf6c23e7a2e5f823a2992e78ad9b3402d0db5",
+  "workflows": [
+    {
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS",
+      "name": "Python core",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38655237990"
+    },
+    {
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS",
+      "name": "Optional accelerator backend",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38655238085"
+    },
+    {
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS",
+      "name": "NablaMath CI",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38655237983"
+    },
+    {
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS",
+      "name": "Scientific phases 5\u20138",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38655237932"
+    },
+    {
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS",
+      "name": "Lean bridge (optional)",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38655237935"
+    },
+    {
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS",
+      "name": "Lean formal core",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38655237992"
+    },
+    {
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS",
+      "name": "Archive and Python syntax audit",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38655237831"
+    },
+    {
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS",
+      "name": "Interoperability",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38655237868"
+    },
+    {
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS",
+      "name": "Scientific phases 9\u201312 and audit",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38655237844"
+    },
+    {
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS",
+      "name": "Windows installer",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38655237869"
+    }
+  ]
+}

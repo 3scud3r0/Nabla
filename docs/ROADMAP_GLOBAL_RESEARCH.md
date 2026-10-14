@@ -1,7 +1,7 @@
 # NablaMath — roadmap de implementação e critérios de conclusão
 
 **Revisado em:** 24/09/2026 · **Estado geral:** protótipo local funcional; fases F0–F6 abertas.  
-**Site público:** [3scud3r0.github.io/Nabla-Math](https://3scud3r0.github.io/Nabla-Math/) · **Instalador:** [release alpha para Windows](https://github.com/3scud3r0/Nabla-Math/releases/tag/v0.1.0-alpha.1).
+**Site público:** [3scud3r0.github.io/Nabla-Math](https://3scud3r0.github.io/Nabla-Math/) · **Instalador:** [release alpha para Windows](https://github.com/3scud3r0/Nabla/releases).
 
 Este é o plano de trabalho para evoluir o repositório em biblioteca científica assistida por Lean, agentes opcionais, arquivos de pesquisa reproduzíveis e, se houver governança e operação, colaboração distribuída. A presença de um arquivo, teste ou workflow não significa que a fase esteja concluída. `python tools/roadmap_status.py` apenas mostra o checklist declarado; não mede qualidade, validação científica ou operação.
 

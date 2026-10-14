@@ -2,7 +2,7 @@
 
 ## Iniciar
 
-- Windows: abrir a [versão alpha](https://github.com/3scud3r0/Nabla-Math/releases/tag/v0.1.0-alpha.1), baixar e executar `NablaMath-Setup-Windows.exe` depois que a CI Windows tiver aprovado e publicado esse release. O instalador usa a conta do usuário, sem privilégios de administrador. O projeto não declara o instalador disponível até essa execução terminar com sucesso. Ele ainda não possui assinatura de código; confira a origem no repositório e o hash publicado pelo GitHub.
+- Windows: abrir a [versão alpha](https://github.com/3scud3r0/Nabla/releases), baixar e executar `NablaMath-Setup-Windows.exe` depois que a CI Windows tiver aprovado e publicado esse release. O instalador usa a conta do usuário, sem privilégios de administrador. O projeto não declara o instalador disponível até essa execução terminar com sucesso. Ele ainda não possui assinatura de código; confira a origem no repositório e o hash publicado pelo GitHub.
 - Linux/macOS ou desenvolvimento: instalar Python 3.10+; `python -m pip install .` no repositório (`python -m pip install ".[cloud]"` para habilitar o upload); executar `nabla desktop`. Em modo de desenvolvimento: `PYTHONPATH=src python -m nablamath.desktop.app`.
 
 O botão executável abre `http://127.0.0.1:<porta>/`. Só é acessível neste computador. O SQLite e arquivos ficam em `~/NablaMath` (no Windows, a pasta `NablaMath` do usuário). A desinstalação não apaga o banco pessoal.

@@ -55,9 +55,9 @@ def verify_run(report, *, replay_science=True):
             if data['status'] not in {'completed','failed','timeout'}:
                 return False
             if replay_science and data['status']=='completed':
-                from .tool_registry import _solve, _world
+                from .tool_registry import _solve, _world, _verify
                 from ..core.semantic_ir import canonical_json
-                operation = {'solve': _solve, 'simulate': _world}.get(action.tool)
+                operation = {'solve': _solve, 'simulate': _world, 'verify': _verify}.get(action.tool)
                 if operation is None or canonical_json(operation(**action.arguments)) != canonical_json(data['result']):
                     return False
             previous = receipt['receipt_id']

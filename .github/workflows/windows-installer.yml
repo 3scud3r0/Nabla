@@ -1,7 +1,7 @@
 name: Windows installer
 on:
   push:
-    branches: [main]
+    branches: [main, 'feat/**', 'fix/**']
     paths:
       - 'src/**'
       - 'pyproject.toml'
@@ -21,9 +21,15 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install application and packager
-        run: python -m pip install -e ".[cloud]" pyinstaller
+        run: python -m pip install -e ".[cloud,test]" pyinstaller
       - name: Run Python tests
-        run: python -m unittest discover -s tests -q
+        run: python -m pytest -q --junitxml=.nabla/windows-installer-tests.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-installer-test-results
+          path: .nabla/windows-installer-tests.xml
+          include-hidden-files: true
       - name: Freeze standalone application
         run: python -m PyInstaller --noconfirm --clean --onedir --windowed --name NablaMath --collect-data nablamath.desktop --collect-submodules huggingface_hub src/nablamath/desktop/launcher.py
       - name: Smoke test frozen executable
@@ -71,7 +77,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create v0.1.0-alpha.1 release/NablaMath-Setup-Windows.exe \
+          gh release create "v0.1.0-alpha.${GITHUB_RUN_NUMBER}" release/NablaMath-Setup-Windows.exe \
             --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
             --prerelease --title "NablaMath Desktop 0.1 alpha" \
             --notes "Instalador Windows experimental, sem assinatura de código. Execute localmente; verifique as limitações em docs/DESKTOP.md."
