@@ -2,6 +2,8 @@
 
 **Um laboratório local para cálculos rastreáveis, dados curados e pesquisa matemática aberta.** O pacote Python já executa um subconjunto de aritmética racional, registra as etapas no SQLite e oferece experimentos físicos bem delimitados. A rede científica global descrita no roteiro continua em desenvolvimento.
 
+**Direção de longo prazo:** [Visão científica 2026–2056+](vision.md) · [Plano mestre de arquitetura e execução](docs/PLANO_MESTRE_2026_2056.md).
+
 [Instalação](#instalação) · [Aplicativo local](#aplicativo-local) · [Verificação](#verificação) · [Roteiro](docs/ROADMAP_GLOBAL_RESEARCH.md) · [Contribuir](CONTRIBUTING.md)
 
 ## O que funciona hoje
