@@ -109,3 +109,26 @@ duas gerações de políticas aceitas, rejeição, rollback, dez modelos discipl
 engenharia, mas não comprova descoberta autônoma geral, autoaperfeiçoamento amplo,
 melhoria de modelos de fronteira ou ciência experimental validada. Esses critérios
 continuam visíveis e não podem ser transformados em 100% apenas alterando um número.
+
+## Validação nativa observada na branch
+
+No commit de código `22bdf6c23e7a2e5f823a2992e78ad9b3402d0db5`, o
+[Python core](https://github.com/3scud3r0/Nabla/actions/runs/38655237990)
+concluiu com sucesso nos seis jobs Linux/Windows, Python 3.10/3.12/3.14. O
+[instalador Windows](https://github.com/3scud3r0/Nabla/actions/runs/38655237869)
+também concluiu com sucesso: testes, executável congelado, teste funcional HTTP e
+Inno Setup. Isso foi confirmado pelos estados públicos do GitHub, sem substituir
+um resultado Windows por uma execução Linux. O release continua restrito a main;
+nenhum release foi publicado pela execução da feature branch.
+
+Os workflows científicos [5–8](https://github.com/3scud3r0/Nabla/actions/runs/38655237932)
+e [9–12](https://github.com/3scud3r0/Nabla/actions/runs/38655237844) também passaram.
+Os estados de todos os workflows observados e URLs constam do
+[registro de CI](../../benchmarks/results/ci-evidence-2026-10.json). A ficha de
+aceitação distingue esses sucessos dos critérios científicos sem demonstração.
+
+Os **10 workflows** desse commit concluíram com sucesso, inclusive
+[Lean formal core](https://github.com/3scud3r0/Nabla/actions/runs/38655237992) e
+[Lean bridge](https://github.com/3scud3r0/Nabla/actions/runs/38655237935). A observação
+foi registrada às 20h42 de 14/10/2026, horário de Brasília. Os critérios de pesquisa
+continuam separados da aprovação integral do CI.

@@ -2,9 +2,9 @@
 
 Base de comparação: `271771a5cc663332ece155a8fae8dcb6be096c0b`. Inventário de todos os arquivos versionados presentes, incluindo os existentes.
 
-**837 arquivos; 87,387 linhas físicas; 25,564 linhas de código fora do histórico.**
+**838 arquivos; 87,661 linhas físicas; 25,564 linhas de código fora do histórico.**
 
-Novos: 63; alterações/movimentações: {'novo': 63, 'alterado': 25}. Removidos: 0.
+Novos: 64; alterações/movimentações: {'novo': 64, 'alterado': 25}. Removidos: 0.
 
 Linhas físicas incluem comentários e espaços. Código Python conta linhas com tokens, incluindo docstrings; outros formatos de código contam linhas não vazias sem comentários de linha inteira (estimativa). “—” significa formato não código/binário. O bundle `math.txt` duplica fontes e não entra no total de código. Histórico movido não representa código novo. Os dois relatórios deste inventário são excluídos para evitar autocontagem. Caches, ambientes virtuais, builds e amostras locais ignoradas não são arquivos do PR.
 
@@ -46,6 +46,7 @@ Nenhum.
 | `README.md` | alterado | infraestrutura/outros | 183 | — |
 | `SECURITY.md` | existente | infraestrutura/outros | 5 | — |
 | `benchmarks/baselines/README.md` | existente | infraestrutura/outros | 8 | — |
+| `benchmarks/results/ci-evidence-2026-10.json` | novo | infraestrutura/outros | 83 | — |
 | `benchmarks/results/controlled-learning-2026-10/GSM8K_LICENSE` | novo | infraestrutura/outros | 21 | — |
 | `benchmarks/results/controlled-learning-2026-10/README.md` | novo | infraestrutura/outros | 13 | — |
 | `benchmarks/results/controlled-learning-2026-10/protocol.json` | novo | infraestrutura/outros | 1 | — |
@@ -59,7 +60,7 @@ Nenhum.
 | `benchmarks/results/controlled-learning-2026-10/without_nabla-seed-23.npz` | novo | infraestrutura/outros | — | — |
 | `benchmarks/results/controlled-learning-2026-10/without_nabla-seed-37.npz` | novo | infraestrutura/outros | — | — |
 | `benchmarks/results/independent-solvers-2026-10.json` | novo | infraestrutura/outros | 1 | — |
-| `benchmarks/results/vision-acceptance-2026-10.json` | novo | infraestrutura/outros | 182 | — |
+| `benchmarks/results/vision-acceptance-2026-10.json` | novo | infraestrutura/outros | 346 | — |
 | `benchmarks/tasks/README.md` | existente | infraestrutura/outros | 6 | — |
 | `description.md` | existente | infraestrutura/outros | 3362 | — |
 | `docs/AI_HANDOFF.md` | existente | documentação | 55 | — |
@@ -86,7 +87,7 @@ Nenhum.
 | `docs/PHASES_1_2.md` | existente | documentação | 243 | — |
 | `docs/PHASES_3_4.md` | existente | documentação | 227 | — |
 | `docs/PHASES_5_8.md` | existente | documentação | 184 | — |
-| `docs/PHASES_9_12.md` | novo | documentação | 155 | — |
+| `docs/PHASES_9_12.md` | novo | documentação | 159 | — |
 | `docs/PLANO_MESTRE_2026_2056.md` | existente | documentação | 300 | — |
 | `docs/PUBLISHING.md` | existente | documentação | 10 | — |
 | `docs/RELEASE_POLICY.md` | existente | documentação | 46 | — |
@@ -99,7 +100,7 @@ Nenhum.
 | `docs/architecture/current-modules.md` | existente | documentação | 23 | — |
 | `docs/architecture/vision-phases.md` | alterado | documentação | 200 | — |
 | `docs/audits/BASELINE_2026_10.md` | existente | documentação | 66 | — |
-| `docs/audits/SCIENTIFIC_ACCEPTANCE_2026_10.md` | novo | documentação | 111 | — |
+| `docs/audits/SCIENTIFIC_ACCEPTANCE_2026_10.md` | novo | documentação | 134 | — |
 | `examples/first_problem.py` | existente | infraestrutura/outros | 19 | 14 |
 | `examples/orbit_report.py` | existente | infraestrutura/outros | 13 | 9 |
 | `examples/scientific_phases_5_8.py` | existente | infraestrutura/outros | 11 | 10 |

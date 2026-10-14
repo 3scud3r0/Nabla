@@ -153,3 +153,7 @@ mantém os critérios ainda sem demonstração e não inventa um percentual de p
 Suíte local final: **406 testes e 295 subtestes aprovados**, sem falhas. Os cinco
 testes do site e seu build também passaram. A reprodução de locale sem UTF-8
 passou com a correção; os resultados nativos Windows são registrados separadamente.
+
+O Python core passou nos seis jobs nativos Linux/Windows e o instalador Windows
+foi construído e testado no commit de código `22bdf6c`; as evidências estão na
+[auditoria](audits/SCIENTIFIC_ACCEPTANCE_2026_10.md#validação-nativa-observada-na-branch).

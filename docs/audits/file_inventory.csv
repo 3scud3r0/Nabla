@@ -23,6 +23,7 @@ LICENSE,existente,infraestrutura/outros,25,,1282
 README.md,alterado,infraestrutura/outros,183,,11444
 SECURITY.md,existente,infraestrutura/outros,5,,830
 benchmarks/baselines/README.md,existente,infraestrutura/outros,8,,468
+benchmarks/results/ci-evidence-2026-10.json,novo,infraestrutura/outros,83,,2878
 benchmarks/results/controlled-learning-2026-10/GSM8K_LICENSE,novo,infraestrutura/outros,21,,1062
 benchmarks/results/controlled-learning-2026-10/README.md,novo,infraestrutura/outros,13,,858
 benchmarks/results/controlled-learning-2026-10/protocol.json,novo,infraestrutura/outros,1,,44068
@@ -36,7 +37,7 @@ benchmarks/results/controlled-learning-2026-10/without_nabla-seed-11.npz,novo,in
 benchmarks/results/controlled-learning-2026-10/without_nabla-seed-23.npz,novo,infraestrutura/outros,,,32652
 benchmarks/results/controlled-learning-2026-10/without_nabla-seed-37.npz,novo,infraestrutura/outros,,,32659
 benchmarks/results/independent-solvers-2026-10.json,novo,infraestrutura/outros,1,,37725
-benchmarks/results/vision-acceptance-2026-10.json,novo,infraestrutura/outros,182,,4684
+benchmarks/results/vision-acceptance-2026-10.json,novo,infraestrutura/outros,346,,11334
 benchmarks/tasks/README.md,existente,infraestrutura/outros,6,,357
 description.md,existente,infraestrutura/outros,3362,,75325
 docs/AI_HANDOFF.md,existente,documentação,55,,8050
@@ -63,7 +64,7 @@ docs/OPERATIONS.md,existente,documentação,7,,1148
 docs/PHASES_1_2.md,existente,documentação,243,,15683
 docs/PHASES_3_4.md,existente,documentação,227,,13632
 docs/PHASES_5_8.md,existente,documentação,184,,10960
-docs/PHASES_9_12.md,novo,documentação,155,,9412
+docs/PHASES_9_12.md,novo,documentação,159,,9669
 docs/PLANO_MESTRE_2026_2056.md,existente,documentação,300,,34882
 docs/PUBLISHING.md,existente,documentação,10,,2183
 docs/RELEASE_POLICY.md,existente,documentação,46,,2282
@@ -76,7 +77,7 @@ docs/adr/0002-canonical-ast.md,existente,documentação,19,,1194
 docs/architecture/current-modules.md,existente,documentação,23,,2011
 docs/architecture/vision-phases.md,alterado,documentação,200,,12192
 docs/audits/BASELINE_2026_10.md,existente,documentação,66,,3996
-docs/audits/SCIENTIFIC_ACCEPTANCE_2026_10.md,novo,documentação,111,,6448
+docs/audits/SCIENTIFIC_ACCEPTANCE_2026_10.md,novo,documentação,134,,7893
 examples/first_problem.py,existente,infraestrutura/outros,19,14,785
 examples/orbit_report.py,existente,infraestrutura/outros,13,9,442
 examples/scientific_phases_5_8.py,existente,infraestrutura/outros,11,10,476
