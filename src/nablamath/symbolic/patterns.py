@@ -32,7 +32,7 @@ class RuleCondition:
     kind:str
     variable:str
     def __post_init__(self):
-        if self.kind!="nonzero": raise ValueError("Condição não suportada")
+        if self.kind not in {"nonzero", "defined"}: raise ValueError("Condição não suportada")
         PVar(self.variable)
 
 @dataclass(frozen=True)

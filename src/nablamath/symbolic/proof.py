@@ -69,7 +69,9 @@ def verify_rewrite_event(event:RewriteEvent,rules:Mapping[str,RewriteRule],assum
     for c in rule.conditions:
         if c.kind=="nonzero" and not assumptions.proves_nonzero(bindings[c.variable]):
             return f"{event.rule}: hipótese não provada"
-    expected=tuple(f"{render(bindings[c.variable])} != 0" for c in rule.conditions if c.kind=="nonzero")
+        if c.kind=="defined" and not assumptions.proves_defined(bindings[c.variable]):
+            return f"{event.rule}: domínio não provado"
+    expected=tuple((f"{render(bindings[c.variable])} != 0" if c.kind=="nonzero" else f"defined({render(bindings[c.variable])})") for c in rule.conditions)
     return None if event.assumptions==expected else f"{event.rule}: hipóteses divergentes"
 
 def _sub(expr:Expr):

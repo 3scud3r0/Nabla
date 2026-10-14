@@ -91,7 +91,7 @@ No site, cada estágio precisa exibir seu estado real, evidência, limite e pró
 
 - Atualizar `src/nablamath/formal/translate.py`, `check.py`, `obligations.py` e `review.py`: tradução tipada para subconjunto declarado, hipóteses obrigatórias, recusa de casos fora do escopo e recibo reprodutível da checagem.
 - Atualizar/criar `lean/NablaMath/Algebra/Rules.lean` e módulos por regra, começando por identidades racionais com condições de domínio; não gerar `sorry` em artefato de aceite.
-- Atualizar `lean/lakefile.lean`, `lean/lean-toolchain` e `.github/workflows/lean-core.yml`: versões fixas e CI reproduzível.
+- Atualizar `lean/lakefile.toml`, `lean/lean-toolchain` e `.github/workflows/lean-core.yml`: versões fixas e CI reproduzível.
 - Atualizar `src/nablamath/reports/{model.py,latex.py,compile.py}`; criar `tests/reports/test_pdf_build.py`: testar `.tex` e PDF quando TeX existir; preservar fontes, referências, valores, unidades e limites.
 - Criar `tests/formal/test_translation_fidelity.py` e atualizar `tests/integration/test_lean_bridge.py`: casos positivos, negativos e semântica de hipóteses revisada.
 

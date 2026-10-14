@@ -1,32 +1,10 @@
-"""Equality saturation for the small, exact NablaMath expression language.
-
-The implementation deliberately has no optional dependencies.  It is a bounded
-e-graph rather than an unbounded simplifier: callers always choose a resource
-budget, and every equality used during saturation is retained in an audit log.
-Only identities that preserve the domain of the current partial-expression
-semantics are enabled by default.
-"""
-
 """Bounded equality saturation with declarative rules and verified certificates."""
 from __future__ import annotations
-
 from dataclasses import dataclass
 from fractions import Fraction
 import hashlib
 import json
 import math
-from typing import Callable, Literal, Mapping
-
-from ..expression import Binary, Expr, Number, Symbol, to_data
-
-EGRAPH_SCHEMA_VERSION = 1
-RULESET_VERSION = "domain-safe-rational-v1"
-
-
-@dataclass(frozen=True, order=True)
-class ENode:
-    """An operator whose operands point to equivalence classes."""
-
 from typing import Callable, Iterable, Iterator, Literal, Mapping
 
 from ..expression import Binary, Expr, Number, Symbol, render, to_data
@@ -45,13 +23,6 @@ class ENode:
 
 
 @dataclass(frozen=True)
-class RewriteEvent:
-    rule: str
-    source_class: int
-    target_class: int
-
-
-@dataclass(frozen=True)
 class SaturationResult:
     original: Expr
     expression: Expr
@@ -64,8 +35,6 @@ class SaturationResult:
     stop_reason: Literal["saturated", "node_limit", "iteration_limit"]
     operation_costs: tuple[tuple[str, float], ...]
 
-    def to_data(self) -> dict[str, object]:
-        """Return a stable, JSON-compatible audit record."""
     assumptions: tuple[str, ...]
     rule_hashes: tuple[tuple[str, str], ...]
     certificate_verified: bool
@@ -83,14 +52,6 @@ class SaturationResult:
             "class_count": self.class_count,
             "node_count": self.node_count,
             "operation_costs": dict(self.operation_costs),
-            "proof": [
-                {
-                    "rule": event.rule,
-                    "source_class": event.source_class,
-                    "target_class": event.target_class,
-                }
-                for event in self.proof
-            ],
             "assumptions": list(self.assumptions),
             "rule_hashes": dict(self.rule_hashes),
             "certificate_verified": self.certificate_verified,
@@ -104,26 +65,6 @@ class SaturationResult:
         """SHA-256 identity of the complete optimization audit record."""
         return str(self.to_data()["content_id"])
 
-
-CostFunction = Callable[[str, Fraction | str | None], float]
-
-
-def _default_cost(op: str, value: Fraction | str | None) -> float:
-    return 1.0
-
-
-class EGraphLimitError(RuntimeError):
-    """The configured hard node budget is not large enough."""
-
-
-class EGraph:
-    """Compact union-find e-graph with congruence closure."""
-
-    def __init__(self, *, node_limit: int | None = None) -> None:
-        if node_limit is not None and node_limit < 1:
-            raise ValueError("O limite de nós deve ser positivo")
-        self._node_limit = node_limit
-        return str(self.to_data()["content_id"])
 
 CostFunction = Callable[[str, Fraction | str | None], float]
 def _default_cost(op: str, value: Fraction | str | None) -> float: return 1.0
@@ -169,23 +110,6 @@ class EGraph:
             return self.add(ENode("symbol", value=expr.name))
         return self.add(ENode(expr.op, (self.add_expr(expr.left), self.add_expr(expr.right))))
 
-    def union(self, first: int, second: int, rule: str) -> bool:
-        first, second = self.find(first), self.find(second)
-        if first == second:
-            return False
-        # Stable representatives make runs and proof logs reproducible.
-        root, merged = min(first, second), max(first, second)
-        self._parent[merged] = root
-        self._classes[root].update(self._classes.pop(merged))
-        self.proof.append(RewriteEvent(rule, first, second))
-        return True
-
-    def rebuild(self) -> None:
-        """Restore congruence after unions, merging identical canonical nodes."""
-        if isinstance(expr, Number): return self.add(ENode("number", value=expr.value))
-        if isinstance(expr, Symbol): return self.add(ENode("symbol", value=expr.name))
-        return self.add(ENode(expr.op, (self.add_expr(expr.left), self.add_expr(expr.right))))
-
     def union(self, first: int, second: int, *, event: RewriteEvent | None = None) -> bool:
         first, second = self.find(first), self.find(second)
         if first == second: return False
@@ -214,11 +138,6 @@ class EGraph:
                     break
             if collision is None:
                 return
-            self.union(*collision, "congruence")
-                        collision = (root, other); break
-                    self._memo[node] = root
-                if collision: break
-            if collision is None: return
             self.union(*collision)
 
     def _canonical(self, node: ENode) -> ENode:
@@ -234,9 +153,6 @@ class EGraph:
     @property
     def node_count(self) -> int:
         return sum(len(nodes) for nodes in self._classes.values())
-    def class_count(self) -> int: return len(self._classes)
-    @property
-    def node_count(self) -> int: return sum(len(nodes) for nodes in self._classes.values())
 
     def _constant(self, class_id: int) -> Fraction | None:
         for node in self._classes[self.find(class_id)]:
@@ -245,75 +161,6 @@ class EGraph:
                 return node.value
         return None
 
-    def apply_rules(self) -> tuple[bool, bool]:
-        """Run one rule pass, returning ``(changed, budget_exhausted)``."""
-        changed = False
-        snapshot = self.nodes()
-        try:
-            for owner, node in snapshot:
-                if len(node.children) != 2:
-                    continue
-                left, right = node.children
-                # Commutativity exposes matches without choosing a canonical tree.
-                if node.op in {"+", "*"}:
-                    changed |= self.union(
-                        owner,
-                        self.add(ENode(node.op, (right, left))),
-                        f"commute_{node.op}",
-                    )
-                lval, rval = self._constant(left), self._constant(right)
-                if node.op == "+" and rval == 0:
-                    changed |= self.union(owner, left, "add_zero")
-                if node.op == "+" and lval == 0:
-                    changed |= self.union(owner, right, "zero_add")
-                if node.op == "*" and rval == 1:
-                    changed |= self.union(owner, left, "multiply_one")
-                if node.op == "*" and lval == 1:
-                    changed |= self.union(owner, right, "one_multiply")
-                if node.op == "/" and rval == 1:
-                    changed |= self.union(owner, left, "divide_one")
-                if node.op == "**" and rval == 1:
-                    changed |= self.union(owner, left, "power_one")
-                if lval is not None and rval is not None:
-                    folded = _fold(node.op, lval, rval)
-                    if folded is not None:
-                        changed |= self.union(
-                            owner,
-                            self.add(ENode("number", value=folded)),
-                            "constant_fold",
-                        )
-                # Associativity preserves domains for exact + and * expressions.
-                if node.op in {"+", "*"}:
-                    for inner in tuple(self._classes[self.find(left)]):
-                        if inner.op == node.op:
-                            a, b = inner.children
-                            bc = self.add(ENode(node.op, (b, right)))
-                            changed |= self.union(
-                                owner,
-                                self.add(ENode(node.op, (a, bc))),
-                                f"associate_{node.op}",
-                            )
-                # a*b + a*c == a*(b+c), after commutativity exposes either side.
-                if node.op == "+":
-                    for left_node in tuple(self._classes[self.find(left)]):
-                        for right_node in tuple(self._classes[self.find(right)]):
-                            if (
-                                left_node.op == right_node.op == "*"
-                                and left_node.children[0] == right_node.children[0]
-                            ):
-                                total = self.add(
-                                    ENode("+", (left_node.children[1], right_node.children[1]))
-                                )
-                                product = self.add(
-                                    ENode("*", (left_node.children[0], total))
-                                )
-                                changed |= self.union(owner, product, "factor_common_left")
-        except EGraphLimitError:
-            if changed:
-                self.rebuild()
-            return changed, True
-        if changed:
-            self.rebuild()
     def proves_nonzero(self, class_id: int, _seen: frozenset[int] = frozenset()) -> bool:
         root = self.find(class_id)
         if root in _seen: return False
@@ -367,6 +214,8 @@ class EGraph:
         for condition in rule.conditions:
             if condition.kind == "nonzero" and not self.proves_nonzero(bindings[condition.variable]):
                 return False
+            if condition.kind == "defined" and not self.assumptions.proves_defined(self.extract(bindings[condition.variable])[0]):
+                return False
         return True
 
     def _binding_expressions(self, bindings: Mapping[str, int]) -> dict[str, Expr]:
@@ -407,8 +256,9 @@ class EGraph:
                         target = self._instantiate_pattern(rule.rhs, bindings)
                         source_root, target_root = self.find(owner), self.find(target)
                         assumptions = tuple(
-                            f"{render(expr_bindings[c.variable])} != 0"
-                            for c in rule.conditions if c.kind == "nonzero"
+                            (f"{render(expr_bindings[c.variable])} != 0" if c.kind == "nonzero"
+                             else f"defined({render(expr_bindings[c.variable])})")
+                            for c in rule.conditions
                         )
                         event = RewriteEvent(
                             rule=rule.name,
@@ -473,47 +323,6 @@ def _fold(op: str, left: Fraction, right: Fraction) -> Fraction | None:
     return None
 
 
-def saturate(
-    expr: Expr,
-    *,
-    iteration_limit: int = 12,
-    node_limit: int = 10_000,
-    operation_costs: Mapping[str, float] | None = None,
-) -> SaturationResult:
-    """Explore equivalent expressions and extract the cheapest one.
-
-    Limits are mandatory safety boundaries against equality-saturation blow-up.
-    ``operation_costs`` can favor forms appropriate for a backend (for example,
-    assigning a high cost to division).  Unknown operators cost one.
-    """
-                    if not isinstance(node.value, Fraction): raise TypeError("Nó numérico inválido no e-graph")
-                    candidate = (own_cost, Number(node.value))
-                elif node.op == "symbol":
-                    if not isinstance(node.value, str): raise TypeError("Nó simbólico inválido no e-graph")
-                    candidate = (own_cost, Symbol(node.value))
-                elif all(self.find(child) in best for child in node.children):
-                    children = [best[self.find(child)] for child in node.children]
-                    if len(children) != 2: continue
-                    candidate = (own_cost + children[0][0] + children[1][0], Binary(node.op, children[0][1], children[1][1]))
-                else: continue
-                owner = self.find(owner)
-                if owner not in best or candidate[0] < best[owner][0]:
-                    best[owner], updated = candidate, True
-            if not updated: break
-        root = self.find(root)
-        if root not in best: raise RuntimeError("E-class sem expressão extraível")
-        return best[root][1], best[root][0]
-
-
-def _fold(op: str, left: Fraction, right: Fraction) -> Fraction | None:
-    if op == "+": return left + right
-    if op == "-": return left - right
-    if op == "*": return left * right
-    if op == "/": return None if right == 0 else left / right
-    if op == "**" and right.denominator == 1 and not (left == 0 and right <= 0): return left ** right.numerator
-    return None
-
-
 def saturate(expr: Expr, *, iteration_limit: int = 12, node_limit: int = 10_000,
              operation_costs: Mapping[str, float] | None = None,
              rules: Iterable[RewriteRule] | None = None,
@@ -531,16 +340,6 @@ def saturate(expr: Expr, *, iteration_limit: int = 12, node_limit: int = 10_000,
         if not isinstance(name, str) or not math.isfinite(numeric_weight) or numeric_weight < 0:
             raise ValueError("Custos de operação devem ser finitos, não negativos e ter nomes textuais")
         weights[name] = numeric_weight
-    graph = EGraph(node_limit=node_limit)
-    try:
-        root = graph.add_expr(expr)
-    except EGraphLimitError as exc:
-        raise ValueError("O limite de nós é menor que a expressão de entrada") from exc
-        try: numeric_weight = float(weight)
-        except (TypeError, ValueError) as exc: raise ValueError("Custos de operação devem ser números reais") from exc
-        if not isinstance(name, str) or not math.isfinite(numeric_weight) or numeric_weight < 0:
-            raise ValueError("Custos de operação devem ser finitos, não negativos e ter nomes textuais")
-        weights[name] = numeric_weight
     domains = frozenset(active_domains)
     if not domains: raise ValueError("É necessário ativar ao menos um domínio de regras")
     selected = tuple(rule for rule in (tuple(rules) if rules is not None else default_egraph_rules()) if domains.intersection(rule.domains))
@@ -554,27 +353,6 @@ def saturate(expr: Expr, *, iteration_limit: int = 12, node_limit: int = 10_000,
     stop_reason: Literal["saturated", "node_limit", "iteration_limit"] = "iteration_limit"
     iterations = 0
     for iterations in range(1, iteration_limit + 1):
-        changed, budget_exhausted = graph.apply_rules()
-        if budget_exhausted:
-            stop_reason = "node_limit"
-            break
-        if not changed:
-            saturated = True
-            stop_reason = "saturated"
-            break
-    result, result_cost = graph.extract(root, lambda op, value: weights.get(op, 1.0))
-    return SaturationResult(
-        expr,
-        result,
-        result_cost,
-        iterations,
-        saturated,
-        graph.class_count,
-        graph.node_count,
-        tuple(graph.proof),
-        stop_reason,
-        tuple(sorted(weights.items())),
-    )
         changed, budget_exhausted = graph.apply_rules(selected)
         if budget_exhausted: stop_reason = "node_limit"; break
         if not changed: saturated = True; stop_reason = "saturated"; break

@@ -17,14 +17,16 @@ jobs:
         with:
           lake-package-directory: lean
           build: true
-          build-args: NablaMath
+          build-args: Nabla NablaMath
       - name: Resolve pinned Mathlib and compile Lean library
         working-directory: lean
-        run: lake build NablaMath
+        run: lake build Nabla NablaMath
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install -e .
+      - run: python -m pip install -e ".[test,formal,graphics]"
       - run: |
           nabla run '(x+x)/x' --value x=3 --db .nabla/results.sqlite3
           python -m nablamath.formal_ci
+      - name: Exercise formal and geometry workflows
+        run: python -m pytest -q tests/test_phase3_formal.py tests/test_phase4_graphics.py

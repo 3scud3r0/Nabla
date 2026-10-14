@@ -43,7 +43,7 @@ def free_symbols(expr: Expr) -> tuple[str,...]:
 
 def lean_source(result: "ResearchResult") -> str:
     values=dict(result.values)
-    return ("import Mathlib.Tactic\n\n"
+    return ("import Mathlib.Tactic.Ring\nimport Mathlib.Tactic.FieldSimp\nimport Mathlib.Tactic.Linarith\nimport Mathlib.Tactic.NormNum\n\n"
             f"-- Instância racional {result.content_id}; gerada de AST restrita.\n"
             f"example : {_term(result.original,values)} = {_rational(result.value)} := by\n"
             "  norm_num\n")
@@ -51,7 +51,9 @@ def lean_source(result: "ResearchResult") -> str:
 def universal_lean_source(lhs: Expr, rhs: Expr, *, nonzero: Iterable[Expr]=(),
                           theorem_name: str="nablamath_generated") -> str:
     if not _LEAN_THEOREM.fullmatch(theorem_name): raise ValueError("Nome de teorema Lean inválido")
-    nonzero=tuple(nonzero)
+    from ..core.obligations import domain_obligations
+    nonzero=tuple(dict.fromkeys((*tuple(nonzero),
+        *(o.expression for side in (lhs,rhs) for o in domain_obligations(side)))))
     names=set(free_symbols(lhs))|set(free_symbols(rhs))
     for expr in nonzero: names.update(free_symbols(expr))
     declarations=" ".join(f"({_lean_name(name)} : ℚ)" for name in sorted(names))
@@ -59,7 +61,7 @@ def universal_lean_source(lhs: Expr, rhs: Expr, *, nonzero: Iterable[Expr]=(),
     binders=" ".join(part for part in (declarations,hypotheses) if part)
     hs=", ".join(f"h{i}" for i in range(len(nonzero)))
     tactic=f"  field_simp [{hs}] <;> ring\n" if hs else "  field_simp <;> ring\n"
-    return ("import Mathlib.Tactic\n\n-- Teorema universal gerado de AST tipada pelo NablaMath.\n"
+    return ("import Mathlib.Tactic.Ring\nimport Mathlib.Tactic.FieldSimp\nimport Mathlib.Tactic.Linarith\nimport Mathlib.Tactic.NormNum\n\n-- Teorema universal gerado de AST tipada pelo NablaMath.\n"
             f"theorem {theorem_name} {binders} : {lean_term(lhs)} = {lean_term(rhs)} := by\n"+tactic)
 
 def rule_lean_source(rule: RewriteRule) -> str:

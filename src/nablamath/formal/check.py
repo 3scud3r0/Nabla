@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 import subprocess
+import os
 import tempfile
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -20,15 +21,23 @@ def _verify_source(source_text: str, content_id: str, project: Path, timeout_s: 
     project=project.resolve()
     if not (project/"lakefile.toml").is_file(): raise ValueError("Projeto Lean não encontrado")
     if not 1<=timeout_s<=900: raise ValueError("timeout fora do intervalo")
+    from .lean_checker import find_lake
+    lake=find_lake(project)
+    if lake is None: return FormalCheck(False,"lake não encontrado",content_id)
+    environment=dict(os.environ)
+    environment['PATH']=str(lake.parent)+os.pathsep+environment.get('PATH','')
+    if any(token in source_text for token in ('sorry', 'admit', 'axiom ')):
+        return FormalCheck(False,"Fonte com admissao ou axioma rejeitada",content_id)
     with tempfile.TemporaryDirectory(prefix="nablamath-lean-") as directory:
         source=Path(directory)/"Check.lean"; source.write_text(source_text,encoding="utf-8")
         try:
-            process=subprocess.run(["lake","env","lean",str(source)],cwd=project,capture_output=True,text=True,
+            process=subprocess.run([str(lake),"env","lean",str(source)],cwd=project,env=environment,capture_output=True,text=True,
                                    timeout=timeout_s,check=False)
         except FileNotFoundError:
             return FormalCheck(False,"lake não encontrado",content_id)
         except subprocess.TimeoutExpired:
             return FormalCheck(False,"timeout",content_id)
+    if "sorry" in process.stdout+process.stderr: return FormalCheck(False,"Admissao Lean rejeitada",content_id)
     if process.returncode: return FormalCheck(False,(process.stderr or process.stdout)[-2000:],content_id)
     return FormalCheck(True,success_detail,content_id)
 

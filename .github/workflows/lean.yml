@@ -19,4 +19,4 @@ jobs:
         with:
           lake-package-directory: lean
           build: true
-          build-args: NablaMath
+          build-args: Nabla NablaMath

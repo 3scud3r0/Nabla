@@ -1,5 +1,3 @@
-"""Exact symbolic differentiation for the complete rational-expression AST."""
-
 """Exact symbolic differentiation for the restricted rational expression AST."""
 from __future__ import annotations
 
@@ -19,38 +17,6 @@ class DerivativeStep:
     rule: str
     source: Expr
     result: Expr
-def _mul(a: Expr, b: Expr) -> Expr:
-    if isinstance(a, Number) and a.value == 0:
-        return ZERO
-    if isinstance(b, Number) and b.value == 0:
-        return ZERO
-    if isinstance(a, Number) and a.value == 1:
-        return b
-    if isinstance(b, Number) and b.value == 1:
-        return a
-    return Binary("*", a, b)
-
-
-def _add(a: Expr, b: Expr) -> Expr:
-    if isinstance(a, Number) and a.value == 0:
-        return b
-    if isinstance(b, Number) and b.value == 0:
-        return a
-    return Binary("+", a, b)
-
-
-def _sub(a: Expr, b: Expr) -> Expr:
-    if isinstance(b, Number) and b.value == 0:
-        return a
-    return Binary("-", a, b)
-
-
-def _pow(base: Expr, exponent: int) -> Expr:
-    if exponent == 0:
-        return ONE
-    if exponent == 1:
-        return base
-    return Binary("**", base, Number(Fraction(exponent)))
 
 
 @dataclass(frozen=True)
@@ -106,8 +72,7 @@ def _simplify(expr: Expr) -> Expr:
 
 def differentiate(expr: Expr, variable: str) -> DerivativeResult:
     """Differentiate numbers, symbols, arithmetic and literal integer powers."""
-    if not variable.isidentifier():
-        raise ValueError("Variável inválida")
+    Symbol(variable)
     steps: list[DerivativeStep] = []
     constraints: list[Expr] = []
 
@@ -117,7 +82,7 @@ def differentiate(expr: Expr, variable: str) -> DerivativeResult:
         if node.op == "/" and node.right not in constraints:
             constraints.append(node.right)
         if (node.op == "**" and isinstance(node.right, Number)
-                and node.right.value < 0 and node.left not in constraints):
+                and node.right.value <= 0 and node.left not in constraints):
             constraints.append(node.left)
         collect_domain(node.left)
         collect_domain(node.right)
@@ -153,6 +118,9 @@ def differentiate(expr: Expr, variable: str) -> DerivativeResult:
             if not isinstance(node.right, Number) or node.right.value.denominator != 1:
                 raise ValueError("Derivação de potência requer expoente inteiro literal")
             exponent = node.right.value.numerator
+            if exponent == 0:
+                steps.append(DerivativeStep("integer_power", node, ZERO))
+                return ZERO
             result = Binary("*", Binary("*", _number(exponent),
                                          Binary("**", node.left, _number(exponent - 1))),
                             left_derivative)
@@ -167,64 +135,8 @@ def differentiate(expr: Expr, variable: str) -> DerivativeResult:
     return DerivativeResult(variable, expr, derivative, tuple(steps), tuple(constraints))
 
 
-__all__ = ["DerivativeResult", "DerivativeStep", "differentiate"]
-    expression: Expr
-    derivative: Expr
-    variable: str
-    required_nonzero: tuple[Expr, ...] = ()
-
-    def __post_init__(self) -> None:
-        Symbol(self.variable)
-
-
 def _dedupe(expressions: Iterable[Expr]) -> tuple[Expr, ...]:
     return tuple(dict.fromkeys(expressions))
-
-
-def differentiate(expr: Expr, variable: str) -> DerivativeResult:
-    """Differentiate exactly inside the supported arithmetic/power language.
-
-    The returned side conditions are the nonzero expressions required by quotient
-    and negative-power rules. They preserve the domain of the original partial
-    expression rather than silently extending it.
-    """
-    Symbol(variable)
-
-    def visit(node: Expr) -> tuple[Expr, tuple[Expr, ...]]:
-        if isinstance(node, Number):
-            return ZERO, ()
-        if isinstance(node, Symbol):
-            return (ONE if node.name == variable else ZERO), ()
-
-        da, ca = visit(node.left)
-        db, cb = visit(node.right)
-        conditions = list(ca + cb)
-
-        if node.op == "+":
-            return _add(da, db), _dedupe(conditions)
-        if node.op == "-":
-            return _sub(da, db), _dedupe(conditions)
-        if node.op == "*":
-            return _add(_mul(da, node.right), _mul(node.left, db)), _dedupe(conditions)
-        if node.op == "/":
-            conditions.append(node.right)
-            numerator = _sub(_mul(da, node.right), _mul(node.left, db))
-            denominator = _pow(node.right, 2)
-            return Binary("/", numerator, denominator), _dedupe(conditions)
-        if node.op == "**":
-            if not isinstance(node.right, Number) or node.right.value.denominator != 1:
-                raise ValueError("Derivação suporta apenas expoente inteiro literal")
-            exponent = node.right.value.numerator
-            if exponent < 0:
-                conditions.append(node.left)
-            if exponent == 0:
-                return ZERO, _dedupe(conditions)
-            coefficient = Number(Fraction(exponent))
-            return _mul(_mul(coefficient, _pow(node.left, exponent - 1)), da), _dedupe(conditions)
-        raise ValueError(f"Operador não suportado para derivação: {node.op}")
-
-    derivative, conditions = visit(expr)
-    return DerivativeResult(expr, derivative, variable, conditions)
 
 
 def symbolic_gradient(expr: Expr, variables: Iterable[str]) -> tuple[DerivativeResult, ...]:
@@ -245,7 +157,7 @@ def symbolic_hessian(expr: Expr, variables: Iterable[str]) -> tuple[tuple[Deriva
         for name in names:
             second = differentiate(first_result.derivative, name)
             row.append(DerivativeResult(
-                expr, second.derivative, name,
+                name, expr, second.derivative, second.steps,
                 _dedupe(first_result.required_nonzero + second.required_nonzero),
             ))
         rows.append(tuple(row))
