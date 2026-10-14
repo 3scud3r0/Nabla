@@ -17,6 +17,8 @@ test = ["pytest>=8,<10"]
 accelerate = ["jax"]
 formal = ["z3-solver>=4.16,<5"]
 graphics = ["Pillow>=10.1,<13"]
+documents = ["typst>=0.13,<0.15"]
+data = ["pyarrow>=18,<24"]
 
 [project.scripts]
 nabla = "nablamath.cli:main"

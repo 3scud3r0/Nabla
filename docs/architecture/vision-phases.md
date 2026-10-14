@@ -1,6 +1,6 @@
 # Caminhos para as fases 0–13
 
-Gerado de `vision.md` por `python tools/project_inventory.py --phases`. Existência de arquivo não comprova conclusão de fase. Fases 1–4 têm implementações delimitadas e testes; as fases seguintes possuem bases parciais ou permanecem planejadas. A fase 13 é um horizonte aberto, sem lista fechada de arquivos.
+Gerado de `vision.md` por `python tools/project_inventory.py --phases`. Existência de arquivo não comprova conclusão de fase. Fases 1–8 têm implementações delimitadas e testes; as fases seguintes possuem bases parciais ou permanecem planejadas. A fase 13 é um horizonte aberto, sem lista fechada de arquivos.
 
 ## Regras de organização
 
@@ -84,60 +84,60 @@ Gerado de `vision.md` por `python tools/project_inventory.py --phases`. Existên
 | Caminho previsto | Estado do caminho |
 | --- | --- |
 | `documents/document_model.py` | Presente: `src/nablamath/documents/document_model.py` |
-| `documents/equation_blocks.py` | Planejado |
-| `documents/citations.py` | Planejado |
-| `documents/figures.py` | Planejado |
-| `documents/latex_exporter.py` | Planejado |
-| `documents/typst_exporter.py` | Planejado |
+| `documents/equation_blocks.py` | Presente: `src/nablamath/documents/equation_blocks.py` |
+| `documents/citations.py` | Presente: `src/nablamath/documents/citations.py` |
+| `documents/figures.py` | Presente: `src/nablamath/documents/figures.py` |
+| `documents/latex_exporter.py` | Presente: `src/nablamath/documents/latex_exporter.py` |
+| `documents/typst_exporter.py` | Presente: `src/nablamath/documents/typst_exporter.py` |
 | `documents/pdf_builder.py` | Presente: `src/nablamath/documents/pdf_builder.py` |
-| `documents/html_exporter.py` | Planejado |
-| `templates/research_paper/` | Planejado |
+| `documents/html_exporter.py` | Presente: `src/nablamath/documents/html_exporter.py` |
+| `templates/research_paper/` | Presente: `templates/research_paper` |
 
 ## Fase 6 — Nabla Dataset: dados científicos de treinamento (2029–2031)
 
 | Caminho previsto | Estado do caminho |
 | --- | --- |
-| `datasets/schema.py` | Planejado |
-| `datasets/serializer.py` | Planejado |
-| `datasets/semantic_fingerprint.py` | Planejado |
-| `datasets/split_policy.py` | Planejado |
-| `datasets/curation.py` | Planejado |
-| `datasets/quality_gate.py` | Planejado |
-| `datasets/model_card.py` | Planejado |
-| `export/parquet.py` | Planejado |
-| `export/jsonl.py` | Planejado |
-| `export/bundle.py` | Planejado |
-| `export/huggingface.py` | Planejado |
+| `datasets/schema.py` | Presente: `src/nablamath/datasets/schema.py` |
+| `datasets/serializer.py` | Presente: `src/nablamath/datasets/serializer.py` |
+| `datasets/semantic_fingerprint.py` | Presente: `src/nablamath/datasets/semantic_fingerprint.py` |
+| `datasets/split_policy.py` | Presente: `src/nablamath/datasets/split_policy.py` |
+| `datasets/curation.py` | Presente: `src/nablamath/datasets/curation.py` |
+| `datasets/quality_gate.py` | Presente: `src/nablamath/datasets/quality_gate.py` |
+| `datasets/model_card.py` | Presente: `src/nablamath/datasets/model_card.py` |
+| `export/parquet.py` | Presente: `src/nablamath/export/parquet.py` |
+| `export/jsonl.py` | Presente: `src/nablamath/export/jsonl.py` |
+| `export/bundle.py` | Presente: `src/nablamath/export/bundle.py` |
+| `export/huggingface.py` | Presente: `src/nablamath/export/huggingface.py` |
 
 ## Fase 7 — Nabla Worlds: simulações científicas (2030–2033)
 
 | Caminho previsto | Estado do caminho |
 | --- | --- |
-| `worlds/model_spec.py` | Planejado |
-| `worlds/ode/` | Planejado |
-| `worlds/pde/` | Planejado |
-| `worlds/integrators/` | Planejado |
-| `worlds/mesh/` | Planejado |
-| `worlds/conservation.py` | Planejado |
-| `worlds/convergence.py` | Planejado |
+| `worlds/model_spec.py` | Presente: `src/nablamath/worlds/model_spec.py` |
+| `worlds/ode/` | Presente: `src/nablamath/worlds/ode` |
+| `worlds/pde/` | Presente: `src/nablamath/worlds/pde` |
+| `worlds/integrators/` | Presente: `src/nablamath/worlds/integrators` |
+| `worlds/mesh/` | Presente: `src/nablamath/worlds/mesh` |
+| `worlds/conservation.py` | Presente: `src/nablamath/worlds/conservation.py` |
+| `worlds/convergence.py` | Presente: `src/nablamath/worlds/convergence.py` |
 | `worlds/validation.py` | Presente: `src/nablamath/worlds/validation.py` |
-| `worlds/sensitivity.py` | Planejado |
-| `worlds/animation.py` | Planejado |
+| `worlds/sensitivity.py` | Presente: `src/nablamath/worlds/sensitivity.py` |
+| `worlds/animation.py` | Presente: `src/nablamath/worlds/animation.py` |
 
 ## Fase 8 — Aprendizado multimodal e agentes científicos (2032–2035)
 
 | Caminho previsto | Estado do caminho |
 | --- | --- |
-| `agents/tool_registry.py` | Planejado |
-| `agents/planner.py` | Planejado |
-| `agents/proposals.py` | Planejado |
-| `agents/permissions.py` | Planejado |
-| `datasets/multimodal.py` | Planejado |
-| `datasets/alignments.py` | Planejado |
-| `training/curriculum.py` | Planejado |
-| `training/evaluation.py` | Planejado |
-| `training/contamination.py` | Planejado |
-| `training/ablation.py` | Planejado |
+| `agents/tool_registry.py` | Presente: `src/nablamath/agents/tool_registry.py` |
+| `agents/planner.py` | Presente: `src/nablamath/agents/planner.py` |
+| `agents/proposals.py` | Presente: `src/nablamath/agents/proposals.py` |
+| `agents/permissions.py` | Presente: `src/nablamath/agents/permissions.py` |
+| `datasets/multimodal.py` | Presente: `src/nablamath/datasets/multimodal.py` |
+| `datasets/alignments.py` | Presente: `src/nablamath/datasets/alignments.py` |
+| `training/curriculum.py` | Presente: `src/nablamath/training/curriculum.py` |
+| `training/evaluation.py` | Presente: `src/nablamath/training/evaluation.py` |
+| `training/contamination.py` | Presente: `src/nablamath/training/contamination.py` |
+| `training/ablation.py` | Presente: `src/nablamath/training/ablation.py` |
 
 ## Fase 9 — Nabla Discovery: investigação de hipóteses (2033–2037)
 

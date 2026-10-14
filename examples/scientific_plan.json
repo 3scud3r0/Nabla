@@ -1,0 +1,1 @@
+{"actions":[{"arguments":{"task":{"domain":"rational","family":"linear_system","problem":{"matrix":[["2","-1"],["-1","2"]],"rhs":["-3","-12"]},"schema_version":1,"size":2}},"depends_on":[],"id":"solve1","tool":"solve"}],"limitations":"Ferramentas delimitadas; n\u00e3o pesquisa aut\u00f4noma geral.","question":"Resolver e verificar um sistema linear exato"}

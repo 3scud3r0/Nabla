@@ -31,6 +31,10 @@ DIRECTORIES = (
     ROOT / "src/nablamath/falsifier",
     ROOT / "src/nablamath/evolution",
     ROOT / "src/nablamath/domains",
+    ROOT / "src/nablamath/documents",
+    ROOT / "src/nablamath/export",
+    ROOT / "src/nablamath/agents",
+    ROOT / "src/nablamath/training",
     ROOT / "lean",
 )
 FILES = (

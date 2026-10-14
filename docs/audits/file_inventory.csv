@@ -7,17 +7,18 @@ arquivo,situação,categoria,linhas_físicas,linhas_código,bytes
 .github/workflows/ci.yml,existente,infraestrutura/outros,21,,547
 .github/workflows/dataset-publish.yml,existente,infraestrutura/outros,36,,1290
 .github/workflows/interop.yml,existente,infraestrutura/outros,15,,396
-.github/workflows/lean-core.yml,alterado,infraestrutura/outros,32,,1148
-.github/workflows/lean.yml,alterado,infraestrutura/outros,22,,766
+.github/workflows/lean-core.yml,existente,infraestrutura/outros,32,,1148
+.github/workflows/lean.yml,existente,infraestrutura/outros,22,,766
 .github/workflows/pages.yml,existente,infraestrutura/outros,27,,618
 .github/workflows/python-core.yml,existente,infraestrutura/outros,20,,510
+.github/workflows/scientific-phases-5-8.yml,novo,infraestrutura/outros,26,,1086
 .github/workflows/windows-installer.yml,existente,infraestrutura/outros,77,,3121
-.gitignore,alterado,infraestrutura/outros,14,,120
+.gitignore,existente,infraestrutura/outros,14,,120
 CITATION.cff,existente,infraestrutura/outros,7,,283
 CODE_OF_CONDUCT.md,existente,infraestrutura/outros,3,,544
 CONTRIBUTING.md,existente,infraestrutura/outros,7,,1155
 LICENSE,existente,infraestrutura/outros,25,,1282
-README.md,alterado,infraestrutura/outros,159,,10301
+README.md,alterado,infraestrutura/outros,170,,10852
 SECURITY.md,existente,infraestrutura/outros,5,,830
 benchmarks/baselines/README.md,existente,infraestrutura/outros,8,,468
 benchmarks/tasks/README.md,existente,infraestrutura/outros,6,,357
@@ -39,118 +40,121 @@ docs/INCIDENT_RESPONSE.md,existente,documentação,20,,1155
 docs/INTEGRATIONS_ALPHA.md,existente,documentação,17,,3096
 docs/MATHEMATICS_COMPLETION_AUDIT.md,existente,documentação,34,,4214
 docs/MATHEMATICS_COVERAGE.md,existente,documentação,253,,16744
-docs/MIGRATION_STATUS.md,alterado,documentação,18,,1447
+docs/MIGRATION_STATUS.md,existente,documentação,18,,1447
 docs/MODEL_GOVERNANCE.md,existente,documentação,16,,992
 docs/NETWORK_GOVERNANCE.md,existente,documentação,20,,1093
 docs/OPERATIONS.md,existente,documentação,7,,1148
-docs/PHASES_1_2.md,novo,documentação,243,,15683
-docs/PHASES_3_4.md,novo,documentação,227,,13632
+docs/PHASES_1_2.md,existente,documentação,243,,15683
+docs/PHASES_3_4.md,existente,documentação,227,,13632
+docs/PHASES_5_8.md,novo,documentação,184,,10960
 docs/PLANO_MESTRE_2026_2056.md,existente,documentação,300,,34882
 docs/PUBLISHING.md,existente,documentação,10,,2183
 docs/RELEASE_POLICY.md,existente,documentação,46,,2282
-docs/ROADMAP_GLOBAL_RESEARCH.md,alterado,documentação,179,,18613
-docs/SCIENTIFIC_CYCLE.md,novo,documentação,152,,9807
+docs/ROADMAP_GLOBAL_RESEARCH.md,existente,documentação,179,,18613
+docs/SCIENTIFIC_CYCLE.md,existente,documentação,152,,9807
 docs/THREAT_MODEL.md,existente,documentação,12,,1292
 docs/UPLOAD_REMAINING_ARCHIVE.md,existente,documentação,37,,2633
-docs/adr/0001-product-scope.md,novo,documentação,16,,949
-docs/adr/0002-canonical-ast.md,novo,documentação,19,,1194
-docs/architecture/current-modules.md,novo,documentação,23,,2011
-docs/architecture/vision-phases.md,novo,documentação,200,,9526
-docs/audits/BASELINE_2026_10.md,novo,documentação,66,,3996
+docs/adr/0001-product-scope.md,existente,documentação,16,,949
+docs/adr/0002-canonical-ast.md,existente,documentação,19,,1194
+docs/architecture/current-modules.md,existente,documentação,23,,2011
+docs/architecture/vision-phases.md,alterado,documentação,200,,10911
+docs/audits/BASELINE_2026_10.md,existente,documentação,66,,3996
 examples/first_problem.py,existente,infraestrutura/outros,19,14,785
 examples/orbit_report.py,existente,infraestrutura/outros,13,9,442
-lean/Nabla.lean,novo,Lean,3,3,69
-lean/Nabla/Algebra.lean,novo,Lean,17,12,428
-lean/Nabla/Certificates.lean,novo,Lean,16,5,376
-lean/Nabla/Geometry.lean,novo,Lean,30,22,828
+examples/scientific_phases_5_8.py,novo,infraestrutura/outros,11,10,476
+examples/scientific_plan.json,novo,infraestrutura/outros,1,,359
+lean/Nabla.lean,existente,Lean,3,3,69
+lean/Nabla/Algebra.lean,existente,Lean,17,12,428
+lean/Nabla/Certificates.lean,existente,Lean,16,5,376
+lean/Nabla/Geometry.lean,existente,Lean,30,22,828
 lean/NablaMath.lean,existente,Lean,2,2,56
-lean/NablaMath/Algebra.lean,alterado,Lean,14,10,322
-lean/NablaMath/Algebra/Rules.lean,alterado,Lean,41,29,1482
-lean/NablaMath/Examples/FirstProblem.lean,alterado,Lean,16,12,386
+lean/NablaMath/Algebra.lean,existente,Lean,14,10,322
+lean/NablaMath/Algebra/Rules.lean,existente,Lean,41,29,1482
+lean/NablaMath/Examples/FirstProblem.lean,existente,Lean,16,12,386
 lean/NablaMath/Prelude.lean,existente,Lean,13,8,330
-lean/lake-manifest.json,novo,Lean,96,,3134
-lean/lakefile.toml,alterado,Lean,13,,183
+lean/lake-manifest.json,existente,Lean,96,,3134
+lean/lakefile.toml,existente,Lean,13,,183
 lean/lean-toolchain,existente,Lean,1,,25
-legacy/current_scripts/NablaMath_All_In_One_Professional_FULL.py,movido de current scripts/NablaMath_All_In_One_Professional_FULL.py,histórico,656,550,43269
-legacy/current_scripts/NablaMath_All_Modules_LaTeX_Professional.py,movido de current scripts/NablaMath_All_Modules_LaTeX_Professional.py,histórico,1154,1043,49521
-legacy/current_scripts/README.md,movido de current scripts/README.md,histórico,5,,620
-legacy/current_scripts/nablamath/examples/demo_ml.py,movido de current scripts/nablamath/examples/demo_ml.py,histórico,11,8,304
-legacy/current_scripts/nablamath/examples/demo_research.py,movido de current scripts/nablamath/examples/demo_research.py,histórico,23,17,605
-legacy/current_scripts/nablamath/examples/demo_v02.py,movido de current scripts/nablamath/examples/demo_v02.py,histórico,56,46,1668
-legacy/current_scripts/nablamath/nablamath/__init__.py,movido de current scripts/nablamath/nablamath/__init__.py,histórico,51,50,1611
-legacy/current_scripts/nablamath/nablamath/algebra.py,movido de current scripts/nablamath/nablamath/algebra.py,histórico,169,145,6260
-legacy/current_scripts/nablamath/nablamath/analysis.py,movido de current scripts/nablamath/nablamath/analysis.py,histórico,56,49,1989
-legacy/current_scripts/nablamath/nablamath/autodiff.py,movido de current scripts/nablamath/nablamath/autodiff.py,histórico,128,108,3569
-legacy/current_scripts/nablamath/nablamath/autodiff_tensor.py,movido de current scripts/nablamath/nablamath/autodiff_tensor.py,histórico,174,148,5446
-legacy/current_scripts/nablamath/nablamath/core.py,movido de current scripts/nablamath/nablamath/core.py,histórico,459,328,13926
-legacy/current_scripts/nablamath/nablamath/ml.py,movido de current scripts/nablamath/nablamath/ml.py,histórico,88,69,2751
-legacy/current_scripts/nablamath/nablamath/optimize.py,movido de current scripts/nablamath/nablamath/optimize.py,histórico,374,336,13632
-legacy/current_scripts/nablamath/nablamath/parser.py,movido de current scripts/nablamath/nablamath/parser.py,histórico,58,50,2186
-legacy/current_scripts/nablamath/nablamath/plotting.py,movido de current scripts/nablamath/nablamath/plotting.py,histórico,239,218,8183
-legacy/current_scripts/nablamath/nablamath/recursive.py,movido de current scripts/nablamath/nablamath/recursive.py,histórico,100,84,3865
-legacy/current_scripts/nablamath/nablamath/tensor.py,movido de current scripts/nablamath/nablamath/tensor.py,histórico,103,84,4182
-legacy/current_scripts/nablamath/tests/test_basic.py,movido de current scripts/nablamath/tests/test_basic.py,histórico,22,16,502
-legacy/current_scripts/nablamath/tests/test_v02.py,movido de current scripts/nablamath/tests/test_v02.py,histórico,33,27,1055
-legacy/current_scripts/nablamath_all_in_one_professional.py,movido de current scripts/nablamath_all_in_one_professional.py,histórico,1267,1042,59572
-legacy/current_scripts/nablamath_orbital_professional_single.py,movido de current scripts/nablamath_orbital_professional_single.py,histórico,1348,1118,64587
-legacy/current_scripts/nablamath_src/nablamath/examples/demo_ml.py,movido de current scripts/nablamath_src/nablamath/examples/demo_ml.py,histórico,11,8,304
-legacy/current_scripts/nablamath_src/nablamath/examples/demo_research.py,movido de current scripts/nablamath_src/nablamath/examples/demo_research.py,histórico,23,17,605
-legacy/current_scripts/nablamath_src/nablamath/examples/demo_v02.py,movido de current scripts/nablamath_src/nablamath/examples/demo_v02.py,histórico,56,46,1668
-legacy/current_scripts/nablamath_src/nablamath/nablamath/__init__.py,movido de current scripts/nablamath_src/nablamath/nablamath/__init__.py,histórico,51,50,1611
-legacy/current_scripts/nablamath_src/nablamath/nablamath/algebra.py,movido de current scripts/nablamath_src/nablamath/nablamath/algebra.py,histórico,169,145,6260
-legacy/current_scripts/nablamath_src/nablamath/nablamath/analysis.py,movido de current scripts/nablamath_src/nablamath/nablamath/analysis.py,histórico,56,49,1989
-legacy/current_scripts/nablamath_src/nablamath/nablamath/autodiff.py,movido de current scripts/nablamath_src/nablamath/nablamath/autodiff.py,histórico,128,108,3569
-legacy/current_scripts/nablamath_src/nablamath/nablamath/autodiff_tensor.py,movido de current scripts/nablamath_src/nablamath/nablamath/autodiff_tensor.py,histórico,174,148,5446
-legacy/current_scripts/nablamath_src/nablamath/nablamath/core.py,movido de current scripts/nablamath_src/nablamath/nablamath/core.py,histórico,459,328,13926
-legacy/current_scripts/nablamath_src/nablamath/nablamath/ml.py,movido de current scripts/nablamath_src/nablamath/nablamath/ml.py,histórico,88,69,2751
-legacy/current_scripts/nablamath_src/nablamath/nablamath/optimize.py,movido de current scripts/nablamath_src/nablamath/nablamath/optimize.py,histórico,374,336,13632
-legacy/current_scripts/nablamath_src/nablamath/nablamath/parser.py,movido de current scripts/nablamath_src/nablamath/nablamath/parser.py,histórico,58,50,2186
-legacy/current_scripts/nablamath_src/nablamath/nablamath/plotting.py,movido de current scripts/nablamath_src/nablamath/nablamath/plotting.py,histórico,239,218,8183
-legacy/current_scripts/nablamath_src/nablamath/nablamath/recursive.py,movido de current scripts/nablamath_src/nablamath/nablamath/recursive.py,histórico,100,84,3865
-legacy/current_scripts/nablamath_src/nablamath/nablamath/tensor.py,movido de current scripts/nablamath_src/nablamath/nablamath/tensor.py,histórico,103,84,4182
-legacy/current_scripts/nablamath_src/nablamath/tests/test_basic.py,movido de current scripts/nablamath_src/nablamath/tests/test_basic.py,histórico,22,16,502
-legacy/current_scripts/nablamath_v03_work/examples/demo_ml.py,movido de current scripts/nablamath_v03_work/examples/demo_ml.py,histórico,11,8,304
-legacy/current_scripts/nablamath_v03_work/examples/demo_research.py,movido de current scripts/nablamath_v03_work/examples/demo_research.py,histórico,23,17,605
-legacy/current_scripts/nablamath_v03_work/examples/demo_v02.py,movido de current scripts/nablamath_v03_work/examples/demo_v02.py,histórico,56,46,1668
-legacy/current_scripts/nablamath_v03_work/examples/demo_v03_pdf.py,movido de current scripts/nablamath_v03_work/examples/demo_v03_pdf.py,histórico,21,20,680
-legacy/current_scripts/nablamath_v03_work/nablamath/__init__.py,movido de current scripts/nablamath_v03_work/nablamath/__init__.py,histórico,72,63,5388
-legacy/current_scripts/nablamath_v03_work/nablamath/algebra.py,movido de current scripts/nablamath_v03_work/nablamath/algebra.py,histórico,169,145,6260
-legacy/current_scripts/nablamath_v03_work/nablamath/autodiff_tensor.py,movido de current scripts/nablamath_v03_work/nablamath/autodiff_tensor.py,histórico,174,148,5446
-legacy/current_scripts/nablamath_v03_work/nablamath/core.py,movido de current scripts/nablamath_v03_work/nablamath/core.py,histórico,459,328,13926
-legacy/current_scripts/nablamath_v03_work/nablamath/latex_report.py,movido de current scripts/nablamath_v03_work/nablamath/latex_report.py,histórico,206,181,9015
-legacy/current_scripts/nablamath_v03_work/nablamath/ml.py,movido de current scripts/nablamath_v03_work/nablamath/ml.py,histórico,88,69,2751
-legacy/current_scripts/nablamath_v03_work/nablamath/optimize.py,movido de current scripts/nablamath_v03_work/nablamath/optimize.py,histórico,374,336,13632
-legacy/current_scripts/nablamath_v03_work/nablamath/parser.py,movido de current scripts/nablamath_v03_work/nablamath/parser.py,histórico,58,50,2186
-legacy/current_scripts/nablamath_v03_work/nablamath/plotting.py,movido de current scripts/nablamath_v03_work/nablamath/plotting.py,histórico,239,218,8183
-legacy/current_scripts/nablamath_v03_work/nablamath/recursive.py,movido de current scripts/nablamath_v03_work/nablamath/recursive.py,histórico,100,84,3865
-legacy/current_scripts/nablamath_v03_work/nablamath/reports.py,movido de current scripts/nablamath_v03_work/nablamath/reports.py,histórico,317,275,17205
-legacy/current_scripts/nablamath_v03_work/nablamath/tensor.py,movido de current scripts/nablamath_v03_work/nablamath/tensor.py,histórico,103,84,4182
-legacy/current_scripts/nablamath_v03_work/nablamath/viz_enterprise.py,movido de current scripts/nablamath_v03_work/nablamath/viz_enterprise.py,histórico,383,334,17208
-legacy/current_scripts/nablamath_v03_work/tests/test_v02.py,movido de current scripts/nablamath_v03_work/tests/test_v02.py,histórico,33,27,1055
-legacy/current_scripts/nablamath_v03_work/tests/test_v03.py,movido de current scripts/nablamath_v03_work/tests/test_v03.py,histórico,21,17,770
-legacy/current_scripts/nablamath_v04_work/examples/demo_orbital_v06_professional.py,movido de current scripts/nablamath_v04_work/examples/demo_orbital_v06_professional.py,histórico,152,143,4950
-legacy/current_scripts/nablamath_v04_work/nablamath/__init__.py,movido de current scripts/nablamath_v04_work/nablamath/__init__.py,histórico,98,84,8177
-legacy/current_scripts/nablamath_v04_work/nablamath/orbital.py,movido de current scripts/nablamath_v04_work/nablamath/orbital.py,histórico,2256,2039,113355
-legacy/current_scripts/nablarender_single_test/blender_export/rocket_blender_cycles_export.py,movido de current scripts/nablarender_single_test/blender_export/rocket_blender_cycles_export.py,histórico,36,35,2811
-legacy/current_scripts/nablarender_v07/nablarender/__init__.py,movido de current scripts/nablarender_v07/nablarender/__init__.py,histórico,10,10,938
-legacy/current_scripts/nablarender_v07/nablarender/api.py,movido de current scripts/nablarender_v07/nablarender/api.py,histórico,26,24,1725
-legacy/current_scripts/nablarender_v07/nablarender/blender/export_blender.py,movido de current scripts/nablarender_v07/nablarender/blender/export_blender.py,histórico,34,34,4406
-legacy/current_scripts/nablarender_v07/nablarender/core/bvh.py,movido de current scripts/nablarender_v07/nablarender/core/bvh.py,histórico,44,44,2553
-legacy/current_scripts/nablarender_v07/nablarender/core/math3d.py,movido de current scripts/nablarender_v07/nablarender/core/math3d.py,histórico,30,29,2253
-legacy/current_scripts/nablarender_v07/nablarender/core/mesh.py,movido de current scripts/nablarender_v07/nablarender/core/mesh.py,histórico,26,26,1913
-legacy/current_scripts/nablarender_v07/nablarender/core/meshlet.py,movido de current scripts/nablarender_v07/nablarender/core/meshlet.py,histórico,23,23,1278
-legacy/current_scripts/nablarender_v07/nablarender/examples/demo_v07_full.py,movido de current scripts/nablarender_v07/nablarender/examples/demo_v07_full.py,histórico,8,8,524
-legacy/current_scripts/nablarender_v07/nablarender/generated_demo_v07/blender/rocket_blender_cycles_export.py,movido de current scripts/nablarender_v07/nablarender/generated_demo_v07/blender/rocket_blender_cycles_export.py,histórico,41,33,276215
-legacy/current_scripts/nablarender_v07/nablarender/native/camera.py,movido de current scripts/nablarender_v07/nablarender/native/camera.py,histórico,9,9,536
-legacy/current_scripts/nablarender_v07/nablarender/native/pathtracer.py,movido de current scripts/nablarender_v07/nablarender/native/pathtracer.py,histórico,37,36,2240
-legacy/current_scripts/nablarender_v07/nablarender/native/rasterizer.py,movido de current scripts/nablarender_v07/nablarender/native/rasterizer.py,histórico,27,26,2579
-legacy/current_scripts/nablarender_v07/nablarender/native/renderer.py,movido de current scripts/nablarender_v07/nablarender/native/renderer.py,histórico,33,33,3227
-legacy/current_scripts/nablarender_v07/nablarender/native/scene.py,movido de current scripts/nablarender_v07/nablarender/native/scene.py,histórico,11,11,785
-legacy/current_scripts/nablarender_v07/nablarender/procedural/rocket_factory.py,movido de current scripts/nablarender_v07/nablarender/procedural/rocket_factory.py,histórico,39,35,3268
-legacy/current_scripts/nablarender_v07/nablarender/report/__init__.py,movido de current scripts/nablarender_v07/nablarender/report/__init__.py,histórico,2,2,117
-legacy/current_scripts/nablarender_v07/nablarender/report/pro_report.py,movido de current scripts/nablarender_v07/nablarender/report/pro_report.py,histórico,64,60,7854
-legacy/current_scripts/nablarender_v07/nablarender/web/web_renderer.py,movido de current scripts/nablarender_v07/nablarender/web/web_renderer.py,histórico,14,14,6028
-legacy/current_scripts/nablarender_v07_single_file_report.py,movido de current scripts/nablarender_v07_single_file_report.py,histórico,933,764,47342
+legacy/current_scripts/NablaMath_All_In_One_Professional_FULL.py,existente,histórico,656,550,43269
+legacy/current_scripts/NablaMath_All_Modules_LaTeX_Professional.py,existente,histórico,1154,1043,49521
+legacy/current_scripts/README.md,existente,histórico,5,,620
+legacy/current_scripts/nablamath/examples/demo_ml.py,existente,histórico,11,8,304
+legacy/current_scripts/nablamath/examples/demo_research.py,existente,histórico,23,17,605
+legacy/current_scripts/nablamath/examples/demo_v02.py,existente,histórico,56,46,1668
+legacy/current_scripts/nablamath/nablamath/__init__.py,existente,histórico,51,50,1611
+legacy/current_scripts/nablamath/nablamath/algebra.py,existente,histórico,169,145,6260
+legacy/current_scripts/nablamath/nablamath/analysis.py,existente,histórico,56,49,1989
+legacy/current_scripts/nablamath/nablamath/autodiff.py,existente,histórico,128,108,3569
+legacy/current_scripts/nablamath/nablamath/autodiff_tensor.py,existente,histórico,174,148,5446
+legacy/current_scripts/nablamath/nablamath/core.py,existente,histórico,459,328,13926
+legacy/current_scripts/nablamath/nablamath/ml.py,existente,histórico,88,69,2751
+legacy/current_scripts/nablamath/nablamath/optimize.py,existente,histórico,374,336,13632
+legacy/current_scripts/nablamath/nablamath/parser.py,existente,histórico,58,50,2186
+legacy/current_scripts/nablamath/nablamath/plotting.py,existente,histórico,239,218,8183
+legacy/current_scripts/nablamath/nablamath/recursive.py,existente,histórico,100,84,3865
+legacy/current_scripts/nablamath/nablamath/tensor.py,existente,histórico,103,84,4182
+legacy/current_scripts/nablamath/tests/test_basic.py,existente,histórico,22,16,502
+legacy/current_scripts/nablamath/tests/test_v02.py,existente,histórico,33,27,1055
+legacy/current_scripts/nablamath_all_in_one_professional.py,existente,histórico,1267,1042,59572
+legacy/current_scripts/nablamath_orbital_professional_single.py,existente,histórico,1348,1118,64587
+legacy/current_scripts/nablamath_src/nablamath/examples/demo_ml.py,existente,histórico,11,8,304
+legacy/current_scripts/nablamath_src/nablamath/examples/demo_research.py,existente,histórico,23,17,605
+legacy/current_scripts/nablamath_src/nablamath/examples/demo_v02.py,existente,histórico,56,46,1668
+legacy/current_scripts/nablamath_src/nablamath/nablamath/__init__.py,existente,histórico,51,50,1611
+legacy/current_scripts/nablamath_src/nablamath/nablamath/algebra.py,existente,histórico,169,145,6260
+legacy/current_scripts/nablamath_src/nablamath/nablamath/analysis.py,existente,histórico,56,49,1989
+legacy/current_scripts/nablamath_src/nablamath/nablamath/autodiff.py,existente,histórico,128,108,3569
+legacy/current_scripts/nablamath_src/nablamath/nablamath/autodiff_tensor.py,existente,histórico,174,148,5446
+legacy/current_scripts/nablamath_src/nablamath/nablamath/core.py,existente,histórico,459,328,13926
+legacy/current_scripts/nablamath_src/nablamath/nablamath/ml.py,existente,histórico,88,69,2751
+legacy/current_scripts/nablamath_src/nablamath/nablamath/optimize.py,existente,histórico,374,336,13632
+legacy/current_scripts/nablamath_src/nablamath/nablamath/parser.py,existente,histórico,58,50,2186
+legacy/current_scripts/nablamath_src/nablamath/nablamath/plotting.py,existente,histórico,239,218,8183
+legacy/current_scripts/nablamath_src/nablamath/nablamath/recursive.py,existente,histórico,100,84,3865
+legacy/current_scripts/nablamath_src/nablamath/nablamath/tensor.py,existente,histórico,103,84,4182
+legacy/current_scripts/nablamath_src/nablamath/tests/test_basic.py,existente,histórico,22,16,502
+legacy/current_scripts/nablamath_v03_work/examples/demo_ml.py,existente,histórico,11,8,304
+legacy/current_scripts/nablamath_v03_work/examples/demo_research.py,existente,histórico,23,17,605
+legacy/current_scripts/nablamath_v03_work/examples/demo_v02.py,existente,histórico,56,46,1668
+legacy/current_scripts/nablamath_v03_work/examples/demo_v03_pdf.py,existente,histórico,21,20,680
+legacy/current_scripts/nablamath_v03_work/nablamath/__init__.py,existente,histórico,72,63,5388
+legacy/current_scripts/nablamath_v03_work/nablamath/algebra.py,existente,histórico,169,145,6260
+legacy/current_scripts/nablamath_v03_work/nablamath/autodiff_tensor.py,existente,histórico,174,148,5446
+legacy/current_scripts/nablamath_v03_work/nablamath/core.py,existente,histórico,459,328,13926
+legacy/current_scripts/nablamath_v03_work/nablamath/latex_report.py,existente,histórico,206,181,9015
+legacy/current_scripts/nablamath_v03_work/nablamath/ml.py,existente,histórico,88,69,2751
+legacy/current_scripts/nablamath_v03_work/nablamath/optimize.py,existente,histórico,374,336,13632
+legacy/current_scripts/nablamath_v03_work/nablamath/parser.py,existente,histórico,58,50,2186
+legacy/current_scripts/nablamath_v03_work/nablamath/plotting.py,existente,histórico,239,218,8183
+legacy/current_scripts/nablamath_v03_work/nablamath/recursive.py,existente,histórico,100,84,3865
+legacy/current_scripts/nablamath_v03_work/nablamath/reports.py,existente,histórico,317,275,17205
+legacy/current_scripts/nablamath_v03_work/nablamath/tensor.py,existente,histórico,103,84,4182
+legacy/current_scripts/nablamath_v03_work/nablamath/viz_enterprise.py,existente,histórico,383,334,17208
+legacy/current_scripts/nablamath_v03_work/tests/test_v02.py,existente,histórico,33,27,1055
+legacy/current_scripts/nablamath_v03_work/tests/test_v03.py,existente,histórico,21,17,770
+legacy/current_scripts/nablamath_v04_work/examples/demo_orbital_v06_professional.py,existente,histórico,152,143,4950
+legacy/current_scripts/nablamath_v04_work/nablamath/__init__.py,existente,histórico,98,84,8177
+legacy/current_scripts/nablamath_v04_work/nablamath/orbital.py,existente,histórico,2256,2039,113355
+legacy/current_scripts/nablarender_single_test/blender_export/rocket_blender_cycles_export.py,existente,histórico,36,35,2811
+legacy/current_scripts/nablarender_v07/nablarender/__init__.py,existente,histórico,10,10,938
+legacy/current_scripts/nablarender_v07/nablarender/api.py,existente,histórico,26,24,1725
+legacy/current_scripts/nablarender_v07/nablarender/blender/export_blender.py,existente,histórico,34,34,4406
+legacy/current_scripts/nablarender_v07/nablarender/core/bvh.py,existente,histórico,44,44,2553
+legacy/current_scripts/nablarender_v07/nablarender/core/math3d.py,existente,histórico,30,29,2253
+legacy/current_scripts/nablarender_v07/nablarender/core/mesh.py,existente,histórico,26,26,1913
+legacy/current_scripts/nablarender_v07/nablarender/core/meshlet.py,existente,histórico,23,23,1278
+legacy/current_scripts/nablarender_v07/nablarender/examples/demo_v07_full.py,existente,histórico,8,8,524
+legacy/current_scripts/nablarender_v07/nablarender/generated_demo_v07/blender/rocket_blender_cycles_export.py,existente,histórico,41,33,276215
+legacy/current_scripts/nablarender_v07/nablarender/native/camera.py,existente,histórico,9,9,536
+legacy/current_scripts/nablarender_v07/nablarender/native/pathtracer.py,existente,histórico,37,36,2240
+legacy/current_scripts/nablarender_v07/nablarender/native/rasterizer.py,existente,histórico,27,26,2579
+legacy/current_scripts/nablarender_v07/nablarender/native/renderer.py,existente,histórico,33,33,3227
+legacy/current_scripts/nablarender_v07/nablarender/native/scene.py,existente,histórico,11,11,785
+legacy/current_scripts/nablarender_v07/nablarender/procedural/rocket_factory.py,existente,histórico,39,35,3268
+legacy/current_scripts/nablarender_v07/nablarender/report/__init__.py,existente,histórico,2,2,117
+legacy/current_scripts/nablarender_v07/nablarender/report/pro_report.py,existente,histórico,64,60,7854
+legacy/current_scripts/nablarender_v07/nablarender/web/web_renderer.py,existente,histórico,14,14,6028
+legacy/current_scripts/nablarender_v07_single_file_report.py,existente,histórico,933,764,47342
 legacy/latex/NablaMath_Calculator_Professional_Report.tex,existente,histórico,948,,24177
 legacy/latex/NablaMath_Orbital_Professional_Report.tex,existente,histórico,611,,21789
 legacy/latex/NablaMath_Relativity_Professional_Report.tex,existente,histórico,626,,21373
@@ -195,7 +199,7 @@ legacy/single_file/NablaMath_All_Modules_LaTeX_Professional.py,existente,histór
 legacy/single_file/nablamath_all_in_one_professional.py,existente,histórico,1267,1042,59571
 legacy/single_file/nablamath_orbital_professional_single.py,existente,histórico,1348,1118,64586
 legacy/single_file/nablarender_v07_single_file_report.py,existente,histórico,933,764,47341
-math.txt,alterado,bundle gerado,15096,,701631
+math.txt,alterado,bundle gerado,17381,,819328
 packaging/windows/nablamath.iss,existente,infraestrutura/outros,24,,928
 protocol/__init__.py,existente,infraestrutura/outros,1,1,87
 protocol/canonical/encoding.md,existente,infraestrutura/outros,6,,367
@@ -208,9 +212,9 @@ protocol/schema/nabla-model-v1.json,existente,infraestrutura/outros,16,,725
 protocol/schema/nabla-object-v1.json,existente,infraestrutura/outros,21,,985
 protocol/schema/nabla-receipt-v1.json,existente,infraestrutura/outros,17,,857
 protocol/schema/nabla-task-v1.json,existente,infraestrutura/outros,24,,1133
-pyproject.toml,alterado,infraestrutura/outros,34,,872
+pyproject.toml,alterado,infraestrutura/outros,36,,933
 scripts/import_archive.py,existente,infraestrutura/outros,113,105,5228
-scripts/setup_formal.sh,novo,infraestrutura/outros,31,28,1519
+scripts/setup_formal.sh,existente,infraestrutura/outros,31,28,1519
 sdk/c/README.md,existente,infraestrutura/outros,4,,190
 sdk/c/nabla_fraction.c,existente,infraestrutura/outros,42,,1468
 sdk/c/nabla_fraction.h,existente,infraestrutura/outros,15,,416
@@ -246,19 +250,23 @@ src/nablamath/adapters/numpy.py,existente,fonte,25,17,749
 src/nablamath/adapters/registry.py,existente,fonte,37,25,1022
 src/nablamath/adapters/scipy.py,existente,fonte,35,27,1236
 src/nablamath/adapters/sympy.py,existente,fonte,45,34,1578
-src/nablamath/agents/__init__.py,existente,fonte,4,3,156
+src/nablamath/agents/__init__.py,alterado,fonte,10,9,496
 src/nablamath/agents/budget.py,existente,fonte,13,9,394
+src/nablamath/agents/permissions.py,novo,fonte,23,20,1084
+src/nablamath/agents/planner.py,novo,fonte,67,61,3832
+src/nablamath/agents/proposals.py,novo,fonte,61,51,2343
 src/nablamath/agents/protocol.py,existente,fonte,21,15,706
 src/nablamath/agents/sandbox.py,existente,fonte,5,3,228
 src/nablamath/agents/selector.py,existente,fonte,31,22,1028
+src/nablamath/agents/tool_registry.py,novo,fonte,101,85,4135
 src/nablamath/agents/trajectory.py,existente,fonte,23,18,891
 src/nablamath/autodiff/__init__.py,existente,fonte,8,7,372
 src/nablamath/autodiff/api.py,existente,fonte,240,213,13724
 src/nablamath/autodiff/tensor.py,existente,fonte,283,265,15427
-src/nablamath/calc/__init__.py,novo,fonte,5,4,235
-src/nablamath/calc/notebook.py,novo,fonte,62,54,2569
-src/nablamath/calc/session.py,novo,fonte,226,210,13548
-src/nablamath/cli.py,alterado,fonte,368,359,22015
+src/nablamath/calc/__init__.py,existente,fonte,5,4,235
+src/nablamath/calc/notebook.py,existente,fonte,62,54,2569
+src/nablamath/calc/session.py,existente,fonte,226,210,13548
+src/nablamath/cli.py,alterado,fonte,433,424,27347
 src/nablamath/compatibility.json,existente,fonte,21,,412
 src/nablamath/compatibility.py,existente,fonte,95,80,3407
 src/nablamath/compiler/__init__.py,existente,fonte,15,14,657
@@ -269,77 +277,98 @@ src/nablamath/config.py,existente,fonte,21,15,521
 src/nablamath/coordination/__init__.py,existente,fonte,3,2,68
 src/nablamath/coordination/local.py,existente,fonte,86,76,4575
 src/nablamath/coordination/merkle.py,existente,fonte,20,17,817
-src/nablamath/core/__init__.py,novo,fonte,8,7,498
-src/nablamath/core/obligations.py,novo,fonte,56,47,1987
-src/nablamath/core/precision.py,novo,fonte,57,46,2126
-src/nablamath/core/semantic_ir.py,novo,fonte,177,149,8024
-src/nablamath/core/types.py,novo,fonte,28,22,1038
-src/nablamath/core/units.py,novo,fonte,106,85,4054
+src/nablamath/core/__init__.py,existente,fonte,8,7,498
+src/nablamath/core/obligations.py,existente,fonte,56,47,1987
+src/nablamath/core/precision.py,existente,fonte,57,46,2126
+src/nablamath/core/semantic_ir.py,existente,fonte,177,149,8024
+src/nablamath/core/types.py,existente,fonte,28,22,1038
+src/nablamath/core/units.py,existente,fonte,106,85,4054
 src/nablamath/curation.py,existente,fonte,52,46,2737
 src/nablamath/dataset/__init__.py,existente,fonte,9,8,384
-src/nablamath/dataset/alignments.py,novo,fonte,24,21,1092
+src/nablamath/dataset/alignments.py,existente,fonte,24,21,1092
 src/nablamath/dataset/cards.py,existente,fonte,26,23,1489
 src/nablamath/dataset/deduplicate.py,existente,fonte,11,7,357
 src/nablamath/dataset/export.py,existente,fonte,35,26,1396
 src/nablamath/dataset/licenses.py,existente,fonte,25,18,974
 src/nablamath/dataset/quality.py,existente,fonte,10,7,397
 src/nablamath/dataset/schema.py,existente,fonte,34,25,1068
-src/nablamath/dataset/scientific.py,novo,fonte,81,69,4501
+src/nablamath/dataset/scientific.py,existente,fonte,81,69,4501
 src/nablamath/dataset/splits.py,existente,fonte,17,9,508
-src/nablamath/datasets/__init__.py,novo,fonte,4,3,207
-src/nablamath/datasets/splits.py,novo,fonte,53,43,2334
+src/nablamath/datasets/__init__.py,existente,fonte,4,3,207
+src/nablamath/datasets/alignments.py,novo,fonte,10,8,391
+src/nablamath/datasets/curation.py,novo,fonte,24,22,1158
+src/nablamath/datasets/model_card.py,novo,fonte,32,30,1810
+src/nablamath/datasets/multimodal.py,novo,fonte,101,87,5670
+src/nablamath/datasets/quality_gate.py,novo,fonte,49,47,2563
+src/nablamath/datasets/schema.py,novo,fonte,89,78,4847
+src/nablamath/datasets/semantic_fingerprint.py,novo,fonte,6,4,229
+src/nablamath/datasets/serializer.py,novo,fonte,17,13,665
+src/nablamath/datasets/split_policy.py,novo,fonte,23,19,979
+src/nablamath/datasets/splits.py,existente,fonte,53,43,2334
 src/nablamath/desktop/__init__.py,existente,fonte,1,1,79
 src/nablamath/desktop/app.py,existente,fonte,243,208,12334
 src/nablamath/desktop/index.html,existente,fonte,26,25,10812
 src/nablamath/desktop/launcher.py,existente,fonte,7,4,154
-src/nablamath/documents/__init__.py,novo,fonte,5,4,239
-src/nablamath/documents/document_model.py,novo,fonte,43,33,1186
-src/nablamath/documents/exporters.py,novo,fonte,57,46,3699
-src/nablamath/documents/pdf_builder.py,novo,fonte,46,43,2392
-src/nablamath/domains/__init__.py,novo,fonte,1,1,88
-src/nablamath/domains/circuits/__init__.py,novo,fonte,4,3,184
-src/nablamath/domains/circuits/resistive.py,novo,fonte,79,69,3467
+src/nablamath/documents/__init__.py,alterado,fonte,9,7,422
+src/nablamath/documents/citations.py,novo,fonte,27,23,1027
+src/nablamath/documents/document_model.py,alterado,fonte,86,70,3494
+src/nablamath/documents/equation_blocks.py,novo,fonte,13,9,512
+src/nablamath/documents/exporters.py,alterado,fonte,78,66,5047
+src/nablamath/documents/figures.py,novo,fonte,34,30,1401
+src/nablamath/documents/html_exporter.py,novo,fonte,4,3,113
+src/nablamath/documents/latex_exporter.py,novo,fonte,4,3,116
+src/nablamath/documents/pdf_builder.py,alterado,fonte,54,51,2866
+src/nablamath/documents/publication.py,novo,fonte,117,111,6050
+src/nablamath/documents/typst_exporter.py,novo,fonte,4,3,116
+src/nablamath/domains/__init__.py,existente,fonte,1,1,88
+src/nablamath/domains/circuits/__init__.py,existente,fonte,4,3,184
+src/nablamath/domains/circuits/resistive.py,existente,fonte,79,69,3467
 src/nablamath/entity.py,existente,fonte,93,75,3525
 src/nablamath/errors.py,existente,fonte,8,6,269
 src/nablamath/evaluation/__init__.py,existente,fonte,3,3,162
 src/nablamath/evaluation/contamination.py,existente,fonte,46,34,1705
 src/nablamath/evaluation/sealed.py,existente,fonte,23,16,682
-src/nablamath/evolution/__init__.py,novo,fonte,4,3,238
-src/nablamath/evolution/evaluator.py,novo,fonte,82,66,4329
+src/nablamath/evolution/__init__.py,existente,fonte,4,3,238
+src/nablamath/evolution/evaluator.py,existente,fonte,82,66,4329
+src/nablamath/export/__init__.py,novo,fonte,1,1,86
+src/nablamath/export/bundle.py,novo,fonte,88,84,4374
+src/nablamath/export/huggingface.py,novo,fonte,28,23,1433
+src/nablamath/export/jsonl.py,novo,fonte,21,17,628
+src/nablamath/export/parquet.py,novo,fonte,54,48,2263
 src/nablamath/expression.py,existente,fonte,143,115,4951
-src/nablamath/falsifier/__init__.py,novo,fonte,4,3,190
-src/nablamath/falsifier/search.py,novo,fonte,102,89,4723
-src/nablamath/falsifier/shrink.py,novo,fonte,66,59,3007
-src/nablamath/forge/__init__.py,novo,fonte,5,4,295
-src/nablamath/forge/constructors/__init__.py,novo,fonte,1,1,83
-src/nablamath/forge/constructors/counterexamples.py,novo,fonte,14,12,702
-src/nablamath/forge/constructors/geometry.py,novo,fonte,49,45,3262
-src/nablamath/forge/constructors/identities.py,novo,fonte,15,13,715
-src/nablamath/forge/constructors/integration.py,novo,fonte,12,10,554
-src/nablamath/forge/constructors/linear_systems.py,novo,fonte,16,14,727
-src/nablamath/forge/constructors/markov.py,novo,fonte,13,11,668
-src/nablamath/forge/constructors/optimization.py,novo,fonte,14,12,766
-src/nablamath/forge/constructors/polynomial.py,novo,fonte,17,15,670
-src/nablamath/forge/constructors/spectrum.py,novo,fonte,15,13,835
-src/nablamath/forge/deduplicate.py,novo,fonte,48,42,2034
-src/nablamath/forge/difficulty.py,novo,fonte,112,100,5673
-src/nablamath/forge/factory.py,novo,fonte,145,140,8561
-src/nablamath/forge/pipeline.py,novo,fonte,162,157,9517
-src/nablamath/forge/reverse_builder.py,novo,fonte,37,30,1533
-src/nablamath/forge/sampling.py,novo,fonte,23,19,1108
-src/nablamath/forge/solvers.py,novo,fonte,115,107,6031
-src/nablamath/forge/task_spec.py,novo,fonte,119,106,5633
-src/nablamath/formal/__init__.py,alterado,fonte,21,18,1078
-src/nablamath/formal/check.py,alterado,fonte,50,45,2602
-src/nablamath/formal/lean_bridge.py,novo,fonte,42,35,2258
-src/nablamath/formal/lean_checker.py,novo,fonte,111,97,4863
+src/nablamath/falsifier/__init__.py,existente,fonte,4,3,190
+src/nablamath/falsifier/search.py,existente,fonte,102,89,4723
+src/nablamath/falsifier/shrink.py,existente,fonte,66,59,3007
+src/nablamath/forge/__init__.py,existente,fonte,5,4,295
+src/nablamath/forge/constructors/__init__.py,existente,fonte,1,1,83
+src/nablamath/forge/constructors/counterexamples.py,existente,fonte,14,12,702
+src/nablamath/forge/constructors/geometry.py,existente,fonte,49,45,3262
+src/nablamath/forge/constructors/identities.py,existente,fonte,15,13,715
+src/nablamath/forge/constructors/integration.py,existente,fonte,12,10,554
+src/nablamath/forge/constructors/linear_systems.py,existente,fonte,16,14,727
+src/nablamath/forge/constructors/markov.py,existente,fonte,13,11,668
+src/nablamath/forge/constructors/optimization.py,existente,fonte,14,12,766
+src/nablamath/forge/constructors/polynomial.py,existente,fonte,17,15,670
+src/nablamath/forge/constructors/spectrum.py,existente,fonte,15,13,835
+src/nablamath/forge/deduplicate.py,existente,fonte,48,42,2034
+src/nablamath/forge/difficulty.py,existente,fonte,112,100,5673
+src/nablamath/forge/factory.py,existente,fonte,145,140,8561
+src/nablamath/forge/pipeline.py,existente,fonte,162,157,9517
+src/nablamath/forge/reverse_builder.py,existente,fonte,37,30,1533
+src/nablamath/forge/sampling.py,existente,fonte,23,19,1108
+src/nablamath/forge/solvers.py,existente,fonte,115,107,6031
+src/nablamath/forge/task_spec.py,existente,fonte,119,106,5633
+src/nablamath/formal/__init__.py,existente,fonte,21,18,1078
+src/nablamath/formal/check.py,existente,fonte,50,45,2602
+src/nablamath/formal/lean_bridge.py,existente,fonte,42,35,2258
+src/nablamath/formal/lean_checker.py,existente,fonte,111,97,4863
 src/nablamath/formal/obligations.py,existente,fonte,26,18,733
 src/nablamath/formal/review.py,existente,fonte,20,14,591
 src/nablamath/formal/search.py,existente,fonte,118,95,4955
-src/nablamath/formal/smt_bridge.py,novo,fonte,72,70,4036
-src/nablamath/formal/statement.py,novo,fonte,88,71,3523
-src/nablamath/formal/translate.py,alterado,fonte,76,66,4234
-src/nablamath/formal/translation_review.py,novo,fonte,29,24,1113
+src/nablamath/formal/smt_bridge.py,existente,fonte,72,70,4036
+src/nablamath/formal/statement.py,existente,fonte,88,71,3523
+src/nablamath/formal/translate.py,existente,fonte,76,66,4234
+src/nablamath/formal/translation_review.py,existente,fonte,29,24,1113
 src/nablamath/formal_ci.py,existente,fonte,26,19,996
 src/nablamath/gpu/__init__.py,existente,fonte,17,15,737
 src/nablamath/gpu/batch_mcts_kernel.py,existente,fonte,129,113,4892
@@ -347,21 +376,21 @@ src/nablamath/gpu/cuda_f4_reduction.py,existente,fonte,115,99,4466
 src/nablamath/gpu/neural_guide.py,existente,fonte,69,57,3423
 src/nablamath/gpu/tensor_egraph.py,existente,fonte,100,85,3760
 src/nablamath/gpu/vram_buffer_manager.py,existente,fonte,132,105,4682
-src/nablamath/graphics/__init__.py,novo,fonte,10,8,506
-src/nablamath/graphics/artifacts.py,novo,fonte,79,73,4682
-src/nablamath/graphics/coordinate_system.py,novo,fonte,61,51,2395
-src/nablamath/graphics/geometry_constraints.py,novo,fonte,31,26,1450
-src/nablamath/graphics/layout.py,novo,fonte,90,84,4934
-src/nablamath/graphics/raster_renderer.py,novo,fonte,53,46,1998
-src/nablamath/graphics/rendering.py,novo,fonte,41,37,2248
-src/nablamath/graphics/sampling.py,novo,fonte,108,100,6531
-src/nablamath/graphics/scene_graph.py,novo,fonte,177,143,8042
-src/nablamath/graphics/svg_renderer.py,novo,fonte,25,22,1352
+src/nablamath/graphics/__init__.py,existente,fonte,10,8,506
+src/nablamath/graphics/artifacts.py,existente,fonte,79,73,4682
+src/nablamath/graphics/coordinate_system.py,existente,fonte,61,51,2395
+src/nablamath/graphics/geometry_constraints.py,existente,fonte,31,26,1450
+src/nablamath/graphics/layout.py,existente,fonte,90,84,4934
+src/nablamath/graphics/raster_renderer.py,existente,fonte,53,46,1998
+src/nablamath/graphics/rendering.py,existente,fonte,41,37,2248
+src/nablamath/graphics/sampling.py,existente,fonte,108,100,6531
+src/nablamath/graphics/scene_graph.py,existente,fonte,177,143,8042
+src/nablamath/graphics/svg_renderer.py,existente,fonte,25,22,1352
 src/nablamath/knowledge/__init__.py,existente,fonte,5,3,120
 src/nablamath/knowledge/graph.py,existente,fonte,76,63,2873
-src/nablamath/knowledge/versioned_claims.py,novo,fonte,97,82,4031
+src/nablamath/knowledge/versioned_claims.py,existente,fonte,97,82,4031
 src/nablamath/math/__init__.py,existente,fonte,1,1,44
-src/nablamath/math/algebra/__init__.py,alterado,fonte,13,12,840
+src/nablamath/math/algebra/__init__.py,existente,fonte,13,12,840
 src/nablamath/math/algebra/extensions.py,existente,fonte,187,147,7105
 src/nablamath/math/algebra/f4.py,existente,fonte,233,205,10315
 src/nablamath/math/algebra/f5.py,existente,fonte,181,148,7615
@@ -377,8 +406,8 @@ src/nablamath/math/analysis/real.py,existente,fonte,37,29,1918
 src/nablamath/math/analysis/sequences.py,existente,fonte,41,32,1691
 src/nablamath/math/arithmetic/__init__.py,existente,fonte,2,2,162
 src/nablamath/math/arithmetic/continued_fractions.py,existente,fonte,39,30,1533
-src/nablamath/math/calculus/__init__.py,novo,fonte,4,3,267
-src/nablamath/math/calculus/polynomial.py,novo,fonte,28,18,1126
+src/nablamath/math/calculus/__init__.py,existente,fonte,4,3,267
+src/nablamath/math/calculus/polynomial.py,existente,fonte,28,18,1126
 src/nablamath/math/category_theory/__init__.py,existente,fonte,5,5,439
 src/nablamath/math/category_theory/categories.py,existente,fonte,70,57,3278
 src/nablamath/math/category_theory/functors.py,existente,fonte,54,44,2634
@@ -398,8 +427,8 @@ src/nablamath/math/formal_languages/__init__.py,existente,fonte,2,2,44
 src/nablamath/math/formal_languages/automata.py,existente,fonte,42,33,1638
 src/nablamath/math/game_theory/__init__.py,existente,fonte,2,2,67
 src/nablamath/math/game_theory/normal_form.py,existente,fonte,41,32,1888
-src/nablamath/math/geometry/__init__.py,alterado,fonte,6,6,651
-src/nablamath/math/geometry/conics.py,novo,fonte,52,42,2017
+src/nablamath/math/geometry/__init__.py,existente,fonte,6,6,651
+src/nablamath/math/geometry/conics.py,existente,fonte,52,42,2017
 src/nablamath/math/geometry/convex.py,existente,fonte,26,22,1295
 src/nablamath/math/geometry/differential.py,existente,fonte,95,76,4210
 src/nablamath/math/geometry/euclidean.py,existente,fonte,30,19,1075
@@ -413,9 +442,9 @@ src/nablamath/math/graph_theory/weighted.py,existente,fonte,36,29,1793
 src/nablamath/math/information/__init__.py,existente,fonte,3,3,308
 src/nablamath/math/information/coding.py,existente,fonte,37,25,1610
 src/nablamath/math/information/entropy.py,existente,fonte,90,72,3206
-src/nablamath/math/linear_algebra/__init__.py,alterado,fonte,5,4,364
+src/nablamath/math/linear_algebra/__init__.py,existente,fonte,5,4,364
 src/nablamath/math/linear_algebra/matrices.py,existente,fonte,78,64,4012
-src/nablamath/math/linear_algebra/solvers.py,novo,fonte,123,106,4407
+src/nablamath/math/linear_algebra/solvers.py,existente,fonte,123,106,4407
 src/nablamath/math/logic/__init__.py,existente,fonte,20,19,1609
 src/nablamath/math/logic/cdcl.py,existente,fonte,130,113,5362
 src/nablamath/math/logic/first_order.py,existente,fonte,110,89,5130
@@ -433,11 +462,11 @@ src/nablamath/math/number_theory/primality.py,existente,fonte,125,107,4083
 src/nablamath/math/operations_research/__init__.py,existente,fonte,3,3,401
 src/nablamath/math/operations_research/queues.py,existente,fonte,24,22,1118
 src/nablamath/math/operations_research/scheduling.py,existente,fonte,98,75,3246
-src/nablamath/math/optimization/__init__.py,alterado,fonte,3,3,189
+src/nablamath/math/optimization/__init__.py,existente,fonte,3,3,189
 src/nablamath/math/optimization/linear.py,existente,fonte,41,34,2137
-src/nablamath/math/optimization/quadratic.py,novo,fonte,46,42,2609
+src/nablamath/math/optimization/quadratic.py,existente,fonte,46,42,2609
 src/nablamath/math/polynomials/__init__.py,existente,fonte,3,3,274
-src/nablamath/math/polynomials/factorization.py,novo,fonte,54,50,2216
+src/nablamath/math/polynomials/factorization.py,existente,fonte,54,50,2216
 src/nablamath/math/polynomials/interpolation.py,existente,fonte,87,70,3212
 src/nablamath/math/polynomials/univariate.py,existente,fonte,70,53,3068
 src/nablamath/math/probability/__init__.py,existente,fonte,7,7,649
@@ -449,10 +478,10 @@ src/nablamath/math/probability/markov.py,existente,fonte,30,28,1814
 src/nablamath/math/probability/stochastic.py,existente,fonte,44,35,1818
 src/nablamath/math/set_theory/__init__.py,existente,fonte,2,2,200
 src/nablamath/math/set_theory/finite.py,existente,fonte,48,34,2074
-src/nablamath/math/statistics/__init__.py,alterado,fonte,6,6,627
+src/nablamath/math/statistics/__init__.py,existente,fonte,6,6,627
 src/nablamath/math/statistics/bayesian.py,existente,fonte,19,16,1138
 src/nablamath/math/statistics/descriptive.py,existente,fonte,33,22,1332
-src/nablamath/math/statistics/inference.py,novo,fonte,35,29,1728
+src/nablamath/math/statistics/inference.py,existente,fonte,35,29,1728
 src/nablamath/math/statistics/regression.py,existente,fonte,33,24,1324
 src/nablamath/math/statistics/time_series.py,existente,fonte,96,78,3606
 src/nablamath/math/topology/__init__.py,existente,fonte,4,4,265
@@ -536,6 +565,7 @@ src/nablamath/schema/problem.py,existente,fonte,17,13,588
 src/nablamath/schema/step.py,existente,fonte,16,12,502
 src/nablamath/schema/units.py,existente,fonte,71,52,2681
 src/nablamath/schema/version.py,existente,fonte,8,5,288
+src/nablamath/scientific_workflows.py,novo,fonte,159,151,9296
 src/nablamath/singularity/__init__.py,existente,fonte,6,4,282
 src/nablamath/singularity/agents/__init__.py,existente,fonte,8,7,285
 src/nablamath/singularity/agents/base.py,existente,fonte,35,23,1031
@@ -581,33 +611,51 @@ src/nablamath/store/migrations/0001_initial.py,existente,fonte,10,9,259
 src/nablamath/store/migrations/README.md,existente,fonte,8,,480
 src/nablamath/store/migrations/__init__.py,existente,fonte,29,20,1055
 src/nablamath/store/sqlite.py,existente,fonte,5,3,273
-src/nablamath/symbolic/__init__.py,alterado,fonte,18,17,1153
-src/nablamath/symbolic/assumptions.py,alterado,fonte,57,49,2321
+src/nablamath/symbolic/__init__.py,existente,fonte,18,17,1153
+src/nablamath/symbolic/assumptions.py,existente,fonte,57,49,2321
 src/nablamath/symbolic/derive.py,existente,fonte,10,6,302
-src/nablamath/symbolic/differentiate.py,alterado,fonte,167,141,6041
-src/nablamath/symbolic/egraph.py,alterado,fonte,369,333,17448
+src/nablamath/symbolic/differentiate.py,existente,fonte,167,141,6041
+src/nablamath/symbolic/egraph.py,existente,fonte,369,333,17448
 src/nablamath/symbolic/integrate.py,existente,fonte,55,44,2161
 src/nablamath/symbolic/parser.py,existente,fonte,7,4,181
-src/nablamath/symbolic/patterns.py,alterado,fonte,119,106,5753
-src/nablamath/symbolic/proof.py,alterado,fonte,118,108,5963
-src/nablamath/symbolic/rules.py,alterado,fonte,59,45,3321
+src/nablamath/symbolic/patterns.py,existente,fonte,119,106,5753
+src/nablamath/symbolic/proof.py,existente,fonte,118,108,5963
+src/nablamath/symbolic/rules.py,existente,fonte,59,45,3321
 src/nablamath/symbolic/series.py,existente,fonte,99,81,3961
-src/nablamath/training/__init__.py,existente,fonte,2,2,64
+src/nablamath/training/__init__.py,alterado,fonte,7,6,401
+src/nablamath/training/ablation.py,novo,fonte,22,20,1415
+src/nablamath/training/baselines.py,novo,fonte,61,51,2759
+src/nablamath/training/contamination.py,novo,fonte,17,15,1310
+src/nablamath/training/curriculum.py,novo,fonte,14,12,698
+src/nablamath/training/evaluation.py,novo,fonte,102,93,6031
 src/nablamath/training/registry.py,existente,fonte,40,32,1808
-src/nablamath/verify/__init__.py,novo,fonte,4,3,180
-src/nablamath/verify/certificate.py,novo,fonte,122,106,6659
-src/nablamath/verify/geometry.py,novo,fonte,51,44,2639
-src/nablamath/verify/trace.py,novo,fonte,136,121,6917
+src/nablamath/verify/__init__.py,existente,fonte,4,3,180
+src/nablamath/verify/certificate.py,existente,fonte,122,106,6659
+src/nablamath/verify/geometry.py,existente,fonte,51,44,2639
+src/nablamath/verify/trace.py,existente,fonte,136,121,6917
 src/nablamath/viz/__init__.py,existente,fonte,4,3,88
 src/nablamath/viz/plot.py,existente,fonte,24,18,686
 src/nablamath/viz/render.py,existente,fonte,17,11,485
 src/nablamath/viz/spec.py,existente,fonte,32,23,898
-src/nablamath/worlds/__init__.py,novo,fonte,4,3,205
-src/nablamath/worlds/validation.py,novo,fonte,79,68,4041
+src/nablamath/worlds/__init__.py,alterado,fonte,10,8,446
+src/nablamath/worlds/animation.py,novo,fonte,34,29,1741
+src/nablamath/worlds/conservation.py,novo,fonte,20,18,1172
+src/nablamath/worlds/convergence.py,novo,fonte,19,17,1054
+src/nablamath/worlds/integrators/__init__.py,novo,fonte,12,10,512
+src/nablamath/worlds/mesh/__init__.py,novo,fonte,24,19,779
+src/nablamath/worlds/model_spec.py,novo,fonte,92,78,4003
+src/nablamath/worlds/ode/__init__.py,novo,fonte,5,4,216
+src/nablamath/worlds/pde/__init__.py,novo,fonte,45,43,2695
+src/nablamath/worlds/sensitivity.py,novo,fonte,23,21,1308
+src/nablamath/worlds/validation.py,alterado,fonte,85,76,5237
+templates/research_paper/README.md,novo,infraestrutura/outros,6,,354
+templates/research_paper/evidence-map.json,novo,infraestrutura/outros,1,,85
+templates/research_paper/evidence.json,novo,infraestrutura/outros,1,,560
+templates/research_paper/example.document.json,novo,infraestrutura/outros,1,,899
 tests/evaluation/test_contamination.py,existente,testes,20,14,852
 tests/integration/__init__.py,existente,testes,1,1,52
 tests/integration/test_agent_limits.py,existente,testes,20,14,617
-tests/integration/test_backup_restore.py,alterado,testes,62,54,2830
+tests/integration/test_backup_restore.py,existente,testes,62,54,2830
 tests/integration/test_cli_local.py,existente,testes,21,17,734
 tests/integration/test_coordinator.py,existente,testes,27,22,1189
 tests/integration/test_dataset_pipeline.py,existente,testes,18,13,632
@@ -640,8 +688,8 @@ tests/node/test_workspace.py,existente,testes,11,9,458
 tests/p2p/test_primitives.py,existente,testes,38,30,1656
 tests/p2p/test_transport.py,existente,testes,25,21,1015
 tests/protocol/test_golden.py,existente,testes,18,14,718
-tests/regression/__init__.py,novo,testes,1,1,54
-tests/regression/test_public_api.py,novo,testes,48,40,2202
+tests/regression/__init__.py,existente,testes,1,1,54
+tests/regression/test_public_api.py,existente,testes,48,40,2202
 tests/science/__init__.py,existente,testes,1,1,62
 tests/science/test_fluids_reference.py,existente,testes,15,10,491
 tests/science/test_orbital_reference.py,existente,testes,17,12,571
@@ -667,24 +715,29 @@ tests/test_gpu_acceleration.py,existente,testes,62,53,2655
 tests/test_incompressible_cfd.py,existente,testes,67,59,2535
 tests/test_interop.py,existente,testes,35,31,1506
 tests/test_linear_mhd.py,existente,testes,49,41,1592
-tests/test_math_bundle.py,alterado,testes,48,39,1902
+tests/test_math_bundle.py,existente,testes,48,39,1902
 tests/test_merkle.py,existente,testes,12,9,425
 tests/test_numeric.py,existente,testes,28,23,1096
 tests/test_optimization.py,existente,testes,45,35,1813
 tests/test_orbital_dynamics.py,existente,testes,37,32,1736
 tests/test_orbits.py,existente,testes,35,28,1624
 tests/test_peer_transport.py,existente,testes,53,43,2400
-tests/test_phase1_calculator.py,novo,testes,232,211,12873
-tests/test_phase2_forge.py,novo,testes,164,147,9576
-tests/test_phase3_formal.py,novo,testes,161,141,9437
-tests/test_phase4_graphics.py,novo,testes,156,140,9048
+tests/test_phase1_calculator.py,existente,testes,232,211,12873
+tests/test_phase2_forge.py,existente,testes,164,147,9576
+tests/test_phase3_formal.py,existente,testes,161,141,9437
+tests/test_phase4_graphics.py,existente,testes,156,140,9048
+tests/test_phase58_workflows.py,novo,testes,50,46,2897
+tests/test_phase5_studio.py,novo,testes,102,94,5329
+tests/test_phase6_datasets.py,novo,testes,119,109,6312
+tests/test_phase7_worlds.py,novo,testes,71,65,3895
+tests/test_phase8_agents_training.py,novo,testes,149,128,7984
 tests/test_pipeline.py,existente,testes,29,25,1249
 tests/test_planar_truss_fea.py,existente,testes,71,63,2512
 tests/test_relativity.py,existente,testes,55,44,2396
 tests/test_reverse_autodiff.py,existente,testes,29,24,1362
 tests/test_schema.py,existente,testes,20,17,911
-tests/test_scientific_cycle.py,novo,testes,243,217,12898
-tests/test_scientific_extensions.py,novo,testes,180,158,9430
+tests/test_scientific_cycle.py,existente,testes,243,217,12898
+tests/test_scientific_extensions.py,existente,testes,180,158,9430
 tests/test_singularity_lab.py,existente,testes,67,57,3339
 tests/test_solution_bundle.py,existente,testes,26,20,1037
 tests/test_solution_report.py,existente,testes,21,16,713
@@ -700,9 +753,9 @@ tests/unit/test_schema_roundtrip.py,existente,testes,18,12,551
 tests/unit/test_units.py,existente,testes,22,15,686
 tests/website/test_lab.mjs,existente,testes,20,17,845
 tests/website/test_worker.mjs,existente,testes,34,29,1621
-tools/build_math_bundle.py,alterado,infraestrutura/outros,121,108,4401
-tools/export_source_bundle.py,existente,infraestrutura/outros,67,57,2602
-tools/project_inventory.py,novo,infraestrutura/outros,163,149,8590
+tools/build_math_bundle.py,alterado,infraestrutura/outros,125,112,4546
+tools/export_source_bundle.py,alterado,infraestrutura/outros,67,57,2611
+tools/project_inventory.py,alterado,infraestrutura/outros,163,149,8590
 tools/roadmap_status.py,existente,infraestrutura/outros,25,18,933
 tools/singlefile/README.md,existente,infraestrutura/outros,5,,310
 vision.md,existente,infraestrutura/outros,442,,29000

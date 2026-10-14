@@ -119,7 +119,7 @@ def phase_map() -> None:
     rows = []
     output = ['# Caminhos para as fases 0–13', '',
               'Gerado de `vision.md` por `python tools/project_inventory.py --phases`. '
-              'Existência de arquivo não comprova conclusão de fase. Fases 1–4 têm implementações delimitadas e testes; '
+              'Existência de arquivo não comprova conclusão de fase. Fases 1–8 têm implementações delimitadas e testes; '
               'as fases seguintes possuem bases parciais ou permanecem planejadas. '
               'A fase 13 é um horizonte aberto, sem lista fechada de arquivos.', '',
               '## Regras de organização', '',
