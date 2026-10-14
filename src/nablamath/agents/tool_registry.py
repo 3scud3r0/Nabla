@@ -95,7 +95,14 @@ def _world(name, initial, rate=1., duration=1., steps=100):
     return simulate(ModelSpec(name, tuple(initial), rate, duration), steps=steps)
 
 
+def _verify(task,candidate):
+    from ..forge.task_spec import TaskSpec
+    from ..verify.trace import build_trace
+    return build_trace(TaskSpec.from_data(task),candidate).to_data()
+
+
 def scientific_registry():
-    return ToolRegistry((Tool('solve', _solve, frozenset({'task'}), description='Solve and independently verify exact tasks'),
+    return ToolRegistry((Tool('verify', _verify, frozenset({'task','candidate'}), description='Independent candidate verification'),
+                         Tool('solve', _solve, frozenset({'task'}), description='Solve and independently verify exact tasks'),
                          Tool('simulate', _world, frozenset({'name','initial'}), frozenset({'rate','duration','steps'}),
                               'Bounded Euler/RK4 models; no experimental claim')))

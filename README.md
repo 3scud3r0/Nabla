@@ -27,7 +27,7 @@ nabla doctor
 nabla desktop
 ```
 
-Em Windows, a [compilação Windows](https://github.com/3scud3r0/Nabla-Math/actions/workflows/windows-installer.yml) constrói e testa o instalador. Depois da primeira execução bem-sucedida no branch principal, baixe o `.exe` na [versão alpha](https://github.com/3scud3r0/Nabla-Math/releases/tag/v0.1.0-alpha.1). O instalador ainda não possui assinatura de código. Veja o [guia do aplicativo](docs/DESKTOP.md) e os scripts de desenvolvimento `setup.cmd`, `setup.ps1` e `setup.sh`.
+Em Windows, a [compilação Windows](https://github.com/3scud3r0/Nabla/actions/workflows/windows-installer.yml) constrói e testa o instalador. Depois da primeira execução bem-sucedida no branch principal, baixe o `.exe` na [versão alpha](https://github.com/3scud3r0/Nabla/releases). O instalador ainda não possui assinatura de código. Veja o [guia do aplicativo](docs/DESKTOP.md) e os scripts de desenvolvimento `setup.cmd`, `setup.ps1` e `setup.sh`.
 
 ## Aplicativo local
 
@@ -168,3 +168,16 @@ Consulte [implementação, exemplos e limites](docs/PHASES_5_8.md). O ciclo inte
 ```
 
 O laboratório não publica dados remotamente e conserva resultados negativos de aprendizado.
+
+### Discovery, Evolution, disciplinas e conhecimento (fases 9–12)
+
+As [implementações e limites](docs/PHASES_9_12.md) conectam investigação de hipóteses,
+refutação, evolução de políticas sob holdout único, modelos SI e conhecimento
+versionado/federado. A [auditoria com medições](docs/audits/SCIENTIFIC_ACCEPTANCE_2026_10.md)
+registra a correção de codificação Windows, solvers independentes e o experimento
+controlado externo, inclusive o ganho médio nulo observado.
+
+```sh
+python -m pip install -e '.[test,formal,graphics,documents,data,research]'
+nabla research-laboratory .nabla/research-912
+```

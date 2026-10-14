@@ -1,0 +1,182 @@
+{
+  "all_research_criteria_demonstrated": false,
+  "criteria": [
+    {
+      "criterion": "priority_paths_present",
+      "evidence": "Path diagnostic only; does not establish scientific completeness",
+      "status": "supported"
+    },
+    {
+      "criterion": "local_tests_pass",
+      "evidence": {
+        "failures": 0,
+        "source": "/tmp/nabla-all-tests.xml",
+        "tests": 701
+      },
+      "status": "supported"
+    },
+    {
+      "criterion": "windows_python_matrix",
+      "evidence": "Awaiting native CI result",
+      "status": "unverified"
+    },
+    {
+      "criterion": "windows_installer",
+      "evidence": "Awaiting native packaged-executable and Inno Setup checks",
+      "status": "unverified"
+    },
+    {
+      "criterion": "independent_solver_measurements",
+      "evidence": {
+        "nabla": {
+          "error": 0,
+          "incorrect": 0,
+          "solved": 24,
+          "timeout": 0,
+          "unsupported": 0
+        },
+        "sympy": {
+          "error": 0,
+          "incorrect": 0,
+          "solved": 24,
+          "timeout": 0,
+          "unsupported": 0
+        },
+        "z3": {
+          "error": 0,
+          "incorrect": 0,
+          "solved": 18,
+          "timeout": 0,
+          "unsupported": 6
+        }
+      },
+      "status": "supported"
+    },
+    {
+      "criterion": "advanced_problem_difficulty",
+      "evidence": {
+        "backend_challenges_observed": 0,
+        "scope": "synthetic constructor tasks; measured backend difficulty, not expert reasoning or training utility"
+      },
+      "status": "not_demonstrated"
+    },
+    {
+      "criterion": "external_learning_gain",
+      "evidence": {
+        "experiment_id": "f8b349e261926b64718960e5b4c321e512e177c59703a2dbf687085543de3745",
+        "mean_accuracy_gain": 0.0
+      },
+      "status": "not_demonstrated"
+    },
+    {
+      "criterion": "frontier_model_gain",
+      "evidence": "Experiment uses an open small numeric regressor, not a frontier language model",
+      "status": "not_demonstrated"
+    },
+    {
+      "criterion": "global_scientific_novelty",
+      "evidence": "Local supplied literature snapshot only",
+      "status": "not_demonstrated"
+    },
+    {
+      "criterion": "general_recursive_self_improvement",
+      "evidence": "Two bounded numerical-policy generations are not arbitrary general self-improvement",
+      "status": "not_demonstrated"
+    },
+    {
+      "criterion": "experimental_physical_validation",
+      "evidence": "Disciplinary examples and instrument fixture are synthetic",
+      "status": "not_demonstrated"
+    },
+    {
+      "criterion": "independent_scientific_peer_review",
+      "evidence": "Review declarations are local synthetic demonstrations",
+      "status": "not_demonstrated"
+    },
+    {
+      "criterion": "versioned_knowledge_replay",
+      "evidence": {
+        "accepted_policy_generations": 2,
+        "concurrent_claims_preserved": 1,
+        "discovery_program_id": "a436e36c96dc9dca2501e7aeb186dfd53e47dde6dfec2d7b1135a2b90effa8df",
+        "domain_models": 10,
+        "experimental_validation": false,
+        "global_novelty_established": false,
+        "knowledge_revisions": 16,
+        "provenance_valid": true,
+        "rollback_demonstrated": true,
+        "team_completed": true
+      },
+      "status": "supported"
+    }
+  ],
+  "priority_path_diagnostics": {
+    "0": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 6
+    },
+    "1": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 9
+    },
+    "10": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 9
+    },
+    "11": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 9
+    },
+    "12": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 8
+    },
+    "2": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 10
+    },
+    "3": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 8
+    },
+    "4": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 8
+    },
+    "5": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 9
+    },
+    "6": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 11
+    },
+    "7": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 10
+    },
+    "8": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 10
+    },
+    "9": {
+      "coverage_fraction": 1.0,
+      "missing": [],
+      "paths": 8
+    }
+  },
+  "reason": "No validated mapping from these measurements to the full 2026\u20132056 scientific vision. F13 remains open-ended.",
+  "vision_completion_percent": null
+}

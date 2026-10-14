@@ -21,7 +21,7 @@ class Quarantine:
         path.mkdir(exist_ok=True)
         (path / "payload.bin").write_bytes(raw)
         (path / "metadata.json").write_text(json.dumps({"reason": reason, "source": source},
-                                                        sort_keys=True, separators=(",", ":")) + "\n")
+                                                        sort_keys=True, separators=(",", ":")) + "\n", encoding='utf-8')
         return identifier
 
     def remove(self, identifier: str) -> None:

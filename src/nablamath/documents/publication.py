@@ -53,14 +53,14 @@ def publish(document: Document, destination: Path, *, asset_root=None, pdf_backe
                 shutil.copyfile(source, target)
         for suffix, exporter in [('html', to_html), ('tex', to_latex), ('typ', to_typst)]:
             (stage/f'document.{suffix}').write_text(exporter(document), encoding='utf-8')
-        (stage/'document.json').write_text(canonical_json(document.to_data())+'\n')
+        (stage/'document.json').write_text(canonical_json(document.to_data())+'\n', encoding='utf-8')
         if pdf_backend:
             build_pdf(document, stage/'document.pdf', pdf_backend, asset_root=stage)
         manifest = {'schema_version': 1, 'document_id': document.content_id, 'pdf_backend': pdf_backend,
                     'evidence': evidence, 'unresolved_evidence': sorted(requested-set(evidence)),
                     'files': {p.relative_to(stage).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                               for p in sorted(stage.rglob('*')) if p.is_file()}}
-        (stage/'manifest.json').write_text(canonical_json(manifest)+'\n')
+        (stage/'manifest.json').write_text(canonical_json(manifest)+'\n', encoding='utf-8')
         if not verify_publication(stage):
             raise ValueError('Publicação não reproduzível')
         stage.rename(destination)
@@ -75,7 +75,7 @@ def verify_publication(root):
         root = Path(root)
         if any(p.is_symlink() for p in root.rglob('*')) or (root/'manifest.json').stat().st_size > 1024*1024:
             return False
-        manifest = json.loads((root/'manifest.json').read_text())
+        manifest = json.loads((root/'manifest.json').read_text(encoding='utf-8'))
         files = {p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file() and p.name != 'manifest.json'}
         if set(manifest['files']) != files:
             return False
@@ -87,11 +87,11 @@ def verify_publication(root):
                 return False
             if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
                 return False
-        document = Document.from_data(json.loads((root/'document.json').read_text()))
+        document = Document.from_data(json.loads((root/'document.json').read_text(encoding='utf-8')))
         if document.content_id != manifest['document_id']:
             return False
         for suffix, exporter in [('html', to_html), ('tex', to_latex), ('typ', to_typst)]:
-            if (root/f'document.{suffix}').read_text() != exporter(document):
+            if (root/f'document.{suffix}').read_text(encoding='utf-8') != exporter(document):
                 return False
         expected = {'document.json', 'document.html', 'document.tex', 'document.typ'}
         requested = {key for section in document.sections for key in section.evidence_ids}

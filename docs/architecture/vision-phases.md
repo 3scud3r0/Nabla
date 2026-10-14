@@ -1,6 +1,6 @@
 # Caminhos para as fases 0–13
 
-Gerado de `vision.md` por `python tools/project_inventory.py --phases`. Existência de arquivo não comprova conclusão de fase. Fases 1–8 têm implementações delimitadas e testes; as fases seguintes possuem bases parciais ou permanecem planejadas. A fase 13 é um horizonte aberto, sem lista fechada de arquivos.
+Gerado de `vision.md` por `python tools/project_inventory.py --phases`. Existência de arquivo não comprova conclusão de fase. Fases 1–12 têm implementações delimitadas e testes; as fases seguintes possuem bases parciais ou permanecem planejadas. A fase 13 é um horizonte aberto, sem lista fechada de arquivos.
 
 ## Regras de organização
 
@@ -143,55 +143,55 @@ Gerado de `vision.md` por `python tools/project_inventory.py --phases`. Existên
 
 | Caminho previsto | Estado do caminho |
 | --- | --- |
-| `discovery/hypothesis.py` | Planejado |
-| `discovery/symbolic_regression.py` | Planejado |
-| `discovery/experimental_design.py` | Planejado |
-| `discovery/theorem_search.py` | Planejado |
-| `discovery/novelty_screen.py` | Planejado |
-| `knowledge/claim_graph.py` | Planejado |
-| `knowledge/literature.py` | Planejado |
-| `falsifier/counterexample_miner.py` | Planejado |
+| `discovery/hypothesis.py` | Presente: `src/nablamath/discovery/hypothesis.py` |
+| `discovery/symbolic_regression.py` | Presente: `src/nablamath/discovery/symbolic_regression.py` |
+| `discovery/experimental_design.py` | Presente: `src/nablamath/discovery/experimental_design.py` |
+| `discovery/theorem_search.py` | Presente: `src/nablamath/discovery/theorem_search.py` |
+| `discovery/novelty_screen.py` | Presente: `src/nablamath/discovery/novelty_screen.py` |
+| `knowledge/claim_graph.py` | Presente: `src/nablamath/knowledge/claim_graph.py` |
+| `knowledge/literature.py` | Presente: `src/nablamath/knowledge/literature.py` |
+| `falsifier/counterexample_miner.py` | Presente: `src/nablamath/falsifier/counterexample_miner.py` |
 
 ## Fase 10 — Nabla Evolution: recursive self-improvement (2037–2042)
 
 | Caminho previsto | Estado do caminho |
 | --- | --- |
-| `evolution/policy_genome.py` | Planejado |
-| `evolution/search.py` | Planejado |
-| `evolution/proposal_validator.py` | Planejado |
+| `evolution/policy_genome.py` | Presente: `src/nablamath/evolution/policy_genome.py` |
+| `evolution/search.py` | Presente: `src/nablamath/evolution/search.py` |
+| `evolution/proposal_validator.py` | Presente: `src/nablamath/evolution/proposal_validator.py` |
 | `evolution/evaluator.py` | Presente: `src/nablamath/evolution/evaluator.py` |
-| `evolution/holdout_manager.py` | Planejado |
-| `evolution/statistical_tests.py` | Planejado |
-| `evolution/lineage.py` | Planejado |
-| `evolution/rollback.py` | Planejado |
-| `evolution/release_gate.py` | Planejado |
+| `evolution/holdout_manager.py` | Presente: `src/nablamath/evolution/holdout_manager.py` |
+| `evolution/statistical_tests.py` | Presente: `src/nablamath/evolution/statistical_tests.py` |
+| `evolution/lineage.py` | Presente: `src/nablamath/evolution/lineage.py` |
+| `evolution/rollback.py` | Presente: `src/nablamath/evolution/rollback.py` |
+| `evolution/release_gate.py` | Presente: `src/nablamath/evolution/release_gate.py` |
 
 ## Fase 11 — Engenharia e novas disciplinas (2042–2048)
 
 | Caminho previsto | Estado do caminho |
 | --- | --- |
-| `domains/engineering/` | Planejado |
+| `domains/engineering/` | Presente: `src/nablamath/domains/engineering` |
 | `domains/circuits/` | Presente: `src/nablamath/domains/circuits` |
-| `domains/materials/` | Planejado |
-| `domains/chemistry/` | Planejado |
-| `domains/control/` | Planejado |
-| `domains/earth/` | Planejado |
-| `domains/biology/` | Planejado |
-| `worlds/multiphysics/` | Planejado |
-| `adapters/instruments/` | Planejado |
+| `domains/materials/` | Presente: `src/nablamath/domains/materials` |
+| `domains/chemistry/` | Presente: `src/nablamath/domains/chemistry` |
+| `domains/control/` | Presente: `src/nablamath/domains/control` |
+| `domains/earth/` | Presente: `src/nablamath/domains/earth` |
+| `domains/biology/` | Presente: `src/nablamath/domains/biology` |
+| `worlds/multiphysics/` | Presente: `src/nablamath/worlds/multiphysics` |
+| `adapters/instruments/` | Presente: `src/nablamath/adapters/instruments` |
 
 ## Fase 12 — Conhecimento científico vivo (2048–2056+)
 
 | Caminho previsto | Estado do caminho |
 | --- | --- |
-| `knowledge/federation.py` | Planejado |
-| `knowledge/semantic_reconciliation.py` | Planejado |
+| `knowledge/federation.py` | Presente: `src/nablamath/knowledge/federation.py` |
+| `knowledge/semantic_reconciliation.py` | Presente: `src/nablamath/knowledge/semantic_reconciliation.py` |
 | `knowledge/versioned_claims.py` | Presente: `src/nablamath/knowledge/versioned_claims.py` |
-| `knowledge/dependency_impact.py` | Planejado |
-| `knowledge/peer_review.py` | Planejado |
-| `knowledge/provenance_audit.py` | Planejado |
-| `discovery/research_program.py` | Planejado |
-| `agents/scientific_teams.py` | Planejado |
+| `knowledge/dependency_impact.py` | Presente: `src/nablamath/knowledge/dependency_impact.py` |
+| `knowledge/peer_review.py` | Presente: `src/nablamath/knowledge/peer_review.py` |
+| `knowledge/provenance_audit.py` | Presente: `src/nablamath/knowledge/provenance_audit.py` |
+| `discovery/research_program.py` | Presente: `src/nablamath/discovery/research_program.py` |
+| `agents/scientific_teams.py` | Presente: `src/nablamath/agents/scientific_teams.py` |
 
 ## Fase 13 — Além de 2056: horizonte aberto
 

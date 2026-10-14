@@ -35,6 +35,10 @@ DIRECTORIES = (
     ROOT / "src/nablamath/export",
     ROOT / "src/nablamath/agents",
     ROOT / "src/nablamath/training",
+    ROOT / "src/nablamath/discovery",
+    ROOT / "src/nablamath/knowledge",
+    ROOT / "src/nablamath/benchmarks",
+    ROOT / "src/nablamath/adapters/instruments",
     ROOT / "lean",
 )
 FILES = (

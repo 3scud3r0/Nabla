@@ -1,0 +1,7 @@
+{
+  "python": "3.12.14",
+  "numpy": "2.5.4",
+  "sympy": "1.14.0",
+  "z3-solver": "4.16.0.0",
+  "scope": "Recorded environment; floating-point bytes need not match every platform"
+}

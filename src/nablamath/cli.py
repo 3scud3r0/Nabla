@@ -170,7 +170,7 @@ def main(argv: list[str] | None = None) -> int:
     heat.add_argument('--diffusivity', type=float, default=.1); heat.add_argument('--duration', type=float, default=.1)
     agent = commands.add_parser('agent', help='Executar proposta com ferramentas registradas e limites explícitos')
     agent.add_argument('source', type=Path); agent.add_argument('destination', type=Path)
-    agent.add_argument('--allow', action='append', required=True, choices=('solve','simulate'))
+    agent.add_argument('--allow', action='append', required=True, choices=('solve','simulate','verify'))
     agent.add_argument('--max-calls', type=int, default=8); agent.add_argument('--timeout', type=float, default=10.)
     learning = commands.add_parser('evaluate-dataset', help='Treinar baseline e medir correção/ablações em holdout')
     learning.add_argument('directory', type=Path); learning.add_argument('destination', type=Path)
@@ -179,6 +179,24 @@ def main(argv: list[str] | None = None) -> int:
     laboratory.add_argument('destination', type=Path)
     laboratory.add_argument('--count', type=int, default=32); laboratory.add_argument('--seed', type=int, default=42)
     laboratory.add_argument('--parquet', action='store_true')
+    discovery = commands.add_parser('discover', help='Investigar hipótese polinomial com holdout e corpus identificado')
+    discovery.add_argument('destination', type=Path)
+    evolution = commands.add_parser('evolve', help='Demonstrar políticas declarativas, holdouts únicos e rollback')
+    evolution.add_argument('destination', type=Path); evolution.add_argument('--generations', type=int, default=2)
+    domains = commands.add_parser('domain-suite', help='Executar modelos SI delimitados de várias disciplinas')
+    domains.add_argument('destination', type=Path)
+    knowledge = commands.add_parser('knowledge-audit', help='Conferir referências e reexecutar evidências de um snapshot')
+    knowledge.add_argument('source', type=Path); knowledge.add_argument('--allow-unsigned', action='store_true')
+    research = commands.add_parser('research-laboratory', help='Ciclo integrado das fases 9–12')
+    research.add_argument('destination', type=Path)
+    independent = commands.add_parser('independent-benchmark', help='Medir Nabla, SymPy e Z3 sob orçamento isolado')
+    independent.add_argument('destination', type=Path)
+    independent.add_argument('--count', type=int, default=24); independent.add_argument('--seed', type=int, default=103)
+    independent.add_argument('--timeout', type=float, default=15.)
+    learning = commands.add_parser('learning-experiment', help='Comparar modelo neural aberto com/sem dados Nabla em holdout externo')
+    learning.add_argument('dataset', type=Path); learning.add_argument('destination', type=Path)
+    learning.add_argument('--train-count', type=int, default=256); learning.add_argument('--test-count', type=int, default=128)
+    learning.add_argument('--steps', type=int, default=500)
     args = parser.parse_args(argv)
     def save_json(path,payload):
         path.parent.mkdir(parents=True,exist_ok=True)
@@ -186,6 +204,32 @@ def main(argv: list[str] | None = None) -> int:
             json.dump(payload,output,ensure_ascii=False,sort_keys=True)
             output.write('\n')
     try:
+        if args.command in {'discover','evolve','domain-suite','knowledge-audit','research-laboratory','independent-benchmark','learning-experiment'}:
+            from .scientific_workflows import write_json
+            from .research_workflows import discovery_demo,evolution_demo,domain_suite,run_research_laboratory
+            if args.command == 'discover':
+                result = discovery_demo(); write_json(args.destination,result)
+            elif args.command == 'evolve':
+                result = evolution_demo(args.destination,generations=args.generations)
+            elif args.command == 'domain-suite':
+                result = domain_suite(); write_json(args.destination,result)
+            elif args.command == 'knowledge-audit':
+                from .knowledge.federation import verify_snapshot
+                result = verify_snapshot(json.loads(args.source.read_text(encoding='utf-8')),allow_unsigned=args.allow_unsigned)
+                print(json.dumps(result,sort_keys=True)); return 0 if result['valid'] else 1
+            elif args.command == 'research-laboratory':
+                result = run_research_laboratory(args.destination)
+            elif args.command == 'independent-benchmark':
+                from .benchmarks.independent import run_benchmark
+                result = run_benchmark(count=args.count,seed=args.seed,timeout=args.timeout); write_json(args.destination,result)
+            else:
+                from .training.controlled_experiment import load_gsm8k,nabla_augmentation,controlled_experiment
+                if args.destination.exists(): raise FileExistsError(args.destination)
+                training,test,source = load_gsm8k(args.dataset,train_count=args.train_count,test_count=args.test_count)
+                result = controlled_experiment(training,test,nabla_augmentation(args.train_count),steps=args.steps,
+                                               source_manifest=source,output_directory=args.destination)
+                write_json(args.destination/'report.json',result)
+            print(json.dumps(result,ensure_ascii=True,sort_keys=True)); return 0
         if args.command in {'studio','dataset-build','dataset-check','world-heat','agent','evaluate-dataset','laboratory'}:
             from .scientific_workflows import build_dataset, evaluate_dataset, run_laboratory, write_json
             if args.command == 'studio':
@@ -193,7 +237,7 @@ def main(argv: list[str] | None = None) -> int:
                 from .documents.publication import publish
                 result = publish(Document.from_data(json.loads(args.source.read_text(encoding='utf-8'))),
                                  args.destination, asset_root=args.assets, pdf_backend=args.pdf_backend,
-                                 evidence_sources={k:args.evidence.parent/v for k,v in json.loads(args.evidence.read_text()).items()} if args.evidence else None,
+                                 evidence_sources={k:args.evidence.parent/v for k,v in json.loads(args.evidence.read_text(encoding='utf-8')).items()} if args.evidence else None,
                                  require_evidence=args.require_evidence)
             elif args.command == 'dataset-build':
                 result = build_dataset(args.destination, count=args.count, seed=args.seed,

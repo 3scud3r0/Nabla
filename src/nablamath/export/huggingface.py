@@ -8,7 +8,7 @@ def prepare_hub(directory):
     root = Path(directory)
     if not verify_bundle(root):
         raise ValueError('Bundle inválido')
-    card = json.loads((root/'card.json').read_text())
+    card = json.loads((root/'card.json').read_text(encoding='utf-8'))
     content = ('---\npretty_name: Nabla scientific dataset\nconfigs:\n- config_name: default\n'
                '  data_files:\n  - split: train\n    path: train.jsonl\n'
                '  - split: validation\n    path: validation.jsonl\n'

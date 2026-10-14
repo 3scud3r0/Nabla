@@ -45,6 +45,25 @@ class ClaimLedger:
         for revision in revisions:
             self.append(revision)
 
+    def get(self, revision_id):
+        return self._revisions[revision_id]
+
+    def to_data(self):
+        return {'schema_version':1,'revisions':[r.to_data() for r in self.revisions]}
+
+    @classmethod
+    def from_data(cls,data):
+        if set(data)!={'schema_version','revisions'} or data['schema_version']!=1 or len(data['revisions'])>10000:
+            raise ValueError('Contrato de histórico inválido')
+        ledger=cls()
+        for item in data['revisions']:
+            row=dict(item);identifier=row.pop('revision_id')
+            revision=ClaimRevision(**row)
+            if revision.revision_id!=identifier:
+                raise ValueError('Hash de revisão divergente')
+            ledger.append(revision)
+        return ledger
+
     @property
     def revisions(self):
         return tuple(self._revisions.values())

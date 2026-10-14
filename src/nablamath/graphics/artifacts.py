@@ -64,16 +64,16 @@ def verify_scene_bundle(directory):
         paths=('scene.json','scene.svg','scene.png','verification.json','manifest.json')
         if {p.name for p in root.iterdir()}!=set(paths):return False
         if any((root/name).is_symlink() or (root/name).stat().st_size>16*1024*1024 for name in paths):return False
-        manifest=json.loads((root/'manifest.json').read_text())
+        manifest=json.loads((root/'manifest.json').read_text(encoding='utf-8'))
         if manifest['kind']!='scientific_scene' or manifest['schema_version']!=1 or set(manifest['files'])!=set(paths)-{'manifest.json'}:return False
         if any(hashlib.sha256((root/name).read_bytes()).hexdigest()!=digest for name,digest in manifest['files'].items()):return False
-        scene=GeometryScene.from_data(json.loads((root/'scene.json').read_text()))
-        report=json.loads((root/'verification.json').read_text())
+        scene=GeometryScene.from_data(json.loads((root/'scene.json').read_text(encoding='utf-8')))
+        report=json.loads((root/'verification.json').read_text(encoding='utf-8'))
         geometry=verify_geometry(scene);model=replay_model(scene)
         if not geometry.valid or not model['valid']:return False
         if report!={'schema_version':1,'scene_id':scene.content_id,'geometry':geometry.to_data(),'model':model,
                    'width':report['width'],'height':report['height'],'formal_proof':False}:return False
-        return ((root/'scene.svg').read_text()==render_svg(scene,report['width'],report['height'])
+        return ((root/'scene.svg').read_text(encoding='utf-8')==render_svg(scene,report['width'],report['height'])
                 and (root/'scene.png').read_bytes()==render_png(scene,report['width'],report['height']))
     except (OSError,ValueError,KeyError,TypeError,ArithmeticError):
         return False

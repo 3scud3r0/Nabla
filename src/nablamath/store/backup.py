@@ -29,7 +29,7 @@ class BackupReceipt:
 
 
 def _integrity(path: Path) -> str:
-    with closing(sqlite3.connect(f"file:{path}?mode=ro", uri=True)) as connection:
+    with closing(sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)) as connection:
         return str(connection.execute("PRAGMA integrity_check").fetchone()[0])
 
 

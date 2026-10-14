@@ -23,7 +23,7 @@ def export_bundle(records, destination, *, asset_root=None, parquet=False, evalu
         write_jsonl(records, stage/'records.jsonl')
         for split in ('train', 'validation', 'test'):
             rows = [r for r in records if r.to_data()['split'] == split]
-            (stage/f'{split}.jsonl').write_text(''.join(canonical_json(r.to_data())+'\n' for r in rows))
+            (stage/f'{split}.jsonl').write_text(''.join(canonical_json(r.to_data())+'\n' for r in rows), encoding='utf-8')
         for record in records:
             for artifact in record.to_data()['artifacts']:
                 target = stage/'assets'/artifact['path']
@@ -32,10 +32,10 @@ def export_bundle(records, destination, *, asset_root=None, parquet=False, evalu
         if parquet:
             from .parquet import write_parquet
             write_parquet(records, stage/'records.parquet')
-        (stage/'card.json').write_text(canonical_json(model_card(records, quality, evaluations=evaluations))+'\n')
+        (stage/'card.json').write_text(canonical_json(model_card(records, quality, evaluations=evaluations))+'\n', encoding='utf-8')
         manifest = {'schema_version': 1, 'files': {p.relative_to(stage).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                                                 for p in sorted(stage.rglob('*')) if p.is_file()}}
-        (stage/'manifest.json').write_text(canonical_json(manifest)+'\n')
+        (stage/'manifest.json').write_text(canonical_json(manifest)+'\n', encoding='utf-8')
         if not verify_bundle(stage):
             raise ValueError('Bundle não reproduzível')
         stage.rename(destination)
@@ -50,7 +50,7 @@ def verify_bundle(root):
         root = Path(root)
         if any(p.is_symlink() for p in root.rglob('*')) or (root/'manifest.json').stat().st_size > 1024*1024:
             return False
-        manifest = json.loads((root/'manifest.json').read_text())
+        manifest = json.loads((root/'manifest.json').read_text(encoding='utf-8'))
         actual = {p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file() and p != root/'manifest.json'}
         if manifest['schema_version'] != 1 or set(manifest['files']) != actual:
             return False
@@ -72,12 +72,12 @@ def verify_bundle(root):
         quality = quality_gate(records, asset_root=root/'assets')
         if not quality['accepted']:
             return False
-        card = json.loads((root/'card.json').read_text())
+        card = json.loads((root/'card.json').read_text(encoding='utf-8'))
         if card != model_card(records, quality, evaluations=card['evaluations']):
             return False
         for split in ('train', 'validation', 'test'):
             expected = ''.join(canonical_json(r.to_data())+'\n' for r in records if r.to_data()['split'] == split)
-            if (root/f'{split}.jsonl').read_text() != expected:
+            if (root/f'{split}.jsonl').read_text(encoding='utf-8') != expected:
                 return False
         if (root/'records.parquet').exists():
             from .parquet import read_parquet
