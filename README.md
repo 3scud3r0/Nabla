@@ -157,3 +157,14 @@ Licença do código: [MIT](LICENSE). Dados e dependências têm direitos própri
 ### Organização e inventário
 
 A API ativa fica em `src/nablamath/`; protótipos históricos estão em `legacy/current_scripts/`. A configuração canônica do Lean é `lean/lakefile.toml`. Consulte o [mapa das fases 0–13](docs/architecture/vision-phases.md) e o [inventário com linhas por arquivo](docs/audits/FILE_INVENTORY.md). O inventário distingue fontes, testes, documentação, arquivos movidos e o bundle gerado.
+
+### Studio, datasets, simulações e agentes (fases 5–8)
+
+Consulte [implementação, exemplos e limites](docs/PHASES_5_8.md). O ciclo integrado cria documentos compilados, datasets curados, simulações com referência analítica e avaliações de aprendizado em partições reservadas:
+
+```sh
+.venv/bin/python -m pip install -e ".[test,formal,graphics,documents,data]"
+.venv/bin/nabla laboratory .nabla/laboratory-58 --count 32 --seed 42 --parquet
+```
+
+O laboratório não publica dados remotamente e conserva resultados negativos de aprendizado.

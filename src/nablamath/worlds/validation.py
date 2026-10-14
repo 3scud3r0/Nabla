@@ -5,43 +5,7 @@ import math
 from ..math.equations.ode import integrate
 
 
-@dataclass(frozen=True)
-class ModelSpec:
-    name: str
-    initial: tuple[float, ...]
-    rate: float = 1.0
-    duration: float = 1.0
-
-    def __post_init__(self) -> None:
-        if self.name not in {'exponential_decay', 'harmonic_oscillator'}:
-            raise ValueError('Modelo nao suportado')
-        expected = 1 if self.name == 'exponential_decay' else 2
-        if len(self.initial) != expected:
-            raise ValueError('Dimensao inicial invalida')
-        initial = tuple(float(v) for v in self.initial)
-        if not all(math.isfinite(v) and abs(v) <= 1e6 for v in initial):
-            raise ValueError('Estado inicial fora do limite')
-        if not math.isfinite(self.rate) or not 0 < self.rate <= 100:
-            raise ValueError('Taxa fora do limite')
-        if not math.isfinite(self.duration) or not 0 < self.duration <= 100 or self.duration*self.rate > 100:
-            raise ValueError('Intervalo fora do limite')
-        object.__setattr__(self, 'initial', initial)
-
-    @property
-    def units(self) -> tuple[str, ...]:
-        return ('dimensionless',) if self.name == 'exponential_decay' else ('m', 'm/s')
-
-    def derivative(self, time, state):
-        if self.name == 'exponential_decay':
-            return (-self.rate*state[0],)
-        return state[1], -self.rate**2*state[0]
-
-    def reference(self, time):
-        if self.name == 'exponential_decay':
-            return (self.initial[0]*math.exp(-self.rate*time),)
-        x, v = self.initial
-        c, s = math.cos(self.rate*time), math.sin(self.rate*time)
-        return x*c + v/self.rate*s, -x*self.rate*s + v*c
+from .model_spec import ModelSpec
 
 
 def simulate(model: ModelSpec, *, steps: int = 100, method: str = 'rk4') -> dict:
@@ -62,7 +26,7 @@ def simulate(model: ModelSpec, *, steps: int = 100, method: str = 'rk4') -> dict
             'reference': reference, 'component_absolute_errors': errors,
             'max_component_error': max(errors), 'energy_drift_per_unit_mass': drift,
             'energy_drift_unit': 'm^2/s^2' if drift is not None else None,
-            'trajectory': trajectory, 'evidence': 'comparison_with_analytic_reference',
+            'trajectory': trajectory, 'model_spec': model.to_data(), 'model_id': model.content_id, 'evidence': 'comparison_with_analytic_reference',
             'limitations': 'EDO ideal; sem dados observados ou validacao experimental.'}
 
 
@@ -77,3 +41,45 @@ def convergence_study(model: ModelSpec, *, steps: int = 20, method: str = 'rk4',
     return {'coarse_error': a, 'fine_error': b, 'observed_order': order, 'steps': [steps, 2*steps],
             'method': method, 'tolerance': tolerance, 'within_tolerance': b <= tolerance,
             'improves': b < a, 'reference': 'analytic', 'experimental_validation': False}
+
+
+def compare_observations(result, observations, *, provenance, state_units, time_unit='s',
+                         absolute_tolerance=1e-3, relative_tolerance=1e-3):
+    """Compare supplied measurements to interpolated simulated states, retaining residuals.
+
+    Provenance is a caller declaration; this function does not authenticate an
+    instrument or establish independence of measurements.
+    """
+    expected_units = tuple(result.get('state_units', ('K',)*len(result['final'])))
+    if not provenance.strip() or time_unit != 's' or tuple(state_units) != expected_units:
+        raise ValueError('Origem e unidades compatíveis obrigatórias')
+    if any(not math.isfinite(v) or v < 0 for v in (absolute_tolerance, relative_tolerance)):
+        raise ValueError('Tolerância inválida')
+    if absolute_tolerance == relative_tolerance == 0:
+        raise ValueError('Tolerância não pode ser nula')
+    trajectory = result['trajectory']
+    rows = []
+    if not observations:
+        raise ValueError('Observações vazias')
+    for observation in observations:
+        if set(observation) != {'time', 'values', 'uncertainties'}:
+            raise ValueError('Contrato de observação inválido')
+        time = observation['time']
+        values, uncertainties = observation['values'], observation['uncertainties']
+        if (not math.isfinite(time) or not trajectory[0][0] <= time <= trajectory[-1][0]+1e-12
+                or len(values) != len(expected_units) or len(uncertainties) != len(values)
+                or any(not math.isfinite(v) for v in values)
+                or any(not math.isfinite(v) or v < 0 for v in uncertainties)):
+            raise ValueError('Observação fora do domínio')
+        index = next((i for i in range(1,len(trajectory)) if trajectory[i][0]+1e-12 >= time), len(trajectory)-1)
+        t0, a = trajectory[index-1]; t1, b = trajectory[index]
+        fraction = min(1.0, max(0.0, (time-t0)/(t1-t0)))
+        predicted = tuple(x+fraction*(y-x) for x,y in zip(a,b))
+        residuals = tuple(abs(x-y) for x,y in zip(predicted,values))
+        limits = tuple(absolute_tolerance+relative_tolerance*abs(v)+u for v,u in zip(values,uncertainties))
+        rows.append({'time': time, 'predicted': predicted, 'observed': tuple(values),
+                     'absolute_residuals': residuals, 'limits': limits,
+                     'within_tolerance': all(e <= limit for e,limit in zip(residuals,limits))})
+    return {'provenance': provenance, 'count': len(rows), 'comparisons': rows,
+            'within_tolerance': all(row['within_tolerance'] for row in rows),
+            'evidence': 'comparison_with_supplied_observations', 'independent_provenance_verified': False}

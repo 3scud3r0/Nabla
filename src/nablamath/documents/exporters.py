@@ -1,6 +1,7 @@
 """Text is escaped per backend; generated prose cannot inject typesetting commands."""
 from html import escape
 import json
+import re
 from .document_model import Document
 from ..expression import Number, Symbol, render, to_latex as expression_latex
 
@@ -18,7 +19,11 @@ def _math(expr) -> str:
 def _tex(text: str) -> str:
     replacements = {'\\': r'\textbackslash{}', '{': r'\{', '}': r'\}', '&': r'\&', '%': r'\%',
                     '$': r'\$', '#': r'\#', '_': r'\_', '~': r'\textasciitilde{}', '^': r'\textasciicircum{}'}
-    return ''.join(replacements.get(char, char) for char in text)
+    pieces = re.split(r'([^\s]{48,})', text)
+    def escaped(value):
+        return ''.join(replacements.get(char, char) for char in value)
+    return ''.join(r'\allowbreak{}'.join(escaped(piece[i:i+24]) for i in range(0,len(piece),24))
+                   if len(piece)>=48 and not any(c.isspace() for c in piece) else escaped(piece) for piece in pieces)
 
 
 def to_html(document: Document) -> str:
@@ -27,9 +32,10 @@ def to_html(document: Document) -> str:
     lines.append('<style>body{max-width:900px;margin:2rem auto;font-family:serif}pre{white-space:pre-wrap;overflow-wrap:anywhere}img{max-width:100%}</style>')
     for section in document.sections:
         lines.extend([f'<h2>{escape(section.heading)}</h2>', f'<pre>{escape(section.text)}</pre>',
-                      f'<p>Evidencias: {escape(", ".join(section.evidence_ids))}</p>'])
+                      f'<p>Evidencias: {escape(", ".join(section.evidence_ids + section.citations))}</p>'])
         lines.extend(f'<pre>{escape(render(eq.left))} = {escape(render(eq.right))}</pre>' for eq in section.equations)
         lines.extend(f'<figure><img src="{escape(fig.path)}" alt="{escape(fig.caption)}"><figcaption>{escape(fig.caption)}</figcaption></figure>' for fig in section.figures)
+    lines += [f'<p>{escape(ref.text())}</p>' for ref in document.references]
     return '\n'.join(lines + [f'<p>{escape(document.limitations)}</p>', '</html>', ''])
 
 
@@ -39,19 +45,34 @@ def to_latex(document: Document) -> str:
              'Sintetico: ' + str(document.synthetic) + r'\par']
     for section in document.sections:
         lines.extend([r'\subsection*{' + _tex(section.heading) + '}', _tex(section.text) + r'\par',
-                      'Evidencias: ' + _tex(', '.join(section.evidence_ids)) + r'\par'])
+                      'Evidencias: ' + _tex(', '.join(section.evidence_ids + section.citations)) + r'\par'])
         lines.extend(r'\[' + expression_latex(eq.left) + ' = ' + expression_latex(eq.right) + r'\]' for eq in section.equations)
         for fig in section.figures:
             lines.extend([r'\begin{center}\includegraphics[width=.8\linewidth]{' + fig.path + r'}\par', _tex(fig.caption) + r'\par', r'\end{center}'])
+    lines += [_tex(ref.text()) + r'\par' for ref in document.references]
     return '\n'.join(lines + [_tex(document.limitations), r'\end{document}', ''])
 
 
 def to_typst(document: Document) -> str:
+    def literal(value: str) -> str:
+        # Explicit break opportunities prevent provenance hashes from overflowing.
+        wrapped = re.sub(r'[^\s]{48,}', lambda m: '\u200b'.join(m[0][i:i+24] for i in range(0,len(m[0]),24)), value)
+        return json.dumps(wrapped, ensure_ascii=False)
     def text(value: str) -> str:
-        return '#text(' + json.dumps(value, ensure_ascii=False) + ')\n#parbreak()'
-    lines = [text(document.title), text('Sintetico: ' + str(document.synthetic))]
+        return '#text(' + literal(value) + ')\n#parbreak()'
+    def heading(value: str) -> str:
+        return '#heading(level: 1, text(' + literal(value) + '))'
+    lines = ['#set page(paper: "a4", margin: 2cm)', '#set text(size: 10pt)',
+             '#set par(justify: true, leading: 0.6em)', '#set heading(numbering: "1.")',
+             '#align(center, text(size: 18pt, weight: "bold", ' + literal(document.title) + '))',
+             text('Sintetico: ' + str(document.synthetic))]
     for section in document.sections:
-        lines.extend([text(section.heading), text(section.text), text('Evidencias: ' + ', '.join(section.evidence_ids))])
+        lines.extend([heading(section.heading), text(section.text)])
+        if section.evidence_ids or section.citations:
+            lines.append(text('Evidencias: ' + ', '.join(section.evidence_ids + section.citations)))
         lines.extend('$ ' + _math(eq.left) + ' = ' + _math(eq.right) + ' $' for eq in section.equations)
-        lines.extend('#figure(image(' + json.dumps(fig.path) + ', width: 80%), caption: text(' + json.dumps(fig.caption, ensure_ascii=False) + '))' for fig in section.figures)
-    return '\n'.join(lines + [text(document.limitations), ''])
+        lines.extend('#figure(image(' + json.dumps(fig.path) + ', width: 90%), caption: text(' + literal(fig.caption) + '))' for fig in section.figures)
+    if document.references:
+        lines.append(heading('Referências'))
+        lines += [text(ref.text()) for ref in document.references]
+    return '\n\n'.join(lines + [heading('Limitações'), text(document.limitations), ''])

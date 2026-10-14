@@ -14,7 +14,7 @@ SOURCE_SUFFIXES = {
     ".sh", ".ps1", ".cmd", ".sql", ".ipynb",
 }
 EXCLUDED_PARTS = {
-    ".git", ".venv", "venv", "__pycache__", "node_modules", "dist", "build",
+    ".git", ".lake", ".venv", "venv", "__pycache__", "node_modules", "dist", "build",
     "target", "site-packages", "legacy", ".pytest_cache", ".mypy_cache", ".nabla",
     ".playwright-tmp", "*.egg-info",
 }

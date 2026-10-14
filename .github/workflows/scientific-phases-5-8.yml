@@ -1,0 +1,26 @@
+name: Scientific phases 5–8
+on:
+  push:
+  pull_request:
+jobs:
+  scientific-workflows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e ".[test,graphics,documents,data]"
+      - name: Studio, datasets, numerical references and held-out learning
+        run: python -m pytest -q tests/test_phase5_studio.py tests/test_phase6_datasets.py tests/test_phase7_worlds.py tests/test_phase8_agents_training.py tests/test_phase58_workflows.py
+      - name: Run reproducible laboratory with real Typst and Parquet
+        run: nabla laboratory .nabla/ci-laboratory --count 32 --seed 42 --parquet
+      - name: Check generated dataset and source bundle
+        run: |
+          nabla dataset-check .nabla/ci-laboratory/dataset
+          python tools/build_math_bundle.py --check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scientific-laboratory-5-8
+          path: .nabla/ci-laboratory/
+          include-hidden-files: true

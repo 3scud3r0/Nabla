@@ -151,6 +151,34 @@ def main(argv: list[str] | None = None) -> int:
     diagram.add_argument("--width", type=int, default=800);diagram.add_argument("--height",type=int,default=600)
     check_diagram = commands.add_parser("check-diagram", help="Reconstruir e revalidar bundle de cena")
     check_diagram.add_argument("directory", type=Path)
+    studio = commands.add_parser('studio', help='Publicar AST de documento em HTML, LaTeX, Typst e PDF')
+    studio.add_argument('source', type=Path); studio.add_argument('destination', type=Path)
+    studio.add_argument('--assets', type=Path)
+    studio.add_argument('--evidence', type=Path, help='Mapa JSON SHA-256 -> arquivo, relativo ao mapa')
+    studio.add_argument('--require-evidence', action='store_true')
+    studio.add_argument('--pdf-backend', choices=('latex','typst'))
+    dataset_build = commands.add_parser('dataset-build', help='Curar e exportar dataset v3 com partições reservadas')
+    dataset_build.add_argument('destination', type=Path)
+    dataset_build.add_argument('--count', type=int, default=32); dataset_build.add_argument('--seed', type=int, default=42)
+    dataset_build.add_argument('--license', required=True); dataset_build.add_argument('--provenance', required=True)
+    dataset_build.add_argument('--parquet', action='store_true')
+    dataset_check = commands.add_parser('dataset-check', help='Reexecutar verificações e auditar um bundle v3')
+    dataset_check.add_argument('directory', type=Path)
+    heat = commands.add_parser('world-heat', help='EDP do calor 1D, solução analítica e estabilidade FTCS')
+    heat.add_argument('destination', type=Path)
+    heat.add_argument('--cells', type=int, default=20); heat.add_argument('--steps', type=int, default=200)
+    heat.add_argument('--diffusivity', type=float, default=.1); heat.add_argument('--duration', type=float, default=.1)
+    agent = commands.add_parser('agent', help='Executar proposta com ferramentas registradas e limites explícitos')
+    agent.add_argument('source', type=Path); agent.add_argument('destination', type=Path)
+    agent.add_argument('--allow', action='append', required=True, choices=('solve','simulate'))
+    agent.add_argument('--max-calls', type=int, default=8); agent.add_argument('--timeout', type=float, default=10.)
+    learning = commands.add_parser('evaluate-dataset', help='Treinar baseline e medir correção/ablações em holdout')
+    learning.add_argument('directory', type=Path); learning.add_argument('destination', type=Path)
+    learning.add_argument('--benchmark', required=True)
+    laboratory = commands.add_parser('laboratory', help='Executar ciclo integrado das fases 5–8 sem publicação remota')
+    laboratory.add_argument('destination', type=Path)
+    laboratory.add_argument('--count', type=int, default=32); laboratory.add_argument('--seed', type=int, default=42)
+    laboratory.add_argument('--parquet', action='store_true')
     args = parser.parse_args(argv)
     def save_json(path,payload):
         path.parent.mkdir(parents=True,exist_ok=True)
@@ -158,6 +186,43 @@ def main(argv: list[str] | None = None) -> int:
             json.dump(payload,output,ensure_ascii=False,sort_keys=True)
             output.write('\n')
     try:
+        if args.command in {'studio','dataset-build','dataset-check','world-heat','agent','evaluate-dataset','laboratory'}:
+            from .scientific_workflows import build_dataset, evaluate_dataset, run_laboratory, write_json
+            if args.command == 'studio':
+                from .documents.document_model import Document
+                from .documents.publication import publish
+                result = publish(Document.from_data(json.loads(args.source.read_text(encoding='utf-8'))),
+                                 args.destination, asset_root=args.assets, pdf_backend=args.pdf_backend,
+                                 evidence_sources={k:args.evidence.parent/v for k,v in json.loads(args.evidence.read_text()).items()} if args.evidence else None,
+                                 require_evidence=args.require_evidence)
+            elif args.command == 'dataset-build':
+                result = build_dataset(args.destination, count=args.count, seed=args.seed,
+                                       license_id=args.license, provenance=args.provenance, parquet=args.parquet)
+            elif args.command == 'dataset-check':
+                from .export.bundle import verify_bundle
+                valid = verify_bundle(args.directory)
+                print(json.dumps({'valid':valid}))
+                return 0 if valid else 1
+            elif args.command == 'world-heat':
+                from .worlds.model_spec import HeatModelSpec
+                from .worlds.pde import solve_heat
+                result = solve_heat(HeatModelSpec(diffusivity=args.diffusivity,duration=args.duration),
+                                    cells=args.cells,steps=args.steps)
+                write_json(args.destination,result)
+            elif args.command == 'agent':
+                from .agents import Planner, ScientificProposal as Proposal, Permissions, scientific_registry
+                result = Planner(scientific_registry(), Permissions(frozenset(args.allow),args.max_calls,args.timeout)).run(
+                    Proposal.from_data(json.loads(args.source.read_text(encoding='utf-8'))))
+                write_json(args.destination,result)
+                print(json.dumps({'completed':result['completed'],'final_receipt':result['final_receipt']}))
+                return 0 if result['completed'] else 1
+            elif args.command == 'evaluate-dataset':
+                result = evaluate_dataset(args.directory,benchmark_name=args.benchmark)
+                write_json(args.destination,result)
+            else:
+                result = run_laboratory(args.destination,seed=args.seed,count=args.count,parquet=args.parquet)
+            print(json.dumps(result,ensure_ascii=False,sort_keys=True))
+            return 0
         if args.command == "prove":
             import re
             from .formal import FormalStatement,Predicate,translate_statement,check_lean,solve_statement
@@ -359,7 +424,7 @@ def main(argv: list[str] | None = None) -> int:
             if pdf:
                 print("PDF:", pdf)
         return 0
-    except (ValueError, ArithmeticError, RuntimeError, OSError, DomainError) as exc:
+    except (ValueError, KeyError, TypeError, ArithmeticError, RuntimeError, OSError, DomainError) as exc:
         print("Erro:", exc, file=sys.stderr)
         return 1
 
