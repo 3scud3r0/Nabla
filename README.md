@@ -87,6 +87,28 @@ singularidade em `x=0`.
 
 O primeiro exemplo simplifica `x+x` para `2x` e cancela `x` **somente se `x ≠ 0`**. A avaliação para `x=3` é exata; isso não prova uma lei universal sem hipóteses.
 
+## Provas e cenas científicas — fases 3 e 4
+
+As fases 3 e 4 têm [tradução e verificação Lean/SMT, redução de contraexemplos e
+cenas geométricas com SVG/PNG](docs/PHASES_3_4.md). Use `nabla prove`,
+`nabla check-formal`, `nabla shrink`, `nabla diagram` e `nabla check-diagram`.
+Os extras `formal` e `graphics` habilitam os backends opcionais.
+
+## Calculadora científica e Forge — fases 1 e 2
+
+As fases 1 e 2 agora têm [todos os arquivos previstos implementados](docs/PHASES_1_2.md),
+com sessões tipadas, unidades SI, notebooks reexecutáveis e oito famílias de
+construção inversa com verificação independente e calibração local de solvers.
+Use `nabla calc`, `nabla replay-notebook` e `nabla forge --all-families`.
+
+## Ciclo científico integrado
+
+O comando `nabla forge` gera integrais e sistemas lineares com solução conhecida,
+resolve e verifica por caminhos independentes e exporta dados, figuras e relatórios.
+Veja [comandos, cobertura das fases e limites](docs/SCIENTIFIC_CYCLE.md).
+Também estão disponíveis `nabla check-bundle`, `nabla falsify` e `nabla simulate`.
+São recortes executáveis de `vision.md`; as fases não são declaradas concluídas.
+
 ## Verificação
 
 ```bash
@@ -131,3 +153,7 @@ há alegação de singularidade nem execução CUDA sem um backend real e benchm
 O [roadmap global](docs/ROADMAP_GLOBAL_RESEARCH.md) lista os arquivos restantes, critérios de aceite e dependências externas para cada fase F0–F6. **Arquivos presentes não significam fases concluídas.** Lean geral, descoberta científica autônoma, coordenação pública resistente a fraude, sincronização entre máquinas e ganho mensurável em treino de IA permanecem metas de pesquisa. Não há prazo científico garantido nem resultados físicos certificados.
 
 Licença do código: [MIT](LICENSE). Dados e dependências têm direitos próprios: revise a procedência antes de redistribuir. Consulte [segurança](SECURITY.md) e [política de dados](docs/DATA_GOVERNANCE.md).
+
+### Organização e inventário
+
+A API ativa fica em `src/nablamath/`; protótipos históricos estão em `legacy/current_scripts/`. A configuração canônica do Lean é `lean/lakefile.toml`. Consulte o [mapa das fases 0–13](docs/architecture/vision-phases.md) e o [inventário com linhas por arquivo](docs/audits/FILE_INVENTORY.md). O inventário distingue fontes, testes, documentação, arquivos movidos e o bundle gerado.

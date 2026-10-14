@@ -10,3 +10,5 @@ dist/
 /*.log
 /*.pdf
 /*.tex
+
+/lean/.lake/

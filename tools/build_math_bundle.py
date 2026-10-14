@@ -20,6 +20,17 @@ DIRECTORIES = (
     ROOT / "src/nablamath/autodiff",
     ROOT / "src/nablamath/physics",
     ROOT / "src/nablamath/gpu",
+    ROOT / "src/nablamath/core",
+    ROOT / "src/nablamath/calc",
+    ROOT / "src/nablamath/datasets",
+    ROOT / "src/nablamath/forge",
+    ROOT / "src/nablamath/verify",
+    ROOT / "src/nablamath/formal",
+    ROOT / "src/nablamath/graphics",
+    ROOT / "src/nablamath/worlds",
+    ROOT / "src/nablamath/falsifier",
+    ROOT / "src/nablamath/evolution",
+    ROOT / "src/nablamath/domains",
     ROOT / "lean",
 )
 FILES = (
@@ -42,7 +53,7 @@ def mathematical_sources() -> tuple[Path, ...]:
                 for path in directory.rglob("*")
                 if path.is_file()
                 and path.suffix in SUFFIXES
-                and "__pycache__" not in path.parts
+                and not {"__pycache__", ".lake", ".git"}.intersection(path.relative_to(ROOT).parts)
             )
     return tuple(sorted(selected, key=lambda path: path.relative_to(ROOT).as_posix()))
 

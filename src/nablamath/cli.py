@@ -83,8 +83,201 @@ def main(argv: list[str] | None = None) -> int:
     formal.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
     formal.add_argument("--project", type=Path, default=Path("lean"),
                         help="Pasta Lake clonada; padrão: ./lean")
+    forge = commands.add_parser("forge", help="Gerar ciclo cientifico sintetico verificado")
+    forge.add_argument("destination", type=Path)
+    forge.add_argument("--count", type=int, default=10)
+    forge.add_argument("--seed", type=int, default=42)
+    forge.add_argument("--size", type=int, default=3)
+    forge.add_argument("--license", required=True, dest="license_id")
+    forge.add_argument("--provenance", required=True)
+    forge.add_argument("--pdf-backend", choices=("latex", "typst"))
+    forge.add_argument("--families", nargs="+", choices=("polynomial_integral","factored_polynomial","linear_system",
+                       "prescribed_spectrum","convex_quadratic","stationary_markov","polynomial_identity","counterexample"))
+    forge.add_argument("--all-families", action="store_true")
+    forge.add_argument("--sizes", type=int, nargs="+")
+    forge.add_argument("--calibrate", action="store_true")
+    forge.add_argument("--solver-budget", type=int, default=1000000)
+    calculator = commands.add_parser("calc", help="Operacao cientifica com parametros JSON e notebook opcional")
+    calculator.add_argument("operation")
+    calculator.add_argument("--arguments", default="{}", help="Objeto JSON de argumentos")
+    calculator.add_argument("--notebook", type=Path)
+    replay = commands.add_parser("replay-notebook", help="Reexecutar todas as celulas de notebook")
+    replay.add_argument("path", type=Path)
+    check_bundle = commands.add_parser("check-bundle", help="Revalidar hashes e matematica de ciclo Forge")
+    check_bundle.add_argument("directory", type=Path)
+    falsify = commands.add_parser("falsify", help="Buscar contraexemplo em dominio inteiro finito")
+    falsify.add_argument("left")
+    falsify.add_argument("right")
+    falsify.add_argument("--radius", type=int, default=3)
+    falsify.add_argument("--budget", type=int, default=1000)
+    simulation = commands.add_parser("simulate", help="Estudo de convergencia de EDO com referencia analitica")
+    simulation.add_argument("model", choices=("exponential_decay", "harmonic_oscillator"))
+    simulation.add_argument("--initial", type=float, nargs="+", required=True)
+    simulation.add_argument("--rate", type=float, default=1.0)
+    simulation.add_argument("--duration", type=float, default=1.0)
+    simulation.add_argument("--steps", type=int, default=20)
+    simulation.add_argument("--method", choices=("euler", "rk4"), default="rk4")
+    simulation.add_argument("--tolerance", type=float, default=1e-5)
+    prove = commands.add_parser("prove", help="Provar/refutar proposicao racional em Lean ou SMT")
+    prove.add_argument("left")
+    prove.add_argument("right")
+    prove.add_argument("--relation", choices=("eq","ne","le","lt","ge","gt"), default="eq")
+    prove.add_argument("--assumption", action="append", default=[], help="Ex.: x >= 0")
+    prove.add_argument("--backend", choices=("lean","smt"), default="lean")
+    prove.add_argument("--strategy", choices=("auto","ring","field","linarith","nlinarith","norm_num"), default="auto")
+    prove.add_argument("--project", type=Path, default=Path("lean"))
+    prove.add_argument("--timeout", type=int, default=30)
+    prove.add_argument("--output", type=Path)
+    formal_check = commands.add_parser("check-formal", help="Reexecutar certificado formal salvo")
+    formal_check.add_argument("path", type=Path)
+    formal_check.add_argument("--project", type=Path, default=Path("lean"))
+    shrink = commands.add_parser("shrink", help="Reduzir contraexemplo inteiro preservando o tipo de falha")
+    shrink.add_argument("left");shrink.add_argument("right")
+    shrink.add_argument("--assignment", required=True, help="Objeto JSON com o testemunho")
+    shrink.add_argument("--budget", type=int, default=10000)
+    shrink.add_argument("--output", type=Path)
+    falsify.add_argument("--shrink", action="store_true")
+    falsify.add_argument("--output", type=Path)
+    diagram = commands.add_parser("diagram", help="Gerar cena cientifica editavel, SVG e PNG verificados")
+    diagram.add_argument("destination", type=Path)
+    diagram.add_argument("--kind", choices=("right_triangle","parallelogram","circumcircle","function","vector_field","phase_portrait"),default="right_triangle")
+    diagram.add_argument("--seed", type=int, default=42)
+    diagram.add_argument("--size", type=int, default=3)
+    diagram.add_argument("--function", default="x*x")
+    diagram.add_argument("--dx", default="y");diagram.add_argument("--dy", default="-x")
+    diagram.add_argument("--steps", type=int, default=300)
+    diagram.add_argument("--duration", default="6")
+    diagram.add_argument("--initials", default="[[1,0],[0,1]]")
+    diagram.add_argument("--width", type=int, default=800);diagram.add_argument("--height",type=int,default=600)
+    check_diagram = commands.add_parser("check-diagram", help="Reconstruir e revalidar bundle de cena")
+    check_diagram.add_argument("directory", type=Path)
     args = parser.parse_args(argv)
+    def save_json(path,payload):
+        path.parent.mkdir(parents=True,exist_ok=True)
+        with path.open('x',encoding='utf-8') as output:
+            json.dump(payload,output,ensure_ascii=False,sort_keys=True)
+            output.write('\n')
     try:
+        if args.command == "prove":
+            import re
+            from .formal import FormalStatement,Predicate,translate_statement,check_lean,solve_statement
+            from .expression import parse_expr
+            from .verify.certificate import make_formal_certificate
+            hypotheses=[]
+            relations={'=':'eq','==':'eq','!=':'ne','<=':'le','<':'lt','>=':'ge','>':'gt'}
+            for text in args.assumption:
+                match=re.fullmatch(r'(.+?)\s*(==|!=|<=|>=|=|<|>)\s*(.+)',text)
+                if match is None:raise ValueError('Hipotese requer duas expressoes e relacao')
+                hypotheses.append(Predicate(parse_expr(match[1]),relations[match[2]],parse_expr(match[3])))
+            statement=FormalStatement(Predicate(parse_expr(args.left),args.relation,parse_expr(args.right)),tuple(hypotheses))
+            if args.backend=='lean':
+                translation=translate_statement(statement,args.strategy)
+                receipt=check_lean(translation,args.project,args.timeout).to_data()
+                success=receipt['status']=='proved'
+            else:
+                receipt=solve_statement(statement,timeout_ms=args.timeout*1000)
+                success=receipt['status']=='unsat'
+            certificate=make_formal_certificate(statement,receipt)
+            if args.output:save_json(args.output,certificate)
+            print(json.dumps(certificate,ensure_ascii=False,indent=2))
+            return 0 if success else 1
+        if args.command == "check-formal":
+            from .verify.certificate import verify_formal_certificate
+            certificate=json.loads(args.path.read_text(encoding='utf-8'))
+            valid=verify_formal_certificate(certificate,project=args.project)
+            receipt=certificate.get('backend_receipt',{})
+            print(json.dumps({'valid':valid,'status':receipt.get('status'),'goal_proved':valid and receipt.get('status') in ('proved','unsat'),
+                              'formal_proof':valid and receipt.get('formal_proof') is True}))
+            return 0 if valid else 1
+        if args.command == "shrink":
+            from .falsifier.shrink import shrink_counterexample
+            result=shrink_counterexample(args.left,args.right,json.loads(args.assignment),budget=args.budget).to_data()
+            if args.output:save_json(args.output,result)
+            print(json.dumps(result,ensure_ascii=False,indent=2))
+            return 0
+        if args.command == "diagram":
+            from .graphics.artifacts import export_scene
+            if args.kind in ('right_triangle','parallelogram','circumcircle'):
+                from .forge.constructors.geometry import construct
+                scene=construct(args.seed,args.size,args.kind)
+            elif args.kind=='function':
+                from .graphics.sampling import function_scene
+                scene=function_scene(args.function)
+            elif args.kind=='vector_field':
+                from .graphics.sampling import vector_field_scene
+                scene=vector_field_scene(args.dx,args.dy)
+            else:
+                from .graphics.sampling import phase_portrait_scene
+                scene=phase_portrait_scene(args.dx,args.dy,initials=tuple(tuple(v) for v in json.loads(args.initials)),duration=args.duration,steps=args.steps)
+            result=export_scene(scene,args.destination,width=args.width,height=args.height)
+            print(json.dumps(result,ensure_ascii=False,indent=2))
+            return 0
+        if args.command == "check-diagram":
+            from .graphics.artifacts import verify_scene_bundle
+            valid=verify_scene_bundle(args.directory)
+            print(json.dumps({'valid':valid}))
+            return 0 if valid else 1
+        if args.command == "calc":
+            from .calc import CalculationSession,Notebook
+            arguments=json.loads(args.arguments)
+            if not isinstance(arguments,dict):
+                raise ValueError("Argumentos precisam ser objeto JSON")
+            calculation=CalculationSession().execute(args.operation,**arguments)
+            if args.notebook:
+                notebook=Notebook()
+                notebook.append(calculation)
+                notebook.save(args.notebook)
+            print(json.dumps(calculation.to_data(),ensure_ascii=False,indent=2))
+            return 0
+        if args.command == "replay-notebook":
+            from .calc import Notebook
+            notebook=Notebook.load(args.path)
+            print(json.dumps({"valid":True,"cells":notebook.replay()}))
+            return 0
+        if args.command == "forge":
+            if args.families or args.all_families:
+                if args.pdf_backend:
+                    raise ValueError("Exportacao Forge v2 emite dados/rastros; PDF continua no ciclo v1")
+                if args.families and args.all_families:
+                    raise ValueError("Escolha --families ou --all-families")
+                from .forge.factory import run_factory
+                from .forge.task_spec import FAMILIES
+                result=run_factory(args.destination,count=args.count,seed=args.seed,
+                    families=tuple(args.families or FAMILIES),sizes=tuple(args.sizes or (args.size,)),
+                    license_id=args.license_id,provenance=args.provenance,calibration=args.calibrate,budget=args.solver_budget)
+                print(json.dumps(result,ensure_ascii=False,indent=2))
+                return 0
+            if args.calibrate or args.sizes:
+                raise ValueError("--calibrate/--sizes requer --families ou --all-families")
+            from .forge.pipeline import run_cycle
+            result = run_cycle(args.destination, count=args.count, seed=args.seed, size=args.size,
+                               license_id=args.license_id, provenance=args.provenance, pdf_backend=args.pdf_backend)
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return 0
+        if args.command == "check-bundle":
+            from .forge.pipeline import verify_bundle
+            from .forge.factory import verify_factory
+            manifest_path=args.directory/"manifest.json"
+            manifest=json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.is_file() else {}
+            valid=verify_factory(args.directory) if manifest.get("schema_version")==2 else verify_bundle(args.directory)
+            print(json.dumps({"valid": valid}))
+            return 0 if valid else 1
+        if args.command == "falsify":
+            from .falsifier import search_equivalence
+            if args.shrink:
+                from .falsifier.search import investigate
+                payload=investigate(args.left,args.right,radius=args.radius,budget=args.budget)
+            else:
+                payload=search_equivalence(args.left,args.right,radius=args.radius,budget=args.budget).to_data()
+            if args.output:save_json(args.output,payload)
+            print(json.dumps(payload, ensure_ascii=False, indent=2))
+            return 0
+        if args.command == "simulate":
+            from .worlds import ModelSpec, convergence_study
+            model = ModelSpec(args.model, tuple(args.initial), args.rate, args.duration)
+            result = convergence_study(model, steps=args.steps, method=args.method, tolerance=args.tolerance)
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return 0 if result["within_tolerance"] else 1
         if args.command == "desktop":
             from .desktop.app import main as desktop_main
             desktop_args = ["--data-dir", str(args.data_dir)]

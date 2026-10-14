@@ -28,6 +28,20 @@ class AssumptionSet:
             return self.proves_nonzero(expr.left)
         return False
 
+    def proves_defined(self, expr: Expr) -> bool:
+        """Whether a partial rational expression is defined under these facts."""
+        if isinstance(expr, (Number, Symbol)):
+            return True
+        if not self.proves_defined(expr.left) or not self.proves_defined(expr.right):
+            return False
+        if expr.op == "/":
+            return self.proves_nonzero(expr.right)
+        if expr.op == "**":
+            if not isinstance(expr.right, Number) or expr.right.value.denominator != 1:
+                return False
+            return expr.right.value > 0 or self.proves_nonzero(expr.left)
+        return True
+
     def statements(self) -> tuple[str, ...]:
         return tuple(f"{name} != 0" for name in sorted(self.nonzero_symbols))
 

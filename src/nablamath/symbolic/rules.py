@@ -10,8 +10,10 @@ CONDITIONAL_CANCEL = "cancelamento_condicional"
 
 
 def _rule(name: str, lhs: str, rhs: str, *, nonzero: str | None = None,
-          justification: str, lean_theorem: str) -> RewriteRule:
+          justification: str, lean_theorem: str, defined: str | None = None) -> RewriteRule:
     conditions = () if nonzero is None else (RuleCondition("nonzero", nonzero),)
+    if defined is not None:
+        conditions += (RuleCondition("defined", defined),)
     return RewriteRule(
         name=name,
         lhs=parse_pattern(lhs),
@@ -30,7 +32,7 @@ DEFAULT_EGRAPH_RULES: tuple[RewriteRule, ...] = (
     _rule("one_multiply", "1 * ?a", "?a", justification="Multiplicatividade do elemento neutro.", lean_theorem="NablaMath.one_mul"),
     _rule("divide_one", "?a / 1", "?a", justification="Divisão pelo elemento multiplicativo neutro.", lean_theorem="NablaMath.div_one"),
     _rule("power_one", "?a ** 1", "?a", justification="Potência de expoente unitário.", lean_theorem="NablaMath.pow_one"),
-    _rule("subtract_self", "?a - ?a", "0", justification="Subtração reflexiva no corpo racional.", lean_theorem="NablaMath.subtract_self"),
+    _rule("subtract_self", "?a - ?a", "0", defined="a", justification="Subtração reflexiva no corpo racional.", lean_theorem="NablaMath.subtract_self"),
     _rule("divide_self", "?a / ?a", "1", nonzero="a", justification="Cancelamento exige denominador não nulo.", lean_theorem="NablaMath.div_self"),
     _rule("commute_+", "?a + ?b", "?b + ?a", justification="Comutatividade da adição racional.", lean_theorem="NablaMath.add_comm_rule"),
     _rule("commute_*", "?a * ?b", "?b * ?a", justification="Comutatividade da multiplicação racional.", lean_theorem="NablaMath.mul_comm_rule"),
@@ -39,7 +41,7 @@ DEFAULT_EGRAPH_RULES: tuple[RewriteRule, ...] = (
     _rule("factor_common_left", "?a * ?b + ?a * ?c", "?a * (?b + ?c)", justification="Distributividade, usada no sentido de fatoração.", lean_theorem="NablaMath.factor_common_left"),
 )
 
-RULESET_VERSION = "domain-safe-rational-v2"
+RULESET_VERSION = "domain-safe-rational-v3"
 
 
 def default_egraph_rules() -> tuple[RewriteRule, ...]:
