@@ -26,6 +26,8 @@
   auditoria de linhagem e pontuação de submissões declarativas.
 - [Perfis ampliados](acceptance/expanded_profiles.md): incerteza, calibração,
   corpus/snapshots, retrações e API local de coordenação.
+- [Perfis implementados em paralelo](acceptance/parallel_profiles.md): matemática,
+  simulação, Forge, controle de agentes, assinaturas, SDKs e recursos.
 - [Auditoria mais recente](audits/FRONTIER_LAB_SIMULATION_2026_10_15.md): execução simulada, resultados negativos e estimativa das 12 fases.
 - [Benchmarks e resultados](../benchmarks/README.md): dados, protocolos e artefatos reexecutáveis.
 - [Backlog F1–F12](audits/PHASES_1_12_COMPLETION_BACKLOG.md) e [inventário de arquivos/linhas](audits/FILE_INVENTORY.md).

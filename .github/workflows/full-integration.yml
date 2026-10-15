@@ -1,0 +1,28 @@
+name: Bounded end-to-end scientific integration
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e ".[test]"
+      - run: python tools/expanded_scientific_cycle.py .nabla/integrated-run
+      - run: python -m pytest -q tests/integration/test_global_scientific_cycle.py tests/integration/test_scientific_artifact.py tests/integration/test_coordinator_api.py tests/test_roadmap_worker_execution.py --junitxml=.nabla/integration-tests.xml
+      - run: python tools/check_roadmap.py
+      - run: python tools/build_math_bundle.py --check
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: bounded-integration-evidence
+          path: .nabla/
+          include-hidden-files: true

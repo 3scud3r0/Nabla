@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "name": "cpu_balanced",
+  "cpu_slots": 4,
+  "memory_bytes": 8589934592,
+  "gpu_memory_bytes": 0,
+  "max_tasks": 4,
+  "max_task_seconds": 300,
+  "distributed": false
+}

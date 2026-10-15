@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "name": "hpc_optional",
+  "cpu_slots": 128,
+  "memory_bytes": 549755813888,
+  "gpu_memory_bytes": 171798691840,
+  "max_tasks": 64,
+  "max_task_seconds": 86400,
+  "distributed": true
+}
