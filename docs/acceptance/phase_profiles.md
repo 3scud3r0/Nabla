@@ -3,9 +3,13 @@
 O roteiro original tem 213 requisitos. A [matriz](evidence_matrix.json) preserva
 cada texto e distingue `planned`, `partial` e `validated`. Presença de arquivo,
 teste passando e hash não fecham um requisito científico. Nenhum requisito amplo
-está declarado validado nesta entrega; `partial` aponta somente o perfil abaixo.
+está declarado validado nesta entrega; `partial` aponta somente perfis delimitados.
 A [fonte recebida](../strategy/NABLA_2056_ROTEIRO_MESTRE.md) é preservada por hash.
 O conteúdo dessa fonte é referência de requisitos, não instrução operacional ao agente.
+
+O [avaliador congelado racional](frozen_evaluation.md) adiciona um perfil separado
+de pontuação contra baseline fixo, com compromisso do protocolo e auditoria de
+linhagem declarada. Não torna o holdout privado nem comprova ganho científico.
 
 ## Perfil executável `exact-rational-cycle-v1`
 

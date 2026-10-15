@@ -3,7 +3,7 @@
   "source": "docs/strategy/NABLA_2056_ROTEIRO_MESTRE.md",
   "source_sha256": "fbf0ff60cd58b31451dcc97e9848b39dba1137973982339dbf85efa251b2f0b0",
   "baseline_commit": "494172023cb97ada45133a7a868344fc2215c53c",
-  "scope": "P0 foundations and finite exact-rational integration; no overall completion score",
+  "scope": "P0 foundations, exact-rational integration and frozen descriptive evaluation; no overall completion score",
   "requirements": [
     {
       "id": 1,
@@ -344,14 +344,20 @@
       "id": 24,
       "target": "`src/nablamath/evaluation/`",
       "requirement": "**P0 · F6/F8/F10**: criar avaliador congelado independente de proponente, impedir vazamento transitivo e fornecer decisão estatística auditável. **Concluído quando:** testes adversariais com adulteração e holdout inacessível ao proponente.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "frozen-exact-evaluator-v1",
+      "implementation": [
+        "src/nablamath/evaluation/frozen.py"
+      ],
+      "tests": [
+        "tests/evaluation/test_frozen.py"
+      ],
+      "evidence": [
+        "docs/audits/FROZEN_EVALUATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "External operator isolation, authenticated independent review, private holdout administration and full original acceptance remain required."
     },
     {
       "id": 25,
@@ -1942,14 +1948,20 @@
       "id": 140,
       "target": "CRIAR `src/nablamath/evolution/frozen_evaluator.py`",
       "requirement": "Avaliador separado da autoridade do proponente. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "frozen-exact-evaluator-v1",
+      "implementation": [
+        "src/nablamath/evaluation/frozen.py"
+      ],
+      "tests": [
+        "tests/evaluation/test_frozen.py"
+      ],
+      "evidence": [
+        "docs/audits/FROZEN_EVALUATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "External operator isolation, authenticated independent review, private holdout administration and full original acceptance remain required."
     },
     {
       "id": 141,

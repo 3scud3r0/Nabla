@@ -2,9 +2,9 @@
 
 Base de comparação: `origin/main`. Inventário de todos os arquivos versionados presentes, incluindo os existentes.
 
-**1086 arquivos; 107,095 linhas físicas; 30,102 linhas de código fora do histórico.**
+**1092 arquivos; 107,625 linhas físicas; 30,464 linhas de código fora do histórico.**
 
-Novos: 18; alterações/movimentações: {'alterado': 6, 'novo': 18}. Removidos: 0.
+Novos: 24; alterações/movimentações: {'alterado': 6, 'novo': 24}. Removidos: 0.
 
 Linhas físicas incluem comentários e espaços. Código Python conta linhas com tokens, incluindo docstrings; outros formatos de código contam linhas não vazias sem comentários de linha inteira (estimativa). “—” significa formato não código/binário. O bundle `math.txt` e resultados gerados não entram no total de código. Histórico movido não representa código novo. Os dois relatórios deste inventário são excluídos para evitar autocontagem. Caches, ambientes virtuais, builds e amostras locais ignoradas não são arquivos do PR.
 
@@ -269,14 +269,15 @@ Nenhum.
 | `docs/PHASES_MATURITY_EXPANSION.md` | existente | documentação | 60 | — |
 | `docs/PLANO_MESTRE_2026_2056.md` | existente | documentação | 300 | — |
 | `docs/PUBLISHING.md` | existente | documentação | 10 | — |
-| `docs/README.md` | alterado | documentação | 42 | — |
+| `docs/README.md` | alterado | documentação | 44 | — |
 | `docs/RELEASE_POLICY.md` | existente | documentação | 46 | — |
 | `docs/ROADMAP_GLOBAL_RESEARCH.md` | existente | documentação | 179 | — |
 | `docs/SCIENTIFIC_CYCLE.md` | existente | documentação | 152 | — |
 | `docs/THREAT_MODEL.md` | existente | documentação | 12 | — |
 | `docs/UPLOAD_REMAINING_ARCHIVE.md` | existente | documentação | 37 | — |
-| `docs/acceptance/evidence_matrix.json` | novo | documentação | 2922 | — |
-| `docs/acceptance/phase_profiles.md` | novo | documentação | 80 | — |
+| `docs/acceptance/evidence_matrix.json` | novo | documentação | 2934 | — |
+| `docs/acceptance/frozen_evaluation.md` | novo | documentação | 55 | — |
+| `docs/acceptance/phase_profiles.md` | novo | documentação | 84 | — |
 | `docs/adr/0001-product-scope.md` | existente | documentação | 16 | — |
 | `docs/adr/0002-canonical-ast.md` | existente | documentação | 19 | — |
 | `docs/architecture/current-modules.md` | existente | documentação | 23 | — |
@@ -284,6 +285,7 @@ Nenhum.
 | `docs/architecture/vision-phases.md` | existente | documentação | 200 | — |
 | `docs/audits/BASELINE_2026_10.md` | existente | documentação | 66 | — |
 | `docs/audits/FRONTIER_LAB_SIMULATION_2026_10_15.md` | existente | documentação | 136 | — |
+| `docs/audits/FROZEN_EVALUATION_2026_10_15.md` | novo | documentação | 45 | — |
 | `docs/audits/P0_INTEGRATION_2026_10_15.md` | novo | documentação | 52 | — |
 | `docs/audits/PHASES_1_12_COMPLETION_BACKLOG.json` | existente | documentação | 944 | — |
 | `docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md` | existente | documentação | 1043 | — |
@@ -298,6 +300,7 @@ Nenhum.
 | `docs/strategy/roadmap_2026_2056.json` | novo | documentação | 43 | — |
 | `examples/README.md` | existente | infraestrutura/outros | 19 | — |
 | `examples/first_problem.py` | existente | infraestrutura/outros | 19 | 14 |
+| `examples/frozen_evaluation.py` | novo | infraestrutura/outros | 38 | 33 |
 | `examples/orbit_report.py` | existente | infraestrutura/outros | 13 | 9 |
 | `examples/scientific_phases_5_8.py` | existente | infraestrutura/outros | 11 | 10 |
 | `examples/scientific_plan.json` | existente | infraestrutura/outros | 1 | — |
@@ -513,7 +516,7 @@ Nenhum.
 | `src/nablamath/calc/catalog.py` | existente | fonte | 112 | 104 |
 | `src/nablamath/calc/notebook.py` | existente | fonte | 62 | 54 |
 | `src/nablamath/calc/session.py` | existente | fonte | 243 | 225 |
-| `src/nablamath/cli.py` | alterado | fonte | 507 | 498 |
+| `src/nablamath/cli.py` | alterado | fonte | 542 | 531 |
 | `src/nablamath/compatibility.json` | existente | fonte | 21 | — |
 | `src/nablamath/compatibility.py` | existente | fonte | 95 | 80 |
 | `src/nablamath/compiler/__init__.py` | existente | fonte | 15 | 14 |
@@ -600,8 +603,10 @@ Nenhum.
 | `src/nablamath/errors.py` | existente | fonte | 8 | 6 |
 | `src/nablamath/evaluation/__init__.py` | existente | fonte | 3 | 3 |
 | `src/nablamath/evaluation/contamination.py` | existente | fonte | 46 | 34 |
+| `src/nablamath/evaluation/frozen.py` | novo | fonte | 154 | 136 |
 | `src/nablamath/evaluation/lineage.py` | existente | fonte | 96 | 87 |
 | `src/nablamath/evaluation/sealed.py` | existente | fonte | 23 | 16 |
+| `src/nablamath/evaluation/statistics.py` | novo | fonte | 15 | 13 |
 | `src/nablamath/evolution/__init__.py` | existente | fonte | 4 | 3 |
 | `src/nablamath/evolution/evaluator.py` | existente | fonte | 82 | 66 |
 | `src/nablamath/evolution/holdout_manager.py` | existente | fonte | 69 | 63 |
@@ -965,6 +970,7 @@ Nenhum.
 | `templates/research_paper/example.document.json` | existente | infraestrutura/outros | 1 | — |
 | `templates/teaching/README.md` | existente | infraestrutura/outros | 7 | — |
 | `tests/evaluation/test_contamination.py` | existente | testes | 20 | 14 |
+| `tests/evaluation/test_frozen.py` | novo | testes | 170 | 147 |
 | `tests/evaluation/test_lineage.py` | existente | testes | 101 | 84 |
 | `tests/integration/__init__.py` | existente | testes | 1 | 1 |
 | `tests/integration/test_agent_limits.py` | existente | testes | 20 | 14 |

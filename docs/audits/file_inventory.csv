@@ -246,14 +246,15 @@ docs/PHASES_9_12.md,existente,documentação,159,,9669
 docs/PHASES_MATURITY_EXPANSION.md,existente,documentação,60,,4023
 docs/PLANO_MESTRE_2026_2056.md,existente,documentação,300,,34882
 docs/PUBLISHING.md,existente,documentação,10,,2183
-docs/README.md,alterado,documentação,42,,2672
+docs/README.md,alterado,documentação,44,,2823
 docs/RELEASE_POLICY.md,existente,documentação,46,,2282
 docs/ROADMAP_GLOBAL_RESEARCH.md,existente,documentação,179,,18589
 docs/SCIENTIFIC_CYCLE.md,existente,documentação,152,,9807
 docs/THREAT_MODEL.md,existente,documentação,12,,1292
 docs/UPLOAD_REMAINING_ARCHIVE.md,existente,documentação,37,,2633
-docs/acceptance/evidence_matrix.json,novo,documentação,2922,,118894
-docs/acceptance/phase_profiles.md,novo,documentação,80,,4881
+docs/acceptance/evidence_matrix.json,novo,documentação,2934,,119482
+docs/acceptance/frozen_evaluation.md,novo,documentação,55,,3333
+docs/acceptance/phase_profiles.md,novo,documentação,84,,5130
 docs/adr/0001-product-scope.md,existente,documentação,16,,949
 docs/adr/0002-canonical-ast.md,existente,documentação,19,,1194
 docs/architecture/current-modules.md,existente,documentação,23,,2011
@@ -261,6 +262,7 @@ docs/architecture/repository-layout.md,existente,documentação,39,,2413
 docs/architecture/vision-phases.md,existente,documentação,200,,12192
 docs/audits/BASELINE_2026_10.md,existente,documentação,66,,3996
 docs/audits/FRONTIER_LAB_SIMULATION_2026_10_15.md,existente,documentação,136,,8942
+docs/audits/FROZEN_EVALUATION_2026_10_15.md,novo,documentação,45,,2518
 docs/audits/P0_INTEGRATION_2026_10_15.md,novo,documentação,52,,3110
 docs/audits/PHASES_1_12_COMPLETION_BACKLOG.json,existente,documentação,944,,47274
 docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md,existente,documentação,1043,,54531
@@ -275,6 +277,7 @@ docs/strategy/NABLA_2056_ROTEIRO_MESTRE.md,novo,documentação,474,,56299
 docs/strategy/roadmap_2026_2056.json,novo,documentação,43,,1068
 examples/README.md,existente,infraestrutura/outros,19,,720
 examples/first_problem.py,existente,infraestrutura/outros,19,14,785
+examples/frozen_evaluation.py,novo,infraestrutura/outros,38,33,2091
 examples/orbit_report.py,existente,infraestrutura/outros,13,9,442
 examples/scientific_phases_5_8.py,existente,infraestrutura/outros,11,10,476
 examples/scientific_plan.json,existente,infraestrutura/outros,1,,359
@@ -490,7 +493,7 @@ src/nablamath/calc/__init__.py,existente,fonte,5,4,235
 src/nablamath/calc/catalog.py,existente,fonte,112,104,7859
 src/nablamath/calc/notebook.py,existente,fonte,62,54,2569
 src/nablamath/calc/session.py,existente,fonte,243,225,14487
-src/nablamath/cli.py,alterado,fonte,507,498,33220
+src/nablamath/cli.py,alterado,fonte,542,531,35344
 src/nablamath/compatibility.json,existente,fonte,21,,412
 src/nablamath/compatibility.py,existente,fonte,95,80,3407
 src/nablamath/compiler/__init__.py,existente,fonte,15,14,657
@@ -577,8 +580,10 @@ src/nablamath/entity.py,existente,fonte,93,75,3525
 src/nablamath/errors.py,existente,fonte,8,6,269
 src/nablamath/evaluation/__init__.py,existente,fonte,3,3,162
 src/nablamath/evaluation/contamination.py,existente,fonte,46,34,1705
+src/nablamath/evaluation/frozen.py,novo,fonte,154,136,7879
 src/nablamath/evaluation/lineage.py,existente,fonte,96,87,4156
 src/nablamath/evaluation/sealed.py,existente,fonte,23,16,682
+src/nablamath/evaluation/statistics.py,novo,fonte,15,13,761
 src/nablamath/evolution/__init__.py,existente,fonte,4,3,238
 src/nablamath/evolution/evaluator.py,existente,fonte,82,66,4329
 src/nablamath/evolution/holdout_manager.py,existente,fonte,69,63,4209
@@ -942,6 +947,7 @@ templates/research_paper/evidence.json,existente,infraestrutura/outros,1,,560
 templates/research_paper/example.document.json,existente,infraestrutura/outros,1,,899
 templates/teaching/README.md,existente,infraestrutura/outros,7,,430
 tests/evaluation/test_contamination.py,existente,testes,20,14,852
+tests/evaluation/test_frozen.py,novo,testes,170,147,7801
 tests/evaluation/test_lineage.py,existente,testes,101,84,4658
 tests/integration/__init__.py,existente,testes,1,1,52
 tests/integration/test_agent_limits.py,existente,testes,20,14,617
