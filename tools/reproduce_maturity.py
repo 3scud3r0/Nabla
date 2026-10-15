@@ -83,11 +83,6 @@ def reproduce(destination,*,learning_directory=None,pdf_backend='typst'):
         def record(kind,payload):return make_research_record(kind,payload,license_id='CC0-1.0',provenance='maturity laboratory',scope='bounded synthetic model',limitations='no observed validation',synthetic=True,split='train')
         records=[record('ode',ode),record('diffusion',diffusion),record('scene',scene.to_data())]
         store=RecordStore(stage/'records.sqlite3');store.ingest(records,batch_id='models')
-        store.export_jsonl(stage/'records.jsonl')
-        write_parquet_stream(store.records(),stage/'records.parquet',batch_size=1)
-        with (stage/'records.jsonl').open('rb') as stream:
-            if {r.content_id for r in iter_load(stream)}!={r.content_id for r in records}:raise ValueError('Mixed JSONL replay failed')
-        if {r.content_id for r in iter_parquet_stream(stage/'records.parquet')}!={r.content_id for r in records}:raise ValueError('Mixed Parquet replay failed')
         task=generate_task('linear_system',113,3).task.to_data()
         proposal=ScientificProposal('Solve then independently verify',(
             Action('solve1','solve',canonical_json({'task':task})),
@@ -96,12 +91,20 @@ def reproduce(destination,*,learning_directory=None,pdf_backend='typst'):
         runs=RunStore(stage/'agent.sqlite3');partial=planner.run(proposal,store=runs,stop_after=1)
         resumed=planner.run(proposal,store=RunStore(runs.path))
         if not resumed['completed'] or resumed['receipts'][0]!=partial['receipts'][0]:raise ValueError('Durable resume failed')
-        save('agent-resumed.json',resumed)
+        agent_id,agent_path=save('agent-resumed.json',resumed)
         train=ObservationSet(tuple(Observation(v,2+Fraction(3,v)) for v in (1,2,3,4)),'synthetic rational law','calibration')
         test=ObservationSet(tuple(Observation(v,2+Fraction(3,v)) for v in (5,6,7)),'reserved synthetic points','holdout')
         discovery=discover_basis(train,test,basis=('1','x','1/x'),max_terms=2)
         if not discovery['holdout_result']['matches_all']:raise ValueError('Rational basis recovery failed')
-        save('basis-discovery.json',discovery)
+        discovery_id,discovery_path=save('basis-discovery.json',discovery)
+        discovery_record=record('basis_discovery',discovery)
+        store.ingest([discovery_record],batch_id='discovery')
+        records.append(discovery_record)
+        store.export_jsonl(stage/'records.jsonl')
+        write_parquet_stream(store.records(),stage/'records.parquet',batch_size=1)
+        with (stage/'records.jsonl').open('rb') as stream:
+            if {r.content_id for r in iter_load(stream)}!={r.content_id for r in records}:raise ValueError('Mixed JSONL replay failed')
+        if {r.content_id for r in iter_parquet_stream(stage/'records.parquet')}!={r.content_id for r in records}:raise ValueError('Mixed Parquet replay failed')
         csl=[{'title':'An Appraisal of Least Squares Programs for the Electronic Computer from the Viewpoint of the User',
               'author':[{'given':'J. W.','family':'Longley'}],'issued':{'date-parts':[[1967]]},
               'URL':'https://github.com/statsmodels/statsmodels','abstract':'Published numerical least squares reference.'}]
@@ -115,18 +118,21 @@ def reproduce(destination,*,learning_directory=None,pdf_backend='typst'):
         export_formal_bundle(question,statement,certificate,binding,stage/'formal')
         evidence=Evidence('exact_trace',canonical_json(resumed['receipts'][0]['result']),'seeded local construction','CC0-1.0',True)
         claim=ClaimRevision('constructed-system','The exact constructed system has the supplied solution','supported',(evidence.evidence_id,))
-        ledger=ClaimLedger((claim,));private=generate_signing_key();key=PeerKey('demo-peer',public_key_hex(private))
-        envelope=sign_snapshot(export_snapshot(ledger,{evidence.evidence_id:evidence},peer_id=key.peer_id),private)
+        discovery_evidence=Evidence('discovery',canonical_json(discovery),'bounded rational grammar, reserved synthetic points','CC0-1.0',True)
+        if not discovery_evidence.verify()['valid']:raise ValueError('Discovery evidence replay failed')
+        discovery_claim=ClaimRevision('rational-law','The rational basis candidate matches these reserved synthetic observations','supported',(discovery_evidence.evidence_id,))
+        ledger=ClaimLedger((claim,discovery_claim));private=generate_signing_key();key=PeerKey('demo-peer',public_key_hex(private))
+        envelope=sign_snapshot(export_snapshot(ledger,{evidence.evidence_id:evidence,discovery_evidence.evidence_id:discovery_evidence},peer_id=key.peer_id),private)
         peers=[SnapshotStore(stage/f'peer-{i}.sqlite3') for i in (1,2)]
         for peer in peers:peer.pin(key)
         if not peers[0].ingest(envelope)['valid']:raise ValueError('Signed evidence ingest failed')
         for row in peers[0].delta(peers[1].inventory()):
             if not peers[1].ingest(row)['valid']:raise ValueError('Delta synchronization failed')
         if peers[0].inventory()!=peers[1].inventory():raise ValueError('Peer convergence failed')
-        save('federation.json',peers[1].reconcile())
+        federation_id,federation_path=save('federation.json',peers[1].reconcile())
         table=Table('Reproduced computational evidence',('Check','Outcome'),(
             ('Published NIST numerical reference','passed'),('Durable agent resume','passed'),
-            ('Rational basis holdout','matched'),('Signed delta exchange','passed')), (nist_id,))
+            ('Rational basis holdout','matched'),('Signed delta exchange','passed')), (nist_id,agent_id,discovery_id,federation_id))
         figure=ingest_figure(stage/'scene-0/scene.png',stage/'assets','Model-linked rational curve, vertical interpolation tolerance 1/1000; source scene is replayable.')
         publications=[]
         for profile,names in PROFILES.items():
@@ -134,7 +140,7 @@ def reproduce(destination,*,learning_directory=None,pdf_backend='typst'):
                      tables=(table,) if name in ('Results','Verification','Worked examples') else (),
                      figures=(figure,) if name in ('Results','Worked examples') else ()) for name in names}
             document=build_profile(profile,'Nabla '+profile,sections,limitations='Computational checks only; no global novelty, physical validation or independent peer review.',references=tuple(e.citation for e in corpus.entries))
-            publish(document,stage/profile,pdf_backend=pdf_backend,asset_root=stage/'assets',evidence_sources={nist_id:nist_path},require_evidence=True)
+            publish(document,stage/profile,pdf_backend=pdf_backend,asset_root=stage/'assets',evidence_sources={nist_id:nist_path,agent_id:agent_path,discovery_id:discovery_path,federation_id:federation_path},require_evidence=True)
             if not verify_publication(stage/profile):raise ValueError('Publication replay failed')
             publications.append(profile)
         learning_verified=None
@@ -144,7 +150,7 @@ def reproduce(destination,*,learning_directory=None,pdf_backend='typst'):
             if not learning_verified:raise ValueError('Multimodal checkpoint replay failed')
         summary={'schema_version':1,'calculator_operations':len(catalog()['operations']),'rational_integrals_independently_checked':len(integrals),
                  'nist_reference_passed':nist['passed'],'diffusion_reference_max_error':diff_error,'ode_reference_max_error':ode['max_trajectory_reference_error'],
-                 'visual_scenes':len(scenes),'mixed_artifact_profiles':3,'jsonl_parquet_roundtrip':True,'durable_agent_resume':True,
+                 'visual_scenes':len(scenes),'mixed_artifact_profiles':4,'jsonl_parquet_roundtrip':True,'durable_agent_resume':True,
                  'rational_basis_holdout_matched':True,'pinned_lean_proof':True,'human_translation_review_accepted':False,
                  'durable_signed_peer_exchange':True,'compiled_publication_profiles':publications,'pdf_backend':pdf_backend,
                  'multimodal_checkpoint_predictions_verified':learning_verified,

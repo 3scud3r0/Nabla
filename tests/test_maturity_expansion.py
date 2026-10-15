@@ -62,6 +62,13 @@ class BasisTests(unittest.TestCase):
         holdout=ObservationSet(tuple(Observation(x,2+Fraction(3,x)) for x in (5,6,7)),'synthetic reserved','holdout')
         result=discover_basis(train,holdout,basis=('1','x','1/x'),max_terms=2)
         self.assertTrue(result['holdout_result']['matches_all'])
+        from nablamath.discovery.basis_search import verify_basis_report
+        from nablamath.knowledge.provenance_audit import Evidence
+        self.assertTrue(verify_basis_report(result))
+        evidence=Evidence('discovery',canonical_json(result),'fixture','CC0-1.0',True)
+        self.assertTrue(evidence.verify()['valid'])
+        altered=copy.deepcopy(result);altered['holdout_result']['matches_all']=False
+        self.assertFalse(verify_basis_report(altered))
         wrong=ObservationSet(tuple(Observation(x,100+x) for x in (5,6,7)),'altered holdout','holdout')
         other=discover_basis(train,wrong,basis=('1','x','1/x'),max_terms=2)
         self.assertEqual(result['selected'],other['selected'])

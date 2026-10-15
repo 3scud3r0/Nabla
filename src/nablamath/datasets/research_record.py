@@ -32,7 +32,8 @@ class ResearchRecord:
     @property
     def semantic_id(self):
         d=self.to_data();p=d['payload'];kind=d['kind']
-        if kind=='exact_trace':identity={'task_id':p['task_id']}
+        if kind=='basis_discovery':identity={'calibration':p['calibration'],'holdout':p['holdout']}
+        elif kind=='exact_trace':identity={'task_id':p['task_id']}
         elif kind=='ode':identity=p['model_spec']
         elif kind=='domain':identity={'model':p['model'],'inputs':p['inputs']}
         elif kind=='diffusion':identity={k:p[k] for k in ('initial','boundary','length','diffusivity','duration')}
@@ -46,7 +47,10 @@ class ResearchRecord:
 
 
 def _check(kind,payload):
-    if kind=='exact_trace':
+    if kind=='basis_discovery':
+        from ..discovery.basis_search import verify_basis_report
+        valid=verify_basis_report(payload)
+    elif kind=='exact_trace':
         from ..verify.trace import VerificationTrace
         valid=VerificationTrace.from_data(payload).to_data()['verification']['valid']
     elif kind=='domain':

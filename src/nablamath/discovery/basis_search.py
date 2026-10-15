@@ -51,3 +51,14 @@ def discover_basis(calibration, holdout, *, basis=('1','x','x*x','1/x'), max_ter
              'holdout_result':assess(hypothesis,holdout),'global_novelty_established':False,
              'limitations':'Finite rational grammar; singular designs rejected; no global novelty or observed-data authentication.'}
     return {**payload,'report_id':fingerprint(payload)}
+
+
+def verify_basis_report(report):
+    """Replay selection and holdout assessment without trusting stored success flags."""
+    from .research_program import _observations
+    from ..core.semantic_ir import canonical_json
+    try:
+        actual=discover_basis(_observations(report['calibration']),_observations(report['holdout']),
+                basis=report['grammar'],max_terms=report['max_terms'],penalty=report['penalty'],max_candidates=report['max_candidates'])
+        return canonical_json(actual)==canonical_json(report)
+    except (ValueError,KeyError,TypeError,ArithmeticError):return False

@@ -31,6 +31,9 @@ def _observations(data):
 
 def verify_research(report):
     try:
+        if 'grammar' in report and 'selected' in report:
+            from .basis_search import verify_basis_report
+            return verify_basis_report(report)
         data=report['regression']
         actual=run_research(_observations(data['calibration']),_observations(data['holdout']),
                             LiteratureCorpus.from_data(report['corpus']),query=report['query'],

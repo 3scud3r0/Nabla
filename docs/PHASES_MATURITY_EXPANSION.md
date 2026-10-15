@@ -18,7 +18,7 @@ não demonstrados continuam explícitos no relatório de progresso e nas evidên
 - `worlds.pde.diffusion`: FTCS, Euler implícito e Crank–Nicolson, condições iniciais
   finitas arbitrárias e contornos de Dirichlet constantes; residual e estabilidade
   declarados. Crank–Nicolson pode oscilar em passos grandes.
-- `datasets.research_record`, `datasets.store`: seis perfis de artefatos, replay
+- `datasets.research_record`, `datasets.store`: sete perfis de artefatos, replay
   computacional, metadados obrigatórios, lotes transacionais e isolamento semântico
   entre splits. JSONL e Parquet em fluxo suportam registros mistos. Observações
   verificam formato e metadados, sem autenticar fatos físicos.

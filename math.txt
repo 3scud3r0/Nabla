@@ -4,7 +4,7 @@ Canonical sources remain at the paths recorded below.
 This artifact aggregates implemented code; it does not claim all mathematics is complete.
 FORMAT_VERSION: 1
 SOURCE_FILES: 335
-SOURCE_LINES: 19344
+SOURCE_LINES: 19362
 
 INDEX (path | sha256 | lines)
 lean/Nabla.lean | f1ecf05b6f568479ca76d45aec58710cae92b5b876396e976f8ce4f9cdab331d | 3
@@ -52,7 +52,7 @@ src/nablamath/datasets/curation.py | 2c557d2eb91096f12c36913ec18a0a7337e2ae116f0
 src/nablamath/datasets/model_card.py | b6302887fe355e54d5c5cd9884fa03fc966b54ed4c8b6160df73b3be94a337f2 | 32
 src/nablamath/datasets/multimodal.py | 88420ff6764c3928f6d029b66081cb8e96eb5be76d9d53565b804abcbc4d48e1 | 101
 src/nablamath/datasets/quality_gate.py | fde8430cf3b977ac5d69d79eb1ce136792d699f3e8faeb5d0709f5c0e9e0189f | 49
-src/nablamath/datasets/research_record.py | eccf6a783012bcfc2963d20dfa16714897ef765c669c4aa49db0edf5f7ced348 | 97
+src/nablamath/datasets/research_record.py | a2eba95f5d43a5983f0de20ba5d2dd079802d81e144a80b53bb944f77b4b5778 | 101
 src/nablamath/datasets/schema.py | 111510dd5520cb74a15c5cdb01da810cbf63974674a78f3d89d235a2eeb9c127 | 89
 src/nablamath/datasets/semantic_fingerprint.py | a389f4741f844c2d6f2ea76d8736902c4b8b9d92d17af7b7e7a11f8859f3bce7 | 6
 src/nablamath/datasets/serializer.py | 13fa1780df16580372497e94db019fee433b21d28c7f44a1342603a8dfe4a4d8 | 81
@@ -60,11 +60,11 @@ src/nablamath/datasets/split_policy.py | 4a82fa2dbde550257392b2e76bccb9170c39092
 src/nablamath/datasets/splits.py | ba0c8ac4f32b05ecca25ee041a853a75cb4e8c1cde543cb2c6c0f80cd0f2a4b4 | 53
 src/nablamath/datasets/store.py | 1aefc977599857e8bddec920dc56bfe591642a337dba1108904c5fed3b1c36dd | 57
 src/nablamath/discovery/__init__.py | 235a6d378b272c3886ee56289c1d48672d57d3abd48c005c79c3447fc5b346af | 7
-src/nablamath/discovery/basis_search.py | ba64e0fb8d1e4a56c32e61022707ab0cb730cdb406dde89a81fb9c1bf9706e1b | 53
+src/nablamath/discovery/basis_search.py | 89658508e860a0754f7784d5b601bcae432d16adab5afc60f141fcfbf1ed8be5 | 64
 src/nablamath/discovery/experimental_design.py | 146ef8367e3586e0c90795f86311db7b4e8dc60139315bc516159149c6d85535 | 61
 src/nablamath/discovery/hypothesis.py | afdc307c4a0add06048f97b48e4e99b87232151b5eee96fba2a87b786a5fb9d5 | 105
 src/nablamath/discovery/novelty_screen.py | 2a188e966672367f01a1bd77c8e56720748cb2012c2efd6fd495b5c356c0af25 | 15
-src/nablamath/discovery/research_program.py | 58709c0b463359e33f4b566d80f5a21eca42d2bd09e8b6e261a95808172594f5 | 40
+src/nablamath/discovery/research_program.py | 3bff33fc4f6374647325ff2dcab1f05ea58d54edb1793228378b8422a600f416 | 43
 src/nablamath/discovery/symbolic_regression.py | ba3bb8827325459823a607874657b67d3ca7f3c06ed849caff91f6fcd6559592 | 51
 src/nablamath/discovery/theorem_search.py | c9590243694ff8a0f6504369676c9ef3d1477e5c0383ad5cc9b4366674d65366 | 32
 src/nablamath/documents/__init__.py | dabc34e9ed59d3a29192e5ca5d3068a46063ff4d3539d69bbd1ef16623746848 | 9
@@ -3250,8 +3250,8 @@ END FILE: src/nablamath/datasets/quality_gate.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/datasets/research_record.py
-SHA256: eccf6a783012bcfc2963d20dfa16714897ef765c669c4aa49db0edf5f7ced348
-LINES: 97
+SHA256: a2eba95f5d43a5983f0de20ba5d2dd079802d81e144a80b53bb944f77b4b5778
+LINES: 101
 ====================================================================================================
 """Versioned research artifact records: traces, simulations, scenes and observations.
 
@@ -3287,7 +3287,8 @@ class ResearchRecord:
     @property
     def semantic_id(self):
         d=self.to_data();p=d['payload'];kind=d['kind']
-        if kind=='exact_trace':identity={'task_id':p['task_id']}
+        if kind=='basis_discovery':identity={'calibration':p['calibration'],'holdout':p['holdout']}
+        elif kind=='exact_trace':identity={'task_id':p['task_id']}
         elif kind=='ode':identity=p['model_spec']
         elif kind=='domain':identity={'model':p['model'],'inputs':p['inputs']}
         elif kind=='diffusion':identity={k:p[k] for k in ('initial','boundary','length','diffusivity','duration')}
@@ -3301,7 +3302,10 @@ class ResearchRecord:
 
 
 def _check(kind,payload):
-    if kind=='exact_trace':
+    if kind=='basis_discovery':
+        from ..discovery.basis_search import verify_basis_report
+        valid=verify_basis_report(payload)
+    elif kind=='exact_trace':
         from ..verify.trace import VerificationTrace
         valid=VerificationTrace.from_data(payload).to_data()['verification']['valid']
     elif kind=='domain':
@@ -3719,8 +3723,8 @@ END FILE: src/nablamath/discovery/__init__.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/discovery/basis_search.py
-SHA256: ba64e0fb8d1e4a56c32e61022707ab0cb730cdb406dde89a81fb9c1bf9706e1b
-LINES: 53
+SHA256: 89658508e860a0754f7784d5b601bcae432d16adab5afc60f141fcfbf1ed8be5
+LINES: 64
 ====================================================================================================
 """Exact finite rational basis discovery with disjoint selection and holdout data."""
 from itertools import combinations
@@ -3775,6 +3779,17 @@ def discover_basis(calibration, holdout, *, basis=('1','x','x*x','1/x'), max_ter
              'holdout_result':assess(hypothesis,holdout),'global_novelty_established':False,
              'limitations':'Finite rational grammar; singular designs rejected; no global novelty or observed-data authentication.'}
     return {**payload,'report_id':fingerprint(payload)}
+
+
+def verify_basis_report(report):
+    """Replay selection and holdout assessment without trusting stored success flags."""
+    from .research_program import _observations
+    from ..core.semantic_ir import canonical_json
+    try:
+        actual=discover_basis(_observations(report['calibration']),_observations(report['holdout']),
+                basis=report['grammar'],max_terms=report['max_terms'],penalty=report['penalty'],max_candidates=report['max_candidates'])
+        return canonical_json(actual)==canonical_json(report)
+    except (ValueError,KeyError,TypeError,ArithmeticError):return False
 END FILE: src/nablamath/discovery/basis_search.py
 
 ====================================================================================================
@@ -3981,8 +3996,8 @@ END FILE: src/nablamath/discovery/novelty_screen.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/discovery/research_program.py
-SHA256: 58709c0b463359e33f4b566d80f5a21eca42d2bd09e8b6e261a95808172594f5
-LINES: 40
+SHA256: 3bff33fc4f6374647325ff2dcab1f05ea58d54edb1793228378b8422a600f416
+LINES: 43
 ====================================================================================================
 """Reproducible bounded hypothesis programs with negative results and literature scope."""
 from ..core.semantic_ir import canonical_json,fingerprint
@@ -4017,6 +4032,9 @@ def _observations(data):
 
 def verify_research(report):
     try:
+        if 'grammar' in report and 'selected' in report:
+            from .basis_search import verify_basis_report
+            return verify_basis_report(report)
         data=report['regression']
         actual=run_research(_observations(data['calibration']),_observations(data['holdout']),
                             LiteratureCorpus.from_data(report['corpus']),query=report['query'],
