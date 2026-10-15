@@ -404,3 +404,15 @@ class CertifiedReferenceCheckoutTests(unittest.TestCase):
             subprocess.run(['git','-c','core.autocrlf=true','-c','core.eol=crlf','checkout-index','--force','--prefix='+prefix,'--',reference],
                            cwd=root,env=env,check=True,capture_output=True)
             self.assertEqual(hashlib.sha256((Path(prefix)/reference).read_bytes()).hexdigest(),expected)
+
+
+class PublishedMultimodalArtifactsTests(unittest.TestCase):
+    def test_saved_public_weights_and_all_metrics_replay(self):
+        try:import numpy
+        except ImportError:self.skipTest('research extra required')
+        from nablamath.training.multimodal_network import verify_multimodal_study,_matching_pixels
+        self.assertTrue(_matching_pixels([.5],[.5+1e-15]))
+        self.assertFalse(_matching_pixels([.5],[.51]))
+        self.assertFalse(_matching_pixels([float('nan')],[.5]))
+        root=Path(__file__).parents[1]/'benchmarks/results/maturity-expansion/multimodal'
+        self.assertTrue(verify_multimodal_study(root))

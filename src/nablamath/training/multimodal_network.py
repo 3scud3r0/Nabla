@@ -8,6 +8,13 @@ import math
 from ..core.semantic_ir import fingerprint
 
 
+def _matching_pixels(actual, expected):
+    # exp/tanh and BLAS can differ by a few float64 ulps across supported hosts.
+    import numpy as np
+    a,b=np.asarray(actual),np.asarray(expected)
+    return a.shape==b.shape and np.isfinite(a).all() and np.allclose(a,b,rtol=1e-12,atol=1e-12)
+
+
 def _render_pixels(equations):
     import numpy as np
     a,b,c,d,e,f=equations
@@ -134,7 +141,7 @@ def run_multimodal_study(train,test,*,seeds=(11,23,37),steps=1000,output=None):
     if {r['semantic_id'] for r in train}&{r['semantic_id'] for r in test}:raise ValueError('Contaminação semântica')
     for row in (*train,*test):
         a,b,c,d,e,f=row['equations'];x,y=map(Fraction,row['solution'])
-        if row['pixels']!=_render_pixels(row['equations']):raise ValueError('Pixels não correspondem às equações')
+        if not _matching_pixels(row['pixels'],_render_pixels(row['equations'])):raise ValueError('Pixels não correspondem às equações')
         if a*x+b*y!=e or c*x+d*y!=f or row['label']!=int(x>0) or row['semantic_id']!=fingerprint({'solution':[str(x),str(y)]}):
             raise ValueError('Rótulo/testemunho não passou na verificação independente')
     protocol={'schema_version':1,'train_ids':[r['semantic_id'] for r in train],'test_ids':[r['semantic_id'] for r in test],
@@ -183,7 +190,7 @@ def verify_multimodal_study(directory):
         train,test=corpus['train'],corpus['test']
         if [r['semantic_id'] for r in train]!=protocol['train_ids'] or [r['semantic_id'] for r in test]!=protocol['test_ids'] or set(protocol['train_ids'])&set(protocol['test_ids']):return False
         for row in (*train,*test):
-            if row['pixels']!=_render_pixels(row['equations']):return False
+            if not _matching_pixels(row['pixels'],_render_pixels(row['equations'])):return False
             a,b,c,d,e,f=row['equations'];x,y=map(Fraction,row['solution'])
             if (a*x+b*y!=e or c*x+d*y!=f or row['label']!=int(x>0)
                     or row['semantic_id']!=fingerprint({'solution':[str(x),str(y)]})):return False
@@ -195,7 +202,8 @@ def verify_multimodal_study(directory):
             model=MultimodalNetwork.load(root/filename,modalities=run['modalities'])
             probabilities=model.predict([{'equations':r['equations'],'pixels':r['pixels']} for r in test])
             correct=[int(p>=.5)==r['label'] for p,r in zip(probabilities,test)]
-            if (probabilities!=run['probabilities'] or run['expected_labels']!=[r['label'] for r in test] or correct!=run['correct_mask']
+            if (len(probabilities)!=len(run['probabilities'])
+                    or any(not math.isclose(a,b,rel_tol=1e-12,abs_tol=1e-12) for a,b in zip(probabilities,run['probabilities'])) or run['expected_labels']!=[r['label'] for r in test] or correct!=run['correct_mask']
                     or run['correct']!=sum(correct) or run['total']!=len(test) or run['accuracy']!=sum(correct)/len(test)):return False
         return report['external_learning_gain_established'] is False
     except (ValueError,KeyError,TypeError,OSError):return False

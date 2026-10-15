@@ -4,7 +4,7 @@ Canonical sources remain at the paths recorded below.
 This artifact aggregates implemented code; it does not claim all mathematics is complete.
 FORMAT_VERSION: 1
 SOURCE_FILES: 335
-SOURCE_LINES: 19362
+SOURCE_LINES: 19370
 
 INDEX (path | sha256 | lines)
 lean/Nabla.lean | f1ecf05b6f568479ca76d45aec58710cae92b5b876396e976f8ce4f9cdab331d | 3
@@ -322,7 +322,7 @@ src/nablamath/training/contamination.py | 29586e981d2c023b3d045f46a226bcf09afaff
 src/nablamath/training/controlled_experiment.py | a5c169ea77f76c80b79efa77c98c0d49f53762fe7e3530589c2a009508c8631c | 237
 src/nablamath/training/curriculum.py | 620ec2fb45ce88246018e0657d878de5ee79668fd17818e5e330735f0cda7d83 | 14
 src/nablamath/training/evaluation.py | 91887a4956ccab101209cf300ec68d0f678e883c45db4db03cc2785517a56ef7 | 102
-src/nablamath/training/multimodal_network.py | b7bbebed9f95629c445d650677c86f02742ae82f61ced5e99d41e830b2d1acd5 | 201
+src/nablamath/training/multimodal_network.py | 25b41dd80739a45554ba8ae8030c44a11277086194587622690097a9b48dfe83 | 209
 src/nablamath/training/registry.py | f56d68f6cd9ee548b2148a7307d292814e6c7dc5aadc74d15fc04916632b43d6 | 41
 src/nablamath/verify/__init__.py | 4e98a1d16b4ca1dffe1f93b9ae27bfc1d2a584d3bcee5732ed78b523ad25d02e | 4
 src/nablamath/verify/certificate.py | 57012619d903d43e0d62b08b25dc9c2a03509b557f5b41618686768e84c26ee3 | 122
@@ -20796,8 +20796,8 @@ END FILE: src/nablamath/training/evaluation.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/training/multimodal_network.py
-SHA256: b7bbebed9f95629c445d650677c86f02742ae82f61ced5e99d41e830b2d1acd5
-LINES: 201
+SHA256: 25b41dd80739a45554ba8ae8030c44a11277086194587622690097a9b48dfe83
+LINES: 209
 ====================================================================================================
 """Open two-tower neural learning over equation coefficients and rendered pixels.
 
@@ -20807,6 +20807,13 @@ frontier model, or demonstrated general scientific reasoning. NumPy is optional.
 from fractions import Fraction
 import math
 from ..core.semantic_ir import fingerprint
+
+
+def _matching_pixels(actual, expected):
+    # exp/tanh and BLAS can differ by a few float64 ulps across supported hosts.
+    import numpy as np
+    a,b=np.asarray(actual),np.asarray(expected)
+    return a.shape==b.shape and np.isfinite(a).all() and np.allclose(a,b,rtol=1e-12,atol=1e-12)
 
 
 def _render_pixels(equations):
@@ -20935,7 +20942,7 @@ def run_multimodal_study(train,test,*,seeds=(11,23,37),steps=1000,output=None):
     if {r['semantic_id'] for r in train}&{r['semantic_id'] for r in test}:raise ValueError('Contaminação semântica')
     for row in (*train,*test):
         a,b,c,d,e,f=row['equations'];x,y=map(Fraction,row['solution'])
-        if row['pixels']!=_render_pixels(row['equations']):raise ValueError('Pixels não correspondem às equações')
+        if not _matching_pixels(row['pixels'],_render_pixels(row['equations'])):raise ValueError('Pixels não correspondem às equações')
         if a*x+b*y!=e or c*x+d*y!=f or row['label']!=int(x>0) or row['semantic_id']!=fingerprint({'solution':[str(x),str(y)]}):
             raise ValueError('Rótulo/testemunho não passou na verificação independente')
     protocol={'schema_version':1,'train_ids':[r['semantic_id'] for r in train],'test_ids':[r['semantic_id'] for r in test],
@@ -20984,7 +20991,7 @@ def verify_multimodal_study(directory):
         train,test=corpus['train'],corpus['test']
         if [r['semantic_id'] for r in train]!=protocol['train_ids'] or [r['semantic_id'] for r in test]!=protocol['test_ids'] or set(protocol['train_ids'])&set(protocol['test_ids']):return False
         for row in (*train,*test):
-            if row['pixels']!=_render_pixels(row['equations']):return False
+            if not _matching_pixels(row['pixels'],_render_pixels(row['equations'])):return False
             a,b,c,d,e,f=row['equations'];x,y=map(Fraction,row['solution'])
             if (a*x+b*y!=e or c*x+d*y!=f or row['label']!=int(x>0)
                     or row['semantic_id']!=fingerprint({'solution':[str(x),str(y)]})):return False
@@ -20996,7 +21003,8 @@ def verify_multimodal_study(directory):
             model=MultimodalNetwork.load(root/filename,modalities=run['modalities'])
             probabilities=model.predict([{'equations':r['equations'],'pixels':r['pixels']} for r in test])
             correct=[int(p>=.5)==r['label'] for p,r in zip(probabilities,test)]
-            if (probabilities!=run['probabilities'] or run['expected_labels']!=[r['label'] for r in test] or correct!=run['correct_mask']
+            if (len(probabilities)!=len(run['probabilities'])
+                    or any(not math.isclose(a,b,rel_tol=1e-12,abs_tol=1e-12) for a,b in zip(probabilities,run['probabilities'])) or run['expected_labels']!=[r['label'] for r in test] or correct!=run['correct_mask']
                     or run['correct']!=sum(correct) or run['total']!=len(test) or run['accuracy']!=sum(correct)/len(test)):return False
         return report['external_learning_gain_established'] is False
     except (ValueError,KeyError,TypeError,OSError):return False
