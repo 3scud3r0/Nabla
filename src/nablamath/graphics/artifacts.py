@@ -19,6 +19,10 @@ def replay_model(scene):
     elif kind=='function':
         from .sampling import function_scene
         expected=function_scene(model['source'],xmin=model['xmin'],xmax=model['xmax'],samples=model['samples'])
+    elif kind=='adaptive_function':
+        from .sampling import adaptive_function_scene
+        expected=adaptive_function_scene(model['source'],xmin=model['xmin'],xmax=model['xmax'],
+                                        tolerance=model['tolerance'],max_segments=model['max_segments'])
     elif kind=='vector_field':
         from .sampling import vector_field_scene
         expected=vector_field_scene(model['dx'],model['dy'],bounds=tuple(model['bounds']),grid=model['grid'])

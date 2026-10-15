@@ -14,3 +14,5 @@ def thermoelastic(young_modulus,expansion,temperature_change,total_strain):
                   {'stress':'Pa','thermal_strain':'1','elastic_strain':'1'},
                   {'strain_decomposition':elastic+thermal==strain,'constitutive_residual':stress-e*(strain-alpha*dt)==0},
                   'Homogeneous small-strain material; no plasticity, damage, phase change or experimental validation.')
+
+from .elasticity import isotropic_elasticity

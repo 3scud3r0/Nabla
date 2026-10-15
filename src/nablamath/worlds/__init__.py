@@ -8,3 +8,6 @@ from .pde import solve_heat
 from .convergence import heat_convergence
 from .validation import compare_observations
 __all__ += ["HeatModelSpec", "solve_heat", "heat_convergence", "compare_observations"]
+
+from .validation import simulate_adaptive
+__all__.append('simulate_adaptive')

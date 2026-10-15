@@ -83,3 +83,20 @@ def compare_observations(result, observations, *, provenance, state_units, time_
     return {'provenance': provenance, 'count': len(rows), 'comparisons': rows,
             'within_tolerance': all(row['within_tolerance'] for row in rows),
             'evidence': 'comparison_with_supplied_observations', 'independent_provenance_verified': False}
+
+
+def simulate_adaptive(model: ModelSpec, *, atol=1e-9, rtol=1e-6, max_attempts=100000,
+                      initial_step=None):
+    """Adaptive trajectory with actual analytic errors for supported ideal models."""
+    from .integrators.adaptive import integrate_adaptive
+    report = integrate_adaptive(model.derivative, model.initial, 0., model.duration,
+                                atol=atol, rtol=rtol, max_attempts=max_attempts,
+                                initial_step=initial_step)
+    errors = [tuple(abs(a-b) for a,b in zip(state, model.reference(time)))
+              for time,state in report['trajectory']]
+    return {**report, 'model_spec': model.to_data(), 'model_id': model.content_id,
+            'state_units': model.units, 'time_unit': 's',
+            'reference': model.reference(model.duration),
+            'max_trajectory_reference_error': max(max(row) for row in errors),
+            'component_absolute_errors': errors[-1],
+            'max_component_error': max(errors[-1]), 'experimental_validation': False}

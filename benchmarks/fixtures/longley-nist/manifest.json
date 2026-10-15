@@ -1,0 +1,24 @@
+{
+  "dataset": "NIST StRD Longley",
+  "mirror": "https://github.com/statsmodels/statsmodels",
+  "commit": "28c2d902e93c54d8615b2e4b60f8b8a3f74ae605",
+  "files": {
+    "Longley.dat": {
+      "path": "archive/regression/data/Longley.dat",
+      "sha256": "228bbb8fe11aef555fdbfbe220231cd5e9928a248bc1c23464562dc2575aea19"
+    },
+    "dataset-provenance.py": {
+      "path": "statsmodels/datasets/longley/data.py",
+      "sha256": "d58585b1a6a6709c9f195698fad505a018f1300a75a781edc7268bd5600e98bb"
+    },
+    "MIRROR_LICENSE.txt": {
+      "path": "LICENSE.txt",
+      "sha256": "1ca78e1dec9dcebc55f3b96a862317f23e76422c5fc943568d955aad1f6b5fad"
+    }
+  },
+  "license_id": "LicenseRef-Public-Domain",
+  "license_basis": "statsmodels dataset module states: This is public domain. Mirror BSD license retained separately.",
+  "original_reference": "Longley (1967), JASA 62, pp. 819-841",
+  "observed_data": true,
+  "scope": "16 historical macroeconomic observations; numerical least-squares benchmark, not physical or causal validation."
+}

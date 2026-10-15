@@ -19,6 +19,7 @@ formal = ["z3-solver>=4.16,<5"]
 graphics = ["Pillow>=10.1,<13"]
 documents = ["typst>=0.13,<0.15"]
 data = ["pyarrow>=18,<24"]
+federation = ["cryptography>=43,<47"]
 research = ["sympy>=1.13,<2", "numpy>=2,<3"]
 
 [project.scripts]

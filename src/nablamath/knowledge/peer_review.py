@@ -65,3 +65,35 @@ class ReviewBoard:
                 'recommended':accepted>=minimum and all(r.decision=='accept' for r in current),
                 'reviews':[r.to_data() for r in current],'claim_status_changed':False,
                 'identity_and_expertise_independently_authenticated':False}
+
+
+def sign_review(review,private_key):
+    """Sign the complete revision-specific review with protocol domain separation."""
+    from .identity import public_key_hex
+    from ..core.semantic_ir import canonical_json
+    payload={'schema_version':1,'context':'Nabla-scientific-review-v1','public_key':public_key_hex(private_key),'review':review.to_data()}
+    return {**payload,'signature':private_key.sign(canonical_json(payload).encode('utf-8')).hex()}
+
+
+def submit_signed_review(board,envelope,ledger,trust):
+    """Authenticate a pinned reviewer key before applying the existing role policy.
+
+    The key identity is authenticated. Expertise, independence and authorship
+    declarations still need external review; signatures cannot establish them.
+    """
+    from .identity import _crypto
+    from ..core.semantic_ir import canonical_json
+    _,public,_=_crypto()
+    from cryptography.exceptions import InvalidSignature
+    if set(envelope)!={'schema_version','context','public_key','review','signature'} or envelope['schema_version']!=1 or envelope['context']!='Nabla-scientific-review-v1':
+        raise ValueError('Contrato de assinatura de revisão inválido')
+    data=dict(envelope['review']);identifier=data.pop('review_id');review=Review(**data)
+    if review.review_id!=identifier or not trust.accepts(review.reviewer_id,envelope['public_key']):
+        raise ValueError('Revisão alterada ou chave do revisor não confiável')
+    payload={k:v for k,v in envelope.items() if k!='signature'}
+    try:
+        public.from_public_bytes(bytes.fromhex(envelope['public_key'])).verify(bytes.fromhex(envelope['signature']),canonical_json(payload).encode('utf-8'))
+    except (ValueError,TypeError,InvalidSignature) as exc:raise ValueError('Assinatura de revisão inválida') from exc
+    result=board.submit(review,ledger)
+    return {'review_id':result,'reviewer_key_authenticated':True,'real_world_identity_and_expertise_verified':False,
+            'claim_status_changed':False}

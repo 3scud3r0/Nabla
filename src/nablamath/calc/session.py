@@ -32,6 +32,14 @@ OPTIONAL={
     'optimize':{'constraints'},'quadratic_optimize':{'constraints','upper','constant'},
     'ode':{'rate','duration','steps','method'}}
 
+AREAS['ode_adaptive'] = 'calculus'
+REQUIRED['ode_adaptive'] = {'model', 'initial'}
+OPTIONAL['ode_adaptive'] = {'rate', 'duration', 'atol', 'rtol', 'max_attempts', 'initial_step'}
+
+
+from .catalog import OPERATIONS as EXTENDED_OPERATIONS
+for _name, (_area, _required, _optional, _contract) in EXTENDED_OPERATIONS.items():
+    AREAS[_name], REQUIRED[_name], OPTIONAL[_name] = _area, _required, _optional
 
 def encode(value):
     if isinstance(value,Fraction):
@@ -94,6 +102,9 @@ class CalculationSession:
         return self.execute('evaluate',source=source,values=values or {})
 
     def _execute(self,operation,a):
+        if operation in EXTENDED_OPERATIONS:
+            from .catalog import execute
+            return execute(operation,a)
         from ..math.linear_algebra import Matrix,solve_linear,lu_decomposition,orthogonal_basis,condition_number_inf
         from ..math.calculus import derivative,primitive,definite_integral,limit,series
         from ..symbolic import saturate,AssumptionSet
@@ -211,6 +222,12 @@ class CalculationSession:
                 tuple(Constraint2(*(rational(v) for v in row)) for row in a.get('constraints',[])),
                 x_bounds=tuple(rational(v) for v in a['x_bounds']),y_bounds=tuple(rational(v) for v in a['y_bounds']))
             return {'point':encode(point),'value':str(value)}
+        if operation=='ode_adaptive':
+            from ..worlds.model_spec import ModelSpec
+            from ..worlds.validation import simulate_adaptive
+            model = ModelSpec(a['model'], tuple(a['initial']), a.get('rate', 1), a.get('duration', 1))
+            options = {k: a[k] for k in ('atol', 'rtol', 'max_attempts', 'initial_step') if k in a}
+            return simulate_adaptive(model, **options)
         if operation=='ode':
             from ..worlds import ModelSpec,simulate
             return simulate(ModelSpec(a['model'],tuple(a['initial']),a.get('rate',1),a.get('duration',1)),

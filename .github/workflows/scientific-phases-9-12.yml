@@ -10,11 +10,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install -e ".[test,formal,graphics,documents,data,research]"
+      - run: python -m pip install -e ".[test,formal,graphics,documents,data,research,federation]"
       - name: Discovery, controlled policies, domain checks and federation
-        run: python -m pytest -q tests/test_phase9_discovery.py tests/test_phase10_evolution.py tests/test_phase11_domains.py tests/test_phase12_knowledge.py tests/test_scientific_audit_experiments.py tests/regression/test_portable_io.py
+        run: python -m pytest -q tests/test_phase9_discovery.py tests/test_phase10_evolution.py tests/test_phase11_domains.py tests/test_phase12_knowledge.py tests/test_scientific_audit_experiments.py tests/regression/test_portable_io.py tests/test_completion_hardening.py tests/test_maturity_expansion.py
       - name: Reproduce integrated scientific artifacts
         run: nabla research-laboratory .nabla/research-ci
+      - name: Reproduce adaptive curves, signed evidence and compiled tables
+        run: python tools/reproduce_completion.py .nabla/completion-ci --pdf-backend typst
+      - name: Validate pinned external NIST statistics
+        run: python tools/validate_longley.py --output .nabla/longley-ci.json
       - name: Measure independent solvers
         run: nabla independent-benchmark .nabla/independent-solvers.json --count 8 --seed 103 --timeout 15
       - name: Check generated mathematical sources
@@ -25,4 +29,5 @@ jobs:
           path: |
             .nabla/research-ci/
             .nabla/independent-solvers.json
+            .nabla/completion-ci/
           include-hidden-files: true

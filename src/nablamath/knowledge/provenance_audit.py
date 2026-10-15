@@ -22,8 +22,14 @@ def replay_domain(report):
     from ..domains.earth import hydrostatic_pressure
     from ..domains.biology import logistic,sir
     from ..domains.control import StateSpace
+    from ..domains.circuits import rc_step, series_rlc
+    from ..domains.materials import isotropic_elasticity
+    from ..domains.earth import layered_hydrostatics
+    from ..domains.chemistry import reversible_first_order
     from ..worlds.multiphysics import electrothermal
-    operations={'linear_axial_bar':axial_bar,'euler_bernoulli_cantilever':cantilever_tip,
+    operations={'isotropic_small_strain_3d':isotropic_elasticity,'ideal_series_RLC_phasor':series_rlc,
+                'layered_static_hydrostatics':layered_hydrostatics,'ideal_reversible_first_order':reversible_first_order,
+                'ideal_series_RC_step':rc_step,'linear_axial_bar':axial_bar,'euler_bernoulli_cantilever':cantilever_tip,
                 'linear_thermoelasticity':thermoelastic,'neutral_elemental_balance':balance_reaction,
                 'ideal_A_to_B_equilibrium':two_species_equilibrium,'constant_density_hydrostatics':hydrostatic_pressure,
                 'continuous_logistic_population':logistic,'closed_normalized_SIR':sir,

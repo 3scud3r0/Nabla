@@ -21,6 +21,7 @@ class EvaluationContract:
     max_candidates: int = 16
     max_generations: int = 8
     evaluator_id: str = ''
+    minimum_relative_reduction: float = 0.01
 
     def __post_init__(self):
         if not math.isfinite(self.tolerance) or self.tolerance<=0 or not 0<self.alpha<1:
@@ -29,6 +30,9 @@ class EvaluationContract:
                 or type(self.max_candidates) is not int or not 1<=self.max_candidates<=32
                 or type(self.max_generations) is not int or not 1<=self.max_generations<=32):
             raise ValueError('Orçamento inválido')
+        if (isinstance(self.minimum_relative_reduction, bool) or not math.isfinite(self.minimum_relative_reduction)
+                or not 0 <= self.minimum_relative_reduction <= 1):
+            raise ValueError('Efeito mínimo fora do domínio')
         if not self.evaluator_id:
             object.__setattr__(self,'evaluator_id',evaluator_digest())
 

@@ -35,6 +35,11 @@ def to_html(document: Document) -> str:
                       f'<p>Evidencias: {escape(", ".join(section.evidence_ids + section.citations))}</p>'])
         lines.extend(f'<pre>{escape(render(eq.left))} = {escape(render(eq.right))}</pre>' for eq in section.equations)
         lines.extend(f'<figure><img src="{escape(fig.path)}" alt="{escape(fig.caption)}"><figcaption>{escape(fig.caption)}</figcaption></figure>' for fig in section.figures)
+        for table in section.tables:
+            lines.append('<table><caption>'+escape(table.caption)+'</caption><thead><tr>'+''.join('<th scope="col">'+escape(v)+'</th>' for v in table.headers)+'</tr></thead><tbody>')
+            lines.extend('<tr>'+''.join('<td>'+escape(v)+'</td>' for v in row)+'</tr>' for row in table.rows)
+            lines.append('</tbody></table>')
+            lines.append('<p>Evidencias: '+escape(', '.join(table.evidence_ids))+'</p>')
     lines += [f'<p>{escape(ref.text())}</p>' for ref in document.references]
     return '\n'.join(lines + [f'<p>{escape(document.limitations)}</p>', '</html>', ''])
 
@@ -49,6 +54,12 @@ def to_latex(document: Document) -> str:
         lines.extend(r'\[' + expression_latex(eq.left) + ' = ' + expression_latex(eq.right) + r'\]' for eq in section.equations)
         for fig in section.figures:
             lines.extend([r'\begin{center}\includegraphics[width=.8\linewidth]{' + fig.path + r'}\par', _tex(fig.caption) + r'\par', r'\end{center}'])
+        for table in section.tables:
+            lines.extend([r'\begin{center}', _tex(table.caption)+r'\par',
+                          r'\begin{tabular}{'+'l'*len(table.headers)+'}'])
+            lines.append(' & '.join(_tex(v) for v in table.headers)+r'\\ \hline')
+            lines.extend(' & '.join(_tex(v) for v in row)+r'\\' for row in table.rows)
+            lines.extend([r'\end{tabular}', r'\par Evidencias: '+_tex(', '.join(table.evidence_ids)), r'\end{center}'])
     lines += [_tex(ref.text()) + r'\par' for ref in document.references]
     return '\n'.join(lines + [_tex(document.limitations), r'\end{document}', ''])
 
@@ -72,6 +83,13 @@ def to_typst(document: Document) -> str:
             lines.append(text('Evidencias: ' + ', '.join(section.evidence_ids + section.citations)))
         lines.extend('$ ' + _math(eq.left) + ' = ' + _math(eq.right) + ' $' for eq in section.equations)
         lines.extend('#figure(image(' + json.dumps(fig.path) + ', width: 90%), caption: text(' + literal(fig.caption) + '))' for fig in section.figures)
+        for table in section.tables:
+            cells = [*table.headers, *(v for row in table.rows for v in row)]
+            lines.append('#figure(table(columns: '+str(len(table.headers))+', '+
+                         ', '.join('text('+literal(v)+')' for v in cells)+
+                         '), caption: text('+literal(table.caption)+'))')
+            if table.evidence_ids:
+                lines.append(text('Evidencias: '+', '.join(table.evidence_ids)))
     if document.references:
         lines.append(heading('Referências'))
         lines += [text(ref.text()) for ref in document.references]
