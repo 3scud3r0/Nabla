@@ -3,7 +3,7 @@
   "source": "docs/strategy/NABLA_2056_ROTEIRO_MESTRE.md",
   "source_sha256": "fbf0ff60cd58b31451dcc97e9848b39dba1137973982339dbf85efa251b2f0b0",
   "baseline_commit": "494172023cb97ada45133a7a868344fc2215c53c",
-  "scope": "P0 foundations, exact-rational integration and frozen descriptive evaluation; no overall completion score",
+  "scope": "Finite reviewed parallel profiles; includes code and proposed policies, not scientific closure of the 213 requirements",
   "requirements": [
     {
       "id": 1,
@@ -73,14 +73,20 @@
       "id": 5,
       "target": "`src/nablamath/numeric/`",
       "requirement": "**P1 · F1/F7**: implementar solvers numéricos modernos, condicionamento, tolerâncias, intervalos, limites de recursos e diagnósticos. **Concluído quando:** convergência, referências NIST/analíticas, escalonamento e precisão.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/numeric/intervals.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 6,
@@ -299,14 +305,20 @@
       "id": 21,
       "target": "`src/nablamath/datasets/`",
       "requirement": "**P1 · F6/F8**: unificar modelos de registros e alinhar modalidades, linhagem, licenças, política de splits e evidência multimodal. **Concluído quando:** auditoria independente de corpora e ganho ou resultado negativo reproduzível.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 22,
@@ -415,14 +427,20 @@
       "id": 29,
       "target": "`src/nablamath/knowledge/`",
       "requirement": "**P1 · F9/F12**: reconciliar claims, evidências, versões, revisão, retração, federação, identidades e conflitos. **Concluído quando:** replay institucional multioperador, reconciliação correta e autenticação independente.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 30,
@@ -467,14 +485,20 @@
       "id": 33,
       "target": "`src/nablamath/coordination/`",
       "requirement": "**P2 · F12**: unificar coordenação local/Merkle com serviços distribuídos e provas de consistência. **Concluído quando:** invariantes sob concorrência, reconexão e restauração.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/coordination/local.py"
+      ],
+      "tests": [
+        "tests/integration/test_coordinator_api.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 34,
@@ -654,14 +678,20 @@
       "id": 46,
       "target": "`services/`",
       "requirement": "**P2 · F12**: evoluir protótipos locais para serviços autenticados, escaláveis e tolerantes a falhas. **Concluído quando:** testes de rede entre hosts, segurança e monitoramento.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "services/coordinator/api.py"
+      ],
+      "tests": [
+        "tests/integration/test_coordinator_api.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 47,
@@ -1009,14 +1039,20 @@
       "id": 71,
       "target": "`services/coordinator/app.py`",
       "requirement": "intervenção específica: expandir HTTP além de /health com auth, filas, quotas, auditoria, retries e cancelamentos. **Aceite:** integração inter-host, concorrência e testes de segurança.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "services/coordinator/app.py"
+      ],
+      "tests": [
+        "tests/integration/test_coordinator_api.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 72,
@@ -1196,27 +1232,39 @@
       "id": 84,
       "target": "CRIAR `docs/governance/independent_review_policy.md`",
       "requirement": "Estabelecer revisores independentes e conflitos de interesse. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "docs/governance/independent_review_policy.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 85,
       "target": "CRIAR `docs/governance/scientific_claims_policy.md`",
       "requirement": "Distinguir formal, numérico, empírico, sintético e hipotético. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "docs/governance/scientific_claims_policy.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 86,
@@ -1241,27 +1289,39 @@
       "id": 87,
       "target": "CRIAR `docs/strategy/scientific_risk_register.md`",
       "requirement": "Gerenciar riscos científicos, operacionais e de segurança. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "docs/strategy/scientific_risk_register.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 88,
       "target": "CRIAR `docs/strategy/annual_reassessment.md`",
       "requirement": "Atualizar a visão sem fabricar conclusão. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "docs/strategy/annual_reassessment.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 89,
@@ -1324,27 +1384,39 @@
       "id": 92,
       "target": "CRIAR `src/nablamath/core/uncertainty.py`",
       "requirement": "Representar incerteza e sua propagação de modo rastreável. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/core/uncertainty.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 93,
       "target": "CRIAR `src/nablamath/math/calculus/transcendentals.py`",
       "requirement": "Generalizar funções elementares e restrições de ramo. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/math/calculus/transcendentals.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 94,
@@ -1363,144 +1435,210 @@
       "id": 95,
       "target": "CRIAR `src/nablamath/math/linear_algebra/exact_decompositions.py`",
       "requirement": "Adicionar decomposições e certificados algébricos mais amplos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/math/linear_algebra/exact_decompositions.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 96,
       "target": "CRIAR `src/nablamath/math/number_theory/factorization_advanced.py`",
       "requirement": "Desenvolver fatoração avançada com validação independente. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/math/number_theory/factorization_advanced.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 97,
       "target": "CRIAR `src/nablamath/math/algebra/galois.py`",
       "requirement": "Implementar estruturas e algoritmos de teoria de Galois delimitados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/math/algebra/galois.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_algebra_logic.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 98,
       "target": "CRIAR `src/nablamath/math/logic/smt_combination.py`",
       "requirement": "Pesquisar integração de teorias e certificados SMT. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/math/logic/smt_combination.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_algebra_logic.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 99,
       "target": "CRIAR `src/nablamath/numeric/intervals.py`",
       "requirement": "Aritmética intervalar e limites certificados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/numeric/intervals.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 100,
       "target": "CRIAR `src/nablamath/numeric/stiff_ode.py`",
       "requirement": "Solvers implícitos para EDOs rígidas e eventos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/numeric/stiff_ode.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 101,
       "target": "CRIAR `src/nablamath/numeric/pde_general.py`",
       "requirement": "Contratos para EDPs e condições de contorno extensíveis. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/numeric/pde_general.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 102,
       "target": "CRIAR `src/nablamath/forge/compositional_generator.py`",
       "requirement": "Compor famílias de problemas com soluções conhecidas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/forge/compositional_generator.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 103,
       "target": "CRIAR `src/nablamath/forge/adversarial_generator.py`",
       "requirement": "Gerar problemas difíceis e detectar atalhos indevidos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/forge/adversarial_generator.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 104,
       "target": "CRIAR `src/nablamath/forge/difficulty_calibration.py`",
       "requirement": "Definir dificuldade condicional a solver e recursos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/forge/difficulty_calibration.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 105,
       "target": "CRIAR `src/nablamath/forge/novelty_index.py`",
       "requirement": "Deduplicação estrutural e semântica escalável. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/forge/novelty_index.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 106,
@@ -1545,14 +1683,20 @@
       "id": 109,
       "target": "CRIAR `src/nablamath/falsifier/property_engine.py`",
       "requirement": "Falsificação sistemática por propriedades e domínios. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/falsifier/property_engine.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 110,
@@ -1597,14 +1741,20 @@
       "id": 113,
       "target": "CRIAR `src/nablamath/worlds/boundary_conditions.py`",
       "requirement": "Representar contornos gerais de simulações. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/worlds/boundary_conditions.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 114,
@@ -1623,27 +1773,39 @@
       "id": 115,
       "target": "CRIAR `src/nablamath/worlds/validation_observational.py`",
       "requirement": "Confrontar simulações com medições observadas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 116,
       "target": "CRIAR `src/nablamath/worlds/uncertainty_quantification.py`",
       "requirement": "Propagação de incerteza nos modelos físicos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/worlds/uncertainty_quantification.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 117,
@@ -1727,40 +1889,58 @@
       "id": 123,
       "target": "CRIAR `src/nablamath/documents/reference_graph.py`",
       "requirement": "Referências cruzadas e dependências de alegações em documentos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/documents/reference_graph.py"
+      ],
+      "tests": [
+        "tests/test_evidence_integration_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 124,
       "target": "CRIAR `src/nablamath/documents/editorial_review.py`",
       "requirement": "Fluxo de revisão e qualidade editorial. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/documents/editorial_review.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 125,
       "target": "CRIAR `src/nablamath/datasets/corpus_registry.py`",
       "requirement": "Registro de corpora e licenças externas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 126,
@@ -1831,14 +2011,20 @@
       "id": 131,
       "target": "CRIAR `src/nablamath/training/compute_accounting.py`",
       "requirement": "Rastrear custo, energia e recursos por ganho útil. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/training/compute_accounting.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 132,
@@ -1857,27 +2043,39 @@
       "id": 133,
       "target": "CRIAR `src/nablamath/agents/experiment_planner.py`",
       "requirement": "Planejamento de experimentos científicos revisáveis. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/agents/experiment_planner.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 134,
       "target": "CRIAR `src/nablamath/agents/human_approval.py`",
       "requirement": "Autorizações explícitas para instrumentos, redes e publicação. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/agents/human_approval.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 135,
@@ -1909,27 +2107,39 @@
       "id": 137,
       "target": "CRIAR `src/nablamath/discovery/lab_protocol.py`",
       "requirement": "Protocolos de execução e reprodutibilidade de experimentos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/discovery/lab_protocol.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 138,
       "target": "CRIAR `src/nablamath/discovery/independent_replication.py`",
       "requirement": "Registro de replicações independentes. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/discovery/independent_replication.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 139,
@@ -1980,14 +2190,20 @@
       "id": 142,
       "target": "CRIAR `src/nablamath/evolution/longitudinal_monitor.py`",
       "requirement": "Medição de ganhos sustentados e regressões. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/evolution/longitudinal_monitor.py"
+      ],
+      "tests": [
+        "tests/test_evidence_integration_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 143,
@@ -2019,79 +2235,118 @@
       "id": 145,
       "target": "CRIAR `src/nablamath/knowledge/replication_protocol.py`",
       "requirement": "Replicação de alegações e revisões externas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/knowledge/replication_protocol.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 146,
       "target": "CRIAR `src/nablamath/knowledge/retraction_index.py`",
       "requirement": "Retratação propagada a artefatos dependentes. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 147,
       "target": "CRIAR `services/coordinator/api.py`",
       "requirement": "API autenticada de coordenação e quotas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "services/coordinator/api.py"
+      ],
+      "tests": [
+        "tests/integration/test_coordinator_api.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 148,
       "target": "CRIAR `services/coordinator/task_leases.py`",
       "requirement": "Leases duráveis, heartbeats e idempotência. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "services/coordinator/task_leases.py",
+        "src/nablamath/coordination/local.py"
+      ],
+      "tests": [
+        "tests/integration/test_coordinator_api.py",
+        "tests/test_roadmap_worker_execution.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md",
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 149,
       "target": "CRIAR `services/coordinator/telemetry.py`",
       "requirement": "Observabilidade preservando privacidade. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "services/coordinator/telemetry.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worker_execution.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 150,
       "target": "CRIAR `services/worker/executor.py`",
       "requirement": "Worker de tarefas tipadas, com limites e cancelamento. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "services/worker/executor.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worker_execution.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 151,
@@ -2123,27 +2378,39 @@
       "id": 153,
       "target": "CRIAR `sdk/python/README.md`",
       "requirement": "Contrato público de SDK Python. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "sdk/python/client.py"
+      ],
+      "tests": [
+        "tests/interop/test_coordinator_clients.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 154,
       "target": "CRIAR `sdk/typescript/README.md`",
       "requirement": "Cliente interoperável para UI web. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "sdk/typescript/client.ts"
+      ],
+      "tests": [
+        "tests/interop/test_coordinator_clients.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 155,
@@ -2181,14 +2448,20 @@
       "id": 157,
       "target": "CRIAR `tests/integration/test_global_scientific_cycle.py`",
       "requirement": "Integração F1–F12 com avaliação honesta de lacunas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "tools/expanded_scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_global_scientific_cycle.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 158,
@@ -2207,14 +2480,20 @@
       "id": 159,
       "target": "CRIAR `tests/security/test_supply_chain.py`",
       "requirement": "Dependências, segredos e provenance de builds. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "tools/verify_wheel.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 160,
@@ -2298,14 +2577,20 @@
       "id": 166,
       "target": "CRIAR `benchmarks/protocols/README.md`",
       "requirement": "Registro prévio de métricas, sementes, grupos e baselines. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "benchmarks/protocols/README.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 167,
@@ -2324,183 +2609,267 @@
       "id": 168,
       "target": "CRIAR `benchmarks/external/README.md`",
       "requirement": "Catálogo de comparações externas com licenças. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "benchmarks/external/README.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 169,
       "target": "CRIAR `.github/workflows/security.yml`",
       "requirement": "Análise estática, dependências e segredos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        ".github/workflows/security.yml"
+      ],
+      "tests": [
+        "tests/test_roadmap_network_security.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 170,
       "target": "CRIAR `.github/workflows/full-integration.yml`",
       "requirement": "Perfil integrado e replay end-to-end. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        ".github/workflows/full-integration.yml"
+      ],
+      "tests": [
+        "tests/integration/test_global_scientific_cycle.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 171,
       "target": "CRIAR `.github/workflows/scientific-benchmarks.yml`",
       "requirement": "Execuções científicas agendadas e diferenciadas dos unit tests. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        ".github/workflows/scientific-benchmarks.yml"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 172,
       "target": "CRIAR `.github/workflows/release-attestation.yml`",
       "requirement": "Integridade, SBOM e proveniência por release. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        ".github/workflows/release-attestation.yml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 173,
       "target": "CRIAR `configs/profiles/cpu_conservative.yaml`",
       "requirement": "Limites para PCs domésticos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "configs/profiles/cpu_conservative.yaml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 174,
       "target": "CRIAR `configs/profiles/cpu_balanced.yaml`",
       "requirement": "Perfil doméstico equilibrado. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "configs/profiles/cpu_balanced.yaml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 175,
       "target": "CRIAR `configs/profiles/gpu_local.yaml`",
       "requirement": "Orçamentos de VRAM/GPU local. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "configs/profiles/gpu_local.yaml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 176,
       "target": "CRIAR `configs/profiles/research_station.yaml`",
       "requirement": "Perfil de estação profissional. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "configs/profiles/research_station.yaml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 177,
       "target": "CRIAR `configs/profiles/hpc_optional.yaml`",
       "requirement": "Escalamento opcional, sem pressupor HPC obrigatório. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "configs/profiles/hpc_optional.yaml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 178,
       "target": "CRIAR `src/nablamath/network/signatures.py`",
       "requirement": "Assinatura assimétrica, rotação e revogação de chaves no protocolo. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/network/signatures.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_network_security.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 179,
       "target": "CRIAR `src/nablamath/node/identity.py`",
       "requirement": "Identidade local consentida com chaves e política de recuperação. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/node/identity.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_network_security.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 180,
       "target": "CRIAR `src/nablamath/p2p/moderation.py`",
       "requirement": "Quarentena, limites de abuso e moderação auditáveis. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/p2p/moderation.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_network_security.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 181,
       "target": "CRIAR `src/nablamath/p2p/reputation.py`",
       "requirement": "Sinais antiabuso sem equiparar popularidade à verdade científica. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/p2p/reputation.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_network_security.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 182,
@@ -2662,53 +3031,77 @@
       "id": 194,
       "target": "CRIAR `src/nablamath/knowledge/lineage.py`",
       "requirement": "Dependências entre conhecimento, dados e retratações. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/knowledge/lineage.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 195,
       "target": "CRIAR `src/nablamath/knowledge/novelty.py`",
       "requirement": "Novidade relativa a corpus e revisão bibliográfica independente. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/knowledge/novelty.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 196,
       "target": "CRIAR `src/nablamath/knowledge/difficulty.py`",
       "requirement": "Dificuldade sustentada por orçamento e solvers observados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/knowledge/difficulty.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 197,
       "target": "CRIAR `src/nablamath/knowledge/curriculum.py`",
       "requirement": "Currículos científicos com diversidade e utilidade medida. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/knowledge/curriculum.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 198,
@@ -2752,105 +3145,153 @@
       "id": 200,
       "target": "CRIAR `src/nablamath/verification/consensus.py`",
       "requirement": "Consenso sobre recibos sem confundi-lo com verdade científica. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/verification/consensus.py"
+      ],
+      "tests": [
+        "tests/test_evidence_integration_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 201,
       "target": "CRIAR `src/nablamath/evaluation/calibration.py`",
       "requirement": "Curvas de calibração, generalização e análise de robustez. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/evaluation/calibration.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 202,
       "target": "CRIAR `src/nablamath/evaluation/ablation.py`",
       "requirement": "Ablation com avaliador congelado e comparação justa. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/evaluation/ablation.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 203,
       "target": "CRIAR `src/nablamath/training/snapshot.py`",
       "requirement": "Snapshots imutáveis de modelos e dados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/training/snapshot.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 204,
       "target": "CRIAR `src/nablamath/training/mixture.py`",
       "requirement": "Misturas de dados e auditoria de contribuição por fonte. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/training/mixture.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 205,
       "target": "CRIAR `src/nablamath/training/lineage.py`",
       "requirement": "Linhagem de checkpoints, pesos e corpus de treinamento. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-evidence-data-coordination-v1",
+      "implementation": [
+        "src/nablamath/training/lineage.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
     },
     {
       "id": 206,
       "target": "CRIAR `benchmarks/private/README.md`",
       "requirement": "Processos para holdouts administrados por avaliadores externos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "benchmarks/private/README.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 207,
       "target": "CRIAR `benchmarks/contamination/README.md`",
       "requirement": "Testes adversariais e padrões de vazamento de dados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "benchmarks/contamination/README.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 208,
@@ -2882,53 +3323,77 @@
       "id": 210,
       "target": "CRIAR `src/nablamath/singularity/evaluation/safety.py`",
       "requirement": "Avaliar autonomia, permissões e falhas por agente. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/singularity/evaluation/safety.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 211,
       "target": "CRIAR `src/nablamath/singularity/evaluation/long_horizon.py`",
       "requirement": "Avaliação de projetos científicos longos com intervenção humana. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "src/nablamath/singularity/evaluation/long_horizon.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 212,
       "target": "CRIAR `docs/future/F13_OPEN_RESEARCH.md`",
       "requirement": "Requisitos prospectivos abertos e governança de descobertas pós-2056. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "docs/future/F13_OPEN_RESEARCH.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     },
     {
       "id": 213,
       "target": "CRIAR `docs/future/2035_2045_2056_criteria.md`",
       "requirement": "Critérios técnicos revisáveis com indicadores de sucesso/falha. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "parallel-bounded-profiles-v1",
+      "implementation": [
+        "docs/future/2035_2045_2056_criteria.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
     }
   ]
 }

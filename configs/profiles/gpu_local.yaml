@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "name": "gpu_local",
+  "cpu_slots": 4,
+  "memory_bytes": 17179869184,
+  "gpu_memory_bytes": 8589934592,
+  "max_tasks": 2,
+  "max_task_seconds": 600,
+  "distributed": false
+}

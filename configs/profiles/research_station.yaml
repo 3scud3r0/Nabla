@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "name": "research_station",
+  "cpu_slots": 16,
+  "memory_bytes": 68719476736,
+  "gpu_memory_bytes": 25769803776,
+  "max_tasks": 8,
+  "max_task_seconds": 3600,
+  "distributed": false
+}
