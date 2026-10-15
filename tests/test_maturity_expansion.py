@@ -377,3 +377,23 @@ class SignedReviewTests(unittest.TestCase):
         with self.assertRaises(ValueError):submit_signed_review(board,tampered,ledger,trust)
         conflict=ReviewBoard((Reviewer('reviewer',('math',)),),authors={claim.revision_id:('reviewer',)})
         with self.assertRaises(ValueError):submit_signed_review(conflict,envelope,ledger,trust)
+
+
+class CertifiedReferenceCheckoutTests(unittest.TestCase):
+    def test_git_windows_line_endings_preserve_pinned_reference_bytes(self):
+        import os
+        import subprocess
+        import hashlib
+        from shutil import which
+        if which('git') is None:self.skipTest('git unavailable for checkout test')
+        root=Path(__file__).parents[1]
+        if not (root/'.git').exists():self.skipTest('source archive has no Git index')
+        reference='benchmarks/fixtures/longley-nist/Longley.dat'
+        expected=hashlib.sha256((root/reference).read_bytes()).hexdigest()
+        with tempfile.TemporaryDirectory() as tmp:
+            env=dict(os.environ,GIT_INDEX_FILE=str(Path(tmp)/'isolated-index'))
+            subprocess.run(['git','read-tree','HEAD'],cwd=root,env=env,check=True,capture_output=True)
+            prefix=(Path(tmp)/'checkout').as_posix()+'/'
+            subprocess.run(['git','-c','core.autocrlf=true','-c','core.eol=crlf','checkout-index','--force','--prefix='+prefix,'--',reference],
+                           cwd=root,env=env,check=True,capture_output=True)
+            self.assertEqual(hashlib.sha256((Path(prefix)/reference).read_bytes()).hexdigest(),expected)

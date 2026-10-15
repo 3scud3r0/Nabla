@@ -13,3 +13,5 @@
 *.cmd text eol=crlf
 # Preserve historical blobs byte for byte.
 legacy/** -text
+# External certified references are hashed as downloaded; never rewrite their bytes.
+benchmarks/fixtures/longley-nist/** -text

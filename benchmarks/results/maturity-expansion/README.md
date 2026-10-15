@@ -35,3 +35,9 @@ O protocolo foi escrito antes de treinar essa execução, mas o desenho é local
 exploratório. As seeds e faixas não comprovam ausência de toda contaminação.
 A arquitetura e o corpus sintético são distribuídos sob a licença MIT do projeto;
 a referência Longley conserva proveniência e licença pública declarada pela fonte.
+
+`multimodal/comparisons.json` conserva as seis comparações pareadas exploratórias
+(combinação versus cada modalidade, nas três seeds). Nenhuma é significativa após
+Bonferroni para seis comparações; não há ganho estatístico demonstrado da fusão.
+`integrated.json` registra o laboratório com os três perfis editoriais, figuras
+ligadas ao modelo, prova Lean e persistência transacional.
