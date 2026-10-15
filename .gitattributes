@@ -15,3 +15,7 @@
 legacy/** -text
 # External certified references are hashed as downloaded; never rewrite their bytes.
 benchmarks/fixtures/longley-nist/** -text
+
+# Reproducible laboratory artifacts carry byte hashes, including JSON and PDFs.
+benchmarks/results/frontier-lab-951017/** -text -whitespace
+benchmarks/results/frontier-lab-951017/**/*.pdf binary

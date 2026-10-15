@@ -1,0 +1,13 @@
+{
+  "local_test_functions_passed": 468,
+  "local_subtests_passed": 312,
+  "full_suite_seconds": 43.86,
+  "new_test_functions_passed": 15,
+  "junit_sha256": "ccdc3c0398a0069a2c6ed7156c9247d159b38cd3877e780085ab41def7063f13",
+  "native_windows_for_this_code": "not_run",
+  "wheel_isolated_workload_verified": true,
+  "bundle_check": "passed",
+  "engineering_estimate_percent": 70.32,
+  "scientific_completion_percent": null,
+  "git_autocrlf_checkout_hashes_preserved": 141
+}

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img">
+<title>Exact parallelogram</title>
+<metadata>{&quot;layout&quot;:{&quot;aspect_preserved&quot;:true,&quot;circle_rendering&quot;:&quot;128-segment approximation&quot;,&quot;scene_id&quot;:&quot;947ef837f0d16000e6f63a4d07b70525886e8ecc6bda2e44ba20ed75665251f3&quot;,&quot;viewport&quot;:[82,48,718,552],&quot;warnings&quot;:[]},&quot;scene&quot;:{&quot;arrows&quot;:[],&quot;circles&quot;:[],&quot;constraints&quot;:[{&quot;kind&quot;:&quot;parallel&quot;,&quot;points&quot;:[&quot;A&quot;,&quot;B&quot;,&quot;D&quot;,&quot;C&quot;],&quot;value&quot;:null},{&quot;kind&quot;:&quot;parallel&quot;,&quot;points&quot;:[&quot;A&quot;,&quot;D&quot;,&quot;B&quot;,&quot;C&quot;],&quot;value&quot;:null},{&quot;kind&quot;:&quot;midpoint&quot;,&quot;points&quot;:[&quot;O&quot;,&quot;A&quot;,&quot;C&quot;],&quot;value&quot;:null},{&quot;kind&quot;:&quot;midpoint&quot;,&quot;points&quot;:[&quot;O&quot;,&quot;B&quot;,&quot;D&quot;],&quot;value&quot;:null},{&quot;kind&quot;:&quot;equal_distance&quot;,&quot;points&quot;:[&quot;A&quot;,&quot;B&quot;,&quot;D&quot;,&quot;C&quot;],&quot;value&quot;:null},{&quot;kind&quot;:&quot;noncollinear&quot;,&quot;points&quot;:[&quot;A&quot;,&quot;B&quot;,&quot;D&quot;],&quot;value&quot;:null}],&quot;coordinates&quot;:{&quot;preserve_aspect&quot;:true,&quot;x_unit&quot;:&quot;1&quot;,&quot;xmax&quot;:&quot;-1&quot;,&quot;xmin&quot;:&quot;-95/13&quot;,&quot;y_unit&quot;:&quot;1&quot;,&quot;ymax&quot;:&quot;49/13&quot;,&quot;ymin&quot;:&quot;-16/13&quot;},&quot;curves&quot;:[],&quot;model&quot;:{&quot;construction&quot;:&quot;parallelogram&quot;,&quot;generator_version&quot;:&quot;geometry-v1&quot;,&quot;kind&quot;:&quot;inverse_geometry&quot;,&quot;seed&quot;:42,&quot;size&quot;:3},&quot;points&quot;:[{&quot;name&quot;:&quot;A&quot;,&quot;x&quot;:&quot;-2&quot;,&quot;y&quot;:&quot;0&quot;},{&quot;name&quot;:&quot;B&quot;,&quot;x&quot;:&quot;-41/13&quot;,&quot;y&quot;:&quot;36/13&quot;},{&quot;name&quot;:&quot;C&quot;,&quot;x&quot;:&quot;-82/13&quot;,&quot;y&quot;:&quot;33/13&quot;},{&quot;name&quot;:&quot;D&quot;,&quot;x&quot;:&quot;-67/13&quot;,&quot;y&quot;:&quot;-3/13&quot;},{&quot;name&quot;:&quot;O&quot;,&quot;x&quot;:&quot;-54/13&quot;,&quot;y&quot;:&quot;33/26&quot;}],&quot;schema_version&quot;:2,&quot;segments&quot;:[{&quot;end&quot;:&quot;B&quot;,&quot;name&quot;:&quot;AB&quot;,&quot;start&quot;:&quot;A&quot;},{&quot;end&quot;:&quot;C&quot;,&quot;name&quot;:&quot;BC&quot;,&quot;start&quot;:&quot;B&quot;},{&quot;end&quot;:&quot;D&quot;,&quot;name&quot;:&quot;CD&quot;,&quot;start&quot;:&quot;C&quot;},{&quot;end&quot;:&quot;A&quot;,&quot;name&quot;:&quot;DA&quot;,&quot;start&quot;:&quot;D&quot;},{&quot;end&quot;:&quot;C&quot;,&quot;name&quot;:&quot;AC&quot;,&quot;start&quot;:&quot;A&quot;},{&quot;end&quot;:&quot;D&quot;,&quot;name&quot;:&quot;BD&quot;,&quot;start&quot;:&quot;B&quot;}],&quot;title&quot;:&quot;Exact parallelogram&quot;}}</metadata>
+<rect width="100%" height="100%" fill="white"/>
+<line x1="82" y1="552" x2="82" y2="48" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="82" y1="552" x2="718" y2="552" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="209" y1="552" x2="209" y2="48" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="82" y1="451" x2="718" y2="451" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="336" y1="552" x2="336" y2="48" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="82" y1="350" x2="718" y2="350" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="464" y1="552" x2="464" y2="48" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="82" y1="250" x2="718" y2="250" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="591" y1="552" x2="591" y2="48" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="82" y1="149" x2="718" y2="149" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="718" y1="552" x2="718" y2="48" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="82" y1="48" x2="718" y2="48" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="82" y1="428" x2="718" y2="428" stroke="#777777" stroke-width="1"/>
+<line x1="617" y1="428" x2="501" y2="149" stroke="#2456a6" stroke-width="2"/>
+<line x1="501" y1="149" x2="183" y2="172" stroke="#2456a6" stroke-width="2"/>
+<line x1="183" y1="172" x2="299" y2="451" stroke="#2456a6" stroke-width="2"/>
+<line x1="299" y1="451" x2="617" y2="428" stroke="#2456a6" stroke-width="2"/>
+<line x1="617" y1="428" x2="183" y2="172" stroke="#2456a6" stroke-width="2"/>
+<line x1="501" y1="149" x2="299" y2="451" stroke="#2456a6" stroke-width="2"/>
+<circle cx="617" cy="428" r="3" fill="#17365f"/>
+<circle cx="501" cy="149" r="3" fill="#17365f"/>
+<circle cx="183" cy="172" r="3" fill="#17365f"/>
+<circle cx="299" cy="451" r="3" fill="#17365f"/>
+<circle cx="400" cy="300" r="3" fill="#17365f"/>
+<text x="625" y="422" fill="#17365f" font-family="monospace" font-size="12">A</text>
+<text x="509" y="143" fill="#17365f" font-family="monospace" font-size="12">B</text>
+<text x="191" y="166" fill="#17365f" font-family="monospace" font-size="12">C</text>
+<text x="307" y="445" fill="#17365f" font-family="monospace" font-size="12">D</text>
+<text x="408" y="294" fill="#17365f" font-family="monospace" font-size="12">O</text>
+<text x="12" y="20" fill="#17365f" font-family="monospace" font-size="12">Exact parallelogram</text>
+<text x="12" y="578" fill="#555555" font-family="monospace" font-size="12">x=[-95/13,-1] 1; y=[-16/13,49/13] 1</text>
+<text x="12" y="594" fill="#555555" font-family="monospace" font-size="12">exact coordinate metadata; curves/trajectories are samples</text>
+</svg>

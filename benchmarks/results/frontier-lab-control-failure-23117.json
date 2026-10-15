@@ -1,0 +1,103 @@
+{
+  "kind": "development_control_failure",
+  "seed": 23117,
+  "simulation": true,
+  "old_wheel_laboratory_module_sha256": "66a549845708b814a8274cab7bdc30020cc2814c47faceb07e6e888c95bca533",
+  "workload_summary": {
+    "all_negative_controls_passed": false,
+    "comparisons": {
+      "test": {
+        "accuracy_gain": 0.0,
+        "baseline_evaluation_id": "603dd4136121268a03895653dc3a1bb20b3778510e8e85de8bf2f5092e364385",
+        "candidate_evaluation_id": "54b1d4c8c868c53851fd5526e92e6fdbfd75cea84e479f5b7020c223edf75c22",
+        "improved_examples": 0,
+        "negative_or_zero_result_retained": true,
+        "paired_exact_p_value": 1.0,
+        "positive_gain_observed": false,
+        "regressed_examples": 0,
+        "significant_at_0_05": false
+      },
+      "validation": {
+        "accuracy_gain": 0.0,
+        "baseline_evaluation_id": "5a8ae8d4b355778b58ca94bbe775ffaf8e7b70a11570c1d014add346eaced03a",
+        "candidate_evaluation_id": "44236412ad08e36d2ad5d62b602ffe3ca5c6b236edf29aa925d75feb04283755",
+        "improved_examples": 0,
+        "negative_or_zero_result_retained": true,
+        "paired_exact_p_value": 1.0,
+        "positive_gain_observed": false,
+        "regressed_examples": 0,
+        "significant_at_0_05": false
+      }
+    },
+    "controls": {
+      "conflicting_batch_fully_rolled_back": true,
+      "rehash_forged_success_count_rejected": true,
+      "rehash_unsupported_training_claim_rejected": true,
+      "transitive_lineage_leak_rejected": false
+    },
+    "evaluations": {
+      "test-exact-reference": {
+        "accuracy": 1.0,
+        "evaluation_id": "0dd560e9ac92ac0405c6fd7ef874d263f5cbcaecb4290f0f19bc1497ed8d732d",
+        "successes": 2,
+        "total": 2
+      },
+      "test-nearest-all": {
+        "accuracy": 0.0,
+        "evaluation_id": "54b1d4c8c868c53851fd5526e92e6fdbfd75cea84e479f5b7020c223edf75c22",
+        "successes": 0,
+        "total": 2
+      },
+      "test-nearest-text": {
+        "accuracy": 0.0,
+        "evaluation_id": "603dd4136121268a03895653dc3a1bb20b3778510e8e85de8bf2f5092e364385",
+        "successes": 0,
+        "total": 2
+      },
+      "validation-exact-reference": {
+        "accuracy": 1.0,
+        "evaluation_id": "01df6e7d64bef3b2ccbec8ed2c3a945cf97b33736204a37ca40eef24c361a63f",
+        "successes": 2,
+        "total": 2
+      },
+      "validation-nearest-all": {
+        "accuracy": 0.0,
+        "evaluation_id": "44236412ad08e36d2ad5d62b602ffe3ca5c6b236edf29aa925d75feb04283755",
+        "successes": 0,
+        "total": 2
+      },
+      "validation-nearest-text": {
+        "accuracy": 0.0,
+        "evaluation_id": "5a8ae8d4b355778b58ca94bbe775ffaf8e7b70a11570c1d014add346eaced03a",
+        "successes": 0,
+        "total": 2
+      }
+    },
+    "external_lab_adoption": false,
+    "external_learning_gain_established": false,
+    "family_counts": {
+      "convex_quadratic": 1,
+      "counterexample": 1,
+      "factored_polynomial": 1,
+      "linear_system": 1,
+      "polynomial_identity": 1,
+      "polynomial_integral": 1,
+      "prescribed_spectrum": 1,
+      "stationary_markov": 1
+    },
+    "frontier_model_gain_established": false,
+    "limitations": "Synthetic constructor corpus; no real laboratory users, independent review, observed physical validation or frontier models. Solver reference is not a learned model. Commitments do not hide data from the local operator.",
+    "protocol_id": "1c8db8591a857a0bdc8c9340bebebf8337728df7472fa64cd4f1c3baf6434f73",
+    "record_count": 8,
+    "schema_version": 1,
+    "simulation": true,
+    "split_counts": {
+      "test": 2,
+      "train": 4,
+      "validation": 2
+    },
+    "vision_completion_percent": null
+  },
+  "failure": "The injected lineage control could select a test record as both endpoints.",
+  "correction": "Select a train record explicitly; regression test retains this failing seed."
+}

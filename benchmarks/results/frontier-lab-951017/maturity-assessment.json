@@ -1,0 +1,189 @@
+{
+  "kind": "reviewer_estimate_not_measured_scientific_completion",
+  "scope": "F1-F12",
+  "estimated_maturity_percent": 70.32,
+  "approximate_uncertainty_percentage_points": 10,
+  "rubric_maxima": [
+    30,
+    20,
+    20,
+    20,
+    10
+  ],
+  "weight_sum": 95,
+  "scientific_completion_percent": null,
+  "requested_target": 95,
+  "target_demonstrated": false,
+  "previous_assessment_sha256": "3731b433919f4b8e02b703b78ced6644de7df1ad0ca117f4a909a5da4ebe3811",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Calculadora científica",
+      "weight": 8,
+      "scores": [
+        25,
+        20,
+        15,
+        10,
+        10
+      ],
+      "estimated_percent": 80,
+      "remaining": "IR vetorial/matricial mais uniforme, cálculo não polinomial mais amplo, corpus por toda operação e revisão matemática."
+    },
+    {
+      "phase": 2,
+      "name": "Forge e geração inversa",
+      "weight": 12,
+      "scores": [
+        20,
+        15,
+        20,
+        5,
+        10
+      ],
+      "estimated_percent": 70,
+      "remaining": "Diversidade/complexidade avançadas, templates/composições mais amplos e dificuldade demonstrada contra novos solvers."
+    },
+    {
+      "phase": 3,
+      "name": "Prove e Falsifier",
+      "weight": 10,
+      "scores": [
+        20,
+        20,
+        15,
+        5,
+        10
+      ],
+      "estimated_percent": 70,
+      "remaining": "Revisão independente da correspondência linguística, fragmentos adicionais e falsificação/minimização mais amplas."
+    },
+    {
+      "phase": 4,
+      "name": "Geometria e imagens científicas",
+      "weight": 7,
+      "scores": [
+        25,
+        20,
+        15,
+        5,
+        10
+      ],
+      "estimated_percent": 75,
+      "remaining": "Corpus visual amplo, fontes/layout adicionais, curvas e construções mais gerais e revisão externa."
+    },
+    {
+      "phase": 5,
+      "name": "Studio e publicação",
+      "weight": 7,
+      "scores": [
+        25,
+        20,
+        15,
+        5,
+        10
+      ],
+      "estimated_percent": 75,
+      "remaining": "Blocos editoriais e referências cruzadas mais completos, revisão editorial independente e vínculo semântico de todas as alegações."
+    },
+    {
+      "phase": 6,
+      "name": "Datasets científicos",
+      "weight": 10,
+      "scores": [
+        25,
+        20,
+        15,
+        5,
+        10
+      ],
+      "estimated_percent": 75,
+      "remaining": "Auditoria de templates/contaminação mais ampla, perfis de escala, migrações adicionais e utilidade externa demonstrada."
+    },
+    {
+      "phase": 7,
+      "name": "Worlds e simulações",
+      "weight": 8,
+      "scores": [
+        25,
+        15,
+        20,
+        0,
+        10
+      ],
+      "estimated_percent": 70,
+      "remaining": "Eventos, rigidez, outras EDPs, calibração/validação observacional e estudos mais amplos de incerteza."
+    },
+    {
+      "phase": 8,
+      "name": "Multimodalidade e agentes",
+      "weight": 8,
+      "scores": [
+        20,
+        15,
+        15,
+        0,
+        10
+      ],
+      "estimated_percent": 60,
+      "remaining": "Modelos e tarefas científicas mais capazes, benchmarks externos e planejamento mais amplo; nenhum ganho externo novo comprovado."
+    },
+    {
+      "phase": 9,
+      "name": "Discovery",
+      "weight": 10,
+      "scores": [
+        20,
+        20,
+        15,
+        0,
+        10
+      ],
+      "estimated_percent": 65,
+      "remaining": "Gramáticas mais ricas, recuperação bibliográfica ampla, experimentos realizados e descoberta/reprodução científica independente."
+    },
+    {
+      "phase": 10,
+      "name": "RSI controlado",
+      "weight": 8,
+      "scores": [
+        20,
+        20,
+        15,
+        5,
+        10
+      ],
+      "estimated_percent": 70,
+      "remaining": "Regras e algoritmos novos, isolamento/autoridade independentes, inferência sequencial e ganhos amplos; o baseline alternativo positivo é explicitamente mais fraco."
+    },
+    {
+      "phase": 11,
+      "name": "Outras disciplinas",
+      "weight": 4,
+      "scores": [
+        20,
+        15,
+        15,
+        0,
+        10
+      ],
+      "estimated_percent": 60,
+      "remaining": "Modelos mais amplos, dados observados, instrumentos/CAD/controle adicionais e validação por especialistas."
+    },
+    {
+      "phase": 12,
+      "name": "Conhecimento científico vivo",
+      "weight": 3,
+      "scores": [
+        25,
+        20,
+        15,
+        0,
+        10
+      ],
+      "estimated_percent": 70,
+      "remaining": "Rede/federação operacional mais ampla, identidade e expertise reais, revisão independente e escala/recuperação adicionais."
+    }
+  ],
+  "reason": "Finite simulated usage expands acceptance evidence but provides no real external lab adoption or sufficient evidence to increase whole-phase scores."
+}
