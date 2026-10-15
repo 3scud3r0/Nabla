@@ -40,6 +40,16 @@ def assurance(root):
     from nablamath.domains.earth import layered_hydrostatics
     from nablamath.worlds.pde.diffusion import solve_diffusion
     science = root / 'science'
+    # Upstream failure must remain explicit, without creating an empty peer DB
+    # that could be mistaken for an artifact produced by the science stage.
+    prerequisites = ('peer-1.sqlite3', 'summary.json')
+    missing = [name for name in prerequisites if not (science / name).is_file()]
+    if missing:
+        save(root / 'assurance.json', {
+            'simulation': True, 'status': 'blocked', 'missing_science_artifacts': missing,
+            'checks': {}, 'all_checks_passed': False,
+            'experimental_physical_validation': False, 'independent_peer_review': False})
+        return False
     checks = {name + '_publication_replayed': verify_publication(science / name)
               for name in ('research_paper', 'engineering_report', 'teaching')}
     checks['formal_backend_replayed'] = verify_formal_bundle(science / 'formal', project=ROOT / 'lean')

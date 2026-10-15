@@ -1,0 +1,12 @@
+{
+  "implementation": {
+    "files": 28,
+    "physical_lines": 5166,
+    "token_lines": 4566
+  },
+  "tests": {
+    "files": 9,
+    "physical_lines": 2786,
+    "token_lines": 2290
+  }
+}

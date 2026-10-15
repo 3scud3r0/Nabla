@@ -1,0 +1,4 @@
+{
+  "raw_sha256": "65a27aaa970ab9ca3ac3bd51db0bb08908174307c78920ceb9b108a2d03beb18",
+  "text": "Traceback (most recent call last):\n  File \"/workspace/Nabla/tools/reproduce_maturity.py\", line 174, in <module>\n    print(json.dumps(reproduce(args.destination,learning_directory=args.learning_directory,pdf_backend=args.pdf_backend),sort_keys=True))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/Nabla/tools/reproduce_maturity.py\", line 119, in reproduce\n    if formal['status']!='proved':raise ValueError('Pinned Lean proof failed: '+formal['diagnostics'])\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Pinned Lean proof failed: lake not installed\n"
+}

@@ -1422,14 +1422,20 @@
       "id": 94,
       "target": "CRIAR `src/nablamath/math/calculus/risch.py`",
       "requirement": "Pesquisar integração simbólica abrangente sob domínios declarados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "rational-linear-factor-integration-v1",
+      "implementation": [
+        "src/nablamath/math/calculus/risch.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_integration_mesh.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "General Risch integration and independent validation are not implemented."
     },
     {
       "id": 95,
@@ -1644,40 +1650,64 @@
       "id": 106,
       "target": "CRIAR `src/nablamath/formal/autoformalization.py`",
       "requirement": "Pipeline de tradução com verificação humana e kernel. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "controlled-reviewed-proof-portfolio-v1",
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Controlled grammar only; review identity is caller supplied. Lean/Mathlib execution, human correspondence review and scalable proof search remain unvalidated."
     },
     {
       "id": 107,
       "target": "CRIAR `src/nablamath/formal/proof_repair.py`",
       "requirement": "Correção assistida de demonstrações sem suprimir obrigações. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "controlled-reviewed-proof-portfolio-v1",
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Controlled grammar only; review identity is caller supplied. Lean/Mathlib execution, human correspondence review and scalable proof search remain unvalidated."
     },
     {
       "id": 108,
       "target": "CRIAR `src/nablamath/formal/proof_search_planner.py`",
       "requirement": "Busca escalável guiada por hipóteses e provas verificáveis. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "controlled-reviewed-proof-portfolio-v1",
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Controlled grammar only; review identity is caller supplied. Lean/Mathlib execution, human correspondence review and scalable proof search remain unvalidated."
     },
     {
       "id": 109,
@@ -1760,14 +1790,20 @@
       "id": 114,
       "target": "CRIAR `src/nablamath/worlds/mesh/adaptive.py`",
       "requirement": "Refino adaptativo com estimadores de erro. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "adaptive-scalar-mesh-v1",
+      "implementation": [
+        "src/nablamath/worlds/mesh/adaptive.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_integration_mesh.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Sampled indicators are not a global error certificate; general multidimensional meshes remain pending."
     },
     {
       "id": 115,
@@ -1811,27 +1847,43 @@
       "id": 117,
       "target": "CRIAR `src/nablamath/physics/fluids/turbulence.py`",
       "requirement": "Modelos de turbulência delimitados e calibrados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-axial-fe-euler-mixing-length-v1",
+      "implementation": [
+        "src/nablamath/physics/fluids/turbulence.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fea/nonlinear.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Only declared 1D models and local analytic/synthetic checks; external calibration, experimental provenance and independent validation remain pending."
     },
     {
       "id": 118,
       "target": "CRIAR `src/nablamath/physics/fluids/compressible.py`",
       "requirement": "Fluxos compressíveis e choques com validação. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-axial-fe-euler-mixing-length-v1",
+      "implementation": [
+        "src/nablamath/physics/fluids/turbulence.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fea/nonlinear.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Only declared 1D models and local analytic/synthetic checks; external calibration, experimental provenance and independent validation remain pending."
     },
     {
       "id": 119,
@@ -1850,40 +1902,64 @@
       "id": 120,
       "target": "CRIAR `src/nablamath/physics/fea/nonlinear.py`",
       "requirement": "Elementos finitos não lineares e verificação. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-axial-fe-euler-mixing-length-v1",
+      "implementation": [
+        "src/nablamath/physics/fluids/turbulence.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fea/nonlinear.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Only declared 1D models and local analytic/synthetic checks; external calibration, experimental provenance and independent validation remain pending."
     },
     {
       "id": 121,
       "target": "CRIAR `src/nablamath/graphics/visual_regression.py`",
       "requirement": "Comparar renderização semântica e imagens de referência. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "scientific-svg-declared-linear-scm-v1",
+      "implementation": [
+        "src/nablamath/graphics/visual_regression.py",
+        "src/nablamath/graphics/scientific_renderer.py",
+        "src/nablamath/discovery/causal_hypothesis.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_graphics_causality.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Declared linear SCM only, no causal discovery from correlation; human visual review and empirical causal validation remain pending."
     },
     {
       "id": 122,
       "target": "CRIAR `src/nablamath/graphics/scientific_renderer.py`",
       "requirement": "Renderização científica avançada rastreável ao modelo. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "scientific-svg-declared-linear-scm-v1",
+      "implementation": [
+        "src/nablamath/graphics/visual_regression.py",
+        "src/nablamath/graphics/scientific_renderer.py",
+        "src/nablamath/discovery/causal_hypothesis.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_graphics_causality.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Declared linear SCM only, no causal discovery from correlation; human visual review and empirical causal validation remain pending."
     },
     {
       "id": 123,
@@ -1946,27 +2022,41 @@
       "id": 126,
       "target": "CRIAR `src/nablamath/datasets/semantic_leakage.py`",
       "requirement": "Detecção avançada de contaminação e semelhança. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "transactional-forge-lineage-leakage-v1",
+      "implementation": [
+        "src/nablamath/datasets/semantic_leakage.py",
+        "src/nablamath/datasets/large_scale_pipeline.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_dataset_pipeline.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Declared local equivalences and lineage only; no universal semantic detector or independently evaluated production scale."
     },
     {
       "id": 127,
       "target": "CRIAR `src/nablamath/datasets/large_scale_pipeline.py`",
       "requirement": "Geração controlada em escala sem degradar qualidade. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "transactional-forge-lineage-leakage-v1",
+      "implementation": [
+        "src/nablamath/datasets/semantic_leakage.py",
+        "src/nablamath/datasets/large_scale_pipeline.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_dataset_pipeline.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Declared local equivalences and lineage only; no universal semantic detector or independently evaluated production scale."
     },
     {
       "id": 128,
@@ -2030,14 +2120,23 @@
       "id": 132,
       "target": "CRIAR `src/nablamath/agents/secure_execution.py`",
       "requirement": "Sandbox operacional para código não confiável. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "fail-closed-trusted-tool-trials-v1",
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
     },
     {
       "id": 133,
@@ -2094,14 +2193,22 @@
       "id": 136,
       "target": "CRIAR `src/nablamath/discovery/causal_hypothesis.py`",
       "requirement": "Hipóteses causais testáveis com pressupostos declarados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "scientific-svg-declared-linear-scm-v1",
+      "implementation": [
+        "src/nablamath/graphics/visual_regression.py",
+        "src/nablamath/graphics/scientific_renderer.py",
+        "src/nablamath/discovery/causal_hypothesis.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_graphics_causality.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Declared linear SCM only, no causal discovery from correlation; human visual review and empirical causal validation remain pending."
     },
     {
       "id": 137,
@@ -2145,14 +2252,23 @@
       "id": 139,
       "target": "CRIAR `src/nablamath/evolution/code_proposals.py`",
       "requirement": "Propostas de mudanças algorítmicas versionadas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "fail-closed-trusted-tool-trials-v1",
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
     },
     {
       "id": 140,
@@ -2177,14 +2293,23 @@
       "id": 141,
       "target": "CRIAR `src/nablamath/evolution/secure_trials.py`",
       "requirement": "Testes isolados de descendentes candidatos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "fail-closed-trusted-tool-trials-v1",
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
     },
     {
       "id": 142,
@@ -2352,14 +2477,23 @@
       "id": 151,
       "target": "CRIAR `services/worker/isolation.py`",
       "requirement": "Isolamento operacional e política de recursos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "fail-closed-trusted-tool-trials-v1",
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
     },
     {
       "id": 152,
@@ -2467,14 +2601,23 @@
       "id": 158,
       "target": "CRIAR `tests/security/test_agent_sandbox.py`",
       "requirement": "Tentativas de escape e falha segura. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "fail-closed-trusted-tool-trials-v1",
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
     },
     {
       "id": 159,
@@ -2875,92 +3018,176 @@
       "id": 182,
       "target": "CRIAR `services/registry/app.py`",
       "requirement": "Registro seguro e opt-in de nós e capacidades. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 183,
       "target": "CRIAR `services/registry/api.py`",
       "requirement": "API de descoberta e permissões versionadas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 184,
       "target": "CRIAR `services/registry/db.py`",
       "requirement": "Persistência de peers, chaves e estado de revogação. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 185,
       "target": "CRIAR `services/registry/metrics.py`",
       "requirement": "Métricas anonimizadas e limites operacionais. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 186,
       "target": "CRIAR `services/relay/app.py`",
       "requirement": "Relay autenticado com quotas e desligamento seguro. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 187,
       "target": "CRIAR `services/relay/protocol.py`",
       "requirement": "Protocolos para NAT/retransmissão com proteção anti-replay. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 188,
       "target": "CRIAR `services/relay/abuse.py`",
       "requirement": "Prevenção de Sybil/eclipse/poisoning e registros auditáveis. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 189,
