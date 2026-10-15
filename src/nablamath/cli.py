@@ -32,6 +32,15 @@ def _assignment(text: str) -> tuple[str, Fraction]:
         raise argparse.ArgumentTypeError("Valor racional inválido") from exc
 
 
+def _bounded_json_text(path: Path) -> str:
+    from .core.semantic_contracts import MAX_BYTES
+    with path.open("rb") as source:
+        raw = source.read(MAX_BYTES + 1)
+    if len(raw) > MAX_BYTES:
+        raise ValueError("JSON exceeds byte budget")
+    return raw.decode("utf-8")
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="nabla", description="NablaMath: núcleo local de cálculo rastreável")
     parser.add_argument("--version", action="version", version=__version__)
@@ -105,6 +114,28 @@ def main(argv: list[str] | None = None) -> int:
     replay.add_argument("path", type=Path)
     check_bundle = commands.add_parser("check-bundle", help="Revalidar hashes e matematica de ciclo Forge")
     check_bundle.add_argument("directory", type=Path)
+    artifact = commands.add_parser("artifact", help="Gerar artefato integrado racional com replay")
+    artifact.add_argument("destination", type=Path)
+    artifact.add_argument("--family", choices=("linear_system", "polynomial_integral"), default="linear_system")
+    artifact.add_argument("--seed", type=int, default=42)
+    artifact.add_argument("--size", type=int, default=3)
+    artifact.add_argument("--license", required=True, dest="license_id")
+    artifact.add_argument("--provenance", required=True)
+    check_artifact = commands.add_parser("check-artifact", help="Reexecutar cada vínculo de artefato integrado")
+    check_artifact.add_argument("path", type=Path)
+    freeze_eval = commands.add_parser("freeze-evaluation", help="Fixar protocolo, tarefas e baseline declarativos")
+    freeze_eval.add_argument("source", type=Path)
+    freeze_eval.add_argument("destination", type=Path)
+    evaluate_frozen = commands.add_parser("evaluate-frozen", help="Pontuar respostas contra protocolo previamente fixado")
+    evaluate_frozen.add_argument("protocol", type=Path)
+    evaluate_frozen.add_argument("submission", type=Path)
+    evaluate_frozen.add_argument("--expected-id", required=True)
+    evaluate_frozen.add_argument("--output", required=True, type=Path)
+    check_eval = commands.add_parser("check-evaluation", help="Reexecutar relatório de avaliação congelada")
+    check_eval.add_argument("protocol", type=Path)
+    check_eval.add_argument("submission", type=Path)
+    check_eval.add_argument("report", type=Path)
+    check_eval.add_argument("--expected-id", required=True)
     falsify = commands.add_parser("falsify", help="Buscar contraexemplo em dominio inteiro finito")
     falsify.add_argument("left")
     falsify.add_argument("right")
@@ -204,6 +235,40 @@ def main(argv: list[str] | None = None) -> int:
             json.dump(payload,output,ensure_ascii=False,sort_keys=True)
             output.write('\n')
     try:
+        if args.command in {"freeze-evaluation", "evaluate-frozen", "check-evaluation"}:
+            from .core.semantic_contracts import load_json
+            from .evaluation.frozen import FrozenEvaluation
+            if args.command == "freeze-evaluation":
+                evaluation = FrozenEvaluation(_bounded_json_text(args.source))
+                save_json(args.destination, load_json(evaluation.to_json()))
+                print(json.dumps({"protocol_id": evaluation.protocol_id}))
+                return 0
+            evaluation = FrozenEvaluation.from_json(_bounded_json_text(args.protocol), expected_id=args.expected_id)
+            submission = load_json(_bounded_json_text(args.submission))
+            if args.command == "check-evaluation":
+                valid = evaluation.verify_report(load_json(_bounded_json_text(args.report)), submission)
+                print(json.dumps({"valid": valid, "protocol_id": evaluation.protocol_id}))
+                return 0 if valid else 1
+            report = evaluation.evaluate(submission)
+            save_json(args.output, report)
+            print(json.dumps(report, ensure_ascii=False))
+            return 0
+        if args.command == "artifact":
+            from .pipeline.scientific_cycle import build_scientific_artifact, replay_scientific_artifact
+            artifact = build_scientific_artifact(family=args.family, seed=args.seed, size=args.size,
+                                                 license_id=args.license_id, provenance=args.provenance)
+            report = replay_scientific_artifact(artifact)
+            args.destination.parent.mkdir(parents=True, exist_ok=True)
+            with args.destination.open("x", encoding="utf-8") as output:
+                output.write(artifact.to_json())
+            print(json.dumps(report, ensure_ascii=False))
+            return 0
+        if args.command == "check-artifact":
+            from .core.scientific_artifact import ScientificArtifact
+            from .pipeline.scientific_cycle import replay_scientific_artifact
+            artifact = ScientificArtifact.from_json(_bounded_json_text(args.path))
+            print(json.dumps(replay_scientific_artifact(artifact), ensure_ascii=False))
+            return 0
         if args.command in {'discover','evolve','domain-suite','knowledge-audit','research-laboratory','independent-benchmark','learning-experiment'}:
             from .scientific_workflows import write_json
             from .research_workflows import discovery_demo,evolution_demo,domain_suite,run_research_laboratory

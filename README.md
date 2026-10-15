@@ -49,6 +49,19 @@ python -m pip install -e ".[test,formal,graphics,documents,data,research,federat
 
 Lean/Mathlib e compiladores PDF têm preparação própria. O laboratório completo foi executado em Python 3.12; veja [contribuição](CONTRIBUTING.md) e [reprodução](docs/FRONTIER_LAB_SIMULATION.md) para requisitos opcionais.
 
+O perfil integrado racional liga problema, solução, certificado, dataset, figura
+e relatório em um artefato reexecutável, sem serviços externos:
+
+```sh
+nabla artifact .nabla/artifact.json --license MIT --provenance "synthetic local experiment"
+nabla check-artifact .nabla/artifact.json
+python tools/check_roadmap.py
+```
+
+Use um destino novo. O [contrato do perfil](docs/acceptance/phase_profiles.md)
+documenta limites e a [matriz dos 213 requisitos](docs/acceptance/evidence_matrix.json)
+mantém pendências explícitas. Esse perfil não conclui as fases científicas.
+
 ## Reproduzir e verificar
 
 ```sh

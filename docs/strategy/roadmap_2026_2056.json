@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "matrix": "docs/acceptance/evidence_matrix.json",
+  "profile": "exact-rational-cycle-v1",
+  "windows": [
+    {
+      "years": "2026–2027",
+      "status": "prospective",
+      "requires_external_validation": true
+    },
+    {
+      "years": "2027–2029",
+      "status": "prospective",
+      "requires_external_validation": true
+    },
+    {
+      "years": "2029–2032",
+      "status": "prospective",
+      "requires_external_validation": true
+    },
+    {
+      "years": "2030–2035",
+      "status": "prospective",
+      "requires_external_validation": true
+    },
+    {
+      "years": "2033–2042",
+      "status": "prospective",
+      "requires_external_validation": true
+    },
+    {
+      "years": "2042–2048",
+      "status": "prospective",
+      "requires_external_validation": true
+    },
+    {
+      "years": "2048–2056+",
+      "status": "prospective",
+      "requires_external_validation": true
+    }
+  ],
+  "completion_policy": "Only finite validated profiles may close; the 2056+ scientific horizon remains open."
+}

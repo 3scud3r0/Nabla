@@ -1,9 +1,12 @@
 """Cache local de blobs com chave versionada de entrada; falha em corrupção."""
 
 import json
+import os
 from pathlib import Path
+import tempfile
 
 from .provenance import provenance_id
+from ..core.semantic_contracts import require_digest
 from ..store.blobs import BlobStore
 
 
@@ -17,12 +20,27 @@ class LocalCache:
         digest = self.blobs.put(json.dumps(output, sort_keys=True, allow_nan=False).encode())
         self.index.mkdir(parents=True, exist_ok=True)
         entry = self.index / key
-        if entry.exists() and entry.read_text(encoding='utf-8') != digest:
-            raise ValueError("Resultado divergente para mesmos parâmetros e versão")
-        entry.write_text(digest, encoding="ascii")
+        # Publish a complete index entry exactly once. A check-then-write or
+        # os.replace would let simultaneous conflicting writers overwrite it.
+        name = None
+        try:
+            with tempfile.NamedTemporaryFile(dir=self.index, delete=False) as output_file:
+                name = output_file.name
+                output_file.write(digest.encode("ascii"))
+                output_file.flush()
+                os.fsync(output_file.fileno())
+            try:
+                os.link(name, entry)
+            except FileExistsError:
+                if entry.read_text(encoding="ascii") != digest:
+                    raise ValueError("Resultado divergente para mesmos parâmetros e versão")
+        finally:
+            if name is not None:
+                os.unlink(name)
         return key
 
     def get(self, key: str) -> dict | None:
+        require_digest(key)
         entry = self.index / key
         if not entry.exists():
             return None

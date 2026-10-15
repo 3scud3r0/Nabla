@@ -9,8 +9,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - run: python -m pip install -e .
+      - run: python -m pip install -e ".[test]"
+      - run: python -m pytest -q --junitxml=.nabla/ci-tests.xml
       - run: python -m unittest discover -s tests -v
+      - run: python tools/build_math_bundle.py --check
+      - run: python tools/check_roadmap.py
       - run: python tools/roadmap_status.py
       - uses: actions/setup-node@v4
         with:
