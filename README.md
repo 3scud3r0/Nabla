@@ -1,4 +1,4 @@
-# ∇ NablaMath
+# ∇ Nabla
 
 Laboratório científico local em Python para cálculo rastreável, geração de problemas, verificação matemática, datasets, simulações e publicação reproduzível.
 
