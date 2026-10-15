@@ -1,5 +1,8 @@
 # Progresso das fases F1–F12 — 15/10/2026
 
+> Avaliação posterior: [progresso consolidado e CI nativo](PHASES_1_12_PROGRESS_70.md).
+> Este arquivo preserva a avaliação intermediária de 48,21%.
+
 **Estimativa ponderada: 48.21%**, ante 43.95% na avaliação anterior.
 Média simples: 47.50%. Mesma rubrica C/30 + I/20 + V/20 + E/20 + O/10 e mesmos
 pesos normalizados por 95 do [backlog anterior](PHASES_1_12_COMPLETION_BACKLOG.md).
