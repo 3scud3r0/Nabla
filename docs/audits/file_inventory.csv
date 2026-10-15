@@ -1,37 +1,37 @@
 arquivo,situação,categoria,linhas_físicas,linhas_código,bytes
-.gitattributes,alterado,infraestrutura/outros,24,,752
+.gitattributes,existente,infraestrutura/outros,24,,752
 .github/ISSUE_TEMPLATE/feature.yml,existente,infraestrutura/outros,22,,593
 .github/ISSUE_TEMPLATE/science.yml,existente,infraestrutura/outros,21,,571
 .github/PULL_REQUEST_TEMPLATE.md,existente,infraestrutura/outros,11,,471
 .github/workflows/accelerator-optional.yml,existente,infraestrutura/outros,38,,1159
 .github/workflows/archive-audit.yml,existente,infraestrutura/outros,44,,1509
-.github/workflows/ci.yml,existente,infraestrutura/outros,21,,547
+.github/workflows/ci.yml,alterado,infraestrutura/outros,24,,717
 .github/workflows/dataset-publish.yml,existente,infraestrutura/outros,36,,1290
 .github/workflows/interop.yml,existente,infraestrutura/outros,15,,396
 .github/workflows/lean-core.yml,existente,infraestrutura/outros,32,,1148
 .github/workflows/lean.yml,existente,infraestrutura/outros,22,,766
 .github/workflows/pages.yml,existente,infraestrutura/outros,27,,618
 .github/workflows/python-core.yml,existente,infraestrutura/outros,26,,765
-.github/workflows/scientific-maturity.yml,novo,infraestrutura/outros,35,,1667
+.github/workflows/scientific-maturity.yml,existente,infraestrutura/outros,35,,1667
 .github/workflows/scientific-phases-5-8.yml,existente,infraestrutura/outros,26,,1086
-.github/workflows/scientific-phases-9-12.yml,alterado,infraestrutura/outros,33,,1655
-.github/workflows/windows-installer.yml,alterado,infraestrutura/outros,86,,3538
-.gitignore,alterado,infraestrutura/outros,18,,184
+.github/workflows/scientific-phases-9-12.yml,existente,infraestrutura/outros,33,,1655
+.github/workflows/windows-installer.yml,existente,infraestrutura/outros,86,,3538
+.gitignore,existente,infraestrutura/outros,18,,184
 CITATION.cff,existente,infraestrutura/outros,7,,283
 CODE_OF_CONDUCT.md,existente,infraestrutura/outros,3,,544
-CONTRIBUTING.md,alterado,infraestrutura/outros,33,,2013
+CONTRIBUTING.md,existente,infraestrutura/outros,33,,2013
 LICENSE,existente,infraestrutura/outros,25,,1282
-README.md,alterado,infraestrutura/outros,88,,5984
+README.md,alterado,infraestrutura/outros,101,,6555
 SECURITY.md,existente,infraestrutura/outros,5,,830
-benchmarks/README.md,novo,infraestrutura/outros,23,,1559
+benchmarks/README.md,existente,infraestrutura/outros,23,,1559
 benchmarks/baselines/README.md,existente,infraestrutura/outros,8,,468
-benchmarks/fixtures/longley-nist/Longley.dat,novo,infraestrutura/outros,76,,2892
-benchmarks/fixtures/longley-nist/MIRROR_LICENSE.txt,novo,infraestrutura/outros,34,,1636
-benchmarks/fixtures/longley-nist/dataset-provenance.py,novo,infraestrutura/outros,74,63,1804
-benchmarks/fixtures/longley-nist/manifest.json,novo,infraestrutura/outros,24,,1033
-benchmarks/results/FRONTIER_LAB_README.md,novo,resultados gerados,36,,2172
+benchmarks/fixtures/longley-nist/Longley.dat,existente,infraestrutura/outros,76,,2892
+benchmarks/fixtures/longley-nist/MIRROR_LICENSE.txt,existente,infraestrutura/outros,34,,1636
+benchmarks/fixtures/longley-nist/dataset-provenance.py,existente,infraestrutura/outros,74,63,1804
+benchmarks/fixtures/longley-nist/manifest.json,existente,infraestrutura/outros,24,,1033
+benchmarks/results/FRONTIER_LAB_README.md,existente,resultados gerados,36,,2172
 benchmarks/results/ci-evidence-2026-10.json,existente,resultados gerados,83,,2878
-benchmarks/results/completion-hardening-2026-10-15.json,novo,resultados gerados,295,,11787
+benchmarks/results/completion-hardening-2026-10-15.json,existente,resultados gerados,295,,11787
 benchmarks/results/controlled-learning-2026-10/GSM8K_LICENSE,existente,resultados gerados,21,,1062
 benchmarks/results/controlled-learning-2026-10/README.md,existente,resultados gerados,13,,858
 benchmarks/results/controlled-learning-2026-10/protocol.json,existente,resultados gerados,1,,44068
@@ -44,179 +44,179 @@ benchmarks/results/controlled-learning-2026-10/with_nabla-seed-37.npz,existente,
 benchmarks/results/controlled-learning-2026-10/without_nabla-seed-11.npz,existente,resultados gerados,,,32677
 benchmarks/results/controlled-learning-2026-10/without_nabla-seed-23.npz,existente,resultados gerados,,,32652
 benchmarks/results/controlled-learning-2026-10/without_nabla-seed-37.npz,existente,resultados gerados,,,32659
-benchmarks/results/frontier-lab-951017/assurance-peer.sqlite3,novo,resultados gerados,,,32768
-benchmarks/results/frontier-lab-951017/assurance.json,novo,resultados gerados,1,,1049
-benchmarks/results/frontier-lab-951017/assurance.log,novo,resultados gerados,0,,0
-benchmarks/results/frontier-lab-951017/domain-results.json,novo,resultados gerados,1,,21080
-benchmarks/results/frontier-lab-951017/independent-analysis.json,novo,resultados gerados,1,,31601
-benchmarks/results/frontier-lab-951017/independent.json,novo,resultados gerados,1,,49992
-benchmarks/results/frontier-lab-951017/independent.log,novo,resultados gerados,0,,0
-benchmarks/results/frontier-lab-951017/journal.json,novo,resultados gerados,1,,1518
-benchmarks/results/frontier-lab-951017/local-validation.json,novo,resultados gerados,13,,473
-benchmarks/results/frontier-lab-951017/manifest.json,novo,resultados gerados,146,,15867
-benchmarks/results/frontier-lab-951017/maturity-assessment.json,novo,resultados gerados,189,,4875
-benchmarks/results/frontier-lab-951017/portfolio.log,novo,resultados gerados,1,,1715
-benchmarks/results/frontier-lab-951017/portfolio/campaign-alternate.sqlite3,novo,resultados gerados,,,53248
-benchmarks/results/frontier-lab-951017/portfolio/campaign-exact.sqlite3,novo,resultados gerados,,,53248
-benchmarks/results/frontier-lab-951017/portfolio/protocol.json,novo,resultados gerados,1,,527
-benchmarks/results/frontier-lab-951017/portfolio/run-alternate.json,novo,resultados gerados,1,,40555
-benchmarks/results/frontier-lab-951017/portfolio/run-exact.json,novo,resultados gerados,1,,39913
-benchmarks/results/frontier-lab-951017/portfolio/summary.json,novo,resultados gerados,1,,1599
-benchmarks/results/frontier-lab-951017/protocol.json,novo,resultados gerados,1,,51680
-benchmarks/results/frontier-lab-951017/science.log,novo,resultados gerados,1,,785
-benchmarks/results/frontier-lab-951017/science/agent-resumed.json,novo,resultados gerados,1,,3241
-benchmarks/results/frontier-lab-951017/science/agent.sqlite3,novo,resultados gerados,,,12288
-benchmarks/results/frontier-lab-951017/science/assets/figures/f3261dfff008a68ee41216c84039bf0c63d89bbc2619104b99abfeee2d81cfc2.png,novo,resultados gerados,,,20428
-benchmarks/results/frontier-lab-951017/science/basis-discovery.json,novo,resultados gerados,1,,5574
-benchmarks/results/frontier-lab-951017/science/bibliography.json,novo,resultados gerados,1,,1497
-benchmarks/results/frontier-lab-951017/science/calculation.json,novo,resultados gerados,1,,551
-benchmarks/results/frontier-lab-951017/science/calculator-catalog.json,novo,resultados gerados,1,,5914
-benchmarks/results/frontier-lab-951017/science/dataset-release/card.json,novo,resultados gerados,1,,549
-benchmarks/results/frontier-lab-951017/science/dataset-release/manifest.json,novo,resultados gerados,1,,644
-benchmarks/results/frontier-lab-951017/science/dataset-release/records.jsonl,novo,resultados gerados,4,,90439
-benchmarks/results/frontier-lab-951017/science/dataset-release/records.parquet,novo,resultados gerados,,,30328
-benchmarks/results/frontier-lab-951017/science/dataset-release/test.jsonl,novo,resultados gerados,0,,0
-benchmarks/results/frontier-lab-951017/science/dataset-release/train.jsonl,novo,resultados gerados,4,,90439
-benchmarks/results/frontier-lab-951017/science/dataset-release/unassigned.jsonl,novo,resultados gerados,0,,0
-benchmarks/results/frontier-lab-951017/science/dataset-release/validation.jsonl,novo,resultados gerados,0,,0
-benchmarks/results/frontier-lab-951017/science/engineering_report/document.html,novo,resultados gerados,38,38,2976
-benchmarks/results/frontier-lab-951017/science/engineering_report/document.json,novo,resultados gerados,1,,2636
-benchmarks/results/frontier-lab-951017/science/engineering_report/document.pdf,novo,resultados gerados,,,50409
-benchmarks/results/frontier-lab-951017/science/engineering_report/document.tex,novo,resultados gerados,53,,2765
-benchmarks/results/frontier-lab-951017/science/engineering_report/document.typ,novo,resultados gerados,60,,2901
-benchmarks/results/frontier-lab-951017/science/engineering_report/evidence/6a3ffb90d9449d43e21b68f32af5401aec416639a9d79e73feea8249b6f5e834.json,novo,resultados gerados,1,,5574
-benchmarks/results/frontier-lab-951017/science/engineering_report/evidence/9c5acec0437fce273798a9f22d1e243c36790ae477a87b6bba72adca5b04ab0e.json,novo,resultados gerados,1,,3241
-benchmarks/results/frontier-lab-951017/science/engineering_report/evidence/9eed1c8826a38cf24654fee24f84512a9fcfc8d5b56fd7a09114a957dcc6088b.json,novo,resultados gerados,1,,1732
-benchmarks/results/frontier-lab-951017/science/engineering_report/evidence/b63ec06bf5dc75bcd400f97097748a1a147898639c3de64b42a7642124c39cb3.json,novo,resultados gerados,1,,346
-benchmarks/results/frontier-lab-951017/science/engineering_report/figures/f3261dfff008a68ee41216c84039bf0c63d89bbc2619104b99abfeee2d81cfc2.png,novo,resultados gerados,,,20428
-benchmarks/results/frontier-lab-951017/science/engineering_report/manifest.json,novo,resultados gerados,1,,1914
-benchmarks/results/frontier-lab-951017/science/federation.json,novo,resultados gerados,1,,346
-benchmarks/results/frontier-lab-951017/science/formal/binding.json,novo,resultados gerados,1,,1056
-benchmarks/results/frontier-lab-951017/science/formal/certificate.json,novo,resultados gerados,1,,2853
-benchmarks/results/frontier-lab-951017/science/formal/lake-manifest.json,novo,resultados gerados,96,,3134
-benchmarks/results/frontier-lab-951017/science/formal/lakefile.toml,novo,resultados gerados,13,,183
-benchmarks/results/frontier-lab-951017/science/formal/lean-toolchain,novo,resultados gerados,1,,25
-benchmarks/results/frontier-lab-951017/science/formal/manifest.json,novo,resultados gerados,1,,1321
-benchmarks/results/frontier-lab-951017/science/formal/proof.lean,novo,resultados gerados,12,8,428
-benchmarks/results/frontier-lab-951017/science/formal/question.json,novo,resultados gerados,1,,57
-benchmarks/results/frontier-lab-951017/science/formal/statement.json,novo,resultados gerados,1,,509
-benchmarks/results/frontier-lab-951017/science/manifest.json,novo,resultados gerados,1,,9938
-benchmarks/results/frontier-lab-951017/science/nist.json,novo,resultados gerados,1,,1732
-benchmarks/results/frontier-lab-951017/science/peer-1.sqlite3,novo,resultados gerados,,,32768
-benchmarks/results/frontier-lab-951017/science/peer-2.sqlite3,novo,resultados gerados,,,32768
-benchmarks/results/frontier-lab-951017/science/rational-integrals.json,novo,resultados gerados,1,,1908
-benchmarks/results/frontier-lab-951017/science/records.jsonl,novo,resultados gerados,4,,90439
-benchmarks/results/frontier-lab-951017/science/records.parquet,novo,resultados gerados,,,33743
-benchmarks/results/frontier-lab-951017/science/records.sqlite3,novo,resultados gerados,,,122880
-benchmarks/results/frontier-lab-951017/science/research_paper/document.html,novo,resultados gerados,28,28,2144
-benchmarks/results/frontier-lab-951017/science/research_paper/document.json,novo,resultados gerados,1,,1905
-benchmarks/results/frontier-lab-951017/science/research_paper/document.pdf,novo,resultados gerados,,,44846
-benchmarks/results/frontier-lab-951017/science/research_paper/document.tex,novo,resultados gerados,39,,1965
-benchmarks/results/frontier-lab-951017/science/research_paper/document.typ,novo,resultados gerados,50,,2105
-benchmarks/results/frontier-lab-951017/science/research_paper/evidence/6a3ffb90d9449d43e21b68f32af5401aec416639a9d79e73feea8249b6f5e834.json,novo,resultados gerados,1,,5574
-benchmarks/results/frontier-lab-951017/science/research_paper/evidence/9c5acec0437fce273798a9f22d1e243c36790ae477a87b6bba72adca5b04ab0e.json,novo,resultados gerados,1,,3241
-benchmarks/results/frontier-lab-951017/science/research_paper/evidence/9eed1c8826a38cf24654fee24f84512a9fcfc8d5b56fd7a09114a957dcc6088b.json,novo,resultados gerados,1,,1732
-benchmarks/results/frontier-lab-951017/science/research_paper/evidence/b63ec06bf5dc75bcd400f97097748a1a147898639c3de64b42a7642124c39cb3.json,novo,resultados gerados,1,,346
-benchmarks/results/frontier-lab-951017/science/research_paper/figures/f3261dfff008a68ee41216c84039bf0c63d89bbc2619104b99abfeee2d81cfc2.png,novo,resultados gerados,,,20428
-benchmarks/results/frontier-lab-951017/science/research_paper/manifest.json,novo,resultados gerados,1,,1914
-benchmarks/results/frontier-lab-951017/science/scene-0/manifest.json,novo,resultados gerados,1,,382
-benchmarks/results/frontier-lab-951017/science/scene-0/scene.json,novo,resultados gerados,1,,10563
-benchmarks/results/frontier-lab-951017/science/scene-0/scene.png,novo,resultados gerados,,,20428
-benchmarks/results/frontier-lab-951017/science/scene-0/scene.svg,novo,resultados gerados,123,,28922
-benchmarks/results/frontier-lab-951017/science/scene-0/verification.json,novo,resultados gerados,1,,532
-benchmarks/results/frontier-lab-951017/science/scene-1/manifest.json,novo,resultados gerados,1,,382
-benchmarks/results/frontier-lab-951017/science/scene-1/scene.json,novo,resultados gerados,1,,7446
-benchmarks/results/frontier-lab-951017/science/scene-1/scene.png,novo,resultados gerados,,,18505
-benchmarks/results/frontier-lab-951017/science/scene-1/scene.svg,novo,resultados gerados,230,,34750
-benchmarks/results/frontier-lab-951017/science/scene-1/verification.json,novo,resultados gerados,1,,532
-benchmarks/results/frontier-lab-951017/science/scene-2/manifest.json,novo,resultados gerados,1,,382
-benchmarks/results/frontier-lab-951017/science/scene-2/scene.json,novo,resultados gerados,1,,22733
-benchmarks/results/frontier-lab-951017/science/scene-2/scene.png,novo,resultados gerados,,,36421
-benchmarks/results/frontier-lab-951017/science/scene-2/scene.svg,novo,resultados gerados,430,,69887
-benchmarks/results/frontier-lab-951017/science/scene-2/verification.json,novo,resultados gerados,1,,532
-benchmarks/results/frontier-lab-951017/science/scene-3/manifest.json,novo,resultados gerados,1,,382
-benchmarks/results/frontier-lab-951017/science/scene-3/scene.json,novo,resultados gerados,1,,1034
-benchmarks/results/frontier-lab-951017/science/scene-3/scene.png,novo,resultados gerados,,,13177
-benchmarks/results/frontier-lab-951017/science/scene-3/scene.svg,novo,resultados gerados,161,,14979
-benchmarks/results/frontier-lab-951017/science/scene-3/verification.json,novo,resultados gerados,1,,1310
-benchmarks/results/frontier-lab-951017/science/scene-4/manifest.json,novo,resultados gerados,1,,382
-benchmarks/results/frontier-lab-951017/science/scene-4/scene.json,novo,resultados gerados,1,,1128
-benchmarks/results/frontier-lab-951017/science/scene-4/scene.png,novo,resultados gerados,,,14095
-benchmarks/results/frontier-lab-951017/science/scene-4/scene.svg,novo,resultados gerados,37,,5564
-benchmarks/results/frontier-lab-951017/science/scene-4/verification.json,novo,resultados gerados,1,,1553
-benchmarks/results/frontier-lab-951017/science/scene-5/manifest.json,novo,resultados gerados,1,,382
-benchmarks/results/frontier-lab-951017/science/scene-5/scene.json,novo,resultados gerados,1,,918
-benchmarks/results/frontier-lab-951017/science/scene-5/scene.png,novo,resultados gerados,,,13550
-benchmarks/results/frontier-lab-951017/science/scene-5/scene.svg,novo,resultados gerados,160,,14635
-benchmarks/results/frontier-lab-951017/science/scene-5/verification.json,novo,resultados gerados,1,,1136
-benchmarks/results/frontier-lab-951017/science/summary.json,novo,resultados gerados,1,,744
-benchmarks/results/frontier-lab-951017/science/teaching/document.html,novo,resultados gerados,31,31,2289
-benchmarks/results/frontier-lab-951017/science/teaching/document.json,novo,resultados gerados,1,,2100
-benchmarks/results/frontier-lab-951017/science/teaching/document.pdf,novo,resultados gerados,,,46551
-benchmarks/results/frontier-lab-951017/science/teaching/document.tex,novo,resultados gerados,42,,2110
-benchmarks/results/frontier-lab-951017/science/teaching/document.typ,novo,resultados gerados,55,,2267
-benchmarks/results/frontier-lab-951017/science/teaching/evidence/6a3ffb90d9449d43e21b68f32af5401aec416639a9d79e73feea8249b6f5e834.json,novo,resultados gerados,1,,5574
-benchmarks/results/frontier-lab-951017/science/teaching/evidence/9c5acec0437fce273798a9f22d1e243c36790ae477a87b6bba72adca5b04ab0e.json,novo,resultados gerados,1,,3241
-benchmarks/results/frontier-lab-951017/science/teaching/evidence/9eed1c8826a38cf24654fee24f84512a9fcfc8d5b56fd7a09114a957dcc6088b.json,novo,resultados gerados,1,,1732
-benchmarks/results/frontier-lab-951017/science/teaching/evidence/b63ec06bf5dc75bcd400f97097748a1a147898639c3de64b42a7642124c39cb3.json,novo,resultados gerados,1,,346
-benchmarks/results/frontier-lab-951017/science/teaching/figures/f3261dfff008a68ee41216c84039bf0c63d89bbc2619104b99abfeee2d81cfc2.png,novo,resultados gerados,,,20428
-benchmarks/results/frontier-lab-951017/science/teaching/manifest.json,novo,resultados gerados,1,,1914
-benchmarks/results/frontier-lab-951017/summary.json,novo,resultados gerados,1,,3932
-benchmarks/results/frontier-lab-951017/tests.xml,novo,resultados gerados,1,,63451
-benchmarks/results/frontier-lab-951017/wheel-validation.json,novo,resultados gerados,8,,229
-benchmarks/results/frontier-lab-951017/workload.log,novo,resultados gerados,0,,0
-benchmarks/results/frontier-lab-951017/workload/commitments.json,novo,resultados gerados,1,,322
-benchmarks/results/frontier-lab-951017/workload/dataset/card.json,novo,resultados gerados,1,,601
-benchmarks/results/frontier-lab-951017/workload/dataset/manifest.json,novo,resultados gerados,1,,644
-benchmarks/results/frontier-lab-951017/workload/dataset/records.jsonl,novo,resultados gerados,192,,363132
-benchmarks/results/frontier-lab-951017/workload/dataset/records.parquet,novo,resultados gerados,,,54385
-benchmarks/results/frontier-lab-951017/workload/dataset/test.jsonl,novo,resultados gerados,48,,184397
-benchmarks/results/frontier-lab-951017/workload/dataset/train.jsonl,novo,resultados gerados,96,,117157
-benchmarks/results/frontier-lab-951017/workload/dataset/unassigned.jsonl,novo,resultados gerados,0,,0
-benchmarks/results/frontier-lab-951017/workload/dataset/validation.jsonl,novo,resultados gerados,48,,61578
-benchmarks/results/frontier-lab-951017/workload/evaluations/test-exact-reference.json,novo,resultados gerados,1,,72517
-benchmarks/results/frontier-lab-951017/workload/evaluations/test-nearest-all.json,novo,resultados gerados,1,,58530
-benchmarks/results/frontier-lab-951017/workload/evaluations/test-nearest-text.json,novo,resultados gerados,1,,58074
-benchmarks/results/frontier-lab-951017/workload/evaluations/validation-exact-reference.json,novo,resultados gerados,1,,63095
-benchmarks/results/frontier-lab-951017/workload/evaluations/validation-nearest-all.json,novo,resultados gerados,1,,62459
-benchmarks/results/frontier-lab-951017/workload/evaluations/validation-nearest-text.json,novo,resultados gerados,1,,60290
-benchmarks/results/frontier-lab-951017/workload/lineage.json,novo,resultados gerados,1,,44085
-benchmarks/results/frontier-lab-951017/workload/manifest.json,novo,resultados gerados,1,,1924
-benchmarks/results/frontier-lab-951017/workload/models/nearest-all.json,novo,resultados gerados,1,,189043
-benchmarks/results/frontier-lab-951017/workload/models/nearest-text.json,novo,resultados gerados,1,,82003
-benchmarks/results/frontier-lab-951017/workload/protocol.json,novo,resultados gerados,1,,789
-benchmarks/results/frontier-lab-951017/workload/summary.json,novo,resultados gerados,1,,2705
-benchmarks/results/frontier-lab-control-failure-23117.json,novo,resultados gerados,103,,3865
-benchmarks/results/frontier-lab-development-951017.json,novo,resultados gerados,86,,2397
-benchmarks/results/frontier-lab-pre-control-fix-951017.json,novo,resultados gerados,149,,4970
+benchmarks/results/frontier-lab-951017/assurance-peer.sqlite3,existente,resultados gerados,,,32768
+benchmarks/results/frontier-lab-951017/assurance.json,existente,resultados gerados,1,,1049
+benchmarks/results/frontier-lab-951017/assurance.log,existente,resultados gerados,0,,0
+benchmarks/results/frontier-lab-951017/domain-results.json,existente,resultados gerados,1,,21080
+benchmarks/results/frontier-lab-951017/independent-analysis.json,existente,resultados gerados,1,,31601
+benchmarks/results/frontier-lab-951017/independent.json,existente,resultados gerados,1,,49992
+benchmarks/results/frontier-lab-951017/independent.log,existente,resultados gerados,0,,0
+benchmarks/results/frontier-lab-951017/journal.json,existente,resultados gerados,1,,1518
+benchmarks/results/frontier-lab-951017/local-validation.json,existente,resultados gerados,13,,473
+benchmarks/results/frontier-lab-951017/manifest.json,existente,resultados gerados,146,,15867
+benchmarks/results/frontier-lab-951017/maturity-assessment.json,existente,resultados gerados,189,,4875
+benchmarks/results/frontier-lab-951017/portfolio.log,existente,resultados gerados,1,,1715
+benchmarks/results/frontier-lab-951017/portfolio/campaign-alternate.sqlite3,existente,resultados gerados,,,53248
+benchmarks/results/frontier-lab-951017/portfolio/campaign-exact.sqlite3,existente,resultados gerados,,,53248
+benchmarks/results/frontier-lab-951017/portfolio/protocol.json,existente,resultados gerados,1,,527
+benchmarks/results/frontier-lab-951017/portfolio/run-alternate.json,existente,resultados gerados,1,,40555
+benchmarks/results/frontier-lab-951017/portfolio/run-exact.json,existente,resultados gerados,1,,39913
+benchmarks/results/frontier-lab-951017/portfolio/summary.json,existente,resultados gerados,1,,1599
+benchmarks/results/frontier-lab-951017/protocol.json,existente,resultados gerados,1,,51680
+benchmarks/results/frontier-lab-951017/science.log,existente,resultados gerados,1,,785
+benchmarks/results/frontier-lab-951017/science/agent-resumed.json,existente,resultados gerados,1,,3241
+benchmarks/results/frontier-lab-951017/science/agent.sqlite3,existente,resultados gerados,,,12288
+benchmarks/results/frontier-lab-951017/science/assets/figures/f3261dfff008a68ee41216c84039bf0c63d89bbc2619104b99abfeee2d81cfc2.png,existente,resultados gerados,,,20428
+benchmarks/results/frontier-lab-951017/science/basis-discovery.json,existente,resultados gerados,1,,5574
+benchmarks/results/frontier-lab-951017/science/bibliography.json,existente,resultados gerados,1,,1497
+benchmarks/results/frontier-lab-951017/science/calculation.json,existente,resultados gerados,1,,551
+benchmarks/results/frontier-lab-951017/science/calculator-catalog.json,existente,resultados gerados,1,,5914
+benchmarks/results/frontier-lab-951017/science/dataset-release/card.json,existente,resultados gerados,1,,549
+benchmarks/results/frontier-lab-951017/science/dataset-release/manifest.json,existente,resultados gerados,1,,644
+benchmarks/results/frontier-lab-951017/science/dataset-release/records.jsonl,existente,resultados gerados,4,,90439
+benchmarks/results/frontier-lab-951017/science/dataset-release/records.parquet,existente,resultados gerados,,,30328
+benchmarks/results/frontier-lab-951017/science/dataset-release/test.jsonl,existente,resultados gerados,0,,0
+benchmarks/results/frontier-lab-951017/science/dataset-release/train.jsonl,existente,resultados gerados,4,,90439
+benchmarks/results/frontier-lab-951017/science/dataset-release/unassigned.jsonl,existente,resultados gerados,0,,0
+benchmarks/results/frontier-lab-951017/science/dataset-release/validation.jsonl,existente,resultados gerados,0,,0
+benchmarks/results/frontier-lab-951017/science/engineering_report/document.html,existente,resultados gerados,38,38,2976
+benchmarks/results/frontier-lab-951017/science/engineering_report/document.json,existente,resultados gerados,1,,2636
+benchmarks/results/frontier-lab-951017/science/engineering_report/document.pdf,existente,resultados gerados,,,50409
+benchmarks/results/frontier-lab-951017/science/engineering_report/document.tex,existente,resultados gerados,53,,2765
+benchmarks/results/frontier-lab-951017/science/engineering_report/document.typ,existente,resultados gerados,60,,2901
+benchmarks/results/frontier-lab-951017/science/engineering_report/evidence/6a3ffb90d9449d43e21b68f32af5401aec416639a9d79e73feea8249b6f5e834.json,existente,resultados gerados,1,,5574
+benchmarks/results/frontier-lab-951017/science/engineering_report/evidence/9c5acec0437fce273798a9f22d1e243c36790ae477a87b6bba72adca5b04ab0e.json,existente,resultados gerados,1,,3241
+benchmarks/results/frontier-lab-951017/science/engineering_report/evidence/9eed1c8826a38cf24654fee24f84512a9fcfc8d5b56fd7a09114a957dcc6088b.json,existente,resultados gerados,1,,1732
+benchmarks/results/frontier-lab-951017/science/engineering_report/evidence/b63ec06bf5dc75bcd400f97097748a1a147898639c3de64b42a7642124c39cb3.json,existente,resultados gerados,1,,346
+benchmarks/results/frontier-lab-951017/science/engineering_report/figures/f3261dfff008a68ee41216c84039bf0c63d89bbc2619104b99abfeee2d81cfc2.png,existente,resultados gerados,,,20428
+benchmarks/results/frontier-lab-951017/science/engineering_report/manifest.json,existente,resultados gerados,1,,1914
+benchmarks/results/frontier-lab-951017/science/federation.json,existente,resultados gerados,1,,346
+benchmarks/results/frontier-lab-951017/science/formal/binding.json,existente,resultados gerados,1,,1056
+benchmarks/results/frontier-lab-951017/science/formal/certificate.json,existente,resultados gerados,1,,2853
+benchmarks/results/frontier-lab-951017/science/formal/lake-manifest.json,existente,resultados gerados,96,,3134
+benchmarks/results/frontier-lab-951017/science/formal/lakefile.toml,existente,resultados gerados,13,,183
+benchmarks/results/frontier-lab-951017/science/formal/lean-toolchain,existente,resultados gerados,1,,25
+benchmarks/results/frontier-lab-951017/science/formal/manifest.json,existente,resultados gerados,1,,1321
+benchmarks/results/frontier-lab-951017/science/formal/proof.lean,existente,resultados gerados,12,8,428
+benchmarks/results/frontier-lab-951017/science/formal/question.json,existente,resultados gerados,1,,57
+benchmarks/results/frontier-lab-951017/science/formal/statement.json,existente,resultados gerados,1,,509
+benchmarks/results/frontier-lab-951017/science/manifest.json,existente,resultados gerados,1,,9938
+benchmarks/results/frontier-lab-951017/science/nist.json,existente,resultados gerados,1,,1732
+benchmarks/results/frontier-lab-951017/science/peer-1.sqlite3,existente,resultados gerados,,,32768
+benchmarks/results/frontier-lab-951017/science/peer-2.sqlite3,existente,resultados gerados,,,32768
+benchmarks/results/frontier-lab-951017/science/rational-integrals.json,existente,resultados gerados,1,,1908
+benchmarks/results/frontier-lab-951017/science/records.jsonl,existente,resultados gerados,4,,90439
+benchmarks/results/frontier-lab-951017/science/records.parquet,existente,resultados gerados,,,33743
+benchmarks/results/frontier-lab-951017/science/records.sqlite3,existente,resultados gerados,,,122880
+benchmarks/results/frontier-lab-951017/science/research_paper/document.html,existente,resultados gerados,28,28,2144
+benchmarks/results/frontier-lab-951017/science/research_paper/document.json,existente,resultados gerados,1,,1905
+benchmarks/results/frontier-lab-951017/science/research_paper/document.pdf,existente,resultados gerados,,,44846
+benchmarks/results/frontier-lab-951017/science/research_paper/document.tex,existente,resultados gerados,39,,1965
+benchmarks/results/frontier-lab-951017/science/research_paper/document.typ,existente,resultados gerados,50,,2105
+benchmarks/results/frontier-lab-951017/science/research_paper/evidence/6a3ffb90d9449d43e21b68f32af5401aec416639a9d79e73feea8249b6f5e834.json,existente,resultados gerados,1,,5574
+benchmarks/results/frontier-lab-951017/science/research_paper/evidence/9c5acec0437fce273798a9f22d1e243c36790ae477a87b6bba72adca5b04ab0e.json,existente,resultados gerados,1,,3241
+benchmarks/results/frontier-lab-951017/science/research_paper/evidence/9eed1c8826a38cf24654fee24f84512a9fcfc8d5b56fd7a09114a957dcc6088b.json,existente,resultados gerados,1,,1732
+benchmarks/results/frontier-lab-951017/science/research_paper/evidence/b63ec06bf5dc75bcd400f97097748a1a147898639c3de64b42a7642124c39cb3.json,existente,resultados gerados,1,,346
+benchmarks/results/frontier-lab-951017/science/research_paper/figures/f3261dfff008a68ee41216c84039bf0c63d89bbc2619104b99abfeee2d81cfc2.png,existente,resultados gerados,,,20428
+benchmarks/results/frontier-lab-951017/science/research_paper/manifest.json,existente,resultados gerados,1,,1914
+benchmarks/results/frontier-lab-951017/science/scene-0/manifest.json,existente,resultados gerados,1,,382
+benchmarks/results/frontier-lab-951017/science/scene-0/scene.json,existente,resultados gerados,1,,10563
+benchmarks/results/frontier-lab-951017/science/scene-0/scene.png,existente,resultados gerados,,,20428
+benchmarks/results/frontier-lab-951017/science/scene-0/scene.svg,existente,resultados gerados,123,,28922
+benchmarks/results/frontier-lab-951017/science/scene-0/verification.json,existente,resultados gerados,1,,532
+benchmarks/results/frontier-lab-951017/science/scene-1/manifest.json,existente,resultados gerados,1,,382
+benchmarks/results/frontier-lab-951017/science/scene-1/scene.json,existente,resultados gerados,1,,7446
+benchmarks/results/frontier-lab-951017/science/scene-1/scene.png,existente,resultados gerados,,,18505
+benchmarks/results/frontier-lab-951017/science/scene-1/scene.svg,existente,resultados gerados,230,,34750
+benchmarks/results/frontier-lab-951017/science/scene-1/verification.json,existente,resultados gerados,1,,532
+benchmarks/results/frontier-lab-951017/science/scene-2/manifest.json,existente,resultados gerados,1,,382
+benchmarks/results/frontier-lab-951017/science/scene-2/scene.json,existente,resultados gerados,1,,22733
+benchmarks/results/frontier-lab-951017/science/scene-2/scene.png,existente,resultados gerados,,,36421
+benchmarks/results/frontier-lab-951017/science/scene-2/scene.svg,existente,resultados gerados,430,,69887
+benchmarks/results/frontier-lab-951017/science/scene-2/verification.json,existente,resultados gerados,1,,532
+benchmarks/results/frontier-lab-951017/science/scene-3/manifest.json,existente,resultados gerados,1,,382
+benchmarks/results/frontier-lab-951017/science/scene-3/scene.json,existente,resultados gerados,1,,1034
+benchmarks/results/frontier-lab-951017/science/scene-3/scene.png,existente,resultados gerados,,,13177
+benchmarks/results/frontier-lab-951017/science/scene-3/scene.svg,existente,resultados gerados,161,,14979
+benchmarks/results/frontier-lab-951017/science/scene-3/verification.json,existente,resultados gerados,1,,1310
+benchmarks/results/frontier-lab-951017/science/scene-4/manifest.json,existente,resultados gerados,1,,382
+benchmarks/results/frontier-lab-951017/science/scene-4/scene.json,existente,resultados gerados,1,,1128
+benchmarks/results/frontier-lab-951017/science/scene-4/scene.png,existente,resultados gerados,,,14095
+benchmarks/results/frontier-lab-951017/science/scene-4/scene.svg,existente,resultados gerados,37,,5564
+benchmarks/results/frontier-lab-951017/science/scene-4/verification.json,existente,resultados gerados,1,,1553
+benchmarks/results/frontier-lab-951017/science/scene-5/manifest.json,existente,resultados gerados,1,,382
+benchmarks/results/frontier-lab-951017/science/scene-5/scene.json,existente,resultados gerados,1,,918
+benchmarks/results/frontier-lab-951017/science/scene-5/scene.png,existente,resultados gerados,,,13550
+benchmarks/results/frontier-lab-951017/science/scene-5/scene.svg,existente,resultados gerados,160,,14635
+benchmarks/results/frontier-lab-951017/science/scene-5/verification.json,existente,resultados gerados,1,,1136
+benchmarks/results/frontier-lab-951017/science/summary.json,existente,resultados gerados,1,,744
+benchmarks/results/frontier-lab-951017/science/teaching/document.html,existente,resultados gerados,31,31,2289
+benchmarks/results/frontier-lab-951017/science/teaching/document.json,existente,resultados gerados,1,,2100
+benchmarks/results/frontier-lab-951017/science/teaching/document.pdf,existente,resultados gerados,,,46551
+benchmarks/results/frontier-lab-951017/science/teaching/document.tex,existente,resultados gerados,42,,2110
+benchmarks/results/frontier-lab-951017/science/teaching/document.typ,existente,resultados gerados,55,,2267
+benchmarks/results/frontier-lab-951017/science/teaching/evidence/6a3ffb90d9449d43e21b68f32af5401aec416639a9d79e73feea8249b6f5e834.json,existente,resultados gerados,1,,5574
+benchmarks/results/frontier-lab-951017/science/teaching/evidence/9c5acec0437fce273798a9f22d1e243c36790ae477a87b6bba72adca5b04ab0e.json,existente,resultados gerados,1,,3241
+benchmarks/results/frontier-lab-951017/science/teaching/evidence/9eed1c8826a38cf24654fee24f84512a9fcfc8d5b56fd7a09114a957dcc6088b.json,existente,resultados gerados,1,,1732
+benchmarks/results/frontier-lab-951017/science/teaching/evidence/b63ec06bf5dc75bcd400f97097748a1a147898639c3de64b42a7642124c39cb3.json,existente,resultados gerados,1,,346
+benchmarks/results/frontier-lab-951017/science/teaching/figures/f3261dfff008a68ee41216c84039bf0c63d89bbc2619104b99abfeee2d81cfc2.png,existente,resultados gerados,,,20428
+benchmarks/results/frontier-lab-951017/science/teaching/manifest.json,existente,resultados gerados,1,,1914
+benchmarks/results/frontier-lab-951017/summary.json,existente,resultados gerados,1,,3932
+benchmarks/results/frontier-lab-951017/tests.xml,existente,resultados gerados,1,,63451
+benchmarks/results/frontier-lab-951017/wheel-validation.json,existente,resultados gerados,8,,229
+benchmarks/results/frontier-lab-951017/workload.log,existente,resultados gerados,0,,0
+benchmarks/results/frontier-lab-951017/workload/commitments.json,existente,resultados gerados,1,,322
+benchmarks/results/frontier-lab-951017/workload/dataset/card.json,existente,resultados gerados,1,,601
+benchmarks/results/frontier-lab-951017/workload/dataset/manifest.json,existente,resultados gerados,1,,644
+benchmarks/results/frontier-lab-951017/workload/dataset/records.jsonl,existente,resultados gerados,192,,363132
+benchmarks/results/frontier-lab-951017/workload/dataset/records.parquet,existente,resultados gerados,,,54385
+benchmarks/results/frontier-lab-951017/workload/dataset/test.jsonl,existente,resultados gerados,48,,184397
+benchmarks/results/frontier-lab-951017/workload/dataset/train.jsonl,existente,resultados gerados,96,,117157
+benchmarks/results/frontier-lab-951017/workload/dataset/unassigned.jsonl,existente,resultados gerados,0,,0
+benchmarks/results/frontier-lab-951017/workload/dataset/validation.jsonl,existente,resultados gerados,48,,61578
+benchmarks/results/frontier-lab-951017/workload/evaluations/test-exact-reference.json,existente,resultados gerados,1,,72517
+benchmarks/results/frontier-lab-951017/workload/evaluations/test-nearest-all.json,existente,resultados gerados,1,,58530
+benchmarks/results/frontier-lab-951017/workload/evaluations/test-nearest-text.json,existente,resultados gerados,1,,58074
+benchmarks/results/frontier-lab-951017/workload/evaluations/validation-exact-reference.json,existente,resultados gerados,1,,63095
+benchmarks/results/frontier-lab-951017/workload/evaluations/validation-nearest-all.json,existente,resultados gerados,1,,62459
+benchmarks/results/frontier-lab-951017/workload/evaluations/validation-nearest-text.json,existente,resultados gerados,1,,60290
+benchmarks/results/frontier-lab-951017/workload/lineage.json,existente,resultados gerados,1,,44085
+benchmarks/results/frontier-lab-951017/workload/manifest.json,existente,resultados gerados,1,,1924
+benchmarks/results/frontier-lab-951017/workload/models/nearest-all.json,existente,resultados gerados,1,,189043
+benchmarks/results/frontier-lab-951017/workload/models/nearest-text.json,existente,resultados gerados,1,,82003
+benchmarks/results/frontier-lab-951017/workload/protocol.json,existente,resultados gerados,1,,789
+benchmarks/results/frontier-lab-951017/workload/summary.json,existente,resultados gerados,1,,2705
+benchmarks/results/frontier-lab-control-failure-23117.json,existente,resultados gerados,103,,3865
+benchmarks/results/frontier-lab-development-951017.json,existente,resultados gerados,86,,2397
+benchmarks/results/frontier-lab-pre-control-fix-951017.json,existente,resultados gerados,149,,4970
 benchmarks/results/independent-solvers-2026-10.json,existente,resultados gerados,1,,37725
-benchmarks/results/maturity-expansion/README.md,novo,resultados gerados,43,,2878
-benchmarks/results/maturity-expansion/assessment.json,novo,resultados gerados,893,,77317
-benchmarks/results/maturity-expansion/ci.json,novo,resultados gerados,104,,3146
-benchmarks/results/maturity-expansion/integrated-latex.json,novo,resultados gerados,1,,744
-benchmarks/results/maturity-expansion/integrated.json,novo,resultados gerados,1,,744
-benchmarks/results/maturity-expansion/longley.json,novo,resultados gerados,42,,1910
-benchmarks/results/maturity-expansion/multimodal/comparisons.json,novo,resultados gerados,80,,2203
-benchmarks/results/maturity-expansion/multimodal/corpus.json,novo,resultados gerados,1,,4402688
-benchmarks/results/maturity-expansion/multimodal/protocol.json,novo,resultados gerados,1,,26020
-benchmarks/results/maturity-expansion/multimodal/report.json,novo,resultados gerados,1,,65585
-benchmarks/results/maturity-expansion/multimodal/seed-11-equation-image.npz,novo,resultados gerados,,,103409
-benchmarks/results/maturity-expansion/multimodal/seed-11-equation.npz,novo,resultados gerados,,,103304
-benchmarks/results/maturity-expansion/multimodal/seed-11-image.npz,novo,resultados gerados,,,103255
-benchmarks/results/maturity-expansion/multimodal/seed-23-equation-image.npz,novo,resultados gerados,,,103429
-benchmarks/results/maturity-expansion/multimodal/seed-23-equation.npz,novo,resultados gerados,,,103321
-benchmarks/results/maturity-expansion/multimodal/seed-23-image.npz,novo,resultados gerados,,,103251
-benchmarks/results/maturity-expansion/multimodal/seed-37-equation-image.npz,novo,resultados gerados,,,103427
-benchmarks/results/maturity-expansion/multimodal/seed-37-equation.npz,novo,resultados gerados,,,103318
-benchmarks/results/maturity-expansion/multimodal/seed-37-image.npz,novo,resultados gerados,,,103254
-benchmarks/results/maturity-expansion/portfolio/protocol.json,novo,resultados gerados,1,,527
-benchmarks/results/maturity-expansion/portfolio/run-alternate.json,novo,resultados gerados,1,,40547
-benchmarks/results/maturity-expansion/portfolio/run-exact.json,novo,resultados gerados,1,,39919
-benchmarks/results/maturity-expansion/portfolio/summary.json,novo,resultados gerados,1,,1599
-benchmarks/results/maturity-expansion/scientific-acceptance.json,novo,resultados gerados,388,,12149
+benchmarks/results/maturity-expansion/README.md,existente,resultados gerados,43,,2878
+benchmarks/results/maturity-expansion/assessment.json,existente,resultados gerados,893,,77317
+benchmarks/results/maturity-expansion/ci.json,existente,resultados gerados,104,,3146
+benchmarks/results/maturity-expansion/integrated-latex.json,existente,resultados gerados,1,,744
+benchmarks/results/maturity-expansion/integrated.json,existente,resultados gerados,1,,744
+benchmarks/results/maturity-expansion/longley.json,existente,resultados gerados,42,,1910
+benchmarks/results/maturity-expansion/multimodal/comparisons.json,existente,resultados gerados,80,,2203
+benchmarks/results/maturity-expansion/multimodal/corpus.json,existente,resultados gerados,1,,4402688
+benchmarks/results/maturity-expansion/multimodal/protocol.json,existente,resultados gerados,1,,26020
+benchmarks/results/maturity-expansion/multimodal/report.json,existente,resultados gerados,1,,65585
+benchmarks/results/maturity-expansion/multimodal/seed-11-equation-image.npz,existente,resultados gerados,,,103409
+benchmarks/results/maturity-expansion/multimodal/seed-11-equation.npz,existente,resultados gerados,,,103304
+benchmarks/results/maturity-expansion/multimodal/seed-11-image.npz,existente,resultados gerados,,,103255
+benchmarks/results/maturity-expansion/multimodal/seed-23-equation-image.npz,existente,resultados gerados,,,103429
+benchmarks/results/maturity-expansion/multimodal/seed-23-equation.npz,existente,resultados gerados,,,103321
+benchmarks/results/maturity-expansion/multimodal/seed-23-image.npz,existente,resultados gerados,,,103251
+benchmarks/results/maturity-expansion/multimodal/seed-37-equation-image.npz,existente,resultados gerados,,,103427
+benchmarks/results/maturity-expansion/multimodal/seed-37-equation.npz,existente,resultados gerados,,,103318
+benchmarks/results/maturity-expansion/multimodal/seed-37-image.npz,existente,resultados gerados,,,103254
+benchmarks/results/maturity-expansion/portfolio/protocol.json,existente,resultados gerados,1,,527
+benchmarks/results/maturity-expansion/portfolio/run-alternate.json,existente,resultados gerados,1,,40547
+benchmarks/results/maturity-expansion/portfolio/run-exact.json,existente,resultados gerados,1,,39919
+benchmarks/results/maturity-expansion/portfolio/summary.json,existente,resultados gerados,1,,1599
+benchmarks/results/maturity-expansion/scientific-acceptance.json,existente,resultados gerados,388,,12149
 benchmarks/results/vision-acceptance-2026-10.json,existente,resultados gerados,346,,11334
 benchmarks/tasks/README.md,existente,infraestrutura/outros,6,,357
-description.md,alterado,infraestrutura/outros,40,,2050
+description.md,existente,infraestrutura/outros,40,,2050
 docs/AI_HANDOFF.md,existente,documentação,55,,8050
 docs/ARCHITECTURE_AND_ACCEPTANCE.md,existente,documentação,35,,5295
 docs/AUTONOMOUS_RESEARCH_LAB.md,existente,documentação,48,,2357
@@ -228,7 +228,7 @@ docs/DATA_GOVERNANCE.md,existente,documentação,5,,979
 docs/DECISIONS/README.md,existente,documentação,3,,632
 docs/DESKTOP.md,existente,documentação,22,,3073
 docs/ESTIMATIVA_EXECUCAO.md,existente,documentação,27,,3979
-docs/FRONTIER_LAB_SIMULATION.md,novo,documentação,96,,5804
+docs/FRONTIER_LAB_SIMULATION.md,existente,documentação,96,,5804
 docs/GUIA_DA_IMPLEMENTACAO.md,existente,documentação,45,,6894
 docs/IMPLEMENTATION_STATUS.md,existente,documentação,29,,2653
 docs/INCIDENT_RESPONSE.md,existente,documentação,20,,1155
@@ -243,32 +243,37 @@ docs/PHASES_1_2.md,existente,documentação,243,,15683
 docs/PHASES_3_4.md,existente,documentação,227,,13632
 docs/PHASES_5_8.md,existente,documentação,184,,10960
 docs/PHASES_9_12.md,existente,documentação,159,,9669
-docs/PHASES_MATURITY_EXPANSION.md,novo,documentação,60,,4023
+docs/PHASES_MATURITY_EXPANSION.md,existente,documentação,60,,4023
 docs/PLANO_MESTRE_2026_2056.md,existente,documentação,300,,34882
 docs/PUBLISHING.md,existente,documentação,10,,2183
-docs/README.md,novo,documentação,39,,2472
+docs/README.md,alterado,documentação,42,,2672
 docs/RELEASE_POLICY.md,existente,documentação,46,,2282
 docs/ROADMAP_GLOBAL_RESEARCH.md,existente,documentação,179,,18589
 docs/SCIENTIFIC_CYCLE.md,existente,documentação,152,,9807
 docs/THREAT_MODEL.md,existente,documentação,12,,1292
 docs/UPLOAD_REMAINING_ARCHIVE.md,existente,documentação,37,,2633
+docs/acceptance/evidence_matrix.json,novo,documentação,2922,,118894
+docs/acceptance/phase_profiles.md,novo,documentação,80,,4881
 docs/adr/0001-product-scope.md,existente,documentação,16,,949
 docs/adr/0002-canonical-ast.md,existente,documentação,19,,1194
 docs/architecture/current-modules.md,existente,documentação,23,,2011
-docs/architecture/repository-layout.md,novo,documentação,39,,2413
+docs/architecture/repository-layout.md,existente,documentação,39,,2413
 docs/architecture/vision-phases.md,existente,documentação,200,,12192
 docs/audits/BASELINE_2026_10.md,existente,documentação,66,,3996
-docs/audits/FRONTIER_LAB_SIMULATION_2026_10_15.md,novo,documentação,136,,8942
-docs/audits/PHASES_1_12_COMPLETION_BACKLOG.json,novo,documentação,944,,47274
-docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md,novo,documentação,1043,,54531
-docs/audits/PHASES_1_12_PROGRESS_2026_10_15.md,novo,documentação,124,,10641
-docs/audits/PHASES_1_12_PROGRESS_70.md,novo,documentação,205,,13798
-docs/audits/PHASES_1_12_PROGRESS_AFTER_95_REQUEST.md,novo,documentação,103,,5400
-docs/audits/PR_SCIENTIFIC_MATURITY.md,novo,documentação,61,,3653
+docs/audits/FRONTIER_LAB_SIMULATION_2026_10_15.md,existente,documentação,136,,8942
+docs/audits/P0_INTEGRATION_2026_10_15.md,novo,documentação,52,,3110
+docs/audits/PHASES_1_12_COMPLETION_BACKLOG.json,existente,documentação,944,,47274
+docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md,existente,documentação,1043,,54531
+docs/audits/PHASES_1_12_PROGRESS_2026_10_15.md,existente,documentação,124,,10641
+docs/audits/PHASES_1_12_PROGRESS_70.md,existente,documentação,205,,13798
+docs/audits/PHASES_1_12_PROGRESS_AFTER_95_REQUEST.md,existente,documentação,103,,5400
+docs/audits/PR_SCIENTIFIC_MATURITY.md,existente,documentação,61,,3653
 docs/audits/SCIENTIFIC_ACCEPTANCE_2026_10.md,existente,documentação,134,,7893
-docs/history/DESCRIPTION_ORIGINAL.md,novo,histórico,3362,,75325
-docs/history/README.md,novo,histórico,11,,674
-examples/README.md,novo,infraestrutura/outros,19,,720
+docs/history/DESCRIPTION_ORIGINAL.md,existente,histórico,3362,,75325
+docs/history/README.md,existente,histórico,11,,674
+docs/strategy/NABLA_2056_ROTEIRO_MESTRE.md,novo,documentação,474,,56299
+docs/strategy/roadmap_2026_2056.json,novo,documentação,43,,1068
+examples/README.md,existente,infraestrutura/outros,19,,720
 examples/first_problem.py,existente,infraestrutura/outros,19,14,785
 examples/orbit_report.py,existente,infraestrutura/outros,13,9,442
 examples/scientific_phases_5_8.py,existente,infraestrutura/outros,11,10,476
@@ -409,7 +414,7 @@ legacy/single_file/NablaMath_All_Modules_LaTeX_Professional.py,existente,histór
 legacy/single_file/nablamath_all_in_one_professional.py,existente,histórico,1267,1042,59571
 legacy/single_file/nablamath_orbital_professional_single.py,existente,histórico,1348,1118,64586
 legacy/single_file/nablarender_v07_single_file_report.py,existente,histórico,933,764,47341
-math.txt,alterado,bundle gerado,22472,,1114937
+math.txt,alterado,bundle gerado,22750,,1126456
 packaging/windows/nablamath.iss,existente,infraestrutura/outros,24,,928
 protocol/__init__.py,existente,infraestrutura/outros,1,1,87
 protocol/canonical/encoding.md,existente,infraestrutura/outros,6,,367
@@ -422,7 +427,7 @@ protocol/schema/nabla-model-v1.json,existente,infraestrutura/outros,16,,725
 protocol/schema/nabla-object-v1.json,existente,infraestrutura/outros,21,,985
 protocol/schema/nabla-receipt-v1.json,existente,infraestrutura/outros,17,,857
 protocol/schema/nabla-task-v1.json,existente,infraestrutura/outros,24,,1133
-pyproject.toml,alterado,infraestrutura/outros,43,,1258
+pyproject.toml,existente,infraestrutura/outros,43,,1258
 scripts/import_archive.py,existente,infraestrutura/outros,113,105,5228
 scripts/setup_formal.sh,existente,infraestrutura/outros,31,28,1519
 sdk/c/README.md,existente,infraestrutura/outros,4,,190
@@ -450,8 +455,8 @@ services/publisher/manifest.py,existente,infraestrutura/outros,5,3,215
 services/worker/__init__.py,existente,infraestrutura/outros,3,2,48
 services/worker/agent.py,existente,infraestrutura/outros,17,13,683
 services/worker/checkpoint.py,existente,infraestrutura/outros,20,15,729
-setup.cmd,existente,infraestrutura/outros,3,3,103
-setup.ps1,existente,infraestrutura/outros,21,21,862
+setup.cmd,existente,infraestrutura/outros,3,3,106
+setup.ps1,existente,infraestrutura/outros,21,21,883
 setup.sh,existente,infraestrutura/outros,6,5,182
 src/nablamath/__init__.py,existente,fonte,9,7,495
 src/nablamath/adapters/__init__.py,existente,fonte,3,2,101
@@ -462,13 +467,13 @@ src/nablamath/adapters/registry.py,existente,fonte,37,25,1022
 src/nablamath/adapters/scipy.py,existente,fonte,35,27,1236
 src/nablamath/adapters/sympy.py,existente,fonte,45,34,1578
 src/nablamath/agents/__init__.py,existente,fonte,10,9,496
-src/nablamath/agents/bindings.py,novo,fonte,51,47,2304
+src/nablamath/agents/bindings.py,existente,fonte,51,47,2304
 src/nablamath/agents/budget.py,existente,fonte,13,9,394
 src/nablamath/agents/permissions.py,existente,fonte,23,20,1084
-src/nablamath/agents/planner.py,alterado,fonte,103,96,5791
-src/nablamath/agents/proposals.py,alterado,fonte,64,54,2576
+src/nablamath/agents/planner.py,existente,fonte,103,96,5791
+src/nablamath/agents/proposals.py,existente,fonte,64,54,2576
 src/nablamath/agents/protocol.py,existente,fonte,21,15,706
-src/nablamath/agents/run_store.py,novo,fonte,37,33,1835
+src/nablamath/agents/run_store.py,existente,fonte,37,33,1835
 src/nablamath/agents/sandbox.py,existente,fonte,5,3,228
 src/nablamath/agents/scientific_teams.py,existente,fonte,62,53,3202
 src/nablamath/agents/selector.py,existente,fonte,31,22,1028
@@ -478,14 +483,14 @@ src/nablamath/autodiff/__init__.py,existente,fonte,8,7,372
 src/nablamath/autodiff/api.py,existente,fonte,240,213,13724
 src/nablamath/autodiff/tensor.py,existente,fonte,283,265,15427
 src/nablamath/benchmarks/__init__.py,existente,fonte,1,1,87
-src/nablamath/benchmarks/analysis.py,novo,fonte,63,59,3594
+src/nablamath/benchmarks/analysis.py,existente,fonte,63,59,3594
 src/nablamath/benchmarks/independent.py,existente,fonte,159,148,9977
-src/nablamath/benchmarks/laboratory.py,novo,fonte,277,251,14927
+src/nablamath/benchmarks/laboratory.py,existente,fonte,277,251,14927
 src/nablamath/calc/__init__.py,existente,fonte,5,4,235
-src/nablamath/calc/catalog.py,novo,fonte,112,104,7859
+src/nablamath/calc/catalog.py,existente,fonte,112,104,7859
 src/nablamath/calc/notebook.py,existente,fonte,62,54,2569
-src/nablamath/calc/session.py,alterado,fonte,243,225,14487
-src/nablamath/cli.py,existente,fonte,477,468,31232
+src/nablamath/calc/session.py,existente,fonte,243,225,14487
+src/nablamath/cli.py,alterado,fonte,507,498,33220
 src/nablamath/compatibility.json,existente,fonte,21,,412
 src/nablamath/compatibility.py,existente,fonte,95,80,3407
 src/nablamath/compiler/__init__.py,existente,fonte,15,14,657
@@ -497,8 +502,11 @@ src/nablamath/coordination/__init__.py,existente,fonte,3,2,68
 src/nablamath/coordination/local.py,existente,fonte,86,76,4575
 src/nablamath/coordination/merkle.py,existente,fonte,20,17,817
 src/nablamath/core/__init__.py,existente,fonte,8,7,498
+src/nablamath/core/migration_registry.py,novo,fonte,36,29,1817
 src/nablamath/core/obligations.py,existente,fonte,56,47,1987
 src/nablamath/core/precision.py,existente,fonte,57,46,2126
+src/nablamath/core/scientific_artifact.py,novo,fonte,134,115,5398
+src/nablamath/core/semantic_contracts.py,novo,fonte,84,65,2790
 src/nablamath/core/semantic_ir.py,existente,fonte,177,149,8024
 src/nablamath/core/types.py,existente,fonte,28,22,1038
 src/nablamath/core/units.py,existente,fonte,106,85,4054
@@ -519,75 +527,75 @@ src/nablamath/datasets/curation.py,existente,fonte,24,22,1158
 src/nablamath/datasets/model_card.py,existente,fonte,32,30,1810
 src/nablamath/datasets/multimodal.py,existente,fonte,101,87,5670
 src/nablamath/datasets/quality_gate.py,existente,fonte,49,47,2563
-src/nablamath/datasets/research_record.py,novo,fonte,101,91,6396
+src/nablamath/datasets/research_record.py,existente,fonte,101,91,6396
 src/nablamath/datasets/schema.py,existente,fonte,89,78,4847
 src/nablamath/datasets/semantic_fingerprint.py,existente,fonte,6,4,229
-src/nablamath/datasets/serializer.py,alterado,fonte,81,71,3533
+src/nablamath/datasets/serializer.py,existente,fonte,81,71,3533
 src/nablamath/datasets/split_policy.py,existente,fonte,23,19,979
 src/nablamath/datasets/splits.py,existente,fonte,53,43,2334
-src/nablamath/datasets/store.py,novo,fonte,57,52,3590
+src/nablamath/datasets/store.py,existente,fonte,57,52,3590
 src/nablamath/desktop/__init__.py,existente,fonte,1,1,79
 src/nablamath/desktop/app.py,existente,fonte,243,208,12334
 src/nablamath/desktop/index.html,existente,fonte,26,25,10812
 src/nablamath/desktop/launcher.py,existente,fonte,7,4,154
 src/nablamath/discovery/__init__.py,existente,fonte,7,6,439
-src/nablamath/discovery/basis_search.py,novo,fonte,64,60,4474
-src/nablamath/discovery/experimental_design.py,alterado,fonte,61,56,3569
+src/nablamath/discovery/basis_search.py,existente,fonte,64,60,4474
+src/nablamath/discovery/experimental_design.py,existente,fonte,61,56,3569
 src/nablamath/discovery/hypothesis.py,existente,fonte,105,88,4668
 src/nablamath/discovery/novelty_screen.py,existente,fonte,15,13,785
-src/nablamath/discovery/research_program.py,alterado,fonte,43,37,2613
+src/nablamath/discovery/research_program.py,existente,fonte,43,37,2613
 src/nablamath/discovery/symbolic_regression.py,existente,fonte,51,47,3164
 src/nablamath/discovery/theorem_search.py,existente,fonte,32,30,1846
 src/nablamath/documents/__init__.py,existente,fonte,9,7,422
 src/nablamath/documents/citations.py,existente,fonte,27,23,1027
-src/nablamath/documents/document_model.py,alterado,fonte,108,89,4714
+src/nablamath/documents/document_model.py,existente,fonte,108,89,4714
 src/nablamath/documents/equation_blocks.py,existente,fonte,13,9,512
-src/nablamath/documents/exporters.py,alterado,fonte,96,84,6447
+src/nablamath/documents/exporters.py,existente,fonte,96,84,6447
 src/nablamath/documents/figures.py,existente,fonte,34,30,1401
 src/nablamath/documents/html_exporter.py,existente,fonte,4,3,113
 src/nablamath/documents/latex_exporter.py,existente,fonte,4,3,116
 src/nablamath/documents/pdf_builder.py,existente,fonte,54,51,2866
-src/nablamath/documents/profiles.py,novo,fonte,22,19,1300
-src/nablamath/documents/publication.py,alterado,fonte,119,113,6306
+src/nablamath/documents/profiles.py,existente,fonte,22,19,1300
+src/nablamath/documents/publication.py,existente,fonte,119,113,6306
 src/nablamath/documents/typst_exporter.py,existente,fonte,4,3,116
 src/nablamath/domains/__init__.py,existente,fonte,1,1,88
 src/nablamath/domains/biology/__init__.py,existente,fonte,39,35,2859
-src/nablamath/domains/chemistry/__init__.py,alterado,fonte,85,77,4884
-src/nablamath/domains/chemistry/kinetics.py,novo,fonte,26,24,1883
-src/nablamath/domains/circuits/__init__.py,alterado,fonte,9,6,290
-src/nablamath/domains/circuits/ac.py,novo,fonte,20,18,1454
+src/nablamath/domains/chemistry/__init__.py,existente,fonte,85,77,4884
+src/nablamath/domains/chemistry/kinetics.py,existente,fonte,26,24,1883
+src/nablamath/domains/circuits/__init__.py,existente,fonte,9,6,290
+src/nablamath/domains/circuits/ac.py,existente,fonte,20,18,1454
 src/nablamath/domains/circuits/resistive.py,existente,fonte,79,69,3467
-src/nablamath/domains/circuits/transient.py,novo,fonte,37,34,2237
+src/nablamath/domains/circuits/transient.py,existente,fonte,37,34,2237
 src/nablamath/domains/contracts.py,existente,fonte,37,32,1614
 src/nablamath/domains/control/__init__.py,existente,fonte,48,43,2875
-src/nablamath/domains/earth/__init__.py,alterado,fonte,15,12,922
-src/nablamath/domains/earth/layers.py,novo,fonte,15,13,1188
+src/nablamath/domains/earth/__init__.py,existente,fonte,15,12,922
+src/nablamath/domains/earth/layers.py,existente,fonte,15,13,1188
 src/nablamath/domains/engineering/__init__.py,existente,fonte,33,27,1937
-src/nablamath/domains/materials/__init__.py,alterado,fonte,18,15,1200
-src/nablamath/domains/materials/elasticity.py,novo,fonte,20,18,1587
+src/nablamath/domains/materials/__init__.py,existente,fonte,18,15,1200
+src/nablamath/domains/materials/elasticity.py,existente,fonte,20,18,1587
 src/nablamath/entity.py,existente,fonte,93,75,3525
 src/nablamath/errors.py,existente,fonte,8,6,269
 src/nablamath/evaluation/__init__.py,existente,fonte,3,3,162
 src/nablamath/evaluation/contamination.py,existente,fonte,46,34,1705
-src/nablamath/evaluation/lineage.py,novo,fonte,96,87,4156
+src/nablamath/evaluation/lineage.py,existente,fonte,96,87,4156
 src/nablamath/evaluation/sealed.py,existente,fonte,23,16,682
 src/nablamath/evolution/__init__.py,existente,fonte,4,3,238
 src/nablamath/evolution/evaluator.py,existente,fonte,82,66,4329
 src/nablamath/evolution/holdout_manager.py,existente,fonte,69,63,4209
 src/nablamath/evolution/lineage.py,existente,fonte,29,24,1135
 src/nablamath/evolution/policy_genome.py,existente,fonte,43,35,1445
-src/nablamath/evolution/portfolio.py,novo,fonte,154,137,9863
-src/nablamath/evolution/proposal_validator.py,alterado,fonte,60,50,2725
-src/nablamath/evolution/release_gate.py,alterado,fonte,52,48,3510
+src/nablamath/evolution/portfolio.py,existente,fonte,154,137,9863
+src/nablamath/evolution/proposal_validator.py,existente,fonte,60,50,2725
+src/nablamath/evolution/release_gate.py,existente,fonte,52,48,3510
 src/nablamath/evolution/rollback.py,existente,fonte,80,74,4733
 src/nablamath/evolution/search.py,existente,fonte,29,27,1662
-src/nablamath/evolution/statistical_tests.py,alterado,fonte,41,37,2538
+src/nablamath/evolution/statistical_tests.py,existente,fonte,41,37,2538
 src/nablamath/export/__init__.py,existente,fonte,1,1,86
-src/nablamath/export/bundle.py,alterado,fonte,91,87,4650
+src/nablamath/export/bundle.py,existente,fonte,91,87,4650
 src/nablamath/export/huggingface.py,existente,fonte,28,23,1449
 src/nablamath/export/jsonl.py,existente,fonte,21,17,628
-src/nablamath/export/parquet.py,alterado,fonte,103,93,5420
-src/nablamath/export/research_bundle.py,novo,fonte,96,89,6425
+src/nablamath/export/parquet.py,existente,fonte,103,93,5420
+src/nablamath/export/research_bundle.py,existente,fonte,96,89,6425
 src/nablamath/expression.py,existente,fonte,143,115,4951
 src/nablamath/falsifier/__init__.py,existente,fonte,4,3,190
 src/nablamath/falsifier/counterexample_miner.py,existente,fonte,13,11,709
@@ -603,7 +611,7 @@ src/nablamath/forge/constructors/linear_systems.py,existente,fonte,16,14,727
 src/nablamath/forge/constructors/markov.py,existente,fonte,13,11,668
 src/nablamath/forge/constructors/optimization.py,existente,fonte,14,12,766
 src/nablamath/forge/constructors/polynomial.py,existente,fonte,17,15,670
-src/nablamath/forge/constructors/rational_integration.py,novo,fonte,40,35,2398
+src/nablamath/forge/constructors/rational_integration.py,existente,fonte,40,35,2398
 src/nablamath/forge/constructors/spectrum.py,existente,fonte,15,13,835
 src/nablamath/forge/deduplicate.py,existente,fonte,48,42,2034
 src/nablamath/forge/difficulty.py,existente,fonte,112,100,5673
@@ -614,7 +622,7 @@ src/nablamath/forge/sampling.py,existente,fonte,23,19,1108
 src/nablamath/forge/solvers.py,existente,fonte,115,107,6031
 src/nablamath/forge/task_spec.py,existente,fonte,119,106,5633
 src/nablamath/formal/__init__.py,existente,fonte,21,18,1078
-src/nablamath/formal/bundle.py,novo,fonte,74,70,5150
+src/nablamath/formal/bundle.py,existente,fonte,74,70,5150
 src/nablamath/formal/check.py,existente,fonte,50,45,2602
 src/nablamath/formal/lean_bridge.py,existente,fonte,42,35,2258
 src/nablamath/formal/lean_checker.py,existente,fonte,111,97,4879
@@ -624,7 +632,7 @@ src/nablamath/formal/search.py,existente,fonte,118,95,4955
 src/nablamath/formal/smt_bridge.py,existente,fonte,72,70,4036
 src/nablamath/formal/statement.py,existente,fonte,88,71,3523
 src/nablamath/formal/translate.py,existente,fonte,76,66,4234
-src/nablamath/formal/translation_review.py,alterado,fonte,56,47,2629
+src/nablamath/formal/translation_review.py,existente,fonte,56,47,2629
 src/nablamath/formal_ci.py,existente,fonte,26,19,996
 src/nablamath/gpu/__init__.py,existente,fonte,17,15,737
 src/nablamath/gpu/batch_mcts_kernel.py,existente,fonte,129,113,4892
@@ -633,27 +641,27 @@ src/nablamath/gpu/neural_guide.py,existente,fonte,69,57,3423
 src/nablamath/gpu/tensor_egraph.py,existente,fonte,100,85,3760
 src/nablamath/gpu/vram_buffer_manager.py,existente,fonte,132,105,4682
 src/nablamath/graphics/__init__.py,existente,fonte,10,8,506
-src/nablamath/graphics/artifacts.py,alterado,fonte,83,77,5037
+src/nablamath/graphics/artifacts.py,existente,fonte,83,77,5037
 src/nablamath/graphics/coordinate_system.py,existente,fonte,61,51,2395
 src/nablamath/graphics/geometry_constraints.py,existente,fonte,31,26,1450
 src/nablamath/graphics/layout.py,existente,fonte,90,84,4934
 src/nablamath/graphics/raster_renderer.py,existente,fonte,53,46,1998
 src/nablamath/graphics/rendering.py,existente,fonte,41,37,2248
-src/nablamath/graphics/sampling.py,alterado,fonte,156,146,9439
+src/nablamath/graphics/sampling.py,existente,fonte,156,146,9439
 src/nablamath/graphics/scene_graph.py,existente,fonte,177,143,8042
 src/nablamath/graphics/svg_renderer.py,existente,fonte,25,22,1352
 src/nablamath/knowledge/__init__.py,existente,fonte,5,3,120
-src/nablamath/knowledge/bibliography_import.py,novo,fonte,45,43,2834
+src/nablamath/knowledge/bibliography_import.py,existente,fonte,45,43,2834
 src/nablamath/knowledge/claim_graph.py,existente,fonte,48,40,2201
 src/nablamath/knowledge/dependency_impact.py,existente,fonte,19,18,1232
-src/nablamath/knowledge/federation.py,alterado,fonte,91,78,4940
+src/nablamath/knowledge/federation.py,existente,fonte,91,78,4940
 src/nablamath/knowledge/graph.py,existente,fonte,76,63,2873
-src/nablamath/knowledge/identity.py,novo,fonte,119,98,5333
+src/nablamath/knowledge/identity.py,existente,fonte,119,98,5333
 src/nablamath/knowledge/literature.py,existente,fonte,66,56,2705
-src/nablamath/knowledge/peer_review.py,alterado,fonte,99,83,5269
-src/nablamath/knowledge/provenance_audit.py,alterado,fonte,125,110,6764
+src/nablamath/knowledge/peer_review.py,existente,fonte,99,83,5269
+src/nablamath/knowledge/provenance_audit.py,existente,fonte,125,110,6764
 src/nablamath/knowledge/semantic_reconciliation.py,existente,fonte,43,39,2582
-src/nablamath/knowledge/storage.py,novo,fonte,76,67,4064
+src/nablamath/knowledge/storage.py,existente,fonte,76,67,4064
 src/nablamath/knowledge/versioned_claims.py,existente,fonte,116,98,4779
 src/nablamath/math/__init__.py,existente,fonte,1,1,44
 src/nablamath/math/algebra/__init__.py,existente,fonte,13,12,840
@@ -674,7 +682,7 @@ src/nablamath/math/arithmetic/__init__.py,existente,fonte,2,2,162
 src/nablamath/math/arithmetic/continued_fractions.py,existente,fonte,39,30,1533
 src/nablamath/math/calculus/__init__.py,existente,fonte,4,3,267
 src/nablamath/math/calculus/polynomial.py,existente,fonte,28,18,1126
-src/nablamath/math/calculus/rational_functions.py,novo,fonte,83,70,4564
+src/nablamath/math/calculus/rational_functions.py,existente,fonte,83,70,4564
 src/nablamath/math/category_theory/__init__.py,existente,fonte,5,5,439
 src/nablamath/math/category_theory/categories.py,existente,fonte,70,57,3278
 src/nablamath/math/category_theory/functors.py,existente,fonte,54,44,2634
@@ -749,7 +757,7 @@ src/nablamath/math/statistics/__init__.py,existente,fonte,6,6,627
 src/nablamath/math/statistics/bayesian.py,existente,fonte,19,16,1138
 src/nablamath/math/statistics/descriptive.py,existente,fonte,33,22,1332
 src/nablamath/math/statistics/inference.py,existente,fonte,35,29,1728
-src/nablamath/math/statistics/multivariate.py,novo,fonte,43,38,2663
+src/nablamath/math/statistics/multivariate.py,existente,fonte,43,38,2663
 src/nablamath/math/statistics/regression.py,existente,fonte,33,24,1324
 src/nablamath/math/statistics/time_series.py,existente,fonte,96,78,3606
 src/nablamath/math/topology/__init__.py,existente,fonte,4,4,265
@@ -811,9 +819,11 @@ src/nablamath/physics/relativity/__init__.py,existente,fonte,13,11,653
 src/nablamath/physics/relativity/general.py,existente,fonte,68,51,2684
 src/nablamath/physics/relativity/special.py,existente,fonte,93,68,3193
 src/nablamath/pipeline/__init__.py,existente,fonte,3,2,67
-src/nablamath/pipeline/cache.py,existente,fonte,29,23,1118
+src/nablamath/pipeline/artifact_store.py,novo,fonte,20,15,756
+src/nablamath/pipeline/cache.py,alterado,fonte,47,39,1803
 src/nablamath/pipeline/engine.py,existente,fonte,40,32,1299
 src/nablamath/pipeline/provenance.py,existente,fonte,13,10,560
+src/nablamath/pipeline/scientific_cycle.py,novo,fonte,76,70,4305
 src/nablamath/publisher/__init__.py,existente,fonte,1,1,73
 src/nablamath/publisher/huggingface.py,existente,fonte,97,89,5535
 src/nablamath/publisher/manifest.py,existente,fonte,30,22,865
@@ -892,14 +902,17 @@ src/nablamath/symbolic/proof.py,existente,fonte,118,108,5963
 src/nablamath/symbolic/rules.py,existente,fonte,59,45,3321
 src/nablamath/symbolic/series.py,existente,fonte,99,81,3961
 src/nablamath/training/__init__.py,existente,fonte,7,6,401
-src/nablamath/training/ablation.py,alterado,fonte,23,21,1508
+src/nablamath/training/ablation.py,existente,fonte,23,21,1508
 src/nablamath/training/baselines.py,existente,fonte,61,51,2759
-src/nablamath/training/contamination.py,alterado,fonte,28,26,1890
+src/nablamath/training/contamination.py,existente,fonte,28,26,1890
 src/nablamath/training/controlled_experiment.py,existente,fonte,237,214,15172
 src/nablamath/training/curriculum.py,existente,fonte,14,12,698
-src/nablamath/training/evaluation.py,alterado,fonte,111,102,6628
-src/nablamath/training/multimodal_network.py,novo,fonte,209,188,13195
+src/nablamath/training/evaluation.py,existente,fonte,111,102,6628
+src/nablamath/training/multimodal_network.py,existente,fonte,209,188,13195
 src/nablamath/training/registry.py,existente,fonte,41,33,1878
+src/nablamath/verification/__init__.py,novo,fonte,1,1,82
+src/nablamath/verification/evidence.py,novo,fonte,42,35,1918
+src/nablamath/verification/independence.py,novo,fonte,22,17,728
 src/nablamath/verify/__init__.py,existente,fonte,4,3,180
 src/nablamath/verify/certificate.py,existente,fonte,122,106,6659
 src/nablamath/verify/geometry.py,existente,fonte,51,44,2639
@@ -908,28 +921,28 @@ src/nablamath/viz/__init__.py,existente,fonte,4,3,88
 src/nablamath/viz/plot.py,existente,fonte,24,18,686
 src/nablamath/viz/render.py,existente,fonte,17,11,485
 src/nablamath/viz/spec.py,existente,fonte,32,23,898
-src/nablamath/worlds/__init__.py,alterado,fonte,13,10,525
+src/nablamath/worlds/__init__.py,existente,fonte,13,10,525
 src/nablamath/worlds/animation.py,existente,fonte,34,29,1741
 src/nablamath/worlds/conservation.py,existente,fonte,20,18,1172
 src/nablamath/worlds/convergence.py,existente,fonte,19,17,1054
-src/nablamath/worlds/integrators/__init__.py,alterado,fonte,14,11,554
-src/nablamath/worlds/integrators/adaptive.py,novo,fonte,75,72,4244
+src/nablamath/worlds/integrators/__init__.py,existente,fonte,14,11,554
+src/nablamath/worlds/integrators/adaptive.py,existente,fonte,75,72,4244
 src/nablamath/worlds/mesh/__init__.py,existente,fonte,24,19,779
 src/nablamath/worlds/model_spec.py,existente,fonte,92,78,4003
 src/nablamath/worlds/multiphysics/__init__.py,existente,fonte,36,34,2647
-src/nablamath/worlds/ode/__init__.py,alterado,fonte,8,6,296
+src/nablamath/worlds/ode/__init__.py,existente,fonte,8,6,296
 src/nablamath/worlds/pde/__init__.py,existente,fonte,45,43,2695
-src/nablamath/worlds/pde/diffusion.py,novo,fonte,56,52,3682
+src/nablamath/worlds/pde/diffusion.py,existente,fonte,56,52,3682
 src/nablamath/worlds/sensitivity.py,existente,fonte,23,21,1308
-src/nablamath/worlds/validation.py,alterado,fonte,102,91,6281
-templates/engineering_report/README.md,novo,infraestrutura/outros,7,,432
+src/nablamath/worlds/validation.py,existente,fonte,102,91,6281
+templates/engineering_report/README.md,existente,infraestrutura/outros,7,,432
 templates/research_paper/README.md,existente,infraestrutura/outros,6,,354
 templates/research_paper/evidence-map.json,existente,infraestrutura/outros,1,,85
 templates/research_paper/evidence.json,existente,infraestrutura/outros,1,,560
 templates/research_paper/example.document.json,existente,infraestrutura/outros,1,,899
-templates/teaching/README.md,novo,infraestrutura/outros,7,,430
+templates/teaching/README.md,existente,infraestrutura/outros,7,,430
 tests/evaluation/test_contamination.py,existente,testes,20,14,852
-tests/evaluation/test_lineage.py,novo,testes,101,84,4658
+tests/evaluation/test_lineage.py,existente,testes,101,84,4658
 tests/integration/__init__.py,existente,testes,1,1,52
 tests/integration/test_agent_limits.py,existente,testes,20,14,617
 tests/integration/test_backup_restore.py,existente,testes,62,54,2830
@@ -939,6 +952,7 @@ tests/integration/test_dataset_pipeline.py,existente,testes,18,13,632
 tests/integration/test_desktop.py,existente,testes,62,58,3353
 tests/integration/test_lean_bridge.py,existente,testes,20,14,633
 tests/integration/test_publisher.py,existente,testes,84,77,4623
+tests/integration/test_scientific_artifact.py,novo,testes,158,136,7635
 tests/interop/README.md,existente,testes,3,,306
 tests/knowledge/test_graph.py,existente,testes,23,16,858
 tests/math/test_advanced_foundations.py,existente,testes,41,31,1813
@@ -974,7 +988,7 @@ tests/science/test_orbital_reference.py,existente,testes,17,12,571
 tests/test_agents.py,existente,testes,19,16,874
 tests/test_compatibility.py,existente,testes,32,24,1217
 tests/test_compiler_backends.py,existente,testes,46,38,1905
-tests/test_completion_hardening.py,novo,testes,300,269,17435
+tests/test_completion_hardening.py,existente,testes,300,269,17435
 tests/test_coordinator_local.py,existente,testes,25,22,1177
 tests/test_core.py,existente,testes,104,88,4467
 tests/test_curation.py,existente,testes,25,22,1155
@@ -993,10 +1007,10 @@ tests/test_formal_search.py,existente,testes,37,30,1593
 tests/test_gpu_acceleration.py,existente,testes,62,53,2655
 tests/test_incompressible_cfd.py,existente,testes,67,59,2535
 tests/test_interop.py,existente,testes,35,31,1506
-tests/test_laboratory_simulation.py,novo,testes,122,104,5094
+tests/test_laboratory_simulation.py,existente,testes,122,104,5094
 tests/test_linear_mhd.py,existente,testes,49,41,1592
 tests/test_math_bundle.py,existente,testes,48,39,1902
-tests/test_maturity_expansion.py,novo,testes,434,393,27698
+tests/test_maturity_expansion.py,existente,testes,434,393,27698
 tests/test_merkle.py,existente,testes,12,9,425
 tests/test_numeric.py,existente,testes,28,23,1096
 tests/test_optimization.py,existente,testes,45,35,1813
@@ -1006,7 +1020,7 @@ tests/test_peer_transport.py,existente,testes,53,43,2400
 tests/test_phase10_evolution.py,existente,testes,82,75,5418
 tests/test_phase11_domains.py,existente,testes,74,68,5189
 tests/test_phase12_knowledge.py,existente,testes,112,100,6954
-tests/test_phase1_calculator.py,alterado,testes,234,213,13027
+tests/test_phase1_calculator.py,existente,testes,234,213,13027
 tests/test_phase2_forge.py,existente,testes,164,147,9576
 tests/test_phase3_formal.py,existente,testes,161,141,9437
 tests/test_phase4_graphics.py,existente,testes,156,140,9048
@@ -1017,13 +1031,16 @@ tests/test_phase7_worlds.py,existente,testes,71,65,3895
 tests/test_phase8_agents_training.py,existente,testes,149,128,7984
 tests/test_phase9_discovery.py,existente,testes,79,69,4743
 tests/test_pipeline.py,existente,testes,29,25,1249
+tests/test_pipeline_cache_atomic.py,novo,testes,40,32,1399
 tests/test_planar_truss_fea.py,existente,testes,71,63,2512
 tests/test_relativity.py,existente,testes,55,44,2396
 tests/test_reverse_autodiff.py,existente,testes,29,24,1362
+tests/test_roadmap_contract.py,novo,testes,45,35,1566
 tests/test_schema.py,existente,testes,20,17,911
 tests/test_scientific_audit_experiments.py,existente,testes,46,41,2815
 tests/test_scientific_cycle.py,existente,testes,243,217,12898
 tests/test_scientific_extensions.py,existente,testes,180,158,9430
+tests/test_semantic_contracts.py,novo,testes,80,64,3188
 tests/test_singularity_lab.py,existente,testes,67,57,3339
 tests/test_solution_bundle.py,existente,testes,26,20,1037
 tests/test_solution_report.py,existente,testes,21,16,713
@@ -1039,19 +1056,20 @@ tests/unit/test_schema_roundtrip.py,existente,testes,18,12,551
 tests/unit/test_units.py,existente,testes,22,15,686
 tests/website/test_lab.mjs,existente,testes,20,17,845
 tests/website/test_worker.mjs,existente,testes,34,29,1621
-tools/README.md,novo,infraestrutura/outros,23,,1647
+tools/README.md,existente,infraestrutura/outros,23,,1647
 tools/assess_vision.py,existente,infraestrutura/outros,61,56,5030
 tools/build_math_bundle.py,existente,infraestrutura/outros,129,116,4710
+tools/check_roadmap.py,novo,infraestrutura/outros,72,62,3389
 tools/export_source_bundle.py,existente,infraestrutura/outros,67,57,2611
 tools/fetch_learning_benchmark.py,existente,infraestrutura/outros,38,33,1879
-tools/project_inventory.py,alterado,infraestrutura/outros,169,155,8932
-tools/reproduce_completion.py,novo,infraestrutura/outros,116,112,7431
-tools/reproduce_maturity.py,novo,infraestrutura/outros,174,169,14196
-tools/reproduce_portfolio.py,novo,infraestrutura/outros,50,46,3124
+tools/project_inventory.py,existente,infraestrutura/outros,169,155,8932
+tools/reproduce_completion.py,existente,infraestrutura/outros,116,112,7431
+tools/reproduce_maturity.py,existente,infraestrutura/outros,174,169,14196
+tools/reproduce_portfolio.py,existente,infraestrutura/outros,50,46,3124
 tools/roadmap_status.py,existente,infraestrutura/outros,25,18,933
-tools/simulate_frontier_lab.py,novo,infraestrutura/outros,231,216,14042
+tools/simulate_frontier_lab.py,existente,infraestrutura/outros,231,216,14042
 tools/singlefile/README.md,existente,infraestrutura/outros,5,,310
-tools/validate_longley.py,novo,infraestrutura/outros,44,40,2849
+tools/validate_longley.py,existente,infraestrutura/outros,44,40,2849
 vision.md,existente,infraestrutura/outros,442,,29000
 website/.nojekyll,existente,infraestrutura/outros,1,,1
 website/app.js,existente,infraestrutura/outros,104,98,4117
