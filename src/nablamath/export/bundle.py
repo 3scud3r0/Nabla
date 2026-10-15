@@ -51,6 +51,9 @@ def verify_bundle(root):
         if any(p.is_symlink() for p in root.rglob('*')) or (root/'manifest.json').stat().st_size > 1024*1024:
             return False
         manifest = json.loads((root/'manifest.json').read_text(encoding='utf-8'))
+        if manifest.get('kind') == 'research_dataset_bundle':
+            from .research_bundle import verify_research_bundle
+            return verify_research_bundle(root)
         actual = {p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file() and p != root/'manifest.json'}
         if manifest['schema_version'] != 1 or set(manifest['files']) != actual:
             return False

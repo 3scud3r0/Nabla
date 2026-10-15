@@ -198,6 +198,22 @@ class ResearchRecordTests(unittest.TestCase):
             fail=Path(tmp)/'failed.parquet'
             with self.assertRaises(ValueError):write_parquet_stream([ode,scene],fail,max_records=1)
             self.assertFalse(fail.exists())
+            from nablamath.export.research_bundle import export_research_bundle,verify_research_bundle
+            from nablamath.export.huggingface import prepare_hub
+            release=Path(tmp)/'release'
+            export_research_bundle([ode,scene],release)
+            self.assertTrue(verify_research_bundle(release))
+            self.assertFalse(prepare_hub(release)['publication_performed'])
+            card=json.loads((release/'card.json').read_text(encoding='utf-8'))
+            self.assertEqual(card['training_gain'],'not_established')
+            card['training_gain']='invented gain'
+            (release/'card.json').write_text(canonical_json(card),encoding='utf-8')
+            manifest=json.loads((release/'manifest.json').read_text(encoding='utf-8'))
+            import hashlib
+            manifest['files']['card.json']=hashlib.sha256((release/'card.json').read_bytes()).hexdigest()
+            (release/'manifest.json').write_text(canonical_json(manifest),encoding='utf-8')
+            self.assertFalse(verify_research_bundle(release))
+
 
     def test_observational_record_does_not_certify_physical_truth(self):
         from nablamath.datasets.research_record import make_research_record

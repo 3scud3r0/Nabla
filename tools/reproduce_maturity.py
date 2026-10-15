@@ -14,6 +14,8 @@ def reproduce(destination,*,learning_directory=None,pdf_backend='typst'):
     from nablamath.calc.session import CalculationSession
     from nablamath.datasets.research_record import make_research_record
     from nablamath.datasets.store import RecordStore
+    from nablamath.export.research_bundle import export_research_bundle
+    from nablamath.export.huggingface import prepare_hub
     from nablamath.datasets.serializer import iter_load
     from nablamath.export.parquet import write_parquet_stream,iter_parquet_stream
     from nablamath.worlds import ModelSpec,simulate_adaptive
@@ -105,6 +107,8 @@ def reproduce(destination,*,learning_directory=None,pdf_backend='typst'):
         with (stage/'records.jsonl').open('rb') as stream:
             if {r.content_id for r in iter_load(stream)}!={r.content_id for r in records}:raise ValueError('Mixed JSONL replay failed')
         if {r.content_id for r in iter_parquet_stream(stage/'records.parquet')}!={r.content_id for r in records}:raise ValueError('Mixed Parquet replay failed')
+        export_research_bundle(store.records(),stage/'dataset-release')
+        if prepare_hub(stage/'dataset-release')['publication_performed']:raise ValueError('Unexpected publication')
         csl=[{'title':'An Appraisal of Least Squares Programs for the Electronic Computer from the Viewpoint of the User',
               'author':[{'given':'J. W.','family':'Longley'}],'issued':{'date-parts':[[1967]]},
               'URL':'https://github.com/statsmodels/statsmodels','abstract':'Published numerical least squares reference.'}]
