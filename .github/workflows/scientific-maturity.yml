@@ -18,7 +18,7 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -e ".[test,formal,graphics,documents,data,research,federation]"
       - name: Exercise new scientific profiles and failure cases
-        run: python -m pytest -q tests/test_completion_hardening.py tests/test_maturity_expansion.py --junitxml=.nabla/maturity-tests.xml
+        run: python -m pytest -q tests/test_completion_hardening.py tests/test_maturity_expansion.py tests/evaluation/test_lineage.py --junitxml=.nabla/maturity-tests.xml
       - name: Reproduce compiled publication, signed evidence and numerical checks
         run: python tools/reproduce_completion.py .nabla/completion-portable --pdf-backend typst
       - name: Validate pinned independent NIST statistics

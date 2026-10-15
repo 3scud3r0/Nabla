@@ -4,7 +4,7 @@ Canonical sources remain at the paths recorded below.
 This artifact aggregates implemented code; it does not claim all mathematics is complete.
 FORMAT_VERSION: 1
 SOURCE_FILES: 336
-SOURCE_LINES: 19469
+SOURCE_LINES: 19490
 
 INDEX (path | sha256 | lines)
 lean/Nabla.lean | f1ecf05b6f568479ca76d45aec58710cae92b5b876396e976f8ce4f9cdab331d | 3
@@ -317,12 +317,12 @@ src/nablamath/symbolic/proof.py | d32a456ef8b7b7c0fe2848d32139385abe839467d5fa49
 src/nablamath/symbolic/rules.py | 2add472bd1758350d16d75281caf58ec660b57898bc8094f3e07684180ae56f8 | 59
 src/nablamath/symbolic/series.py | e58930eb6a949fc9a875d8012daa493de787554bd3e62a3c31cf728d75bb2d4d | 99
 src/nablamath/training/__init__.py | 7287e68a8fe291ad55935e0615384a988d9711cd2f02572ebb52aa7cf06d501c | 7
-src/nablamath/training/ablation.py | 1f1a1eedc1b37ff7a0cf0283f2c99b8c8e17bc2ec8862379a8f8a9c0b553ce39 | 22
+src/nablamath/training/ablation.py | f5164835a00caaea1950335c6884b68ecd2d9022a97c29a1ce89e961781b0f28 | 23
 src/nablamath/training/baselines.py | d93b0dfab20de2cd56888951cafd197e0efd7768c7a51dd9dd24ac193370e8d4 | 61
-src/nablamath/training/contamination.py | 29586e981d2c023b3d045f46a226bcf09afaffa28f243db4180bc58d2f621a06 | 17
+src/nablamath/training/contamination.py | 28eed5cbb73d309cc2adaa7325ae671421e9b12df4d1b462a1aa19b536def34b | 28
 src/nablamath/training/controlled_experiment.py | a5c169ea77f76c80b79efa77c98c0d49f53762fe7e3530589c2a009508c8631c | 237
 src/nablamath/training/curriculum.py | 620ec2fb45ce88246018e0657d878de5ee79668fd17818e5e330735f0cda7d83 | 14
-src/nablamath/training/evaluation.py | 91887a4956ccab101209cf300ec68d0f678e883c45db4db03cc2785517a56ef7 | 102
+src/nablamath/training/evaluation.py | 8406fa3c432b3bb64af6996217c83daa93567178db49bcb800139c7dc21b3dfc | 111
 src/nablamath/training/multimodal_network.py | 25b41dd80739a45554ba8ae8030c44a11277086194587622690097a9b48dfe83 | 209
 src/nablamath/training/registry.py | f56d68f6cd9ee548b2148a7307d292814e6c7dc5aadc74d15fc04916632b43d6 | 41
 src/nablamath/verify/__init__.py | 4e98a1d16b4ca1dffe1f93b9ae27bfc1d2a584d3bcee5732ed78b523ad25d02e | 4
@@ -20408,8 +20408,8 @@ END FILE: src/nablamath/training/__init__.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/training/ablation.py
-SHA256: 1f1a1eedc1b37ff7a0cf0283f2c99b8c8e17bc2ec8862379a8f8a9c0b553ce39
-LINES: 22
+SHA256: f5164835a00caaea1950335c6884b68ecd2d9022a97c29a1ce89e961781b0f28
+LINES: 23
 ====================================================================================================
 """Retrain modality ablations on identical training/evaluation cohorts."""
 from ..datasets.multimodal import INPUT_MODALITIES
@@ -20418,8 +20418,9 @@ from .evaluation import evaluate, compare_evaluations
 
 
 def run_ablations(training, evaluation, *, benchmark_name, trainer=fit_nearest_neighbor,
-                  variants=None, family_holdout=True):
+                  variants=None, family_holdout=True, lineage=None):
     training, evaluation = tuple(training), tuple(evaluation)
+    lineage = tuple(lineage) if lineage is not None else None
     variants = variants or {'all': INPUT_MODALITIES, 'text_only': ('text',),
                             'without_diagram': ('text','equation'), 'diagram_only': ('diagram',)}
     if 'all' not in variants or not variants:
@@ -20429,7 +20430,7 @@ def run_ablations(training, evaluation, *, benchmark_name, trainer=fit_nearest_n
         model = trainer(training, modalities=tuple(modalities))
         reports[name] = evaluate(model, evaluation, training_samples=training,
                                   benchmark_name=benchmark_name, modalities=tuple(modalities),
-                                  family_holdout=family_holdout)
+                                  family_holdout=family_holdout, lineage=lineage)
     comparisons = {name: compare_evaluations(reports['all'], report) for name,report in reports.items() if name != 'all'}
     return {'schema_version': 1, 'reports': reports, 'comparisons_to_all': comparisons,
             'selection_performed': False, 'limitations': 'Repeated holdout use is for reporting; do not tune on these results.'}
@@ -20505,26 +20506,37 @@ END FILE: src/nablamath/training/baselines.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/training/contamination.py
-SHA256: 29586e981d2c023b3d045f46a226bcf09afaffa28f243db4180bc58d2f621a06
-LINES: 17
+SHA256: 28eed5cbb73d309cc2adaa7325ae671421e9b12df4d1b462a1aa19b536def34b
+LINES: 28
 ====================================================================================================
 """Local semantic and constructor leakage checks with explicit audit scope."""
+from collections import Counter
 from ..datasets.semantic_fingerprint import semantic_fingerprint
+from ..evaluation.lineage import audit_lineage
 
 
-def audit_contamination(training, evaluation, *, family_holdout=True):
+def audit_contamination(training, evaluation, *, family_holdout=True, lineage=None):
     training, evaluation = tuple(training), tuple(evaluation)
     train_semantics = {semantic_fingerprint(s.record) for s in training}
     eval_semantics = [semantic_fingerprint(s.record) for s in evaluation]
-    duplicates = sorted({key for key in eval_semantics if eval_semantics.count(key) > 1})
+    duplicates = sorted(key for key, count in Counter(eval_semantics).items() if count > 1)
     overlap = sorted(train_semantics & set(eval_semantics))
     families = sorted({s.record.task.family for s in training} & {s.record.task.family for s in evaluation})
     wrong_split = [s.record.content_id for s in training if s.record.to_data()['split'] != 'train']
     wrong_split += [s.record.content_id for s in evaluation if s.record.to_data()['split'] not in {'validation','test'}]
-    return {'clean': not overlap and not duplicates and not wrong_split and (not family_holdout or not families),
+    result = {'clean': not overlap and not duplicates and not wrong_split and (not family_holdout or not families),
             'semantic_overlap': overlap, 'evaluation_duplicates': duplicates, 'family_overlap': families,
             'wrong_split': wrong_split, 'family_holdout_required': family_holdout,
             'scope': 'local normalized tasks and declared families; external corpora not inspected'}
+    if lineage is not None:
+        report = audit_lineage(lineage)
+        expected = {s.record.content_id: s.record.to_data()['split'] for s in training + evaluation}
+        declared = {row['id']: row['split'] for row in report['manifest']}
+        if declared != expected:
+            raise ValueError('Lineage must cover exactly the supplied records and splits')
+        result['lineage'] = report
+        result['clean'] = result['clean'] and report['clean']
+    return result
 END FILE: src/nablamath/training/contamination.py
 
 ====================================================================================================
@@ -20794,8 +20806,8 @@ END FILE: src/nablamath/training/curriculum.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/training/evaluation.py
-SHA256: 91887a4956ccab101209cf300ec68d0f678e883c45db4db03cc2785517a56ef7
-LINES: 102
+SHA256: 8406fa3c432b3bb64af6996217c83daa93567178db49bcb800139c7dc21b3dfc
+LINES: 111
 ====================================================================================================
 """Independent exact grading on reserved examples; negative gains are retained."""
 import math
@@ -20803,6 +20815,7 @@ from ..core.semantic_ir import fingerprint, canonical_json
 from ..verify.trace import verify_candidate, VERIFIER_VERSION
 from ..datasets.multimodal import INPUT_MODALITIES
 from .contamination import audit_contamination
+from ..evaluation.lineage import verify_lineage_report
 
 
 def _wilson(successes, total):
@@ -20814,11 +20827,11 @@ def _wilson(successes, total):
 
 
 def evaluate(model, samples, *, training_samples, benchmark_name, model_id=None,
-             modalities=INPUT_MODALITIES, family_holdout=True):
+             modalities=INPUT_MODALITIES, family_holdout=True, lineage=None):
     training_samples, samples = tuple(training_samples), tuple(samples)
     if not benchmark_name.strip() or not 1 <= len(samples) <= 10000:
         raise ValueError('Benchmark nomeado e não vazio obrigatório')
-    audit = audit_contamination(training_samples, samples, family_holdout=family_holdout)
+    audit = audit_contamination(training_samples, samples, family_holdout=family_holdout, lineage=lineage)
     if not audit['clean']:
         raise ValueError('Contaminação ou partições inválidas: '+str(audit))
     if hasattr(model, 'training_ids') and set(model.training_ids) != {s.record.task.content_id for s in training_samples}:
@@ -20858,10 +20871,18 @@ def verify_evaluation(report, samples, *, training_samples=None):
         if fingerprint(payload) != report['evaluation_id']:
             return False
         samples = tuple(samples)
+        lineage = report['contamination'].get('lineage')
+        if lineage is not None:
+            if not verify_lineage_report(lineage) or not lineage['clean']:
+                return False
+            declared = {row['id']: row['split'] for row in lineage['manifest']}
+            if any(declared.get(s.record.content_id) != s.record.to_data()['split'] for s in samples):
+                return False
         if training_samples is not None:
             training_samples = tuple(training_samples)
             audit = audit_contamination(training_samples, samples,
-                     family_holdout=report['contamination']['family_holdout_required'])
+                     family_holdout=report['contamination']['family_holdout_required'],
+                     lineage=report['contamination'].get('lineage', {}).get('manifest'))
             if audit != report['contamination'] or not audit['clean']:
                 return False
             if report['training_ids'] != sorted(s.record.task.content_id for s in training_samples):
@@ -20886,7 +20907,7 @@ def verify_evaluation(report, samples, *, training_samples=None):
 
 
 def compare_evaluations(baseline, candidate):
-    keys = ('evaluation_ids', 'benchmark', 'training_ids', 'verifier_version')
+    keys = ('evaluation_ids', 'benchmark', 'training_ids', 'verifier_version', 'contamination')
     if any(baseline[k] != candidate[k] for k in keys):
         raise ValueError('Avaliações devem usar o mesmo benchmark e treino')
     better = sum(not a['valid'] and b['valid'] for a,b in zip(baseline['results'], candidate['results']))
