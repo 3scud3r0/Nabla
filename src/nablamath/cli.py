@@ -49,6 +49,10 @@ def main(argv: list[str] | None = None) -> int:
     desktop.add_argument("--data-dir", type=Path, default=Path.home() / "NablaMath")
     desktop.add_argument("--no-browser", action="store_true")
     commands.add_parser("doctor", help="Mostrar ambiente e integrações opcionais")
+    capabilities = commands.add_parser("capabilities", help="Consultar domínio e recusas de um perfil científico")
+    capabilities.add_argument("manifest", type=Path)
+    capabilities.add_argument("--profile", required=True)
+    capabilities.add_argument("--operation", required=True)
     run = commands.add_parser("run", help="Executar expressão racional com etapas")
     run.add_argument("expression", help='Exemplo: "(x+x)/x"')
     run.add_argument("--value", action="append", type=_assignment, default=[], metavar="X=3")
@@ -235,6 +239,13 @@ def main(argv: list[str] | None = None) -> int:
             json.dump(payload,output,ensure_ascii=False,sort_keys=True)
             output.write('\n')
     try:
+        if args.command == "capabilities":
+            from .core.capabilities import ScientificCapabilities
+            manifest = ScientificCapabilities.load(args.manifest)
+            print(json.dumps({"manifest_id": manifest.content_id,
+                              "contract": manifest.query(args.profile, args.operation),
+                              "scientific_completion_established": False}, ensure_ascii=False))
+            return 0
         if args.command in {"freeze-evaluation", "evaluate-frozen", "check-evaluation"}:
             from .core.semantic_contracts import load_json
             from .evaluation.frozen import FrozenEvaluation

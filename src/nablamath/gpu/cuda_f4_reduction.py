@@ -76,10 +76,15 @@ def modular_rref(
     rows: Sequence[Sequence[int]],
     prime: int,
     *,
-    backend: ModularRrefBackend | None = None,
+    backend: ModularRrefBackend | str | None = None,
     cell_limit: int = 10_000_000,
 ) -> F4ReductionResult:
-    """Reduce a rectangular integer matrix over ``GF(prime)`` exactly."""
+    """Reduce exactly over ``GF(prime)`` with independently checked device output.
+
+    ``backend=None`` or ``"cpu"`` selects the reference. ``"cuda"`` explicitly
+    requests the optional CuPy backend and fails if it is unavailable. A backend
+    object remains supported for integrations; selection never implies speedup.
+    """
     if type(prime) is not int or not _is_prime(prime):
         raise ValueError("O módulo deve ser primo")
     if type(cell_limit) is not int or cell_limit < 1:
@@ -90,18 +95,31 @@ def modular_rref(
         raise ValueError("Matriz precisa ser retangular")
     if len(matrix) * columns > cell_limit:
         raise MemoryError("Matriz F4 excede o orçamento de células")
-    matrix = [[int(value) % prime for value in row] for row in matrix]
+    if any(type(value) is not int for row in matrix for value in row):
+        raise ValueError("Exact modular reduction requires integer entries")
+    matrix = [[value % prime for value in row] for row in matrix]
+    if isinstance(backend, str):
+        if backend == "cpu":
+            backend = None
+        elif backend == "cuda":
+            from .kernels.f4_cuda import CudaF4Backend
+            backend = CudaF4Backend()
+        else:
+            raise ValueError("Backend must be cpu, cuda, or a ModularRrefBackend")
     if backend is None:
         reduced, pivots = _cpu_rref(matrix, prime)
         backend_name, accelerated = "cpu-reference", False
     else:
-        reduced, pivots = backend.modular_rref(matrix, prime)
+        # A third-party backend may mutate its working input. Preserve the
+        # original separately so verification cannot certify a substituted matrix.
+        original = [row[:] for row in matrix]
+        reduced, pivots = backend.modular_rref([row[:] for row in matrix], prime)
         backend_name, accelerated = backend.name, bool(backend.accelerated)
         if len(reduced) != len(matrix) or any(len(row) != columns for row in reduced):
             raise RuntimeError("Backend devolveu matriz com shape incompatível")
         reduced = [[int(value) % prime for value in row] for row in reduced]
         # Independently verify the claimed RREF instead of trusting a device kernel.
-        verified, verified_pivots = _cpu_rref([row[:] for row in matrix], prime)
+        verified, verified_pivots = _cpu_rref(original, prime)
         if reduced != verified or list(pivots) != verified_pivots:
             raise ArithmeticError("Backend acelerado divergiu da redução modular exata")
     payload = {"matrix": reduced, "pivots": pivots, "prime": prime,

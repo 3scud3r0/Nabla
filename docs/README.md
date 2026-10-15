@@ -35,6 +35,10 @@
 - [Backlog F1–F12](audits/PHASES_1_12_COMPLETION_BACKLOG.md) e [inventário de arquivos/linhas](audits/FILE_INVENTORY.md).
 - Auditorias anteriores ficam em `audits/`, com seus snapshots próprios. Seus resultados não se transferem automaticamente para versões posteriores.
 
+- [Perfis locais dos 85 anteriormente planejados](audits/REMAINING_85_2026_10_15.md),
+  [disposição individual](acceptance/remaining_85_implementation.json) e
+  [contratos consultáveis](acceptance/scientific_capabilities.yaml).
+
 ## Arquitetura, visão e governança
 
 - [Visão principal](../vision.md), [plano mestre](PLANO_MESTRE_2026_2056.md), [mapa de fases](architecture/vision-phases.md) e [critérios de arquitetura](ARCHITECTURE_AND_ACCEPTANCE.md).

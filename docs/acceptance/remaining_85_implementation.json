@@ -1,0 +1,1244 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "6c37f05",
+  "original_planned_count": 85,
+  "scope": "All85 disposition records; partial local software profiles do not close original scientific acceptance",
+  "requirements": [
+    {
+      "id": 3,
+      "implementation": [
+        "src/nablamath/calc/catalog.py",
+        "src/nablamath/calc/session.py"
+      ],
+      "tests": [
+        "tests/test_phase1_calculator.py"
+      ],
+      "remaining": "Existing audited calculator catalog/session provides exact operations, domain obligations, request/result hashing and declared limitations; mapped with regression tests this round. Broad external per-operation certification remains incomplete.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 4,
+      "implementation": [
+        "src/nablamath/symbolic/rule_audit.py",
+        "src/nablamath/symbolic/proof.py",
+        "src/nablamath/symbolic/assumptions.py"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py",
+        "tests/test_declarative_egraph.py",
+        "tests/test_egraph.py"
+      ],
+      "remaining": "New independent finite exact-rational rewrite rule falsifier checks domain mismatch and value mismatch with adversarial tests. Finite scalar grid is not proof for composite expressions or all transcendental rules.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 6,
+      "implementation": [
+        "src/nablamath/math/calculus/risch.py",
+        "src/nablamath/math/calculus/transcendentals.py",
+        "src/nablamath/math/linear_algebra/exact_decompositions.py",
+        "src/nablamath/math/number_theory/factorization_advanced.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py",
+        "tests/test_roadmap_integration_mesh.py"
+      ],
+      "remaining": "Existing bounded rational integration certificates, Lambert W, exact PLU and bounded factorization now explicitly mapped with regression evidence. Not arbitrary Risch nor general competitive mathematics suite.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 7,
+      "implementation": [
+        "src/nablamath/autodiff/second_order.py",
+        "src/nablamath/autodiff/tensor.py"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py",
+        "tests/benchmark/test_math_comparison.py",
+        "tests/test_tensor_autodiff.py"
+      ],
+      "remaining": "New analytic dense second-order tensor AD includes broadcasting, reductions, matrix products, transcendental functions and stop-gradient; SymPy32 Hessian comparisons and reverse-gradient finite differences. Limit64 input coordinates; O(n²m) memory; no PyTorch/JAX comparison claim.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 8,
+      "implementation": [
+        "src/nablamath/forge/compositional_generator.py",
+        "src/nablamath/forge/difficulty_calibration.py",
+        "src/nablamath/forge/novelty_index.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py",
+        "tests/test_phase2_forge.py"
+      ],
+      "remaining": "Local deterministic construction, composition and difficulty evidence; genuinely novel external corpus and competing solver calibration remain external acceptance.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 10,
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_search_planner.py",
+        "src/nablamath/formal/proof_repair.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "remaining": "Existing reviewed controlled-language autoformalization and bounded Lean/SMT portfolios/replay explicitly mapped with tests. No arbitrary natural-language translation; external human correspondence audit and Mathlib compilation remain unfulfilled.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 11,
+      "implementation": [
+        "src/nablamath/falsifier/property_engine.py",
+        "src/nablamath/falsifier/counterexample_miner.py",
+        "src/nablamath/falsifier/shrink.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "remaining": "Bounded property/counterexample checks are not completeness for arbitrary theorem falsification.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 12,
+      "implementation": [
+        "src/nablamath/gpu/kernels/f4_cuda.py",
+        "src/nablamath/gpu/cuda_f4_reduction.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "remaining": "CUDA hardware absent; kernel compilation/execution, speedup and energy require independent real-device runs. Exact CPU oracle checks every device result.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 13,
+      "implementation": [
+        "src/nablamath/compiler/ir.py",
+        "src/nablamath/compiler/backends.py"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py",
+        "tests/test_compiler_backends.py",
+        "tests/benchmark/test_math_comparison.py"
+      ],
+      "remaining": "New strict versioned IR decoder validates canonical rational literals, instruction order, bounds and literal integer exponents, preventing silent fractional exponent truncation. Exact Python interpreter equivalence checked128 independent SymPy cases. Optional JAX remains separately declared; distributed scheduling/performance not validated.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 14,
+      "implementation": [
+        "src/nablamath/physics/fluids/channel.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fluids/turbulence.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "remaining": "Stationary no-slip channel reduction and existing 1D Euler reference only; general 2D nonperiodic Navier-Stokes, laboratory data and disciplinary review remain.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 15,
+      "implementation": [
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py",
+        "tests/test_phase7_worlds.py"
+      ],
+      "remaining": "Existing bounded adaptive integration/mesh profiles; stiff general multiphysics and independent observations remain.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 16,
+      "implementation": [
+        "src/nablamath/graphics/scientific_export.py",
+        "src/nablamath/graphics/scientific_renderer.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "remaining": "Multimodal exact sample exports with semantic replay; geometry, pixel fidelity, performance and external visual inspection remain bounded to existing profiles.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 17,
+      "implementation": [
+        "src/nablamath/viz/accessible.py",
+        "src/nablamath/graphics/scientific_export.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "remaining": "Accessible sample tables, exact units and declared uncertainty; discrete-frame animation only; human legibility and continuous interpolation unvalidated.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 19,
+      "implementation": [
+        "src/nablamath/reports/canonical_bundle.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "remaining": "Evidence hashes, deterministic object numbering and byte-bound HTML/LaTeX/Typst exports; tests compile real templates via available Typst and pdflatex; scientific endorsement and visual inspection not inferred.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 23,
+      "implementation": [
+        "src/nablamath/training/reasoning_finetune.py",
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "remaining": "Real bounded supervised numerical reasoning fit and synthetic family transfer; no frontier model gain or independently authored unseen benchmark established.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 25,
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/agents/permissions.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "remaining": "Existing consented trusted-tool checkpoints, cancellation and process deadlines are tested. Hostile-code OS isolation and externally authenticated authority remain unavailable; arbitrary code stays disabled.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 26,
+      "implementation": [
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/research_program.py",
+        "src/nablamath/discovery/independent_replication.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/science/test_independent_discovery.py",
+        "tests/test_phase9_discovery.py"
+      ],
+      "remaining": "Curated supplied snapshots; reviewer identity and global scientific novelty are not authenticated.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 27,
+      "implementation": [
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "src/nablamath/evolution/rollback.py"
+      ],
+      "tests": [
+        "tests/test_phase10_evolution.py",
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "remaining": "Closed declarative proposals and local rollback; not arbitrary untrusted code sandboxing or externally measured robust algorithmic advances.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 28,
+      "implementation": [
+        "src/nablamath/worlds/validation_observational.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "remaining": "Historical rounded Mercury reference and caller-supplied measurements are not independent provenance authentication, discipline-wide validation, or specialist review.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 30,
+      "implementation": [
+        "src/nablamath/network/framing.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 31,
+      "implementation": [
+        "src/nablamath/p2p/resilient_peers.py"
+      ],
+      "tests": [
+        "tests/network/test_eclipse.py",
+        "tests/network/test_sybil.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 32,
+      "implementation": [
+        "src/nablamath/node/federated_session.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 35,
+      "implementation": [
+        "src/nablamath/singularity/evaluation/generalization.py",
+        "src/nablamath/singularity/evaluation/safety.py",
+        "src/nablamath/singularity/evaluation/long_horizon.py"
+      ],
+      "tests": [
+        "tests/test_singularity_lab.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "remaining": "Transfer threshold gate recomputes reported outcomes; local synthetic cases do not establish AGI, independent evaluation, or domain transfer in real science.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 36,
+      "implementation": [
+        "src/nablamath/adapters/numpy.py",
+        "src/nablamath/adapters/scipy.py",
+        "src/nablamath/adapters/registry.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py"
+      ],
+      "remaining": "Bounded numeric NumPy wire validation and optional SciPy interoperability; full cross-tool compatibility and upstream version matrix remain.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 38,
+      "implementation": [
+        "src/nablamath/publisher/authorization.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "remaining": "Ed25519 authorization binds exact artifact bytes and destination; opt-in rights declaration, revocation, dry-run idempotency. State is process-local; no remote staging publication performed and rights are operator declarations.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 39,
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py"
+      ],
+      "remaining": "Preregistered fixed model/cohort/metric/stopping-rule ledger and exact descriptive paired comparisons. Third-party replication, private novel holdout, inferential independence and model execution identity are not established.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 40,
+      "implementation": [
+        "src/nablamath/desktop/workflows.py",
+        "src/nablamath/desktop/app.py",
+        "src/nablamath/desktop/index.html"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "remaining": "Complete exact-instance experiment/evidence/report workflow in loopback UI with consent. Existing UI covers more bounded operations, not all scientific subsystems; human accessibility/usability review outstanding.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 41,
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/compatibility.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py",
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "remaining": "CLI exposes finite contracts and refusals; Lean support pin aligned. The open-ended public workflow and compatibility matrix still require releases and cross-platform external verification.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 43,
+      "implementation": [
+        "lean/Nabla/KernelContracts.lean",
+        "lean/Nabla.lean",
+        "lean/lean-toolchain"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py"
+      ],
+      "remaining": "Six new kernel-only Lean4.34.0 theorems compiled successfully and #print axioms reports zero dependencies for each. Full imported Mathlib project still unavailable; no Python translator correspondence proof.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 44,
+      "implementation": [
+        "protocol/fixtures/cross-language/rational-v1.json"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 45,
+      "implementation": [
+        "sdk/python/rational.py",
+        "sdk/typescript/rational.ts",
+        "sdk/rust/src/client.rs"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 49,
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "remaining": "Historical bytes and declared repository commit pinned; original claims not treated as delivered behavior.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 51,
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "remaining": "Frozen result bytes include negative results; campaign hash chain and canonical JSON semantic check do not reexecute scientific experiment or authenticate custodian.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 52,
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "remaining": "Longley mirror commit, three SHA256 files, source paths, license and reference checked offline; no new independent publisher retrieval.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 53,
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py"
+      ],
+      "remaining": "Preregistered fixed model/cohort/metric/stopping-rule ledger and exact descriptive paired comparisons. Third-party replication, private novel holdout, inferential independence and model execution identity are not established.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 54,
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "remaining": "Legacy bytes frozen; AST audit rejects explicit production legacy/archive imports; dynamic imports not comprehensively audited.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 55,
+      "implementation": [
+        "website/src/evidence.js",
+        "website/build.mjs",
+        "website/app.js",
+        "website/index.html"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "remaining": "Built site status derived from actual213 matrix, no promotional completion inference. No live deployment or human accessibility review performed.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 57,
+      "implementation": [
+        "scripts/preserved_archive.py"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "remaining": "Pinned bounded ZIP import is idempotent, refuses historical overwrite, case/path/symlink collisions and preserves destination on failure; tested on current Linux only.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 58,
+      "implementation": [
+        "examples/audited_local_experiment.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "remaining": "All five published Python examples auto-executed in isolated temporary outputs; fixtures are synthetic and not evidence of scientific discovery.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 59,
+      "implementation": [
+        "templates/engineering_report/example.document.json",
+        "templates/teaching/example.document.json"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "remaining": "Three canonical report templates exported and compiled with available real Typst and LaTeX compilers; external visual/editorial review not performed.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 60,
+      "implementation": [
+        "packaging/offline_release.py"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "remaining": "Real offline clean-venv synthetic package install, upgrade, downgrade, repair, uninstall and restoration tested on current Linux; no Windows/macOS, signed installer or publisher authenticity claim.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 62,
+      "implementation": [
+        "packaging/offline_release.py"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "remaining": "SPDX 2.3 wheel SBOM source commit declaration, metadata, optional requirement and SHA binding reuse existing wheel verifier; source origin is caller-declared, Python version matrix not run.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 63,
+      "implementation": [
+        "README.md",
+        "tools/check_public_contracts.py",
+        ".github/workflows/ci.yml"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "remaining": "Current evidence and historical estimates distinguished, contract/link checks added to CI. Interactive browser startup, every optional external service and all platform commands require independent runtime review.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 64,
+      "implementation": [
+        "vision.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 65,
+      "implementation": [
+        "description.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 66,
+      "implementation": [
+        "docs/PLANO_MESTRE_2026_2056.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 67,
+      "implementation": [
+        "docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 68,
+      "implementation": [
+        "docs/ARCHITECTURE_AND_ACCEPTANCE.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 69,
+      "implementation": [
+        "docs/MATHEMATICS_COMPLETION_AUDIT.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 70,
+      "implementation": [
+        "src/nablamath/agents/sandbox.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/test_agents.py",
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "remaining": "The existing complete prohibition of arbitrary code is preserved and verified; this is not execution of hostile code in a real OS sandbox. Escape-resistance certification remains blocked by that missing capability.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 72,
+      "implementation": [
+        "src/nablamath/desktop/app.py",
+        "src/nablamath/desktop/workflows.py",
+        "src/nablamath/desktop/index.html"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "remaining": "Real loopback HTTP E2E exact experiment with explicit consent and byte-identical API/direct receipt. No unrestricted execution, remote publishing, or claim of all-workflow UI coverage.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 73,
+      "implementation": [
+        "src/nablamath/physics/fluids/channel.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fluids/turbulence.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "remaining": "Stationary no-slip channel reduction and existing 1D Euler reference only; general 2D nonperiodic Navier-Stokes, laboratory data and disciplinary review remain.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 74,
+      "implementation": [
+        "src/nablamath/physics/relativity/einstein_solver.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "remaining": "Bounded analytic spatially-flat perfect-fluid FLRW plus Schwarzschild; not general numerical Einstein solver; historical rounded Mercury comparison is not new experimental validation.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 75,
+      "implementation": [
+        "src/nablamath/gpu/kernels/f4_cuda.py",
+        "src/nablamath/gpu/cuda_f4_reduction.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "remaining": "CUDA hardware absent; kernel compilation/execution, speedup and energy require independent real-device runs. Exact CPU oracle checks every device result.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 76,
+      "implementation": [
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/novelty_screen.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/science/test_independent_discovery.py"
+      ],
+      "remaining": "Traceable curated source/retrieval metadata and false-positive review; operator declarations only, no live comprehensive search or authenticated independent reviewers.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 77,
+      "implementation": [
+        "src/nablamath/training/reasoning_finetune.py",
+        "src/nablamath/training/baselines.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "remaining": "Actual deterministic fitted linear baseline; stronger LLM baselines and real external benchmark comparisons remain unfulfilled.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 78,
+      "implementation": [
+        "src/nablamath/training/multimodal_network.py",
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/test_phase8_agents_training.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "remaining": "Existing multimodal neural fit plus generic transfer protocol; no claimed OOD scientific multimodal gain.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 79,
+      "implementation": [
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "src/nablamath/evolution/rollback.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_phase10_evolution.py"
+      ],
+      "remaining": "Typed bounded proposals only; not general algorithm synthesis or demonstrated robust gain.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 83,
+      "implementation": [
+        "docs/acceptance/scientific_capabilities.yaml",
+        "src/nablamath/core/capabilities.py"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "remaining": "Versioned queryable finite domains, explicit refusals and exact tolerance declarations are validated locally. Independent scientific review and release-specific acceptance remain pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 110,
+      "implementation": [
+        "src/nablamath/gpu/kernels/f4_cuda.py",
+        "src/nablamath/gpu/cuda_f4_reduction.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "remaining": "CUDA hardware absent; kernel compilation/execution, speedup and energy require independent real-device runs. Exact CPU oracle checks every device result.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 111,
+      "implementation": [
+        "src/nablamath/gpu/kernels/egraph_triton.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "remaining": "Triton execution requires hardware/dependency validation; implements parent canonicalization only, not full GPU e-graph saturation.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 112,
+      "implementation": [
+        "src/nablamath/gpu/profiler.py",
+        "benchmarks/resources/hardware_profiles.json"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "remaining": "No GPU available. Energy integration and peak VRAM absent explicitly null; no speedup claim.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 119,
+      "implementation": [
+        "src/nablamath/physics/relativity/einstein_solver.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "remaining": "Bounded analytic spatially-flat perfect-fluid FLRW plus Schwarzschild; not general numerical Einstein solver; historical rounded Mercury comparison is not new experimental validation.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 128,
+      "implementation": [
+        "src/nablamath/training/frontier_adapter.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py"
+      ],
+      "remaining": "Explicit owner/version/input-digest consent, default disabled, caller-injected transport only. No built-in network or frontier provider evaluation.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 129,
+      "implementation": [
+        "src/nablamath/training/reasoning_finetune.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "remaining": "Content-digest-frozen actual supervised linear fitting, deterministic bounded optimizer. Does not fine tune an LLM or prove learned reasoning.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 130,
+      "implementation": [
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "remaining": "Task/family/semantic overlap checks and per-domain Wilson intervals on supplied cases. True external unseen cases remain external.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 135,
+      "implementation": [
+        "src/nablamath/discovery/literature_search.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/science/test_independent_discovery.py"
+      ],
+      "remaining": "Curated supplied external metadata snapshots; no built-in live fetch, source authentication, comprehensive coverage or novelty guarantee.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 143,
+      "implementation": [
+        "src/nablamath/knowledge/institutional_identity.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 144,
+      "implementation": [
+        "src/nablamath/knowledge/distributed_provenance.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 152,
+      "implementation": [
+        "services/federation/reconciliation.py"
+      ],
+      "tests": [
+        "tests/network/test_partition.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 155,
+      "implementation": [
+        "sdk/rust/src/client.rs"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 160,
+      "implementation": [
+        "src/nablamath/compiler/ir.py",
+        "src/nablamath/autodiff/second_order.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_math_comparison.py"
+      ],
+      "remaining": "Version1 correctness comparison contract records owner, fixed seeds and128 exact rational plus32 analytic Hessian independent SymPy cases. No speed ranking, no external approval asserted; performance benchmarking and independent reviewer remain pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 161,
+      "implementation": [
+        "src/nablamath/gpu/profiler.py",
+        "benchmarks/resources/hardware_profiles.json"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "remaining": "No GPU available. Energy integration and peak VRAM absent explicitly null; no speedup claim.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 162,
+      "implementation": [
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "remaining": "Executed synthetic family holdouts, negative results and contamination rejection, not a measured frontier generalization gain.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 163,
+      "implementation": [
+        "src/nablamath/worlds/validation_observational.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "remaining": "Historical rounded Mercury reference and caller-supplied measurements are not independent provenance authentication, discipline-wide validation, or specialist review.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 164,
+      "implementation": [
+        "src/nablamath/discovery/independent_replication.py"
+      ],
+      "tests": [
+        "tests/science/test_independent_discovery.py"
+      ],
+      "remaining": "Actual protocol conformance and negative replication bookkeeping; test fixtures are not external reviewers or independent scientific replication.",
+      "change_kind": "existing_tested_profile_recognized",
+      "status": "partial"
+    },
+    {
+      "id": 165,
+      "implementation": [
+        "services/federation/reconciliation.py"
+      ],
+      "tests": [
+        "tests/distributed/test_multihost_failures.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 167,
+      "implementation": [
+        "src/nablamath/gpu/profiler.py",
+        "benchmarks/resources/hardware_profiles.json"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "remaining": "No GPU available. Energy integration and peak VRAM absent explicitly null; no speedup claim.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 189,
+      "implementation": [
+        "src/nablamath/p2p/resilient_peers.py"
+      ],
+      "tests": [
+        "tests/network/test_sybil.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 190,
+      "implementation": [
+        "src/nablamath/knowledge/distributed_provenance.py"
+      ],
+      "tests": [
+        "tests/network/test_poisoning.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 191,
+      "implementation": [
+        "src/nablamath/p2p/resilient_peers.py"
+      ],
+      "tests": [
+        "tests/network/test_eclipse.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 192,
+      "implementation": [
+        "services/federation/reconciliation.py"
+      ],
+      "tests": [
+        "tests/network/test_partition.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 193,
+      "implementation": [
+        "sdk/python/rational.py",
+        "sdk/typescript/rational.ts"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 208,
+      "implementation": [
+        "protocol/fixtures/cross-language/README.md",
+        "protocol/fixtures/cross-language/rational-v1.json"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    },
+    {
+      "id": 209,
+      "implementation": [
+        "src/nablamath/singularity/evaluation/generalization.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "remaining": "Fail-closed report consistency, duplicate-task rejection and declared per-domain thresholds; no AGI or independent benchmark authenticity claim.",
+      "change_kind": "implementation_or_contract_changed",
+      "status": "partial"
+    }
+  ],
+  "baseline_matrix_sha256": "cde7652ff927b3ddb41784ba6c51f3e074a0354d856729491278784874f99133",
+  "baseline_planned_ids": [
+    3,
+    4,
+    6,
+    7,
+    8,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    19,
+    23,
+    25,
+    26,
+    27,
+    28,
+    30,
+    31,
+    32,
+    35,
+    36,
+    38,
+    39,
+    40,
+    41,
+    43,
+    44,
+    45,
+    49,
+    51,
+    52,
+    53,
+    54,
+    55,
+    57,
+    58,
+    59,
+    60,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    83,
+    110,
+    111,
+    112,
+    119,
+    128,
+    129,
+    130,
+    135,
+    143,
+    144,
+    152,
+    155,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    167,
+    189,
+    190,
+    191,
+    192,
+    193,
+    208,
+    209
+  ]
+}

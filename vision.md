@@ -440,3 +440,17 @@ O primeiro ciclo deve caber em uma máquina comum, ser reproduzível e servir de
 A arquitetura deve permitir a expansão **sem pressupor que ela acontecerá automaticamente**. Este documento formaliza a direção; **não implementa** as fases. A implementação começa pela auditoria e estabilização do código atual, mediante mudanças pequenas, reversíveis e testadas.
 
 Para contratos, lista de arquivos por fase, matriz de áreas científicas, hardware, governança e critérios de fechamento, consultar [PLANO_MESTRE_2026_2056.md](docs/PLANO_MESTRE_2026_2056.md).
+
+<!-- nabla:contracts:start -->
+## Contratos executáveis e pendências atuais
+
+A matriz registra 213 requisitos com perfis parciais, 0 planejados e 0 integralmente validados. Uma referência de implementação não equivale à aceitação integral.
+
+- [Matriz original dos 213 requisitos](docs/acceptance/evidence_matrix.json).
+- [Rastreabilidade de fases, requisitos, testes e evidências](docs/acceptance/vision_traceability.json).
+- [Domínios, operações, recusas e tolerâncias](docs/acceptance/scientific_capabilities.yaml).
+
+F0 explicita contratos e infraestrutura; F13 continua horizonte aberto. Os perfis de software não demonstram autonomia científica geral. Provas formais exigem kernel e auditoria de hipóteses; GPU exige execução identificada; observações e revisão externa não são substituídas por fixtures ou identidade declarada.
+
+Verificar: `python tools/check_roadmap.py` e `python tools/check_public_contracts.py`, na raiz do repositório.
+<!-- nabla:contracts:end -->

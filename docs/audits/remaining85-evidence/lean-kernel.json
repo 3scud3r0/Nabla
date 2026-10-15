@@ -1,0 +1,4 @@
+{
+  "raw_sha256": "50234f3c3e83c016cc36c7eab3d6088b08e18bb798e403634fcfc17dd0cc5c74",
+  "text": "'Nabla.KernelContracts.implication_compose' does not depend on any axioms\n'Nabla.KernelContracts.conjunction_commutes' does not depend on any axioms\n'Nabla.KernelContracts.guarded_equality' does not depend on any axioms\n'Nabla.KernelContracts.list_map_identity' does not depend on any axioms\n'Nabla.KernelContracts.natural_add_zero' does not depend on any axioms\n'Nabla.KernelContracts.natural_add_successor' does not depend on any axioms\n"
+}

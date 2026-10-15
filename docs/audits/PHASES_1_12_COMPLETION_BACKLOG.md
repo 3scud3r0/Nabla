@@ -1041,3 +1041,17 @@ A decomposição é detalhada o suficiente para abrir issues e planejar entregas
 mas poderá revelar novas subtarefas ao implementar. “Exatamente tudo” só passa a
 ser verificável depois de fechar os perfis e os protocolos; esta auditoria não
 promete uma lista imutável para pesquisa científica aberta.
+
+<!-- nabla:contracts:start -->
+## Contratos executáveis e pendências atuais
+
+A matriz registra 213 requisitos com perfis parciais, 0 planejados e 0 integralmente validados. Uma referência de implementação não equivale à aceitação integral.
+
+- [Matriz original dos 213 requisitos](../acceptance/evidence_matrix.json).
+- [Rastreabilidade de fases, requisitos, testes e evidências](../acceptance/vision_traceability.json).
+- [Domínios, operações, recusas e tolerâncias](../acceptance/scientific_capabilities.yaml).
+
+F0 explicita contratos e infraestrutura; F13 continua horizonte aberto. Os perfis de software não demonstram autonomia científica geral. Provas formais exigem kernel e auditoria de hipóteses; GPU exige execução identificada; observações e revisão externa não são substituídas por fixtures ou identidade declarada.
+
+Verificar: `python tools/check_roadmap.py` e `python tools/check_public_contracts.py`, na raiz do repositório.
+<!-- nabla:contracts:end -->

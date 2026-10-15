@@ -64,6 +64,12 @@ class LocalResearch:
         path, _ = write_report(result, self.data_dir / (result.content_id + ".tex"))
         return {"path": str(path), "content_id": result.content_id}
 
+    def experiment(self, payload: dict) -> dict:
+        from .workflows import ExperimentWorkflow
+        return ExperimentWorkflow(self.data_dir / 'experiments').execute(
+            payload['expression'], payload['values'], consent=payload.get('consent'),
+            reviewer=payload.get('reviewer', ''))
+
     def orbit(self, altitude_m: float) -> dict:
         return earth_circular_orbit(altitude_m).summary()
 
@@ -200,7 +206,8 @@ def make_server(data_dir: Path, port: int = 0) -> tuple[ThreadingHTTPServer, Loc
                 payload = json.loads(self.rfile.read(size))
                 if not isinstance(payload, dict):
                     raise ValueError("Objeto JSON esperado")
-                routes = {"/api/run": lambda: research.run(payload["expression"], payload["values"]),
+                routes = {"/api/experiment": lambda: research.experiment(payload),
+                          "/api/run": lambda: research.run(payload["expression"], payload["values"]),
                           "/api/start": lambda: research.start(max_examples=payload["max_examples"], interval_seconds=payload["interval_seconds"]),
                           "/api/stop": research.stop, "/api/export": research.export,
                           "/api/import": research.import_local,

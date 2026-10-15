@@ -6,3 +6,6 @@ __all__ = [
     "hessian", "exp", "log", "sin", "cos", "tanh", "Tensor",
     "NamedTensor", "tensor_vjp", "tensor_jacobian",
 ]
+
+from .second_order import SecondOrderTensor, tensor_hessian
+__all__ += ["SecondOrderTensor", "tensor_hessian"]

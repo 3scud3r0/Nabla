@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "scope": "local integrity and reproducible outcomes; no external authority or scientific closure",
+  "files": {
+    "calibration.json": "3ecd0326c1060dfad7e2b084055e32e825c3d154c998e8c158e763f691cf6098",
+    "full-tests.xml": "72383b0b4ba1024d97d4913c6b32862b56096804a9356c4d89f8fb1a6b3b3c4f",
+    "initial-minimal-tests.xml.json": "c34ee7d94a31b71b3c1bd797a113d71e0a959631b3c4843e58fdfe45c6f6979c",
+    "laboratory/assurance.json": "57e958a40e6722db2c7f9bc5540b7253be090dcd5c07c36735ecbd77e2a57948",
+    "laboratory/independent-analysis.json": "0d6ef04ea9c87efb2f007d4955be3c033a9b60742e4cf677e01c059b95433be1",
+    "laboratory/independent.json": "7a17caef20f4358674e0c32d29cb4be6690b00273abc915f047eab5655253c7c",
+    "laboratory/journal.json": "2f8dd8c2960229a402ad97084c4c1c4e6b36be3b98ba0c5172dab69253e19361",
+    "laboratory/protocol.json": "22da8d26c20096984538b024ab576f60b9cf956d9882ef7b59de5fbac9bc6626",
+    "laboratory/summary.json": "57f562978176b894a8e6950f2cb33f8b2bd16447f0e97ee837d2ca95373b7901",
+    "laboratory/workload/summary.json": "c6b130e0c690ddbb25eed7f9a06c2ff0f85df436b7b8e502c03f3b015fa8f513",
+    "laboratory-assurance.json": "8d30d860373c0b772df8dd36e988eb0d26709834ce23ee6e0fbb3f5ed98a29c7",
+    "laboratory-science.json": "c792fe0d0bf1e8503a6140c5cdd3aab50b351fdc7b605bdd7c376f1971fdfaf6",
+    "lean-kernel.json": "9c74a74b86bd39e28723fd8fd590e76dd851b7cb957239726210a2aa7c553750",
+    "minimal-tests.xml": "603104c2010f1f359f15b26ae7d4a6de50c0aed567c8ff73868b3a6363d6a702",
+    "wheel-verification.json": "b0b92726f00449a54a34c392e6287b68c3898359c6e556b4f459b7d090e2fe6c"
+  }
+}

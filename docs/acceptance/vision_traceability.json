@@ -1,0 +1,4343 @@
+{
+  "schema_version": 1,
+  "source": "docs/acceptance/evidence_matrix.json",
+  "mapping_scope": "Original phase references expanded; unspecified phases assigned F0 governance, not inferred scientific maturity",
+  "phase_policy": {
+    "F0": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F1": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F2": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F3": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F4": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F5": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F6": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F7": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F8": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F9": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F10": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F11": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F12": {
+      "acceptance": "finite profiles only",
+      "scientific_completion_established": false
+    },
+    "F13": {
+      "acceptance": "open",
+      "scientific_completion_established": false
+    }
+  },
+  "requirements": [
+    {
+      "id": 1,
+      "target": "`src/nablamath/core/`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/core/scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 2,
+      "target": "`src/nablamath/schema/`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/core/semantic_contracts.py"
+      ],
+      "tests": [
+        "tests/test_semantic_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 3,
+      "target": "`src/nablamath/calc/`",
+      "status": "partial",
+      "phases": [
+        "F1"
+      ],
+      "implementation": [
+        "src/nablamath/calc/catalog.py",
+        "src/nablamath/calc/session.py"
+      ],
+      "tests": [
+        "tests/test_phase1_calculator.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Existing audited calculator catalog/session provides exact operations, domain obligations, request/result hashing and declared limitations; mapped with regression tests this round. Broad external per-operation certification remains incomplete."
+    },
+    {
+      "id": 4,
+      "target": "`src/nablamath/symbolic/`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F2",
+        "F3"
+      ],
+      "implementation": [
+        "src/nablamath/symbolic/rule_audit.py",
+        "src/nablamath/symbolic/proof.py",
+        "src/nablamath/symbolic/assumptions.py"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py",
+        "tests/test_declarative_egraph.py",
+        "tests/test_egraph.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "New independent finite exact-rational rewrite rule falsifier checks domain mismatch and value mismatch with adversarial tests. Finite scalar grid is not proof for composite expressions or all transcendental rules."
+    },
+    {
+      "id": 5,
+      "target": "`src/nablamath/numeric/`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F7"
+      ],
+      "implementation": [
+        "src/nablamath/numeric/intervals.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 6,
+      "target": "`src/nablamath/math/`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F2",
+        "F3",
+        "F11"
+      ],
+      "implementation": [
+        "src/nablamath/math/calculus/risch.py",
+        "src/nablamath/math/calculus/transcendentals.py",
+        "src/nablamath/math/linear_algebra/exact_decompositions.py",
+        "src/nablamath/math/number_theory/factorization_advanced.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py",
+        "tests/test_roadmap_integration_mesh.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Existing bounded rational integration certificates, Lambert W, exact PLU and bounded factorization now explicitly mapped with regression evidence. Not arbitrary Risch nor general competitive mathematics suite."
+    },
+    {
+      "id": 7,
+      "target": "`src/nablamath/autodiff/`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F7",
+        "F8"
+      ],
+      "implementation": [
+        "src/nablamath/autodiff/second_order.py",
+        "src/nablamath/autodiff/tensor.py"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py",
+        "tests/benchmark/test_math_comparison.py",
+        "tests/test_tensor_autodiff.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "New analytic dense second-order tensor AD includes broadcasting, reductions, matrix products, transcendental functions and stop-gradient; SymPy32 Hessian comparisons and reverse-gradient finite differences. Limit64 input coordinates; O(n²m) memory; no PyTorch/JAX comparison claim."
+    },
+    {
+      "id": 8,
+      "target": "`src/nablamath/forge/`",
+      "status": "partial",
+      "phases": [
+        "F2"
+      ],
+      "implementation": [
+        "src/nablamath/forge/compositional_generator.py",
+        "src/nablamath/forge/difficulty_calibration.py",
+        "src/nablamath/forge/novelty_index.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py",
+        "tests/test_phase2_forge.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Local deterministic construction, composition and difficulty evidence; genuinely novel external corpus and competing solver calibration remain external acceptance."
+    },
+    {
+      "id": 9,
+      "target": "`src/nablamath/verify/`",
+      "status": "partial",
+      "phases": [
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 10,
+      "target": "`src/nablamath/formal/`",
+      "status": "partial",
+      "phases": [
+        "F3"
+      ],
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_search_planner.py",
+        "src/nablamath/formal/proof_repair.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Existing reviewed controlled-language autoformalization and bounded Lean/SMT portfolios/replay explicitly mapped with tests. No arbitrary natural-language translation; external human correspondence audit and Mathlib compilation remain unfulfilled."
+    },
+    {
+      "id": 11,
+      "target": "`src/nablamath/falsifier/`",
+      "status": "partial",
+      "phases": [
+        "F3",
+        "F9"
+      ],
+      "implementation": [
+        "src/nablamath/falsifier/property_engine.py",
+        "src/nablamath/falsifier/counterexample_miner.py",
+        "src/nablamath/falsifier/shrink.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Bounded property/counterexample checks are not completeness for arbitrary theorem falsification."
+    },
+    {
+      "id": 12,
+      "target": "`src/nablamath/gpu/`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10"
+      ],
+      "implementation": [
+        "src/nablamath/gpu/kernels/f4_cuda.py",
+        "src/nablamath/gpu/cuda_f4_reduction.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "CUDA hardware absent; kernel compilation/execution, speedup and energy require independent real-device runs. Exact CPU oracle checks every device result."
+    },
+    {
+      "id": 13,
+      "target": "`src/nablamath/compiler/`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10"
+      ],
+      "implementation": [
+        "src/nablamath/compiler/ir.py",
+        "src/nablamath/compiler/backends.py"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py",
+        "tests/test_compiler_backends.py",
+        "tests/benchmark/test_math_comparison.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "New strict versioned IR decoder validates canonical rational literals, instruction order, bounds and literal integer exponents, preventing silent fractional exponent truncation. Exact Python interpreter equivalence checked128 independent SymPy cases. Optional JAX remains separately declared; distributed scheduling/performance not validated."
+    },
+    {
+      "id": 14,
+      "target": "`src/nablamath/physics/`",
+      "status": "partial",
+      "phases": [
+        "F7",
+        "F11"
+      ],
+      "implementation": [
+        "src/nablamath/physics/fluids/channel.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fluids/turbulence.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Stationary no-slip channel reduction and existing 1D Euler reference only; general 2D nonperiodic Navier-Stokes, laboratory data and disciplinary review remain."
+    },
+    {
+      "id": 15,
+      "target": "`src/nablamath/worlds/`",
+      "status": "partial",
+      "phases": [
+        "F7"
+      ],
+      "implementation": [
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py",
+        "tests/test_phase7_worlds.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Existing bounded adaptive integration/mesh profiles; stiff general multiphysics and independent observations remain."
+    },
+    {
+      "id": 16,
+      "target": "`src/nablamath/graphics/`",
+      "status": "partial",
+      "phases": [
+        "F4"
+      ],
+      "implementation": [
+        "src/nablamath/graphics/scientific_export.py",
+        "src/nablamath/graphics/scientific_renderer.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Multimodal exact sample exports with semantic replay; geometry, pixel fidelity, performance and external visual inspection remain bounded to existing profiles."
+    },
+    {
+      "id": 17,
+      "target": "`src/nablamath/viz/`",
+      "status": "partial",
+      "phases": [
+        "F4",
+        "F5"
+      ],
+      "implementation": [
+        "src/nablamath/viz/accessible.py",
+        "src/nablamath/graphics/scientific_export.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Accessible sample tables, exact units and declared uncertainty; discrete-frame animation only; human legibility and continuous interpolation unvalidated."
+    },
+    {
+      "id": 18,
+      "target": "`src/nablamath/documents/`",
+      "status": "partial",
+      "phases": [
+        "F5"
+      ],
+      "implementation": [
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 19,
+      "target": "`src/nablamath/reports/`",
+      "status": "partial",
+      "phases": [
+        "F5"
+      ],
+      "implementation": [
+        "src/nablamath/reports/canonical_bundle.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Evidence hashes, deterministic object numbering and byte-bound HTML/LaTeX/Typst exports; tests compile real templates via available Typst and pdflatex; scientific endorsement and visual inspection not inferred."
+    },
+    {
+      "id": 20,
+      "target": "`src/nablamath/dataset/`",
+      "status": "partial",
+      "phases": [
+        "F6"
+      ],
+      "implementation": [
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 21,
+      "target": "`src/nablamath/datasets/`",
+      "status": "partial",
+      "phases": [
+        "F6",
+        "F8"
+      ],
+      "implementation": [
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 22,
+      "target": "`src/nablamath/export/`",
+      "status": "partial",
+      "phases": [
+        "F5",
+        "F6",
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/core/scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 23,
+      "target": "`src/nablamath/training/`",
+      "status": "partial",
+      "phases": [
+        "F8"
+      ],
+      "implementation": [
+        "src/nablamath/training/reasoning_finetune.py",
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Real bounded supervised numerical reasoning fit and synthetic family transfer; no frontier model gain or independently authored unseen benchmark established."
+    },
+    {
+      "id": 24,
+      "target": "`src/nablamath/evaluation/`",
+      "status": "partial",
+      "phases": [
+        "F6",
+        "F8",
+        "F10"
+      ],
+      "implementation": [
+        "src/nablamath/evaluation/frozen.py"
+      ],
+      "tests": [
+        "tests/evaluation/test_frozen.py"
+      ],
+      "evidence": [
+        "docs/audits/FROZEN_EVALUATION_2026_10_15.md"
+      ],
+      "remaining": "External operator isolation, authenticated independent review, private holdout administration and full original acceptance remain required."
+    },
+    {
+      "id": 25,
+      "target": "`src/nablamath/agents/`",
+      "status": "partial",
+      "phases": [
+        "F8"
+      ],
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/agents/permissions.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Existing consented trusted-tool checkpoints, cancellation and process deadlines are tested. Hostile-code OS isolation and externally authenticated authority remain unavailable; arbitrary code stays disabled."
+    },
+    {
+      "id": 26,
+      "target": "`src/nablamath/discovery/`",
+      "status": "partial",
+      "phases": [
+        "F9"
+      ],
+      "implementation": [
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/research_program.py",
+        "src/nablamath/discovery/independent_replication.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/science/test_independent_discovery.py",
+        "tests/test_phase9_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Curated supplied snapshots; reviewer identity and global scientific novelty are not authenticated."
+    },
+    {
+      "id": 27,
+      "target": "`src/nablamath/evolution/`",
+      "status": "partial",
+      "phases": [
+        "F10"
+      ],
+      "implementation": [
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "src/nablamath/evolution/rollback.py"
+      ],
+      "tests": [
+        "tests/test_phase10_evolution.py",
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Closed declarative proposals and local rollback; not arbitrary untrusted code sandboxing or externally measured robust algorithmic advances."
+    },
+    {
+      "id": 28,
+      "target": "`src/nablamath/domains/`",
+      "status": "partial",
+      "phases": [
+        "F11"
+      ],
+      "implementation": [
+        "src/nablamath/worlds/validation_observational.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Historical rounded Mercury reference and caller-supplied measurements are not independent provenance authentication, discipline-wide validation, or specialist review."
+    },
+    {
+      "id": 29,
+      "target": "`src/nablamath/knowledge/`",
+      "status": "partial",
+      "phases": [
+        "F9",
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 30,
+      "target": "`src/nablamath/network/`",
+      "status": "partial",
+      "phases": [
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/network/framing.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 31,
+      "target": "`src/nablamath/p2p/`",
+      "status": "partial",
+      "phases": [
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/p2p/resilient_peers.py"
+      ],
+      "tests": [
+        "tests/network/test_eclipse.py",
+        "tests/network/test_sybil.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 32,
+      "target": "`src/nablamath/node/`",
+      "status": "partial",
+      "phases": [
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/node/federated_session.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 33,
+      "target": "`src/nablamath/coordination/`",
+      "status": "partial",
+      "phases": [
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/coordination/local.py"
+      ],
+      "tests": [
+        "tests/integration/test_coordinator_api.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 34,
+      "target": "`src/nablamath/pipeline/`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 35,
+      "target": "`src/nablamath/singularity/`",
+      "status": "partial",
+      "phases": [
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12",
+        "F13"
+      ],
+      "implementation": [
+        "src/nablamath/singularity/evaluation/generalization.py",
+        "src/nablamath/singularity/evaluation/safety.py",
+        "src/nablamath/singularity/evaluation/long_horizon.py"
+      ],
+      "tests": [
+        "tests/test_singularity_lab.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Transfer threshold gate recomputes reported outcomes; local synthetic cases do not establish AGI, independent evaluation, or domain transfer in real science."
+    },
+    {
+      "id": 36,
+      "target": "`src/nablamath/adapters/`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F7",
+        "F11"
+      ],
+      "implementation": [
+        "src/nablamath/adapters/numpy.py",
+        "src/nablamath/adapters/scipy.py",
+        "src/nablamath/adapters/registry.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Bounded numeric NumPy wire validation and optional SciPy interoperability; full cross-tool compatibility and upstream version matrix remain."
+    },
+    {
+      "id": 37,
+      "target": "`src/nablamath/store/`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/pipeline/artifact_store.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 38,
+      "target": "`src/nablamath/publisher/`",
+      "status": "partial",
+      "phases": [
+        "F5",
+        "F6"
+      ],
+      "implementation": [
+        "src/nablamath/publisher/authorization.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Ed25519 authorization binds exact artifact bytes and destination; opt-in rights declaration, revocation, dry-run idempotency. State is process-local; no remote staging publication performed and rights are operator declarations."
+    },
+    {
+      "id": 39,
+      "target": "`src/nablamath/benchmarks/`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Preregistered fixed model/cohort/metric/stopping-rule ledger and exact descriptive paired comparisons. Third-party replication, private novel holdout, inferential independence and model execution identity are not established."
+    },
+    {
+      "id": 40,
+      "target": "`src/nablamath/desktop/`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/desktop/workflows.py",
+        "src/nablamath/desktop/app.py",
+        "src/nablamath/desktop/index.html"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Complete exact-instance experiment/evidence/report workflow in loopback UI with consent. Existing UI covers more bounded operations, not all scientific subsystems; human accessibility/usability review outstanding."
+    },
+    {
+      "id": 41,
+      "target": "`src/nablamath/`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/compatibility.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py",
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "CLI exposes finite contracts and refusals; Lean support pin aligned. The open-ended public workflow and compatibility matrix still require releases and cross-platform external verification."
+    },
+    {
+      "id": 42,
+      "target": "`tests/`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12",
+        "F13"
+      ],
+      "implementation": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/test_semantic_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 43,
+      "target": "`lean/`",
+      "status": "partial",
+      "phases": [
+        "F3"
+      ],
+      "implementation": [
+        "lean/Nabla/KernelContracts.lean",
+        "lean/Nabla.lean",
+        "lean/lean-toolchain"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Six new kernel-only Lean4.34.0 theorems compiled successfully and #print axioms reports zero dependencies for each. Full imported Mathlib project still unavailable; no Python translator correspondence proof."
+    },
+    {
+      "id": 44,
+      "target": "`protocol/`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F12"
+      ],
+      "implementation": [
+        "protocol/fixtures/cross-language/rational-v1.json"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 45,
+      "target": "`sdk/`",
+      "status": "partial",
+      "phases": [
+        "F12"
+      ],
+      "implementation": [
+        "sdk/python/rational.py",
+        "sdk/typescript/rational.ts",
+        "sdk/rust/src/client.rs"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 46,
+      "target": "`services/`",
+      "status": "partial",
+      "phases": [
+        "F12"
+      ],
+      "implementation": [
+        "services/coordinator/api.py"
+      ],
+      "tests": [
+        "tests/integration/test_coordinator_api.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 47,
+      "target": "`.github/workflows/`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12",
+        "F13"
+      ],
+      "implementation": [
+        ".github/workflows/ci.yml"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 48,
+      "target": "`docs/audits/`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12",
+        "F13"
+      ],
+      "implementation": [
+        "docs/acceptance/evidence_matrix.json"
+      ],
+      "tests": [
+        "tests/test_roadmap_contract.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 49,
+      "target": "`docs/history/`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Historical bytes and declared repository commit pinned; original claims not treated as delivered behavior."
+    },
+    {
+      "id": 50,
+      "target": "`docs/`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12",
+        "F13"
+      ],
+      "implementation": [
+        "docs/acceptance/phase_profiles.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_contract.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 51,
+      "target": "`benchmarks/results/`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Frozen result bytes include negative results; campaign hash chain and canonical JSON semantic check do not reexecute scientific experiment or authenticate custodian."
+    },
+    {
+      "id": 52,
+      "target": "`benchmarks/fixtures/`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Longley mirror commit, three SHA256 files, source paths, license and reference checked offline; no new independent publisher retrieval."
+    },
+    {
+      "id": 53,
+      "target": "`benchmarks/`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12"
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Preregistered fixed model/cohort/metric/stopping-rule ledger and exact descriptive paired comparisons. Third-party replication, private novel holdout, inferential independence and model execution identity are not established."
+    },
+    {
+      "id": 54,
+      "target": "`legacy/`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Legacy bytes frozen; AST audit rejects explicit production legacy/archive imports; dynamic imports not comprehensively audited."
+    },
+    {
+      "id": 55,
+      "target": "`website/`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "website/src/evidence.js",
+        "website/build.mjs",
+        "website/app.js",
+        "website/index.html"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Built site status derived from actual213 matrix, no promotional completion inference. No live deployment or human accessibility review performed."
+    },
+    {
+      "id": 56,
+      "target": "`tools/`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12",
+        "F13"
+      ],
+      "implementation": [
+        "tools/check_roadmap.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_contract.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 57,
+      "target": "`scripts/`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "scripts/preserved_archive.py"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned bounded ZIP import is idempotent, refuses historical overwrite, case/path/symlink collisions and preserves destination on failure; tested on current Linux only."
+    },
+    {
+      "id": 58,
+      "target": "`examples/`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "examples/audited_local_experiment.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "All five published Python examples auto-executed in isolated temporary outputs; fixtures are synthetic and not evidence of scientific discovery."
+    },
+    {
+      "id": 59,
+      "target": "`templates/`",
+      "status": "partial",
+      "phases": [
+        "F5"
+      ],
+      "implementation": [
+        "templates/engineering_report/example.document.json",
+        "templates/teaching/example.document.json"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Three canonical report templates exported and compiled with available real Typst and LaTeX compilers; external visual/editorial review not performed."
+    },
+    {
+      "id": 60,
+      "target": "`packaging/`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "packaging/offline_release.py"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Real offline clean-venv synthetic package install, upgrade, downgrade, repair, uninstall and restoration tested on current Linux; no Windows/macOS, signed installer or publisher authenticity claim."
+    },
+    {
+      "id": 61,
+      "target": "`.github/workflows/ci.yml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        ".github/workflows/ci.yml"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 62,
+      "target": "`pyproject.toml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "packaging/offline_release.py"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "SPDX 2.3 wheel SBOM source commit declaration, metadata, optional requirement and SHA binding reuse existing wheel verifier; source origin is caller-declared, Python version matrix not run."
+    },
+    {
+      "id": 63,
+      "target": "`README.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "README.md",
+        "tools/check_public_contracts.py",
+        ".github/workflows/ci.yml"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Current evidence and historical estimates distinguished, contract/link checks added to CI. Interactive browser startup, every optional external service and all platform commands require independent runtime review."
+    },
+    {
+      "id": 64,
+      "target": "`vision.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "vision.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
+    },
+    {
+      "id": 65,
+      "target": "`description.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "description.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
+    },
+    {
+      "id": 66,
+      "target": "`docs/PLANO_MESTRE_2026_2056.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/PLANO_MESTRE_2026_2056.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
+    },
+    {
+      "id": 67,
+      "target": "`docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F13"
+      ],
+      "implementation": [
+        "docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
+    },
+    {
+      "id": 68,
+      "target": "`docs/ARCHITECTURE_AND_ACCEPTANCE.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/ARCHITECTURE_AND_ACCEPTANCE.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
+    },
+    {
+      "id": 69,
+      "target": "`docs/MATHEMATICS_COMPLETION_AUDIT.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/MATHEMATICS_COMPLETION_AUDIT.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
+    },
+    {
+      "id": 70,
+      "target": "`src/nablamath/agents/sandbox.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/agents/sandbox.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/test_agents.py",
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "The existing complete prohibition of arbitrary code is preserved and verified; this is not execution of hostile code in a real OS sandbox. Escape-resistance certification remains blocked by that missing capability."
+    },
+    {
+      "id": 71,
+      "target": "`services/coordinator/app.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/coordinator/app.py"
+      ],
+      "tests": [
+        "tests/integration/test_coordinator_api.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 72,
+      "target": "`src/nablamath/desktop/app.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/desktop/app.py",
+        "src/nablamath/desktop/workflows.py",
+        "src/nablamath/desktop/index.html"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Real loopback HTTP E2E exact experiment with explicit consent and byte-identical API/direct receipt. No unrestricted execution, remote publishing, or claim of all-workflow UI coverage."
+    },
+    {
+      "id": 73,
+      "target": "`src/nablamath/physics/fluids/navier_stokes.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/physics/fluids/channel.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fluids/turbulence.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Stationary no-slip channel reduction and existing 1D Euler reference only; general 2D nonperiodic Navier-Stokes, laboratory data and disciplinary review remain."
+    },
+    {
+      "id": 74,
+      "target": "`src/nablamath/physics/relativity/general.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/physics/relativity/einstein_solver.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Bounded analytic spatially-flat perfect-fluid FLRW plus Schwarzschild; not general numerical Einstein solver; historical rounded Mercury comparison is not new experimental validation."
+    },
+    {
+      "id": 75,
+      "target": "`src/nablamath/gpu/cuda_f4_reduction.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/gpu/kernels/f4_cuda.py",
+        "src/nablamath/gpu/cuda_f4_reduction.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "CUDA hardware absent; kernel compilation/execution, speedup and energy require independent real-device runs. Exact CPU oracle checks every device result."
+    },
+    {
+      "id": 76,
+      "target": "`src/nablamath/discovery/novelty_screen.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/novelty_screen.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/science/test_independent_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Traceable curated source/retrieval metadata and false-positive review; operator declarations only, no live comprehensive search or authenticated independent reviewers."
+    },
+    {
+      "id": 77,
+      "target": "`src/nablamath/training/baselines.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/training/reasoning_finetune.py",
+        "src/nablamath/training/baselines.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Actual deterministic fitted linear baseline; stronger LLM baselines and real external benchmark comparisons remain unfulfilled."
+    },
+    {
+      "id": 78,
+      "target": "`src/nablamath/training/multimodal_network.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/training/multimodal_network.py",
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/test_phase8_agents_training.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Existing multimodal neural fit plus generic transfer protocol; no claimed OOD scientific multimodal gain."
+    },
+    {
+      "id": 79,
+      "target": "`src/nablamath/evolution/search.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "src/nablamath/evolution/rollback.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_phase10_evolution.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Typed bounded proposals only; not general algorithm synthesis or demonstrated robust gain."
+    },
+    {
+      "id": 80,
+      "target": "`math.txt`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "tools/build_math_bundle.py"
+      ],
+      "tests": [
+        "tests/test_math_bundle.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 81,
+      "target": "CRIAR `docs/acceptance/phase_profiles.md`",
+      "status": "partial",
+      "phases": [
+        "F0",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12",
+        "F13"
+      ],
+      "implementation": [
+        "docs/acceptance/phase_profiles.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_contract.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 82,
+      "target": "CRIAR `docs/acceptance/evidence_matrix.json`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/acceptance/evidence_matrix.json"
+      ],
+      "tests": [
+        "tests/test_roadmap_contract.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 83,
+      "target": "CRIAR `docs/acceptance/scientific_capabilities.yaml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/acceptance/scientific_capabilities.yaml",
+        "src/nablamath/core/capabilities.py"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Versioned queryable finite domains, explicit refusals and exact tolerance declarations are validated locally. Independent scientific review and release-specific acceptance remain pending."
+    },
+    {
+      "id": 84,
+      "target": "CRIAR `docs/governance/independent_review_policy.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/governance/independent_review_policy.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 85,
+      "target": "CRIAR `docs/governance/scientific_claims_policy.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/governance/scientific_claims_policy.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 86,
+      "target": "CRIAR `docs/strategy/roadmap_2026_2056.json`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/strategy/roadmap_2026_2056.json"
+      ],
+      "tests": [
+        "tests/test_roadmap_contract.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 87,
+      "target": "CRIAR `docs/strategy/scientific_risk_register.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/strategy/scientific_risk_register.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 88,
+      "target": "CRIAR `docs/strategy/annual_reassessment.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/strategy/annual_reassessment.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 89,
+      "target": "CRIAR `src/nablamath/core/scientific_artifact.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/core/scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 90,
+      "target": "CRIAR `src/nablamath/core/semantic_contracts.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/core/semantic_contracts.py"
+      ],
+      "tests": [
+        "tests/test_semantic_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 91,
+      "target": "CRIAR `src/nablamath/core/migration_registry.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/core/migration_registry.py"
+      ],
+      "tests": [
+        "tests/test_semantic_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 92,
+      "target": "CRIAR `src/nablamath/core/uncertainty.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/core/uncertainty.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 93,
+      "target": "CRIAR `src/nablamath/math/calculus/transcendentals.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/math/calculus/transcendentals.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 94,
+      "target": "CRIAR `src/nablamath/math/calculus/risch.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/math/calculus/risch.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_integration_mesh.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "General Risch integration and independent validation are not implemented."
+    },
+    {
+      "id": 95,
+      "target": "CRIAR `src/nablamath/math/linear_algebra/exact_decompositions.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/math/linear_algebra/exact_decompositions.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 96,
+      "target": "CRIAR `src/nablamath/math/number_theory/factorization_advanced.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/math/number_theory/factorization_advanced.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 97,
+      "target": "CRIAR `src/nablamath/math/algebra/galois.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/math/algebra/galois.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_algebra_logic.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 98,
+      "target": "CRIAR `src/nablamath/math/logic/smt_combination.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/math/logic/smt_combination.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_algebra_logic.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 99,
+      "target": "CRIAR `src/nablamath/numeric/intervals.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/numeric/intervals.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 100,
+      "target": "CRIAR `src/nablamath/numeric/stiff_ode.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/numeric/stiff_ode.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 101,
+      "target": "CRIAR `src/nablamath/numeric/pde_general.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/numeric/pde_general.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 102,
+      "target": "CRIAR `src/nablamath/forge/compositional_generator.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/forge/compositional_generator.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 103,
+      "target": "CRIAR `src/nablamath/forge/adversarial_generator.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/forge/adversarial_generator.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 104,
+      "target": "CRIAR `src/nablamath/forge/difficulty_calibration.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/forge/difficulty_calibration.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 105,
+      "target": "CRIAR `src/nablamath/forge/novelty_index.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/forge/novelty_index.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 106,
+      "target": "CRIAR `src/nablamath/formal/autoformalization.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Controlled grammar only; review identity is caller supplied. Lean/Mathlib execution, human correspondence review and scalable proof search remain unvalidated."
+    },
+    {
+      "id": 107,
+      "target": "CRIAR `src/nablamath/formal/proof_repair.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Controlled grammar only; review identity is caller supplied. Lean/Mathlib execution, human correspondence review and scalable proof search remain unvalidated."
+    },
+    {
+      "id": 108,
+      "target": "CRIAR `src/nablamath/formal/proof_search_planner.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Controlled grammar only; review identity is caller supplied. Lean/Mathlib execution, human correspondence review and scalable proof search remain unvalidated."
+    },
+    {
+      "id": 109,
+      "target": "CRIAR `src/nablamath/falsifier/property_engine.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/falsifier/property_engine.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 110,
+      "target": "CRIAR `src/nablamath/gpu/kernels/f4_cuda.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/gpu/kernels/f4_cuda.py",
+        "src/nablamath/gpu/cuda_f4_reduction.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "CUDA hardware absent; kernel compilation/execution, speedup and energy require independent real-device runs. Exact CPU oracle checks every device result."
+    },
+    {
+      "id": 111,
+      "target": "CRIAR `src/nablamath/gpu/kernels/egraph_triton.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/gpu/kernels/egraph_triton.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Triton execution requires hardware/dependency validation; implements parent canonicalization only, not full GPU e-graph saturation."
+    },
+    {
+      "id": 112,
+      "target": "CRIAR `src/nablamath/gpu/profiler.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/gpu/profiler.py",
+        "benchmarks/resources/hardware_profiles.json"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "No GPU available. Energy integration and peak VRAM absent explicitly null; no speedup claim."
+    },
+    {
+      "id": 113,
+      "target": "CRIAR `src/nablamath/worlds/boundary_conditions.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/worlds/boundary_conditions.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 114,
+      "target": "CRIAR `src/nablamath/worlds/mesh/adaptive.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/worlds/mesh/adaptive.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_integration_mesh.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Sampled indicators are not a global error certificate; general multidimensional meshes remain pending."
+    },
+    {
+      "id": 115,
+      "target": "CRIAR `src/nablamath/worlds/validation_observational.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 116,
+      "target": "CRIAR `src/nablamath/worlds/uncertainty_quantification.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/worlds/uncertainty_quantification.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 117,
+      "target": "CRIAR `src/nablamath/physics/fluids/turbulence.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/physics/fluids/turbulence.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fea/nonlinear.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Only declared 1D models and local analytic/synthetic checks; external calibration, experimental provenance and independent validation remain pending."
+    },
+    {
+      "id": 118,
+      "target": "CRIAR `src/nablamath/physics/fluids/compressible.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/physics/fluids/turbulence.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fea/nonlinear.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Only declared 1D models and local analytic/synthetic checks; external calibration, experimental provenance and independent validation remain pending."
+    },
+    {
+      "id": 119,
+      "target": "CRIAR `src/nablamath/physics/relativity/einstein_solver.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/physics/relativity/einstein_solver.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Bounded analytic spatially-flat perfect-fluid FLRW plus Schwarzschild; not general numerical Einstein solver; historical rounded Mercury comparison is not new experimental validation."
+    },
+    {
+      "id": 120,
+      "target": "CRIAR `src/nablamath/physics/fea/nonlinear.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/physics/fluids/turbulence.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fea/nonlinear.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Only declared 1D models and local analytic/synthetic checks; external calibration, experimental provenance and independent validation remain pending."
+    },
+    {
+      "id": 121,
+      "target": "CRIAR `src/nablamath/graphics/visual_regression.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/graphics/visual_regression.py",
+        "src/nablamath/graphics/scientific_renderer.py",
+        "src/nablamath/discovery/causal_hypothesis.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_graphics_causality.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Declared linear SCM only, no causal discovery from correlation; human visual review and empirical causal validation remain pending."
+    },
+    {
+      "id": 122,
+      "target": "CRIAR `src/nablamath/graphics/scientific_renderer.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/graphics/visual_regression.py",
+        "src/nablamath/graphics/scientific_renderer.py",
+        "src/nablamath/discovery/causal_hypothesis.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_graphics_causality.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Declared linear SCM only, no causal discovery from correlation; human visual review and empirical causal validation remain pending."
+    },
+    {
+      "id": 123,
+      "target": "CRIAR `src/nablamath/documents/reference_graph.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/documents/reference_graph.py"
+      ],
+      "tests": [
+        "tests/test_evidence_integration_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 124,
+      "target": "CRIAR `src/nablamath/documents/editorial_review.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/documents/editorial_review.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 125,
+      "target": "CRIAR `src/nablamath/datasets/corpus_registry.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 126,
+      "target": "CRIAR `src/nablamath/datasets/semantic_leakage.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/datasets/semantic_leakage.py",
+        "src/nablamath/datasets/large_scale_pipeline.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_dataset_pipeline.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Declared local equivalences and lineage only; no universal semantic detector or independently evaluated production scale."
+    },
+    {
+      "id": 127,
+      "target": "CRIAR `src/nablamath/datasets/large_scale_pipeline.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/datasets/semantic_leakage.py",
+        "src/nablamath/datasets/large_scale_pipeline.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_dataset_pipeline.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Declared local equivalences and lineage only; no universal semantic detector or independently evaluated production scale."
+    },
+    {
+      "id": 128,
+      "target": "CRIAR `src/nablamath/training/frontier_adapter.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/training/frontier_adapter.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Explicit owner/version/input-digest consent, default disabled, caller-injected transport only. No built-in network or frontier provider evaluation."
+    },
+    {
+      "id": 129,
+      "target": "CRIAR `src/nablamath/training/reasoning_finetune.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/training/reasoning_finetune.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Content-digest-frozen actual supervised linear fitting, deterministic bounded optimizer. Does not fine tune an LLM or prove learned reasoning."
+    },
+    {
+      "id": 130,
+      "target": "CRIAR `src/nablamath/training/cross_domain_eval.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Task/family/semantic overlap checks and per-domain Wilson intervals on supplied cases. True external unseen cases remain external."
+    },
+    {
+      "id": 131,
+      "target": "CRIAR `src/nablamath/training/compute_accounting.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/training/compute_accounting.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 132,
+      "target": "CRIAR `src/nablamath/agents/secure_execution.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
+    },
+    {
+      "id": 133,
+      "target": "CRIAR `src/nablamath/agents/experiment_planner.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/agents/experiment_planner.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 134,
+      "target": "CRIAR `src/nablamath/agents/human_approval.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/agents/human_approval.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 135,
+      "target": "CRIAR `src/nablamath/discovery/literature_search.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/discovery/literature_search.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/science/test_independent_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Curated supplied external metadata snapshots; no built-in live fetch, source authentication, comprehensive coverage or novelty guarantee."
+    },
+    {
+      "id": 136,
+      "target": "CRIAR `src/nablamath/discovery/causal_hypothesis.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/graphics/visual_regression.py",
+        "src/nablamath/graphics/scientific_renderer.py",
+        "src/nablamath/discovery/causal_hypothesis.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_graphics_causality.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Declared linear SCM only, no causal discovery from correlation; human visual review and empirical causal validation remain pending."
+    },
+    {
+      "id": 137,
+      "target": "CRIAR `src/nablamath/discovery/lab_protocol.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/discovery/lab_protocol.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 138,
+      "target": "CRIAR `src/nablamath/discovery/independent_replication.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/discovery/independent_replication.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 139,
+      "target": "CRIAR `src/nablamath/evolution/code_proposals.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
+    },
+    {
+      "id": 140,
+      "target": "CRIAR `src/nablamath/evolution/frozen_evaluator.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/evaluation/frozen.py"
+      ],
+      "tests": [
+        "tests/evaluation/test_frozen.py"
+      ],
+      "evidence": [
+        "docs/audits/FROZEN_EVALUATION_2026_10_15.md"
+      ],
+      "remaining": "External operator isolation, authenticated independent review, private holdout administration and full original acceptance remain required."
+    },
+    {
+      "id": 141,
+      "target": "CRIAR `src/nablamath/evolution/secure_trials.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
+    },
+    {
+      "id": 142,
+      "target": "CRIAR `src/nablamath/evolution/longitudinal_monitor.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/evolution/longitudinal_monitor.py"
+      ],
+      "tests": [
+        "tests/test_evidence_integration_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 143,
+      "target": "CRIAR `src/nablamath/knowledge/institutional_identity.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/knowledge/institutional_identity.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 144,
+      "target": "CRIAR `src/nablamath/knowledge/distributed_provenance.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/knowledge/distributed_provenance.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 145,
+      "target": "CRIAR `src/nablamath/knowledge/replication_protocol.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/knowledge/replication_protocol.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 146,
+      "target": "CRIAR `src/nablamath/knowledge/retraction_index.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 147,
+      "target": "CRIAR `services/coordinator/api.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/coordinator/api.py"
+      ],
+      "tests": [
+        "tests/integration/test_coordinator_api.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 148,
+      "target": "CRIAR `services/coordinator/task_leases.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/coordinator/task_leases.py",
+        "src/nablamath/coordination/local.py"
+      ],
+      "tests": [
+        "tests/integration/test_coordinator_api.py",
+        "tests/test_roadmap_worker_execution.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md",
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 149,
+      "target": "CRIAR `services/coordinator/telemetry.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/coordinator/telemetry.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worker_execution.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 150,
+      "target": "CRIAR `services/worker/executor.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/worker/executor.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worker_execution.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 151,
+      "target": "CRIAR `services/worker/isolation.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
+    },
+    {
+      "id": 152,
+      "target": "CRIAR `services/federation/reconciliation.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/federation/reconciliation.py"
+      ],
+      "tests": [
+        "tests/network/test_partition.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 153,
+      "target": "CRIAR `sdk/python/README.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "sdk/python/client.py"
+      ],
+      "tests": [
+        "tests/interop/test_coordinator_clients.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 154,
+      "target": "CRIAR `sdk/typescript/README.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "sdk/typescript/client.ts"
+      ],
+      "tests": [
+        "tests/interop/test_coordinator_clients.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 155,
+      "target": "CRIAR `sdk/rust/src/client.rs`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "sdk/rust/src/client.rs"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 156,
+      "target": "CRIAR `tests/integration/test_scientific_artifact.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 157,
+      "target": "CRIAR `tests/integration/test_global_scientific_cycle.py`",
+      "status": "partial",
+      "phases": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "F10",
+        "F11",
+        "F12"
+      ],
+      "implementation": [
+        "tools/expanded_scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_global_scientific_cycle.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 158,
+      "target": "CRIAR `tests/security/test_agent_sandbox.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
+    },
+    {
+      "id": 159,
+      "target": "CRIAR `tests/security/test_supply_chain.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "tools/verify_wheel.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 160,
+      "target": "CRIAR `tests/benchmark/test_math_comparison.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/compiler/ir.py",
+        "src/nablamath/autodiff/second_order.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_math_comparison.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Version1 correctness comparison contract records owner, fixed seeds and128 exact rational plus32 analytic Hessian independent SymPy cases. No speed ranking, no external approval asserted; performance benchmarking and independent reviewer remain pending."
+    },
+    {
+      "id": 161,
+      "target": "CRIAR `tests/benchmark/test_gpu_real_hardware.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/gpu/profiler.py",
+        "benchmarks/resources/hardware_profiles.json"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "No GPU available. Energy integration and peak VRAM absent explicitly null; no speedup claim."
+    },
+    {
+      "id": 162,
+      "target": "CRIAR `tests/benchmark/test_holdout_generalization.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Executed synthetic family holdouts, negative results and contamination rejection, not a measured frontier generalization gain."
+    },
+    {
+      "id": 163,
+      "target": "CRIAR `tests/science/test_observational_validation.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/worlds/validation_observational.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Historical rounded Mercury reference and caller-supplied measurements are not independent provenance authentication, discipline-wide validation, or specialist review."
+    },
+    {
+      "id": 164,
+      "target": "CRIAR `tests/science/test_independent_discovery.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/discovery/independent_replication.py"
+      ],
+      "tests": [
+        "tests/science/test_independent_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Actual protocol conformance and negative replication bookkeeping; test fixtures are not external reviewers or independent scientific replication."
+    },
+    {
+      "id": 165,
+      "target": "CRIAR `tests/distributed/test_multihost_failures.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/federation/reconciliation.py"
+      ],
+      "tests": [
+        "tests/distributed/test_multihost_failures.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 166,
+      "target": "CRIAR `benchmarks/protocols/README.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "benchmarks/protocols/README.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 167,
+      "target": "CRIAR `benchmarks/resources/hardware_profiles.json`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/gpu/profiler.py",
+        "benchmarks/resources/hardware_profiles.json"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "No GPU available. Energy integration and peak VRAM absent explicitly null; no speedup claim."
+    },
+    {
+      "id": 168,
+      "target": "CRIAR `benchmarks/external/README.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "benchmarks/external/README.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 169,
+      "target": "CRIAR `.github/workflows/security.yml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        ".github/workflows/security.yml"
+      ],
+      "tests": [
+        "tests/test_roadmap_network_security.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 170,
+      "target": "CRIAR `.github/workflows/full-integration.yml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        ".github/workflows/full-integration.yml"
+      ],
+      "tests": [
+        "tests/integration/test_global_scientific_cycle.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 171,
+      "target": "CRIAR `.github/workflows/scientific-benchmarks.yml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        ".github/workflows/scientific-benchmarks.yml"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 172,
+      "target": "CRIAR `.github/workflows/release-attestation.yml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        ".github/workflows/release-attestation.yml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 173,
+      "target": "CRIAR `configs/profiles/cpu_conservative.yaml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "configs/profiles/cpu_conservative.yaml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 174,
+      "target": "CRIAR `configs/profiles/cpu_balanced.yaml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "configs/profiles/cpu_balanced.yaml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 175,
+      "target": "CRIAR `configs/profiles/gpu_local.yaml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "configs/profiles/gpu_local.yaml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 176,
+      "target": "CRIAR `configs/profiles/research_station.yaml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "configs/profiles/research_station.yaml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 177,
+      "target": "CRIAR `configs/profiles/hpc_optional.yaml`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "configs/profiles/hpc_optional.yaml"
+      ],
+      "tests": [
+        "tests/test_roadmap_resources_supplychain.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 178,
+      "target": "CRIAR `src/nablamath/network/signatures.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/network/signatures.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_network_security.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 179,
+      "target": "CRIAR `src/nablamath/node/identity.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/node/identity.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_network_security.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 180,
+      "target": "CRIAR `src/nablamath/p2p/moderation.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/p2p/moderation.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_network_security.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 181,
+      "target": "CRIAR `src/nablamath/p2p/reputation.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/p2p/reputation.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_network_security.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 182,
+      "target": "CRIAR `services/registry/app.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
+    },
+    {
+      "id": 183,
+      "target": "CRIAR `services/registry/api.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
+    },
+    {
+      "id": 184,
+      "target": "CRIAR `services/registry/db.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
+    },
+    {
+      "id": 185,
+      "target": "CRIAR `services/registry/metrics.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
+    },
+    {
+      "id": 186,
+      "target": "CRIAR `services/relay/app.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
+    },
+    {
+      "id": 187,
+      "target": "CRIAR `services/relay/protocol.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
+    },
+    {
+      "id": 188,
+      "target": "CRIAR `services/relay/abuse.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
+    },
+    {
+      "id": 189,
+      "target": "CRIAR `tests/network/test_sybil.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/p2p/resilient_peers.py"
+      ],
+      "tests": [
+        "tests/network/test_sybil.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 190,
+      "target": "CRIAR `tests/network/test_poisoning.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/knowledge/distributed_provenance.py"
+      ],
+      "tests": [
+        "tests/network/test_poisoning.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 191,
+      "target": "CRIAR `tests/network/test_eclipse.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/p2p/resilient_peers.py"
+      ],
+      "tests": [
+        "tests/network/test_eclipse.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 192,
+      "target": "CRIAR `tests/network/test_partition.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "services/federation/reconciliation.py"
+      ],
+      "tests": [
+        "tests/network/test_partition.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 193,
+      "target": "CRIAR `tests/network/test_interop.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "sdk/python/rational.py",
+        "sdk/typescript/rational.ts"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 194,
+      "target": "CRIAR `src/nablamath/knowledge/lineage.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/knowledge/lineage.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 195,
+      "target": "CRIAR `src/nablamath/knowledge/novelty.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/knowledge/novelty.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 196,
+      "target": "CRIAR `src/nablamath/knowledge/difficulty.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/knowledge/difficulty.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 197,
+      "target": "CRIAR `src/nablamath/knowledge/curriculum.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/knowledge/curriculum.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_editorial_governance.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 198,
+      "target": "CRIAR `src/nablamath/verification/independence.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/verification/independence.py"
+      ],
+      "tests": [
+        "tests/test_semantic_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 199,
+      "target": "CRIAR `src/nablamath/verification/evidence.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/verification/evidence.py"
+      ],
+      "tests": [
+        "tests/test_semantic_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+      ],
+      "remaining": "Full original acceptance, independent review and external evidence remain required."
+    },
+    {
+      "id": 200,
+      "target": "CRIAR `src/nablamath/verification/consensus.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/verification/consensus.py"
+      ],
+      "tests": [
+        "tests/test_evidence_integration_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 201,
+      "target": "CRIAR `src/nablamath/evaluation/calibration.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/evaluation/calibration.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 202,
+      "target": "CRIAR `src/nablamath/evaluation/ablation.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/evaluation/ablation.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 203,
+      "target": "CRIAR `src/nablamath/training/snapshot.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/training/snapshot.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 204,
+      "target": "CRIAR `src/nablamath/training/mixture.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/training/mixture.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 205,
+      "target": "CRIAR `src/nablamath/training/lineage.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/training/lineage.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_expansion.py"
+      ],
+      "evidence": [
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+      ],
+      "remaining": "Bounded local profile only; full original acceptance, external validation and independent review remain outstanding. See docs/acceptance/expanded_profiles.md."
+    },
+    {
+      "id": 206,
+      "target": "CRIAR `benchmarks/private/README.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "benchmarks/private/README.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 207,
+      "target": "CRIAR `benchmarks/contamination/README.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "benchmarks/contamination/README.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 208,
+      "target": "CRIAR `protocol/fixtures/cross-language/README.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "protocol/fixtures/cross-language/README.md",
+        "protocol/fixtures/cross-language/rational-v1.json"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
+    },
+    {
+      "id": 209,
+      "target": "CRIAR `src/nablamath/singularity/evaluation/generalization.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/singularity/evaluation/generalization.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
+      "remaining": "Fail-closed report consistency, duplicate-task rejection and declared per-domain thresholds; no AGI or independent benchmark authenticity claim."
+    },
+    {
+      "id": 210,
+      "target": "CRIAR `src/nablamath/singularity/evaluation/safety.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/singularity/evaluation/safety.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 211,
+      "target": "CRIAR `src/nablamath/singularity/evaluation/long_horizon.py`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "src/nablamath/singularity/evaluation/long_horizon.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 212,
+      "target": "CRIAR `docs/future/F13_OPEN_RESEARCH.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/future/F13_OPEN_RESEARCH.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    },
+    {
+      "id": 213,
+      "target": "CRIAR `docs/future/2035_2045_2056_criteria.md`",
+      "status": "partial",
+      "phases": [
+        "F0"
+      ],
+      "implementation": [
+        "docs/future/2035_2045_2056_criteria.md"
+      ],
+      "tests": [
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "evidence": [
+        "docs/audits/PARALLEL_IMPLEMENTATION_2026_10_15.md"
+      ],
+      "remaining": "Finite implementation or proposed policy only; full original acceptance, external review, unsupported domains and unexecuted workflows remain outstanding. See docs/acceptance/parallel_profiles.md."
+    }
+  ]
+}
