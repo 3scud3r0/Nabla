@@ -1,0 +1,42 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "nablamath-wheel-inventory",
+  "documentNamespace": "https://github.com/3scud3r0/Nabla/sbom/5380f22b77ac5b04f148dfd3daa77858330c10aebbdd65a3837d7f010b7e7819",
+  "creationInfo": {
+    "creators": [
+      "Tool: Nabla offline_release"
+    ],
+    "created": "2026-10-15T00:00:00Z",
+    "comment": "Deterministic inventory date; not an authenticated build timestamp."
+  },
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-nablamath",
+      "name": "nablamath",
+      "versionInfo": "0.1.0a1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5380f22b77ac5b04f148dfd3daa77858330c10aebbdd65a3837d7f010b7e7819"
+        }
+      ],
+      "sourceInfo": "Declared source commit: bf9abf6d60db3c216382beb9399cba175588e83e",
+      "comment": "Source binding is caller-declared; optional requirements are not installed inventory."
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-nablamath"
+    }
+  ],
+  "annotations": [],
+  "comment": "{\"declared_requirements\": [\"huggingface_hub<2,>=0.25; extra == \\\"cloud\\\"\", \"pytest<10,>=8; extra == \\\"test\\\"\", \"jax; extra == \\\"accelerate\\\"\", \"scipy<2,>=1.11; extra == \\\"scipy\\\"\", \"cupy-cuda12x<15,>=13; (platform_system == \\\"Linux\\\" or platform_system == \\\"Windows\\\") and extra == \\\"cuda12\\\"\", \"torch<3,>=2.4; (platform_system == \\\"Linux\\\" and platform_machine == \\\"x86_64\\\") and extra == \\\"triton\\\"\", \"triton<4,>=3; (platform_system == \\\"Linux\\\" and platform_machine == \\\"x86_64\\\") and extra == \\\"triton\\\"\", \"z3-solver<5,>=4.16; extra == \\\"formal\\\"\", \"Pillow<13,>=10.1; extra == \\\"graphics\\\"\", \"typst<0.15,>=0.13; extra == \\\"documents\\\"\", \"pyarrow<24,>=18; extra == \\\"data\\\"\", \"cryptography<47,>=43; extra == \\\"federation\\\"\", \"sympy<2,>=1.13; extra == \\\"research\\\"\", \"numpy<3,>=2; extra == \\\"research\\\"\"], \"python\": \"<3.15,>=3.10\", \"signed\": false}"
+}

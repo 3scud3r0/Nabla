@@ -16,6 +16,8 @@
     "laboratory-science.json": "c792fe0d0bf1e8503a6140c5cdd3aab50b351fdc7b605bdd7c376f1971fdfaf6",
     "lean-kernel.json": "9c74a74b86bd39e28723fd8fd590e76dd851b7cb957239726210a2aa7c553750",
     "minimal-tests.xml": "603104c2010f1f359f15b26ae7d4a6de50c0aed567c8ff73868b3a6363d6a702",
+    "wheel-sbom.spdx.json": "f4e311cfdb61f300fc6dd9a8312c8574b0eaec1ce1e02f0d2cb078e2a6daa983",
     "wheel-verification.json": "b0b92726f00449a54a34c392e6287b68c3898359c6e556b4f459b7d090e2fe6c"
-  }
+  },
+  "full_suite_and_wheel_source_commit": "bf9abf6d60db3c216382beb9399cba175588e83e"
 }

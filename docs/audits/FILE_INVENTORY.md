@@ -2,9 +2,9 @@
 
 Base de comparação: `origin/main`. Inventário de todos os arquivos versionados presentes, incluindo os existentes.
 
-**1340 arquivos; 149,630 linhas físicas; 46,042 linhas de código fora do histórico.**
+**1341 arquivos; 149,675 linhas físicas; 46,042 linhas de código fora do histórico.**
 
-Novos: 154; alterações/movimentações: {'alterado': 27, 'novo': 154}. Removidos: 0.
+Novos: 155; alterações/movimentações: {'alterado': 27, 'novo': 155}. Removidos: 0.
 
 Linhas físicas incluem comentários e espaços. Código Python conta linhas com tokens, incluindo docstrings; outros formatos de código contam linhas não vazias sem comentários de linha inteira (estimativa). “—” significa formato não código/binário. O bundle `math.txt` e resultados gerados não entram no total de código. Histórico movido não representa código novo. Os dois relatórios deste inventário são excluídos para evitar autocontagem. Caches, ambientes virtuais, builds e amostras locais ignoradas não são arquivos do PR.
 
@@ -342,7 +342,7 @@ Nenhum.
 | `docs/audits/PHASES_1_12_PROGRESS_70.md` | existente | documentação | 205 | — |
 | `docs/audits/PHASES_1_12_PROGRESS_AFTER_95_REQUEST.md` | existente | documentação | 103 | — |
 | `docs/audits/PR_SCIENTIFIC_MATURITY.md` | existente | documentação | 61 | — |
-| `docs/audits/REMAINING_85_2026_10_15.md` | novo | documentação | 114 | — |
+| `docs/audits/REMAINING_85_2026_10_15.md` | novo | documentação | 115 | — |
 | `docs/audits/SCIENTIFIC_ACCEPTANCE_2026_10.md` | existente | documentação | 134 | — |
 | `docs/audits/remaining85-evidence/calibration.json` | novo | documentação | 1 | — |
 | `docs/audits/remaining85-evidence/full-tests.xml` | novo | documentação | 1 | — |
@@ -357,8 +357,9 @@ Nenhum.
 | `docs/audits/remaining85-evidence/laboratory/summary.json` | novo | documentação | 1 | — |
 | `docs/audits/remaining85-evidence/laboratory/workload/summary.json` | novo | documentação | 1 | — |
 | `docs/audits/remaining85-evidence/lean-kernel.json` | novo | documentação | 4 | — |
-| `docs/audits/remaining85-evidence/manifest.json` | novo | documentação | 21 | — |
+| `docs/audits/remaining85-evidence/manifest.json` | novo | documentação | 23 | — |
 | `docs/audits/remaining85-evidence/minimal-tests.xml` | novo | documentação | 1 | — |
+| `docs/audits/remaining85-evidence/wheel-sbom.spdx.json` | novo | documentação | 42 | — |
 | `docs/audits/remaining85-evidence/wheel-verification.json` | novo | documentação | 1 | — |
 | `docs/future/2035_2045_2056_criteria.md` | existente | documentação | 21 | — |
 | `docs/future/F13_OPEN_RESEARCH.md` | existente | documentação | 28 | — |

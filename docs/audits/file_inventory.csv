@@ -319,7 +319,7 @@ docs/audits/PHASES_1_12_PROGRESS_2026_10_15.md,existente,documentação,124,,106
 docs/audits/PHASES_1_12_PROGRESS_70.md,existente,documentação,205,,13798
 docs/audits/PHASES_1_12_PROGRESS_AFTER_95_REQUEST.md,existente,documentação,103,,5400
 docs/audits/PR_SCIENTIFIC_MATURITY.md,existente,documentação,61,,3653
-docs/audits/REMAINING_85_2026_10_15.md,novo,documentação,114,,7310
+docs/audits/REMAINING_85_2026_10_15.md,novo,documentação,115,,7413
 docs/audits/SCIENTIFIC_ACCEPTANCE_2026_10.md,existente,documentação,134,,7893
 docs/audits/remaining85-evidence/calibration.json,novo,documentação,1,,4860
 docs/audits/remaining85-evidence/full-tests.xml,novo,documentação,1,,2386422
@@ -334,8 +334,9 @@ docs/audits/remaining85-evidence/laboratory/protocol.json,novo,documentação,1,
 docs/audits/remaining85-evidence/laboratory/summary.json,novo,documentação,1,,3897
 docs/audits/remaining85-evidence/laboratory/workload/summary.json,novo,documentação,1,,2705
 docs/audits/remaining85-evidence/lean-kernel.json,novo,documentação,4,,546
-docs/audits/remaining85-evidence/manifest.json,novo,documentação,21,,1638
+docs/audits/remaining85-evidence/manifest.json,novo,documentação,23,,1818
 docs/audits/remaining85-evidence/minimal-tests.xml,novo,documentação,1,,2416909
+docs/audits/remaining85-evidence/wheel-sbom.spdx.json,novo,documentação,42,,2294
 docs/audits/remaining85-evidence/wheel-verification.json,novo,documentação,1,,1073
 docs/future/2035_2045_2056_criteria.md,existente,documentação,21,,1932
 docs/future/F13_OPEN_RESEARCH.md,existente,documentação,28,,1864
