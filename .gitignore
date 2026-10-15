@@ -1,4 +1,8 @@
 .venv/
+.pytest_cache/
+.coverage
+htmlcov/
+NablaMath_current_sources.txt
 .nabla/
 __pycache__/
 *.py[cod]

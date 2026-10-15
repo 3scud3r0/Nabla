@@ -25,6 +25,8 @@ def git(*args: str) -> str:
 
 
 def measure(path: Path) -> tuple[int | None, int | None]:
+    if path.suffix.lower() in {'.pdf', '.png', '.jpg', '.jpeg', '.parquet', '.npz', '.sqlite3', '.zip', '.exe'}:
+        return None, None
     raw = path.read_bytes()
     if b'\0' in raw:
         return None, None
@@ -50,6 +52,10 @@ def measure(path: Path) -> tuple[int | None, int | None]:
 def category(name: str) -> str:
     if name == 'math.txt':
         return 'bundle gerado'
+    if name.startswith('benchmarks/results/'):
+        return 'resultados gerados'
+    if name.startswith('docs/history/'):
+        return 'histórico'
     for prefix, label in [('legacy/', 'histórico'), ('tests/', 'testes'),
                           ('src/', 'fonte'), ('lean/', 'Lean'), ('docs/', 'documentação')]:
         if name.startswith(prefix):
@@ -89,7 +95,7 @@ def inventory(base: str) -> None:
     changed = [row for row in rows if row[1] != 'existente']
     new = [row for row in rows if row[1] == 'novo']
     physical = sum(row[3] or 0 for row in rows)
-    code = sum(row[4] or 0 for row in rows if row[2] != 'histórico')
+    code = sum(row[4] or 0 for row in rows if row[2] not in {'histórico', 'resultados gerados', 'bundle gerado'})
     summary = Counter(row[1].split(' de ')[0] for row in changed)
     output = ['# Inventário completo dos arquivos', '',
               f'Base de comparação: `{base}`. Inventário de todos os arquivos versionados presentes, incluindo os existentes.', '',
@@ -97,7 +103,7 @@ def inventory(base: str) -> None:
               f'Novos: {len(new)}; alterações/movimentações: {dict(summary)}. Removidos: {len(deleted)}.', '',
               'Linhas físicas incluem comentários e espaços. Código Python conta linhas com tokens, incluindo docstrings; '
               'outros formatos de código contam linhas não vazias sem comentários de linha inteira (estimativa). '
-              '“—” significa formato não código/binário. O bundle `math.txt` duplica fontes e não entra no total de código. '
+              '“—” significa formato não código/binário. O bundle `math.txt` e resultados gerados não entram no total de código. '
               'Histórico movido não representa código novo. Os dois relatórios deste inventário são excluídos para evitar autocontagem. '
               'Caches, ambientes virtuais, builds e amostras locais ignoradas não são arquivos do PR.', '',
               'Reproduzir após adicionar arquivos ao índice:', '',
