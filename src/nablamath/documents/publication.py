@@ -23,7 +23,8 @@ def research_document(title, *, hypothesis, method, results, discussion, limitat
 def publish(document: Document, destination: Path, *, asset_root=None, pdf_backend=None, evidence_sources=None, require_evidence=False):
     destination = Path(destination)
     evidence_sources = evidence_sources or {}
-    requested = {key for section in document.sections for key in section.evidence_ids}
+    requested = {key for section in document.sections
+                 for key in (*section.evidence_ids, *(key for table in section.tables for key in table.evidence_ids))}
     if set(evidence_sources)-requested:
         raise ValueError('Fonte de evidência não citada')
     if require_evidence and requested-set(evidence_sources):
@@ -94,7 +95,8 @@ def verify_publication(root):
             if (root/f'document.{suffix}').read_text(encoding='utf-8') != exporter(document):
                 return False
         expected = {'document.json', 'document.html', 'document.tex', 'document.typ'}
-        requested = {key for section in document.sections for key in section.evidence_ids}
+        requested = {key for section in document.sections
+                 for key in (*section.evidence_ids, *(key for table in section.tables for key in table.evidence_ids))}
         evidence = manifest['evidence']
         if set(evidence)-requested or manifest['unresolved_evidence'] != sorted(requested-set(evidence)):
             return False

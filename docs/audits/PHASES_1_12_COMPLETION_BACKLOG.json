@@ -1,0 +1,944 @@
+{
+  "audit_commit": "f704f01ee69dbcc66805c480cb25c935919e5d2b",
+  "scope": "F1-F12",
+  "kind": "reviewer_estimate_not_scientific_completion_measurement",
+  "rubric_maxima": [
+    30,
+    20,
+    20,
+    20,
+    10
+  ],
+  "weighted_estimate": 43.95,
+  "equal_mean": 42.92,
+  "weight_sum": 95,
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Calculadora científica",
+      "weight": 8,
+      "scores": [
+        15,
+        10,
+        15,
+        5,
+        5
+      ],
+      "estimate_percent": 50
+    },
+    {
+      "phase": 2,
+      "name": "Forge e geração inversa",
+      "weight": 12,
+      "scores": [
+        15,
+        10,
+        10,
+        5,
+        5
+      ],
+      "estimate_percent": 45
+    },
+    {
+      "phase": 3,
+      "name": "Prove e Falsifier",
+      "weight": 10,
+      "scores": [
+        15,
+        10,
+        15,
+        5,
+        5
+      ],
+      "estimate_percent": 50
+    },
+    {
+      "phase": 4,
+      "name": "Geometria e imagens científicas",
+      "weight": 7,
+      "scores": [
+        20,
+        10,
+        15,
+        5,
+        5
+      ],
+      "estimate_percent": 55
+    },
+    {
+      "phase": 5,
+      "name": "Studio e publicação",
+      "weight": 7,
+      "scores": [
+        25,
+        15,
+        15,
+        5,
+        5
+      ],
+      "estimate_percent": 65
+    },
+    {
+      "phase": 6,
+      "name": "Datasets científicos",
+      "weight": 10,
+      "scores": [
+        20,
+        10,
+        15,
+        5,
+        5
+      ],
+      "estimate_percent": 55
+    },
+    {
+      "phase": 7,
+      "name": "Worlds e simulações",
+      "weight": 8,
+      "scores": [
+        15,
+        10,
+        10,
+        0,
+        5
+      ],
+      "estimate_percent": 40
+    },
+    {
+      "phase": 8,
+      "name": "Multimodalidade e agentes",
+      "weight": 8,
+      "scores": [
+        10,
+        10,
+        5,
+        0,
+        5
+      ],
+      "estimate_percent": 30
+    },
+    {
+      "phase": 9,
+      "name": "Discovery",
+      "weight": 10,
+      "scores": [
+        10,
+        10,
+        5,
+        0,
+        5
+      ],
+      "estimate_percent": 30
+    },
+    {
+      "phase": 10,
+      "name": "RSI controlado",
+      "weight": 8,
+      "scores": [
+        10,
+        10,
+        5,
+        5,
+        5
+      ],
+      "estimate_percent": 35
+    },
+    {
+      "phase": 11,
+      "name": "Outras disciplinas",
+      "weight": 4,
+      "scores": [
+        10,
+        5,
+        5,
+        0,
+        5
+      ],
+      "estimate_percent": 25
+    },
+    {
+      "phase": 12,
+      "name": "Conhecimento científico vivo",
+      "weight": 3,
+      "scores": [
+        15,
+        10,
+        5,
+        0,
+        5
+      ],
+      "estimate_percent": 35
+    }
+  ],
+  "backlog": [
+    {
+      "id": "F01-01",
+      "phase": 1,
+      "paths": "core/semantic_ir.py; core/types.py; core/obligations.py",
+      "implementation": "Unificar contratos de escalares, vetores, matrizes e funções; transportar domínio e obrigações entre operações sem converter significado em texto.",
+      "acceptance": "Serialização/replay preservam tipos e hipóteses; dimensões incompatíveis e obrigações não satisfeitas são recusadas.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F01-02",
+      "phase": 1,
+      "paths": "calc/session.py; calc/notebook.py",
+      "implementation": "Registrar operações das nove áreas com schemas, domínio, limites, unidades, precisão, versões e erros estruturados; conectar bibliotecas existentes antes de escrever algoritmos duplicados.",
+      "acceptance": "Uma matriz publicada de operações cobre cada área do vision.md e cada operação tem replay, exemplo válido e caso fora do domínio.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F01-03",
+      "phase": 1,
+      "paths": "math/calculus/; symbolic/",
+      "implementation": "Completar o perfil declarado de limites laterais, singularidades, integração racional e séries com resto/intervalo de validade; reaproveitar diferenciação simbólica existente.",
+      "acceptance": "Casos regulares e singulares conferidos por oráculo independente; integrais impróprias divergentes e resultados condicionais não são aceitos como valores exatos incondicionais.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F01-04",
+      "phase": 1,
+      "paths": "math/linear_algebra/; core/precision.py",
+      "implementation": "Integrar decomposições e sistemas retangulares com condicionamento e estimativa de erro; declarar perfil exato versus aproximado.",
+      "acceptance": "Reconstrução/resíduo e limites de erro verificados em sistemas bem condicionados, singulares e quase singulares.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F01-05",
+      "phase": 1,
+      "paths": "math/probability/; math/statistics/; calc/session.py",
+      "implementation": "Expor distribuições, estimação, testes, intervalos e séries temporais com hipóteses estatísticas, alternativas e validade de amostra.",
+      "acceptance": "Casos de referência reproduzidos; amostras inválidas e aplicação fora das hipóteses geram diagnóstico explícito.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F01-06",
+      "phase": 1,
+      "paths": "math/optimization/; math/geometry/; math/graph_theory/; calc/session.py",
+      "implementation": "Completar integração de restrições/KKT, transformações/construções, grafos, recorrências e lógica no perfil público, conservando certificados e limitações.",
+      "acceptance": "Viabilidade e otimalidade não são confundidas; transformações preservam relações; operações discretas têm testemunho verificável.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F01-07",
+      "phase": 1,
+      "paths": "core/units.py; core/precision.py; calc/session.py",
+      "implementation": "Propagar unidades e erro em operações compostas; distinguir valores exatos, aproximações e intervalos; rejeitar conversões não suportadas.",
+      "acceptance": "Análise dimensional atravessa a sessão e o notebook; precisão solicitada é cumprida ou a impossibilidade é declarada.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F01-08",
+      "phase": 1,
+      "paths": "tests/test_phase1_calculator.py; benchmarks/calculator/ [novo]",
+      "implementation": "Criar corpus independente estratificado por área, casos-limite e invariantes; publicar matriz de conformidade por operação e plataforma.",
+      "acceptance": "Todas as operações do perfil possuem evidência externa ou referência analítica, testes de falha e resultados auditáveis; revisão matemática dos contratos registrada.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F02-01",
+      "phase": 2,
+      "paths": "forge/task_spec.py; forge/reverse_builder.py",
+      "implementation": "Versionar contratos de testemunho, hipóteses, solução e verificadores por família; suportar composição de tarefas sem revelar o testemunho na entrada.",
+      "acceptance": "Regeração por semente é idêntica e adulterações de solução, hipótese ou testemunho são detectadas.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F02-02",
+      "phase": 2,
+      "paths": "forge/constructors/; verify/trace.py",
+      "implementation": "Ampliar templates das oito famílias com estruturas não equivalentes triviais, preservando construção inversa e correção independente.",
+      "acceptance": "Cada família possui variantes estruturalmente distintas; dificuldade não é atribuída pelo tamanho ou pela escolha de coeficientes.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F02-03",
+      "phase": 2,
+      "paths": "forge/sampling.py; forge/deduplicate.py; datasets/semantic_fingerprint.py",
+      "implementation": "Medir cobertura de estruturas, equivalência por renomeação/reescala e distribuição de parâmetros; controlar redundância por orçamento.",
+      "acceptance": "Duplicatas semânticas conhecidas são agrupadas e relatório de diversidade separa famílias, templates e instâncias.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F02-04",
+      "phase": 2,
+      "paths": "forge/difficulty.py; benchmarks/independent.py",
+      "implementation": "Calibrar dificuldade por solver, estratégia, memória/tempo, taxa de sucesso e intervalo de incerteza; distinguir unsupported, erro e timeout.",
+      "acceptance": "Rótulos possuem evidência versionada e não promovem caso sem suporte a difícil; resultados podem ser reproduzidos fora do gerador.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F02-05",
+      "phase": 2,
+      "paths": "datasets/splits.py; datasets/split_policy.py",
+      "implementation": "Separar templates, composições e classes semânticas entre treino e holdout, além da separação atual por família.",
+      "acceptance": "Auditoria acusa colisões por testemunho, template e equivalência; nenhuma decisão de geração usa o holdout final.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F02-06",
+      "phase": 2,
+      "paths": "benchmarks/independent.py; benchmarks/forge_challenge/ [novo]",
+      "implementation": "Criar suíte reservada com baselines simbólicos, numéricos e, quando aplicável, modelos de raciocínio; fixar protocolo antes da avaliação.",
+      "acceptance": "Instâncias, versões, limites e respostas verificadas constam do relatório; parcela de desafios permanece inédita para seleção.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F02-07",
+      "phase": 2,
+      "paths": "forge/reverse_builder.py; datasets/quality_gate.py",
+      "implementation": "Integrar geração guiada pelas lacunas de cobertura/dificuldade com limites, parada e preservação de falhas.",
+      "acceptance": "Execução encerrável produz apenas tarefas verificadas; falhas e rejeições permanecem no relatório sem seleção retrospectiva dos sucessos.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F02-08",
+      "phase": 2,
+      "paths": "tests/test_phase2_forge.py; benchmarks/results/",
+      "implementation": "Publicar avaliação de correção, diversidade e dificuldade em amostra dimensionada por protocolo e revisão de problemas por avaliador independente.",
+      "acceptance": "Saída da F2 demonstrada nas oito famílias; a exigência de dificuldade avançada continua aberta se os baselines resolverem tudo.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F03-01",
+      "phase": 3,
+      "paths": "formal/translation_review.py; forge/task_spec.py",
+      "implementation": "Ligar a pergunta original, a IR, as hipóteses e a proposição formal por identificadores e revisão explícita de tradução.",
+      "acceptance": "Troca de pergunta, quantificador, domínio ou hipótese invalida a vinculação; aprovação humana não é simulada por flag automática.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F03-02",
+      "phase": 3,
+      "paths": "formal/lean_bridge.py; lean/Nabla/",
+      "implementation": "Publicar e completar os fragmentos suportados de álgebra, desigualdades e problemas selecionados, com rejeição de traduções fora do perfil.",
+      "acceptance": "Corpus de traduções positivas/negativas e exemplos equivalentes conferidos; nenhum sorry ou axioma não autorizado.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F03-03",
+      "phase": 3,
+      "paths": "formal/smt_bridge.py; verify/certificate.py",
+      "implementation": "Documentar contrato por lógica SMT, testemunhos e distinção entre sat/unsat/unknown; ampliar apenas fragmentos com replay seguro.",
+      "acceptance": "Modelos são reconferidos; unknown/timeouts não viram prova; SMT não é apresentado como certificado Lean.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F03-04",
+      "phase": 3,
+      "paths": "formal/lean_checker.py; verify/certificate.py",
+      "implementation": "Empacotar fontes, toolchain, dependências, versões e política de axiomas para reconferência em ambiente limpo.",
+      "acceptance": "Terceiro reconstrói o certificado sem cache do autor; alteração de fonte ou dependência é detectada.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F03-05",
+      "phase": 3,
+      "paths": "falsifier/search.py; falsifier/counterexample_miner.py",
+      "implementation": "Adicionar estratégias específicas ao domínio: racionais, fronteiras, singularidades e orientação por restrições, com cobertura e orçamento declarados.",
+      "acceptance": "Contraexemplo é reavaliado no enunciado original; busca inconclusiva nunca é prova de validade.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F03-06",
+      "phase": 3,
+      "paths": "falsifier/shrink.py",
+      "implementation": "Definir ordem de minimalidade por domínio e produzir certificado do escopo explorado durante redução.",
+      "acceptance": "Resultado diz mínimo no escopo ou apenas reduzido; exemplos impossíveis de minimizar conservam o testemunho válido.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F03-07",
+      "phase": 3,
+      "paths": "formal/translation_review.py; knowledge/provenance_audit.py",
+      "implementation": "Persistir falhas de tradução, revisão, axiomas, timeout e refutação como evidências tipadas vinculadas à tarefa.",
+      "acceptance": "Pipeline e documento preservam distinção entre igualdade exata, prova formal e teste finito.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F03-08",
+      "phase": 3,
+      "paths": "tests/test_phase3_formal.py; benchmarks/formal/ [novo]",
+      "implementation": "Construir corpus independente com proposições válidas, falsas e ambiguidades de tradução; obter revisão dos mapeamentos.",
+      "acceptance": "Todos os fragmentos declarados têm taxa de cobertura e erros publicada; correspondência pergunta-teorema é auditada externamente.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F04-01",
+      "phase": 4,
+      "paths": "graphics/scene_graph.py; graphics/geometry_constraints.py",
+      "implementation": "Completar contratos de curvas, equações, relações e origem das construções; preservar dependências e obrigações geométricas.",
+      "acceptance": "Cena serializada reconstrói o modelo sem inferir matemática de pixels; objetos inválidos são recusados.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F04-02",
+      "phase": 4,
+      "paths": "forge/constructors/geometry.py; verify/geometry.py",
+      "implementation": "Ampliar construções coordenadas com degenerações, interseções e testemunhos; conferir relações por método independente.",
+      "acceptance": "Casos colineares, tangentes, paralelos e sem interseção têm resultados explícitos e verificáveis.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F04-03",
+      "phase": 4,
+      "paths": "graphics/sampling.py",
+      "implementation": "Implementar refinamento por tolerância e detecção de descontinuidades no perfil de curvas; quantificar erro de aproximação de círculos e trajetórias.",
+      "acceptance": "Curvas não atravessam polos; metadados indicam tolerância, limite de amostras e erro conhecido ou não certificado.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F04-04",
+      "phase": 4,
+      "paths": "graphics/coordinate_system.py; graphics/layout.py",
+      "implementation": "Tratar escalas, clipping, legendas, unidades, rótulos e margens em cenas densas; registrar limitações de layout.",
+      "acceptance": "Transformações reversíveis preservam coordenadas; nenhum objeto requerido desaparece sem diagnóstico.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F04-05",
+      "phase": 4,
+      "paths": "graphics/svg_renderer.py; graphics/raster_renderer.py; graphics/rendering.py",
+      "implementation": "Manter semântica comum nos formatos, metadados e identificadores; estabilizar fontes e rendering no ambiente suportado.",
+      "acceptance": "SVG/PNG correspondem à mesma cena; testes conferem orientação, escala e dados embutidos.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F04-06",
+      "phase": 4,
+      "paths": "graphics/artifacts.py; datasets/alignments.py",
+      "implementation": "Ligar figura, modelo, tarefa e verificações por hashes e versões; preservar edição sem invalidar silenciosamente a proveniência.",
+      "acceptance": "Editar modelo exige nova verificação; imagem alterada ou metadado inconsistente é detectado.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F04-07",
+      "phase": 4,
+      "paths": "tests/test_phase4_graphics.py; tests/visual/ [novo]",
+      "implementation": "Adicionar corpus visual de referência com comparação tolerante, casos de clipping e fontes em Linux/Windows.",
+      "acceptance": "Diferenças relevantes falham no CI; alterações de referência exigem inspeção registrada.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F04-08",
+      "phase": 4,
+      "paths": "benchmarks/results/graphics-review/ [novo]",
+      "implementation": "Executar revisão humana de legibilidade, fidelidade e editabilidade do corpus e corrigir os defeitos encontrados.",
+      "acceptance": "Relatório identifica cenas/revisores/defeitos e correções; não é necessário competir com AlphaGeometry para cumprir a saída delimitada de F4.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F05-01",
+      "phase": 5,
+      "paths": "documents/document_model.py; documents/equation_blocks.py",
+      "implementation": "Completar blocos estruturados para tabelas, provas, hipóteses, resultados, limitações e referências cruzadas necessários aos perfis editorialmente declarados.",
+      "acceptance": "Artigo, relatório e apostila são expressos pelo modelo comum sem inserir fontes específicas de um compilador no conteúdo canônico.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F05-02",
+      "phase": 5,
+      "paths": "documents/citations.py",
+      "implementation": "Resolver referências importadas, campos obrigatórios, identificadores e citações cruzadas, mantendo origem e revisão.",
+      "acceptance": "Referência ausente, duplicada ou sem origem é sinalizada; bibliografia não é inventada pelo exportador.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F05-03",
+      "phase": 5,
+      "paths": "documents/figures.py; documents/publication.py",
+      "implementation": "Vincular tabelas, equações, claims e figuras aos dados/modelos/provas que os sustentam; validar links estruturados.",
+      "acceptance": "Resultado numérico publicado é reconstituído da evidência; hash válido não é tratado como prova da narrativa.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F05-04",
+      "phase": 5,
+      "paths": "documents/latex_exporter.py; documents/typst_exporter.py; documents/html_exporter.py",
+      "implementation": "Completar paridade dos blocos, referências, unidades, Unicode e acessibilidade nos três formatos.",
+      "acceptance": "Mesmo documento mantém conteúdo científico, numeração e referências em todos os formatos.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F05-05",
+      "phase": 5,
+      "paths": "documents/pdf_builder.py",
+      "implementation": "Fixar perfil de compiladores, fontes e dependências; impor limites de recursos e política de inclusão de arquivos ao compilar conteúdo externo.",
+      "acceptance": "Bundle reconstrói offline no ambiente declarado; falhas e timeout conservam diagnóstico e não retornam PDF antigo.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F05-06",
+      "phase": 5,
+      "paths": "templates/research_paper/; templates/engineering_report/ [novo]; templates/teaching/ [novo]",
+      "implementation": "Criar templates funcionais dos três usos previstos com exemplos rastreáveis, avisos de dados sintéticos e limitações.",
+      "acceptance": "Todos compilam pelos backends suportados sem referências quebradas ou alegações sem fonte.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F05-07",
+      "phase": 5,
+      "paths": "tests/test_phase5_studio.py; tests/visual/documents/ [novo]",
+      "implementation": "Testar conteúdo extraído do PDF e páginas de referência, incluindo tabelas largas, fórmulas longas e figuras.",
+      "acceptance": "Truncamento, caracteres ausentes e referências inválidas são detectados; revisão visual humana registrada.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F05-08",
+      "phase": 5,
+      "paths": "documents/publication.py; benchmarks/results/publication-review/ [novo]",
+      "implementation": "Criar checklist de publicação e pacote de revisão ligando cada afirmação verificável à evidência e separando revisão editorial de científica.",
+      "acceptance": "Revisor consegue recompilar e seguir os dados até as conclusões; alegações não demonstradas permanecem marcadas.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F06-01",
+      "phase": 6,
+      "paths": "datasets/schema.py; datasets/serializer.py",
+      "implementation": "Generalizar perfis de registros para simulações, observações, provas e tentativas além das tarefas construtivas atuais; criar migrações explícitas.",
+      "acceptance": "Cada perfil tem campos obrigatórios, limites e verificadores; migração preserva IDs de origem e não fabrica evidência.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F06-02",
+      "phase": 6,
+      "paths": "datasets/semantic_fingerprint.py; datasets/split_policy.py",
+      "implementation": "Deduplicar por significado, template e origem; bloquear vazamento entre modalidades e partições, inclusive artefatos derivados.",
+      "acceptance": "Uma figura ou trace equivalente não reaparece no holdout com outro nome; colisões são reportadas.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F06-03",
+      "phase": 6,
+      "paths": "datasets/curation.py; datasets/quality_gate.py",
+      "implementation": "Aplicar gates por perfil para correção, licença, proveniência, dificuldade, defeitos, completude e versões de verificadores.",
+      "acceptance": "Registros incompatíveis são rejeitados com razão reproduzível; amostra de auditoria independente mede falsos aceites.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F06-04",
+      "phase": 6,
+      "paths": "datasets/serializer.py; export/parquet.py; export/jsonl.py; export/bundle.py",
+      "implementation": "Implementar processamento em lotes/streaming e retomada transacional onde os limites atuais impeçam o volume declarado.",
+      "acceptance": "Roundtrip sem perda e exportação interrompida não produzem release aparentemente íntegro; consumo de memória é medido.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F06-05",
+      "phase": 6,
+      "paths": "datasets/model_card.py; export/huggingface.py",
+      "implementation": "Completar ficha por versão, inventário de licenças e origem, defeitos conhecidos, splits e verificadores; testar preparo e publicação em destino de teste autorizado.",
+      "acceptance": "Download do release reconfere hashes e card; teste mock não é descrito como upload real.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F06-06",
+      "phase": 6,
+      "paths": "datasets/quality_gate.py; benchmarks/datasets/ [novo]",
+      "implementation": "Criar avaliação externa de correção, diversidade, ineditismo e dificuldade com protocolo e amostra dimensionados.",
+      "acceptance": "Resultados por família/template e intervalos de confiança são publicados, incluindo falhas.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F06-07",
+      "phase": 6,
+      "paths": "training/controlled_experiment.py; training/ablation.py",
+      "implementation": "Integrar avaliação de utilidade downstream com modelos capazes, controles de volume/compute e ablação de componentes do dataset.",
+      "acceptance": "Dado correto e dado útil têm relatórios separados; resultados negativos não são filtrados.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F06-08",
+      "phase": 6,
+      "paths": "tests/test_phase6_datasets.py; benchmarks/results/",
+      "implementation": "Publicar release candidato acompanhado de auditoria externa e reprodução por consumidor independente.",
+      "acceptance": "Critérios de qualidade definidos no card passam em problemas reservados; a tese de melhoria continua aberta enquanto o ganho não for demonstrado.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F07-01",
+      "phase": 7,
+      "paths": "worlds/model_spec.py; worlds/ode/; worlds/pde/",
+      "implementation": "Definir perfil executável de modelos, estados, unidades, condições iniciais/de contorno, parâmetros e tolerâncias.",
+      "acceptance": "Modelo mal posto, unidades incompatíveis e condições não suportadas falham antes da integração.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F07-02",
+      "phase": 7,
+      "paths": "worlds/integrators/; worlds/ode/",
+      "implementation": "Adicionar controle adaptativo de erro e eventos no perfil não rígido; declarar/rejeitar rigidez ou suportar método adequado com validação.",
+      "acceptance": "Tolerâncias são verificadas contra solução analítica e solver independente; exaustão de passos gera falha explícita.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F07-03",
+      "phase": 7,
+      "paths": "worlds/pde/; worlds/mesh/",
+      "implementation": "Separar o solver de calor da condição seno fixa e suportar condições declaradas; acrescentar outra classe selecionada apenas com contrato e oráculo.",
+      "acceptance": "Condições e estabilidade são verificadas; refinamento espacial/temporal mede erro para cada configuração suportada.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F07-04",
+      "phase": 7,
+      "paths": "worlds/conservation.py; worlds/convergence.py",
+      "implementation": "Automatizar estudos independentes de erro espacial, temporal, estabilidade e balanços por modelo.",
+      "acceptance": "Relatório distingue erro de discretização e de modelo; regressão de ordem ou conservação bloqueia release do perfil afetado.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F07-05",
+      "phase": 7,
+      "paths": "worlds/validation.py; adapters/instruments/",
+      "implementation": "Ingerir observações reais com unidades, incerteza, origem, calibração e separação calibração/validação.",
+      "acceptance": "Previsões são comparadas com dados não usados no ajuste; incompatibilidades e discrepâncias permanecem no relatório.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F07-06",
+      "phase": 7,
+      "paths": "worlds/sensitivity.py",
+      "implementation": "Expandir análise para múltiplos parâmetros e propagação de incerteza com domínio de validade e controle de erro.",
+      "acceptance": "Casos analíticos verificam sensibilidade; análise registra não identificabilidade e parâmetros correlacionados.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F07-07",
+      "phase": 7,
+      "paths": "worlds/animation.py; graphics/artifacts.py",
+      "implementation": "Vincular frames a estados, tempos, malha e escala; exportar trajetória e metadados suficientes para replay.",
+      "acceptance": "Animação não suaviza ou esconde instabilidade; cada frame pode ser reconstruído dos dados.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F07-08",
+      "phase": 7,
+      "paths": "tests/test_phase7_worlds.py; benchmarks/worlds/ [novo]",
+      "implementation": "Publicar suíte analítica, comparação com solver externo e ao menos um estudo experimental apropriado por perfil físico que alegue validade observacional.",
+      "acceptance": "Cada alegação tem convergência, limites e validação aplicável; perfis exclusivamente matemáticos são identificados como tais.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F08-01",
+      "phase": 8,
+      "paths": "datasets/multimodal.py; datasets/alignments.py",
+      "implementation": "Generalizar alinhamentos entre texto, equações, diagramas, estados temporais e provas com granularidade e validade por modalidade.",
+      "acceptance": "Cada alinhamento reconduz ao mesmo problema; respostas e certificados ficam fora da entrada quando são alvos.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F08-02",
+      "phase": 8,
+      "paths": "training/multimodal_model.py [novo]; training/registry.py",
+      "implementation": "Implementar adaptador de modelo aberto capaz de consumir imagem/texto/equações, com checkpoints, licença e configurações reproduzíveis.",
+      "acceptance": "Modelo realmente aprende de pixels e símbolos, em vez de apenas hash de texto SVG; inferência limpa reconstrói previsões salvas.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F08-03",
+      "phase": 8,
+      "paths": "training/curriculum.py; training/controlled_experiment.py",
+      "implementation": "Suportar treinamento/ajuste com orçamento explícito, retomada e controles pareados de dados, compute, inicialização e tuning.",
+      "acceptance": "Controle e tratamento diferem somente pelo fator estudado; protocolo é congelado antes do holdout final.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F08-04",
+      "phase": 8,
+      "paths": "training/contamination.py; training/evaluation.py",
+      "implementation": "Auditar templates, equivalência semântica, imagens derivadas e contaminação conhecida dos modelos; avaliar benchmarks externos reservados.",
+      "acceptance": "Relatório declara contaminação desconhecida e separa familiaridade do modelo de generalização inédita.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F08-05",
+      "phase": 8,
+      "paths": "training/ablation.py; training/evaluation.py",
+      "implementation": "Comparar modalidades, currículo e qualidade dos dados com múltiplas sementes, efeito, intervalos e correção de comparações.",
+      "acceptance": "Resultados por seed e previsões são publicados; ganho zero/negativo não é convertido em sucesso científico.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F08-06",
+      "phase": 8,
+      "paths": "agents/planner.py; agents/proposals.py",
+      "implementation": "Adicionar ligação tipada de resultados entre ações, planejamento delimitado, estado persistente, retomada e diagnóstico de falhas.",
+      "acceptance": "Agente executa tarefa inédita em múltiplas etapas e seus dados de entrada/saída são reexecutáveis; não apenas sequência fixa demonstrativa.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F08-07",
+      "phase": 8,
+      "paths": "agents/permissions.py; agents/tool_registry.py",
+      "implementation": "Separar ferramentas locais confiáveis de plugins/código externos; executar estes últimos em isolamento de sistema com capacidades explícitas.",
+      "acceptance": "Timeout de subprocesso não é vendido como sandbox; testes mostram limites de arquivos, rede e recursos do perfil externo.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F08-08",
+      "phase": 8,
+      "paths": "tests/test_phase8_agents_training.py; benchmarks/agents_multimodal/ [novo]",
+      "implementation": "Realizar estudo externo de generalização e ablações e avaliação de agentes por tarefa completa, correção e custo.",
+      "acceptance": "Pipeline de avaliação está completo mesmo com resultado negativo; a tese adicional de aumentar capacidade só fecha com ganho robusto e reprodução independente.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F09-01",
+      "phase": 9,
+      "paths": "discovery/hypothesis.py; discovery/symbolic_regression.py",
+      "implementation": "Criar busca de candidatos em gramática declarada além de polinômios univariados, com unidades, hipóteses, complexidade e orçamento.",
+      "acceptance": "Modelos de dimensões inválidas são rejeitados; recuperação de leis conhecidas e falhas é medida em corpus reservado.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F09-02",
+      "phase": 9,
+      "paths": "discovery/symbolic_regression.py; worlds/validation.py",
+      "implementation": "Separar ajuste, seleção e teste; tratar ruído, incerteza, identificabilidade e extrapolação explicitamente.",
+      "acceptance": "Escolha de modelo não consulta holdout; intervalo de validade e comparação com alternativas acompanham a hipótese.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F09-03",
+      "phase": 9,
+      "paths": "knowledge/literature.py; discovery/novelty_screen.py",
+      "implementation": "Implementar importação consultável de fontes bibliográficas verificáveis, snapshots, consultas, datas, licenças e vínculos aos documentos.",
+      "acceptance": "Antecedentes relevantes de um corpus de referência são recuperados; ausência na busca não implica novidade global.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F09-04",
+      "phase": 9,
+      "paths": "discovery/theorem_search.py; knowledge/claim_graph.py",
+      "implementation": "Indexar teoremas e mapear condições, unidades e equivalências entre hipóteses e resultados conhecidos.",
+      "acceptance": "Conexão conserva hipóteses; exemplo com domínio diferente não é declarado mesmo teorema.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F09-05",
+      "phase": 9,
+      "paths": "discovery/experimental_design.py",
+      "implementation": "Planejar experiências com custo, segurança operacional do domínio, viabilidade, ruído e informação esperada; persistir propostas e resultados.",
+      "acceptance": "Plano discrimina modelos em dados reservados; propor experimento não é registrado como executá-lo.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F09-06",
+      "phase": 9,
+      "paths": "falsifier/counterexample_miner.py",
+      "implementation": "Integrar busca adversarial por fronteiras, casos fora da distribuição e inconsistências com medições, mantendo redução e escopo.",
+      "acceptance": "Refutação é reproduzível na hipótese original; orçamento esgotado permanece inconclusivo.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F09-07",
+      "phase": 9,
+      "paths": "discovery/research_program.py; documents/publication.py",
+      "implementation": "Orquestrar hipótese→antecedentes→experimento→refutação→revisão, com decisões versionadas e critérios de parada.",
+      "acceptance": "Histórico permite reconstruir escolhas e hipóteses abandonadas; relatório não seleciona apenas descobertas aparentes.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F09-08",
+      "phase": 9,
+      "paths": "tests/test_phase9_discovery.py; benchmarks/discovery/ [novo]",
+      "implementation": "Criar benchmarks de redescoberta e casos negativos, e executar investigação externa revisável com reprodução independente quando pertinente.",
+      "acceptance": "Novidade é avaliada por pesquisadores e antecedentes; código só registra o resultado, não concede novidade a si mesmo.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F10-01",
+      "phase": 10,
+      "paths": "evolution/policy_genome.py; evolution/proposal_validator.py",
+      "implementation": "Definir genomas tipados para estratégias de solver, sequências de regras, seleção de problemas e geração de candidatos, com limites.",
+      "acceptance": "Propostas fora do contrato são rejeitadas; cada família de política possui interpretador e invariantes verificáveis.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F10-02",
+      "phase": 10,
+      "paths": "evolution/search.py; evolution/evaluator.py",
+      "implementation": "Generalizar busca e avaliação para correção/capacidade/custo em tarefas de múltiplas famílias, preservando baselines e regressões.",
+      "acceptance": "Melhoria não depende somente de reduzir erro em EDOs; correção perdida bloqueia promoção.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F10-03",
+      "phase": 10,
+      "paths": "evolution/holdout_manager.py",
+      "implementation": "Separar armazenamento reservado da identidade do proponente; criar alocação persistente de holdouts com prevenção de reutilização entre processos e campanhas.",
+      "acceptance": "Reabrir outro gerente não permite reutilizar conjunto conhecido; acessos e consumo ficam auditados.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F10-04",
+      "phase": 10,
+      "paths": "evolution/evaluator.py; evolution/release_gate.py",
+      "implementation": "Executar avaliador em processo/ambiente com autoridade independente e contratos imutáveis, com recibos autenticados.",
+      "acceptance": "Proponente não consegue modificar avaliador e depois obter promoção válida; recibo forjado ou contrato diferente é rejeitado.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F10-05",
+      "phase": 10,
+      "paths": "evolution/statistical_tests.py",
+      "implementation": "Tratar múltiplas propostas e gerações, avaliações sequenciais, ruído e efeito mínimo de utilidade; dimensionar amostras pelo protocolo.",
+      "acceptance": "Taxa de falsos positivos é verificada em controles nulos; aceitação exige significância e efeito prático definidos antes da seleção.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F10-06",
+      "phase": 10,
+      "paths": "evolution/code_sandbox.py [novo]; evolution/proposal_validator.py",
+      "implementation": "Adicionar caminho de propostas de código somente com isolamento, limites, testes, análise das alterações e revisão registrada.",
+      "acceptance": "Código candidato não acessa segredos/holdouts/avaliador; testes adversariais verificam fronteiras e nenhum código é promovido só por autodeclaração.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F10-07",
+      "phase": 10,
+      "paths": "evolution/lineage.py; evolution/rollback.py; evolution/release_gate.py",
+      "implementation": "Integrar promoção atômica, canário, monitoramento e rollback das versões de estratégia/código e seus artefatos.",
+      "acceptance": "Falha após promoção restaura estado e dependências verificadas; revisão e decisão permanecem no histórico.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F10-08",
+      "phase": 10,
+      "paths": "tests/test_phase10_evolution.py; benchmarks/evolution/ [novo]",
+      "implementation": "Demonstrar ciclos sucessivos em mais de uma família com novos holdouts e avaliação externa, publicando ganhos, custos e regressões.",
+      "acceptance": "Melhoria de eficiência/capacidade reproduzida fora da campanha; não se exige nem se afirma autoaperfeiçoamento irrestrito.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F11-01",
+      "phase": 11,
+      "paths": "domains/contracts.py; domains/engineering/",
+      "implementation": "Definir perfis por disciplina com unidades, leis, hipóteses e limites; ampliar engenharia com geometria/CAD paramétrico e verificações de carregamento no perfil escolhido.",
+      "acceptance": "Cada saída declara regime de validade e tem referência independente; não promete engenharia universal.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F11-02",
+      "phase": 11,
+      "paths": "domains/circuits/",
+      "implementation": "Ampliar perfil DC para elementos e análises dinâmicas selecionadas com validação de topologia, balanços e condições iniciais.",
+      "acceptance": "Benchmarks conferidos com simulador de circuitos independente; circuitos singulares têm diagnóstico.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F11-03",
+      "phase": 11,
+      "paths": "domains/materials/",
+      "implementation": "Adicionar modelos constitutivos selecionados, parâmetros com origem e ensaios de validação, além da relação termoelástica unidimensional atual.",
+      "acceptance": "Curvas e incertezas são comparadas com referências/ensaios; extrapolação de regime é identificada.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F11-04",
+      "phase": 11,
+      "paths": "domains/chemistry/",
+      "implementation": "Definir perfil químico além do balanceamento neutro: espécies/cargas e equilíbrio ou cinética selecionados com conservação e unidades.",
+      "acceptance": "Casos de referência preservam massa/carga; resultados termodinâmicos usam parâmetros e bases rastreáveis.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F11-05",
+      "phase": 11,
+      "paths": "domains/control/",
+      "implementation": "Ampliar dimensão e configuração de sistemas no perfil escolhido, análise de estabilidade e resposta com unidades e robustez.",
+      "acceptance": "Respostas e propriedades são comparadas com biblioteca de controle independente; instabilidade não é ocultada por horizonte curto.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F11-06",
+      "phase": 11,
+      "paths": "domains/earth/; domains/biology/",
+      "implementation": "Implementar estudos delimitados adicionais com parâmetros observados e calibração/validação separadas, além de hidrostática/logística/SIR ideais.",
+      "acceptance": "Limites de identificação, incerteza e viés de observações constam dos resultados; especialistas revisam a adequação dos modelos.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F11-07",
+      "phase": 11,
+      "paths": "worlds/multiphysics/; adapters/instruments/",
+      "implementation": "Generalizar interfaces de acoplamento conservativo e ingestão de medições com relógio, calibração, qualidade, unidades e proveniência.",
+      "acceptance": "Acoplamento fecha balanços e estudo de convergência; dados de instrumento são distinguíveis de fixtures sintéticas.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F11-08",
+      "phase": 11,
+      "paths": "tests/test_phase11_domains.py; benchmarks/domains/ [novo]",
+      "implementation": "Criar suíte por disciplina, comparações com ferramentas externas e estudos observacionais apropriados, com revisão de especialistas.",
+      "acceptance": "Cada perfil reivindicado possui validação específica; expansão de domínio cria novo contrato em vez de elevar artificialmente a cobertura de toda a ciência.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F12-01",
+      "phase": 12,
+      "paths": "knowledge/versioned_claims.py; knowledge/claim_graph.py",
+      "implementation": "Completar contrato de claims estruturados com hipóteses, escopo, incerteza e vínculos explícitos entre evidência e afirmação.",
+      "acceptance": "Mesma conclusão sob hipóteses distintas não é fundida; evidência de integridade não vira automaticamente evidência científica.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F12-02",
+      "phase": 12,
+      "paths": "knowledge/federation.py; knowledge/identity.py [novo]",
+      "implementation": "Implementar identidade de pares e assinaturas verificáveis, confiança configurável, revogação e rotação de chaves.",
+      "acceptance": "Importador autentica autor/versão e rejeita alterações, replay inadequado e chave revogada; HMAC compartilhado não é chamado assinatura de autoria individual.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F12-03",
+      "phase": 12,
+      "paths": "knowledge/federation.py; knowledge/storage.py [novo]",
+      "implementation": "Implementar sincronização incremental, transporte opcional, armazenamento de evidências por conteúdo, quarentena e recuperação.",
+      "acceptance": "Dois pares independentes sincronizam após desconexão sem perder histórico; conteúdo inválido não entra no conjunto confiável.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F12-04",
+      "phase": 12,
+      "paths": "knowledge/semantic_reconciliation.py",
+      "implementation": "Ampliar reconciliação com condições/unidades e decisões explícitas de merge; manter forks e modelos concorrentes.",
+      "acceptance": "Não equivalente permanece separado; disputa não desaparece por escolher a revisão mais recente.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F12-05",
+      "phase": 12,
+      "paths": "knowledge/dependency_impact.py",
+      "implementation": "Propagar invalidação/revisão por dependência com índices, notificações locais e planos de reconferência, sem reescrever a história.",
+      "acceptance": "Refutação chega a todos os claims afetados; rerun registra novas revisões e conserva evidências anteriores.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F12-06",
+      "phase": 12,
+      "paths": "knowledge/peer_review.py; agents/scientific_teams.py",
+      "implementation": "Autenticar revisores/participantes, papéis, conflitos, decisões, recursos e revisão por versão; separar opinião de promoção editorial.",
+      "acceptance": "Revisor não aprova a própria alegação; revisão antiga não aprova automaticamente nova versão; agentes locais não se passam por especialistas externos.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F12-07",
+      "phase": 12,
+      "paths": "knowledge/provenance_audit.py; discovery/research_program.py",
+      "implementation": "Criar auditoria incremental de origem/licença/ambiente e execução de programas com estados, decisões e artefatos duráveis.",
+      "acceptance": "Terceiro recupera cadeia de evidências e reconfere claims computacionais; observações e revisões externas mantêm seus limites de autenticação.",
+      "status": "pending_completion"
+    },
+    {
+      "id": "F12-08",
+      "phase": 12,
+      "paths": "tests/test_phase12_knowledge.py; benchmarks/federation/ [novo]",
+      "implementation": "Validar federação com múltiplos pares, conflitos, refutações, falhas de transporte e revisão independente real de um programa.",
+      "acceptance": "Reprodução externa percorre dependências e contradições; sistema preserva incertezas e não anuncia banco infalível de verdades.",
+      "status": "pending_completion"
+    }
+  ],
+  "cross_cutting_items": 8
+}

@@ -106,3 +106,51 @@ def phase_portrait_scene(dx='y',dy='-x',*,initials=((1,0),(0,1)),duration=6,step
            'duration':str(duration),'steps':steps,'method':'rk4_float','bounds':[str(rational(v)) for v in bounds],
            'grid':grid,'limitation':'Numerical trajectories, no experimental validation or analytic guarantee.'}
     return GeometryScene('Phase portrait: RK4 samples',field.coordinates,curves=tuple(curves),arrows=field.arrows,model_json=canonical_json(model))
+
+
+def adaptive_function_scene(source, *, xmin=-2, xmax=2, tolerance='1/1000', max_segments=1024):
+    """Piecewise linear rational graph with certified vertical interpolation error.
+
+    Uses sup|f''| * width²/8 on each interval. The rational AST must be twice
+    differentiable throughout the interval; conservative interval failure is
+    rejected rather than connecting a curve across a possible pole.
+    """
+    if type(max_segments) is not int or not 1 <= max_segments <= 2047:
+        raise ValueError('Orçamento de segmentos entre 1 e 2047')
+    xmin, xmax, tolerance = rational(xmin), rational(xmax), rational(tolerance)
+    if xmin >= xmax or tolerance <= 0:
+        raise ValueError('Intervalo e tolerância positivos obrigatórios')
+    semantic = SemanticExpression.parse(source)
+    if set(n for n,_ in semantic.variable_types)-{'x'}:
+        raise ValueError('Curva aceita apenas x')
+    from ..symbolic import differentiate
+    second = differentiate(differentiate(semantic.expression, 'x').derivative, 'x').derivative
+    for obligation in semantic.obligations:
+        bound = _interval(obligation.expression, xmin, xmax)
+        if bound.lower <= 0 <= bound.upper:
+            raise ValueError('Não foi possível excluir singularidade em todo o intervalo')
+    pending = [(xmin, xmax, 0)]
+    accepted = []
+    while pending:
+        left, right, depth = pending.pop()
+        curvature = _interval(second, left, right)
+        error = max(abs(curvature.lower), abs(curvature.upper))*(right-left)**2/8
+        if error <= tolerance:
+            accepted.append((left, right, error))
+        else:
+            if depth >= 24 or len(accepted)+len(pending)+2 > max_segments:
+                raise ValueError('Orçamento insuficiente para certificar tolerância da curva')
+            middle = (left+right)/2
+            pending.extend(((middle, right, depth+1), (left, middle, depth+1)))
+    accepted.sort()
+    xs = [accepted[0][0], *(row[1] for row in accepted)]
+    points = tuple((x, rational(evaluate(semantic.expression, {'x': x}))) for x in xs)
+    low, high = min(y for _,y in points), max(y for _,y in points)
+    padding = (high-low)/10 or Fraction(1)
+    model = {'kind': 'adaptive_function', 'source': source, 'xmin': str(xmin), 'xmax': str(xmax),
+             'tolerance': str(tolerance), 'max_segments': max_segments,
+             'segments': [{'left':str(a), 'right':str(b), 'vertical_error_bound':str(e)} for a,b,e in accepted],
+             'error_basis': 'exact rational interval bound on second derivative; linear interpolation theorem',
+             'scope': 'vertical graph interpolation error, not raster pixels or experimental validity'}
+    return GeometryScene('Certified rational curve', CoordinateSystem(xmin,xmax,low-padding,high+padding,
+                         preserve_aspect=False), curves=(Polyline('curve0', points),), model_json=canonical_json(model))

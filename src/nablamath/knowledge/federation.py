@@ -61,3 +61,31 @@ class Federation:
         ledgers=[ClaimLedger.from_data(b['ledger']) for b in self._snapshots.values()]
         report=reconcile(ledgers,metadata=metadata)
         return {**report,'snapshot_ids':sorted(self._snapshots),'peers':sorted({b['peer_id'] for b in self._snapshots.values()})}
+
+
+class SignedFederation:
+    """Offline federation with individually pinned Ed25519 authorship keys.
+
+    Replays are idempotent by snapshot ID. Revocation is checked again when
+    reconciling, so a formerly accepted key cannot remain implicitly trusted.
+    """
+    def __init__(self, trust):
+        self.trust = trust
+        self._envelopes = {}
+
+    def ingest(self, envelope):
+        from .identity import verify_signed_snapshot
+        report = verify_signed_snapshot(envelope, self.trust)
+        if not report['valid']:
+            raise ValueError('Envelope rejeitado: '+report.get('reason', 'evidência inválida'))
+        self._envelopes[report['snapshot_id']] = json.loads(canonical_json(envelope))
+        return report
+
+    def reconcile(self, *, metadata=None):
+        federation = Federation(allow_unsigned=True)
+        for envelope in self._envelopes.values():
+            # The internal unsigned import is reached only after signature replay.
+            self.ingest(envelope)
+            federation.ingest(envelope['snapshot'])
+        return {**federation.reconcile(metadata=metadata), 'authentication': 'Ed25519-pinned-peer-key',
+                'real_world_identity_verified': False}

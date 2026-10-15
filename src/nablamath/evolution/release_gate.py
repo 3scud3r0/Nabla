@@ -4,7 +4,7 @@ from ..worlds import ModelSpec
 from .policy_genome import PolicyGenome
 from .proposal_validator import EvaluationContract,validate_proposal
 from .evaluator import evaluate_proposal
-from .statistical_tests import paired_sign_test
+from .statistical_tests import paired_sign_test, practical_effect
 
 
 def release_gate(receipt,contract,*,manager):
@@ -23,9 +23,11 @@ def release_gate(receipt,contract,*,manager):
         if canonical_json(actual)!=canonical_json(receipt['evaluation']):
             raise ValueError('Avaliação reexecutada divergiu')
         statistics=paired_sign_test(actual['candidate_errors'],actual['baseline_errors'],alpha=contract.alpha/contract.max_generations)
-        accepted=actual['accepted'] and statistics['valid'] and statistics['significant']
-        return {'accepted':accepted,'receipt_id':receipt['receipt_id'],'statistics':statistics,
-                'reason':'passed' if accepted else 'regression_budget_tolerance_or_significance_gate',
+        effect=practical_effect(actual['candidate_errors'],actual['baseline_errors'],
+                                minimum_relative_reduction=contract.minimum_relative_reduction)
+        accepted=actual['accepted'] and statistics['valid'] and statistics['significant'] and effect['passed']
+        return {'accepted':accepted,'receipt_id':receipt['receipt_id'],'statistics':statistics,'practical_effect':effect,
+                'reason':'passed' if accepted else 'regression_budget_tolerance_significance_or_practical_effect_gate',
                 'scope':'bounded ODE policies, not arbitrary code self-improvement'}
     except (ValueError,KeyError,TypeError,ArithmeticError) as exc:
         return {'accepted':False,'reason':str(exc)}

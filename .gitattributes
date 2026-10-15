@@ -13,3 +13,12 @@
 *.cmd text eol=crlf
 # Preserve historical blobs byte for byte.
 legacy/** -text
+# External certified references are hashed as downloaded; never rewrite their bytes.
+benchmarks/fixtures/longley-nist/** -text
+
+# Reproducible laboratory artifacts carry byte hashes, including JSON and PDFs.
+benchmarks/results/frontier-lab-951017/** -text -whitespace
+benchmarks/results/frontier-lab-951017/**/*.pdf binary
+
+# Historical transcript retained byte for byte, including original whitespace.
+docs/history/DESCRIPTION_ORIGINAL.md -text -whitespace

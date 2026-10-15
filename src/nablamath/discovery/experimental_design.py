@@ -21,3 +21,41 @@ def propose_experiment(hypotheses, candidates, *, observed=(), uncertainty='1'):
     rows.sort(key=lambda r:(-rational(r['utility']),rational(r['x'])))
     return {'selected':rows[0] if rows else None,'ranked':rows,'skipped_undefined_or_outside_domain':skipped,
             'criterion':'model_disagreement_over_declared_noise_squared','experiment_performed':False}
+
+
+def propose_constrained_experiment(hypotheses, candidates, *, costs, budget,
+                                   excluded=(), observed=(), uncertainty='1'):
+    """Rank finite feasible experiments by disagreement per declared positive cost.
+
+    Costs/exclusions are caller-supplied constraints, not a certification that an
+    experiment is physically feasible or safe. No instrument is operated here.
+    """
+    candidates = tuple(rational(x) for x in candidates)
+    budget = rational(budget)
+    if budget <= 0 or len(set(candidates)) != len(candidates):
+        raise ValueError('Orçamento positivo e candidatos únicos obrigatórios')
+    normalized = {}
+    for point, cost in costs.items():
+        point, cost = rational(point), rational(cost)
+        if point in normalized or cost <= 0:
+            raise ValueError('Custo positivo único por candidato obrigatório')
+        normalized[point] = cost
+    if set(normalized) != set(candidates):
+        raise ValueError('Custos devem cobrir exatamente os candidatos')
+    blocked = {rational(x) for x in excluded}
+    feasible = [x for x in candidates if x not in blocked and normalized[x] <= budget]
+    skipped = [{'x': str(x), 'reason': 'excluded' if x in blocked else 'over_budget'}
+               for x in candidates if x not in feasible]
+    # Validate hypotheses and uncertainty even when all candidates are excluded.
+    report = propose_experiment(hypotheses, candidates, observed=observed, uncertainty=uncertainty)
+    ranked = []
+    for row in report['ranked']:
+        point = rational(row['x'])
+        if point in feasible:
+            ranked.append({**row, 'cost': str(normalized[point]),
+                           'utility_per_cost': str(rational(row['utility'])/normalized[point])})
+    ranked.sort(key=lambda row: (-rational(row['utility_per_cost']), rational(row['x'])))
+    return {**report, 'ranked': ranked, 'selected': ranked[0] if ranked else None,
+            'budget': str(budget), 'skipped_constraints': skipped,
+            'criterion': 'model_disagreement_over_noise_squared_per_declared_cost',
+            'physical_feasibility_verified': False}

@@ -10,3 +10,5 @@ def diffusion_ratio(diffusivity, dt, dx):
     if ratio > 0.5:
         raise ValueError('FTCS instável: diffusivity*dt/dx^2 deve ser <= 0.5')
     return ratio
+
+from .adaptive import integrate_adaptive

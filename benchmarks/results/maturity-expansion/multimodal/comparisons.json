@@ -1,0 +1,80 @@
+[
+  {
+    "seed": 11,
+    "baseline_modalities": [
+      "equation"
+    ],
+    "combined_minus_baseline_accuracy": 0.0859375,
+    "improvements": 25,
+    "regressions": 14,
+    "paired_two_sided_p": 0.10812902140605729,
+    "alpha_bonferroni": 0.008333333333333333,
+    "significant": false,
+    "scope": "exploratory paired synthetic task comparison; iid not established"
+  },
+  {
+    "seed": 11,
+    "baseline_modalities": [
+      "image"
+    ],
+    "combined_minus_baseline_accuracy": -0.015625,
+    "improvements": 2,
+    "regressions": 4,
+    "paired_two_sided_p": 0.6875,
+    "alpha_bonferroni": 0.008333333333333333,
+    "significant": false,
+    "scope": "exploratory paired synthetic task comparison; iid not established"
+  },
+  {
+    "seed": 23,
+    "baseline_modalities": [
+      "equation"
+    ],
+    "combined_minus_baseline_accuracy": 0.140625,
+    "improvements": 34,
+    "regressions": 16,
+    "paired_two_sided_p": 0.015346677832630107,
+    "alpha_bonferroni": 0.008333333333333333,
+    "significant": false,
+    "scope": "exploratory paired synthetic task comparison; iid not established"
+  },
+  {
+    "seed": 23,
+    "baseline_modalities": [
+      "image"
+    ],
+    "combined_minus_baseline_accuracy": -0.0234375,
+    "improvements": 2,
+    "regressions": 5,
+    "paired_two_sided_p": 0.453125,
+    "alpha_bonferroni": 0.008333333333333333,
+    "significant": false,
+    "scope": "exploratory paired synthetic task comparison; iid not established"
+  },
+  {
+    "seed": 37,
+    "baseline_modalities": [
+      "equation"
+    ],
+    "combined_minus_baseline_accuracy": 0.09375,
+    "improvements": 25,
+    "regressions": 13,
+    "paired_two_sided_p": 0.07295138851623051,
+    "alpha_bonferroni": 0.008333333333333333,
+    "significant": false,
+    "scope": "exploratory paired synthetic task comparison; iid not established"
+  },
+  {
+    "seed": 37,
+    "baseline_modalities": [
+      "image"
+    ],
+    "combined_minus_baseline_accuracy": -0.0078125,
+    "improvements": 1,
+    "regressions": 2,
+    "paired_two_sided_p": 1.0,
+    "alpha_bonferroni": 0.008333333333333333,
+    "significant": false,
+    "scope": "exploratory paired synthetic task comparison; iid not established"
+  }
+]

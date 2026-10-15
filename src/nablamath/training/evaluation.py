@@ -4,6 +4,7 @@ from ..core.semantic_ir import fingerprint, canonical_json
 from ..verify.trace import verify_candidate, VERIFIER_VERSION
 from ..datasets.multimodal import INPUT_MODALITIES
 from .contamination import audit_contamination
+from ..evaluation.lineage import verify_lineage_report
 
 
 def _wilson(successes, total):
@@ -15,11 +16,11 @@ def _wilson(successes, total):
 
 
 def evaluate(model, samples, *, training_samples, benchmark_name, model_id=None,
-             modalities=INPUT_MODALITIES, family_holdout=True):
+             modalities=INPUT_MODALITIES, family_holdout=True, lineage=None):
     training_samples, samples = tuple(training_samples), tuple(samples)
     if not benchmark_name.strip() or not 1 <= len(samples) <= 10000:
         raise ValueError('Benchmark nomeado e não vazio obrigatório')
-    audit = audit_contamination(training_samples, samples, family_holdout=family_holdout)
+    audit = audit_contamination(training_samples, samples, family_holdout=family_holdout, lineage=lineage)
     if not audit['clean']:
         raise ValueError('Contaminação ou partições inválidas: '+str(audit))
     if hasattr(model, 'training_ids') and set(model.training_ids) != {s.record.task.content_id for s in training_samples}:
@@ -59,10 +60,18 @@ def verify_evaluation(report, samples, *, training_samples=None):
         if fingerprint(payload) != report['evaluation_id']:
             return False
         samples = tuple(samples)
+        lineage = report['contamination'].get('lineage')
+        if lineage is not None:
+            if not verify_lineage_report(lineage) or not lineage['clean']:
+                return False
+            declared = {row['id']: row['split'] for row in lineage['manifest']}
+            if any(declared.get(s.record.content_id) != s.record.to_data()['split'] for s in samples):
+                return False
         if training_samples is not None:
             training_samples = tuple(training_samples)
             audit = audit_contamination(training_samples, samples,
-                     family_holdout=report['contamination']['family_holdout_required'])
+                     family_holdout=report['contamination']['family_holdout_required'],
+                     lineage=report['contamination'].get('lineage', {}).get('manifest'))
             if audit != report['contamination'] or not audit['clean']:
                 return False
             if report['training_ids'] != sorted(s.record.task.content_id for s in training_samples):
@@ -87,7 +96,7 @@ def verify_evaluation(report, samples, *, training_samples=None):
 
 
 def compare_evaluations(baseline, candidate):
-    keys = ('evaluation_ids', 'benchmark', 'training_ids', 'verifier_version')
+    keys = ('evaluation_ids', 'benchmark', 'training_ids', 'verifier_version', 'contamination')
     if any(baseline[k] != candidate[k] for k in keys):
         raise ValueError('Avaliações devem usar o mesmo benchmark e treino')
     better = sum(not a['valid'] and b['valid'] for a,b in zip(baseline['results'], candidate['results']))

@@ -81,3 +81,5 @@ def two_species_equilibrium(total_moles,equilibrium_constant):
                   {'A':a,'B':b},{'A':'mol','B':'mol'},
                   {'material_balance':a+b==n,'equilibrium_ratio':b/a==k},
                   'Ideal isomerization A <-> B; K supplied externally, no activity corrections or kinetic prediction.')
+
+from .kinetics import CONCENTRATION, reversible_first_order

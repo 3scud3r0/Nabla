@@ -44,6 +44,9 @@ class Proposal:
         for action in self.actions:
             if not set(action.depends_on) <= seen:
                 raise ValueError('Dependências devem preceder a ação; ciclos não permitidos')
+            from .bindings import references
+            if any(ref['action'] not in action.depends_on for ref in references(action.arguments)):
+                raise ValueError('Referência requer dependência explícita anterior')
             seen.add(action.action_id)
 
     def to_data(self):

@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-10-15",
+  "base_commit": "f704f01ee69dbcc66805c480cb25c935919e5d2b",
+  "snapshot": "base_commit plus uncommitted source changes identified by SHA-256",
+  "source_sha256": {
+    ".github/workflows/scientific-phases-9-12.yml": "1b60edc676a7cb4147b7923ebab3a3c0de3326d574f4050e0f0392f6e2f63c9a",
+    "math.txt": "b6ced85103e17c9017b14db9453d480e8b2f5576a9800710ef1dcfd555e0a52f",
+    "pyproject.toml": "3d6c305a3fd38ef92090644f9e04f4cccf5fcb45119abccb79a42dc861e7db6f",
+    "src/nablamath/agents/bindings.py": "573f0576d304d4c44a7c409bb10d2a6992c3a6caf626a9b609d80c4dec324504",
+    "src/nablamath/agents/planner.py": "30446d338fb9453f6886e6126e394ee033a038c087a7e084ecb30a4a54333482",
+    "src/nablamath/agents/proposals.py": "b5d6a97a72adb659362f108424ce14bffce93efe478c1cb5256cab9cf3b4dd6d",
+    "src/nablamath/benchmarks/analysis.py": "e890b2f4d3ee37466cd58bd855609099f7c949f1d6aab663ca8ffca23066110a",
+    "src/nablamath/calc/session.py": "0fc952865d879ffc4d481b30fbb8a2d13954681320f05ff46375438602d022e4",
+    "src/nablamath/datasets/serializer.py": "6fd6b2baf828be4be5145115cf48bde3a41db7a71b8265d2669b346a60504983",
+    "src/nablamath/discovery/experimental_design.py": "146ef8367e3586e0c90795f86311db7b4e8dc60139315bc516159149c6d85535",
+    "src/nablamath/documents/document_model.py": "7adf25deb3eba8dfb21785a280faf76f2088d3cf183bda0e231298af88c5b3f9",
+    "src/nablamath/documents/exporters.py": "cbc708c4ad115e54a9d2f5bcbfe4216a0aa77f6640d2c9a53344aeb17d276d1d",
+    "src/nablamath/documents/publication.py": "22f18a15d76d50bbf53de1d6e57103cf9307fa7e397e94b6cf59d46eaa297780",
+    "src/nablamath/domains/circuits/__init__.py": "53198a330a8d5f60947a7b05ea1da7c433e761e23ea7a642c05620174d3e1bb6",
+    "src/nablamath/domains/circuits/transient.py": "fa75ad01ae9759a8e08af9b9b6afddc0efa9aad6fe90db9e0c8476f88f344768",
+    "src/nablamath/evolution/proposal_validator.py": "2bd0346a19853b60c562e8bc9bf35bcef2913d95b6b46b0dc529663473ca877c",
+    "src/nablamath/evolution/release_gate.py": "a038b92b756251f4e241ef10add2d2a87a9699eddaa46d89fe99d6d78063a764",
+    "src/nablamath/evolution/statistical_tests.py": "b97b278d92428eeb2908279369c73463554873e65ff1ede2602266d0ad85f7c8",
+    "src/nablamath/formal/translation_review.py": "a1d5ba2d7637154a6d6d6d4bd747d068357e5ac0d06cbb2c636b72db9ca6baa5",
+    "src/nablamath/graphics/artifacts.py": "660a4e5ba9fe9a8f9e33bf5e642637d6be28b275365dec480a42173cfce65b26",
+    "src/nablamath/graphics/sampling.py": "f6d58cd26a09609f98696cc7d91b2c8a21d74c07a290c188302c1f455ed997e9",
+    "src/nablamath/knowledge/federation.py": "2d3082885f94a013f7e206e10088673019532614d25da92acd5501c46fe083ce",
+    "src/nablamath/knowledge/identity.py": "7aa6501b01dba44b60fab97719b74188d01d63cc5096f88b5af888875c9c33d7",
+    "src/nablamath/knowledge/provenance_audit.py": "2d8403df81de6b2a53302a720b5c06f8acd45604f8df8bb417e386cab7c12f96",
+    "src/nablamath/worlds/__init__.py": "4d1e86b54dec13b8bda4a6aa0ef5e76207278191e5635fb6ebf579d43e898689",
+    "src/nablamath/worlds/integrators/__init__.py": "b5d69ae9878f0acc4ab17a6f1b243bba939ddaec7d684641c21e92c0e19bfa86",
+    "src/nablamath/worlds/integrators/adaptive.py": "cc44623ef6719ef69590696b70a6ab4827c6466c63e7d99be6f88611c8b126e7",
+    "src/nablamath/worlds/ode/__init__.py": "552796a2b199e50a98e6cf2662698564c8de6f19f14abaf5e5ad980d78019821",
+    "src/nablamath/worlds/validation.py": "955a75f25154360ced69082188df939a87e1d16d0f81a79fba2795bcded3624f",
+    "tests/test_completion_hardening.py": "e0289e15d9bec4cf6a175a3e4ca757f0d46b177c11012967e729d337cbc1058d",
+    "tests/test_phase1_calculator.py": "ad6dcd486012be67464d9d94158e8f5f87d43f1dc41e30d26458280ae51c714f",
+    "tools/reproduce_completion.py": "5f3bb0666d3106244c5869124c9a55bfb0c4ef9ef7b6e5630e4dbbac1f7a5869"
+  },
+  "source_set_id": "cfb8708182cdba9be581ce5937cb8b0bbaad78598d2ca9b8090e040e3fb7d775",
+  "python": "3.12.14",
+  "tests": {
+    "functions_passed": 422,
+    "subtests_passed": 296,
+    "junit_entries": 718,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 33.45,
+    "command": ".venv/bin/python -m pytest -q --junitxml=.nabla/completion-hardening-tests.xml"
+  },
+  "integration": {
+    "typst": {
+      "adaptive_max_reference_error": 8.06411826204112e-10,
+      "adaptive_steps": 510,
+      "agent_result_binding_replayed": true,
+      "curve_replay": true,
+      "dataset_roundtrip": true,
+      "experimental_validation": false,
+      "independent_peer_identity_verified": false,
+      "learning_gain_established": false,
+      "limitations": "Ephemeral demo signing keys authenticate only the supplied pinned key, not a real-world identity.",
+      "pdf_backend": "typst",
+      "publication_replayed": true,
+      "schema_version": 1,
+      "signed_evidence_snapshot_verified": true
+    },
+    "latex": {
+      "adaptive_max_reference_error": 8.06411826204112e-10,
+      "adaptive_steps": 510,
+      "agent_result_binding_replayed": true,
+      "curve_replay": true,
+      "dataset_roundtrip": true,
+      "experimental_validation": false,
+      "independent_peer_identity_verified": false,
+      "learning_gain_established": false,
+      "limitations": "Ephemeral demo signing keys authenticate only the supplied pinned key, not a real-world identity.",
+      "pdf_backend": "latex",
+      "publication_replayed": true,
+      "schema_version": 1,
+      "signed_evidence_snapshot_verified": true
+    },
+    "research": {
+      "accepted_policy_generations": 2,
+      "concurrent_claims_preserved": 1,
+      "discovery_program_id": "a436e36c96dc9dca2501e7aeb186dfd53e47dde6dfec2d7b1135a2b90effa8df",
+      "domain_models": 10,
+      "experimental_validation": false,
+      "global_novelty_established": false,
+      "knowledge_revisions": 16,
+      "provenance_valid": true,
+      "rollback_demonstrated": true,
+      "team_completed": true
+    }
+  },
+  "native_windows_for_these_changes": "not_run",
+  "new_external_learning_study": "not_run",
+  "phase_assessment": {
+    "kind": "reviewer_estimate_not_measured_completion",
+    "scope": "F1-F12",
+    "rubric_maxima": [
+      30,
+      20,
+      20,
+      20,
+      10
+    ],
+    "previous_weighted_estimate": 43.95,
+    "weighted_estimate": 48.21,
+    "equal_mean": 47.5,
+    "weight_sum": 95,
+    "phases": [
+      {
+        "phase": 1,
+        "name": "Calculadora científica",
+        "weight": 8,
+        "scores": [
+          15,
+          10,
+          15,
+          5,
+          5
+        ],
+        "estimate_percent": 50,
+        "previous_estimate_percent": 50,
+        "change_basis": "Nova operação ode_adaptive com replay; a cobertura ampla das nove áreas ainda não justifica outro degrau de cinco pontos."
+      },
+      {
+        "phase": 2,
+        "name": "Forge e geração inversa",
+        "weight": 12,
+        "scores": [
+          15,
+          10,
+          15,
+          5,
+          5
+        ],
+        "estimate_percent": 50,
+        "previous_estimate_percent": 45,
+        "change_basis": "Análise estratificada de solvers com reconferência de respostas, denominadores suportados e intervalos de Wilson; sem nova demonstração de dificuldade avançada."
+      },
+      {
+        "phase": 3,
+        "name": "Prove e Falsifier",
+        "weight": 10,
+        "scores": [
+          15,
+          15,
+          15,
+          5,
+          5
+        ],
+        "estimate_percent": 55,
+        "previous_estimate_percent": 50,
+        "change_basis": "Vinculação verificável entre pergunta, tarefa, formalização, domínio e revisão declarada; identidade e equivalência linguística não são autenticadas."
+      },
+      {
+        "phase": 4,
+        "name": "Geometria e imagens científicas",
+        "weight": 7,
+        "scores": [
+          25,
+          10,
+          15,
+          5,
+          5
+        ],
+        "estimate_percent": 60,
+        "previous_estimate_percent": 55,
+        "change_basis": "Curvas racionais adaptativas com limite exato de erro vertical por segunda derivada e replay do bundle; orçamento insuficiente e possível polo falham explicitamente."
+      },
+      {
+        "phase": 5,
+        "name": "Studio e publicação",
+        "weight": 7,
+        "scores": [
+          25,
+          15,
+          15,
+          5,
+          5
+        ],
+        "estimate_percent": 65,
+        "previous_estimate_percent": 65,
+        "change_basis": "Tabelas canônicas com evidências e exportação HTML/LaTeX/Typst, incluindo PDFs compilados nos dois backends; falta revisão editorial externa e perfis completos."
+      },
+      {
+        "phase": 6,
+        "name": "Datasets científicos",
+        "weight": 10,
+        "scores": [
+          20,
+          10,
+          15,
+          5,
+          5
+        ],
+        "estimate_percent": 55,
+        "previous_estimate_percent": 55,
+        "change_basis": "Leitura binária limitada por linha/volume e exportação em fluxo com validação, fsync e publicação atômica sem sobrescrita; sem novo estudo externo de utilidade."
+      },
+      {
+        "phase": 7,
+        "name": "Worlds e simulações",
+        "weight": 8,
+        "scores": [
+          20,
+          10,
+          15,
+          0,
+          5
+        ],
+        "estimate_percent": 50,
+        "previous_estimate_percent": 40,
+        "change_basis": "Dormand–Prince 5(4), tolerâncias locais, passos aceitos/rejeitados, orçamento, integração pública e erros comparados com soluções analíticas."
+      },
+      {
+        "phase": 8,
+        "name": "Multimodalidade e agentes",
+        "weight": 8,
+        "scores": [
+          15,
+          10,
+          5,
+          0,
+          5
+        ],
+        "estimate_percent": 35,
+        "previous_estimate_percent": 30,
+        "change_basis": "Referências estruturadas ligam resultados de dependências entre ferramentas; argumentos resolvidos entram no recibo e são reconferidos. Treinamento multimodal profundo permanece pendente."
+      },
+      {
+        "phase": 9,
+        "name": "Discovery",
+        "weight": 10,
+        "scores": [
+          15,
+          10,
+          5,
+          0,
+          5
+        ],
+        "estimate_percent": 35,
+        "previous_estimate_percent": 30,
+        "change_basis": "Desenho experimental finito com custos, orçamento e exclusões explícitas; propostas continuam sem execução física ou demonstração de novidade."
+      },
+      {
+        "phase": 10,
+        "name": "RSI controlado",
+        "weight": 8,
+        "scores": [
+          10,
+          10,
+          10,
+          5,
+          5
+        ],
+        "estimate_percent": 40,
+        "previous_estimate_percent": 35,
+        "change_basis": "Contrato congela efeito prático mínimo; gate rejeita ganho estatisticamente significativo mas inferior ao limiar, mantendo replay, regressões e rollback."
+      },
+      {
+        "phase": 11,
+        "name": "Outras disciplinas",
+        "weight": 4,
+        "scores": [
+          15,
+          5,
+          5,
+          0,
+          5
+        ],
+        "estimate_percent": 30,
+        "previous_estimate_percent": 25,
+        "change_basis": "Resposta transitória RC com unidades, solver adaptativo, oráculo analítico e replay como evidência disciplinar; ainda sem medições reais."
+      },
+      {
+        "phase": 12,
+        "name": "Conhecimento científico vivo",
+        "weight": 3,
+        "scores": [
+          15,
+          15,
+          10,
+          0,
+          5
+        ],
+        "estimate_percent": 45,
+        "previous_estimate_percent": 35,
+        "change_basis": "Snapshots Ed25519, pinagem por par, revogação irreversível na trust store, rotação explícita e reconferência das assinaturas na reconciliação; federação ainda offline."
+      }
+    ]
+  }
+}

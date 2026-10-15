@@ -1,0 +1,13 @@
+name = "nablamath_formal"
+version = "0.1.0"
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.34.0"
+
+[[lean_lib]]
+name = "NablaMath"
+
+[[lean_lib]]
+name = "Nabla"

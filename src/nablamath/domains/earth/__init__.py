@@ -11,3 +11,5 @@ def hydrostatic_pressure(density,gravity,depth,surface_pressure):
                   {'pressure':pressure,'gauge_pressure':pressure-p0}, {'pressure':'Pa','gauge_pressure':'Pa'},
                   {'hydrostatic_balance':pressure-p0==rho*g*h},
                   'Constant density/gravity and static fluid; no compressibility, flow or geophysical validation.')
+
+from .layers import layered_hydrostatics

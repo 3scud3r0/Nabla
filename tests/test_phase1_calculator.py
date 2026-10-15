@@ -152,8 +152,10 @@ class SessionAndNotebookTests(unittest.TestCase):
           'geometry':{'points':[[0,0],[2,0],[0,2]]},
           'conic':{'coefficients':[1,0,1,0,0,-1]},
           'quadratic_optimize':{'hessian':[[2]],'linear':[-4],'constraints':[[1]],'upper':[1]},
+          'ode_adaptive':{'model':'exponential_decay','initial':[1],'rtol':1e-8},
           'ode':{'model':'exponential_decay','initial':[1],'steps':4}}
-        self.assertEqual(set(requests),set(AREAS))
+        from nablamath.calc.catalog import OPERATIONS
+        self.assertEqual(set(requests) | set(OPERATIONS),set(AREAS))
         notebook=Notebook('all operations')
         for operation,args in requests.items():
             with self.subTest(operation=operation):

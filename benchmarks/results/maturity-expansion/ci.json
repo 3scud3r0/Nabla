@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "verified_code_commit": "805a75102534f34cc90e2ad10a32ea4aa324d398",
+  "branch": "feat/scientific-maturity-profiles",
+  "observed_at": "2026-10-15T00:52:43.536015+00:00",
+  "source": "Public GitHub workflow states, with commit identity checked on run pages; no authenticated logs",
+  "python_matrix_passed": true,
+  "profile_matrix_passed": true,
+  "installer_passed": true,
+  "python_matrix": {
+    "os": [
+      "ubuntu-latest",
+      "windows-latest"
+    ],
+    "python": [
+      "3.10",
+      "3.12",
+      "3.14"
+    ]
+  },
+  "profile_matrix": {
+    "os": [
+      "ubuntu-latest",
+      "windows-latest"
+    ],
+    "python": [
+      "3.12"
+    ],
+    "extras": [
+      "test",
+      "formal",
+      "graphics",
+      "documents",
+      "data",
+      "research",
+      "federation"
+    ]
+  },
+  "all_observed_workflows_passed": false,
+  "workflows": [
+    {
+      "name": "Interoperability",
+      "id": "38662130905",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38662130905",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS"
+    },
+    {
+      "name": "Lean formal core",
+      "id": "38662130933",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38662130933",
+      "status": "WORKFLOW_RUN_STATUS_IN_PROGRESS"
+    },
+    {
+      "name": "Archive and Python syntax audit",
+      "id": "38662130916",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38662130916",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS"
+    },
+    {
+      "name": "Scientific phases 5–8",
+      "id": "38662130864",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38662130864",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS"
+    },
+    {
+      "name": "NablaMath CI",
+      "id": "38662130937",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38662130937",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS"
+    },
+    {
+      "name": "Scientific phases 9–12 and audit",
+      "id": "38662130856",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38662130856",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS"
+    },
+    {
+      "name": "Scientific maturity profiles",
+      "id": "38662130942",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38662130942",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS"
+    },
+    {
+      "name": "Python core",
+      "id": "38662130906",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38662130906",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS"
+    },
+    {
+      "name": "Windows installer",
+      "id": "38662130941",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38662130941",
+      "status": "WORKFLOW_RUN_STATUS_COMPLETED",
+      "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS"
+    }
+  ]
+}
