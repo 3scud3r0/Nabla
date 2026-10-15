@@ -2,9 +2,9 @@
 
 Base de comparação: `origin/main`. Inventário de todos os arquivos versionados presentes, incluindo os existentes.
 
-**1092 arquivos; 107,625 linhas físicas; 30,464 linhas de código fora do histórico.**
+**1114 arquivos; 109,792 linhas físicas; 31,619 linhas de código fora do histórico.**
 
-Novos: 24; alterações/movimentações: {'alterado': 6, 'novo': 24}. Removidos: 0.
+Novos: 22; alterações/movimentações: {'alterado': 6, 'novo': 22}. Removidos: 0.
 
 Linhas físicas incluem comentários e espaços. Código Python conta linhas com tokens, incluindo docstrings; outros formatos de código contam linhas não vazias sem comentários de linha inteira (estimativa). “—” significa formato não código/binário. O bundle `math.txt` e resultados gerados não entram no total de código. Histórico movido não representa código novo. Os dois relatórios deste inventário são excluídos para evitar autocontagem. Caches, ambientes virtuais, builds e amostras locais ignoradas não são arquivos do PR.
 
@@ -28,7 +28,7 @@ Nenhum.
 | `.github/PULL_REQUEST_TEMPLATE.md` | existente | infraestrutura/outros | 11 | — |
 | `.github/workflows/accelerator-optional.yml` | existente | infraestrutura/outros | 38 | — |
 | `.github/workflows/archive-audit.yml` | existente | infraestrutura/outros | 44 | — |
-| `.github/workflows/ci.yml` | alterado | infraestrutura/outros | 24 | — |
+| `.github/workflows/ci.yml` | existente | infraestrutura/outros | 24 | — |
 | `.github/workflows/dataset-publish.yml` | existente | infraestrutura/outros | 36 | — |
 | `.github/workflows/interop.yml` | existente | infraestrutura/outros | 15 | — |
 | `.github/workflows/lean-core.yml` | existente | infraestrutura/outros | 32 | — |
@@ -44,7 +44,7 @@ Nenhum.
 | `CODE_OF_CONDUCT.md` | existente | infraestrutura/outros | 3 | — |
 | `CONTRIBUTING.md` | existente | infraestrutura/outros | 33 | — |
 | `LICENSE` | existente | infraestrutura/outros | 25 | — |
-| `README.md` | alterado | infraestrutura/outros | 101 | — |
+| `README.md` | existente | infraestrutura/outros | 101 | — |
 | `SECURITY.md` | existente | infraestrutura/outros | 5 | — |
 | `benchmarks/README.md` | existente | infraestrutura/outros | 23 | — |
 | `benchmarks/baselines/README.md` | existente | infraestrutura/outros | 8 | — |
@@ -269,24 +269,26 @@ Nenhum.
 | `docs/PHASES_MATURITY_EXPANSION.md` | existente | documentação | 60 | — |
 | `docs/PLANO_MESTRE_2026_2056.md` | existente | documentação | 300 | — |
 | `docs/PUBLISHING.md` | existente | documentação | 10 | — |
-| `docs/README.md` | alterado | documentação | 44 | — |
+| `docs/README.md` | alterado | documentação | 46 | — |
 | `docs/RELEASE_POLICY.md` | existente | documentação | 46 | — |
 | `docs/ROADMAP_GLOBAL_RESEARCH.md` | existente | documentação | 179 | — |
 | `docs/SCIENTIFIC_CYCLE.md` | existente | documentação | 152 | — |
 | `docs/THREAT_MODEL.md` | existente | documentação | 12 | — |
 | `docs/UPLOAD_REMAINING_ARCHIVE.md` | existente | documentação | 37 | — |
-| `docs/acceptance/evidence_matrix.json` | novo | documentação | 2934 | — |
-| `docs/acceptance/frozen_evaluation.md` | novo | documentação | 55 | — |
-| `docs/acceptance/phase_profiles.md` | novo | documentação | 84 | — |
+| `docs/acceptance/evidence_matrix.json` | alterado | documentação | 3072 | — |
+| `docs/acceptance/expanded_profiles.md` | novo | documentação | 92 | — |
+| `docs/acceptance/frozen_evaluation.md` | existente | documentação | 55 | — |
+| `docs/acceptance/phase_profiles.md` | existente | documentação | 84 | — |
 | `docs/adr/0001-product-scope.md` | existente | documentação | 16 | — |
 | `docs/adr/0002-canonical-ast.md` | existente | documentação | 19 | — |
 | `docs/architecture/current-modules.md` | existente | documentação | 23 | — |
 | `docs/architecture/repository-layout.md` | existente | documentação | 39 | — |
 | `docs/architecture/vision-phases.md` | existente | documentação | 200 | — |
 | `docs/audits/BASELINE_2026_10.md` | existente | documentação | 66 | — |
+| `docs/audits/EXPANDED_PROFILES_2026_10_15.md` | novo | documentação | 41 | — |
 | `docs/audits/FRONTIER_LAB_SIMULATION_2026_10_15.md` | existente | documentação | 136 | — |
-| `docs/audits/FROZEN_EVALUATION_2026_10_15.md` | novo | documentação | 45 | — |
-| `docs/audits/P0_INTEGRATION_2026_10_15.md` | novo | documentação | 52 | — |
+| `docs/audits/FROZEN_EVALUATION_2026_10_15.md` | existente | documentação | 45 | — |
+| `docs/audits/P0_INTEGRATION_2026_10_15.md` | existente | documentação | 52 | — |
 | `docs/audits/PHASES_1_12_COMPLETION_BACKLOG.json` | existente | documentação | 944 | — |
 | `docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md` | existente | documentação | 1043 | — |
 | `docs/audits/PHASES_1_12_PROGRESS_2026_10_15.md` | existente | documentação | 124 | — |
@@ -296,11 +298,11 @@ Nenhum.
 | `docs/audits/SCIENTIFIC_ACCEPTANCE_2026_10.md` | existente | documentação | 134 | — |
 | `docs/history/DESCRIPTION_ORIGINAL.md` | existente | histórico | 3362 | — |
 | `docs/history/README.md` | existente | histórico | 11 | — |
-| `docs/strategy/NABLA_2056_ROTEIRO_MESTRE.md` | novo | documentação | 474 | — |
-| `docs/strategy/roadmap_2026_2056.json` | novo | documentação | 43 | — |
+| `docs/strategy/NABLA_2056_ROTEIRO_MESTRE.md` | existente | documentação | 474 | — |
+| `docs/strategy/roadmap_2026_2056.json` | existente | documentação | 43 | — |
 | `examples/README.md` | existente | infraestrutura/outros | 19 | — |
 | `examples/first_problem.py` | existente | infraestrutura/outros | 19 | 14 |
-| `examples/frozen_evaluation.py` | novo | infraestrutura/outros | 38 | 33 |
+| `examples/frozen_evaluation.py` | existente | infraestrutura/outros | 38 | 33 |
 | `examples/orbit_report.py` | existente | infraestrutura/outros | 13 | 9 |
 | `examples/scientific_phases_5_8.py` | existente | infraestrutura/outros | 11 | 10 |
 | `examples/scientific_plan.json` | existente | infraestrutura/outros | 1 | — |
@@ -440,7 +442,7 @@ Nenhum.
 | `legacy/single_file/nablamath_all_in_one_professional.py` | existente | histórico | 1267 | 1042 |
 | `legacy/single_file/nablamath_orbital_professional_single.py` | existente | histórico | 1348 | 1118 |
 | `legacy/single_file/nablarender_v07_single_file_report.py` | existente | histórico | 933 | 764 |
-| `math.txt` | alterado | bundle gerado | 22750 | — |
+| `math.txt` | alterado | bundle gerado | 23330 | — |
 | `packaging/windows/nablamath.iss` | existente | infraestrutura/outros | 24 | — |
 | `protocol/__init__.py` | existente | infraestrutura/outros | 1 | 1 |
 | `protocol/canonical/encoding.md` | existente | infraestrutura/outros | 6 | — |
@@ -466,10 +468,11 @@ Nenhum.
 | `sdk/rust/src/lib.rs` | existente | infraestrutura/outros | 49 | — |
 | `services/__init__.py` | existente | infraestrutura/outros | 1 | 1 |
 | `services/coordinator/__init__.py` | existente | infraestrutura/outros | 3 | 2 |
-| `services/coordinator/app.py` | existente | infraestrutura/outros | 49 | 39 |
+| `services/coordinator/api.py` | novo | infraestrutura/outros | 56 | 53 |
+| `services/coordinator/app.py` | alterado | infraestrutura/outros | 104 | 90 |
 | `services/coordinator/auth.py` | existente | infraestrutura/outros | 28 | 18 |
 | `services/coordinator/db/README.md` | existente | infraestrutura/outros | 6 | — |
-| `services/coordinator/events.py` | existente | infraestrutura/outros | 45 | 36 |
+| `services/coordinator/events.py` | alterado | infraestrutura/outros | 58 | 47 |
 | `services/coordinator/metrics.py` | existente | infraestrutura/outros | 18 | 13 |
 | `services/coordinator/review.py` | existente | infraestrutura/outros | 22 | 17 |
 | `services/coordinator/scheduler.py` | existente | infraestrutura/outros | 22 | 14 |
@@ -516,7 +519,7 @@ Nenhum.
 | `src/nablamath/calc/catalog.py` | existente | fonte | 112 | 104 |
 | `src/nablamath/calc/notebook.py` | existente | fonte | 62 | 54 |
 | `src/nablamath/calc/session.py` | existente | fonte | 243 | 225 |
-| `src/nablamath/cli.py` | alterado | fonte | 542 | 531 |
+| `src/nablamath/cli.py` | existente | fonte | 542 | 531 |
 | `src/nablamath/compatibility.json` | existente | fonte | 21 | — |
 | `src/nablamath/compatibility.py` | existente | fonte | 95 | 80 |
 | `src/nablamath/compiler/__init__.py` | existente | fonte | 15 | 14 |
@@ -525,16 +528,17 @@ Nenhum.
 | `src/nablamath/compiler/ir.py` | existente | fonte | 122 | 102 |
 | `src/nablamath/config.py` | existente | fonte | 21 | 15 |
 | `src/nablamath/coordination/__init__.py` | existente | fonte | 3 | 2 |
-| `src/nablamath/coordination/local.py` | existente | fonte | 86 | 76 |
+| `src/nablamath/coordination/local.py` | alterado | fonte | 129 | 117 |
 | `src/nablamath/coordination/merkle.py` | existente | fonte | 20 | 17 |
 | `src/nablamath/core/__init__.py` | existente | fonte | 8 | 7 |
-| `src/nablamath/core/migration_registry.py` | novo | fonte | 36 | 29 |
+| `src/nablamath/core/migration_registry.py` | existente | fonte | 36 | 29 |
 | `src/nablamath/core/obligations.py` | existente | fonte | 56 | 47 |
 | `src/nablamath/core/precision.py` | existente | fonte | 57 | 46 |
-| `src/nablamath/core/scientific_artifact.py` | novo | fonte | 134 | 115 |
-| `src/nablamath/core/semantic_contracts.py` | novo | fonte | 84 | 65 |
+| `src/nablamath/core/scientific_artifact.py` | existente | fonte | 134 | 115 |
+| `src/nablamath/core/semantic_contracts.py` | existente | fonte | 84 | 65 |
 | `src/nablamath/core/semantic_ir.py` | existente | fonte | 177 | 149 |
 | `src/nablamath/core/types.py` | existente | fonte | 28 | 22 |
+| `src/nablamath/core/uncertainty.py` | novo | fonte | 47 | 36 |
 | `src/nablamath/core/units.py` | existente | fonte | 106 | 85 |
 | `src/nablamath/curation.py` | existente | fonte | 52 | 46 |
 | `src/nablamath/dataset/__init__.py` | existente | fonte | 9 | 8 |
@@ -549,6 +553,7 @@ Nenhum.
 | `src/nablamath/dataset/splits.py` | existente | fonte | 17 | 9 |
 | `src/nablamath/datasets/__init__.py` | existente | fonte | 4 | 3 |
 | `src/nablamath/datasets/alignments.py` | existente | fonte | 10 | 8 |
+| `src/nablamath/datasets/corpus_registry.py` | novo | fonte | 62 | 50 |
 | `src/nablamath/datasets/curation.py` | existente | fonte | 24 | 22 |
 | `src/nablamath/datasets/model_card.py` | existente | fonte | 32 | 30 |
 | `src/nablamath/datasets/multimodal.py` | existente | fonte | 101 | 87 |
@@ -583,6 +588,7 @@ Nenhum.
 | `src/nablamath/documents/pdf_builder.py` | existente | fonte | 54 | 51 |
 | `src/nablamath/documents/profiles.py` | existente | fonte | 22 | 19 |
 | `src/nablamath/documents/publication.py` | existente | fonte | 119 | 113 |
+| `src/nablamath/documents/reference_graph.py` | novo | fonte | 27 | 25 |
 | `src/nablamath/documents/typst_exporter.py` | existente | fonte | 4 | 3 |
 | `src/nablamath/domains/__init__.py` | existente | fonte | 1 | 1 |
 | `src/nablamath/domains/biology/__init__.py` | existente | fonte | 39 | 35 |
@@ -602,15 +608,18 @@ Nenhum.
 | `src/nablamath/entity.py` | existente | fonte | 93 | 75 |
 | `src/nablamath/errors.py` | existente | fonte | 8 | 6 |
 | `src/nablamath/evaluation/__init__.py` | existente | fonte | 3 | 3 |
+| `src/nablamath/evaluation/ablation.py` | novo | fonte | 34 | 30 |
+| `src/nablamath/evaluation/calibration.py` | novo | fonte | 40 | 35 |
 | `src/nablamath/evaluation/contamination.py` | existente | fonte | 46 | 34 |
-| `src/nablamath/evaluation/frozen.py` | novo | fonte | 154 | 136 |
+| `src/nablamath/evaluation/frozen.py` | existente | fonte | 154 | 136 |
 | `src/nablamath/evaluation/lineage.py` | existente | fonte | 96 | 87 |
 | `src/nablamath/evaluation/sealed.py` | existente | fonte | 23 | 16 |
-| `src/nablamath/evaluation/statistics.py` | novo | fonte | 15 | 13 |
+| `src/nablamath/evaluation/statistics.py` | existente | fonte | 15 | 13 |
 | `src/nablamath/evolution/__init__.py` | existente | fonte | 4 | 3 |
 | `src/nablamath/evolution/evaluator.py` | existente | fonte | 82 | 66 |
 | `src/nablamath/evolution/holdout_manager.py` | existente | fonte | 69 | 63 |
 | `src/nablamath/evolution/lineage.py` | existente | fonte | 29 | 24 |
+| `src/nablamath/evolution/longitudinal_monitor.py` | novo | fonte | 33 | 30 |
 | `src/nablamath/evolution/policy_genome.py` | existente | fonte | 43 | 35 |
 | `src/nablamath/evolution/portfolio.py` | existente | fonte | 154 | 137 |
 | `src/nablamath/evolution/proposal_validator.py` | existente | fonte | 60 | 50 |
@@ -685,9 +694,11 @@ Nenhum.
 | `src/nablamath/knowledge/federation.py` | existente | fonte | 91 | 78 |
 | `src/nablamath/knowledge/graph.py` | existente | fonte | 76 | 63 |
 | `src/nablamath/knowledge/identity.py` | existente | fonte | 119 | 98 |
+| `src/nablamath/knowledge/lineage.py` | novo | fonte | 79 | 71 |
 | `src/nablamath/knowledge/literature.py` | existente | fonte | 66 | 56 |
 | `src/nablamath/knowledge/peer_review.py` | existente | fonte | 99 | 83 |
 | `src/nablamath/knowledge/provenance_audit.py` | existente | fonte | 125 | 110 |
+| `src/nablamath/knowledge/retraction_index.py` | novo | fonte | 39 | 35 |
 | `src/nablamath/knowledge/semantic_reconciliation.py` | existente | fonte | 43 | 39 |
 | `src/nablamath/knowledge/storage.py` | existente | fonte | 76 | 67 |
 | `src/nablamath/knowledge/versioned_claims.py` | existente | fonte | 116 | 98 |
@@ -815,6 +826,7 @@ Nenhum.
 | `src/nablamath/node/workspace.py` | existente | fonte | 33 | 24 |
 | `src/nablamath/numeric/__init__.py` | existente | fonte | 1 | 1 |
 | `src/nablamath/numeric/evaluate.py` | existente | fonte | 24 | 18 |
+| `src/nablamath/numeric/intervals.py` | novo | fonte | 37 | 26 |
 | `src/nablamath/numeric/linear.py` | existente | fonte | 26 | 23 |
 | `src/nablamath/numeric/ode.py` | existente | fonte | 34 | 29 |
 | `src/nablamath/optimization.py` | existente | fonte | 258 | 219 |
@@ -847,11 +859,11 @@ Nenhum.
 | `src/nablamath/physics/relativity/general.py` | existente | fonte | 68 | 51 |
 | `src/nablamath/physics/relativity/special.py` | existente | fonte | 93 | 68 |
 | `src/nablamath/pipeline/__init__.py` | existente | fonte | 3 | 2 |
-| `src/nablamath/pipeline/artifact_store.py` | novo | fonte | 20 | 15 |
-| `src/nablamath/pipeline/cache.py` | alterado | fonte | 47 | 39 |
+| `src/nablamath/pipeline/artifact_store.py` | existente | fonte | 20 | 15 |
+| `src/nablamath/pipeline/cache.py` | existente | fonte | 47 | 39 |
 | `src/nablamath/pipeline/engine.py` | existente | fonte | 40 | 32 |
 | `src/nablamath/pipeline/provenance.py` | existente | fonte | 13 | 10 |
-| `src/nablamath/pipeline/scientific_cycle.py` | novo | fonte | 76 | 70 |
+| `src/nablamath/pipeline/scientific_cycle.py` | existente | fonte | 76 | 70 |
 | `src/nablamath/publisher/__init__.py` | existente | fonte | 1 | 1 |
 | `src/nablamath/publisher/huggingface.py` | existente | fonte | 97 | 89 |
 | `src/nablamath/publisher/manifest.py` | existente | fonte | 30 | 22 |
@@ -932,15 +944,20 @@ Nenhum.
 | `src/nablamath/training/__init__.py` | existente | fonte | 7 | 6 |
 | `src/nablamath/training/ablation.py` | existente | fonte | 23 | 21 |
 | `src/nablamath/training/baselines.py` | existente | fonte | 61 | 51 |
+| `src/nablamath/training/compute_accounting.py` | novo | fonte | 32 | 27 |
 | `src/nablamath/training/contamination.py` | existente | fonte | 28 | 26 |
 | `src/nablamath/training/controlled_experiment.py` | existente | fonte | 237 | 214 |
 | `src/nablamath/training/curriculum.py` | existente | fonte | 14 | 12 |
 | `src/nablamath/training/evaluation.py` | existente | fonte | 111 | 102 |
+| `src/nablamath/training/lineage.py` | novo | fonte | 18 | 16 |
+| `src/nablamath/training/mixture.py` | novo | fonte | 55 | 50 |
 | `src/nablamath/training/multimodal_network.py` | existente | fonte | 209 | 188 |
 | `src/nablamath/training/registry.py` | existente | fonte | 41 | 33 |
-| `src/nablamath/verification/__init__.py` | novo | fonte | 1 | 1 |
-| `src/nablamath/verification/evidence.py` | novo | fonte | 42 | 35 |
-| `src/nablamath/verification/independence.py` | novo | fonte | 22 | 17 |
+| `src/nablamath/training/snapshot.py` | novo | fonte | 63 | 57 |
+| `src/nablamath/verification/__init__.py` | existente | fonte | 1 | 1 |
+| `src/nablamath/verification/consensus.py` | novo | fonte | 24 | 22 |
+| `src/nablamath/verification/evidence.py` | existente | fonte | 42 | 35 |
+| `src/nablamath/verification/independence.py` | existente | fonte | 22 | 17 |
 | `src/nablamath/verify/__init__.py` | existente | fonte | 4 | 3 |
 | `src/nablamath/verify/certificate.py` | existente | fonte | 122 | 106 |
 | `src/nablamath/verify/geometry.py` | existente | fonte | 51 | 44 |
@@ -970,18 +987,20 @@ Nenhum.
 | `templates/research_paper/example.document.json` | existente | infraestrutura/outros | 1 | — |
 | `templates/teaching/README.md` | existente | infraestrutura/outros | 7 | — |
 | `tests/evaluation/test_contamination.py` | existente | testes | 20 | 14 |
-| `tests/evaluation/test_frozen.py` | novo | testes | 170 | 147 |
+| `tests/evaluation/test_frozen.py` | existente | testes | 170 | 147 |
 | `tests/evaluation/test_lineage.py` | existente | testes | 101 | 84 |
 | `tests/integration/__init__.py` | existente | testes | 1 | 1 |
 | `tests/integration/test_agent_limits.py` | existente | testes | 20 | 14 |
 | `tests/integration/test_backup_restore.py` | existente | testes | 62 | 54 |
 | `tests/integration/test_cli_local.py` | existente | testes | 21 | 17 |
 | `tests/integration/test_coordinator.py` | existente | testes | 27 | 22 |
+| `tests/integration/test_coordinator_api.py` | novo | testes | 152 | 134 |
 | `tests/integration/test_dataset_pipeline.py` | existente | testes | 18 | 13 |
 | `tests/integration/test_desktop.py` | existente | testes | 62 | 58 |
+| `tests/integration/test_global_scientific_cycle.py` | novo | testes | 42 | 37 |
 | `tests/integration/test_lean_bridge.py` | existente | testes | 20 | 14 |
 | `tests/integration/test_publisher.py` | existente | testes | 84 | 77 |
-| `tests/integration/test_scientific_artifact.py` | novo | testes | 158 | 136 |
+| `tests/integration/test_scientific_artifact.py` | existente | testes | 158 | 136 |
 | `tests/interop/README.md` | existente | testes | 3 | — |
 | `tests/knowledge/test_graph.py` | existente | testes | 23 | 16 |
 | `tests/math/test_advanced_foundations.py` | existente | testes | 41 | 31 |
@@ -1029,6 +1048,7 @@ Nenhum.
 | `tests/test_distributed_planner.py` | existente | testes | 54 | 46 |
 | `tests/test_egraph.py` | existente | testes | 61 | 50 |
 | `tests/test_entity.py` | existente | testes | 40 | 32 |
+| `tests/test_evidence_integration_expansion.py` | novo | testes | 64 | 56 |
 | `tests/test_exchange.py` | existente | testes | 32 | 28 |
 | `tests/test_fluids.py` | existente | testes | 23 | 19 |
 | `tests/test_formal.py` | existente | testes | 19 | 15 |
@@ -1060,16 +1080,17 @@ Nenhum.
 | `tests/test_phase8_agents_training.py` | existente | testes | 149 | 128 |
 | `tests/test_phase9_discovery.py` | existente | testes | 79 | 69 |
 | `tests/test_pipeline.py` | existente | testes | 29 | 25 |
-| `tests/test_pipeline_cache_atomic.py` | novo | testes | 40 | 32 |
+| `tests/test_pipeline_cache_atomic.py` | existente | testes | 40 | 32 |
 | `tests/test_planar_truss_fea.py` | existente | testes | 71 | 63 |
 | `tests/test_relativity.py` | existente | testes | 55 | 44 |
 | `tests/test_reverse_autodiff.py` | existente | testes | 29 | 24 |
-| `tests/test_roadmap_contract.py` | novo | testes | 45 | 35 |
+| `tests/test_roadmap_contract.py` | existente | testes | 45 | 35 |
+| `tests/test_roadmap_expansion.py` | novo | testes | 199 | 171 |
 | `tests/test_schema.py` | existente | testes | 20 | 17 |
 | `tests/test_scientific_audit_experiments.py` | existente | testes | 46 | 41 |
 | `tests/test_scientific_cycle.py` | existente | testes | 243 | 217 |
 | `tests/test_scientific_extensions.py` | existente | testes | 180 | 158 |
-| `tests/test_semantic_contracts.py` | novo | testes | 80 | 64 |
+| `tests/test_semantic_contracts.py` | existente | testes | 80 | 64 |
 | `tests/test_singularity_lab.py` | existente | testes | 67 | 57 |
 | `tests/test_solution_bundle.py` | existente | testes | 26 | 20 |
 | `tests/test_solution_report.py` | existente | testes | 21 | 16 |
@@ -1088,7 +1109,8 @@ Nenhum.
 | `tools/README.md` | existente | infraestrutura/outros | 23 | — |
 | `tools/assess_vision.py` | existente | infraestrutura/outros | 61 | 56 |
 | `tools/build_math_bundle.py` | existente | infraestrutura/outros | 129 | 116 |
-| `tools/check_roadmap.py` | novo | infraestrutura/outros | 72 | 62 |
+| `tools/check_roadmap.py` | existente | infraestrutura/outros | 72 | 62 |
+| `tools/expanded_scientific_cycle.py` | novo | infraestrutura/outros | 100 | 91 |
 | `tools/export_source_bundle.py` | existente | infraestrutura/outros | 67 | 57 |
 | `tools/fetch_learning_benchmark.py` | existente | infraestrutura/outros | 38 | 33 |
 | `tools/project_inventory.py` | existente | infraestrutura/outros | 169 | 155 |
