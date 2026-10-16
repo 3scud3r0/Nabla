@@ -11,6 +11,7 @@ de instalação ficam na raiz por serem entradas padrão de usuários e automaç
 | `docs/` | Guias e governança, acessíveis pelo [índice](../README.md) |
 | `docs/architecture/`, `docs/adr/` | Arquitetura e decisões técnicas |
 | `docs/DECISIONS/` | Decisões e pendências de produto, distintas dos ADRs |
+| `docs/phases/`, `docs/math/` | Guias por fase e referência de algoritmos exatos, com antigas URLs preservadas |
 | `docs/audits/` | Relatórios por snapshot, critérios e inventário gerado |
 | `docs/history/`, `legacy/` | Documentação histórica e código antigo, respectivamente |
 | `benchmarks/fixtures/` | Referências fixadas com licença e procedência |
@@ -37,3 +38,7 @@ e hashes fazem parte do contrato. Preserve o snapshot publicado e produza uma
 nova versão. Novos guias entram no índice de documentação e novas ferramentas no
 índice de `tools/`. Material de conversa vai para `docs/history/`, separado da
 apresentação atual e do código canônico.
+
+## Organização desta revisão
+
+Os quatro guias de fases foram agrupados em `docs/phases/`, mantendo arquivos de encaminhamento em `docs/`. Novas operações exatas ficam em `src/nablamath/math/exact/`, com documentação em `docs/math/`, testes em `tests/math/` e exemplos em `examples/math/`. Bibliotecas legadas e `dataset/` versus `datasets/` não foram movidas porque seus caminhos importáveis fazem parte de contratos existentes. Essa organização evita quebrar usuários e fornece fronteiras claras para novas contribuições.

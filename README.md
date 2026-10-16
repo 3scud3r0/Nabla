@@ -12,11 +12,11 @@ As capacidades e recusas atuais são registradas na [matriz de aceitação](docs
 
 | Área | Implementação disponível | Guia |
 |---|---|---|
-| F1–F2: cálculo e Forge | Catálogo versionado de operações, unidades, replay, oito famílias inversas e primitivas racionais | [Cálculo/Forge](docs/PHASES_1_2.md) |
-| F3–F4: provas e imagens | Lean/SMT em fragmentos definidos, contraexemplos, cenas SVG/PNG e curvas adaptativas | [Provas/cenas](docs/PHASES_3_4.md) |
+| F1–F2: cálculo e Forge | Catálogo versionado de operações, unidades, replay, oito famílias inversas e primitivas racionais | [Cálculo/Forge](docs/phases/PHASES_1_2.md) |
+| F3–F4: provas e imagens | Lean/SMT em fragmentos definidos, contraexemplos, cenas SVG/PNG e curvas adaptativas | [Provas/cenas](docs/phases/PHASES_3_4.md) |
 | F5–F6: publicação e dados | AST editorial, Typst/LaTeX/PDF, SQLite, JSONL/Parquet e controle de partições | [Perfis atuais](docs/PHASES_MATURITY_EXPANSION.md) |
-| F7–F8: simulação e agentes | EDO adaptativa, difusão explícita/implícita, agentes retomáveis e aprendizado | [Fases 5–8](docs/PHASES_5_8.md) |
-| F9–F10: descoberta e evolução | Busca de leis em gramática limitada, holdout, portfólios, gates e rollback | [Fases 9–12](docs/PHASES_9_12.md) |
+| F7–F8: simulação e agentes | EDO adaptativa, difusão explícita/implícita, agentes retomáveis e aprendizado | [Fases 5–8](docs/phases/PHASES_5_8.md) |
+| F9–F10: descoberta e evolução | Busca de leis em gramática limitada, holdout, portfólios, gates e rollback | [Fases 9–12](docs/phases/PHASES_9_12.md) |
 | F11–F12: disciplinas e conhecimento | Modelos SI idealizados, evidências, claims, assinaturas e revogação | [Perfis atuais](docs/PHASES_MATURITY_EXPANSION.md) |
 
 O preparo da versão local 1.0 está em [vision1.md](vision1.md), com
@@ -24,6 +24,8 @@ O preparo da versão local 1.0 está em [vision1.md](vision1.md), com
 e [changelog](CHANGELOG.md). A versão permanece alpha até o aceite do commit e
 dos artefatos exatos. Para conferir todos os 212 caminhos e o contrato instalado,
 execute `python tools/release_readiness.py`.
+
+Novo [laboratório de matemática exata](docs/math/EXACT_LABORATORY.md): implementação independente de dependências externas, com contratos finitos e testes específicos.
 
 ## Começar
 
