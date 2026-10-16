@@ -6,7 +6,7 @@ Laboratório científico local em Python para cálculo rastreável, geração de
 
 ## Estado do projeto
 
-**Alpha de pesquisa.** Há componentes executáveis para F1–F12 do [vision.md](vision.md), com escopos delimitados e artefatos verificáveis. As fases científicas não estão declaradas concluídas.
+**Versão 1.0.0 para uso pessoal local CPU.** O proprietário dispensou os gates externos de revisão e aceite para seu uso individual; isso não constitui validação independente ou conclusão da visão científica. Consulte o [escopo pessoal](docs/acceptance/PERSONAL_USE_1_0.md). Há componentes executáveis para F1–F12 do [vision.md](vision.md), com escopos delimitados e artefatos verificáveis. As fases científicas não estão declaradas concluídas.
 
 As capacidades e recusas atuais são registradas na [matriz de aceitação](docs/acceptance/evidence_matrix.json) e nos [contratos científicos](docs/acceptance/scientific_capabilities.yaml). Os baselines aprendidos da campanha congelada continuam em **0/48** no teste reservado. A execução histórica do laboratório registrada em 15/10 falhou na etapa Mathlib; resultados e falhas estão na [auditoria](docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md). A estimativa técnica de 70,32% pertence a um snapshot histórico e não mede o estado atual ou conclusão científica.
 
@@ -21,15 +21,14 @@ As capacidades e recusas atuais são registradas na [matriz de aceitação](docs
 
 O preparo da versão local 1.0 está em [vision1.md](vision1.md), com
 [contrato de API](docs/API_STABILITY.md), [gates de aceite](docs/acceptance/version_1_0.md)
-e [changelog](CHANGELOG.md). A versão permanece alpha até o aceite do commit e
-dos artefatos exatos. Para conferir todos os 212 caminhos e o contrato instalado,
+e [changelog](CHANGELOG.md). A entrega pessoal 1.0 usa o escopo e as dispensas registrados no documento de aceite pessoal. Os gates de distribuição pública continuam separados. Para conferir todos os 212 caminhos e o contrato instalado,
 execute `python tools/release_readiness.py`.
 
 Novo [laboratório de matemática exata](docs/math/EXACT_LABORATORY.md), com [extensões algébricas, numéricas, combinatórias e probabilísticas integradas ao cálculo](docs/math/ADVANCED_EXACT_EXPANSION.md): implementação independente de dependências externas, com contratos finitos e testes específicos.
 
-## Primeira experiência coesa (alpha)
+## Primeira experiência coesa
 
-O [perfil local de primeira versão](docs/acceptance/COHESIVE_LOCAL_ALPHA.md) organiza **69 operações** sob o mesmo catálogo `nabla catalog`, acessível na CLI, no motor de notebooks e no cartão científico do desktop. É um candidato alpha: as verificações ainda precisam passar no SHA final, incluindo atualização dos bundles de código e smoke de wheel. Não equivale à certificação da visão científica inteira.
+O [perfil local de primeira versão](docs/acceptance/COHESIVE_LOCAL_ALPHA.md) organiza **69 operações** sob o mesmo catálogo `nabla catalog`, acessível na CLI, no motor de notebooks e no cartão científico do desktop. A entrega pessoal exige agregados consistentes e smoke do wheel no SHA final. Não equivale à certificação da visão científica inteira.
 
 ```sh
 nabla catalog

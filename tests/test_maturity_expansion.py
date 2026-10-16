@@ -28,6 +28,39 @@ CATALOG_CASES={
  'maximum_flow':{'vertices':['a','b','c'],'edges':[['a','b',2],['b','c',1]],'source':'a','sink':'c'},
  'sat':{'clauses':[[1,2],[-1],[2]]}}
 
+# Keep the all-operation replay gate complete when the shared catalog grows.
+CATALOG_CASES.update({
+ 'nt_primality': {'n': 97},
+ 'nt_factorization': {'n': 12},
+ 'nt_modular_roots': {'a': 2, 'prime': 7},
+ 'nt_discrete_log': {'base': 3, 'target': 6, 'prime': 7},
+ 'nt_pell': {'d': 2},
+ 'nt_primitive_root': {'prime': 7},
+ 'ff_irreducible': {'prime': 2, 'coefficients': [1,1,1]},
+ 'ff_extension': {'prime': 2, 'modulus': [1,1,1], 'element': [0,1]},
+ 'analysis_interval': {'coefficients': [-2,0,1], 'lower': 1, 'upper': 2},
+ 'analysis_extrema': {'coefficients': [0,1], 'lower': 0, 'upper': 1, 'tolerance': '1/4'},
+ 'analysis_root': {'coefficients': [-2,0,1], 'lower': 1, 'upper': 2, 'steps': 2},
+ 'analysis_pade': {'numerator_degree': 1, 'denominator_degree': 1},
+ 'analysis_integral': {'coefficients': [0,0,1], 'lower': 0, 'upper': 1},
+ 'graph_bellman_ford': {'vertices': ['s','t'], 'edges': [['s','t','3/2']], 'source': 's'},
+ 'graph_apsp': {'vertices': ['s','t'], 'edges': [['s','t','3/2']]},
+ 'graph_max_flow': {'vertices': ['s','t'], 'edges': [['s','t','3/2']], 'source': 's', 'sink': 't'},
+ 'graph_matching': {'left': ['a'], 'right': ['b'], 'edges': [['a','b']]},
+ 'graph_mst': {'vertices': ['s','t'], 'edges': [['s','t','3/2']]},
+ 'graph_assignment': {'costs': [[1]]},
+ 'graph_scc': {'vertices': ['s','t'], 'edges': [['s','t']]},
+ 'prob_binomial': {'trials': 2, 'success_probability': '1/2'},
+ 'prob_poisson_binomial': {'probabilities': ['1/2','1/2']},
+ 'prob_distribution': {'mass': [[0,'1/2'],[1,'1/2']]},
+ 'prob_convolution': {'left': [[0,'1/2'],[1,'1/2']], 'right': [[0,'1/2'],[1,'1/2']]},
+ 'prob_joint': {'mass': [[0,0,'1']]},
+ 'prob_hypergeometric': {'population': 10, 'successes': 5, 'draws': 2, 'observed': 2},
+ 'prob_dirichlet': {'alpha': [1,1], 'counts': [1,0]},
+ 'prob_stationary': {'transition': [['1/2','1/2'],['1/4','3/4']]},
+ 'prob_propagate': {'transition': [[1,0],[0,1]], 'initial': [1,0], 'steps': 4},
+})
+
 
 class CatalogTests(unittest.TestCase):
     def test_operations_are_executed_replayed_and_checked(self):

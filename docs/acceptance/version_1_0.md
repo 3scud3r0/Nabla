@@ -1,5 +1,8 @@
 # Aceite do perfil local CPU 1.0
 
+> A entrega pessoal 1.0.0 autorizada pelo proprietário segue [PERSONAL_USE_1_0.md](PERSONAL_USE_1_0.md). As condições de manter a versão alpha e de obter aceite externo abaixo permanecem como histórico do contrato de distribuição pública e são dispensadas para uso pessoal. Resultados técnicos não são presumidos.
+
+
 O escopo de implementação desta entrega é o `vision1.md`: 152 arquivos de
 produto/aceite e 60 unidades Lean geradas. A visão de longo prazo continua com
 seus 213 requisitos e evidências próprias. A instrução de implementação autoriza

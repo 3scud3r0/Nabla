@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 — 2026-10-16 — uso pessoal local CPU
+
+- Entrega pessoal autorizada pelo proprietário com dispensa explícita dos aceites externos; escopo em `docs/acceptance/PERSONAL_USE_1_0.md`. Sem alegação de revisão independente ou conclusão científica.
+- Agregados regenerados e verificados no commit candidato; CI de integridade cobre main e PRs.
+- Interoperabilidade instala pytest, usa Node 24 e executa também os testes funcionais.
+- Smoke do wheel inclui desktop HTTP autenticado, HTML empacotado, cálculo avançado e persistência/replay de notebook.
+- Contratos e dados anteriores preservados; a instalação do wheel pessoal é direta. A promoção pelo canal de atualizações assinadas conserva seu próprio contrato de autoridade.
+
 ## Não publicado — coesão do perfil local alpha
 
 - Entrada unificada e verificável para biblioteca Python, CLI, catálogo, notebook e desktop: `nabla catalog`, `nabla calc` e rotas locais `/api/catalog` / `/api/calculate` partilham o mesmo `CalculationSession`.
