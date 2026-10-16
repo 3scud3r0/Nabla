@@ -61,7 +61,7 @@ REFERENCES = {
  'prob_joint': ('independent',True), 'prob_poisson_binomial': ('variance','1/2'),
  'prob_propagate': ('distribution',['1','0']), 'prob_stationary': ('stationary',['1/3','2/3']),
  'quadratic_optimize': ('value','-3'), 'rational_compare': ('equal_on_common_domain',True),
- 'rational_limit': ('result.status','negative_infinity'), 'sat': ('assignment_verified',True),
+ 'rational_limit': ('result.status','negative_infinity'), 'sat': ('assignment',[[1,False],[2,True]]),
  'series': ('coefficients',['1','1','1','1','1']),
  'shortest_paths': ('distances.c','5/2'), 'solve_linear': ('particular',['2','1']),
  'statistics': ('mean','2'), 'time_series': ('intercept_slope',[1.,1.]),
@@ -192,6 +192,66 @@ def forge_experiment(root):
     return {'families':len(rows),'solver_verifier_runs':2*len(rows),'seed':42,'size':3}
 
 
+def physical_models(root):
+    from nablamath.core.units import ONE, KILOGRAM, VOLT
+    from nablamath.domains.contracts import PASCAL, OHM
+    from nablamath.domains.materials import isotropic_elasticity
+    from nablamath.domains.circuits import series_rlc, HENRY, FARAD
+    from nablamath.domains.chemistry import reversible_first_order, CONCENTRATION
+    from nablamath.domains.earth import layered_hydrostatics
+    from nablamath.worlds.pde.diffusion import solve_diffusion
+    from nablamath.knowledge.provenance_audit import replay_domain
+    rows=[]
+    for scale in (1,2,5,10):
+        elastic=isotropic_elasticity(Quantity(1000*scale,PASCAL),Quantity('1/4',ONE),
+                                   [['1/1000',0,0],[0,0,0],[0,0,0]])
+        ac=series_rlc(Quantity(10*scale,OHM),Quantity(1,HENRY),Quantity(1,FARAD),
+                      Quantity(5,VOLT),Quantity(1,SECOND**-1))
+        chemistry=reversible_first_order(Quantity(scale,CONCENTRATION),Quantity(0,CONCENTRATION),
+                                          Quantity(1,SECOND**-1),Quantity(1,SECOND**-1),Quantity(1,SECOND))
+        layers=layered_hydrostatics([Quantity(2,METER),Quantity(3,METER)],
+                [Quantity(1000*scale,KILOGRAM/METER**3),Quantity(2000*scale,KILOGRAM/METER**3)],
+                Quantity(10,METER/SECOND**2),Quantity(0,PASCAL))
+        require(elastic['outputs']['stress'][0][0]==str(F(6*scale,5)),'Hooke-law analytic stress')
+        require(abs(ac['outputs']['current_real']-.5/scale)<1e-12,'RLC analytic resonance')
+        require(abs(chemistry['outputs']['final'][0]-scale*(.5+.5*math.exp(-2)))<1e-7,'Analytic reversible kinetics')
+        require(layers['outputs']['interface_pressures']==['0',str(20000*scale),str(80000*scale)],'Hydrostatic reference')
+        for model in (elastic,ac,chemistry,layers):
+            require(replay_domain(model),'Physical model replay')
+            rows.append(model)
+    errors=[]
+    for cells in (20,40):
+        initial=[math.sin(math.pi*i/cells) for i in range(cells+1)];initial[-1]=0.
+        result=solve_diffusion(initial,steps=2*cells)
+        error=max(abs(v-math.exp(-.1*math.pi**2*.1)*math.sin(math.pi*i/cells)) for i,v in enumerate(result['final']))
+        require(error<2e-4,'Analytic heat-equation reference')
+        errors.append(error)
+        (root/f'diffusion-{cells}.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
+    require(errors[0]/errors[1]>3.8,'Second-order spatial convergence')
+    (root/'physical-models.json').write_text(json.dumps(rows,indent=2)+'\n',encoding='utf-8')
+    return {'idealized_models':len(rows),'domain_replay':True,'diffusion_errors':errors,
+            'diffusion_refinement_ratio':errors[0]/errors[1],'experimental_validation':False}
+
+
+def formal_experiment(root, project):
+    if project is None:
+        return {'status':'not_requested','formal_proof':False}
+    from nablamath.formal import FormalStatement, prove_statement
+    receipts=[]
+    for left,right in [('(3+3)/3','2'),('x*y+x*z','x*(y+z)'),('(x+x)/x','2')]:
+        statement=FormalStatement.equality(left,right)
+        result=prove_statement(statement,Path(project),timeout=120)
+        require(result.verified,'Pinned Lean failed: '+result.diagnostics)
+        require('sorryAx' not in result.axioms,'Admitted axiom in proof')
+        require(not set(result.axioms)-{'propext','Classical.choice','Quot.sound'},'Unexpected proof axiom')
+        receipts.append({'statement':statement.to_data(),'receipt':result.to_data()})
+    rejected=prove_statement(FormalStatement.equality('x+1','x'),Path(project),timeout=120)
+    require(rejected.status=='failed' and not rejected.verified,'False statement accepted or not actually checked')
+    (root/'formal.json').write_text(json.dumps({'proofs':receipts,'false_statement':rejected.to_data()},indent=2)+'\n',encoding='utf-8')
+    return {'status':'passed','proved_statements':3,'false_statement_rejected':True,
+            'scope':'Displayed conditional rational propositions; translation review is separate.'}
+
+
 def negative_controls(session, root):
     invalid=[('evaluate',{'source':'1/x','values':{'x':0}}),
              ('matrix_inverse',{'matrix':[[1,1],[1,1]]}),
@@ -253,7 +313,7 @@ def interfaces(root, cases):
             'invalid_token_rejected':True,'sqlite_backup_restore':True}
 
 
-def run(destination, *, cases_path=None):
+def run(destination, *, cases_path=None, formal_project=None):
     cases_path=Path(cases_path) if cases_path else Path(__file__).with_name('catalog_cases.json')
     cases=json.loads(cases_path.read_text(encoding='utf-8'))
     names={row['name'] for row in catalog()['operations']}
@@ -269,6 +329,8 @@ def run(destination, *, cases_path=None):
         rows.append({'operation':name,'reference':reference,'receipt_id':data['content_id'],'passed':True})
     notebook.save(root/'catalog.notebook.json')
     require(Notebook.load(root/'catalog.notebook.json').replay()==len(cases),'Complete notebook replay')
+    physical=physical_models(root)
+    formal=formal_experiment(root,formal_project)
     forge=forge_experiment(root)
     study=hypothesis_experiment(root,session)
     campaign=finite_campaign(session)
@@ -284,7 +346,7 @@ def run(destination, *, cases_path=None):
             if node.kind=='document':(root/(family+'.html')).write_text(node.payload['html'],encoding='utf-8')
         artifacts.append(replay)
     report={'schema_version':1,'version':__version__,'passed':True,'catalog_operations':len(rows),
-            'operations':rows,'notebook_replayed_cells':len(rows),'forge':forge,'hypothesis':study,'finite_campaign':campaign,
+            'operations':rows,'notebook_replayed_cells':len(rows),'physical_models':physical,'formal':formal,'forge':forge,'hypothesis':study,'finite_campaign':campaign,
             'negative_controls':controls,'interfaces':interface,'artifacts':artifacts,
             'limitations':['Finite examples do not prove correctness for all possible inputs.',
                            'Synthetic data; no empirical physical validation or novel discovery.',
@@ -307,7 +369,8 @@ def run(destination, *, cases_path=None):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('destination',type=Path)
+    parser.add_argument('--formal-project',type=Path,help='Require actual pinned Lean proofs and a false-statement control')
     args=parser.parse_args()
-    report=run(args.destination)
+    report=run(args.destination,formal_project=args.formal_project)
     print(json.dumps({'passed':report['passed'],'version':report['version'],'operations':report['catalog_operations'],
                       'reference_cases':report['finite_campaign']['independently_checked_cases']}))

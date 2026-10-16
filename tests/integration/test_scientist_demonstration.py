@@ -19,6 +19,9 @@ def test_scientist_full_experiment_and_reserved_points(tmp_path):
     assert report['finite_campaign']['independently_checked_cases']==176
     assert report['forge']['solver_verifier_runs']==16
     assert report['negative_controls']['count']==9
+    assert report['physical_models']['idealized_models']==16
+    assert report['physical_models']['diffusion_refinement_ratio']>3.8
+    assert report['formal']['status']=='not_requested'
     assert report['hypothesis']['wrong_law_rejected']
     assert all(row['valid'] for row in report['artifacts'])
     assert len(list(destination.glob('*.svg')))==2
@@ -45,3 +48,9 @@ def test_removed_operation_cannot_silently_reduce_coverage(tmp_path):
     with pytest.raises(AssertionError,match='coverage mismatch'):
         science.run(tmp_path/'experiment',cases_path=path)
     assert not (tmp_path/'experiment').exists()
+
+
+def test_explicit_formal_request_cannot_succeed_without_toolchain(tmp_path):
+    with pytest.raises(AssertionError,match='Pinned Lean failed'):
+        science.formal_experiment(tmp_path,tmp_path/'missing-project')
+    assert not (tmp_path/'formal.json').exists()

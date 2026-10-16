@@ -18,6 +18,7 @@ SQLite com backup e restore e os dados de uma hipótese sintética.
 | As referências se sustentam em mais de um exemplo? | Campanha de 176 casos: primalidade por divisão tentativa para n=0…127, raízes modulares por enumeração em cinco corpos primos e nove leis binomiais por combinações. |
 | Podemos formular e testar uma hipótese? | Lei conhecida y=1+2x: oito pontos de treino, ajuste exato e oito pontos reservados. Uma lei errada é rejeitada nos pontos reservados. Dados sintéticos não demonstram descoberta inédita. |
 | Podemos construir problemas e verificar soluções? | As oito famílias Forge executam duas estratégias de solução e seu verificador. Duas famílias também produzem um artefato encadeado com dados, figura, documento e replay. |
+| Há simulação física com referência analítica? | Dezesseis casos idealizados de elasticidade, RLC, cinética e hidrostática, com unidades SI e replay. Difusão em duas malhas é comparada à solução senoidal da equação do calor, exigindo convergência de segunda ordem. Não utiliza dados medidos. |
 | O notebook preserva os cálculos? | As 69 células são persistidas e reexecutadas. Uma cópia com resultado adulterado deve ser rejeitada. |
 | CLI e desktop usam a mesma matemática? | Uma integral retorna recibos idênticos pela CLI instalada e pelo servidor HTTP real. O desktop salva e reexecuta um notebook e rejeita token inválido. |
 | Dados sobrevivem ao backup? | Uma expressão é gravada em SQLite, copiada, restaurada e comparada byte a byte no payload. |
@@ -34,3 +35,12 @@ Não constituem uma prova de correção para todas as entradas, validação fís
 dados reais, descoberta científica nova, certificação de GPU, federação pública
 ou suporte Windows executado neste host. Os 213 requisitos da visão mantêm seus
 critérios e suas lacunas. Os artefatos registram essas limitações.
+
+Para exigir provas reais no mesmo experimento, prepare a toolchain fixada e execute:
+
+```sh
+bash scripts/setup_formal.sh
+python examples/science/reproduce.py .nabla/experimento-com-provas --formal-project lean
+```
+
+Essa opção só passa se três proposições racionais forem verificadas pelo Lean, com auditoria dos axiomas, e uma proposição falsa for efetivamente rejeitada. Sem pré-requisitos, falha explicitamente. O relatório padrão informa `not_requested`, sem alegar prova formal. Para reproduzir a campanha ampliada de fases e benchmarks, execute também `python tools/vision_readiness.py`; para o corpus, `python tools/rational_proof_corpus.py --verify .nabla/corpus-novo --workers 4 --timeout 600`.
