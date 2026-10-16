@@ -4,6 +4,13 @@ from ..core.semantic_ir import rational
 
 # area, mandatory keys, optional keys, exact/approximate contract
 OPERATIONS = {
+ 'polynomial_range': ('calculus', {'coefficients','lower','upper'}, {'subdivisions'}, 'exact rational Bernstein range enclosure, not necessarily sharp extrema'),
+ 'certified_integral': ('calculus', {'coefficients','lower','upper'}, {'method','tolerance','max_pieces'}, 'exact polynomial quadrature with rigorous derivative remainder and explicit budget'),
+ 'certified_function': ('numerical', {'kind','value'}, {'tolerance','max_terms'}, 'rational Taylor enclosures of exp/log/sin/cos on bounded arguments'),
+ 'markov_hitting': ('probability', {'transition','targets'}, set(), 'exact first-hit probability and conditional moments; defective hitting is explicit'),
+ 'markov_stationary': ('probability', {'transition'}, set(), 'exact stationary extremes of closed communicating classes with period'),
+ 'markov_rewards': ('probability', {'transition','rewards','discount'}, set(), 'exact discounted rewards for 0<=discount<1 with zero residual'),
+ 'rational_limit': ('calculus', {'source','point'}, {'direction'}, 'exact sided rational limits, original domain guards and replayable algebraic witness; finite rational points or signed infinity'),
  'least_squares': ('statistics', {'predictors','response'}, {'intercept','weights'}, 'exact multivariate weighted least squares; full-rank design, positive residual degrees of freedom'),
  'rational_compare': ('algebra', {'left','right'}, set(), 'exact univariate rational identity with separate partial domains'),
  'matrix_properties': ('linear_algebra', {'matrix'}, set(), 'exact rational determinant/rank/characteristic polynomial'),
@@ -25,6 +32,22 @@ def _values(values, minimum=1):
 
 
 def execute(operation, a):
+    if operation=='polynomial_range':
+        from ..math.analysis.intervals import polynomial_range
+        return polynomial_range(**a)
+    if operation=='certified_integral':
+        from ..math.analysis.quadrature import certified_polynomial_integral
+        return certified_polynomial_integral(**a)
+    if operation=='certified_function':
+        from ..math.analysis.certified_functions import certified_function
+        return certified_function(**a)
+    if operation.startswith('markov_'):
+        from ..math.probability.absorption import hitting_statistics,stationary_classes,discounted_rewards
+        functions={'markov_hitting':hitting_statistics,'markov_stationary':stationary_classes,'markov_rewards':discounted_rewards}
+        return functions[operation](**a)
+    if operation=='rational_limit':
+        from ..math.calculus.limits import rational_sided_limit
+        return rational_sided_limit(a['source'],a['point'],direction=a.get('direction','both'))
     if operation=='least_squares':
         from ..math.statistics.multivariate import exact_least_squares
         return exact_least_squares(a['predictors'],a['response'],intercept=a.get('intercept',True),weights=a.get('weights'))

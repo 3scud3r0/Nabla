@@ -9,6 +9,13 @@ from nablamath.core.semantic_ir import canonical_json
 from nablamath.forge.reverse_builder import generate_task
 
 CATALOG_CASES={
+ 'polynomial_range':{'coefficients':[0,0,1],'lower':-1,'upper':1,'subdivisions':2},
+ 'certified_integral':{'coefficients':[0,0,1],'lower':0,'upper':1},
+ 'certified_function':{'kind':'exp','value':1},
+ 'markov_hitting':{'transition':[['1/2','1/2'],[0,1]],'targets':[1]},
+ 'markov_stationary':{'transition':[[0,1],[1,0]]},
+ 'markov_rewards':{'transition':[[1]],'rewards':[2],'discount':'1/2'},
+ 'rational_limit':{'source':'1/x','point':0,'direction':'left'},
  'least_squares':{'predictors':[[0],[1],[2]],'response':[1,3,5]},
  'rational_compare':{'left':'(x*x-1)/(x-1)','right':'x+1'},
  'matrix_properties':{'matrix':[[1,2],[3,4]]},
@@ -36,6 +43,7 @@ class CatalogTests(unittest.TestCase):
                 self.assertEqual(receipt.to_data(),CalculationSession.replay_request(receipt.to_data()['request']).to_data())
                 results[name]=receipt.to_data()['result']
         self.assertEqual(results['matrix_properties']['determinant'],'-2')
+        self.assertEqual(results['rational_limit']['result']['status'],'negative_infinity')
         self.assertEqual(results['linear_regression']['slope'],'2')
         self.assertEqual(results['bayes']['posterior']['b'],'3/4')
         self.assertEqual(results['maximum_flow']['value'],'1')

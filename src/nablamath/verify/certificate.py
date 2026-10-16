@@ -66,6 +66,9 @@ def make_formal_certificate(statement,receipt):
     from ..core.semantic_ir import fingerprint
     from ..formal.lean_bridge import translate_statement
     translation=translate_statement(statement,receipt.get('strategy','auto')).to_data() if receipt.get('backend')=='lean4' else None
+    if receipt.get('backend')=='lean4-std':
+        from ..formal.lean_std import std_translation
+        translation=std_translation(statement)
     payload={'schema_version':1,'statement':statement.to_data(),'translation':translation,'backend_receipt':receipt}
     return {**payload,'certificate_id':fingerprint(payload)}
 
@@ -82,6 +85,9 @@ def verify_formal_receipt(statement,receipt,*,project=None):
             return False
         payload=dict(receipt);digest=payload.pop('receipt_id',None)
         if digest!=fingerprint(payload):return False
+        if receipt.get('backend')=='lean4-std':
+            from ..formal.lean_std import verify_std_receipt
+            return verify_std_receipt(statement,receipt,project=Path(project or 'lean'))
         if receipt.get('backend')=='lean4':
             translation=translate_statement(statement,receipt.get('strategy','auto'))
             if receipt.get('source_hash')!=translation.source_hash or receipt.get('status')!='proved':
@@ -116,6 +122,9 @@ def verify_formal_certificate(certificate,*,project=None):
             from ..core.semantic_ir import canonical_json
             receipt=payload['backend_receipt']
             expected=translate_statement(statement,receipt.get('strategy','auto')).to_data() if receipt.get('backend')=='lean4' else None
+            if receipt.get('backend')=='lean4-std':
+                from ..formal.lean_std import std_translation
+                expected=std_translation(statement)
             if canonical_json(payload['translation'])!=canonical_json(expected):return False
         return verify_formal_receipt(statement,payload['backend_receipt'],project=project)
     except (ValueError,KeyError,TypeError,ArithmeticError):

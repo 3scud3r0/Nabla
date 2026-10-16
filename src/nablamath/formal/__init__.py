@@ -19,3 +19,5 @@ from .lean_bridge import LeanTranslation,translate_statement
 from .lean_checker import LeanCheck,check_lean,prove_statement
 from .smt_bridge import solve_statement
 __all__ += ['FormalStatement','Predicate','LeanTranslation','translate_statement','LeanCheck','check_lean','prove_statement','solve_statement']
+from .lean_std import prove_with_std, std_source, verify_std_receipt
+__all__ += ['prove_with_std', 'std_source', 'verify_std_receipt']
