@@ -1,10 +1,12 @@
 """Bind a verified wheel, SPDX inventory and local provenance without inventing a signature."""
 import argparse
+from datetime import datetime, timezone
 import hashlib
 import importlib.util
 import json
 from pathlib import Path
 import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -18,19 +20,17 @@ def build(wheel, output, *, acceptance=None):
     identity = offline.wheel_identity(wheel)
     sbom = offline.wheel_sbom(wheel, source_commit=commit)
     if acceptance is not None:
-        raw = Path(acceptance).read_bytes()
-        if len(raw) > 32768:
-            raise ValueError('Release acceptance exceeds budget')
-        # The final publisher signature will bind these exact declaration bytes.
-        statement = json.loads(raw)
-        sbom['annotations'] = [{'annotationType': 'REVIEW', 'annotator': 'Person: '+statement['reviewer'],
-                                'annotationDate': sbom['creationInfo']['created'],
-                                'comment': json.dumps(statement, sort_keys=True)}]
         spec = importlib.util.spec_from_file_location('metadata_signed_validation', ROOT/'packaging/signed_release.py')
         signed = importlib.util.module_from_spec(spec)
-        import sys
         sys.modules[spec.name] = signed
         spec.loader.exec_module(signed)
+        with Path(acceptance).open('rb') as stream:
+            raw = stream.read(32769)
+        statement = signed._load(raw)
+        # Metadata assembly time; the tool does not impersonate a human reviewer.
+        sbom['annotations'] = [{'annotationType': 'REVIEW', 'annotator': 'Tool: Nabla release metadata',
+                                'annotationDate': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+                                'comment': json.dumps(statement, sort_keys=True)}]
         signed.validate_stable_acceptance(sbom, {'version': identity['version'],
             'source': {'commit': commit}, 'wheel': {'sha256': identity['sha256']}})
     output = Path(output)
