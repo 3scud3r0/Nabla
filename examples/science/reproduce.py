@@ -284,14 +284,23 @@ def interfaces(root, cases):
     server,_=make_server(root/'desktop')
     thread=Thread(target=server.serve_forever,daemon=True);thread.start()
     base=f'http://127.0.0.1:{server.server_port}'
+    checked=0
     try:
         with client.open(base+'/',timeout=5) as r:page=r.read().decode('utf-8')
         token=page.split("const auth='",1)[1].split("'",1)[0]
+        headers={'Content-Type':'application/json','X-Nabla-Token':token,'Origin':base}
+        for name,arguments in cases.items():
+            payload={'operation':name,'arguments':arguments}
+            request=Request(base+'/api/calculate',data=json.dumps(payload).encode(),headers=headers)
+            with client.open(request,timeout=10) as r:desktop=json.load(r)
+            reference_check(name,desktop['result'])
+            args=[sys.executable,'-I','-m','nablamath.cli','calc',name,'--arguments',json.dumps(arguments)]
+            completed=subprocess.run(args,capture_output=True,text=True,check=True,timeout=30)
+            cli=json.loads(completed.stdout)
+            require(cli==desktop,'Installed CLI and HTTP receipts differ: '+name)
+            checked+=1
         payload={'operation':'analysis_integral','arguments':cases['analysis_integral']}
-        request=Request(base+'/api/calculate',data=json.dumps(payload).encode(),headers={'Content-Type':'application/json','X-Nabla-Token':token,'Origin':base})
-        with client.open(request,timeout=5) as r: desktop=json.load(r)
-        require(desktop['result']['integral']=='1/3','Desktop independent integral reference')
-        saved_request=Request(base+'/api/save-calculation',data=json.dumps(payload).encode(),headers={'Content-Type':'application/json','X-Nabla-Token':token,'Origin':base})
+        saved_request=Request(base+'/api/save-calculation',data=json.dumps(payload).encode(),headers=headers)
         with client.open(saved_request,timeout=5) as r:saved=json.load(r)
         require(Notebook.load(saved['path']).replay()==1,'Desktop persistent notebook replay')
         try:client.open(Request(base+'/api/catalog',headers={'X-Nabla-Token':'wrong'}),timeout=5)
@@ -299,10 +308,6 @@ def interfaces(root, cases):
         else:raise AssertionError('Invalid token accepted')
     finally:
         server.shutdown();server.server_close();thread.join(timeout=5)
-    args=[sys.executable,'-I','-m','nablamath.cli','calc','analysis_integral','--arguments',json.dumps(cases['analysis_integral'])]
-    completed=subprocess.run(args,capture_output=True,text=True,check=True,timeout=20)
-    cli=json.loads(completed.stdout)
-    require(cli==desktop,'Installed CLI and HTTP receipts differ')
     result=calculate('(x+x)/x',{'x':3})
     database=root/'results.sqlite3'
     save_result(database,result)
@@ -310,6 +315,7 @@ def interfaces(root, cases):
     restore_database(root/'backup.sqlite3',root/'restored.sqlite3')
     require(load_result(root/'restored.sqlite3',result.content_id)==result.to_data(),'SQLite restore identity')
     return {'http_calculation':True,'cli_identical_receipt':True,'desktop_saved_notebook':True,
+            'http_receipts':checked,'cli_receipts':checked,
             'invalid_token_rejected':True,'sqlite_backup_restore':True}
 
 

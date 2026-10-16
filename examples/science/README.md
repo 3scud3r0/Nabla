@@ -20,7 +20,7 @@ SQLite com backup e restore e os dados de uma hipótese sintética.
 | Podemos construir problemas e verificar soluções? | As oito famílias Forge executam duas estratégias de solução e seu verificador. Duas famílias também produzem um artefato encadeado com dados, figura, documento e replay. |
 | Há simulação física com referência analítica? | Dezesseis casos idealizados de elasticidade, RLC, cinética e hidrostática, com unidades SI e replay. Difusão em duas malhas é comparada à solução senoidal da equação do calor, exigindo convergência de segunda ordem. Não utiliza dados medidos. |
 | O notebook preserva os cálculos? | As 69 células são persistidas e reexecutadas. Uma cópia com resultado adulterado deve ser rejeitada. |
-| CLI e desktop usam a mesma matemática? | Uma integral retorna recibos idênticos pela CLI instalada e pelo servidor HTTP real. O desktop salva e reexecuta um notebook e rejeita token inválido. |
+| CLI e desktop usam a mesma matemática? | Todas as 69 operações retornam recibos idênticos pela CLI instalada e pelo servidor HTTP real, com referências matemáticas conferidas. O desktop salva e reexecuta um notebook e rejeita token inválido. |
 | Dados sobrevivem ao backup? | Uma expressão é gravada em SQLite, copiada, restaurada e comparada byte a byte no payload. |
 | O programa rejeita uso inválido? | Nove controles negativos: singularidade, divisão por zero, domínio de primalidade, polinômio redutível, massa incompleta, orçamento de atribuição, argumento desconhecido, unidades incompatíveis e notebook adulterado. |
 

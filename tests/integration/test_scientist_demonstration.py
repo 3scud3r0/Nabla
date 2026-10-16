@@ -23,6 +23,8 @@ def test_scientist_full_experiment_and_reserved_points(tmp_path):
     assert report['physical_models']['diffusion_refinement_ratio']>3.8
     assert report['formal']['status']=='not_requested'
     assert report['hypothesis']['wrong_law_rejected']
+    assert report['interfaces']['http_receipts']==69
+    assert report['interfaces']['cli_receipts']==69
     assert all(row['valid'] for row in report['artifacts'])
     assert len(list(destination.glob('*.svg')))==2
     assert len(list(destination.glob('*.html')))==2
