@@ -247,7 +247,7 @@ def make_server(data_dir: Path, port: int = 0) -> tuple[ThreadingHTTPServer, Loc
                 if self.path not in routes:
                     return self._send(404, {"error": "Rota inexistente"})
                 self._send(200, routes[self.path]())
-            except (KeyError, TypeError, ValueError, ArithmeticError, OSError, sqlite3.Error, ImportError) as exc:
+            except (KeyError, TypeError, ValueError, ArithmeticError, RecursionError, OSError, sqlite3.Error, ImportError) as exc:
                 self._send(400, {"error": str(exc)})
 
     return ThreadingHTTPServer(("127.0.0.1", port), Handler), research

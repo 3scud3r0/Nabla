@@ -65,6 +65,18 @@ class ScientificDesktopCohesionTests(TestCase):
                         self.assertFalse(result["formal_proof"])
                         self.assertTrue(result["content_id"])
                 self.assertEqual(research.count(), 0)
+                # A rota / permite ambos os nomes loopback; a origem POST
+                # precisa corresponder exatamente ao Host escolhido.
+                localhost = f"http://localhost:{server.server_port}"
+                local_headers = {"X-Nabla-Token": token, "Origin": localhost,
+                                 "Content-Type": "application/json"}
+                request_body = json.dumps({
+                    "operation": "nt_primality", "arguments": {"n": 97}
+                }).encode("utf-8")
+                with urlopen(Request(localhost + "/api/calculate",
+                                     data=request_body, headers=local_headers),
+                             timeout=5) as response:
+                    self.assertTrue(json.load(response)["result"]["prime"])
 
                 with self.assertRaises(HTTPError) as failure:
                     request("/api/catalog", auth="invalid")
