@@ -1,0 +1,82 @@
+{
+  "requirements": [
+    {
+      "id": 57,
+      "implementation": [
+        "packaging/signed_release.py",
+        "packaging/staged_release.py"
+      ],
+      "tests": [
+        "tests/test_delivery_release_20261016.py"
+      ],
+      "remaining": "Current POSIX/Linux offline fixture environment tested; no general cross-platform installer claim.",
+      "status": "partial"
+    },
+    {
+      "id": 60,
+      "implementation": [
+        "packaging/signed_release.py",
+        "packaging/staged_release.py"
+      ],
+      "tests": [
+        "tests/test_delivery_release_20261016.py"
+      ],
+      "remaining": "Explicitly pinned ephemeral test keys only; no published signed release, remote identity validation, OS sandbox, or hardware-protected monotonic state. External antirollback checkpoint pin authentication remains caller responsibility.",
+      "status": "partial"
+    },
+    {
+      "id": 62,
+      "implementation": [
+        "packaging/signed_release.py",
+        "packaging/staged_release.py"
+      ],
+      "tests": [
+        "tests/test_delivery_release_20261016.py"
+      ],
+      "remaining": "Existing wheel RECORD and source-declared SPDX binding reused; actual synthetic pure-Python fixture wheels installed in clean venvs. Source build reproduction, optional dependencies, full interpreter/OS matrix and real publisher release remain outside this local profile.",
+      "status": "partial"
+    }
+  ],
+  "implementation": [
+    "packaging/signed_release.py",
+    "packaging/staged_release.py"
+  ],
+  "tests": [
+    "tests/test_delivery_release_20261016.py"
+  ],
+  "line_counts": {
+    "packaging/signed_release.py": 719,
+    "packaging/staged_release.py": 760,
+    "tests/test_delivery_release_20261016.py": 1047
+  },
+  "source_lines": 1479,
+  "test_lines": 1047,
+  "total_lines": 2526,
+  "features": [
+    "Ed25519 domain-bound signed wheel+SBOM manifests",
+    "Durable pinned issuer trust, channel constraints, expiry, revocation and clock floor",
+    "Authenticated root bootstrap by separate digest pin",
+    "Distinct root/publisher keys with threshold release approval",
+    "Dual predecessor/successor threshold root rotation and delegated publisher revocation",
+    "Pure-Python wheel layout and signed SPDX/source declared binding",
+    "Offline clean-venv installation with fixed import probe",
+    "Full environment byte inventory including cfg, pip, .pth and bytecode",
+    "Committed stage-ready inventory binding rejects metadata-only redeclaration",
+    "Durable staged lifecycle, atomic SQLite active pointer, explicit rollback preserving sequence high-water",
+    "Live authorization recheck at activation/use; same-content reapproval after rotation",
+    "Recoverable interrupted preparation and fail-closed activation transaction",
+    "Bounded subprocess output and process-group timeout cleanup",
+    "External separately pinned checkpoints detect complete state backup rollback"
+  ],
+  "test_command": ".venv/bin/python -m pytest -q tests/test_delivery_release_20261016.py tests/test_remaining_release.py",
+  "test_result": "Final rerun in progress; immediately preceding 120 passed in45.76s, no skips",
+  "limitations": [
+    "Signatures authenticate caller-enrolled keys, not people, package safety or scientific truth.",
+    "Source commit and source-wheel correspondence are issuer-declared, not reproduced.",
+    "No arbitrary caller commands or install hooks are accepted; signed package import is trusted executable code and is not sandboxed.",
+    "Lifecycle currently requires POSIX flock and was exercised on current Linux only.",
+    "Root/manifest time uses caller clock with local durable floor, not authenticated external time.",
+    "Database and artifact administrator remains trusted; externally authenticated checkpoint pin is needed to detect complete backup restoration.",
+    "No real release or signing private key is published/persisted by tests."
+  ]
+}

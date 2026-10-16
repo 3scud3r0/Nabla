@@ -81,7 +81,12 @@ class Mesh1D:
     def slope(self, cell: int) -> float:
         if type(cell) is not int or not 0 <= cell < self.cell_count:
             raise ValueError("invalid cell index")
-        result = (self.values[cell+1]-self.values[cell]) / (self.nodes[cell+1]-self.nodes[cell])
+        width = self.nodes[cell+1]-self.nodes[cell]
+        difference = self.values[cell+1]-self.values[cell]
+        if math.isfinite(difference):
+            result = difference/width
+        else:
+            result = self.values[cell+1]/width-self.values[cell]/width
         if not math.isfinite(result):
             raise ArithmeticError("slope overflow")
         return result
@@ -99,7 +104,7 @@ class Mesh1D:
         points = [a] + [x for x in self.nodes if a < x < b] + [b]
         contributions = []
         for lo, hi in zip(points, points[1:]):
-            contributions.append((hi-lo) * (self.interpolate(lo)+self.interpolate(hi)) / 2)
+            contributions.append((hi-lo) * (self.interpolate(lo)/2+self.interpolate(hi)/2))
         result = math.fsum(contributions)
         if not math.isfinite(result):
             raise ArithmeticError("integral overflow")

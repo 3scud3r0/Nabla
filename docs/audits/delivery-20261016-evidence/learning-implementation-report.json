@@ -1,0 +1,63 @@
+{
+  "implementation": [
+    "src/nablamath/training/symbolic_beam.py",
+    "src/nablamath/training/symbolic_protocol.py",
+    "src/nablamath/training/sparse_symbolic.py",
+    "src/nablamath/training/symbolic_stability.py",
+    "src/nablamath/training/symbolic_derivatives.py",
+    "src/nablamath/training/forge_symbolic.py"
+  ],
+  "tests": [
+    "tests/test_delivery_learning_20261016.py"
+  ],
+  "physical_lines": {
+    "src/nablamath/training/symbolic_beam.py": 276,
+    "src/nablamath/training/symbolic_protocol.py": 231,
+    "src/nablamath/training/sparse_symbolic.py": 190,
+    "src/nablamath/training/symbolic_stability.py": 156,
+    "src/nablamath/training/symbolic_derivatives.py": 124,
+    "src/nablamath/training/forge_symbolic.py": 187,
+    "tests/test_delivery_learning_20261016.py": 702
+  },
+  "source_lines": 1164,
+  "test_lines": 702,
+  "targeted_validation": "74 new tests passed;99 passed including previous learning/discovery tests",
+  "capabilities": [
+    "exact bounded nonlinear grammar beam search",
+    "exact sparse multivariate feature coefficient fitting with rank checks",
+    "lineage-separated frozen train/validation/test protocols",
+    "once-only durable test reservation, concurrent admission, failure consumption",
+    "independent search/selection/report replay",
+    "exact rational interval sensitivity and gradient/Hessian diagnostics",
+    "lineage jackknife refit/reselection",
+    "Forge train-trace component adapter; TaskSpec-only predictions; independent verifier grading"
+  ],
+  "evidence": {
+    "path": "/tmp/delivery-learning-evidence.json",
+    "protocol": "/tmp/delivery-learning-protocol.json",
+    "selection": "/tmp/delivery-learning-selection.json",
+    "ledger": "/tmp/nabla-frozen-integral-958000.sqlite",
+    "learned_passed": 24,
+    "total": 24,
+    "depth1_ablation_passed": 0,
+    "test_seeds": [
+      958000,
+      958023
+    ],
+    "development_test_seeds": [
+      957000,
+      957023
+    ]
+  },
+  "limitations": [
+    "Finite grammar and greedy sparse selection are incomplete and explicitly bounded.",
+    "Exact symbolic arithmetic and componentwise integral representation, exponent-plus-one input, reciprocal/product grammar and zero constant are declared strong priors.",
+    "Local same-family synthetic degree holdout, not externally authored private data or cross-family generalization.",
+    "Some coefficient/order component features are repeated across tasks; counts are disclosed.",
+    "Original48 reserved laboratory cases and reported0/48 baseline untouched.",
+    "A local operator can create another ledger or inspect files; once-only policy assumes preserved ledger and governance.",
+    "Interval enclosures are deterministic rational arithmetic, not calibrated probability intervals or Lean certificates.",
+    "Novelty, AGI and physical identification are not established."
+  ],
+  "cross_review": "Reviewed math roots/spectral/invariant code;24 root multiplicity and24 characteristic-polynomial SymPy checks passed. CRT reduction/public sequence bound notes sent to math_compiler."
+}

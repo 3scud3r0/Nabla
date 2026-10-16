@@ -1,0 +1,1536 @@
+{
+  "date": "2026-10-16",
+  "train_seed_candidates": [
+    955000,
+    955039
+  ],
+  "train_tasks": 12,
+  "validation_seeds": [
+    956000,
+    956005
+  ],
+  "test_seeds": [
+    958000,
+    958023
+  ],
+  "development_test_seeds_already_observed": [
+    957000,
+    957023
+  ],
+  "disclosure": "Local within-family synthetic reproduction with strong declared component/grammar priors. Development tests used957000; this frozen evidence uses958000. No private/external blind evaluation or cross-family generalization claim; original reserved48 untouched.",
+  "protocol": {
+    "version": "forge-symbolic-campaign-v1",
+    "owner": "Nabla 2026-10-16 declared local synthetic campaign",
+    "budget": {
+      "depth": 3,
+      "beam_width": 12,
+      "max_evaluations": 200,
+      "complexity_penalty": "1/1000000",
+      "operations": [
+        "multiply",
+        "reciprocal"
+      ]
+    },
+    "priors": {
+      "claim_scope": "fresh synthetic task holdout within one family; no original reserved benchmark used",
+      "family": "polynomial_integral",
+      "grammar": "closed bounded symbolic grammar",
+      "input_features": [
+        "coefficient",
+        "exponent_plus_one"
+      ],
+      "numeric_domain": "exact rationals",
+      "output_assembly": "zero integration constant followed by predicted components"
+    },
+    "component_input_overlap_with_train": {
+      "validation": 14,
+      "test": 53
+    },
+    "train_record_ids": [
+      "085adf46d4cd5466e1cc6ff863bfabc996ec5a41729c014e473180903998f92e",
+      "0b00543cfd622fd364362d7fe057e6cf4afa41ca0fada7556c3b5bf9c05d5707",
+      "0e7504759600a53659a427c1eea34f83f1a4a455d68cee410f71f8a1da7592cf",
+      "21fcdb201c0fbd6fb97f6bda444af0c047f594526b82d7f53108bc4bd7a6d1be",
+      "2c43f244b8f8b7bc23df9e59159c76dbb4ca4a2b47fc2d1677c538bfc773d6bc",
+      "370f4402b769cd3e39cfc49e72834cd686140936b84f7bb1320afe10832881bb",
+      "47105388b2c778607f58a4ffa6e07861ab7d54a80069dea52798aa0bc3a50962",
+      "533e030b58e10776a1a7c35c6f7411739b545e8343da4a98d7a1b0df748471e7",
+      "b32ccbdc54f174e17b32c85f9010eb69bba5794a3260da7f103d70eb3ca11268",
+      "c90bb31e9c52a9b3dd9e3e0841a6c396b23631973102f7e2e646f5e0aa43984b",
+      "e3fc4d63b13e83288657867920fdad052a9f643857c4fdb2954a004376251511",
+      "e6db2539fa721c4a7385956f55654b06d4b5dac2cc19895ef71cbce3e992d897"
+    ],
+    "task_ids": {
+      "train": [
+        "0578b1d6e0732adfaa61d27085517f2b575a0df88c0f91a1795ffefecfb37966",
+        "0d61e911ef9da392c3df36d14e8bf6eed63c9e30617bc015aa3b8d465218e425",
+        "19c4c9943dffc8e0107d0f74b32deb7361eb3ed9cab2be5be899d825addc8251",
+        "1abe5208ff60b76d5be96156c08f5db795c440cd3930e0d686efcc54b5e1450a",
+        "7289a5331b28e739c7a1d5f8b62881d4ebb2dfa2bff94a2b03845f8abf738e79",
+        "7431c8c2d1a5007a47f6827bb51af7145c4cb62e0a57502f8bbe52f522305924",
+        "7449bc835926382ae469daa280a3fe194bdff2e8c019c1ead4b72f52801bcba4",
+        "82a76bf3c7a2fc3208f4de1d40aa1ba2e551c684fce54131c5ffc85795d78630",
+        "840a76839eaffbb6776dff3e7029e86bcffba4883977049c8b1b0804ac652ea2",
+        "88694d76c6cd6c56f266bbad7a2a6be8bf3ca2ce48b0912f3d48eadaa6165c45",
+        "bb5b1156be89f0776651072d34d2921ca7cefc9537475651563daf285fc4070e",
+        "ded5a72b6c60c08eeb0bebc6129e5d79c9ebdfb1f63fea25999d252a6b88ede7"
+      ],
+      "validation": [
+        "1556917c9cca0eef80d81bcb6df5ac7acaa757d03ef708185edb3e40a3405e1d",
+        "39b46e599660b756b236ff82afca628b1d26c11eabf5a5bbbb6fb9363a9a1326",
+        "7047ceaa484a11eaa202c0212425c49a4a5d07b60761fb267b5795208c76d82c",
+        "9ebb30dead667698b3628ef081c6a468a6b2ac9afc5daa5c55fe85b67f598e88",
+        "fcc6ede0c9bc2b0cdcc3c2720ffedc7bd5ff838d73d8f18c78d7074db8750059",
+        "fed2e8999ea5b3acc6d63b229e9164090f141c443cbc52792f46169b151a97eb"
+      ],
+      "test": [
+        "05510077fb39ee808fde1f9971c6c16c06c79d7d222a76a571a4304b8b87bf74",
+        "12a11eb1e9a5e2fc59e5da562b0b4dbf650cfb32f0bda7f0269e632e82855050",
+        "161d4108d1e587c2ddb58e42e720c98fea3d6cd316eeace48276170ba0684099",
+        "23942d0f35dac44e4409d342aea37b4cf283b87ab0bbc75951eff20d42b743d8",
+        "4463252e3fd0ff94b52c83b7c3f582ff2310f40db8e81fbf31abbaff8241308a",
+        "46205a7f75766ed9abc05d1c3a0f5bf9f65ec688ecf7094c01d7dc3bd9b14018",
+        "4e53debda76228f05597b5f7f55a55e16c4ef8c7e1dd1894f71ae8ac0d85d138",
+        "55cbf27c2a9487f216eaa97275224d9e459ac8f12e0c01844789a802cbabbb2f",
+        "598558f123b49923b21b2748640b8d7771cfc3ebf7cfde016085158c2bea7373",
+        "63226fcfc946a8144005dcf03357b4c7697f8315cf7a03deb7de3f990b83cece",
+        "7949bcb043fa76c949e51db0b2738cf36368eb5085a9f0f05134e35f61aa437e",
+        "81ee410f24a8d3f60994cafb1ab3f371d5dee87fac4caa613b1c8abb6553244b",
+        "8e131def395bd954c73d18c3124dc9639ddf4ae9a52de65333cf96aad8aa16c2",
+        "9228ffcc894f0151624eb5ac225ec3ae648795a24a8b26052917f62470f4bff1",
+        "95e80a03e30012c5bf88463c7f0290b117ddcc7387d6201c976f7314f50b7bc6",
+        "9f788a3f64ea452cd22bcba3efc8a014e6a08153ca790faaef9922623355def4",
+        "b251a203f226043da7be9484ba1d0027d4f853bc71810d66b700a74753145e03",
+        "bffc8822fc5ca9e688264b770fe3cf3f009ad3bbe347fef0d665377fb9716e79",
+        "c7d7539153fe430cee20b81d409004b9906e9a5fef1dff77364054ab9218763e",
+        "d0139d661dd652cf110237f016bbf1d201adb561ee2e4c056fc09a17fe018dfa",
+        "da514d0e28c048622ba7042b2dff559493c4284e3dc58a2dacc4627d15ebc4e3",
+        "e9aad8fb3aa8714313594c8fc54338a1bf0df983b02c33af2bd7b480aff290b1",
+        "eb7a878419279135629b288b273bc37ac23120e2ce46de9df8835f39e0844a3b",
+        "ed237914a0d1b1a72c86287b3d57047d70b0dc0f4fe7040534e31770f36cc7a3"
+      ]
+    },
+    "ablation_budgets": [
+      {
+        "depth": 1,
+        "beam_width": 12,
+        "max_evaluations": 200,
+        "complexity_penalty": "1/1000000",
+        "operations": [
+          "multiply",
+          "reciprocal"
+        ]
+      }
+    ],
+    "training_components_id": "f84a67325a2403eb57b57755f856475b6a1ce4a5f26992ea274f17406443e2d5",
+    "lineage": {},
+    "selection_rule": "validation_verified_tasks_desc_then_training_mse_then_term_size_then_model_id",
+    "campaign_id": "82aa2e16c10f296f507b4ada9680263b5e178b7ce7d55e03a8a178638b13028c"
+  },
+  "selection_id": "edf254b7b9c7204c91fd13910b6df07b8ad97257a7311b70b55065e8ddf42bae",
+  "selected_model": {
+    "version": "exact-symbolic-beam-v1",
+    "term": {
+      "operation": "multiply",
+      "variable": 0,
+      "arguments": [
+        {
+          "operation": "variable",
+          "variable": 0,
+          "arguments": []
+        },
+        {
+          "operation": "reciprocal",
+          "variable": 0,
+          "arguments": [
+            {
+              "operation": "variable",
+              "variable": 1,
+              "arguments": []
+            }
+          ]
+        }
+      ]
+    },
+    "slope": "1",
+    "intercept": "0",
+    "training_ids": [
+      "0578b1d6e0732adfaa61d27085517f2b575a0df88c0f91a1795ffefecfb37966:0",
+      "0578b1d6e0732adfaa61d27085517f2b575a0df88c0f91a1795ffefecfb37966:1",
+      "0578b1d6e0732adfaa61d27085517f2b575a0df88c0f91a1795ffefecfb37966:2",
+      "0d61e911ef9da392c3df36d14e8bf6eed63c9e30617bc015aa3b8d465218e425:0",
+      "0d61e911ef9da392c3df36d14e8bf6eed63c9e30617bc015aa3b8d465218e425:1",
+      "0d61e911ef9da392c3df36d14e8bf6eed63c9e30617bc015aa3b8d465218e425:2",
+      "19c4c9943dffc8e0107d0f74b32deb7361eb3ed9cab2be5be899d825addc8251:0",
+      "19c4c9943dffc8e0107d0f74b32deb7361eb3ed9cab2be5be899d825addc8251:1",
+      "19c4c9943dffc8e0107d0f74b32deb7361eb3ed9cab2be5be899d825addc8251:2",
+      "1abe5208ff60b76d5be96156c08f5db795c440cd3930e0d686efcc54b5e1450a:0",
+      "1abe5208ff60b76d5be96156c08f5db795c440cd3930e0d686efcc54b5e1450a:1",
+      "1abe5208ff60b76d5be96156c08f5db795c440cd3930e0d686efcc54b5e1450a:2",
+      "7289a5331b28e739c7a1d5f8b62881d4ebb2dfa2bff94a2b03845f8abf738e79:0",
+      "7289a5331b28e739c7a1d5f8b62881d4ebb2dfa2bff94a2b03845f8abf738e79:1",
+      "7289a5331b28e739c7a1d5f8b62881d4ebb2dfa2bff94a2b03845f8abf738e79:2",
+      "7431c8c2d1a5007a47f6827bb51af7145c4cb62e0a57502f8bbe52f522305924:0",
+      "7431c8c2d1a5007a47f6827bb51af7145c4cb62e0a57502f8bbe52f522305924:1",
+      "7431c8c2d1a5007a47f6827bb51af7145c4cb62e0a57502f8bbe52f522305924:2",
+      "7449bc835926382ae469daa280a3fe194bdff2e8c019c1ead4b72f52801bcba4:0",
+      "7449bc835926382ae469daa280a3fe194bdff2e8c019c1ead4b72f52801bcba4:1",
+      "7449bc835926382ae469daa280a3fe194bdff2e8c019c1ead4b72f52801bcba4:2",
+      "82a76bf3c7a2fc3208f4de1d40aa1ba2e551c684fce54131c5ffc85795d78630:0",
+      "82a76bf3c7a2fc3208f4de1d40aa1ba2e551c684fce54131c5ffc85795d78630:1",
+      "82a76bf3c7a2fc3208f4de1d40aa1ba2e551c684fce54131c5ffc85795d78630:2",
+      "840a76839eaffbb6776dff3e7029e86bcffba4883977049c8b1b0804ac652ea2:0",
+      "840a76839eaffbb6776dff3e7029e86bcffba4883977049c8b1b0804ac652ea2:1",
+      "840a76839eaffbb6776dff3e7029e86bcffba4883977049c8b1b0804ac652ea2:2",
+      "88694d76c6cd6c56f266bbad7a2a6be8bf3ca2ce48b0912f3d48eadaa6165c45:0",
+      "88694d76c6cd6c56f266bbad7a2a6be8bf3ca2ce48b0912f3d48eadaa6165c45:1",
+      "88694d76c6cd6c56f266bbad7a2a6be8bf3ca2ce48b0912f3d48eadaa6165c45:2",
+      "bb5b1156be89f0776651072d34d2921ca7cefc9537475651563daf285fc4070e:0",
+      "bb5b1156be89f0776651072d34d2921ca7cefc9537475651563daf285fc4070e:1",
+      "bb5b1156be89f0776651072d34d2921ca7cefc9537475651563daf285fc4070e:2",
+      "ded5a72b6c60c08eeb0bebc6129e5d79c9ebdfb1f63fea25999d252a6b88ede7:0",
+      "ded5a72b6c60c08eeb0bebc6129e5d79c9ebdfb1f63fea25999d252a6b88ede7:1",
+      "ded5a72b6c60c08eeb0bebc6129e5d79c9ebdfb1f63fea25999d252a6b88ede7:2"
+    ],
+    "training_content_id": "f84a67325a2403eb57b57755f856475b6a1ce4a5f26992ea274f17406443e2d5"
+  },
+  "result": {
+    "version": "forge-symbolic-final-v1",
+    "campaign_id": "82aa2e16c10f296f507b4ada9680263b5e178b7ce7d55e03a8a178638b13028c",
+    "selection_id": "edf254b7b9c7204c91fd13910b6df07b8ad97257a7311b70b55065e8ddf42bae",
+    "model_id": "f628ce6fd4b9a58bfae250c773e403130d841ee58096c1703f660b6a0d64fc47",
+    "test": {
+      "predictor_id": "44867cdcd7593e6c0de421b10fc2169542bf0d8c2ad9fa08aa3c34c3095a39e5",
+      "passed": 24,
+      "total": 24,
+      "results": [
+        {
+          "task_id": "05510077fb39ee808fde1f9971c6c16c06c79d7d222a76a571a4304b8b87bf74",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-1",
+              "-5",
+              "-5",
+              "-3",
+              "-3"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "12a11eb1e9a5e2fc59e5da562b0b4dbf650cfb32f0bda7f0269e632e82855050",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "1",
+              "-3",
+              "3",
+              "-5",
+              "-1"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "161d4108d1e587c2ddb58e42e720c98fea3d6cd316eeace48276170ba0684099",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-3",
+              "1",
+              "-1",
+              "-1",
+              "1"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "23942d0f35dac44e4409d342aea37b4cf283b87ab0bbc75951eff20d42b743d8",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "1",
+              "3",
+              "5",
+              "1",
+              "3"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "4463252e3fd0ff94b52c83b7c3f582ff2310f40db8e81fbf31abbaff8241308a",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-3",
+              "-3",
+              "1",
+              "-5",
+              "5"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "46205a7f75766ed9abc05d1c3a0f5bf9f65ec688ecf7094c01d7dc3bd9b14018",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-3",
+              "3",
+              "1",
+              "-1",
+              "-1"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "4e53debda76228f05597b5f7f55a55e16c4ef8c7e1dd1894f71ae8ac0d85d138",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-3",
+              "-3",
+              "-3",
+              "-3",
+              "5"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "55cbf27c2a9487f216eaa97275224d9e459ac8f12e0c01844789a802cbabbb2f",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-5",
+              "-1",
+              "-3",
+              "-3",
+              "1"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "598558f123b49923b21b2748640b8d7771cfc3ebf7cfde016085158c2bea7373",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-1",
+              "-3",
+              "-5",
+              "-5",
+              "5"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "63226fcfc946a8144005dcf03357b4c7697f8315cf7a03deb7de3f990b83cece",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-1",
+              "-1",
+              "1",
+              "3",
+              "-5"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "7949bcb043fa76c949e51db0b2738cf36368eb5085a9f0f05134e35f61aa437e",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "1",
+              "-5",
+              "-5",
+              "5",
+              "-5"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "81ee410f24a8d3f60994cafb1ab3f371d5dee87fac4caa613b1c8abb6553244b",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-3",
+              "5",
+              "3",
+              "3",
+              "-5"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "8e131def395bd954c73d18c3124dc9639ddf4ae9a52de65333cf96aad8aa16c2",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-5",
+              "-1",
+              "-3",
+              "-1",
+              "-3"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "9228ffcc894f0151624eb5ac225ec3ae648795a24a8b26052917f62470f4bff1",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "3",
+              "-3",
+              "5",
+              "3",
+              "-5"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "95e80a03e30012c5bf88463c7f0290b117ddcc7387d6201c976f7314f50b7bc6",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "1",
+              "3",
+              "1",
+              "-3",
+              "5"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "9f788a3f64ea452cd22bcba3efc8a014e6a08153ca790faaef9922623355def4",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-3",
+              "-3",
+              "-5",
+              "-1",
+              "-3"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "b251a203f226043da7be9484ba1d0027d4f853bc71810d66b700a74753145e03",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-5",
+              "-1",
+              "3",
+              "-1",
+              "-1"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "bffc8822fc5ca9e688264b770fe3cf3f009ad3bbe347fef0d665377fb9716e79",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-3",
+              "-1",
+              "-1",
+              "5",
+              "-1"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "c7d7539153fe430cee20b81d409004b9906e9a5fef1dff77364054ab9218763e",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-1",
+              "3",
+              "-3",
+              "5",
+              "-5"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "d0139d661dd652cf110237f016bbf1d201adb561ee2e4c056fc09a17fe018dfa",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "5",
+              "3",
+              "1",
+              "-1",
+              "3"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "da514d0e28c048622ba7042b2dff559493c4284e3dc58a2dacc4627d15ebc4e3",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "5",
+              "5",
+              "-5",
+              "3",
+              "-3"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "e9aad8fb3aa8714313594c8fc54338a1bf0df983b02c33af2bd7b480aff290b1",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-5",
+              "-1",
+              "-3",
+              "-5",
+              "-1"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "eb7a878419279135629b288b273bc37ac23120e2ce46de9df8835f39e0844a3b",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-3",
+              "-1",
+              "-3",
+              "-3",
+              "-5"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        },
+        {
+          "task_id": "ed237914a0d1b1a72c86287b3d57047d70b0dc0f4fe7040534e31770f36cc7a3",
+          "candidate": {
+            "coefficients": [
+              "0",
+              "-1",
+              "1",
+              "5",
+              "3",
+              "3"
+            ]
+          },
+          "verification": {
+            "valid": true,
+            "method": "polynomial_integral",
+            "checks": [
+              "candidate_dimension",
+              "symbolic_derivative_coefficient_identity"
+            ],
+            "errors": [],
+            "formal_proof": false,
+            "verifier_version": "forge-exact-v2"
+          },
+          "valid": true,
+          "error": null
+        }
+      ],
+      "verifier_version": "forge-exact-v2"
+    },
+    "priors": {
+      "claim_scope": "fresh synthetic task holdout within one family; no original reserved benchmark used",
+      "family": "polynomial_integral",
+      "grammar": "closed bounded symbolic grammar",
+      "input_features": [
+        "coefficient",
+        "exponent_plus_one"
+      ],
+      "numeric_domain": "exact rationals",
+      "output_assembly": "zero integration constant followed by predicted components"
+    },
+    "ablations": [
+      {
+        "model_id": "63264e3bb4dc212ba0785c1379fa889f19945c96a087feeced0f3f8b036d1d3e",
+        "test": {
+          "predictor_id": "23618d9cd762ffb6bc6dbcc2b4fd955e861d33271dc90527c0cb57c7405c5829",
+          "passed": 0,
+          "total": 24,
+          "results": [
+            {
+              "task_id": "05510077fb39ee808fde1f9971c6c16c06c79d7d222a76a571a4304b8b87bf74",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-411/752",
+                  "-453/94",
+                  "-5409/752",
+                  "-2169/376",
+                  "-5409/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "12a11eb1e9a5e2fc59e5da562b0b4dbf650cfb32f0bda7f0269e632e82855050",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "303/752",
+                  "-549/188",
+                  "3159/752",
+                  "-3597/376",
+                  "-1839/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "161d4108d1e587c2ddb58e42e720c98fea3d6cd316eeace48276170ba0684099",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1125/752",
+                  "165/188",
+                  "-1125/752",
+                  "-741/376",
+                  "1731/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "23942d0f35dac44e4409d342aea37b4cf283b87ab0bbc75951eff20d42b743d8",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "303/752",
+                  "261/94",
+                  "5301/752",
+                  "687/376",
+                  "5301/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "4463252e3fd0ff94b52c83b7c3f582ff2310f40db8e81fbf31abbaff8241308a",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1125/752",
+                  "-549/188",
+                  "1017/752",
+                  "-3597/376",
+                  "8871/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "46205a7f75766ed9abc05d1c3a0f5bf9f65ec688ecf7094c01d7dc3bd9b14018",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1125/752",
+                  "261/94",
+                  "1017/752",
+                  "-741/376",
+                  "-1839/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "4e53debda76228f05597b5f7f55a55e16c4ef8c7e1dd1894f71ae8ac0d85d138",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1125/752",
+                  "-549/188",
+                  "-3267/752",
+                  "-2169/376",
+                  "8871/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "55cbf27c2a9487f216eaa97275224d9e459ac8f12e0c01844789a802cbabbb2f",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1839/752",
+                  "-48/47",
+                  "-3267/752",
+                  "-2169/376",
+                  "1731/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "598558f123b49923b21b2748640b8d7771cfc3ebf7cfde016085158c2bea7373",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-411/752",
+                  "-549/188",
+                  "-5409/752",
+                  "-3597/376",
+                  "8871/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "63226fcfc946a8144005dcf03357b4c7697f8315cf7a03deb7de3f990b83cece",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-411/752",
+                  "-48/47",
+                  "1017/752",
+                  "45/8",
+                  "-8979/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "7949bcb043fa76c949e51db0b2738cf36368eb5085a9f0f05134e35f61aa437e",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "303/752",
+                  "-453/94",
+                  "-5409/752",
+                  "3543/376",
+                  "-8979/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "81ee410f24a8d3f60994cafb1ab3f371d5dee87fac4caa613b1c8abb6553244b",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1125/752",
+                  "879/188",
+                  "3159/752",
+                  "45/8",
+                  "-8979/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "8e131def395bd954c73d18c3124dc9639ddf4ae9a52de65333cf96aad8aa16c2",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1839/752",
+                  "-48/47",
+                  "-3267/752",
+                  "-741/376",
+                  "-5409/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "9228ffcc894f0151624eb5ac225ec3ae648795a24a8b26052917f62470f4bff1",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "1017/752",
+                  "-549/188",
+                  "5301/752",
+                  "45/8",
+                  "-8979/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "95e80a03e30012c5bf88463c7f0290b117ddcc7387d6201c976f7314f50b7bc6",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "303/752",
+                  "261/94",
+                  "1017/752",
+                  "-2169/376",
+                  "8871/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "9f788a3f64ea452cd22bcba3efc8a014e6a08153ca790faaef9922623355def4",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1125/752",
+                  "-549/188",
+                  "-5409/752",
+                  "-741/376",
+                  "-5409/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "b251a203f226043da7be9484ba1d0027d4f853bc71810d66b700a74753145e03",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1839/752",
+                  "-48/47",
+                  "3159/752",
+                  "-741/376",
+                  "-1839/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "bffc8822fc5ca9e688264b770fe3cf3f009ad3bbe347fef0d665377fb9716e79",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1125/752",
+                  "-48/47",
+                  "-1125/752",
+                  "3543/376",
+                  "-1839/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "c7d7539153fe430cee20b81d409004b9906e9a5fef1dff77364054ab9218763e",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-411/752",
+                  "261/94",
+                  "-3267/752",
+                  "3543/376",
+                  "-8979/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "d0139d661dd652cf110237f016bbf1d201adb561ee2e4c056fc09a17fe018dfa",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "1731/752",
+                  "261/94",
+                  "1017/752",
+                  "-741/376",
+                  "5301/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "da514d0e28c048622ba7042b2dff559493c4284e3dc58a2dacc4627d15ebc4e3",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "1731/752",
+                  "879/188",
+                  "-5409/752",
+                  "45/8",
+                  "-5409/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "e9aad8fb3aa8714313594c8fc54338a1bf0df983b02c33af2bd7b480aff290b1",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1839/752",
+                  "-48/47",
+                  "-3267/752",
+                  "-3597/376",
+                  "-1839/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "eb7a878419279135629b288b273bc37ac23120e2ce46de9df8835f39e0844a3b",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-1125/752",
+                  "-48/47",
+                  "-3267/752",
+                  "-2169/376",
+                  "-8979/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            },
+            {
+              "task_id": "ed237914a0d1b1a72c86287b3d57047d70b0dc0f4fe7040534e31770f36cc7a3",
+              "candidate": {
+                "coefficients": [
+                  "0",
+                  "-411/752",
+                  "165/188",
+                  "5301/752",
+                  "45/8",
+                  "5301/752"
+                ]
+              },
+              "verification": {
+                "valid": false,
+                "method": "polynomial_integral",
+                "checks": [
+                  "candidate_dimension",
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "errors": [
+                  "symbolic_derivative_coefficient_identity"
+                ],
+                "formal_proof": false,
+                "verifier_version": "forge-exact-v2"
+              },
+              "valid": false,
+              "error": null
+            }
+          ],
+          "verifier_version": "forge-exact-v2"
+        }
+      }
+    ],
+    "test_use": "once per campaign ledger",
+    "scope": "fresh within-family synthetic tasks; no cross-family claim; original reserved48 untouched",
+    "report_id": "69b5f930c087d3f4a1a97f569439d47986ee327293b56fbf107c73f156d7d3c5"
+  },
+  "ledger_state": "completed",
+  "ledger_path": "/tmp/nabla-frozen-integral-958000.sqlite"
+}

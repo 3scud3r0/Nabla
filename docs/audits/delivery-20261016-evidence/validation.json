@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-16",
+  "baseline": "38ff4caa9b51df97d29895e52f2ca911e296816b",
+  "full": {
+    "passed": 2036,
+    "skipped": 5,
+    "warnings": 17,
+    "subtests_passed": 309,
+    "exit_code": 0,
+    "command": "OPENBLAS_NUM_THREADS=1 NABLA_LEAN=/workspace/.tools/lean/lean-4.34.0-linux/bin/lean PATH=/workspace/.tools/rust/bin:$PATH .venv/bin/python -m pytest -q --junitxml=.nabla/delivery-20261016/full-final.xml"
+  },
+  "minimal_installed_wheel": {
+    "passed": 1749,
+    "skipped": 292,
+    "subtests_passed": 300,
+    "exit_code": 0,
+    "command": "OPENBLAS_NUM_THREADS=1 NABLA_LEAN=/workspace/.tools/lean/lean-4.34.0-linux/bin/lean PATH=/workspace/.tools/rust/bin:$PATH /tmp/nabla-wheel-env/bin/python -m pytest -q --junitxml=.nabla/delivery-20261016/minimal.xml",
+    "import_path": "/tmp/nabla-wheel-env/lib/python3.12/site-packages/nablamath/pipeline/delivery_cycle.py"
+  },
+  "public_contracts": {
+    "passed": 28,
+    "exit_code": 0
+  },
+  "preservation": {
+    "files_verified": 341,
+    "scientific_validation": false
+  },
+  "initial_failure": {
+    "passed": 2035,
+    "failed": 1,
+    "skipped": 5,
+    "cause": "Read-only SQLite WAL sidecars altered sealed artifact inventory",
+    "corrected": true
+  },
+  "requirements": {
+    "partial": 213,
+    "planned": 0,
+    "validated": 0
+  },
+  "scope": "Local engineering evidence; no external scientific acceptance, GPU execution or Mathlib completion"
+}

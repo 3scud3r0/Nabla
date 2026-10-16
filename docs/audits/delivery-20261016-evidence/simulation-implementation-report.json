@@ -1,0 +1,49 @@
+{
+  "files": [
+    "src/nablamath/physics/fluids/shallow_water_2d.py",
+    "src/nablamath/numeric/transport_2d.py",
+    "src/nablamath/numeric/reaction_diffusion_2d.py",
+    "tests/test_delivery_simulation_20261016.py",
+    "tests/test_delivery_reaction_transport_20261016.py"
+  ],
+  "modified_existing": [
+    "src/nablamath/worlds/mesh/adaptive.py"
+  ],
+  "physical_line_counts": {
+    "src/nablamath/physics/fluids/shallow_water_2d.py": 464,
+    "src/nablamath/numeric/transport_2d.py": 417,
+    "src/nablamath/numeric/reaction_diffusion_2d.py": 590,
+    "tests/test_delivery_simulation_20261016.py": 564,
+    "tests/test_delivery_reaction_transport_20261016.py": 431
+  },
+  "source_lines": 1471,
+  "test_lines": 995,
+  "total_new_physical_lines": 2466,
+  "tests": {
+    "new_simulation": 71,
+    "new_reaction_transport": 40,
+    "existing_mesh": 56,
+    "all_targeted_passed": true,
+    "commands": [
+      ".venv/bin/python -m pytest tests/test_delivery_simulation_20261016.py tests/test_roadmap_integration_mesh.py -q",
+      ".venv/bin/python -m pytest tests/test_delivery_reaction_transport_20261016.py -q"
+    ]
+  },
+  "implemented": [
+    "Conservative wet shallow-water 2D Rusanov finite volume with periodic/wall/outflow boundary flux ledger",
+    "Scalar advection-diffusion2D positivity CFL, source ledger and exact continuum/discrete Fourier references",
+    "Weighted linear unimolecular stiff conversion networks, implicit M-matrix solve, per-edge mass ledger",
+    "Adaptive local reaction step doubling and first-order 2D transport/reaction splitting",
+    "Deterministic numerical schedule replay and tamper-rejecting split-run replay",
+    "Temporal refinement diagnostics and mesh overflow regressions"
+  ],
+  "limits": [
+    "Flat bed and strictly wet bounded shallow-water states; no wetting/drying, topography or turbulence",
+    "Scalar constant-coefficient common-species transport on Cartesian uniform grids only",
+    "First-order linear conversions only; no nonlinear chemistry, energy model or thermodynamic validation",
+    "Symmetric operator ordering remains first order because component methods are first order",
+    "Local error indicators and refinement differences are not rigorous global error enclosures",
+    "Mathematical and manufactured validation only; no experimental validation",
+    "Floating-point ill-conditioned implicit reaction systems may be rejected rather than corrected"
+  ]
+}

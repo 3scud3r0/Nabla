@@ -19,6 +19,9 @@
 
 ## Evidências e limites
 
+- [Entrega integrada de 16/10/2026](audits/DELIVERY_2026_10_16.md) e
+  [contratos e reprodução](acceptance/delivery_profiles_20261016.md).
+
 - [Fundamentos P0 e integração](audits/P0_INTEGRATION_2026_10_15.md),
   [perfil racional executável](acceptance/phase_profiles.md) e
   [matriz dos 213 requisitos](acceptance/evidence_matrix.json).
