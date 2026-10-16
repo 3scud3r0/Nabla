@@ -221,7 +221,10 @@ def make_server(data_dir: Path, port: int = 0) -> tuple[ThreadingHTTPServer, Loc
 
         def do_POST(self):
             origin = self.headers.get("Origin")
-            if (not self._authorized() or origin != f"http://127.0.0.1:{self.server.server_port}"):
+            # GET / accepts both loopback host aliases; POST must enforce the
+            # exact same origin/Host pair and the per-session secret token.
+            host = self.headers.get("Host", "")
+            if not self._authorized() or origin != f"http://{host}":
                 return self._send(403, {"error": "Origem ou sessão inválida"})
             try:
                 size = int(self.headers.get("Content-Length", "0"))
