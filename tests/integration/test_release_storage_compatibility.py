@@ -95,3 +95,18 @@ def test_restore_ignores_unrelated_tmp_file_and_refuses_symlink(tmp_path):
         pytest.skip('Symlink privilege unavailable on this platform')
     with pytest.raises(FileExistsError):
         restore_database(tmp_path/'backup.db', tmp_path/'link.db')
+
+
+def test_migration_accepts_builtin_row_factory():
+    with closing(sqlite3.connect(':memory:')) as db:
+        db.row_factory=sqlite3.Row
+        assert migrate(db)==1
+        assert migrate(db)==1
+
+
+def test_migration_refuses_mislabeled_table_missing_insert_default():
+    with closing(sqlite3.connect(':memory:')) as db:
+        db.execute('CREATE TABLE results(content_id TEXT PRIMARY KEY, payload TEXT NOT NULL, created_at TEXT NOT NULL)')
+        db.execute('PRAGMA user_version=1')
+        with pytest.raises(RuntimeError,match='Default'):
+            migrate(db)

@@ -14,6 +14,8 @@
   efetivamente publicada e aceita migração do schema alpha 0 para 1.
 - Publicação de notebooks e restaurações atômica, sem sobrescrita. Notebooks
   rejeitam chaves duplicadas, versões booleanas e campos inesperados no replay.
+- Laboratório compara o catálogo inteiro ao contrato congelado, corrigindo o
+  contador histórico de 33 operações que reprovava o catálogo atual de 40.
 - `doctor --probe` distingue disponibilidade, versão incompatível e descoberta
   sem teste. Mathlib recebe cache da revisão fixada antes das provas; o setup
   preserva o manifesto em vez de executar atualização livre de dependências.

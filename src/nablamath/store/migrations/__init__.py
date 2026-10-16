@@ -19,13 +19,15 @@ def validate_schema(connection: sqlite3.Connection) -> int:
     ).fetchall()
     if not tables and version == 0:
         return version
-    if set(tables) != {('results', 'table')}:
+    if {tuple(row) for row in tables} != {('results', 'table')}:
         raise RuntimeError('Banco não corresponde ao schema de resultados suportado')
     columns = connection.execute('PRAGMA table_info(results)').fetchall()
     signature = [(row[1], row[2].upper(), row[3], row[5]) for row in columns]
     if signature != [('content_id', 'TEXT', 0, 1), ('payload', 'TEXT', 1, 0),
                      ('created_at', 'TEXT', 1, 0)]:
         raise RuntimeError('Estrutura da tabela results incompatível')
+    if columns[2][4] != 'CURRENT_TIMESTAMP':
+        raise RuntimeError('Default de created_at incompatível')
     return version
 
 

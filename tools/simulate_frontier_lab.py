@@ -128,14 +128,18 @@ def phase_profiles(root):
     def read(name):
         path = root / name
         return json.loads(path.read_text(encoding='utf-8')) if path.is_file() else {}
+    from nablamath.stability import public_contract
+    expected_catalog = public_contract()['catalog']
+    catalog_matches = read('science/calculator-catalog.json') == expected_catalog
     science = read('science/summary.json')
     workload = read('workload/summary.json')
     benchmark = read('independent.json')
     portfolio = read('portfolio/summary.json')
     checks = read('assurance.json').get('checks', {})
     profiles = [
-        ('F1', science.get('calculator_operations') == 33 and science.get('nist_reference_passed') is True,
-         'science/summary.json: calculator replay and published NIST reference'),
+        ('F1', catalog_matches and science.get('calculator_operations') == len(expected_catalog['operations'])
+         and science.get('nist_reference_passed') is True,
+         'science/calculator-catalog.json: frozen catalog; science/summary.json: replay and NIST reference'),
         ('F2', len(benchmark.get('tasks', [])) == 32 and benchmark.get('summary', {}).get('nabla', {}).get('solved') == 32,
          'independent.json: exact answers on 32 constructor tasks'),
         ('F3', checks.get('formal_backend_replayed') is True,
