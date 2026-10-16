@@ -7,6 +7,14 @@
 
 O botão executável abre `http://127.0.0.1:<porta>/`. Só é acessível neste computador. O SQLite e arquivos ficam em `~/NablaMath` (no Windows, a pasta `NablaMath` do usuário). A desinstalação não apaga o banco pessoal.
 
+## Catálogo matemático integrado
+
+O cartão **06 · Catálogo científico integrado** descobre as operações usando `GET /api/catalog` e executa JSON via `POST /api/calculate`. O servidor utiliza exatamente `CalculationSession.execute`, assim como `nabla calc` e o replay dos notebooks. O recibo inclui `content_id`, argumentos e limitações. A UI não executa código Python enviado pelo usuário e continua sujeita ao token local, Host e Origin; tentativas com domínios inválidos retornam erro sem cálculo silencioso. O navegador pode interromper a espera após 30 segundos; isso não representa cancelamento garantido da computação no servidor.
+
+Os recibos multidomínio **não** são inseridos no banco legado `results.sqlite3`, pois aquela tabela é reexecutável exclusivamente para expressões. Para persistência, use `nabla calc ... --notebook arquivo-novo.json` e `nabla replay-notebook arquivo-novo.json`. Não é seguro forçar formatos distintos sob o mesmo ID de registro.
+
+Use `nabla catalog` no terminal para consultar os campos obrigatórios e o domínio de cada operação. O [guia da primeira versão coesa](acceptance/COHESIVE_LOCAL_ALPHA.md) explica os gates ainda pendentes.
+
 ## Botões e arquivos
 
 - **Calcular** avalia uma instância racional e salva cada etapa e a hipótese de denominador não nulo no banco.

@@ -8,7 +8,7 @@ O checkout mantém duas visões textuais do código:
 
 Esses arquivos são agregações para leitura e distribuição. Não são executáveis
 compilados, instaladores nem uma nova fonte canônica para editar o projeto.
-Altere os arquivos originais e regenere os bundles.
+Altere os arquivos originais e regenere os bundles. Um PR com alterações de código que não atualize os bundles deve permanecer como rascunho ou ter checks de integridade não aprovados; executar `--check` depois de recriar os arquivos não substitui o commit dos arquivos regenerados. O primeiro perfil coeso tem [critérios de aceite próprios](acceptance/COHESIVE_LOCAL_ALPHA.md).
 
 ```sh
 .venv/bin/python tools/build_math_bundle.py

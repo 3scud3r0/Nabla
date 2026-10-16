@@ -13,7 +13,7 @@ Esta expansão adiciona **cinco módulos algorítmicos**, uma camada de adaptaç
 | [finite_probability.py](../../src/nablamath/math/exact/finite_probability.py) | Distribuições finitas, momentos, convolução, independência, inferência categórica e Markov | Normalização e identidades com frações exatas |
 | [adapters.py](../../src/nablamath/math/exact/adapters.py) | Validação de operações, roteamento e resultados JSON | Integração única ao catálogo, sem segundo motor de CLI |
 
-O [laboratório anterior](EXACT_LABORATORY.md) permanece intacto em \`laboratory.py\`, e todos os algoritmos podem ser importados pelo namespace \`nablamath.math.exact\`. O ponto de integração é \`src/nablamath/calc/catalog.py\`: operações declaradas entram automaticamente em \`AREAS\`, \`REQUIRED\`, \`OPTIONAL\`, \`CalculationSession.execute\` e \`nabla calc\`. Os recibos da versão 1 e o replay de notebooks permanecem na infraestrutura atual.
+O [laboratório anterior](EXACT_LABORATORY.md) permanece intacto em \`laboratory.py\`, e todos os algoritmos podem ser importados pelo namespace \`nablamath.math.exact\`. O desktop local fornece descoberta e execução pelo mesmo motor de sessão em `GET /api/catalog` e `POST /api/calculate`; consulte [o guia do painel](../DESKTOP.md). O ponto de integração é \`src/nablamath/calc/catalog.py\`: operações declaradas entram automaticamente em \`AREAS\`, \`REQUIRED\`, \`OPTIONAL\`, \`CalculationSession.execute\` e \`nabla calc\`. Os recibos da versão 1 e o replay de notebooks permanecem na infraestrutura atual.
 
 ## 29 operações de cálculo
 
