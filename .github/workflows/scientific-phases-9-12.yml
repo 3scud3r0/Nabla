@@ -1,4 +1,8 @@
 name: Scientific phases 9–12 and audit
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
 on:
   push:
   pull_request:
