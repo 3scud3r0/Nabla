@@ -17,5 +17,25 @@ class LocalCliTests(unittest.TestCase):
             self.assertIn("Resultado exato: 2", process.stdout)
 
 
+    def test_invalid_database_returns_operation_error_without_traceback(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            database=root/'invalid.db'
+            database.write_bytes(b'not a SQLite database')
+            before=database.read_bytes()
+            for arguments in [
+                ['backup',str(root/'backup.db'),'--db',str(database)],
+                ['run','1+1','--db',str(database)],
+            ]:
+                with self.subTest(arguments=arguments):
+                    process=subprocess.run([sys.executable,'-m','nablamath.cli',*arguments],
+                        capture_output=True,text=True,timeout=10)
+                    self.assertEqual(process.returncode,1)
+                    self.assertIn('Erro:',process.stderr)
+                    self.assertNotIn('Traceback',process.stderr)
+                    self.assertEqual(database.read_bytes(),before)
+            self.assertFalse((root/'backup.db').exists())
+
+
 if __name__ == "__main__":
     unittest.main()

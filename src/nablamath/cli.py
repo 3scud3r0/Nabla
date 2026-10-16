@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 from fractions import Fraction
 import json
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -551,7 +552,7 @@ def main(argv: list[str] | None = None) -> int:
             if pdf:
                 print("PDF:", pdf)
         return 0
-    except (ValueError, KeyError, TypeError, ArithmeticError, RuntimeError, OSError, DomainError) as exc:
+    except (ValueError, KeyError, TypeError, ArithmeticError, RuntimeError, OSError, sqlite3.Error, DomainError) as exc:
         print("Erro:", exc, file=sys.stderr)
         return 1
 
