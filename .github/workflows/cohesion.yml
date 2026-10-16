@@ -2,19 +2,7 @@ name: Cohesive local alpha
 on:
   push:
     branches: [main, 'feat/**', 'fix/**']
-    paths:
-      - 'src/nablamath/**'
-      - 'tests/**'
-      - 'tools/cohesion_smoke.py'
-      - '.github/workflows/cohesion.yml'
-      - 'pyproject.toml'
   pull_request:
-    paths:
-      - 'src/nablamath/**'
-      - 'tests/**'
-      - 'tools/cohesion_smoke.py'
-      - '.github/workflows/cohesion.yml'
-      - 'pyproject.toml'
   workflow_dispatch:
 
 permissions:
@@ -42,6 +30,6 @@ jobs:
       - name: Offline cohesion smoke
         run: python tools/cohesion_smoke.py
       - name: Calculator, desktop, exact-math and public API tests
-        run: python -m pytest -q tests/integration/test_cohesive_cli.py tests/integration/test_scientific_desktop_cohesion.py tests/integration/test_advanced_exact_notebook.py tests/math/test_exact_laboratory.py tests/math/test_advanced_exact_integration.py tests/regression/test_public_api.py
+        run: python -m pytest -q tests/integration/test_scientist_demonstration.py tests/integration/test_cohesive_cli.py tests/integration/test_scientific_desktop_cohesion.py tests/integration/test_advanced_exact_notebook.py tests/math/test_exact_laboratory.py tests/math/test_advanced_exact_integration.py tests/regression/test_public_api.py
       - name: Read-only release inventory and catalog contract
         run: python tools/release_readiness.py

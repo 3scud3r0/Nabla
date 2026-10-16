@@ -97,13 +97,21 @@ def verify_wheel_install(wheel):
         subprocess.run([str(python), '-I', '-m', 'pip', 'install', '--no-index', '--no-deps', str(path)],
                        cwd=target, capture_output=True, text=True, check=True, timeout=120)
         # -I plus a cwd outside the checkout forbids accidentally testing local sources.
-        for script in ['tools/release_smoke.py']:
-            result = subprocess.run([str(python), '-I', str(ROOT/script), str(target/'data')],
-                                    cwd=target, capture_output=True, text=True, check=True, timeout=120)
+        result = subprocess.run([str(python), '-I', str(ROOT/'tools/release_smoke.py'), str(target/'data')],
+                                cwd=target, capture_output=True, text=True, check=True, timeout=120)
         report = json.loads(result.stdout)
         if report['version'] != __version__:
             raise ValueError('Installed package version differs from wheel')
-    return {**integrity, 'clean_offline_install': True, 'smoke': report}
+        # A scientist's explicit references exercise every catalog operation
+        # against the installed wheel, without importing the checkout's package.
+        experiment = subprocess.run([str(python), '-I', str(ROOT/'examples/science/reproduce.py'),
+                                     str(target/'science')], cwd=target, capture_output=True,
+                                    text=True, check=True, timeout=120)
+        science = json.loads(experiment.stdout)
+        if science['version'] != __version__ or not science['passed']:
+            raise ValueError('Installed scientific demonstration differs from candidate')
+    return {**integrity, 'clean_offline_install': True, 'smoke': report,
+            'scientific_demonstration': science}
 
 
 def verify_publisher_acceptance(envelope_path, trust_path, artifacts, *, now_unix):

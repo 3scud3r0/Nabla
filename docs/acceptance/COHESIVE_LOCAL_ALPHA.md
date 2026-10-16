@@ -1,5 +1,8 @@
 # Primeiro Nabla coeso — perfil local alpha
 
+> A entrega pessoal 1.0.0 autorizada pelo proprietário segue [PERSONAL_USE_1_0.md](PERSONAL_USE_1_0.md). As condições de manter a versão alpha e de obter aceite externo abaixo permanecem como histórico do contrato de distribuição pública e são dispensadas para uso pessoal. Resultados técnicos não são presumidos.
+
+
 **Estado:** candidato de desenvolvimento **0.1.0a1**, ainda sujeito aos gates de integração, plataforma, segurança e release. Não é versão estável 1.0, produto de descoberta científica geral nem substituto de revisão matemática independente.
 
 Este documento descreve o **caminho único** de uso do Nabla como produto local CPU. O restante do repositório conserva projetos de pesquisa e integrações experimentais sem ampliá-los automaticamente para a primeira versão coesa.
