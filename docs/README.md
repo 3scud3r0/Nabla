@@ -8,12 +8,15 @@
 
 ## Implementação científica
 
+- [Laboratório de matemática racional exata](math/EXACT_LABORATORY.md): álgebra polinomial, Sturm, interpolação, álgebra linear, teoria dos números, cadeias e otimização com limites.
+
+
 | Tema | Guia |
 |---|---|
-| Calculadora e Forge | [Fases 1–2](PHASES_1_2.md) |
-| Provas, refutação e cenas | [Fases 3–4](PHASES_3_4.md) |
-| Studio, datasets, simulação e aprendizado | [Fases 5–8](PHASES_5_8.md) |
-| Discovery, evolução, disciplinas e conhecimento | [Fases 9–12](PHASES_9_12.md) |
+| Calculadora e Forge | [Fases 1–2](phases/PHASES_1_2.md) |
+| Provas, refutação e cenas | [Fases 3–4](phases/PHASES_3_4.md) |
+| Studio, datasets, simulação e aprendizado | [Fases 5–8](phases/PHASES_5_8.md) |
+| Discovery, evolução, disciplinas e conhecimento | [Fases 9–12](phases/PHASES_9_12.md) |
 | APIs ampliadas e reprodução integrada | [Perfis de maturidade](PHASES_MATURITY_EXPANSION.md) |
 | Simulação de uso laboratorial | [Protocolo e comandos](FRONTIER_LAB_SIMULATION.md) |
 

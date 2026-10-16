@@ -5,6 +5,7 @@
 | Expressões | `expression.py`: AST racional, parser restrito e avaliação exata |
 | Cálculo simbólico | `symbolic/`: derivação, primitivas polinomiais, séries, e-graph e certificados |
 | Matemática | `math/`: álgebra, matrizes, grafos, probabilidade, lógica e integradores |
+| Matemática exata avançada | `math/exact/laboratory.py`: polinômios racionais, Sturm, Hermite, matrizes exatas, CRT, recorrências, Markov e LP com caixa; veja [escopo e testes](../math/EXACT_LABORATORY.md) |
 | Contratos | `core/semantic_ir.py`: problemas racionais versionados e identidade semântica |
 | Construção inversa | `forge/reverse_builder.py`: primitivas/soluções escolhidas antes do problema |
 | Solução/verificação | `verify/certificate.py`: solver sem testemunho; derivação independente e resíduos/determinante |
