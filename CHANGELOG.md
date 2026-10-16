@@ -2,6 +2,8 @@
 
 ## 1.0.0 — 2026-10-16 — uso pessoal local CPU
 
+- Demonstração científica em código: 69 operações com referências independentes, campanha de 176 casos, oito famílias Forge, hipótese e controles negativos. Executada também contra o wheel instalado em venv isolada.
+
 - Entrega pessoal autorizada pelo proprietário com dispensa explícita dos aceites externos; escopo em `docs/acceptance/PERSONAL_USE_1_0.md`. Sem alegação de revisão independente ou conclusão científica.
 - Agregados regenerados e verificados no commit candidato; CI de integridade cobre main e PRs.
 - Interoperabilidade instala pytest, usa Node 24 e executa também os testes funcionais.

@@ -37,6 +37,10 @@ nabla replay-notebook primeiro-nabla.json
 python tools/cohesion_smoke.py
 ```
 
+## Demonstração científica reproduzível
+
+[Experimentos em código](examples/science/README.md): todas as 69 operações com referências independentes, 176 casos adicionais, oito famílias Forge, hipótese sintética com pontos reservados, notebook/replay, CLI/HTTP e SQLite. Execute `python examples/science/reproduce.py .nabla/meu-experimento` em um destino novo. Os resultados não constituem prova universal nem validação física.
+
 ## Começar
 
 O núcleo requer **Python 3.10–3.14**. Em um ambiente Python ativado, na raiz do checkout:
