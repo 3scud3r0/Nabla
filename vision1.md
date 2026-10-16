@@ -379,3 +379,17 @@ compilador de disponibilidade Mathlib ainda não verificada. Consulte CHANGELOG.
 e docs/API_STABILITY.md para contratos e limites. Backup/restore agora valida
 manifestos estritos, schema real e concorrência sem sobrescrever um novo destino. Os gates externos acima continuam
 pendentes até existir evidência pertinente; a versão permanece 0.1.0a1.
+
+### Continuação: preparo formal e superfície candidata
+
+`tools/setup_formal_dependencies.py` instala e verifica commits exatos sem baixar
+o histórico completo e sem sobrescrever trabalho local. Os workflows Lean usam
+a receita de checksum e instalação congelada. A checagem de provas agora utiliza
+o compilador diretamente com os caminhos das bibliotecas compiladas e não faz
+resolução de dependências durante a prova. Cache/build ausente gera indisponível,
+não prova aprovada. O cache oficial precisa ser acessível no ambiente.
+
+A superfície candidata foi congelada em `configs/release/local-v1-api.json` e é
+conferida por `tools/check_local_api.py` no readiness. Inclui 40 operações e cinco
+módulos, sem promover os gates externos. Fixtures de notebook do wheel alpha
+anterior exercitam compatibilidade; não há declaração de release estável anterior.

@@ -30,6 +30,19 @@ A versão do pacote permanece 0.1.0a1. Não há declaração de release 1.0.
   remoção; não é apagado automaticamente.
 - Readiness também confere o bundle completo e inventaria todos os arquivos 1.0.
 
+### Preparo formal congelado e regressão de API
+
+- Instalador de dependências usa commits exatos e fetch raso, preservando clones
+  interrompidos apenas por opção explícita. Recusa substituir checkout com outro
+  commit ou mudanças locais. As nove dependências foram instaladas e reutilizadas.
+- Verificação Mathlib é offline: não executa Lake durante a prova, recusa build
+  ausente e versão divergente, e ignora caminhos Lean injetados pelo chamador.
+- Workflows Lean usam compilador com checksum e manifesto congelado; removida a
+  atualização livre de dependências e o bootstrap pelo branch master do elan.
+- Fixture normativa congela a superfície candidata de 40 operações. Notebook
+  capturado de wheel alpha anterior tem replay de compatibilidade real.
+- Notebook recusa orçamento excedido antes de criar arquivo de saída.
+
 ### Migração e limitações
 
 Nenhuma migração automática ou bump para 1.0. Arquivos antes tolerados com contrato

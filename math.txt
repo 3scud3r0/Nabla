@@ -4,7 +4,7 @@ Canonical sources remain at the paths recorded below.
 This artifact aggregates implemented code; it does not claim all mathematics is complete.
 FORMAT_VERSION: 1
 SOURCE_FILES: 503
-SOURCE_LINES: 180125
+SOURCE_LINES: 180163
 
 INDEX (path | sha256 | lines)
 lean/Conformance/affine_square.lean | 8549836e7e12edccbf478ec11bd4aeb48f1b9ec3fbff6ce5619a52568c78fa2e | 2007
@@ -113,7 +113,7 @@ src/nablamath/benchmarks/preregistration.py | 0a7ddba92d3cd44310f5eb39c8deb12439
 src/nablamath/benchmarks/readiness.py | 50e6a978cd67e014b9549c892c9230d195054096dfb297f2b91c373a0327bb5b | 244
 src/nablamath/calc/__init__.py | 5cf78433980a583311a62385e0a089f0d7d17fa298a2e3a9e82b0d6d6655e15a | 5
 src/nablamath/calc/catalog.py | e8416a9e5363bcf59e7281f260732fcab8ab2787ccf81134eeeafa2061f99073 | 135
-src/nablamath/calc/notebook.py | 722080938670a099fe58f0f640d9ecdce5ffee00fb4eb9c8b908830e2048bd1d | 77
+src/nablamath/calc/notebook.py | 98c2772f9572bd147c37b43803b4619ede4eb6b261e05402af8d1b965c1e565f | 80
 src/nablamath/calc/session.py | 25428b02d897437c8eb52497320135de5d8eea0fc0fd3723b3bc2dbbbd24e438 | 243
 src/nablamath/core/__init__.py | ec9ed35a04f8e0b73c215afffe02dd4152432b956dbd06bb7e072628f8a0e32a | 8
 src/nablamath/core/capabilities.py | e16b2917a45a523331337e9c6fe4b0ea78db055a54a746fce998fb558d0a8398 | 92
@@ -240,18 +240,18 @@ src/nablamath/forge/task_spec.py | ee10fb51a8f1ae357cd8ccc2ada3b684048e64fe54e5b
 src/nablamath/formal/__init__.py | fc93031ed1fc5efe74ed8dc81d852e4b3181e38d57a221a2fba0430f5dc55c8a | 23
 src/nablamath/formal/autoformalization.py | 58e070ae0dbef6c8778496fd48f0c1bf2758783d6f46a795ef8bec58ef9366ff | 136
 src/nablamath/formal/bundle.py | d28cf89fa61a510c11764d50b2b95e4efb3df37a5173c58cc714c8bdfb72d6f3 | 74
-src/nablamath/formal/check.py | bf32654de0f9b2dad7ce426b7a07b475a08a406fc3062a65562c74d05422aa3c | 50
+src/nablamath/formal/check.py | bbdaa262c3ac41b1b409f25dabadf6baafe1ded0525ad0e125eace22d331f732 | 59
 src/nablamath/formal/lean_bridge.py | 495bf8b5ff49cee29c15eb1f70c773bf27ffe9380c3e22ea8edf0c4f167a607f | 42
-src/nablamath/formal/lean_checker.py | 0b21d04fa7f98d953d9e3d0df02043f4681b32cf871d216c2b06185502109e42 | 111
+src/nablamath/formal/lean_checker.py | 1ed29cd2b66f45ce9d665d402c056e3c28f2bee8e31e59c8607595e0715186d4 | 137
 src/nablamath/formal/lean_std.py | 7635fc4d081d80beef7bb01fab259bb175d5f0a526fca90c1b2783d390674a3b | 205
 src/nablamath/formal/obligations.py | 40eade7e8a279714ce7207fd88a55a13feb3c949d70b147138935fa099fc1dd6 | 26
 src/nablamath/formal/proof_repair.py | 66515721acf54469e9807db536a15c795b32c418bad16b2ce26129ac032e019e | 71
 src/nablamath/formal/proof_search_planner.py | 231a569477d9e8f20d5d0d18c36eabc0324944ee3286dead0a4a753396c3f049 | 284
 src/nablamath/formal/review.py | 05e110ddda3a9129c3ede849e7cc703ffe29caef7d7db4bcd0468819c3f25332 | 20
-src/nablamath/formal/search.py | 5dcf02ef1dc79dc1d0f0cdec864e2ebff572437698133270da167b6bb28498ae | 118
+src/nablamath/formal/search.py | c42337d72a004e7463a54fe9f0cf74720e92d367a2629d874c42c2bec6dd881f | 118
 src/nablamath/formal/smt_bridge.py | f92a725bac806e4383cc4e60e1202a523a6a1835e9a5f6823eee6468abf4cb6b | 72
 src/nablamath/formal/statement.py | 353156bf7e015e3ade0042b94db7ca362336ef6cc130aef5d2753a894d311802 | 88
-src/nablamath/formal/translate.py | 5e9405aeb223e23959b38c6edbf3252d333d6afa61c1a4aea047b5a704b4689d | 76
+src/nablamath/formal/translate.py | 110a40745f679f031b9417b0525acb8ad767e8e4acb824872351e96c5fe78995 | 76
 src/nablamath/formal/translation_review.py | a1d5ba2d7637154a6d6d6d4bd747d068357e5ac0d06cbb2c636b72db9ca6baa5 | 56
 src/nablamath/gpu/__init__.py | 3110dda9c71fbf8541bacaba96fc6c42a1fe597efd64622388a37099a18495e8 | 17
 src/nablamath/gpu/batch_mcts_kernel.py | c8fc9f8cfbb738f0abb1006961641312b2661c57ee2920e8f3162f0950539bb8 | 129
@@ -150389,15 +150389,15 @@ END FILE: src/nablamath/calc/catalog.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/calc/notebook.py
-SHA256: 722080938670a099fe58f0f640d9ecdce5ffee00fb4eb9c8b908830e2048bd1d
-LINES: 77
+SHA256: 98c2772f9572bd147c37b43803b4619ede4eb6b261e05402af8d1b965c1e565f
+LINES: 80
 ====================================================================================================
 """Portable immutable cell snapshots, hash-chain checks and full operation replay."""
 import json
 from pathlib import Path
 from ..core.semantic_ir import canonical_json,fingerprint
 from .session import CalculationSession
-from ..core.semantic_contracts import load_json, require_fields, require_digest
+from ..core.semantic_contracts import load_json, require_fields, require_digest, validate_json
 
 
 class Notebook:
@@ -150427,8 +150427,11 @@ class Notebook:
         return {**payload,'content_id':fingerprint(payload)}
 
     def save(self,path):
+        data=self.to_data()
+        validate_json(data, max_bytes=16*1024*1024-1, max_nodes=500000)
+        raw=canonical_json(data)+'\n'
         with Path(path).open('x',encoding='utf-8') as stream:
-            stream.write(canonical_json(self.to_data())+'\n')
+            stream.write(raw)
 
     def replay(self):
         previous=None
@@ -159570,15 +159573,15 @@ END FILE: src/nablamath/formal/bundle.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/formal/check.py
-SHA256: bf32654de0f9b2dad7ce426b7a07b475a08a406fc3062a65562c74d05422aa3c
-LINES: 50
+SHA256: bbdaa262c3ac41b1b409f25dabadf6baafe1ded0525ad0e125eace22d331f732
+LINES: 59
 ====================================================================================================
 """Isolated Lean execution with timeouts and diagnostics."""
 from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 import subprocess
-import os
+import re
 import tempfile
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -159595,25 +159598,34 @@ class FormalCheck:
 def _verify_source(source_text: str, content_id: str, project: Path, timeout_s: int, success_detail: str) -> FormalCheck:
     project=project.resolve()
     if not (project/"lakefile.toml").is_file(): raise ValueError("Projeto Lean não encontrado")
-    if not 1<=timeout_s<=900: raise ValueError("timeout fora do intervalo")
-    from .lean_checker import find_lake
+    if type(timeout_s) is not int or not 1<=timeout_s<=900: raise ValueError("timeout fora do intervalo")
+    from .lean_checker import find_lake, offline_mathlib_runtime, run_lean_process, ALLOWED_AXIOMS
     lake=find_lake(project)
     if lake is None: return FormalCheck(False,"lake não encontrado",content_id)
-    environment=dict(os.environ)
-    environment['PATH']=str(lake.parent)+os.pathsep+environment.get('PATH','')
+    try:
+        compiler,environment,expected=offline_mathlib_runtime(project,lake)
+    except ValueError as error:
+        return FormalCheck(False,str(error),content_id)
     if any(token in source_text for token in ('sorry', 'admit', 'axiom ')):
         return FormalCheck(False,"Fonte com admissao ou axioma rejeitada",content_id)
     with tempfile.TemporaryDirectory(prefix="nablamath-lean-") as directory:
         source=Path(directory)/"Check.lean"; source.write_text(source_text,encoding="utf-8")
         try:
-            process=subprocess.run([str(lake),"env","lean",str(source)],cwd=project,env=environment,capture_output=True,text=True,
-                                   timeout=timeout_s,check=False)
+            version=run_lean_process([str(compiler),'--version'],cwd=project,env=environment,timeout=min(timeout_s,20))
+            if version.returncode or not re.search(r'Lean \(version '+re.escape(expected)+r'(?:,|\))',version.stdout):
+                return FormalCheck(False,"Compiler version does not match project pin",content_id)
+            process=run_lean_process([str(compiler),str(source)],cwd=project,env=environment,timeout=timeout_s)
         except FileNotFoundError:
             return FormalCheck(False,"lake não encontrado",content_id)
         except subprocess.TimeoutExpired:
             return FormalCheck(False,"timeout",content_id)
     if "sorry" in process.stdout+process.stderr: return FormalCheck(False,"Admissao Lean rejeitada",content_id)
     if process.returncode: return FormalCheck(False,(process.stderr or process.stdout)[-2000:],content_id)
+    output=process.stdout+'\n'+process.stderr
+    matches=re.findall(r"depends on axioms:\s*\[([^\]]*)\]",output)
+    axioms={name.strip() for group in matches for name in group.split(',') if name.strip()}
+    if (axioms-ALLOWED_AXIOMS or (not matches and 'does not depend on any axioms' not in output)):
+        return FormalCheck(False,"Auditoria de axiomas ausente ou rejeitada",content_id)
     return FormalCheck(True,success_detail,content_id)
 
 def verify_with_lean(result: "ResearchResult", project: Path, timeout_s: int=120) -> FormalCheck:
@@ -159676,8 +159688,8 @@ END FILE: src/nablamath/formal/lean_bridge.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/formal/lean_checker.py
-SHA256: 0b21d04fa7f98d953d9e3d0df02043f4681b32cf871d216c2b06185502109e42
-LINES: 111
+SHA256: 1ed29cd2b66f45ce9d665d402c056e3c28f2bee8e31e59c8607595e0715186d4
+LINES: 137
 ====================================================================================================
 """Compile generated Lean and reject admissions, unmatched translations and nonstandard axioms."""
 from dataclasses import dataclass
@@ -159748,6 +159760,28 @@ class LeanCheck:
         return {**payload,'receipt_id':fingerprint(payload)}
 
 
+def offline_mathlib_runtime(project, lake):
+    """Return only installed compiler/search paths; never resolve Lake packages."""
+    project=Path(project).resolve()
+    pin=(project/'lean-toolchain').read_text(encoding='utf-8').strip()
+    match=re.fullmatch(r'leanprover/lean4:v([0-9]+\.[0-9]+\.[0-9]+)',pin)
+    if not match:
+        raise ValueError('Unsupported Lean toolchain pin')
+    # Proving must never resolve, clone or update dependencies. Lake env can do
+    # all three before even answering --version on an incomplete installation.
+    artifact=project/'.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic.olean'
+    if not artifact.is_file():
+        raise ValueError('Mathlib build missing; run scripts/setup_formal.sh before proving')
+    compiler=lake.with_name('lean.exe' if lake.suffix.lower()=='.exe' else 'lean')
+    environment=dict(os.environ)
+    environment['PATH']=str(lake.parent)+os.pathsep+environment.get('PATH','')
+    paths=[project/'.lake/build/lib/lean']
+    paths.extend(sorted((project/'.lake/packages').glob('*/.lake/build/lib/lean')))
+    environment['LEAN_PATH']=os.pathsep.join(str(path) for path in paths)
+    environment.pop('LEAN_SRC_PATH',None)
+    return compiler, environment, match[1]
+
+
 def check_lean(translation,project=Path('lean'),timeout=120):
     if type(timeout) is not int or not 1<=timeout<=300:
         raise ValueError('Timeout Lean deve estar entre 1 e 300 segundos')
@@ -159762,17 +159796,21 @@ def check_lean(translation,project=Path('lean'),timeout=120):
     lake=find_lake(project)
     if lake is None:
         return result('unavailable','lake not installed')
-    environment=dict(os.environ)
-    environment['PATH']=str(lake.parent)+os.pathsep+environment.get('PATH','')
     try:
-        version=run_lean_process([str(lake),'env','lean','--version'],cwd=project,env=environment,
+        compiler, environment, expected_version=offline_mathlib_runtime(project,lake)
+    except ValueError as error:
+        return result('unavailable',str(error))
+    try:
+        version=run_lean_process([str(compiler),'--version'],cwd=project,env=environment,
                                  timeout=min(timeout,20))
         if version.returncode:
             return result('unavailable',(version.stdout+version.stderr)[-4000:])
+        if not re.search(r'Lean \(version '+re.escape(expected_version)+r'(?:,|\))',version.stdout):
+            return result('unavailable','Compiler version does not match project pin',version.stdout.strip())
         with tempfile.TemporaryDirectory(prefix='nabla-prove-') as directory:
             source=Path(directory)/'Check.lean'
             source.write_text(translation.source,encoding='utf-8')
-            completed=run_lean_process([str(lake),'env','lean',str(source)],cwd=project,env=environment,timeout=timeout)
+            completed=run_lean_process([str(compiler),str(source)],cwd=project,env=environment,timeout=timeout)
     except FileNotFoundError:
         return result('unavailable','Lean runtime missing')
     except subprocess.TimeoutExpired:
@@ -160435,7 +160473,7 @@ END FILE: src/nablamath/formal/review.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/formal/search.py
-SHA256: 5dcf02ef1dc79dc1d0f0cdec864e2ebff572437698133270da167b6bb28498ae
+SHA256: c42337d72a004e7463a54fe9f0cf74720e92d367a2629d874c42c2bec6dd881f
 LINES: 118
 ====================================================================================================
 """Deterministic Lean proof search over a closed, auditable tactic portfolio.
@@ -160519,7 +160557,7 @@ def _source_for_strategy(lhs: Expr, rhs: Expr, *, nonzero: tuple[Expr, ...],
     if strategy == "field_ring" and nonzero:
         hypotheses = ", ".join(f"h{i}" for i in range(len(nonzero)))
         body = f"  field_simp [{hypotheses}] <;> ring\n"
-    return prefix + marker + body
+    return prefix + marker + body + f"\n#print axioms {theorem_name}\n"
 
 
 def search_universal_proof(lhs: Expr, rhs: Expr, project: Path, *,
@@ -160734,7 +160772,7 @@ END FILE: src/nablamath/formal/statement.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/formal/translate.py
-SHA256: 5e9405aeb223e23959b38c6edbf3252d333d6afa61c1a4aea047b5a704b4689d
+SHA256: 110a40745f679f031b9417b0525acb8ad767e8e4acb824872351e96c5fe78995
 LINES: 76
 ====================================================================================================
 """Typed AST -> Lean translation without accepting arbitrary Lean source text."""
@@ -160784,8 +160822,8 @@ def lean_source(result: "ResearchResult") -> str:
     values=dict(result.values)
     return ("import Mathlib.Tactic.Ring\nimport Mathlib.Tactic.FieldSimp\nimport Mathlib.Tactic.Linarith\nimport Mathlib.Tactic.NormNum\n\n"
             f"-- Instância racional {result.content_id}; gerada de AST restrita.\n"
-            f"example : {_term(result.original,values)} = {_rational(result.value)} := by\n"
-            "  norm_num\n")
+            f"theorem nablamath_instance : {_term(result.original,values)} = {_rational(result.value)} := by\n"
+            "  norm_num\n\n#print axioms nablamath_instance\n")
 
 def universal_lean_source(lhs: Expr, rhs: Expr, *, nonzero: Iterable[Expr]=(),
                           theorem_name: str="nablamath_generated") -> str:
@@ -160801,7 +160839,7 @@ def universal_lean_source(lhs: Expr, rhs: Expr, *, nonzero: Iterable[Expr]=(),
     hs=", ".join(f"h{i}" for i in range(len(nonzero)))
     tactic=f"  field_simp [{hs}] <;> ring\n" if hs else "  field_simp <;> ring\n"
     return ("import Mathlib.Tactic.Ring\nimport Mathlib.Tactic.FieldSimp\nimport Mathlib.Tactic.Linarith\nimport Mathlib.Tactic.NormNum\n\n-- Teorema universal gerado de AST tipada pelo NablaMath.\n"
-            f"theorem {theorem_name} {binders} : {lean_term(lhs)} = {lean_term(rhs)} := by\n"+tactic)
+            f"theorem {theorem_name} {binders} : {lean_term(lhs)} = {lean_term(rhs)} := by\n"+tactic+f"\n#print axioms {theorem_name}\n")
 
 def rule_lean_source(rule: RewriteRule) -> str:
     bindings={name:Symbol(name) for name in pattern_variables(rule.lhs)}

@@ -1,0 +1,2305 @@
+{
+  "schema_version": 1,
+  "version": "0.1.0a1",
+  "release_accepted": false,
+  "scope": "Local engineering delivery; external release gates remain open",
+  "source_at_validation": {
+    "sha256": "5b58eb0e3b039912ccf9169184c09af520253bfd0bae203c079d1551695f8fe6",
+    "files": 1548,
+    "head": "65d98ccc1f5f48af166fb6478135f1431768e2eb"
+  },
+  "readiness_report": ".nabla/vision-readiness/20261016T150609841967Z/report.json",
+  "readiness_report_sha256": "cace67fe03961a3a3f58284f63d5874f889e604735993ed57bbfaaffc265873b",
+  "tests": {
+    "skipped": 5,
+    "passed": 2317
+  },
+  "skips": [
+    {
+      "test": "tests.benchmark.test_gpu_real_hardware.test_cuda_exact_f4_hardware",
+      "reason": "could not import 'cupy': No module named 'cupy'"
+    },
+    {
+      "test": "tests.benchmark.test_gpu_real_hardware.test_triton_parent_lookup_hardware",
+      "reason": "could not import 'torch': No module named 'torch'"
+    },
+    {
+      "test": "tests.test_phase3_formal.LeanKernelIntegrationTests.test_actual_numeric_polynomial_and_conditional_proofs",
+      "reason": "optional pinned Lean/Mathlib build absent"
+    },
+    {
+      "test": "tests.test_phase3_formal.LeanKernelIntegrationTests.test_kernel_receipt_replay",
+      "reason": "optional pinned Lean/Mathlib build absent"
+    },
+    {
+      "test": "tests.test_phase3_formal.LeanKernelIntegrationTests.test_real_linear_implication_and_false_statement",
+      "reason": "optional pinned Lean/Mathlib build absent"
+    }
+  ],
+  "steps": [
+    {
+      "name": "roadmap",
+      "status": "passed",
+      "exit_code": 0,
+      "log_sha256": "9e191cec7a93f00e1ee972c2f2f6adf557724d0daddc625e1534c8bff368be07"
+    },
+    {
+      "name": "contracts",
+      "status": "passed",
+      "exit_code": 0,
+      "log_sha256": "cc9c203a517016b29cd8e2cb6ad706e1e70b5f3d90cc9e99ad629caa7d9c4ca4"
+    },
+    {
+      "name": "local-api",
+      "status": "passed",
+      "exit_code": 0,
+      "log_sha256": "5a2bc0171809d5a4a1575df8831956fa5a48b4f3a8b6ab7d1bd52b7e8b6f1ed5"
+    },
+    {
+      "name": "preservation",
+      "status": "passed",
+      "exit_code": 0,
+      "log_sha256": "78a2da347196d0ba076be46243a99b857880a94d8b05592e9987b912ef36ee2a"
+    },
+    {
+      "name": "bundle",
+      "status": "passed",
+      "exit_code": 0,
+      "log_sha256": "7d8186b83860d5307f6da48be9f9120f22db0a8e8b2f40bf082aa9199ebdc4b0"
+    },
+    {
+      "name": "source-bundle",
+      "status": "passed",
+      "exit_code": 0,
+      "log_sha256": "9dadaf2fe8123f8acb666c5c2e4234bfc28319312a79d0c4a5f7398f1faa7d67"
+    },
+    {
+      "name": "vision1-files",
+      "status": "passed",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "pytest",
+      "status": "passed",
+      "exit_code": 0,
+      "log_sha256": "f1f90e115e0aea1b55a23bf139e4527ed5d6fcddfd5f25e4c81f82dae3054612"
+    },
+    {
+      "name": "longley",
+      "status": "passed",
+      "exit_code": 0,
+      "log_sha256": "9e5512ee6d4a029c65b7570ebad81890810cbffc91c461e6c23e25663ca93be7"
+    },
+    {
+      "name": "laboratory",
+      "status": "failed",
+      "exit_code": 1,
+      "log_sha256": "a1cfce702a8fc4584a7f4390404ba7178854418b404dbce1abc96c7fa6a48ec6"
+    },
+    {
+      "name": "calibration",
+      "status": "passed",
+      "exit_code": 0,
+      "log_sha256": "4aeaab66d79b851a9046d98a047bf891b36de77d5028b19eae1eed1c1e394c85"
+    }
+  ],
+  "engineering_checks_passed": false,
+  "inventory": {
+    "schema_version": 1,
+    "files": [
+      {
+        "path": "vision1.md",
+        "exists": true,
+        "sha256": "6bf1cce70423a0be7807dd1aef3ccb2352fd54e504ef98f9d42399b3f27bce23",
+        "bytes": 45467,
+        "expected_content": "Plano da versão 1.0, escopo fechado, arquivos e gates de entrega.",
+        "acceptance": "Revisar e aprovar escopo e responsáveis; manter coerência com a documentação publicada.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "pyproject.toml",
+        "exists": true,
+        "sha256": "1eaa99856adbcd8d47e6787ec3ccf7c54aa81cd0144a464177c6dd4dbe68980b",
+        "bytes": 1544,
+        "expected_content": "Versão, metadados, entrypoints e extras do pacote Python.",
+        "acceptance": "Mudar para 1.0 somente após os gates; build isolado, dependências e SBOM coerentes.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/__init__.py",
+        "exists": true,
+        "sha256": "9eb95d16075ad841e96eaf3b49e85d176453d6838b30f248c4e6df44dc2f4f99",
+        "bytes": 495,
+        "expected_content": "Versão pública e superfície de importação do pacote.",
+        "acceptance": "Versão alinhada ao wheel e política de importação compatível.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/compatibility.json",
+        "exists": true,
+        "sha256": "624d13447b844602a3085e244cc79b68b6d0cf092878142f806b4a4be92a7906",
+        "bytes": 412,
+        "expected_content": "Faixa suportada de Python, SO e integrações.",
+        "acceptance": "Coincidir com a matriz realmente executada para o commit do release.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/compatibility.py",
+        "exists": true,
+        "sha256": "2023697085bc83a60744e970ddc199a41574dce015a66df7931b73f9085e107a",
+        "bytes": 5556,
+        "expected_content": "Diagnóstico de compatibilidade e integrações opcionais.",
+        "acceptance": "Distinguir disponível, indisponível, incompatível e não verificado.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "README.md",
+        "exists": true,
+        "sha256": "28f092c07a827d3236750d26a1962ffdcdd8b730a0cc1206ce7b65fd9c874b65",
+        "bytes": 7628,
+        "expected_content": "Instalação, primeiros usos, escopo e limitações da 1.0.",
+        "acceptance": "Receita reproduzida em ambiente limpo; sem números históricos apresentados como atuais.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "docs/COMPATIBILITY.md",
+        "exists": true,
+        "sha256": "0fe9a972345962629b9822253326181e4d5b99eb53cfb9446252d0191585a75b",
+        "bytes": 1524,
+        "expected_content": "Matriz de plataformas, versões e evidências CI.",
+        "acceptance": "Links dos jobs do commit exato; backends opcionais separados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "docs/API_STABILITY.md",
+        "exists": true,
+        "sha256": "387b1eba1ad964205cf273d6b29b84772fa0dee4862953f827367a29069a74b3",
+        "bytes": 3587,
+        "expected_content": "Política proposta de estabilidade de APIs, formatos, erros e depreciações.",
+        "acceptance": "Publicar o conjunto estável e política de quebra/migração; reaproveitar contratos existentes.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "CHANGELOG.md",
+        "exists": true,
+        "sha256": "288d6ff1ca5d0114101cecfdd029893ae958f74279b1db0979b4a8cb7eaa626a",
+        "bytes": 2965,
+        "expected_content": "Notas propostas de release: funcionalidades, correções, migração e limitações.",
+        "acceptance": "Descrever diferenças reais, incompatibilidades e problemas conhecidos da 1.0.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "SECURITY.md",
+        "exists": true,
+        "sha256": "864ea502c8d07f1a49eeac4480aedd366524b2e28d8a5381aeab19585602276b",
+        "bytes": 830,
+        "expected_content": "Política de reporte e limites operacionais de segurança.",
+        "acceptance": "Revisão do escopo local, dependências, ameaças e caminho de reporte.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "LICENSE",
+        "exists": true,
+        "sha256": "d00df08f310c9adcbab365ece0d09d75ea304cf5b9cd954c4fc40cac9c0e42e8",
+        "bytes": 1282,
+        "expected_content": "Licença do código distribuído.",
+        "acceptance": "Preservar avisos e identificar licenças dos componentes/artefatos de terceiros.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/expression.py",
+        "exists": true,
+        "sha256": "c4d1c5118e0f7ecef5c9d15539a38a1d4d8fa870820b9144c6a1a9ba28c89e2f",
+        "bytes": 4951,
+        "expected_content": "Parser e AST restritos para expressões matemáticas.",
+        "acceptance": "Recusar sintaxe não suportada; preservar hipóteses e limites de custo.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/core/semantic_ir.py",
+        "exists": true,
+        "sha256": "39d8950c2a2fef86ce43f9fe8182366f503d1839a96d9f27d73bb413ffe84a6d",
+        "bytes": 8024,
+        "expected_content": "Representação canônica de pedidos/valores e IDs semânticos.",
+        "acceptance": "Roundtrip e hashes estáveis sob o contrato versionado.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/core/semantic_contracts.py",
+        "exists": true,
+        "sha256": "09f58ce85df948ce80cef68e93a2f768192bcd0b5ff65ac7a376a5c73e706c5b",
+        "bytes": 3278,
+        "expected_content": "JSON canônico, validação de campos, limites e contratos compartilhados.",
+        "acceptance": "Rejeitar dados ambíguos, não finitos, excessivos ou incompatíveis.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/core/types.py",
+        "exists": true,
+        "sha256": "6a9e1150a9c6acb2a25340bb090c77ee222da6f48f2815d5d7d3679bf2de7946",
+        "bytes": 1038,
+        "expected_content": "Tipos científicos e compatibilidade entre operações.",
+        "acceptance": "Distinguir escalares/vetores/matrizes e domínios sem conversões silenciosas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/core/units.py",
+        "exists": true,
+        "sha256": "524a508c7f7112b5fcea637504490830ee6d575a7f3cf8e1078e77221924794d",
+        "bytes": 4054,
+        "expected_content": "Unidades, dimensões e quantidades.",
+        "acceptance": "Propagação dimensional e rejeição de combinações incompatíveis.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/core/precision.py",
+        "exists": true,
+        "sha256": "41f705ba25ea0d0a866fa0d03b4567cad7151fb7efaf9204677b4bb89ece30a4",
+        "bytes": 2126,
+        "expected_content": "Política de precisão e apresentação de aproximações.",
+        "acceptance": "Precisão solicitada satisfeita ou falha explícita, sem confundir aproximação com exatidão.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/core/obligations.py",
+        "exists": true,
+        "sha256": "d64961e3f851c22501dbf6d0eba77894840fb2229ff6cc6d89f5724226d220dc",
+        "bytes": 1987,
+        "expected_content": "Obrigações de domínio independentes da simplificação.",
+        "acceptance": "Preservar polos removíveis, restrições de denominadores e potências.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/core/uncertainty.py",
+        "exists": true,
+        "sha256": "02caff0e4f53d674d10e91d26863b688f0efd38c3cbd86b88c00d1b2ace45f0f",
+        "bytes": 1950,
+        "expected_content": "Incerteza e propagação rastreável.",
+        "acceptance": "Explicitar pressupostos, dependências e diferença entre erro estimado e limite rigoroso.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/core/migration_registry.py",
+        "exists": true,
+        "sha256": "1b79781c8cc39fbf98d88e4fa5202df103711ed3f6fea0b162d026c57983ae3b",
+        "bytes": 1817,
+        "expected_content": "Migrações explícitas de formatos e versões.",
+        "acceptance": "Fixtures antigas migradas ou recusadas com mensagem clara; sem downgrade silencioso.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/core/scientific_artifact.py",
+        "exists": true,
+        "sha256": "d23b75b846dc27085e128f2d29815b150a87668c2adf89f3bb9a22f1c67113a6",
+        "bytes": 5398,
+        "expected_content": "Grafo de artefatos científicos e vínculos por conteúdo.",
+        "acceptance": "Rejeitar pais ausentes, adulterações, nós órfãos e conteúdo fora do perfil.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/core/capabilities.py",
+        "exists": true,
+        "sha256": "e16b2917a45a523331337e9c6fe4b0ea78db055a54a746fce998fb558d0a8398",
+        "bytes": 4886,
+        "expected_content": "Capacidades declaradas e consultas de suporte.",
+        "acceptance": "Contrato corresponder ao que é executável; recusas honestas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/core/resource_profiles.py",
+        "exists": true,
+        "sha256": "3d1ecdc70ad65195d01eae65fab8b1363eb64a6fa7f90a11d6614b4883065ee8",
+        "bytes": 3451,
+        "expected_content": "Orçamentos e perfis de execução.",
+        "acceptance": "Tempo, memória, volume e cancelamento definidos para as operações do release.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/schema/expression.py",
+        "exists": true,
+        "sha256": "324cb1b892a7771ce173ea015687df9565b1cbea78d95731ee85644ef84fe1b4",
+        "bytes": 1117,
+        "expected_content": "Serialização versionada da AST.",
+        "acceptance": "Leitura/validação de fixtures normativas e rejeição de estruturas inválidas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/schema/units.py",
+        "exists": true,
+        "sha256": "e27a781b38c77a63a235e19ac9918b6bbc35a01a3ef53dddfc58fc509abe48de",
+        "bytes": 2681,
+        "expected_content": "Serialização e validação de unidades.",
+        "acceptance": "Preservar significado dimensional no roundtrip e no replay.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/calc/catalog.py",
+        "exists": true,
+        "sha256": "e8416a9e5363bcf59e7281f260732fcab8ab2787ccf81134eeeafa2061f99073",
+        "bytes": 9976,
+        "expected_content": "Catálogo público de operações com argumentos e domínios.",
+        "acceptance": "Congelar schemas, limites e erros de todas as operações declaradas estáveis.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/calc/session.py",
+        "exists": true,
+        "sha256": "25428b02d897437c8eb52497320135de5d8eea0fc0fd3723b3bc2dbbbd24e438",
+        "bytes": 14487,
+        "expected_content": "Sessões, bindings, execução e recibos.",
+        "acceptance": "Replay determinístico dos contratos exatos e tolerâncias explícitas dos aproximados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/calc/notebook.py",
+        "exists": true,
+        "sha256": "98c2772f9572bd147c37b43803b4619ede4eb6b261e05402af8d1b965c1e565f",
+        "bytes": 3852,
+        "expected_content": "Notebooks, cadeia de células e reexecução.",
+        "acceptance": "Compatibilidade de formatos, adulterações detectadas e migração documentada.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/symbolic/differentiate.py",
+        "exists": true,
+        "sha256": "18a93dff5dc2ced335034d5fd764d2c82c505cf166131fa66692d82df4833189",
+        "bytes": 6041,
+        "expected_content": "Diferenciação simbólica no fragmento declarado.",
+        "acceptance": "Hipóteses preservadas e comparação independente por classe de expressão.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/symbolic/integrate.py",
+        "exists": true,
+        "sha256": "691599c603c3a99ae987d8a4c70f737335ebf55264484ee6471615a90cf4b769",
+        "bytes": 2161,
+        "expected_content": "Primitivas no fragmento declarado.",
+        "acceptance": "Certificados por diferenciação e recusas fora do domínio.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/symbolic/egraph.py",
+        "exists": true,
+        "sha256": "a6c100faa7d40091e93321ea5221fd74305cc09682f5aa578e8c5f230d63caf6",
+        "bytes": 17448,
+        "expected_content": "Simplificação por e-graph sob orçamento.",
+        "acceptance": "Preservar domínios e informar saturação incompleta/limite de recursos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/math/calculus/polynomial.py",
+        "exists": true,
+        "sha256": "6916eae4759d187c23ffb2b8f30cba1821a5ee9796f36801eaca420528d4a47d",
+        "bytes": 1126,
+        "expected_content": "API pública de cálculo polinomial.",
+        "acceptance": "Consistência entre derivadas, integrais, limites e séries suportados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/math/calculus/rational_functions.py",
+        "exists": true,
+        "sha256": "d7718bc6b203f718182f341e999e004cadd292ad993ad2f602823ba7fa2860fe",
+        "bytes": 4564,
+        "expected_content": "Normalização de funções racionais e comparação de domínios.",
+        "acceptance": "Identidade algébrica separada da equivalência dos domínios originais.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/math/calculus/limits.py",
+        "exists": true,
+        "sha256": "87bdb48924c2789cbd31ba448438a3ba03fd0a34840214d66b50ca8675b4d755",
+        "bytes": 7010,
+        "expected_content": "Limites laterais e no infinito para racionais.",
+        "acceptance": "Sinais, inexistência bilateral, domínio e replay conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/math/calculus/risch.py",
+        "exists": true,
+        "sha256": "5bc799fe09d6dbf1410b5b88945115413d0ce71e271a1c6bb1b88595b9410ff3",
+        "bytes": 15056,
+        "expected_content": "Integração racional delimitada e certificados de derivada.",
+        "acceptance": "Publicar fragmento realmente suportado; não declarar Risch geral implementado.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/math/analysis/intervals.py",
+        "exists": true,
+        "sha256": "55c26a4640bd52b018037c29b447af5e513f4879016326899bad92009e51a46f",
+        "bytes": 10069,
+        "expected_content": "Intervalos racionais e enclosures polinomiais de Bernstein.",
+        "acceptance": "Revisar majorantes, custo e compatibilidade com os intervalos numéricos existentes.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/math/analysis/quadrature.py",
+        "exists": true,
+        "sha256": "4459c47e61db281dc2ffd0c6d0c274caa0ef4d7bae1fea52521442adec02ae3f",
+        "bytes": 4777,
+        "expected_content": "Quadratura polinomial com resto certificado.",
+        "acceptance": "Intervalo conter a integral; orçamento insuficiente produzir falha, não sucesso parcial.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/math/analysis/certified_functions.py",
+        "exists": true,
+        "sha256": "9b9abd0abe9caca62516cf91a11160fb68f56878944dfc50e019d8002a88c001",
+        "bytes": 5485,
+        "expected_content": "Enclosures delimitados de exp/log/sin/cos.",
+        "acceptance": "Domínios e restos revisados; certificados Python identificados como não Lean.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/numeric/intervals.py",
+        "exists": true,
+        "sha256": "1643ff40951f1a37876b4bf91521bc109b1844189843e5cda9f1972bc9a2a018",
+        "bytes": 1553,
+        "expected_content": "Operações intervalares do backend numérico existente.",
+        "acceptance": "Definir interoperabilidade e arredondamento sem semânticas concorrentes.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/math/linear_algebra/matrices.py",
+        "exists": true,
+        "sha256": "e50aa4bb2e13ece9f354ef15f514a5df9c7cacce5737b5c846dcee8511442c51",
+        "bytes": 4012,
+        "expected_content": "Matrizes e operações racionais básicas.",
+        "acceptance": "Dimensões, singularidade e invariantes conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/math/linear_algebra/solvers.py",
+        "exists": true,
+        "sha256": "26e42403733854662a8d966f1a392f77339784a0e4e5a661275579bef3b87116",
+        "bytes": 4407,
+        "expected_content": "Sistemas, decomposições e condicionamento do perfil público.",
+        "acceptance": "Resíduos/reconstrução e distinção entre solução única, infinita e inconsistente.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/math/probability/absorption.py",
+        "exists": true,
+        "sha256": "22b8cfe3066243cef234867d5b9ab10f2febdef859c30f99497c68092ffbfa82",
+        "bytes": 11747,
+        "expected_content": "Primeira entrada, estacionariedade e recompensas em Markov.",
+        "acceptance": "Momentos condicionais/incondicionais separados; resíduos exatos e periodicidade explícita.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/math/statistics/multivariate.py",
+        "exists": true,
+        "sha256": "b1b68f1d8a7398230d733f4dff3adf79e18177b49a669b2d300513805617042c",
+        "bytes": 2663,
+        "expected_content": "Mínimos quadrados multivariados e hipóteses.",
+        "acceptance": "Referência NIST, rank, pesos e graus de liberdade verificados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "docs/acceptance/scientific_capabilities.yaml",
+        "exists": true,
+        "sha256": "aa88684d9526d437e8d85466d70b25f4a29a16e9939722be1f27e4d71fe7d490",
+        "bytes": 10771,
+        "expected_content": "Domínios, operações, tolerâncias e recusas científicas.",
+        "acceptance": "Refletir o catálogo suportado; não promover aceitação sem evidência.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "docs/CERTIFIED_MATHEMATICS.md",
+        "exists": true,
+        "sha256": "28428c9bae99581230e9e298467b8c4b2243d056925f9432e535a73026e29a88",
+        "bytes": 7421,
+        "expected_content": "Contratos de análise certificada e cadeias finitas.",
+        "acceptance": "Exemplos reproduzidos e fronteiras das garantias explícitas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/formal/statement.py",
+        "exists": true,
+        "sha256": "353156bf7e015e3ade0042b94db7ca362336ef6cc130aef5d2753a894d311802",
+        "bytes": 3523,
+        "expected_content": "Proposições tipadas, relações e obrigações de domínio.",
+        "acceptance": "Hipóteses explícitas e serialização sem perda de significado.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/formal/lean_std.py",
+        "exists": true,
+        "sha256": "7635fc4d081d80beef7bb01fab259bb175d5f0a526fca90c1b2783d390674a3b",
+        "bytes": 9629,
+        "expected_content": "Provas Std por AST, lemas auxiliares e auditoria do kernel.",
+        "acceptance": "Toolchain fixada, ausência de admissions e rejeição de certificados adulterados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/formal/lean_bridge.py",
+        "exists": true,
+        "sha256": "495bf8b5ff49cee29c15eb1f70c773bf27ffe9380c3e22ea8edf0c4f167a607f",
+        "bytes": 2258,
+        "expected_content": "Tradução tipada para o backend Mathlib existente.",
+        "acceptance": "Fonte regenerável e coerência estrutural com o enunciado.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/formal/lean_checker.py",
+        "exists": true,
+        "sha256": "1ed29cd2b66f45ce9d665d402c056e3c28f2bee8e31e59c8607595e0715186d4",
+        "bytes": 6376,
+        "expected_content": "Execução Lean/Mathlib com timeout e auditoria de axiomas.",
+        "acceptance": "Resolver o timeout atual e preservar diagnóstico de pré-requisito/erro real.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/formal/translation_review.py",
+        "exists": true,
+        "sha256": "a1d5ba2d7637154a6d6d6d4bd747d068357e5ac0d06cbb2c636b72db9ca6baa5",
+        "bytes": 2629,
+        "expected_content": "Vínculo entre pergunta, enunciado, domínio e revisão.",
+        "acceptance": "Revisão humana do significado; identidade declarada não é autenticação independente.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/formal/smt_bridge.py",
+        "exists": true,
+        "sha256": "f92a725bac806e4383cc4e60e1202a523a6a1835e9a5f6823eee6468abf4cb6b",
+        "bytes": 4036,
+        "expected_content": "Consultas SMT do fragmento suportado.",
+        "acceptance": "Contraexemplo reexecutado exatamente; status SMT separado de prova pelo kernel Lean.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/falsifier/search.py",
+        "exists": true,
+        "sha256": "b4a684eb5b1a30291da0ccd37177a9ee67fbe895a2d24f3897869feb8cc9760e",
+        "bytes": 4723,
+        "expected_content": "Busca de refutações nos domínios declarados.",
+        "acceptance": "Distinguir contraexemplo encontrado de busca inconclusiva.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/falsifier/shrink.py",
+        "exists": true,
+        "sha256": "5f83a3502b641b871344653c5ec1ae2a8739cc0f28d03639a2f9ee53da1a9f3e",
+        "bytes": 3007,
+        "expected_content": "Redução de contraexemplos com verificação.",
+        "acceptance": "Caso reduzido ainda refutar o enunciado original sob as hipóteses.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/verify/certificate.py",
+        "exists": true,
+        "sha256": "6c757d5ac2ac3a6ba1a43a111fa97cd044428d76696741e51522e0e3f4e0a828",
+        "bytes": 7168,
+        "expected_content": "Construção e revalidação de certificados.",
+        "acceptance": "Reexecutar o backend e vincular fonte, versão, hipóteses e resultado.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "lean/lean-toolchain",
+        "exists": true,
+        "sha256": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632",
+        "bytes": 25,
+        "expected_content": "Versão exata do compilador.",
+        "acceptance": "Fixação consistente com instaladores e CI.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "lean/lakefile.toml",
+        "exists": true,
+        "sha256": "795f06255cc9147110aea8b9e24aa766b13c8abb7d7fde66e093ec8f1c5cd73f",
+        "bytes": 183,
+        "expected_content": "Bibliotecas e dependências formais declaradas.",
+        "acceptance": "Build dos alvos do release sem mudar semântica ou dependências silenciosamente.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "lean/lake-manifest.json",
+        "exists": true,
+        "sha256": "0abd7e57062a42dfd36fe2d5f7cb83051c8eb298304c5a3421e1de5675417a55",
+        "bytes": 3134,
+        "expected_content": "Commits exatos das dependências Lean/Mathlib.",
+        "acceptance": "Instalação congelada e reproduzível; não usar atualização livre para esconder falhas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "scripts/setup_formal.sh",
+        "exists": true,
+        "sha256": "17216dc94d727bd6a2a585be6bc9fe6980da9f2f0c828d50c175b4634da3f7cf",
+        "bytes": 1194,
+        "expected_content": "Preparação completa do perfil Mathlib.",
+        "acceptance": "Checksum e build concluídos no orçamento suportado.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "scripts/setup_lean_std.sh",
+        "exists": true,
+        "sha256": "e56059c9666c74d2532cbffb6b481c8cd056ea6cfea78c031c83e4831cf8bcf4",
+        "bytes": 1246,
+        "expected_content": "Preparação independente do perfil Std.",
+        "acceptance": "Repetibilidade com checksum e sem reinstalação concorrente durante execução.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tools/rational_proof_corpus.py",
+        "exists": true,
+        "sha256": "0f6c50fbc3a7fafee587ebc93e846981291afb476ef03d69d7228dea0d410f62",
+        "bytes": 12396,
+        "expected_content": "Geração e compilação/auditoria das 60 unidades do corpus público.",
+        "acceptance": "30.000 nomes esperados verificados; falhas/timeouts preservados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "lean/Conformance/manifest.json",
+        "exists": true,
+        "sha256": "0826b2bde488be4d42b5c82c3fe784153ad0079e1811ffdcfa9b887cfe9dadea",
+        "bytes": 4661377,
+        "expected_content": "Protocolo e hashes dos 30.000 teoremas.",
+        "acceptance": "Corresponder às fontes emitidas e à evidência do kernel.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "docs/LEAN_STD.md",
+        "exists": true,
+        "sha256": "58a22811eecc6cbdb15a42b726c5a00a9590f5066127375b83f1e8414625a06b",
+        "bytes": 3552,
+        "expected_content": "Instalação, tradução e limites do backend Std.",
+        "acceptance": "Distinguir teorema condicionado, hipóteses satisfatíveis e evidência científica.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/forge/task_spec.py",
+        "exists": true,
+        "sha256": "ee10fb51a8f1ae357cd8ccc2ada3b684048e64fe54e5b241f083cbc28b8d9b3e",
+        "bytes": 5633,
+        "expected_content": "Schema de tarefas sintéticas e hipóteses.",
+        "acceptance": "Versão, origem, semente e domínio definidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/forge/reverse_builder.py",
+        "exists": true,
+        "sha256": "316497f21f0012ee69631e2c4449aaa9045135e31261e096fa16d73ceab1fcad",
+        "bytes": 1533,
+        "expected_content": "Construção inversa dos problemas do perfil.",
+        "acceptance": "Problema resolvido/verificado sem depender do testemunho do construtor.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/verify/trace.py",
+        "exists": true,
+        "sha256": "4b66407634b5c36221b6e3d30372afcf955a077dc744b53042a078d6f57b9d5d",
+        "bytes": 6917,
+        "expected_content": "Trace e conferência das etapas de solução.",
+        "acceptance": "Rejeitar vínculos e passos adulterados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/pipeline/scientific_cycle.py",
+        "exists": true,
+        "sha256": "69ca8ef45094d8f4f4cdf977e4df35db3c1d81840dd68f2d136da17617ef541e",
+        "bytes": 4305,
+        "expected_content": "Ciclo público completo de artefato científico.",
+        "acceptance": "Reexecução e detecção de adulteração de cada ligação.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/pipeline/artifact_store.py",
+        "exists": true,
+        "sha256": "8b2dde94864764face9d8a318d94337046ab81a78d9c44899887029d4e2cc2db",
+        "bytes": 756,
+        "expected_content": "Publicação local atômica de artefatos aceitos.",
+        "acceptance": "Nenhum destino aceito parcialmente em caso de falha.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/pipeline/provenance.py",
+        "exists": true,
+        "sha256": "e0e63368324d0c8e4f9d75d74164a3cf642fb31cc7e581bf8444c07ef4396461",
+        "bytes": 560,
+        "expected_content": "Linhas de origem e dependência.",
+        "acceptance": "Identificar fontes e separar declaração de procedência de autenticação.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/datasets/schema.py",
+        "exists": true,
+        "sha256": "111510dd5520cb74a15c5cdb01da810cbf63974674a78f3d89d235a2eeb9c127",
+        "bytes": 4847,
+        "expected_content": "Schema dos registros do perfil estável.",
+        "acceptance": "Versões, campos e migrações congelados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/datasets/serializer.py",
+        "exists": true,
+        "sha256": "13fa1780df16580372497e94db019fee433b21d28c7f44a1342603a8dfe4a4d8",
+        "bytes": 3533,
+        "expected_content": "Serialização limitada e verificável.",
+        "acceptance": "Leitura/escrita com limites, erros e hashes coerentes.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/datasets/semantic_fingerprint.py",
+        "exists": true,
+        "sha256": "a389f4741f844c2d6f2ea76d8736902c4b8b9d92d17af7b7e7a11f8859f3bce7",
+        "bytes": 229,
+        "expected_content": "Identidade semântica para deduplicação.",
+        "acceptance": "Casos equivalentes conhecidos e limitações documentados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/datasets/split_policy.py",
+        "exists": true,
+        "sha256": "4a82fa2dbde550257392b2e76bccb9170c390925574fb5bd95667c80124e69aa",
+        "bytes": 979,
+        "expected_content": "Separação de treino/validação/teste.",
+        "acceptance": "Não usar avaliação reservada para selecionar geração ou parâmetros.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/datasets/curation.py",
+        "exists": true,
+        "sha256": "2c557d2eb91096f12c36913ec18a0a7337e2ae116f0cae1958ffb2d455f6fd33",
+        "bytes": 1158,
+        "expected_content": "Curadoria com origem, licença e decisões rastreáveis.",
+        "acceptance": "Rejeitar conteúdo sem requisitos de redistribuição satisfeitos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/datasets/quality_gate.py",
+        "exists": true,
+        "sha256": "fde8430cf3b977ac5d69d79eb1ce136792d699f3e8faeb5d0709f5c0e9e0189f",
+        "bytes": 2563,
+        "expected_content": "Gates de qualidade antes de exportar/publicar.",
+        "acceptance": "Casos negativos e adulterações não produzirem artefato aceito.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/datasets/model_card.py",
+        "exists": true,
+        "sha256": "b6302887fe355e54d5c5cd9884fa03fc966b54ed4c8b6160df73b3be94a337f2",
+        "bytes": 1810,
+        "expected_content": "Ficha de dados e limitações.",
+        "acceptance": "Descrever origem, finalidade, partições e limites reais.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/export/jsonl.py",
+        "exists": true,
+        "sha256": "8f3e58e40a5d43584ad98dd188d7e94e640578208ff314d8bebb1004a8947725",
+        "bytes": 628,
+        "expected_content": "Exportação JSONL do perfil.",
+        "acceptance": "Roundtrip, limites e falha atômica.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/export/parquet.py",
+        "exists": true,
+        "sha256": "1522cbcca87ea4d2b1fe629d77768150bb4d9b572dbb22503af353f889d7b9f9",
+        "bytes": 5420,
+        "expected_content": "Exportação Parquet opcional.",
+        "acceptance": "Mesmo significado dos registros e recusa clara sem dependência instalada.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/export/bundle.py",
+        "exists": true,
+        "sha256": "267a8dffd6bd46e0d09c169f321361dc85ab63cf21185f90ebaaaa27a962a6ea",
+        "bytes": 4650,
+        "expected_content": "Bundle com conteúdo, manifesto e verificadores.",
+        "acceptance": "Importação revalidada e proteção contra adulteração.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/export/huggingface.py",
+        "exists": true,
+        "sha256": "12f7105fa079301886d84705d9bd0cf42e1f38426d6715e949ab700fba33e5ee",
+        "bytes": 1449,
+        "expected_content": "Integração opcional de publicação.",
+        "acceptance": "Destino/licença/consentimento explícitos; valores secretos não persistidos indevidamente.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/cli.py",
+        "exists": true,
+        "sha256": "1a3530de3d0f416859d712f27b5983b3eac57b7cf0a96e964273eff475e1d26e",
+        "bytes": 36469,
+        "expected_content": "Comandos públicos, validação e status de saída.",
+        "acceptance": "Fluxo principal reproduzível e erros estáveis para automação.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/storage.py",
+        "exists": true,
+        "sha256": "aeecc08d8e8ddfa314bcd46f02c3905ea9446945368a8521f7b7e689fc5c3275",
+        "bytes": 5382,
+        "expected_content": "Compatibilidade de armazenamento e importação existentes.",
+        "acceptance": "Preservar registros anteriores ou fornecer migração explícita.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/store/migrations/__init__.py",
+        "exists": true,
+        "sha256": "668629292c2d6195d32f93edbf111c89ad64234bcad4d301f88b5dadb8eb7bc2",
+        "bytes": 1055,
+        "expected_content": "Migrações transacionais da base.",
+        "acceptance": "Upgrade de todas as versões declaradas suportadas e recusa de banco inválido.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/store/backup.py",
+        "exists": true,
+        "sha256": "16aba351275c272de1e5e83c755aa49ec5d624218ea2bcbd7b0d0c06a585fe02",
+        "bytes": 5642,
+        "expected_content": "Backup e restauração com integridade.",
+        "acceptance": "Restauração exercitada com fixtures de versões anteriores.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/desktop/app.py",
+        "exists": true,
+        "sha256": "8f1fee2fc7c230dab6d084649a0b30e4e417b9d80d9538b7b677ebf31893db99",
+        "bytes": 12727,
+        "expected_content": "Servidor local, autenticação de sessão e fluxos públicos.",
+        "acceptance": "Cálculo, histórico, exportação, erros e consentimento testados por HTTP.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/desktop/index.html",
+        "exists": true,
+        "sha256": "0d30e6317ace084ac5f8b8ec6ed90d55dc94764d03b0276e1f51cf1a0fac2961",
+        "bytes": 12305,
+        "expected_content": "Interface local, estados de execução e avisos de domínio.",
+        "acceptance": "Revisão de usabilidade/acessibilidade e prevenção de alegações científicas indevidas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/desktop/launcher.py",
+        "exists": true,
+        "sha256": "72f747274fad14897a76c900ee462d0b9cdedc649032c709c1a74741c030aa31",
+        "bytes": 154,
+        "expected_content": "Inicialização e ciclo de vida do aplicativo.",
+        "acceptance": "Instalação/inicialização/encerramento nos SOs suportados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/desktop/workflows.py",
+        "exists": true,
+        "sha256": "8d081e492e1772a2f098d92c4865e43e97c9c304badf801efd3880c1100577e9",
+        "bytes": 6048,
+        "expected_content": "Fluxos integrados do desktop.",
+        "acceptance": "Histórico, artefatos e consentimento coerentes com o backend.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/agents/sandbox.py",
+        "exists": true,
+        "sha256": "66ae7622c442f665d9a66b5a4525ec6e457f8d8d9af5dd3e5e93bb0e90294435",
+        "bytes": 228,
+        "expected_content": "Recusa de código arbitrário no perfil local.",
+        "acceptance": "Preservar recusa até existir sandbox real validado; não substituir por eval/subprocess irrestrito.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/agents/permissions.py",
+        "exists": true,
+        "sha256": "f8146ea2c61766e1c03feb5897ac1b83d4029b2fd6641eea4c8a1bb709e8ec5a",
+        "bytes": 1084,
+        "expected_content": "Permissões explícitas de ferramentas confiáveis.",
+        "acceptance": "Sem escalada implícita de autoridade ou acesso.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/agents/tool_registry.py",
+        "exists": true,
+        "sha256": "15a49c17929ec83936429177ad632104b16830b2fc53c90b402d8dcdea6e0f7c",
+        "bytes": 4454,
+        "expected_content": "Registro de ferramentas locais permitidas.",
+        "acceptance": "Schemas, limites, efeitos e versões declarados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "configs/profiles/cpu_conservative.yaml",
+        "exists": true,
+        "sha256": "2522836a0a0abdb71cffce4bc616f1364b60cd6d59482778e6f7063b271172f4",
+        "bytes": 197,
+        "expected_content": "Perfil de recursos de CPU acessível.",
+        "acceptance": "Limites medidos, cancelamento e mensagens de orçamento documentados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "configs/profiles/cpu_balanced.yaml",
+        "exists": true,
+        "sha256": "e478d0d8ae1188ffe2ec61a934edba13f5fb3b47bf10787958a8f0eaec37cd67",
+        "bytes": 194,
+        "expected_content": "Perfil de CPU intermediário.",
+        "acceptance": "Mesmo contrato científico e diferenças de recurso declaradas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "packaging/offline_release.py",
+        "exists": true,
+        "sha256": "8f61ec33b670ef76afc0f6566c717f1214ae4bb7bd83aa901d70d0d2e9e8a712",
+        "bytes": 5219,
+        "expected_content": "Preparação de distribuição e dependências offline do perfil.",
+        "acceptance": "Instalação sem downloads inesperados e integridade do conjunto.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "packaging/staged_release.py",
+        "exists": true,
+        "sha256": "0f01085ff4115fc4828de521a98cea07498f8ab880dfe41f09d23b7bd430aef5",
+        "bytes": 41097,
+        "expected_content": "Gates e promoção de release com evidência preservada.",
+        "acceptance": "Não promover release com gate obrigatório falho.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "packaging/signed_release.py",
+        "exists": true,
+        "sha256": "bc382775c4413195059c0eaeb8c91d545ac1272ea3d12a5f0d90c5c05c75a5da",
+        "bytes": 36036,
+        "expected_content": "Assinatura e proveniência dos artefatos.",
+        "acceptance": "Autoridade real configurada e verificação pelo destinatário; não inventar assinatura.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "packaging/windows/nablamath.iss",
+        "exists": true,
+        "sha256": "048f2972a48a3b626ff3e52cfc3347da18255e2fea02a01c6fa1a5ba926ef0c7",
+        "bytes": 928,
+        "expected_content": "Instalador Windows da versão exata.",
+        "acceptance": "Instalar/atualizar/desinstalar em máquina limpa e preservar dados pessoais.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "setup.sh",
+        "exists": true,
+        "sha256": "6e61bdf644fe0bfb6ea9d31a5679a1747526174f96af1122e49e65bb047099a3",
+        "bytes": 182,
+        "expected_content": "Receita suportada de instalação Linux/macOS quando declarada.",
+        "acceptance": "Não prometer suporte a SO não exercitado.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "setup.ps1",
+        "exists": true,
+        "sha256": "680cd40d26c65810b7ff0d166e6cf5d909e636a291ef07032e39d925b03bf594",
+        "bytes": 883,
+        "expected_content": "Receita PowerShell.",
+        "acceptance": "Dependências e erros diagnósticos coerentes com o instalador.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "setup.cmd",
+        "exists": true,
+        "sha256": "0241bef408ecd99653c1ed0d11b2981665c02035860382013ee2d6742c8a9039",
+        "bytes": 106,
+        "expected_content": "Entrada Windows para preparação.",
+        "acceptance": "Delegação previsível e propagação do exit status.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "protocol/schema/nabla-object-v1.json",
+        "exists": true,
+        "sha256": "23d8767e1b8f517d4db4cbe92c91e514c06a57cf929f407bca43b0b29a15a05c",
+        "bytes": 985,
+        "expected_content": "Schema público selecionado de objetos.",
+        "acceptance": "Fixtures normativas e migração de versão sem quebra silenciosa.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "protocol/schema/nabla-task-v1.json",
+        "exists": true,
+        "sha256": "1bd4f9604a5a9e7f744e415841c259df82075a23a7c572f8de12adff26e03123",
+        "bytes": 1133,
+        "expected_content": "Schema público selecionado de tarefas.",
+        "acceptance": "Validação equivalente entre implementações suportadas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "protocol/schema/nabla-receipt-v1.json",
+        "exists": true,
+        "sha256": "3b1133c35ff57a1a0ba726190091f64cdd7235469274383f758dfadeb1722e58",
+        "bytes": 857,
+        "expected_content": "Schema público selecionado de recibos.",
+        "acceptance": "Hipóteses, status e versões preservados entre linguagens.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "sdk/python/client.py",
+        "exists": true,
+        "sha256": "35383c06e05fb1aca367c8384c07e85a36a7df65fecb013cf24cc3920f69b4c3",
+        "bytes": 7454,
+        "expected_content": "Cliente Python dos endpoints que forem declarados estáveis.",
+        "acceptance": "Conformidade, erros e timeout; endpoints não congelados permanecem experimentais.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "sdk/typescript/client.ts",
+        "exists": true,
+        "sha256": "b62f78bfb7f137a20099259f29f943648bc537b53106960d404b640a996c400f",
+        "bytes": 6432,
+        "expected_content": "Cliente TypeScript do mesmo subconjunto.",
+        "acceptance": "Executar no runtime suportado e comparar fixtures comuns.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "sdk/rust/src/client.rs",
+        "exists": true,
+        "sha256": "1b5190c45fe5c53f49ef8d158a71a5b7e2efe646cca61e404f6acbda87d65f2e",
+        "bytes": 5285,
+        "expected_content": "Cliente Rust do subconjunto selecionado.",
+        "acceptance": "Execução real Rust; auditoria de API/ABI antes de alegar estabilidade.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "sdk/c/nabla_fraction.c",
+        "exists": true,
+        "sha256": "1b3985d51a8de9500dbc9661dc7e2d342616bd622c16dd7776cbd1c4420b9d58",
+        "bytes": 1468,
+        "expected_content": "Semântica racional interoperável em C.",
+        "acceptance": "Golden vectors iguais aos demais bindings.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "sdk/c/nabla_fraction.h",
+        "exists": true,
+        "sha256": "a96b230e999f27d0ccb1a17bd88fea2118df512acdeb5b8013ce01077fb15483",
+        "bytes": 416,
+        "expected_content": "Cabeçalho do contrato C selecionado.",
+        "acceptance": "Contrato de memória/erros e compatibilidade explícitos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "sdk/cpp/nabla_fraction.hpp",
+        "exists": true,
+        "sha256": "293558e5108032e648fa7d5ed7d3f4db0002d8399c0a6e4675e3e60bbbe56cc3",
+        "bytes": 301,
+        "expected_content": "Binding racional C++.",
+        "acceptance": "Mesmo contrato matemático e casos de erro.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/documents/document_model.py",
+        "exists": true,
+        "sha256": "7adf25deb3eba8dfb21785a280faf76f2088d3cf183bda0e231298af88c5b3f9",
+        "bytes": 4714,
+        "expected_content": "Modelo editorial estruturado.",
+        "acceptance": "Vínculos entre afirmações, equações, tabelas, figuras e evidências.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/documents/html_exporter.py",
+        "exists": true,
+        "sha256": "09687a980b08dbc047489d529e28ac280ae906373743493e40718411a57de1d3",
+        "bytes": 113,
+        "expected_content": "Exportação HTML.",
+        "acceptance": "Escapamento, links e conteúdo coerentes com os artefatos originais.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/documents/latex_exporter.py",
+        "exists": true,
+        "sha256": "e40a808c6f41bd5f8ecfee767e6b61d05c29390e33a3901a1e2a84f27f43cd5e",
+        "bytes": 116,
+        "expected_content": "Exportação LaTeX delimitada.",
+        "acceptance": "Conteúdo reproduzível e erros de backend explícitos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/documents/typst_exporter.py",
+        "exists": true,
+        "sha256": "e97a9d051a3965761a139f0fc6b4cf5f131827c05619427da7723739952903b0",
+        "bytes": 116,
+        "expected_content": "Exportação Typst delimitada.",
+        "acceptance": "Semântica editorial coerente com HTML/LaTeX.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/documents/pdf_builder.py",
+        "exists": true,
+        "sha256": "5e67c1febe52b429d0d02d8213076717fb2095cdaea0a6ff6608a97020432df8",
+        "bytes": 2866,
+        "expected_content": "Compilação PDF opcional do perfil.",
+        "acceptance": "Compilação real e revisão visual separadas; ausência de compilador não vira sucesso.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/graphics/scene_graph.py",
+        "exists": true,
+        "sha256": "361cecced025e6f9a7a730b6fecc5b91cbd58edd4beeed340a0db85fef83e5c9",
+        "bytes": 8042,
+        "expected_content": "Cenas científicas e metadados.",
+        "acceptance": "Figuras vinculadas ao cálculo e às suas unidades/hipóteses.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/graphics/svg_renderer.py",
+        "exists": true,
+        "sha256": "3e25a3197f5d70939ba55c81ce34105a0b9bb3efacf2e7e5aeab1174cea03705",
+        "bytes": 1352,
+        "expected_content": "Renderização SVG.",
+        "acceptance": "Determinismo, escaping e limites do formato.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "src/nablamath/graphics/raster_renderer.py",
+        "exists": true,
+        "sha256": "0a2c88fe56a30848a2184849cb2067e9f7937c2a2b89c573f632b3423c751642",
+        "bytes": 1998,
+        "expected_content": "Renderização raster opcional.",
+        "acceptance": "Comparação com cena de origem e disponibilidade explícita do backend.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "docs/DESKTOP.md",
+        "exists": true,
+        "sha256": "a8b6e2934bd368d89d10c34d9c6e777a96cae17a60fffba33f70909121a9bddf",
+        "bytes": 3073,
+        "expected_content": "Guia do aplicativo local.",
+        "acceptance": "Explicar armazenamento, ações, exportação, consentimento e limites.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/regression/test_public_api.py",
+        "exists": true,
+        "sha256": "b6dd39bcd18bfdcf77d42f67f2ae63b6e1d8f3410a341d1a57af55b251accdd9",
+        "bytes": 3686,
+        "expected_content": "Compatibilidade de API e formatos públicos.",
+        "acceptance": "Fixtures reais de versões anteriores e casos de quebra rejeitada.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/regression/test_portable_io.py",
+        "exists": true,
+        "sha256": "29e3b918144844da2209067db917a94a394817d460e07e42b32536bb946e1784",
+        "bytes": 2388,
+        "expected_content": "Portabilidade de caminhos e bytes.",
+        "acceptance": "Resultados coerentes em Linux/Windows.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/integration/test_cli_local.py",
+        "exists": true,
+        "sha256": "ab877c725115da5635f05e29881f63de74dfdd687e3bbe993493922acd83c13e",
+        "bytes": 734,
+        "expected_content": "Fluxo CLI com dados e saídas reais.",
+        "acceptance": "Exit status e efeitos esperados, inclusive falhas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/integration/test_desktop.py",
+        "exists": true,
+        "sha256": "56cf03e97c399583db668b3c0fc10499f7253ed7b33533cea88fd0bb0427c2c6",
+        "bytes": 3353,
+        "expected_content": "Fluxos HTTP do desktop.",
+        "acceptance": "Requisição funcional, persistência e proteção de sessão/origem.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/integration/test_backup_restore.py",
+        "exists": true,
+        "sha256": "851e545c26b1c910071e3f227cdeab8de79b7c07c141d1e20b4fcd384f730f91",
+        "bytes": 6247,
+        "expected_content": "Ciclo de backup/restore.",
+        "acceptance": "Integridade e compatibilidade das versões suportadas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/integration/test_scientific_artifact.py",
+        "exists": true,
+        "sha256": "fd53ec12f34ed74785c10e86d19ee9672320fcc0cdb38fa0e93f16a639a1559e",
+        "bytes": 7635,
+        "expected_content": "Ciclo do artefato e adulterações de vínculos.",
+        "acceptance": "Reexecução de todos os nós e recusa de conteúdo inconsistente.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/integration/test_global_scientific_cycle.py",
+        "exists": true,
+        "sha256": "cb818be56ded423555ce4ef1487d9e534903a62bbb544be2b3a27d362e23505c",
+        "bytes": 2118,
+        "expected_content": "Integração de componentes públicos.",
+        "acceptance": "Perfil 1.0 executado sem simular aprovação de módulos indisponíveis.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/security/test_agent_sandbox.py",
+        "exists": true,
+        "sha256": "57dc18de79ce74217083e54ce7a25dc9373a36f23bc46baaf96c3e43704bbde9",
+        "bytes": 14348,
+        "expected_content": "Recusas e limites de ferramentas.",
+        "acceptance": "Não declarar resistência a escapes de sandbox inexistente.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/security/test_supply_chain.py",
+        "exists": true,
+        "sha256": "759b5f7b17a8effec15a175a5cde1e6c67338c75ad7bed88b96a0d95e51e2090",
+        "bytes": 2583,
+        "expected_content": "Integridade da cadeia de distribuição.",
+        "acceptance": "Adulteração de fonte/artefato/dependência detectada.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/math/test_certified_analysis.py",
+        "exists": true,
+        "sha256": "948b0834f90c8977d9da7fe63c0b8d46ce3c4c4cb36ee61036af0669818fb20c",
+        "bytes": 7597,
+        "expected_content": "Enclosures e quadratura contra referências independentes.",
+        "acceptance": "Casos-limite, orçamento e adulterações com hash recalculado.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/math/test_markov_analysis.py",
+        "exists": true,
+        "sha256": "ac1fd2e43f325980e01fe58d1169a0645c4cc1d6e72d541d233c512b46cf7265",
+        "bytes": 6378,
+        "expected_content": "Probabilidades e momentos contra leis e oráculos.",
+        "acceptance": "Distinguir condicionamento, recorrência, período e divergência.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/test_rational_sided_limits.py",
+        "exists": true,
+        "sha256": "7c44dcd4c013e9b91f2cbeddfd992ba7fa19064d51ac19c43b05baccdd9c87ab",
+        "bytes": 7019,
+        "expected_content": "Limites laterais/infinito e replay.",
+        "acceptance": "Polos, buracos de domínio e casos fora do perfil.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/test_lean_std.py",
+        "exists": true,
+        "sha256": "d7e193ba3075ca9406f86d168d7dbaff586ffb22fa0fd91920de0369ac815fb8",
+        "bytes": 7442,
+        "expected_content": "Provas reais, enunciados falsos e recibos adulterados.",
+        "acceptance": "Executar kernel e auditoria; skips não são aprovação.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/test_proof_corpus_sharding.py",
+        "exists": true,
+        "sha256": "70b81bdddbb9f966f5b672b3c073b1c2862e8782142ed02c417b509da3dae616",
+        "bytes": 1631,
+        "expected_content": "Partição do corpus e limites dos índices.",
+        "acceptance": "Nenhum teorema omitido/duplicado entre unidades.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/test_nabla_bundle.py",
+        "exists": true,
+        "sha256": "facb328408c1bda0ebe428b5bf3f62ebcc64775e4822ec917f81de9bf7fdcca2",
+        "bytes": 5055,
+        "expected_content": "Arquivo completo de fontes e hashes.",
+        "acceptance": "Bytes, CRLF, mudanças, dados excluídos e recusa de symlinks.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tests/test_math_bundle.py",
+        "exists": true,
+        "sha256": "375bb8085beefdcc32b21dc8d4f36696a68e7c524ec843f133bbee55103e7a8c",
+        "bytes": 1902,
+        "expected_content": "Atualidade do bundle matemático.",
+        "acceptance": "Bundle idêntico ao gerado das fontes canônicas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": ".github/workflows/python-core.yml",
+        "exists": true,
+        "sha256": "6781f1909b1fb09df6b026ceacf722829cc555f63b9fecddd7d15c44797547e0",
+        "bytes": 765,
+        "expected_content": "Matriz de SO/Python suportados.",
+        "acceptance": "Execução verde no commit do release, com resultados preservados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": ".github/workflows/windows-installer.yml",
+        "exists": true,
+        "sha256": "5209adaedf134b591eabbea7aa4e0f267b332e8d5f91e40496c0e846947417e8",
+        "bytes": 3538,
+        "expected_content": "Build/teste do instalador Windows.",
+        "acceptance": "Artefato exato e ciclo real de instalação validados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": ".github/workflows/lean.yml",
+        "exists": true,
+        "sha256": "1bb25fc30cf2d524d2cb46ad8dfcda8b377460f7946c1e4bb6eda2892f6abc59",
+        "bytes": 1027,
+        "expected_content": "Preparação e testes Mathlib.",
+        "acceptance": "Dependências fixadas; resolver o timeout conhecido.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": ".github/workflows/lean-core.yml",
+        "exists": true,
+        "sha256": "2165e8ec5ad49e526a59c7d20c408b4b4ef47c496534e91cb39f517e63e61c78",
+        "bytes": 944,
+        "expected_content": "Contratos Lean sem dependências científicas opcionais.",
+        "acceptance": "Compilar e auditar os alvos declarados.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": ".github/workflows/rational-conformance.yml",
+        "exists": true,
+        "sha256": "a93951409cab1c5a0a94bd2978a47f0f5deb3ba9588495ebe3adba6e42916c20",
+        "bytes": 1227,
+        "expected_content": "Corpus Std e análise certificada.",
+        "acceptance": "60 unidades e 30.000 auditorias aprovadas.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": ".github/workflows/security.yml",
+        "exists": true,
+        "sha256": "4b195071dc0727854d79fd838d86402c31b715afbac9e4c35635a33c9f627765",
+        "bytes": 971,
+        "expected_content": "Revisões automatizadas de segurança do perfil.",
+        "acceptance": "Relatar limites e completar revisão humana apropriada.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": ".github/workflows/full-integration.yml",
+        "exists": true,
+        "sha256": "489e3373b3545e19775d7f02d67e349319ca7a06df9b755e12f7a024c8e7c79d",
+        "bytes": 1130,
+        "expected_content": "Integração dos componentes do release.",
+        "acceptance": "Não encobrir módulos pulados nem pré-requisitos ausentes.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": ".github/workflows/release-attestation.yml",
+        "exists": true,
+        "sha256": "46a11bb8aae7d2faee604ea47e481fd586b7925078c6dbaf657e3f1d9cd44f19",
+        "bytes": 1125,
+        "expected_content": "Proveniência e atestação do release.",
+        "acceptance": "Vincular commit, build, SBOM e artefato publicado.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tools/check_roadmap.py",
+        "exists": true,
+        "sha256": "2e2357563e0cc54a21730ba9e143bce6979f00988f47eee14e6d06e6953903e4",
+        "bytes": 3389,
+        "expected_content": "Consistência dos 213 requisitos e seus vínculos.",
+        "acceptance": "Preservar estados parciais até haver aceite pertinente.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tools/check_public_contracts.py",
+        "exists": true,
+        "sha256": "c20fb2b23446150875e6fec2d1fddde1915986a44c919489e521748d992d0ae5",
+        "bytes": 5021,
+        "expected_content": "Coerência dos contratos e links públicos.",
+        "acceptance": "Sem alegações incompatíveis entre README, documentação e matriz.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tools/vision_readiness.py",
+        "exists": true,
+        "sha256": "74a5a61cd48f8c21404532c1dbf4bd7849dffa9f91fe5086d3b758940e186be1",
+        "bytes": 15062,
+        "expected_content": "Relatório completo de testes, benchmarks e lacunas.",
+        "acceptance": "Ler falhas, skips e bloqueios; não usar inventory-only como aprovação.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tools/validate_longley.py",
+        "exists": true,
+        "sha256": "98151b4d408b51cba37f9d5a779c9b3aac371342050cfeceeedbbebfdc92e063",
+        "bytes": 2849,
+        "expected_content": "Referência numérica NIST do perfil estatístico.",
+        "acceptance": "Resultados e tolerâncias preservados com proveniência.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tools/calibrate_readiness.py",
+        "exists": true,
+        "sha256": "1ffbf0fabf07cb95bb3a53ff6ae0bf9cb3b828e02a30546371935a666503f1cf",
+        "bytes": 1718,
+        "expected_content": "Calibração finita de matemática e integração.",
+        "acceptance": "Publicar denominadores e recusar conclusão universal a partir do recorte.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tools/build_math_bundle.py",
+        "exists": true,
+        "sha256": "bf784dfee9c8c94c04d0629fde0262dfa57c33006414308b8c928ef98c9ae520",
+        "bytes": 4710,
+        "expected_content": "Geração e conferência de math.txt.",
+        "acceptance": "Fontes canônicas e índice coerentes; não contar cópias como código novo.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "tools/build_nabla_bundle.py",
+        "exists": true,
+        "sha256": "3b9a7895b1d32dbb38f472fa122c7899c106d0d28e9a502989a9c5084be6a592",
+        "bytes": 9274,
+        "expected_content": "Geração completa de NABLA.TXT.",
+        "acceptance": "Bytes e hashes por arquivo, sem dependências/cache e sem recursão dos bundles.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": ".gitattributes",
+        "exists": true,
+        "sha256": "ad2cfecac5bc6d4bb4bf62ae0dd2e0fbbe0e0e376c535035d5b128d208e0f4b9",
+        "bytes": 966,
+        "expected_content": "Política de bytes e marcação de fontes geradas.",
+        "acceptance": "NABLA.TXT preservado byte a byte; histórico não normalizado indevidamente.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "math.txt",
+        "exists": true,
+        "sha256": "e0d220ce0e1ec89f71d0f87526a5b683d209222194b30de460f170ad5e657c15",
+        "bytes": 15804018,
+        "expected_content": "Fontes matemáticas consolidadas na raiz.",
+        "acceptance": "Regenerar das fontes e verificar antes de distribuir.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "NABLA.TXT",
+        "exists": true,
+        "sha256": "a857af9c6b684becbfc96b91417a4f9005c67de74ba24473a98ba50165c6123c",
+        "bytes": 19590451,
+        "expected_content": "Fontes/configurações consolidadas de todo o projeto.",
+        "acceptance": "Hash e conteúdo corresponderem ao commit distribuído.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "docs/SOURCE_BUNDLES.md",
+        "exists": true,
+        "sha256": "d69735fa4bb84a0382f5c6fc5abe0d647fe8a889c555d1424f83a91a5c107c19",
+        "bytes": 3468,
+        "expected_content": "Instruções de regeneração e escopo dos TXT.",
+        "acceptance": "Explicar que são agregações de fontes, não executáveis binários.",
+        "acceptance_status": "requires-evidence",
+        "kind": "product-or-acceptance"
+      },
+      {
+        "path": "lean/Conformance/affine_square.lean",
+        "exists": true,
+        "sha256": "8549836e7e12edccbf478ec11bd4aeb48f1b9ec3fbff6ce5619a52568c78fa2e",
+        "bytes": 220968,
+        "expected_content": "Família `affine_square`, índices 1–20, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/affine_square_part002.lean",
+        "exists": true,
+        "sha256": "48803e0676005f0831eb4f15b7edb331ad0e80712d3392953033e238f0d4de71",
+        "bytes": 221329,
+        "expected_content": "Família `affine_square`, índices 21–40, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/affine_square_part003.lean",
+        "exists": true,
+        "sha256": "42b853306cac0b48f44d5987dc2537b2c007052709ef23b40494d1cdeca43c44",
+        "bytes": 222594,
+        "expected_content": "Família `affine_square`, índices 41–60, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/affine_square_part004.lean",
+        "exists": true,
+        "sha256": "a3ffa88f9e64eb19bb8b4862ee2e4916ec454b39113c2964b7a03ab0e0a3e589",
+        "bytes": 222876,
+        "expected_content": "Família `affine_square`, índices 61–80, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/affine_square_part005.lean",
+        "exists": true,
+        "sha256": "7f59c05e3cd374aaa8bf4f30ff046382139f8e45afd6baf842e82089939c0b48",
+        "bytes": 222813,
+        "expected_content": "Família `affine_square`, índices 81–100, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/affine_square_part006.lean",
+        "exists": true,
+        "sha256": "bb1e937b3959f8ce910865e10c9a6edfc7f7ac66f07ba5baa8436d7a988ad4d1",
+        "bytes": 224626,
+        "expected_content": "Família `affine_square`, índices 101–120, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/bounded_square.lean",
+        "exists": true,
+        "sha256": "760c8484968e4c5023106c8d6b21684553911333925ecc408d2039b30d096c55",
+        "bytes": 357185,
+        "expected_content": "Família `bounded_square`, índices 1–20, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/bounded_square_part002.lean",
+        "exists": true,
+        "sha256": "5d2e313298a0fca7a7b020279d8e49c9c96f7a30617efb7547bac1321b7599a5",
+        "bytes": 358316,
+        "expected_content": "Família `bounded_square`, índices 21–40, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/bounded_square_part003.lean",
+        "exists": true,
+        "sha256": "01665ccebd29365348486630a34f11a73b560c77f4904422b1785620f825b389",
+        "bytes": 361133,
+        "expected_content": "Família `bounded_square`, índices 41–60, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/bounded_square_part004.lean",
+        "exists": true,
+        "sha256": "7eaecce60c69aad33cfdbd5b2efb71dab073eda16049bdce9b747f79f1b5d1d2",
+        "bytes": 361284,
+        "expected_content": "Família `bounded_square`, índices 61–80, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/bounded_square_part005.lean",
+        "exists": true,
+        "sha256": "756e5fb5ae8b21c5cc7aa439553cfb2511a64925f22a73ebf70d3086618b49ef",
+        "bytes": 361183,
+        "expected_content": "Família `bounded_square`, índices 81–100, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/bounded_square_part006.lean",
+        "exists": true,
+        "sha256": "55ddcbcf6c836af94e42ee4d90058432fc9342a265b284b581a0e10717c5ceff",
+        "bytes": 362133,
+        "expected_content": "Família `bounded_square`, índices 101–120, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/closed_rational.lean",
+        "exists": true,
+        "sha256": "cd58d5a33774c706c751b3423e3a46edcd716218f91cb1ae46b71b8c11c7ab6d",
+        "bytes": 137687,
+        "expected_content": "Família `closed_rational`, índices 1–20, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/closed_rational_part002.lean",
+        "exists": true,
+        "sha256": "24b59b2a40dc80ed26ed4a11dc97eacd05b3f15da72f779147ef39757edec5b3",
+        "bytes": 137563,
+        "expected_content": "Família `closed_rational`, índices 21–40, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/closed_rational_part003.lean",
+        "exists": true,
+        "sha256": "50e4e3cfce7cb9720ebd3eb0a50e9908142d72f86149f47d302d9e5218aa79bb",
+        "bytes": 138003,
+        "expected_content": "Família `closed_rational`, índices 41–60, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/closed_rational_part004.lean",
+        "exists": true,
+        "sha256": "d97ae21f32765363c6047c84da2d117e75437dc024db1baf3d79c70959e681de",
+        "bytes": 138319,
+        "expected_content": "Família `closed_rational`, índices 61–80, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/closed_rational_part005.lean",
+        "exists": true,
+        "sha256": "c2795414016c439bda8b2c7cc50af4296b22093e786209d6e6276c31baa26e03",
+        "bytes": 138251,
+        "expected_content": "Família `closed_rational`, índices 81–100, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/closed_rational_part006.lean",
+        "exists": true,
+        "sha256": "f7a4113169a689703ef165d02b0e63cbc006a5c83470edf1c531f5e680596b3b",
+        "bytes": 139480,
+        "expected_content": "Família `closed_rational`, índices 101–120, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/difference_squares.lean",
+        "exists": true,
+        "sha256": "8016cba7b3e9e36575fa48441a31798725716217503d51455cea1995bee4d006",
+        "bytes": 223634,
+        "expected_content": "Família `difference_squares`, índices 1–20, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/difference_squares_part002.lean",
+        "exists": true,
+        "sha256": "efb152c8d57945003c212cc24b7900171f7d595d0d68b2da6074dce07ca31210",
+        "bytes": 224221,
+        "expected_content": "Família `difference_squares`, índices 21–40, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/difference_squares_part003.lean",
+        "exists": true,
+        "sha256": "06e9d2ea0831456815e276b3cc1727e124238b2345970da1a7afa266094b2078",
+        "bytes": 225927,
+        "expected_content": "Família `difference_squares`, índices 41–60, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/difference_squares_part004.lean",
+        "exists": true,
+        "sha256": "1d8823e8065d1e6dac377e7c915c0e6776028716d58f35f45f2017ce6dda9638",
+        "bytes": 226272,
+        "expected_content": "Família `difference_squares`, índices 61–80, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/difference_squares_part005.lean",
+        "exists": true,
+        "sha256": "a6e8b8fe54e0c2b12f09271f0a4ebde2dd3ad0250b7a3dbcb685b3e2a0fa64c8",
+        "bytes": 226193,
+        "expected_content": "Família `difference_squares`, índices 81–100, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/difference_squares_part006.lean",
+        "exists": true,
+        "sha256": "06781a0cfeed1393a3fd654b4de91edaa36f868ec893a8fcb88c615a647aaa62",
+        "bytes": 228303,
+        "expected_content": "Família `difference_squares`, índices 101–120, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/distributive.lean",
+        "exists": true,
+        "sha256": "db2486dc184ecaf98e836580e3da842e08b0560b089df831f93d2002e2b68d09",
+        "bytes": 181770,
+        "expected_content": "Família `distributive`, índices 1–20, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/distributive_part002.lean",
+        "exists": true,
+        "sha256": "7a997a2519d5e74cee596d1ff719b20b7f745ec2c6b364488fda26b3c69daabf",
+        "bytes": 181974,
+        "expected_content": "Família `distributive`, índices 21–40, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/distributive_part003.lean",
+        "exists": true,
+        "sha256": "d7b26f592ac907e408b7b51e1ed471524f4764267e5f3235a68d3cc7f6d599f2",
+        "bytes": 182832,
+        "expected_content": "Família `distributive`, índices 41–60, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/distributive_part004.lean",
+        "exists": true,
+        "sha256": "fa7e3912648247690de7179c0b26aa1345598739ee9a34bf7753a279f17e5f96",
+        "bytes": 183097,
+        "expected_content": "Família `distributive`, índices 61–80, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/distributive_part005.lean",
+        "exists": true,
+        "sha256": "a9ac953b8413d6f20c56e37ff444fbe6de9a6af823e52721bba2d56b2a6b5d54",
+        "bytes": 183051,
+        "expected_content": "Família `distributive`, índices 81–100, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/distributive_part006.lean",
+        "exists": true,
+        "sha256": "252d5f6cf828ed16dbe1a3392cfcf1a613ab8513a3d93d9b108285d67a44e9fa",
+        "bytes": 184864,
+        "expected_content": "Família `distributive`, índices 101–120, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/fraction_sum.lean",
+        "exists": true,
+        "sha256": "89c7da1d8f51b0cbcf92998ba107ed5a1f1a6a81c285c616629e67b3825ce387",
+        "bytes": 168802,
+        "expected_content": "Família `fraction_sum`, índices 1–20, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/fraction_sum_part002.lean",
+        "exists": true,
+        "sha256": "e56de38db69f1b925167920ee90bfbb519594f960a2d6e38295fa122330bcf3c",
+        "bytes": 168936,
+        "expected_content": "Família `fraction_sum`, índices 21–40, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/fraction_sum_part003.lean",
+        "exists": true,
+        "sha256": "b48f857e3daa48a63d2626bebbf3ce86a9595a300eb500127d61677b6f4b169f",
+        "bytes": 169760,
+        "expected_content": "Família `fraction_sum`, índices 41–60, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/fraction_sum_part004.lean",
+        "exists": true,
+        "sha256": "69fb3b13f58e40fdaf076c574512abf5ba820bfc13812fed5ec18e00f5a3d9d6",
+        "bytes": 169979,
+        "expected_content": "Família `fraction_sum`, índices 61–80, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/fraction_sum_part005.lean",
+        "exists": true,
+        "sha256": "13079f15e74438d18baa14186ca345584a745c5d4438b03c68eecc185f86aedb",
+        "bytes": 169932,
+        "expected_content": "Família `fraction_sum`, índices 81–100, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/fraction_sum_part006.lean",
+        "exists": true,
+        "sha256": "0595d41563d4b8b437ddfa5380077fff13f1973cc7cf1d673d261253dbfc69ce",
+        "bytes": 171447,
+        "expected_content": "Família `fraction_sum`, índices 101–120, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/guarded_inverse.lean",
+        "exists": true,
+        "sha256": "430c5efa0ee868ab1683b8a6ab1925c9265aa81e09c866d3a9dcdb23405b1290",
+        "bytes": 201468,
+        "expected_content": "Família `guarded_inverse`, índices 1–20, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/guarded_inverse_part002.lean",
+        "exists": true,
+        "sha256": "11d9de369899be8383c5d4f9ef94a62bd3597653f39d518672c7af2694cc56b6",
+        "bytes": 201828,
+        "expected_content": "Família `guarded_inverse`, índices 21–40, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/guarded_inverse_part003.lean",
+        "exists": true,
+        "sha256": "35bd66edecc2d2f98124d7e0f16b7275b28a0932ecdb4a27ccf4bdd51d26f2a1",
+        "bytes": 203093,
+        "expected_content": "Família `guarded_inverse`, índices 41–60, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/guarded_inverse_part004.lean",
+        "exists": true,
+        "sha256": "b2d948345cbc5e53abb01f6ac5fb50cb10471a359fbed196320d1b07381be308",
+        "bytes": 203375,
+        "expected_content": "Família `guarded_inverse`, índices 61–80, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/guarded_inverse_part005.lean",
+        "exists": true,
+        "sha256": "fa94da83950bcffa8827d85d00c17add1e7c74a2caacf229879baac58ee7b5dd",
+        "bytes": 203312,
+        "expected_content": "Família `guarded_inverse`, índices 81–100, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/guarded_inverse_part006.lean",
+        "exists": true,
+        "sha256": "5e69e80a848958dc41daf1d0b21808fa843a09bb41682b0177a257dbd501a213",
+        "bytes": 205124,
+        "expected_content": "Família `guarded_inverse`, índices 101–120, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/monotone_affine.lean",
+        "exists": true,
+        "sha256": "6c2aa59f34295fa96e7be44fc3851a353c9625b2894bf625273146af60bad4dc",
+        "bytes": 214770,
+        "expected_content": "Família `monotone_affine`, índices 1–20, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/monotone_affine_part002.lean",
+        "exists": true,
+        "sha256": "281e48666fa97df10bfe055b7835bc6da64e60f632b8b24b737af73a154a7d09",
+        "bytes": 214973,
+        "expected_content": "Família `monotone_affine`, índices 21–40, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/monotone_affine_part003.lean",
+        "exists": true,
+        "sha256": "d2dd5371db3aa023e002b858779abb152ded25a2641448150a8afc79ced500f0",
+        "bytes": 215831,
+        "expected_content": "Família `monotone_affine`, índices 41–60, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/monotone_affine_part004.lean",
+        "exists": true,
+        "sha256": "c31e477982b75baee028e47f6d9ec58156d7509ec136abb100d05871bb65743d",
+        "bytes": 216096,
+        "expected_content": "Família `monotone_affine`, índices 61–80, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/monotone_affine_part005.lean",
+        "exists": true,
+        "sha256": "f6f6c27956c17ba8651af3a5405d44c146460a1b54b8e3d58d4e598d5470c79e",
+        "bytes": 216050,
+        "expected_content": "Família `monotone_affine`, índices 81–100, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/monotone_affine_part006.lean",
+        "exists": true,
+        "sha256": "0ea974c259710e00ade5209b0c1921158f155f4da36b62cc7a7252f5ac0ede1a",
+        "bytes": 217862,
+        "expected_content": "Família `monotone_affine`, índices 101–120, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/nonnegative_square.lean",
+        "exists": true,
+        "sha256": "b0f5786bb3a3ff8174076b19e16a8bad4f50cd03a53c91bc111c4e6a7abb3ed2",
+        "bytes": 217802,
+        "expected_content": "Família `nonnegative_square`, índices 1–20, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/nonnegative_square_part002.lean",
+        "exists": true,
+        "sha256": "ba5fc8daf37724151b34d97d8f9f1222bf71461ccd45a55d057ebb38e5e07a09",
+        "bytes": 217937,
+        "expected_content": "Família `nonnegative_square`, índices 21–40, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/nonnegative_square_part003.lean",
+        "exists": true,
+        "sha256": "686cbecff4c8604d12442e583b95a6d4aaf25f60ccdd7f182b52a2a79d1aa413",
+        "bytes": 218761,
+        "expected_content": "Família `nonnegative_square`, índices 41–60, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/nonnegative_square_part004.lean",
+        "exists": true,
+        "sha256": "f9b90740283958acf1fe87245fa353683e0e4d2d4ad6a851319e70c3366f7ca3",
+        "bytes": 218980,
+        "expected_content": "Família `nonnegative_square`, índices 61–80, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/nonnegative_square_part005.lean",
+        "exists": true,
+        "sha256": "f1c3dd3fe310baa1d4b65b03bd75114d21e6b604c1f95c5e574a3ffa6ff93744",
+        "bytes": 218933,
+        "expected_content": "Família `nonnegative_square`, índices 81–100, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/nonnegative_square_part006.lean",
+        "exists": true,
+        "sha256": "f64060af237430ac1ed552cd0183140d7e3bf5e60a5e3f66c29e370a18adec99",
+        "bytes": 220449,
+        "expected_content": "Família `nonnegative_square`, índices 101–120, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/quadratic_minimum.lean",
+        "exists": true,
+        "sha256": "80f4ad4db20ba9d43448aa76d5aa0ee0addb46b4620bf6a5a0a13c9a52c99ec1",
+        "bytes": 365364,
+        "expected_content": "Família `quadratic_minimum`, índices 1–20, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/quadratic_minimum_part002.lean",
+        "exists": true,
+        "sha256": "26ba8fd682a009b8949c45a87978bf7ace7c795b59b0bc4692affc9368a3d5e1",
+        "bytes": 366039,
+        "expected_content": "Família `quadratic_minimum`, índices 21–40, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/quadratic_minimum_part003.lean",
+        "exists": true,
+        "sha256": "3a412771f55e9295ca9c8bb4007c57e665896a9a79c8c8472f8ee3828006d29a",
+        "bytes": 368118,
+        "expected_content": "Família `quadratic_minimum`, índices 41–60, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/quadratic_minimum_part004.lean",
+        "exists": true,
+        "sha256": "1924ccc56f21529276618712dc8df720d54e2c201c9e662c26564729cca7c93f",
+        "bytes": 368434,
+        "expected_content": "Família `quadratic_minimum`, índices 61–80, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/quadratic_minimum_part005.lean",
+        "exists": true,
+        "sha256": "f4dd79e0bfa6325ae65fc5b935f9256abb15de54c73d8641a553b18ad6e7ca62",
+        "bytes": 368337,
+        "expected_content": "Família `quadratic_minimum`, índices 81–100, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      },
+      {
+        "path": "lean/Conformance/quadratic_minimum_part006.lean",
+        "exists": true,
+        "sha256": "29e33f11a7981428a2574e28ec7a2915e61434bc2f3e4d7bb48cb86c8303cb29",
+        "bytes": 370150,
+        "expected_content": "Família `quadratic_minimum`, índices 101–120, 500 teoremas",
+        "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+        "acceptance_status": "requires-evidence",
+        "kind": "generated-proof"
+      }
+    ],
+    "total": 212,
+    "missing": [],
+    "release_accepted": false,
+    "scope": "Working-byte inventory; presence and hashes are not acceptance evidence"
+  },
+  "wheel_integrity": {
+    "files_verified": 606,
+    "name": "nablamath",
+    "requires_dist": [
+      "huggingface_hub<2,>=0.25; extra == \"cloud\"",
+      "pytest<10,>=8; extra == \"test\"",
+      "jax; extra == \"accelerate\"",
+      "scipy<2,>=1.11; extra == \"scipy\"",
+      "cupy-cuda12x<15,>=13; (platform_system == \"Linux\" or platform_system == \"Windows\") and extra == \"cuda12\"",
+      "torch<3,>=2.4; (platform_system == \"Linux\" and platform_machine == \"x86_64\") and extra == \"triton\"",
+      "triton<4,>=3; (platform_system == \"Linux\" and platform_machine == \"x86_64\") and extra == \"triton\"",
+      "z3-solver<5,>=4.16; extra == \"formal\"",
+      "Pillow<13,>=10.1; extra == \"graphics\"",
+      "typst<0.15,>=0.13; extra == \"documents\"",
+      "pyarrow<24,>=18; extra == \"data\"",
+      "cryptography<47,>=43; extra == \"federation\"",
+      "sympy<2,>=1.13; extra == \"research\"",
+      "numpy<3,>=2; extra == \"research\""
+    ],
+    "schema_version": 1,
+    "scope": "wheel RECORD integrity only; publisher authenticity and dependency safety not established",
+    "version": "0.1.0a1",
+    "wheel_sha256": "941d606a1404381e43424e4fefea649bc1afebeda4574d7433e62b60a9b0805f"
+  },
+  "wheel_smoke": {
+    "version": "0.1.0a1",
+    "package": "/workspace/Nabla/.nabla/all-offline-final-installed/lib/python3.12/site-packages/nablamath/__init__.py",
+    "python_source_files_identical": 599,
+    "prior_alpha_notebook_replay": true,
+    "cli_calculation": true,
+    "notebook_replay": true,
+    "backup_restore": true,
+    "both_mathlib_checkers_diagnose_missing_build_without_downloading": true,
+    "release_accepted": false
+  },
+  "formal_dependencies_installed_and_reused": 9,
+  "sdk_and_scipy": {
+    "passed": 46,
+    "log_sha256": "ee8977491c3015531fb66c6e707b3ff0794469939bcfeef3f1d1a010b82c0b7d"
+  },
+  "retained_intermediate_runs": [
+    {
+      "directory": ".nabla/vision-readiness/20261016T145931491806Z",
+      "reason": "Environment installation overlapped; superseded by stable runtime run"
+    },
+    {
+      "directory": ".nabla/vision-readiness/20261016T150254154023Z",
+      "reason": "Found and fixed the second legacy Lake execution path during this run"
+    }
+  ],
+  "retained_failed_supplemental_run": {
+    "log": ".nabla/sdk-and-scipy-tests.log",
+    "failed": 3,
+    "passed": 43,
+    "reason": "Concurrent package uninstall/install removed modules during imports; restored editable installation and repeated with stable runtime"
+  },
+  "external_blockers": [
+    "cache.mathlib.org proxy CONNECT 403",
+    "api.github.com not in enforced allowlist; earlier PR creation returned Forbidden",
+    "Exact commit multiplatform CI and Windows installer evidence",
+    "Independent reviews and authenticated publisher authorization/signing"
+  ],
+  "configuration": {
+    "draft_saved": true,
+    "requires_publish": true,
+    "active_spec_revision": "1",
+    "active_custom_hosts": []
+  }
+}

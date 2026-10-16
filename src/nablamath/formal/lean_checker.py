@@ -67,6 +67,28 @@ class LeanCheck:
         return {**payload,'receipt_id':fingerprint(payload)}
 
 
+def offline_mathlib_runtime(project, lake):
+    """Return only installed compiler/search paths; never resolve Lake packages."""
+    project=Path(project).resolve()
+    pin=(project/'lean-toolchain').read_text(encoding='utf-8').strip()
+    match=re.fullmatch(r'leanprover/lean4:v([0-9]+\.[0-9]+\.[0-9]+)',pin)
+    if not match:
+        raise ValueError('Unsupported Lean toolchain pin')
+    # Proving must never resolve, clone or update dependencies. Lake env can do
+    # all three before even answering --version on an incomplete installation.
+    artifact=project/'.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic.olean'
+    if not artifact.is_file():
+        raise ValueError('Mathlib build missing; run scripts/setup_formal.sh before proving')
+    compiler=lake.with_name('lean.exe' if lake.suffix.lower()=='.exe' else 'lean')
+    environment=dict(os.environ)
+    environment['PATH']=str(lake.parent)+os.pathsep+environment.get('PATH','')
+    paths=[project/'.lake/build/lib/lean']
+    paths.extend(sorted((project/'.lake/packages').glob('*/.lake/build/lib/lean')))
+    environment['LEAN_PATH']=os.pathsep.join(str(path) for path in paths)
+    environment.pop('LEAN_SRC_PATH',None)
+    return compiler, environment, match[1]
+
+
 def check_lean(translation,project=Path('lean'),timeout=120):
     if type(timeout) is not int or not 1<=timeout<=300:
         raise ValueError('Timeout Lean deve estar entre 1 e 300 segundos')
@@ -81,17 +103,21 @@ def check_lean(translation,project=Path('lean'),timeout=120):
     lake=find_lake(project)
     if lake is None:
         return result('unavailable','lake not installed')
-    environment=dict(os.environ)
-    environment['PATH']=str(lake.parent)+os.pathsep+environment.get('PATH','')
     try:
-        version=run_lean_process([str(lake),'env','lean','--version'],cwd=project,env=environment,
+        compiler, environment, expected_version=offline_mathlib_runtime(project,lake)
+    except ValueError as error:
+        return result('unavailable',str(error))
+    try:
+        version=run_lean_process([str(compiler),'--version'],cwd=project,env=environment,
                                  timeout=min(timeout,20))
         if version.returncode:
             return result('unavailable',(version.stdout+version.stderr)[-4000:])
+        if not re.search(r'Lean \(version '+re.escape(expected_version)+r'(?:,|\))',version.stdout):
+            return result('unavailable','Compiler version does not match project pin',version.stdout.strip())
         with tempfile.TemporaryDirectory(prefix='nabla-prove-') as directory:
             source=Path(directory)/'Check.lean'
             source.write_text(translation.source,encoding='utf-8')
-            completed=run_lean_process([str(lake),'env','lean',str(source)],cwd=project,env=environment,timeout=timeout)
+            completed=run_lean_process([str(compiler),str(source)],cwd=project,env=environment,timeout=timeout)
     except FileNotFoundError:
         return result('unavailable','Lean runtime missing')
     except subprocess.TimeoutExpired:

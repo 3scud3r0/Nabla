@@ -240,6 +240,7 @@ def main(argv=None):
     commands = [
         ('roadmap', [python, 'tools/check_roadmap.py']),
         ('contracts', [python, 'tools/check_public_contracts.py']),
+        ('local-api', [python, 'tools/check_local_api.py']),
         ('preservation', [python, 'tools/preserve_evidence.py']),
         ('bundle', [python, 'tools/build_math_bundle.py', '--check']),
         ('source-bundle', [python, 'tools/build_nabla_bundle.py', '--check']),

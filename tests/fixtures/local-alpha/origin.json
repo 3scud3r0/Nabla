@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "package_version": "0.1.0a1",
+  "wheel_sha256": "92175fb587fc6f246406850724aa079d1d5a999b8329298063cedb7df66fd585",
+  "source_commit_authenticated": false,
+  "scope": "Captured from the preceding installed alpha wheel; real prior build, not a previous stable release"
+}

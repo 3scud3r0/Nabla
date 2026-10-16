@@ -46,3 +46,41 @@ class PublicAPIRegressionTests(unittest.TestCase):
         conditional = saturate(expression, assumptions=AssumptionSet.from_nonzero('x'))
         self.assertEqual(evaluate(conditional.expression, {'x': Fraction(2)}), 0)
         self.assertTrue(conditional.certificate_verified)
+
+
+def test_local_v1_candidate_api_matches_normative_fixture():
+    import importlib.util
+    from pathlib import Path
+    path=Path(__file__).resolve().parents[2]/'tools/check_local_api.py'
+    spec=importlib.util.spec_from_file_location('check_local_api',path)
+    module=importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    report=module.validate()
+    assert report['contract_matches']
+    assert not report['release_accepted']
+
+
+def test_api_contract_detects_removed_required_arguments(tmp_path):
+    import importlib.util
+    import json
+    from pathlib import Path
+    import pytest
+    path=Path(__file__).resolve().parents[2]/'tools/check_local_api.py'
+    spec=importlib.util.spec_from_file_location('check_local_api_negative',path)
+    module=importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    baseline=module.current_contract()
+    baseline['operations']['evaluate']['required']=[]
+    fixture=tmp_path/'altered-contract.json'
+    fixture.write_text(json.dumps(baseline))
+    with pytest.raises(ValueError,match='operations'):
+        module.validate(fixture)
+
+
+def test_previous_installed_alpha_notebook_remains_replayable():
+    from pathlib import Path
+    from nablamath.calc import Notebook
+    fixture=Path(__file__).resolve().parents[1]/'fixtures/local-alpha/notebook-v1.json'
+    notebook=Notebook.load(fixture)
+    assert notebook.replay()==3
+    assert notebook.cells[0]['calculation']['result']['value']=='1'

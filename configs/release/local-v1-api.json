@@ -1,0 +1,440 @@
+{
+  "schema_version": 1,
+  "profile": "local-v1-candidate",
+  "exports": {
+    "nablamath": [
+      "Binary",
+      "Expr",
+      "ExpressionEntity",
+      "Number",
+      "ResearchResult",
+      "SolutionBundle",
+      "Symbol",
+      "VerificationRecord",
+      "calculate",
+      "parse_expr",
+      "solve_expression"
+    ],
+    "nablamath.calc": [
+      "AREAS",
+      "Calculation",
+      "CalculationSession",
+      "Notebook"
+    ],
+    "nablamath.schema.expression": [
+      "Binary",
+      "Expr",
+      "Number",
+      "Symbol",
+      "from_data",
+      "to_data"
+    ],
+    "nablamath.schema.units": [
+      "HOUR",
+      "KILOGRAM",
+      "KILOMETER",
+      "METER",
+      "ONE",
+      "Quantity",
+      "SECOND",
+      "Unit"
+    ],
+    "nablamath.compatibility": [
+      "CompatibilityReport",
+      "formal_runtime_report",
+      "normalize_os",
+      "runtime_report",
+      "support_contract"
+    ]
+  },
+  "methods": {
+    "Calculation.to_data": "(self)",
+    "CalculationSession.bind": "(self, name, value, unit=Unit(dimensions=(0, 0, 0, 0, 0, 0, 0), scale=Fraction(1, 1), symbol='1'))",
+    "CalculationSession.evaluate": "(self, source, values=None)",
+    "CalculationSession.execute": "(self, operation, **arguments)",
+    "CalculationSession.replay_request": "(request)",
+    "Notebook.append": "(self, calculation)",
+    "Notebook.load": "(path)",
+    "Notebook.replay": "(self)",
+    "Notebook.save": "(self, path)",
+    "Notebook.to_data": "(self)"
+  },
+  "operations": {
+    "approximate": {
+      "area": "numerical",
+      "required": [
+        "value"
+      ],
+      "optional": []
+    },
+    "bayes": {
+      "area": "probability",
+      "required": [
+        "likelihood",
+        "prior"
+      ],
+      "optional": []
+    },
+    "binomial": {
+      "area": "discrete",
+      "required": [
+        "k",
+        "n"
+      ],
+      "optional": []
+    },
+    "certified_function": {
+      "area": "numerical",
+      "required": [
+        "kind",
+        "value"
+      ],
+      "optional": [
+        "max_terms",
+        "tolerance"
+      ]
+    },
+    "certified_integral": {
+      "area": "calculus",
+      "required": [
+        "coefficients",
+        "lower",
+        "upper"
+      ],
+      "optional": [
+        "max_pieces",
+        "method",
+        "tolerance"
+      ]
+    },
+    "condition": {
+      "area": "numerical",
+      "required": [
+        "matrix"
+      ],
+      "optional": []
+    },
+    "conic": {
+      "area": "geometry",
+      "required": [
+        "coefficients"
+      ],
+      "optional": []
+    },
+    "differentiate": {
+      "area": "calculus",
+      "required": [
+        "source"
+      ],
+      "optional": [
+        "variable"
+      ]
+    },
+    "distribution": {
+      "area": "probability",
+      "required": [
+        "kind",
+        "parameters",
+        "value"
+      ],
+      "optional": []
+    },
+    "evaluate": {
+      "area": "algebra",
+      "required": [
+        "source"
+      ],
+      "optional": [
+        "values"
+      ]
+    },
+    "factor": {
+      "area": "algebra",
+      "required": [
+        "coefficients"
+      ],
+      "optional": []
+    },
+    "geometry": {
+      "area": "geometry",
+      "required": [
+        "points"
+      ],
+      "optional": []
+    },
+    "integrate": {
+      "area": "calculus",
+      "required": [
+        "source"
+      ],
+      "optional": [
+        "end",
+        "start",
+        "variable"
+      ]
+    },
+    "least_squares": {
+      "area": "statistics",
+      "required": [
+        "predictors",
+        "response"
+      ],
+      "optional": [
+        "intercept",
+        "weights"
+      ]
+    },
+    "limit": {
+      "area": "calculus",
+      "required": [
+        "denominator",
+        "numerator",
+        "point"
+      ],
+      "optional": [
+        "variable"
+      ]
+    },
+    "linear_regression": {
+      "area": "statistics",
+      "required": [
+        "x",
+        "y"
+      ],
+      "optional": []
+    },
+    "lu": {
+      "area": "linear_algebra",
+      "required": [
+        "matrix"
+      ],
+      "optional": []
+    },
+    "markov": {
+      "area": "probability",
+      "required": [
+        "distribution",
+        "transition"
+      ],
+      "optional": [
+        "steps"
+      ]
+    },
+    "markov_hitting": {
+      "area": "probability",
+      "required": [
+        "targets",
+        "transition"
+      ],
+      "optional": []
+    },
+    "markov_rewards": {
+      "area": "probability",
+      "required": [
+        "discount",
+        "rewards",
+        "transition"
+      ],
+      "optional": []
+    },
+    "markov_stationary": {
+      "area": "probability",
+      "required": [
+        "transition"
+      ],
+      "optional": []
+    },
+    "matrix_inverse": {
+      "area": "linear_algebra",
+      "required": [
+        "matrix"
+      ],
+      "optional": []
+    },
+    "matrix_properties": {
+      "area": "linear_algebra",
+      "required": [
+        "matrix"
+      ],
+      "optional": []
+    },
+    "maximum_flow": {
+      "area": "discrete",
+      "required": [
+        "edges",
+        "sink",
+        "source",
+        "vertices"
+      ],
+      "optional": []
+    },
+    "ode": {
+      "area": "calculus",
+      "required": [
+        "initial",
+        "model"
+      ],
+      "optional": [
+        "duration",
+        "method",
+        "rate",
+        "steps"
+      ]
+    },
+    "ode_adaptive": {
+      "area": "calculus",
+      "required": [
+        "initial",
+        "model"
+      ],
+      "optional": [
+        "atol",
+        "duration",
+        "initial_step",
+        "max_attempts",
+        "rate",
+        "rtol"
+      ]
+    },
+    "optimize": {
+      "area": "optimization",
+      "required": [
+        "objective",
+        "x_bounds",
+        "y_bounds"
+      ],
+      "optional": [
+        "constraints"
+      ]
+    },
+    "orthogonal_basis": {
+      "area": "linear_algebra",
+      "required": [
+        "vectors"
+      ],
+      "optional": []
+    },
+    "polynomial_range": {
+      "area": "calculus",
+      "required": [
+        "coefficients",
+        "lower",
+        "upper"
+      ],
+      "optional": [
+        "subdivisions"
+      ]
+    },
+    "quadratic_optimize": {
+      "area": "optimization",
+      "required": [
+        "hessian",
+        "linear"
+      ],
+      "optional": [
+        "constant",
+        "constraints",
+        "upper"
+      ]
+    },
+    "rational_compare": {
+      "area": "algebra",
+      "required": [
+        "left",
+        "right"
+      ],
+      "optional": []
+    },
+    "rational_limit": {
+      "area": "calculus",
+      "required": [
+        "point",
+        "source"
+      ],
+      "optional": [
+        "direction"
+      ]
+    },
+    "sat": {
+      "area": "discrete",
+      "required": [
+        "clauses"
+      ],
+      "optional": [
+        "decision_limit"
+      ]
+    },
+    "series": {
+      "area": "calculus",
+      "required": [
+        "source"
+      ],
+      "optional": [
+        "center",
+        "order",
+        "variable"
+      ]
+    },
+    "shortest_paths": {
+      "area": "discrete",
+      "required": [
+        "edges",
+        "source",
+        "vertices"
+      ],
+      "optional": []
+    },
+    "simplify": {
+      "area": "algebra",
+      "required": [
+        "source"
+      ],
+      "optional": [
+        "nonzero"
+      ]
+    },
+    "solve_linear": {
+      "area": "linear_algebra",
+      "required": [
+        "matrix",
+        "rhs"
+      ],
+      "optional": []
+    },
+    "statistics": {
+      "area": "statistics",
+      "required": [
+        "values"
+      ],
+      "optional": [
+        "median",
+        "population_variance",
+        "radius",
+        "sample",
+        "window"
+      ]
+    },
+    "time_series": {
+      "area": "statistics",
+      "required": [
+        "method",
+        "values"
+      ],
+      "optional": [
+        "alpha",
+        "lag",
+        "window"
+      ]
+    },
+    "topological_sort": {
+      "area": "discrete",
+      "required": [
+        "edges",
+        "vertices"
+      ],
+      "optional": []
+    }
+  },
+  "notebook_schema_version": 1,
+  "calculation_schema_version": 1
+}

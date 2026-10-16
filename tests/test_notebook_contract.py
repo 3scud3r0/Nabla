@@ -58,3 +58,13 @@ def test_duplicate_top_level_key_is_rejected(tmp_path):
     path.write_text('{"schema_version": 99,' + data[1:])
     with pytest.raises(ValueError, match='Duplicate'):
         Notebook.load(path)
+
+
+def test_save_refuses_structural_budget_before_creating_file(tmp_path):
+    # A valid individual cell can still make an unportable notebook when repeated.
+    book = Notebook('bounded save')
+    book._cells = [None] * 500001
+    path = tmp_path / 'too-large.json'
+    with pytest.raises(ValueError, match='budget'):
+        book.save(path)
+    assert not path.exists()

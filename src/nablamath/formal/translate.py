@@ -45,8 +45,8 @@ def lean_source(result: "ResearchResult") -> str:
     values=dict(result.values)
     return ("import Mathlib.Tactic.Ring\nimport Mathlib.Tactic.FieldSimp\nimport Mathlib.Tactic.Linarith\nimport Mathlib.Tactic.NormNum\n\n"
             f"-- Instância racional {result.content_id}; gerada de AST restrita.\n"
-            f"example : {_term(result.original,values)} = {_rational(result.value)} := by\n"
-            "  norm_num\n")
+            f"theorem nablamath_instance : {_term(result.original,values)} = {_rational(result.value)} := by\n"
+            "  norm_num\n\n#print axioms nablamath_instance\n")
 
 def universal_lean_source(lhs: Expr, rhs: Expr, *, nonzero: Iterable[Expr]=(),
                           theorem_name: str="nablamath_generated") -> str:
@@ -62,7 +62,7 @@ def universal_lean_source(lhs: Expr, rhs: Expr, *, nonzero: Iterable[Expr]=(),
     hs=", ".join(f"h{i}" for i in range(len(nonzero)))
     tactic=f"  field_simp [{hs}] <;> ring\n" if hs else "  field_simp <;> ring\n"
     return ("import Mathlib.Tactic.Ring\nimport Mathlib.Tactic.FieldSimp\nimport Mathlib.Tactic.Linarith\nimport Mathlib.Tactic.NormNum\n\n-- Teorema universal gerado de AST tipada pelo NablaMath.\n"
-            f"theorem {theorem_name} {binders} : {lean_term(lhs)} = {lean_term(rhs)} := by\n"+tactic)
+            f"theorem {theorem_name} {binders} : {lean_term(lhs)} = {lean_term(rhs)} := by\n"+tactic+f"\n#print axioms {theorem_name}\n")
 
 def rule_lean_source(rule: RewriteRule) -> str:
     bindings={name:Symbol(name) for name in pattern_variables(rule.lhs)}

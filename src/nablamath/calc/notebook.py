@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from ..core.semantic_ir import canonical_json,fingerprint
 from .session import CalculationSession
-from ..core.semantic_contracts import load_json, require_fields, require_digest
+from ..core.semantic_contracts import load_json, require_fields, require_digest, validate_json
 
 
 class Notebook:
@@ -33,8 +33,11 @@ class Notebook:
         return {**payload,'content_id':fingerprint(payload)}
 
     def save(self,path):
+        data=self.to_data()
+        validate_json(data, max_bytes=16*1024*1024-1, max_nodes=500000)
+        raw=canonical_json(data)+'\n'
         with Path(path).open('x',encoding='utf-8') as stream:
-            stream.write(canonical_json(self.to_data())+'\n')
+            stream.write(raw)
 
     def replay(self):
         previous=None

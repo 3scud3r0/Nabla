@@ -79,7 +79,7 @@ def _source_for_strategy(lhs: Expr, rhs: Expr, *, nonzero: tuple[Expr, ...],
     if strategy == "field_ring" and nonzero:
         hypotheses = ", ".join(f"h{i}" for i in range(len(nonzero)))
         body = f"  field_simp [{hypotheses}] <;> ring\n"
-    return prefix + marker + body
+    return prefix + marker + body + f"\n#print axioms {theorem_name}\n"
 
 
 def search_universal_proof(lhs: Expr, rhs: Expr, project: Path, *,

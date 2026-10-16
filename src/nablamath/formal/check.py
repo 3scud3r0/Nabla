@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 import subprocess
-import os
+import re
 import tempfile
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -20,25 +20,34 @@ class FormalCheck:
 def _verify_source(source_text: str, content_id: str, project: Path, timeout_s: int, success_detail: str) -> FormalCheck:
     project=project.resolve()
     if not (project/"lakefile.toml").is_file(): raise ValueError("Projeto Lean não encontrado")
-    if not 1<=timeout_s<=900: raise ValueError("timeout fora do intervalo")
-    from .lean_checker import find_lake
+    if type(timeout_s) is not int or not 1<=timeout_s<=900: raise ValueError("timeout fora do intervalo")
+    from .lean_checker import find_lake, offline_mathlib_runtime, run_lean_process, ALLOWED_AXIOMS
     lake=find_lake(project)
     if lake is None: return FormalCheck(False,"lake não encontrado",content_id)
-    environment=dict(os.environ)
-    environment['PATH']=str(lake.parent)+os.pathsep+environment.get('PATH','')
+    try:
+        compiler,environment,expected=offline_mathlib_runtime(project,lake)
+    except ValueError as error:
+        return FormalCheck(False,str(error),content_id)
     if any(token in source_text for token in ('sorry', 'admit', 'axiom ')):
         return FormalCheck(False,"Fonte com admissao ou axioma rejeitada",content_id)
     with tempfile.TemporaryDirectory(prefix="nablamath-lean-") as directory:
         source=Path(directory)/"Check.lean"; source.write_text(source_text,encoding="utf-8")
         try:
-            process=subprocess.run([str(lake),"env","lean",str(source)],cwd=project,env=environment,capture_output=True,text=True,
-                                   timeout=timeout_s,check=False)
+            version=run_lean_process([str(compiler),'--version'],cwd=project,env=environment,timeout=min(timeout_s,20))
+            if version.returncode or not re.search(r'Lean \(version '+re.escape(expected)+r'(?:,|\))',version.stdout):
+                return FormalCheck(False,"Compiler version does not match project pin",content_id)
+            process=run_lean_process([str(compiler),str(source)],cwd=project,env=environment,timeout=timeout_s)
         except FileNotFoundError:
             return FormalCheck(False,"lake não encontrado",content_id)
         except subprocess.TimeoutExpired:
             return FormalCheck(False,"timeout",content_id)
     if "sorry" in process.stdout+process.stderr: return FormalCheck(False,"Admissao Lean rejeitada",content_id)
     if process.returncode: return FormalCheck(False,(process.stderr or process.stdout)[-2000:],content_id)
+    output=process.stdout+'\n'+process.stderr
+    matches=re.findall(r"depends on axioms:\s*\[([^\]]*)\]",output)
+    axioms={name.strip() for group in matches for name in group.split(',') if name.strip()}
+    if (axioms-ALLOWED_AXIOMS or (not matches and 'does not depend on any axioms' not in output)):
+        return FormalCheck(False,"Auditoria de axiomas ausente ou rejeitada",content_id)
     return FormalCheck(True,success_detail,content_id)
 
 def verify_with_lean(result: "ResearchResult", project: Path, timeout_s: int=120) -> FormalCheck:

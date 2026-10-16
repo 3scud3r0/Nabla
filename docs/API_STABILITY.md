@@ -47,3 +47,17 @@ recusa imediata de entrada terá motivo e instrução de migração documentados
 Uma suíte local verde não demonstra Windows, autenticidade do publicador nem
 revisão independente. A estabilidade final depende da matriz CI no commit exato,
 instalação dos artefatos, upgrade/restore e aceite dos responsáveis de vision1.md.
+
+## Fixture executável do perfil candidato
+
+`configs/release/local-v1-api.json` congela os exports de cinco módulos candidatos,
+assinaturas de sessão/notebook e nomes/argumentos de 40 operações.
+`python tools/check_local_api.py` compara o runtime com essa fixture e faz parte
+da execução completa de readiness. Não existe opção de sobrescrita automática: uma
+alteração requer decisão de compatibilidade e notas de migração. A fixture congela
+a superfície; os testes matemáticos continuam necessários para sua semântica.
+
+`tests/fixtures/local-alpha/notebook-v1.json` foi capturado do wheel alpha anterior
+instalado, com três cálculos reais. O hash do wheel e a limitação de procedência
+estão em `origin.json`. Isso verifica compatibilidade com um build alpha anterior;
+não se apresenta como uma versão estável anteriormente publicada.
