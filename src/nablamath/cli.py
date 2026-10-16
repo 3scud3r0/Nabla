@@ -158,7 +158,7 @@ def main(argv: list[str] | None = None) -> int:
     prove.add_argument("right")
     prove.add_argument("--relation", choices=("eq","ne","le","lt","ge","gt"), default="eq")
     prove.add_argument("--assumption", action="append", default=[], help="Ex.: x >= 0")
-    prove.add_argument("--backend", choices=("lean","smt"), default="lean")
+    prove.add_argument("--backend", choices=("lean","lean-std","smt"), default="lean")
     prove.add_argument("--strategy", choices=("auto","ring","field","linarith","nlinarith","norm_num"), default="auto")
     prove.add_argument("--project", type=Path, default=Path("lean"))
     prove.add_argument("--timeout", type=int, default=30)
@@ -358,6 +358,12 @@ def main(argv: list[str] | None = None) -> int:
             if args.backend=='lean':
                 translation=translate_statement(statement,args.strategy)
                 receipt=check_lean(translation,args.project,args.timeout).to_data()
+                success=receipt['status']=='proved'
+            elif args.backend=='lean-std':
+                from .formal.lean_std import prove_with_std
+                if args.strategy != 'auto':
+                    raise ValueError('Backend lean-std seleciona a estratégia automaticamente')
+                receipt=prove_with_std(statement,args.project,timeout=args.timeout)
                 success=receipt['status']=='proved'
             else:
                 receipt=solve_statement(statement,timeout_ms=args.timeout*1000)

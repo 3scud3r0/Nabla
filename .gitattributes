@@ -22,3 +22,8 @@ benchmarks/results/frontier-lab-951017/**/*.pdf binary
 
 # Historical transcript retained byte for byte, including original whitespace.
 docs/history/DESCRIPTION_ORIGINAL.md -text -whitespace
+
+# Source archives are generated; the complete archive preserves embedded bytes.
+math.txt linguist-generated=true
+NABLA.TXT -text -whitespace linguist-generated=true
+lean/Conformance/*.lean linguist-generated=true

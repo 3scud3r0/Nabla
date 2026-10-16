@@ -1,0 +1,950 @@
+{
+  "version": 1,
+  "evidence_kind": "prior local execution; application sources unchanged while preparing PR documentation",
+  "base_head": "c979731744cd6d4406b0493f369cf8157a71c965",
+  "vision_execution": "20261016T140708743015Z",
+  "source_identity_at_execution": {
+    "sha256": "17af4e5d82fe89f4848a9eac001d5c6686923414e7762cad29e90e0fc9d6255f",
+    "files": 1527,
+    "head": "c979731744cd6d4406b0493f369cf8157a71c965"
+  },
+  "source_changed_during_execution": false,
+  "tests": {
+    "skipped": 8,
+    "passed": 2269
+  },
+  "subtests_passed": 316,
+  "steps": [
+    {
+      "name": "roadmap",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.114,
+      "log_sha256": "9e191cec7a93f00e1ee972c2f2f6adf557724d0daddc625e1534c8bff368be07"
+    },
+    {
+      "name": "contracts",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.114,
+      "log_sha256": "cc9c203a517016b29cd8e2cb6ad706e1e70b5f3d90cc9e99ad629caa7d9c4ca4"
+    },
+    {
+      "name": "preservation",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.818,
+      "log_sha256": "78a2da347196d0ba076be46243a99b857880a94d8b05592e9987b912ef36ee2a"
+    },
+    {
+      "name": "bundle",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.265,
+      "log_sha256": "7d8186b83860d5307f6da48be9f9120f22db0a8e8b2f40bf082aa9199ebdc4b0"
+    },
+    {
+      "name": "pytest",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 157.559,
+      "log_sha256": "48431641359c6e9ea8810ad2b321d00d32a49fba8ce126a068f0ca3913a9b065"
+    },
+    {
+      "name": "longley",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.165,
+      "log_sha256": "9e5512ee6d4a029c65b7570ebad81890810cbffc91c461e6c23e25663ca93be7"
+    },
+    {
+      "name": "laboratory",
+      "status": "failed",
+      "exit_code": 1,
+      "seconds": 69.645,
+      "log_sha256": "a1cfce702a8fc4584a7f4390404ba7178854418b404dbce1abc96c7fa6a48ec6"
+    },
+    {
+      "name": "calibration",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 8.839,
+      "log_sha256": "4aeaab66d79b851a9046d98a047bf891b36de77d5028b19eae1eed1c1e394c85"
+    }
+  ],
+  "matrix_statuses": {
+    "partial": 213
+  },
+  "laboratory_blocker": "Pinned Mathlib proof timed out; assurance blocked by missing science artifacts.",
+  "kernel_corpus": {
+    "accepted_theorems": 30000,
+    "all_passed": true,
+    "expected_theorems": 30000,
+    "external_review_performed": false,
+    "families": [
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "affine_square",
+        "log_sha256": "94ae6aec2e97585d4010382bd993ad70994df9b984cc8a995584a20598df6039",
+        "returncode": 0,
+        "seconds": 29.021326452000267,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "affine_square_part002",
+        "log_sha256": "3417b354225921d1c65ce1e522555ea92ed6fcb9d8cba161ff91753619f40784",
+        "returncode": 0,
+        "seconds": 28.982580083999892,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "affine_square_part003",
+        "log_sha256": "9b8a936c43ad572d06a59d88db8ef7aa50450374ec887dc278e74e0e4ddeafe9",
+        "returncode": 0,
+        "seconds": 28.948432459000287,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "affine_square_part004",
+        "log_sha256": "fb17491cbe519c0543bb585511f82c0194c3bee39684c112ebc417de2795ca0a",
+        "returncode": 0,
+        "seconds": 29.022795398999733,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "affine_square_part005",
+        "log_sha256": "6eeece1b336b0fe5d53788368e9e589c612ab0f90367ac8c7c14374669980d61",
+        "returncode": 0,
+        "seconds": 26.8551703789999,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "affine_square_part006",
+        "log_sha256": "fb81480c7eff93e4b330f33f637a8f675dae0aa9af0e2fc846482c4a8b2ffd8d",
+        "returncode": 0,
+        "seconds": 26.840306189999865,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "bounded_square",
+        "log_sha256": "0b895412e3504f72713212f16699ca8db45f904c144eded2f0bf223f8a4ffff3",
+        "returncode": 0,
+        "seconds": 51.25823164900021,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "bounded_square_part002",
+        "log_sha256": "b6e97901c777764b05ffa2bae5ee753b0ca229f7a314a5a9c1e9431639e848a4",
+        "returncode": 0,
+        "seconds": 50.754970409999714,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "bounded_square_part003",
+        "log_sha256": "bf101d3f527a593175804fcce075fb1ace8af35f5915c5dd9c9d92d9bd6cf594",
+        "returncode": 0,
+        "seconds": 53.779764870000236,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "bounded_square_part004",
+        "log_sha256": "bb2378ebe3a05a1d6f5a94aea26bd542ff218c5de3125fb70808ef1e517e91f2",
+        "returncode": 0,
+        "seconds": 54.38139283400005,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "bounded_square_part005",
+        "log_sha256": "aa3275e22f90035de9d3bd89b1b76528763b086eef90f0a2a93f39a3ad415914",
+        "returncode": 0,
+        "seconds": 55.21561740399966,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "bounded_square_part006",
+        "log_sha256": "b6162d7702bb10603025530bb9cb182968d17a8025db6f529aa8cd3316026106",
+        "returncode": 0,
+        "seconds": 54.755108156999995,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "closed_rational",
+        "log_sha256": "3395e7f81e5c9aba6c570d29bd09eb955a20803543230a68ce1cdabf7802a00e",
+        "returncode": 0,
+        "seconds": 5.449990309999976,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "closed_rational_part002",
+        "log_sha256": "1a6c68b4e9e305067c0f9c014cd8b03460bf270f5bfc88aee20a4f2d11da59a4",
+        "returncode": 0,
+        "seconds": 5.705180852000012,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "closed_rational_part003",
+        "log_sha256": "f38a2bca7c562e73ca2a21931041e45a949f6a4ef44c5d7f928a1cd17bf0de5c",
+        "returncode": 0,
+        "seconds": 5.194487880999986,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "closed_rational_part004",
+        "log_sha256": "f149a5a624d5287f399a6885f4ede694cd614b7241258f180682dfd25a5ef065",
+        "returncode": 0,
+        "seconds": 4.917261748999863,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "closed_rational_part005",
+        "log_sha256": "c00a34a2dd76b526bf4b37418e668d586c2f970999b9ddbe3bdd98dca57bd283",
+        "returncode": 0,
+        "seconds": 5.1174477849999676,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "closed_rational_part006",
+        "log_sha256": "72c4d7ebbfc0d4c6276649ab816b37cf717b7f46e730ee2ded50acd16d6c5138",
+        "returncode": 0,
+        "seconds": 5.179826841999784,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "difference_squares",
+        "log_sha256": "7cf5db49dedfafaa707a9f1ca91d3ce5409fcd9c23ad2415ff06e2891b82f741",
+        "returncode": 0,
+        "seconds": 24.523329642000135,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "difference_squares_part002",
+        "log_sha256": "87bd32128cbf622a3ca1931cdfa6b2ac7c362595b426d9293e6b6ffadcbece39",
+        "returncode": 0,
+        "seconds": 24.254676283000208,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "difference_squares_part003",
+        "log_sha256": "9d5c551f63bdb8ac56ab0d2c60696c71e2372be9ae780fbbc5b3a08221ea3737",
+        "returncode": 0,
+        "seconds": 24.03628727799969,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "difference_squares_part004",
+        "log_sha256": "fc3ea71c7281d8352af9f7fee9d9b27248e5c73f6229b8383ec40c79e53f76bc",
+        "returncode": 0,
+        "seconds": 23.741441163999752,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "difference_squares_part005",
+        "log_sha256": "742c1c34078d2e744d97d023ad1759e8740f85dee4384524f5b4033515fa6fb2",
+        "returncode": 0,
+        "seconds": 23.212096701000064,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "difference_squares_part006",
+        "log_sha256": "ad2b5614afb7036e124dd4c2bd9de4a64279bd0c07c0dc919ed126a6d34ac783",
+        "returncode": 0,
+        "seconds": 22.780976568999904,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "distributive",
+        "log_sha256": "a783698c924c6778b780a7020149c01218928f1a2e04719e224b9240dbb6faac",
+        "returncode": 0,
+        "seconds": 18.404015958999935,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "distributive_part002",
+        "log_sha256": "75f57eced18414ef8172acebe4e121dd3d77d7de755537fd7c1c7f08655faac7",
+        "returncode": 0,
+        "seconds": 18.52396808399999,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "distributive_part003",
+        "log_sha256": "7dd4e02e5ad89988fe193962582f15448a3fd32ecd461087562bf6d63bcb105b",
+        "returncode": 0,
+        "seconds": 18.344671734999793,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "distributive_part004",
+        "log_sha256": "3283d41da5f0b1305119b163f702d34e4a3ee246eaf39a29ddb79dd1afb71afd",
+        "returncode": 0,
+        "seconds": 18.188190633999966,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "distributive_part005",
+        "log_sha256": "3994c18e41df922beb25116da21aab2a0eb98492e66bcb4c8249cb29b9d04ead",
+        "returncode": 0,
+        "seconds": 18.523689701999956,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "distributive_part006",
+        "log_sha256": "12a2e9acf497b909ef45cbf3975cd066f6f2dfac80438d310cca91ecf347bce3",
+        "returncode": 0,
+        "seconds": 18.309020248999786,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "fraction_sum",
+        "log_sha256": "5fd0e857cc705a8dcab8dd6769ff287159b29c7c23dccf98bc098cb1499c083a",
+        "returncode": 0,
+        "seconds": 19.631131547999757,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "fraction_sum_part002",
+        "log_sha256": "aa85a49bc15587b189f41d752d48f1cda6c5c096b321eaf6a860d0a9d30bb127",
+        "returncode": 0,
+        "seconds": 19.811688298000263,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "fraction_sum_part003",
+        "log_sha256": "c9dba3c5bc6a12935e1275f78e1b9ac4fb523ba109be43845af2664c2f3606d4",
+        "returncode": 0,
+        "seconds": 20.23380768900006,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "fraction_sum_part004",
+        "log_sha256": "5da7ee9ca9ccaf1726a6544c383e34ffc1912e222e0a8a4cb4fb41b944eb39b2",
+        "returncode": 0,
+        "seconds": 20.27271573200005,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "fraction_sum_part005",
+        "log_sha256": "85d60ef7db9f0ee1484aa95a12a6239a9797f851253e3e17da67516eba2a230b",
+        "returncode": 0,
+        "seconds": 19.619648234000124,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "fraction_sum_part006",
+        "log_sha256": "960ea2974aacc4b8bee72c0ddec4138f00ef374c76dd79e231dd89bec8edcecb",
+        "returncode": 0,
+        "seconds": 19.12379315699991,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "guarded_inverse",
+        "log_sha256": "c7a2bf4b66570a6f696be18fddfc7108177cc5936a45cf3631d2846e8be4e4d2",
+        "returncode": 0,
+        "seconds": 18.336455615999967,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "guarded_inverse_part002",
+        "log_sha256": "8b583696d361ec42aaed3bfa59b9a98468dce6483cdf6909786c118967a31c4b",
+        "returncode": 0,
+        "seconds": 18.3409619680001,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "guarded_inverse_part003",
+        "log_sha256": "df7a2d7643039db5c493bc14fca0d0d924488fbbd237f5a37e3020561b7d8811",
+        "returncode": 0,
+        "seconds": 18.141767753000295,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "guarded_inverse_part004",
+        "log_sha256": "2d9da90cce04af87395b65cd5faf4c420bdacf838251fefc4d908b6b7bfeaa3d",
+        "returncode": 0,
+        "seconds": 18.238327004999974,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "guarded_inverse_part005",
+        "log_sha256": "2fb37791d0b624bab19dc2478563ef5d61b1127802fbc9ede05a21b5f11fa137",
+        "returncode": 0,
+        "seconds": 18.229893054999593,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "guarded_inverse_part006",
+        "log_sha256": "5da8dc856eaa6621be97d432ba26a0be4fdf7a113a0e713acd1c98a724a49741",
+        "returncode": 0,
+        "seconds": 18.593304881999757,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "monotone_affine",
+        "log_sha256": "a4abb52854fe10d8c71a44f4b59b0dd1d1197ae81e17e10180343c713598c760",
+        "returncode": 0,
+        "seconds": 26.96661252199965,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "monotone_affine_part002",
+        "log_sha256": "4692b9d17a0a3ec56a0924efd30a8dbf8570b1b30748fe07fada508ede72ea94",
+        "returncode": 0,
+        "seconds": 26.934667230000287,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "monotone_affine_part003",
+        "log_sha256": "ddac4d23e8eded878a2b70e5b3053327988aac2f11da7c5ce9f7862bfd05303a",
+        "returncode": 0,
+        "seconds": 26.6802609639999,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "monotone_affine_part004",
+        "log_sha256": "bbd8e5675b3b7f4eb1787e056def81bb80568ca32888660f14d523a64a64656a",
+        "returncode": 0,
+        "seconds": 27.366461859999617,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "monotone_affine_part005",
+        "log_sha256": "86167aa9d44371b119eee4694a6c66edc22be5e4771d7e32c67c29ee2c74d8a6",
+        "returncode": 0,
+        "seconds": 27.538726879000023,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "monotone_affine_part006",
+        "log_sha256": "c50c068e961478cc565436232332e12340d135112ed730cdbcf336799cb3039f",
+        "returncode": 0,
+        "seconds": 26.95369113200013,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "nonnegative_square",
+        "log_sha256": "0ab778fc3b3ef32b10876d5c193687af6d44c2b8649baa79ec02983ac15bff79",
+        "returncode": 0,
+        "seconds": 21.31194320800023,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "nonnegative_square_part002",
+        "log_sha256": "31a5761867dea1844c97c3500a254fcc5821b1ff393acbeaf5126355998639c7",
+        "returncode": 0,
+        "seconds": 21.141316466999797,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "nonnegative_square_part003",
+        "log_sha256": "854288e1c9f7c158f61642518292e58f39429208a8fec1812fd7e75c4523ddba",
+        "returncode": 0,
+        "seconds": 21.20435885400002,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "nonnegative_square_part004",
+        "log_sha256": "2729a1940e33ed4b6aaf95439c621ac5df2e8860465f5b877f38838260954d91",
+        "returncode": 0,
+        "seconds": 21.216034402000332,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "nonnegative_square_part005",
+        "log_sha256": "8b99fc85cde0088f3e529ec3d137b9f1284597c9a549f89cbce0bb71db03850b",
+        "returncode": 0,
+        "seconds": 21.03242226400016,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "nonnegative_square_part006",
+        "log_sha256": "b9f9c2c86e5f9697f50177d31e8bbbc3077747659e3d399ae97236c9907d3312",
+        "returncode": 0,
+        "seconds": 20.89208665599972,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "quadratic_minimum",
+        "log_sha256": "61a039685579989f0fa7d828eefb49ad5ea7ece145ca66fd7cfee7e476579b99",
+        "returncode": 0,
+        "seconds": 37.19273554499978,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "quadratic_minimum_part002",
+        "log_sha256": "43bec5e53dc9caa93ed3c49d7b8f7970d37166dc55563fea8aa43fe8e2e1592b",
+        "returncode": 0,
+        "seconds": 36.25685310100016,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "quadratic_minimum_part003",
+        "log_sha256": "ba61c44f8a3280d417361b3129dc6db5fedc8e6dcdeeb8a0d12978916e38398d",
+        "returncode": 0,
+        "seconds": 37.29332398900033,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "quadratic_minimum_part004",
+        "log_sha256": "0ef78f836a59df586c9d2db89924dfe654c86ee46e5c829e0ff8925acb53bec6",
+        "returncode": 0,
+        "seconds": 37.141846043999976,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "quadratic_minimum_part005",
+        "log_sha256": "b1557eea23d26c95703fa03c4dbf32e471b89fb10335fa0ddf1fed56295b71f4",
+        "returncode": 0,
+        "seconds": 29.561513532999925,
+        "status": "passed"
+      },
+      {
+        "audited_theorems": 500,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "expected_theorems": 500,
+        "family": "quadratic_minimum_part006",
+        "log_sha256": "b754101bd54b21fd187ef0c951bac2cfcd4d71519aac5c10a1501617522cc625",
+        "returncode": 0,
+        "seconds": 29.985700313000052,
+        "status": "passed"
+      }
+    ],
+    "private_holdout": false,
+    "profile": "rational-kernel-conformance-v2",
+    "protocol_id": "8721d795ee70d97881d17d66450e6752d2c95e7124f31259b1b2a3117e7abbfd",
+    "report_id": "4f2477fd069a6243804ec94bd3e04c15a03e724d58ce02fb72923117cdd22aa6",
+    "tool_version": "Lean (version 4.34.0, x86_64-unknown-linux-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+    "scope": "30.000 instâncias públicas de dez famílias; sem holdout privado, revisão externa ou alegação de cobertura universal."
+  },
+  "wheel_smoke": {
+    "passed": true,
+    "scope": "Isolated installation; four public calculations with notebook replay"
+  },
+  "bundles": {
+    "math.txt": {
+      "sha256": "42df6be54db9888798cdfb4573e1ef04cab6ba75caad4a793d3807b8dfc24a13",
+      "bytes": 15799824
+    },
+    "NABLA.TXT": {
+      "sha256": "30361ec4bafd1514c5bfec8c70da7db76b58ea96a1ed01b5b0b4bbf149fe0fc0",
+      "bytes": 19539737
+    }
+  },
+  "remote_ci_verified": false,
+  "release_1_0_accepted": false,
+  "full_vision_acceptance_established": false
+}
