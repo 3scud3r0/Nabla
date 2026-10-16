@@ -2,19 +2,7 @@ name: Cohesive local alpha
 on:
   push:
     branches: [main, 'feat/**', 'fix/**']
-    paths:
-      - 'src/nablamath/**'
-      - 'tests/**'
-      - 'tools/cohesion_smoke.py'
-      - '.github/workflows/cohesion.yml'
-      - 'pyproject.toml'
   pull_request:
-    paths:
-      - 'src/nablamath/**'
-      - 'tests/**'
-      - 'tools/cohesion_smoke.py'
-      - '.github/workflows/cohesion.yml'
-      - 'pyproject.toml'
   workflow_dispatch:
 
 permissions:

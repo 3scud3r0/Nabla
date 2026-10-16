@@ -34,6 +34,11 @@ incluídas. Licenças e configurações declarativas relevantes acompanham o có
 Links simbólicos de fontes são recusados para evitar seguir arquivos externos
 ao conjunto declarado. Os próprios bundles não são embutidos recursivamente.
 
+O workflow `Canonical source bundle integrity` executa os dois checks em pushes
+e PRs, inclusive na `main`. Ele valida os arquivos commitados no SHA do candidato,
+sem criar commits automáticos posteriores. Regenere e inclua ambos os agregados
+no mesmo commit das alterações de fontes.
+
 ## Ampliação do corpus formal
 
 O protocolo `rational-kernel-conformance-v2` amplia o corpus público de 5.000 para
