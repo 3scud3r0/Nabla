@@ -64,3 +64,7 @@ Consulte as operações instaladas com `nabla catalog`; execute qualquer operaç
 [migração](MIGRATION_STATUS.md) preservam o contexto. O roadmap inicial
 [F0–F6](ROADMAP_GLOBAL_RESEARCH.md) é um recorte anterior; para F1–F12 consulte o
 backlog e a auditoria atuais. Código histórico fica em `legacy/`.
+
+## Uso científico reproduzível
+
+[Experimentos em código](../examples/science/README.md): 69 operações na biblioteca, CLI e HTTP; 176 referências finitas; oito famílias Forge; modelos físicos idealizados, difusão e modo de provas Lean. [Aceite pessoal 1.0.0](acceptance/PERSONAL_USE_1_0.md).

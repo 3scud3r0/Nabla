@@ -37,8 +37,9 @@ Na linha estável 1.x, remover nomes/campos, mudar significado ou reduzir domín
 suportado exige nova major. Depreciações mantêm a alternativa por pelo menos uma
 minor, emitem aviso e documentam a migração. A leitura de formatos antigos deve
 migrar explicitamente ou recusar; hashes novos nunca autorizam reinterpretá-los.
-Até os gates de release passarem, o congelamento é um contrato candidato,
-sem declaração de release estável aprovado.
+A versão 1.0.0 de uso pessoal segue o aceite e as dispensas do proprietário em
+[PERSONAL_USE_1_0.md](acceptance/PERSONAL_USE_1_0.md). A certificação do canal
+público assinado continua condicionada aos gates próprios desse canal.
 
 SDKs Python/TypeScript/Rust/C/C++, rede, GPU e pesquisa geral são experimentais.
 A presença de módulos importáveis não amplia a superfície estável. Os recursos
@@ -47,6 +48,6 @@ de memória imposta pelo SO. Ferramentas opcionais precisam de seus testes reais
 
 ## Ampliação experimental e aditiva de matemática exata
 
-O perfil alpha registra nominalmente 29 operações novas no catálogo e no contrato do wheel, sem renomear comandos de CLI nem alterar formatos de recibo ou notebook. A implementação fica em `math/exact/`; a compatibilidade antiga foi preservada. A publicação de um novo contrato é mudança intencional, testada por igualdade com o catálogo em runtime. Enquanto faltarem CI, bundles regenerados e revisões, não há aceite estável.
+O perfil local registra nominalmente 29 operações novas no catálogo e no contrato do wheel, sem renomear comandos de CLI nem alterar formatos de recibo ou notebook. A implementação fica em `math/exact/`; a compatibilidade antiga foi preservada. A publicação de um novo contrato é mudança intencional, testada por igualdade com o catálogo em runtime. O aceite pessoal não constitui certificação independente da distribuição pública.
 
 A operação CLI aditiva `nabla catalog` publica os metadados do mesmo catálogo utilizado por `nabla calc`, pelo desktop e pelos recibos de notebook. O comando é somente leitura e não altera o armazenamento do usuário.
