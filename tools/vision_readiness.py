@@ -242,6 +242,8 @@ def main(argv=None):
         ('contracts', [python, 'tools/check_public_contracts.py']),
         ('preservation', [python, 'tools/preserve_evidence.py']),
         ('bundle', [python, 'tools/build_math_bundle.py', '--check']),
+        ('source-bundle', [python, 'tools/build_nabla_bundle.py', '--check']),
+        ('release-contract', [python, 'tools/release_readiness.py']),
     ]
     if not args.inventory_only:
         commands += [

@@ -20,3 +20,16 @@ O botão executável abre `http://127.0.0.1:<porta>/`. Só é acessível neste c
 **O loop do aplicativo é local.** Ele não submete execuções para uma fila NablaMath global em tempo real. O botão “Publicar” envia um lote curado diretamente ao dataset Hugging Face que você indicar, após confirmação; isso não conecta o computador a workers ou coordenadores do projeto.
 
 Os registros são aritmética exata para entradas específicas: `formal_proof: false`. Provas Lean opcionais usam `nabla formal ID` no terminal com Lake instalado. Consulte [publicação](PUBLISHING.md), [limites técnicos](IMPLEMENTATION_STATUS.md) e [roteiro](ROADMAP_GLOBAL_RESEARCH.md).
+
+## Operação do candidato local
+
+Erros da interface permanecem visíveis no status. Os pedidos principais têm
+timeout de 30 segundos no navegador; interromper a espera não desfaz um efeito
+já concluído no servidor. Consulte histórico/arquivos antes de repetir. O botão
+Parar cancela o loop local. Operações de publicação exigem a confirmação e seus
+metadados; o campo de token é limpo também quando o envio falha.
+
+O instalador candidato usa a versão do pacote. A CI Windows instala, calcula,
+exporta, reinstala e desinstala esse artefato preservando banco e arquivos fora
+da pasta de instalação. Esse teste precisa executar no SHA do candidato; ele
+não substitui um ensaio de upgrade a partir de uma versão anterior publicada.

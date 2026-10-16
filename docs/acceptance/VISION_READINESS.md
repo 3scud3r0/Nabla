@@ -5,7 +5,7 @@ python tools/vision_readiness.py
 ```
 
 Esse é o comando padrão antes de entregar alterações. Executa os checks de
-rastreabilidade, contratos, preservação e bundle; toda a suíte pytest; Longley;
+rastreabilidade, contratos, preservação, os dois bundles e contrato local 1.0; toda a suíte pytest; Longley;
 o laboratório original (`--per-family 24 --seed 951017`); e calibração com 10.000
 comparações diferenciais e 512 identidades de integração. Cada etapa preserva
 seu log, inclusive falhas e indisponibilidades. Não interrompe outras etapas

@@ -31,6 +31,76 @@ MAX_SEQUENCE = 2**53 - 1
 MAX_LIFETIME = 366 * 86400
 MAX_KEYS = 128
 _TOKEN = re.compile(r'[A-Za-z0-9][A-Za-z0-9._+-]{0,127}\Z')
+STABLE_GATES = (
+    'scope_and_public_api', 'mandatory_tests', 'exact_commit_platform_ci',
+    'formal_backend', 'mathematical_translation_review', 'clean_wheel_and_installer',
+    'migration_backup_restore', 'public_workflow', 'security_review',
+    'licenses_and_provenance', 'documentation', 'artifact_provenance', 'release_owner_acceptance',
+)
+
+
+def validate_stable_acceptance(inventory, body):
+    """Require a publisher-attested checklist bound to exact stable wheel bytes.
+
+    This statement travels inside the signed SBOM. Its signature authenticates
+    the enrolled publisher's declaration, not independent execution of evidence
+    URLs or the identities/competence of reviewers named by that publisher.
+    """
+    version = body['version']
+    if re.fullmatch(r'0(?:\.[0-9]+){1,2}(?:[A-Za-z0-9.+-]*)', version):
+        return {'required': False, 'publisher_attested': False}
+    core = r'[1-9][0-9]*(?:\.[0-9]+){1,2}'
+    local = r'(?:\+[A-Za-z0-9.-]+)?'
+    prerelease = r'(?:(?:a|b|rc)[0-9]+|\.dev[0-9]+|-[A-Za-z0-9][A-Za-z0-9.-]*)'
+    if re.fullmatch(core+prerelease+local, version):
+        return {'required': False, 'publisher_attested': False}
+    if not re.fullmatch(core+r'(?:\.post[0-9]+)?'+local, version):
+        raise ValueError('Unsupported final release version spelling')
+    annotations = inventory.get('annotations')
+    if type(annotations) is not list or len(annotations) > 64:
+        raise ValueError('Stable release acceptance annotation required')
+    candidates = []
+    for annotation in annotations:
+        if type(annotation) is not dict or annotation.get('annotationType') != 'REVIEW':
+            continue
+        comment = annotation.get('comment')
+        if type(comment) is not str or len(comment) > MAX_MANIFEST_BYTES:
+            continue
+        try:
+            payload = _load(comment.encode())
+        except ValueError:
+            continue
+        if type(payload) is dict and payload.get('schema') == 'nabla.release-acceptance.v1':
+            candidates.append(payload)
+    if len(candidates) != 1:
+        raise ValueError('Exactly one stable release acceptance statement required')
+    report = candidates[0]
+    _fields(report, {'schema', 'profile', 'version', 'source_commit', 'wheel_sha256', 'reviewer', 'gates'})
+    if (report['profile'] != 'nabla-local-cpu-v1' or report['version'] != body['version']
+            or report['source_commit'] != body['source']['commit']
+            or report['wheel_sha256'] != body['wheel']['sha256']):
+        raise ValueError('Stable acceptance is not bound to this commit and wheel')
+    _text(report['reviewer'], 'release reviewer')
+    gates = report['gates']
+    if type(gates) is not list or len(gates) != len(STABLE_GATES):
+        raise ValueError('Every mandatory stable release gate is required')
+    seen = set()
+    for row in gates:
+        _fields(row, {'id', 'status', 'evidence'})
+        if row['id'] not in STABLE_GATES or row['id'] in seen or row['status'] != 'passed':
+            raise ValueError('Stable release has an omitted, duplicated or unapproved gate')
+        seen.add(row['id'])
+        evidence = row['evidence']
+        if type(evidence) is not list or not 1 <= len(evidence) <= 16:
+            raise ValueError('Each stable gate requires evidence references')
+        for reference in evidence:
+            _fields(reference, {'uri', 'sha256'})
+            uri = _text(reference['uri'], 'gate evidence URI', 2048)
+            if not uri.startswith('https://') or any(char.isspace() for char in uri):
+                raise ValueError('Gate evidence requires an explicit HTTPS reference')
+            _hex(reference['sha256'], 64, 'gate evidence digest')
+    return {'required': True, 'publisher_attested': True, 'gates': len(seen),
+            'evidence_independently_reexecuted': False}
 
 
 def _database_path(path):
@@ -435,9 +505,11 @@ def verify_artifacts(receipt, directory):
             or package.get('checksums') != [{'algorithm': 'SHA256', 'checksumValue': body['wheel']['sha256']}]
             or package.get('sourceInfo') != 'Declared source commit: ' + body['source']['commit']):
         raise ValueError('SBOM does not bind the signed wheel and declared source')
+    acceptance = validate_stable_acceptance(inventory, body)
     return {'manifest_id': receipt.manifest_id, 'wheel': str(wheel), 'sbom': str(sbom),
             'wheel_sha256': body['wheel']['sha256'], 'artifact_identity_verified': True,
             'issuer_trust_rechecked': False,
+            'stable_acceptance': acceptance,
             'source_build_reproduced': False, 'scientific_validation': False}
 
 

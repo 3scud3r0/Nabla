@@ -1,0 +1,523 @@
+{
+  "schema_version": 1,
+  "profile": "nabla-local-cpu-v1",
+  "target_version": "1.0.0",
+  "package_exports": [
+    "Binary",
+    "Expr",
+    "ExpressionEntity",
+    "Number",
+    "ResearchResult",
+    "SolutionBundle",
+    "Symbol",
+    "VerificationRecord",
+    "calculate",
+    "parse_expr",
+    "solve_expression"
+  ],
+  "catalog": {
+    "schema_version": 1,
+    "operations": [
+      {
+        "name": "approximate",
+        "area": "numerical",
+        "required": [
+          "value"
+        ],
+        "optional": [],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "bayes",
+        "area": "probability",
+        "required": [
+          "likelihood",
+          "prior"
+        ],
+        "optional": [],
+        "contract": "exact finite Bayes; positive evidence"
+      },
+      {
+        "name": "binomial",
+        "area": "discrete",
+        "required": [
+          "k",
+          "n"
+        ],
+        "optional": [],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "certified_function",
+        "area": "numerical",
+        "required": [
+          "kind",
+          "value"
+        ],
+        "optional": [
+          "max_terms",
+          "tolerance"
+        ],
+        "contract": "rational Taylor enclosures of exp/log/sin/cos on bounded arguments"
+      },
+      {
+        "name": "certified_integral",
+        "area": "calculus",
+        "required": [
+          "coefficients",
+          "lower",
+          "upper"
+        ],
+        "optional": [
+          "max_pieces",
+          "method",
+          "tolerance"
+        ],
+        "contract": "exact polynomial quadrature with rigorous derivative remainder and explicit budget"
+      },
+      {
+        "name": "condition",
+        "area": "numerical",
+        "required": [
+          "matrix"
+        ],
+        "optional": [],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "conic",
+        "area": "geometry",
+        "required": [
+          "coefficients"
+        ],
+        "optional": [],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "differentiate",
+        "area": "calculus",
+        "required": [
+          "source"
+        ],
+        "optional": [
+          "variable"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "distribution",
+        "area": "probability",
+        "required": [
+          "kind",
+          "parameters",
+          "value"
+        ],
+        "optional": [],
+        "contract": "approximate normal/exponential/Poisson CDF and moments"
+      },
+      {
+        "name": "evaluate",
+        "area": "algebra",
+        "required": [
+          "source"
+        ],
+        "optional": [
+          "values"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "factor",
+        "area": "algebra",
+        "required": [
+          "coefficients"
+        ],
+        "optional": [],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "geometry",
+        "area": "geometry",
+        "required": [
+          "points"
+        ],
+        "optional": [],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "integrate",
+        "area": "calculus",
+        "required": [
+          "source"
+        ],
+        "optional": [
+          "end",
+          "start",
+          "variable"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "least_squares",
+        "area": "statistics",
+        "required": [
+          "predictors",
+          "response"
+        ],
+        "optional": [
+          "intercept",
+          "weights"
+        ],
+        "contract": "exact multivariate weighted least squares; full-rank design, positive residual degrees of freedom"
+      },
+      {
+        "name": "limit",
+        "area": "calculus",
+        "required": [
+          "denominator",
+          "numerator",
+          "point"
+        ],
+        "optional": [
+          "variable"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "linear_regression",
+        "area": "statistics",
+        "required": [
+          "x",
+          "y"
+        ],
+        "optional": [],
+        "contract": "exact least squares; nonconstant predictor, paired observations"
+      },
+      {
+        "name": "lu",
+        "area": "linear_algebra",
+        "required": [
+          "matrix"
+        ],
+        "optional": [],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "markov",
+        "area": "probability",
+        "required": [
+          "distribution",
+          "transition"
+        ],
+        "optional": [
+          "steps"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "markov_hitting",
+        "area": "probability",
+        "required": [
+          "targets",
+          "transition"
+        ],
+        "optional": [],
+        "contract": "exact first-hit probability and conditional moments; defective hitting is explicit"
+      },
+      {
+        "name": "markov_rewards",
+        "area": "probability",
+        "required": [
+          "discount",
+          "rewards",
+          "transition"
+        ],
+        "optional": [],
+        "contract": "exact discounted rewards for 0<=discount<1 with zero residual"
+      },
+      {
+        "name": "markov_stationary",
+        "area": "probability",
+        "required": [
+          "transition"
+        ],
+        "optional": [],
+        "contract": "exact stationary extremes of closed communicating classes with period"
+      },
+      {
+        "name": "matrix_inverse",
+        "area": "linear_algebra",
+        "required": [
+          "matrix"
+        ],
+        "optional": [],
+        "contract": "exact rational inverse; nonsingular square matrices"
+      },
+      {
+        "name": "matrix_properties",
+        "area": "linear_algebra",
+        "required": [
+          "matrix"
+        ],
+        "optional": [],
+        "contract": "exact rational determinant/rank/characteristic polynomial"
+      },
+      {
+        "name": "maximum_flow",
+        "area": "discrete",
+        "required": [
+          "edges",
+          "sink",
+          "source",
+          "vertices"
+        ],
+        "optional": [],
+        "contract": "exact rational capacity max flow"
+      },
+      {
+        "name": "ode",
+        "area": "calculus",
+        "required": [
+          "initial",
+          "model"
+        ],
+        "optional": [
+          "duration",
+          "method",
+          "rate",
+          "steps"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "ode_adaptive",
+        "area": "calculus",
+        "required": [
+          "initial",
+          "model"
+        ],
+        "optional": [
+          "atol",
+          "duration",
+          "initial_step",
+          "max_attempts",
+          "rate",
+          "rtol"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "optimize",
+        "area": "optimization",
+        "required": [
+          "objective",
+          "x_bounds",
+          "y_bounds"
+        ],
+        "optional": [
+          "constraints"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "orthogonal_basis",
+        "area": "linear_algebra",
+        "required": [
+          "vectors"
+        ],
+        "optional": [],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "polynomial_range",
+        "area": "calculus",
+        "required": [
+          "coefficients",
+          "lower",
+          "upper"
+        ],
+        "optional": [
+          "subdivisions"
+        ],
+        "contract": "exact rational Bernstein range enclosure, not necessarily sharp extrema"
+      },
+      {
+        "name": "quadratic_optimize",
+        "area": "optimization",
+        "required": [
+          "hessian",
+          "linear"
+        ],
+        "optional": [
+          "constant",
+          "constraints",
+          "upper"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "rational_compare",
+        "area": "algebra",
+        "required": [
+          "left",
+          "right"
+        ],
+        "optional": [],
+        "contract": "exact univariate rational identity with separate partial domains"
+      },
+      {
+        "name": "rational_limit",
+        "area": "calculus",
+        "required": [
+          "point",
+          "source"
+        ],
+        "optional": [
+          "direction"
+        ],
+        "contract": "exact sided rational limits, original domain guards and replayable algebraic witness; finite rational points or signed infinity"
+      },
+      {
+        "name": "sat",
+        "area": "discrete",
+        "required": [
+          "clauses"
+        ],
+        "optional": [
+          "decision_limit"
+        ],
+        "contract": "bounded DPLL; assignment verification; unsat not a Lean theorem"
+      },
+      {
+        "name": "series",
+        "area": "calculus",
+        "required": [
+          "source"
+        ],
+        "optional": [
+          "center",
+          "order",
+          "variable"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "shortest_paths",
+        "area": "discrete",
+        "required": [
+          "edges",
+          "source",
+          "vertices"
+        ],
+        "optional": [],
+        "contract": "exact Dijkstra for nonnegative rational weights"
+      },
+      {
+        "name": "simplify",
+        "area": "algebra",
+        "required": [
+          "source"
+        ],
+        "optional": [
+          "nonzero"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "solve_linear",
+        "area": "linear_algebra",
+        "required": [
+          "matrix",
+          "rhs"
+        ],
+        "optional": [],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "statistics",
+        "area": "statistics",
+        "required": [
+          "values"
+        ],
+        "optional": [
+          "median",
+          "population_variance",
+          "radius",
+          "sample",
+          "window"
+        ],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "time_series",
+        "area": "statistics",
+        "required": [
+          "method",
+          "values"
+        ],
+        "optional": [
+          "alpha",
+          "lag",
+          "window"
+        ],
+        "contract": "approximate differences/moving average/smoothing/autocorrelation/trend"
+      },
+      {
+        "name": "topological_sort",
+        "area": "discrete",
+        "required": [
+          "edges",
+          "vertices"
+        ],
+        "optional": [],
+        "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      }
+    ],
+    "scope": "declared bounded operations, not complete mathematical coverage"
+  },
+  "stable_cli": [
+    "run",
+    "show",
+    "verify",
+    "export",
+    "import",
+    "backup",
+    "restore",
+    "calc",
+    "replay-notebook",
+    "doctor",
+    "desktop"
+  ],
+  "cli_exit_status": {
+    "0": "success",
+    "1": "operation or runtime failure",
+    "2": "invalid command line"
+  },
+  "formats": {
+    "calculation": 1,
+    "notebook": 1,
+    "results_sqlite": 1,
+    "backup_receipt": 1,
+    "scientific_artifact": 1,
+    "source_archive": 1
+  },
+  "schema_sha256": {
+    "protocol/schema/nabla-object-v1.json": "23d8767e1b8f517d4db4cbe92c91e514c06a57cf929f407bca43b0b29a15a05c",
+    "protocol/schema/nabla-task-v1.json": "1bd4f9604a5a9e7f744e415841c259df82075a23a7c572f8de12adff26e03123",
+    "protocol/schema/nabla-receipt-v1.json": "3b1133c35ff57a1a0ba726190091f64cdd7235469274383f758dfadeb1722e58"
+  },
+  "experimental": [
+    "all SDKs",
+    "network services",
+    "GPU",
+    "general discovery",
+    "general autonomous agents",
+    "public federation",
+    "hostile code execution"
+  ],
+  "deprecation": {
+    "minimum_minor_releases": 1,
+    "requires_warning": true,
+    "requires_migration": true
+  }
+}

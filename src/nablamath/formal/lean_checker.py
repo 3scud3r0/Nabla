@@ -81,13 +81,27 @@ def check_lean(translation,project=Path('lean'),timeout=120):
     lake=find_lake(project)
     if lake is None:
         return result('unavailable','lake not installed')
+    pin=(project/'lean-toolchain').read_text(encoding='utf-8').strip()
+    expected=re.fullmatch(r'leanprover/lean4:v([0-9]+\.[0-9]+\.[0-9]+)',pin)
+    if expected is None:
+        return result('unavailable','Unsupported Lean toolchain pin')
+    modules=('Ring','FieldSimp','Linarith','NormNum')
+    base=project/'.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic'
+    missing=[name for name in modules if not (base/(name+'.olean')).is_file()]
+    if missing:
+        return result('unavailable','Mathlib prerequisites not built: '+', '.join(missing)+
+                      '; run scripts/setup_formal.sh before evaluating proofs')
     environment=dict(os.environ)
+    environment.pop('LEAN_PATH',None)
+    environment.pop('LEAN_SRC_PATH',None)
     environment['PATH']=str(lake.parent)+os.pathsep+environment.get('PATH','')
     try:
         version=run_lean_process([str(lake),'env','lean','--version'],cwd=project,env=environment,
                                  timeout=min(timeout,20))
         if version.returncode:
             return result('unavailable',(version.stdout+version.stderr)[-4000:])
+        if not re.search(r'Lean \(version '+re.escape(expected[1])+r'(?:,|\))',version.stdout):
+            return result('unavailable','Compiler version does not match project pin',version.stdout.strip())
         with tempfile.TemporaryDirectory(prefix='nabla-prove-') as directory:
             source=Path(directory)/'Check.lean'
             source.write_text(translation.source,encoding='utf-8')
@@ -97,8 +111,8 @@ def check_lean(translation,project=Path('lean'),timeout=120):
     except subprocess.TimeoutExpired:
         return result('timeout','Lean timeout')
     output=completed.stdout+'\n'+completed.stderr
-    matches=re.findall(r"depends on axioms:\s*\[([^\]]*)\]",output)
-    no_axioms='does not depend on any axioms' in output
+    matches=re.findall(r"'nabla_generated' depends on axioms:\s*\[([^\]]*)\]",output)
+    no_axioms="'nabla_generated' does not depend on any axioms" in output
     axioms=tuple(sorted({name.strip() for group in matches for name in group.split(',') if name.strip()}))
     if completed.returncode:
         return result('failed',output[-6000:],version.stdout.strip(),axioms,completed.returncode)

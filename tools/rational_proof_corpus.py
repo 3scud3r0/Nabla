@@ -155,12 +155,14 @@ def generate(*, check=False, refresh=False):
     return json.loads(sources['manifest.json'])
 
 
-def verify(output, *, workers=3, timeout=180):
+def verify(output, *, workers=2, timeout=180):
+    if type(workers) is not int or not 1 <= workers <= 4:
+        raise ValueError('Kernel worker count must be in [1,4]')
+    if type(timeout) is not int or not 1 <= timeout <= 3600:
+        raise ValueError('Kernel timeout must be in [1,3600] seconds')
     manifest = generate(check=True)
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
-    if type(workers) is not int or not 1 <= workers <= 4:
-        raise ValueError('Kernel worker count must be in [1,4]')
     lake = find_lake(ROOT/'lean')
     if lake is None:
         raise ValueError('Pinned Lean compiler is unavailable')
@@ -189,8 +191,11 @@ def verify(output, *, workers=3, timeout=180):
             result = {'family': family, 'status': 'passed' if accepted else 'failed',
                       'returncode': completed.returncode, 'expected_theorems': len(expected),
                       'audited_theorems': len(names), 'axioms': axioms}
-        except subprocess.TimeoutExpired:
-            text = 'Kernel compilation timed out; no proofs accepted for this family.\n'
+        except subprocess.TimeoutExpired as error:
+            def decoded(value):
+                return value.decode('utf-8', errors='replace') if isinstance(value, bytes) else (value or '')
+            text = ('Kernel compilation timed out; no proofs accepted for this family.\n'
+                    +decoded(error.stdout)+'\n'+decoded(error.stderr))
             result = {'family': family, 'status': 'timeout', 'expected_theorems': len(manifest['instances'][family]),
                       'audited_theorems': 0, 'returncode': None}
         log = output/(family+'.log')
@@ -204,6 +209,7 @@ def verify(output, *, workers=3, timeout=180):
         results = list(executor.map(compile_family, manifest['instances']))
     passed = sum(row['expected_theorems'] for row in results if row['status'] == 'passed')
     report = {'profile': manifest['version'], 'protocol_id': manifest['protocol_id'],
+              'workers': workers, 'timeout_seconds_per_unit': timeout,
               'tool_version': version.stdout.strip(), 'families': results,
               'expected_theorems': manifest['theorems'], 'accepted_theorems': passed,
               'all_passed': passed == manifest['theorems'],
@@ -218,10 +224,11 @@ def main(argv=None):
     parser.add_argument('--check', action='store_true')
     parser.add_argument('--refresh', action='store_true', help='Archive intact generated sources before regenerating')
     parser.add_argument('--verify', type=Path, help='Fresh output directory for kernel evidence')
-    parser.add_argument('--workers', type=int, default=3)
+    parser.add_argument('--workers', type=int, default=2)
+    parser.add_argument('--timeout', type=int, default=180, help='Per-unit kernel deadline, 1–3600 seconds; recorded in the report')
     args = parser.parse_args(argv)
     if args.verify:
-        report = verify(args.verify.resolve(), workers=args.workers)
+        report = verify(args.verify.resolve(), workers=args.workers, timeout=args.timeout)
         print(json.dumps({'accepted_theorems': report['accepted_theorems'],
                           'expected_theorems': report['expected_theorems'], 'all_passed': report['all_passed']}))
         return 0 if report['all_passed'] else 1

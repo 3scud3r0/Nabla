@@ -9,12 +9,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Prepare pinned Lean and Mathlib for the full laboratory
-        uses: leanprover/lean-action@v1
-        with:
-          lake-package-directory: lean
-          build: true
-          build-args: Nabla NablaMath
+      - name: Prepare immutable Lean and Mathlib before bounded laboratory jobs
+        run: bash scripts/setup_formal.sh
+      - run: echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
       - run: python -m pip install -e ".[test,formal,graphics,documents,data,research,federation]"
       - run: python tools/vision_readiness.py --output .nabla/vision-readiness/ci
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

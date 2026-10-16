@@ -25,6 +25,11 @@ arquivos vazios ou implementações paralelas para preencher esta lista.
 
 ## Estimativa e estado observado
 
+A estimativa abaixo é o diagnóstico histórico anterior a esta implementação.
+O [aceite operacional](docs/acceptance/version_1_0.md) define os gates atuais;
+`python tools/release_readiness.py` confere individualmente os 212 caminhos e
+o contrato congelado. A presença dos arquivos não concede aceite.
+
 - Maturidade de engenharia restante estimada: **cerca de 40%, faixa 30–50%**,
   para o perfil local proposto. Julgamento de planejamento, não tempo ou código.
 - A rubrica detalhada é 59/100 disponíveis e 41/100 restantes em
@@ -58,8 +63,8 @@ Não se exige reescrever um componente cujo contrato já passe nos gates pertine
 | `src/nablamath/compatibility.py` | existente | Diagnóstico de compatibilidade e integrações opcionais. | Distinguir disponível, indisponível, incompatível e não verificado. |
 | `README.md` | existente | Instalação, primeiros usos, escopo e limitações da 1.0. | Receita reproduzida em ambiente limpo; sem números históricos apresentados como atuais. |
 | `docs/COMPATIBILITY.md` | existente | Matriz de plataformas, versões e evidências CI. | Links dos jobs do commit exato; backends opcionais separados. |
-| `docs/API_STABILITY.md` | proposto/ausente | Política proposta de estabilidade de APIs, formatos, erros e depreciações. | Publicar o conjunto estável e política de quebra/migração; reaproveitar contratos existentes. |
-| `CHANGELOG.md` | proposto/ausente | Notas propostas de release: funcionalidades, correções, migração e limitações. | Descrever diferenças reais, incompatibilidades e problemas conhecidos da 1.0. |
+| `docs/API_STABILITY.md` | implementado; aceite pendente | Política proposta de estabilidade de APIs, formatos, erros e depreciações. | Publicar o conjunto estável e política de quebra/migração; reaproveitar contratos existentes. |
+| `CHANGELOG.md` | implementado; aceite pendente | Notas propostas de release: funcionalidades, correções, migração e limitações. | Descrever diferenças reais, incompatibilidades e problemas conhecidos da 1.0. |
 | `SECURITY.md` | existente | Política de reporte e limites operacionais de segurança. | Revisão do escopo local, dependências, ameaças e caminho de reporte. |
 | `LICENSE` | existente | Licença do código distribuído. | Preservar avisos e identificar licenças dos componentes/artefatos de terceiros. |
 
@@ -216,7 +221,7 @@ Não se exige reescrever um componente cujo contrato já passe nos gates pertine
 | `tests/integration/test_scientific_artifact.py` | existente | Ciclo do artefato e adulterações de vínculos. | Reexecução de todos os nós e recusa de conteúdo inconsistente. |
 | `tests/integration/test_global_scientific_cycle.py` | existente | Integração de componentes públicos. | Perfil 1.0 executado sem simular aprovação de módulos indisponíveis. |
 | `tests/security/test_agent_sandbox.py` | existente | Recusas e limites de ferramentas. | Não declarar resistência a escapes de sandbox inexistente. |
-| `tests/security/test_supply_chain.py` | proposto/ausente | Integridade da cadeia de distribuição. | Adulteração de fonte/artefato/dependência detectada. |
+| `tests/security/test_supply_chain.py` | implementado; aceite pendente | Integridade da cadeia de distribuição. | Adulteração de fonte/artefato/dependência detectada. |
 | `tests/math/test_certified_analysis.py` | existente | Enclosures e quadratura contra referências independentes. | Casos-limite, orçamento e adulterações com hash recalculado. |
 | `tests/math/test_markov_analysis.py` | existente | Probabilidades e momentos contra leis e oráculos. | Distinguir condicionamento, recorrência, período e divergência. |
 | `tests/test_rational_sided_limits.py` | existente | Limites laterais/infinito e replay. | Polos, buracos de domínio e casos fora do perfil. |

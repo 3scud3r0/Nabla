@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 from fractions import Fraction
 import json
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -48,7 +49,8 @@ def main(argv: list[str] | None = None) -> int:
     desktop = commands.add_parser("desktop", help="Abrir painel web local com banco SQLite")
     desktop.add_argument("--data-dir", type=Path, default=Path.home() / "NablaMath")
     desktop.add_argument("--no-browser", action="store_true")
-    commands.add_parser("doctor", help="Mostrar ambiente e integrações opcionais")
+    doctor = commands.add_parser("doctor", help="Mostrar ambiente e integrações opcionais")
+    doctor.add_argument("--probe", action="store_true", help="Verificar versões dos executáveis opcionais com timeout")
     capabilities = commands.add_parser("capabilities", help="Consultar domínio e recusas de um perfil científico")
     capabilities.add_argument("manifest", type=Path)
     capabilities.add_argument("--profile", required=True)
@@ -477,7 +479,7 @@ def main(argv: list[str] | None = None) -> int:
             desktop_main(desktop_args)
             return 0
         if args.command == "doctor":
-            report = runtime_report()
+            report = runtime_report(probe=args.probe)
             print(json.dumps(report.to_data(), ensure_ascii=False))
             return 0 if report.compatible else 1
         if args.command == "orbit":
@@ -550,7 +552,7 @@ def main(argv: list[str] | None = None) -> int:
             if pdf:
                 print("PDF:", pdf)
         return 0
-    except (ValueError, KeyError, TypeError, ArithmeticError, RuntimeError, OSError, DomainError) as exc:
+    except (ValueError, KeyError, TypeError, ArithmeticError, RuntimeError, OSError, sqlite3.Error, DomainError) as exc:
         print("Erro:", exc, file=sys.stderr)
         return 1
 

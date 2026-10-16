@@ -1,5 +1,7 @@
 #define ProductName "NablaMath"
-#define ProductVersion "0.1.0-alpha"
+#ifndef ProductVersion
+  #define ProductVersion "0.1.0a1"
+#endif
 [Setup]
 AppId={{D275F794-8209-440C-A8CE-A59877D6EA59}
 AppName={#ProductName}

@@ -120,3 +120,25 @@ def test_orchestrator_keeps_failures_timeouts_and_continues(tmp_path, monkeypatc
     assert len(summary['phase_profiles']) == 12
     with pytest.raises(FileExistsError):
         cli.run(args)
+
+
+def test_calculator_profile_checks_exact_frozen_catalog_not_historical_count(tmp_path):
+    from copy import deepcopy
+    from nablamath.stability import public_contract
+    from tools.simulate_frontier_lab import phase_profiles
+    catalog=public_contract()['catalog']
+    root=tmp_path/'science'
+    root.mkdir()
+    summary={'calculator_operations':len(catalog['operations']),'nist_reference_passed':True}
+    (root/'summary.json').write_text(json.dumps(summary))
+    assert not phase_profiles(tmp_path)['F1']['selected_profile_passed']
+    (root/'calculator-catalog.json').write_text(json.dumps(catalog))
+    assert phase_profiles(tmp_path)['F1']['selected_profile_passed']
+    changed=deepcopy(catalog)
+    changed['operations'][0]['required'].append('unreviewed_argument')
+    (root/'calculator-catalog.json').write_text(json.dumps(changed))
+    assert not phase_profiles(tmp_path)['F1']['selected_profile_passed']
+    (root/'calculator-catalog.json').write_text(json.dumps(catalog))
+    summary['calculator_operations']=33
+    (root/'summary.json').write_text(json.dumps(summary))
+    assert not phase_profiles(tmp_path)['F1']['selected_profile_passed']

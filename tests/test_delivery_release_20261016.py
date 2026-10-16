@@ -1092,3 +1092,55 @@ def test_existing_release_manager_rechecks_replaced_root_before_lock(tmp_path, t
     with pytest.raises(ValueError,match='symlinks'):
         release.recover()
     assert database.read_bytes() == before
+
+
+def acceptance_statement(body):
+    return {'schema':'nabla.release-acceptance.v1','profile':'nabla-local-cpu-v1',
+        'version':body['version'],'source_commit':body['source']['commit'],
+        'wheel_sha256':body['wheel']['sha256'],'reviewer':'synthetic release fixture reviewer',
+        'gates':[{'id':name,'status':'passed','evidence':[
+            {'uri':'https://example.invalid/synthetic-reviewed-evidence','sha256':'b'*64}]}
+            for name in signed.STABLE_GATES]}
+
+
+def with_acceptance(envelope, source, private_key, statement):
+    body=deepcopy(envelope['body'])
+    path=source/body['sbom']['filename']
+    sbom=json.loads(path.read_text())
+    sbom['annotations']=[{'annotationType':'REVIEW','annotator':'Person: synthetic fixture',
+                          'annotationDate':'2026-10-16T00:00:00Z','comment':json.dumps(statement)}]
+    path.write_text(json.dumps(sbom))
+    body['sbom']['sha256']=sha(path)
+    body['sbom']['size']=path.stat().st_size
+    return signed.sign_release(body,private_key)
+
+
+def test_stable_final_artifact_requires_signed_bound_publisher_acceptance(tmp_path,keys,trust):
+    source=tmp_path/'stable-source'
+    envelope=manifest(source,keys[0],version='1.0.0')
+    receipt=trust.verify(envelope,now_unix=NOW)
+    with pytest.raises(ValueError,match='acceptance'):
+        signed.verify_artifacts(receipt,source)
+    statement=acceptance_statement(envelope['body'])
+    accepted=with_acceptance(envelope,source,keys[0],statement)
+    receipt=trust.verify(accepted,now_unix=NOW)
+    result=signed.verify_artifacts(receipt,source)
+    assert result['stable_acceptance']['gates']==13
+    assert not result['stable_acceptance']['evidence_independently_reexecuted']
+    # Even a trusted publisher cannot pass a checklist explicitly carrying a failed gate.
+    statement['gates'][0]['status']='failed'
+    rejected=with_acceptance(accepted,source,keys[0],statement)
+    receipt=trust.verify(rejected,now_unix=NOW)
+    with pytest.raises(ValueError,match='gate'):
+        signed.verify_artifacts(receipt,source)
+
+
+def test_staged_final_release_cannot_prepare_before_acceptance(tmp_path,keys,trust):
+    source=tmp_path/'source'
+    envelope=manifest(source,keys[0],version='1.0.0')
+    release=manager(tmp_path,trust)
+    with pytest.raises(ValueError,match='acceptance'):
+        release.stage(envelope,source,now_unix=NOW)
+    with release._db() as db:
+        assert db.execute('SELECT count(*) FROM releases').fetchone()[0]==0
+    assert not list(release.environments.iterdir())

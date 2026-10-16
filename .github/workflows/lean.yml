@@ -1,22 +1,26 @@
-name: Lean bridge (optional)
+name: Pinned Mathlib bridge
 on:
   push:
-    paths: ['lean/**', 'src/nablamath/formal/**', '.github/workflows/lean.yml']
+    paths: ['lean/**', 'src/nablamath/formal/**', 'scripts/setup*', 'tools/check_formal_environment.py', '.github/workflows/lean.yml']
   pull_request:
-    paths: ['lean/**', 'src/nablamath/formal/**', '.github/workflows/lean.yml']
+    paths: ['lean/**', 'src/nablamath/formal/**', 'scripts/setup*', 'tools/check_formal_environment.py', '.github/workflows/lean.yml']
+permissions:
+  contents: read
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
-      - name: Resolve Lake dependencies
-        working-directory: lean
-        run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-          "$HOME/.elan/bin/lake" update
-      - uses: leanprover/lean-action@v1
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
-          lake-package-directory: lean
-          build: true
-          build-args: Nabla NablaMath
+          python-version: '3.12'
+      - name: Prepare immutable toolchain and pinned Mathlib import closure
+        run: bash scripts/setup_formal.sh
+      - run: .venv/bin/python -m pytest -q tests/test_phase3_formal.py --junitxml=.nabla/mathlib-tests.xml
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: mathlib-${{ github.sha }}
+          path: .nabla/mathlib-tests.xml
+          include-hidden-files: true
