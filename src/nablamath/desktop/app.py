@@ -58,6 +58,28 @@ class LocalResearch:
         inserted = save_result(self.db, result)
         return {"inserted": inserted, "result": result.to_data()}
 
+    def scientific_catalog(self) -> dict:
+        """Return exactly the public calculator operation catalog to the local UI."""
+        from nablamath.calc.catalog import catalog
+        return catalog()
+
+    def scientific_calculation(self, payload: dict) -> dict:
+        """Use the same validated CalculationSession and receipt as CLI/notebooks.
+
+        Scientific calculation receipts are returned to the caller; they are
+        not inserted into the legacy expression-only SQLite schema.
+        """
+        from nablamath.calc.session import CalculationSession
+        if not isinstance(payload, dict) or set(payload) != {"operation", "arguments"}:
+            raise ValueError("Requisição requer apenas operation e arguments")
+        operation = payload["operation"]
+        arguments = payload["arguments"]
+        if not isinstance(operation, str) or len(operation) > 80:
+            raise ValueError("Nome de operação inválido")
+        if not isinstance(arguments, dict) or len(arguments) > 64:
+            raise ValueError("Arguments deve ser um objeto JSON com até 64 campos")
+        return CalculationSession().execute(operation, **arguments).to_data()
+
     def report(self, expression: str, values: dict) -> dict:
         result = calculate(expression, values)
         save_result(self.db, result)
@@ -192,6 +214,8 @@ def make_server(data_dir: Path, port: int = 0) -> tuple[ThreadingHTTPServer, Loc
                 self._send(200, research.status())
             elif self.path == "/api/recent":
                 self._send(200, {"records": research.recent()})
+            elif self.path == "/api/catalog":
+                self._send(200, research.scientific_catalog())
             else:
                 self._send(404, {"error": "Rota inexistente"})
 
@@ -207,6 +231,7 @@ def make_server(data_dir: Path, port: int = 0) -> tuple[ThreadingHTTPServer, Loc
                 if not isinstance(payload, dict):
                     raise ValueError("Objeto JSON esperado")
                 routes = {"/api/experiment": lambda: research.experiment(payload),
+                          "/api/calculate": lambda: research.scientific_calculation(payload),
                           "/api/run": lambda: research.run(payload["expression"], payload["values"]),
                           "/api/start": lambda: research.start(max_examples=payload["max_examples"], interval_seconds=payload["interval_seconds"]),
                           "/api/stop": research.stop, "/api/export": research.export,
@@ -219,7 +244,7 @@ def make_server(data_dir: Path, port: int = 0) -> tuple[ThreadingHTTPServer, Loc
                 if self.path not in routes:
                     return self._send(404, {"error": "Rota inexistente"})
                 self._send(200, routes[self.path]())
-            except (KeyError, TypeError, ValueError, OSError, sqlite3.Error, ImportError) as exc:
+            except (KeyError, TypeError, ValueError, ArithmeticError, OSError, sqlite3.Error, ImportError) as exc:
                 self._send(400, {"error": str(exc)})
 
     return ThreadingHTTPServer(("127.0.0.1", port), Handler), research
