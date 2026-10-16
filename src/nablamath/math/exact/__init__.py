@@ -1,24 +1,21 @@
-"""Exact rational mathematics with bounded algorithms and explicit guarantees.
+"""Advanced finite-domain mathematics, with one canonical import namespace.
 
-Public imports deliberately live here instead of at the global package root.
-The large implementation lives in laboratory.py to keep all contracts together.
+No global package symbols or legacy classes are overwritten. Functions here
+are experimental additions and are also reachable through CalculationSession
+for bounded JSON arguments using the 29 operation names in adapters.OPERATIONS.
 """
-from .laboratory import (
-    Polynomial, RationalMatrix, AffineSolution, rational,
-    polynomial_gcd, polynomial_extended_gcd, square_free_factors,
-    resultant, discriminant, sturm_sequence, real_root_count,
-    isolate_real_roots, interpolate, hermite_interpolate,
-    bernstein_range, chinese_remainder, berlekamp_massey,
-    rational_generating_function, spanning_tree_count,
-    absorbing_chain, bounded_linear_program,
-)
+from .laboratory import *  # noqa: F401,F403
+from .advanced_number_theory import *  # noqa: F401,F403
+from .finite_fields import *  # noqa: F401,F403
+from .rigorous_analysis import *  # noqa: F401,F403
+from .discrete_optimization import *  # noqa: F401,F403
+from .finite_probability import *  # noqa: F401,F403
 
-__all__ = [
-    "Polynomial", "RationalMatrix", "AffineSolution", "rational",
-    "polynomial_gcd", "polynomial_extended_gcd", "square_free_factors",
-    "resultant", "discriminant", "sturm_sequence", "real_root_count",
-    "isolate_real_roots", "interpolate", "hermite_interpolate",
-    "bernstein_range", "chinese_remainder", "berlekamp_massey",
-    "rational_generating_function", "spanning_tree_count",
-    "absorbing_chain", "bounded_linear_program",
-]
+from . import laboratory, advanced_number_theory, finite_fields
+from . import rigorous_analysis, discrete_optimization, finite_probability
+
+__all__ = list(dict.fromkeys(
+    laboratory.__all__ + advanced_number_theory.__all__ + finite_fields.__all__
+    + rigorous_analysis.__all__ + discrete_optimization.__all__
+    + finite_probability.__all__
+))

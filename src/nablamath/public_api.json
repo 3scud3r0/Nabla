@@ -19,6 +19,67 @@
     "schema_version": 1,
     "operations": [
       {
+        "name": "analysis_extrema",
+        "area": "calculus",
+        "required": [
+          "coefficients",
+          "lower",
+          "upper"
+        ],
+        "optional": [
+          "max_segments",
+          "tolerance"
+        ],
+        "contract": "rational enclosures for min/max after bounded subdivision"
+      },
+      {
+        "name": "analysis_integral",
+        "area": "calculus",
+        "required": [
+          "coefficients",
+          "lower",
+          "upper"
+        ],
+        "optional": [],
+        "contract": "exact definite integral of polynomial over rational domain"
+      },
+      {
+        "name": "analysis_interval",
+        "area": "calculus",
+        "required": [
+          "coefficients",
+          "lower",
+          "upper"
+        ],
+        "optional": [
+          "method"
+        ],
+        "contract": "exact Horner or Bernstein polynomial image inclusion"
+      },
+      {
+        "name": "analysis_pade",
+        "area": "calculus",
+        "required": [
+          "denominator_degree",
+          "numerator_degree"
+        ],
+        "optional": [],
+        "contract": "Padé approximant of exp formal Taylor series, not certified global error"
+      },
+      {
+        "name": "analysis_root",
+        "area": "calculus",
+        "required": [
+          "coefficients",
+          "lower",
+          "upper"
+        ],
+        "optional": [
+          "steps"
+        ],
+        "contract": "exact bisection existence bracket, not uniqueness"
+      },
+      {
         "name": "approximate",
         "area": "numerical",
         "required": [
@@ -136,6 +197,27 @@
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
       },
       {
+        "name": "ff_extension",
+        "area": "algebra",
+        "required": [
+          "element",
+          "modulus",
+          "prime"
+        ],
+        "optional": [],
+        "contract": "finite field quotient, inverse, trace and norm"
+      },
+      {
+        "name": "ff_irreducible",
+        "area": "algebra",
+        "required": [
+          "coefficients",
+          "prime"
+        ],
+        "optional": [],
+        "contract": "Rabin irreducibility test for prime field polynomials"
+      },
+      {
         "name": "geometry",
         "area": "geometry",
         "required": [
@@ -143,6 +225,79 @@
         ],
         "optional": [],
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "graph_apsp",
+        "area": "discrete",
+        "required": [
+          "edges",
+          "vertices"
+        ],
+        "optional": [],
+        "contract": "exact Floyd-Warshall all pairs, rejects negative cycles"
+      },
+      {
+        "name": "graph_assignment",
+        "area": "optimization",
+        "required": [
+          "costs"
+        ],
+        "optional": [],
+        "contract": "exact assignment by exhaustive subset DP, n<=12"
+      },
+      {
+        "name": "graph_bellman_ford",
+        "area": "discrete",
+        "required": [
+          "edges",
+          "source",
+          "vertices"
+        ],
+        "optional": [],
+        "contract": "exact shortest paths or reachable negative-cycle refusal"
+      },
+      {
+        "name": "graph_matching",
+        "area": "discrete",
+        "required": [
+          "edges",
+          "left",
+          "right"
+        ],
+        "optional": [],
+        "contract": "maximum bipartite matching and minimum cover equality"
+      },
+      {
+        "name": "graph_max_flow",
+        "area": "discrete",
+        "required": [
+          "edges",
+          "sink",
+          "source",
+          "vertices"
+        ],
+        "optional": [],
+        "contract": "exact max-flow value verified against min-cut"
+      },
+      {
+        "name": "graph_mst",
+        "area": "discrete",
+        "required": [
+          "edges",
+          "vertices"
+        ],
+        "optional": [],
+        "contract": "exact Kruskal minimum spanning tree for connected undirected graph"
+      },
+      {
+        "name": "graph_scc",
+        "area": "discrete",
+        "required": [
+          "edges",
+          "vertices"
+        ],
+        "optional": [],
+        "contract": "deterministic Tarjan strongly connected components"
       },
       {
         "name": "integrate",
@@ -275,6 +430,63 @@
         "contract": "exact rational capacity max flow"
       },
       {
+        "name": "nt_discrete_log",
+        "area": "number_theory",
+        "required": [
+          "base",
+          "prime",
+          "target"
+        ],
+        "optional": [],
+        "contract": "BSGS exact subgroup discrete log, prime<=10^9"
+      },
+      {
+        "name": "nt_factorization",
+        "area": "number_theory",
+        "required": [
+          "n"
+        ],
+        "optional": [],
+        "contract": "complete trial division <=10^12, exact arithmetic-function values"
+      },
+      {
+        "name": "nt_modular_roots",
+        "area": "number_theory",
+        "required": [
+          "a",
+          "prime"
+        ],
+        "optional": [],
+        "contract": "Tonelli-Shanks over odd uint64 prime; verified roots"
+      },
+      {
+        "name": "nt_pell",
+        "area": "number_theory",
+        "required": [
+          "d"
+        ],
+        "optional": [],
+        "contract": "minimal positive Pell solution for nonsquare d<=10^6"
+      },
+      {
+        "name": "nt_primality",
+        "area": "number_theory",
+        "required": [
+          "n"
+        ],
+        "optional": [],
+        "contract": "deterministic Miller-Rabin for uint64, never general primality"
+      },
+      {
+        "name": "nt_primitive_root",
+        "area": "number_theory",
+        "required": [
+          "prime"
+        ],
+        "optional": [],
+        "contract": "least multiplicative generator for prime<=10^9"
+      },
+      {
         "name": "ode",
         "area": "calculus",
         "required": [
@@ -340,6 +552,95 @@
           "subdivisions"
         ],
         "contract": "exact rational Bernstein range enclosure, not necessarily sharp extrema"
+      },
+      {
+        "name": "prob_binomial",
+        "area": "probability",
+        "required": [
+          "success_probability",
+          "trials"
+        ],
+        "optional": [],
+        "contract": "exact finite binomial probability law and moments"
+      },
+      {
+        "name": "prob_convolution",
+        "area": "probability",
+        "required": [
+          "left",
+          "right"
+        ],
+        "optional": [],
+        "contract": "independent rational finite-law convolution"
+      },
+      {
+        "name": "prob_dirichlet",
+        "area": "probability",
+        "required": [
+          "alpha",
+          "counts"
+        ],
+        "optional": [],
+        "contract": "finite categorical exact posterior and predictive"
+      },
+      {
+        "name": "prob_distribution",
+        "area": "probability",
+        "required": [
+          "mass"
+        ],
+        "optional": [],
+        "contract": "normalized integer-valued rational mass and moments"
+      },
+      {
+        "name": "prob_hypergeometric",
+        "area": "probability",
+        "required": [
+          "draws",
+          "observed",
+          "population",
+          "successes"
+        ],
+        "optional": [],
+        "contract": "without-replacement rational combinatorial probability"
+      },
+      {
+        "name": "prob_joint",
+        "area": "probability",
+        "required": [
+          "mass"
+        ],
+        "optional": [],
+        "contract": "rational joint mass, covariance, exact independence test"
+      },
+      {
+        "name": "prob_poisson_binomial",
+        "area": "probability",
+        "required": [
+          "probabilities"
+        ],
+        "optional": [],
+        "contract": "exact independent non-identical Bernoulli convolution"
+      },
+      {
+        "name": "prob_propagate",
+        "area": "probability",
+        "required": [
+          "initial",
+          "steps",
+          "transition"
+        ],
+        "optional": [],
+        "contract": "finite-state exact row stochastic propagation"
+      },
+      {
+        "name": "prob_stationary",
+        "area": "probability",
+        "required": [
+          "transition"
+        ],
+        "optional": [],
+        "contract": "unique rational stationary Markov law or rejection"
       },
       {
         "name": "quadratic_optimize",
@@ -484,6 +785,7 @@
     "backup",
     "restore",
     "calc",
+    "catalog",
     "replay-notebook",
     "doctor",
     "desktop"

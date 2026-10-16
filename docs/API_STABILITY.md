@@ -44,3 +44,9 @@ SDKs Python/TypeScript/Rust/C/C++, rede, GPU e pesquisa geral são experimentais
 A presença de módulos importáveis não amplia a superfície estável. Os recursos
 CPU são admission control cooperativo, sem sandbox de código hostil nem garantia
 de memória imposta pelo SO. Ferramentas opcionais precisam de seus testes reais.
+
+## Ampliação experimental e aditiva de matemática exata
+
+O perfil alpha registra nominalmente 29 operações novas no catálogo e no contrato do wheel, sem renomear comandos de CLI nem alterar formatos de recibo ou notebook. A implementação fica em `math/exact/`; a compatibilidade antiga foi preservada. A publicação de um novo contrato é mudança intencional, testada por igualdade com o catálogo em runtime. Enquanto faltarem CI, bundles regenerados e revisões, não há aceite estável.
+
+A operação CLI aditiva `nabla catalog` publica os metadados do mesmo catálogo utilizado por `nabla calc`, pelo desktop e pelos recibos de notebook. O comando é somente leitura e não altera o armazenamento do usuário.

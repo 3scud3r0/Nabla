@@ -58,6 +58,59 @@ class LocalResearch:
         inserted = save_result(self.db, result)
         return {"inserted": inserted, "result": result.to_data()}
 
+    def scientific_catalog(self) -> dict:
+        """Return exactly the public calculator operation catalog to the local UI."""
+        from nablamath.calc.catalog import catalog
+        return catalog()
+
+    def _execute_scientific(self, payload: dict):
+        """Shared validation and computation for display and durable notebooks."""
+        from nablamath.calc.session import CalculationSession
+        if not isinstance(payload, dict) or set(payload) != {"operation", "arguments"}:
+            raise ValueError("Requisição requer apenas operation e arguments")
+        operation = payload["operation"]
+        arguments = payload["arguments"]
+        if not isinstance(operation, str) or len(operation) > 80:
+            raise ValueError("Nome de operação inválido")
+        if not isinstance(arguments, dict) or len(arguments) > 64:
+            raise ValueError("Arguments deve ser um objeto JSON com até 64 campos")
+        return CalculationSession().execute(operation, **arguments)
+
+    def scientific_calculation(self, payload: dict) -> dict:
+        """Calculate exact results through the same engine used by the CLI."""
+        return self._execute_scientific(payload).to_data()
+
+    def save_scientific_notebook(self, payload: dict) -> dict:
+        """Atomically persist and verify one exact calculation as a notebook.
+
+        The record stays separate from legacy expression-only SQLite storage.
+        Repeated identical calculations reuse their verified, immutable file.
+        """
+        import hashlib
+        from nablamath.calc.notebook import Notebook
+        calculation = self._execute_scientific(payload)
+        receipt = calculation.to_data()
+        notebook = Notebook("Nabla mathematical calculation")
+        notebook.append(calculation)
+        directory = self.data_dir / "notebooks"
+        if directory.is_symlink():
+            raise ValueError("A pasta de notebooks não pode ser um link simbólico")
+        directory.mkdir(parents=True, exist_ok=True)
+        safe_name = hashlib.sha256(receipt["content_id"].encode("utf-8")).hexdigest()
+        destination = directory / ("scientific-" + safe_name + ".notebook.json")
+        if destination.is_symlink():
+            raise ValueError("O destino de notebook não pode ser um link simbólico")
+        already_present = False
+        try:
+            notebook.save(destination)
+        except FileExistsError:
+            already_present = True
+        stored = Notebook.load(destination)
+        if stored.to_data() != notebook.to_data() or stored.replay() != 1:
+            raise ValueError("Notebook existente diverge do cálculo exato")
+        return {"path": str(destination), "content_id": receipt["content_id"],
+                "cells": 1, "already_present": already_present, "replayed": True}
+
     def report(self, expression: str, values: dict) -> dict:
         result = calculate(expression, values)
         save_result(self.db, result)
@@ -192,12 +245,17 @@ def make_server(data_dir: Path, port: int = 0) -> tuple[ThreadingHTTPServer, Loc
                 self._send(200, research.status())
             elif self.path == "/api/recent":
                 self._send(200, {"records": research.recent()})
+            elif self.path == "/api/catalog":
+                self._send(200, research.scientific_catalog())
             else:
                 self._send(404, {"error": "Rota inexistente"})
 
         def do_POST(self):
             origin = self.headers.get("Origin")
-            if (not self._authorized() or origin != f"http://127.0.0.1:{self.server.server_port}"):
+            # GET / accepts both loopback host aliases; POST must enforce the
+            # exact same origin/Host pair and the per-session secret token.
+            host = self.headers.get("Host", "")
+            if not self._authorized() or origin != f"http://{host}":
                 return self._send(403, {"error": "Origem ou sessão inválida"})
             try:
                 size = int(self.headers.get("Content-Length", "0"))
@@ -207,6 +265,8 @@ def make_server(data_dir: Path, port: int = 0) -> tuple[ThreadingHTTPServer, Loc
                 if not isinstance(payload, dict):
                     raise ValueError("Objeto JSON esperado")
                 routes = {"/api/experiment": lambda: research.experiment(payload),
+                          "/api/calculate": lambda: research.scientific_calculation(payload),
+                          "/api/save-calculation": lambda: research.save_scientific_notebook(payload),
                           "/api/run": lambda: research.run(payload["expression"], payload["values"]),
                           "/api/start": lambda: research.start(max_examples=payload["max_examples"], interval_seconds=payload["interval_seconds"]),
                           "/api/stop": research.stop, "/api/export": research.export,
@@ -219,7 +279,7 @@ def make_server(data_dir: Path, port: int = 0) -> tuple[ThreadingHTTPServer, Loc
                 if self.path not in routes:
                     return self._send(404, {"error": "Rota inexistente"})
                 self._send(200, routes[self.path]())
-            except (KeyError, TypeError, ValueError, OSError, sqlite3.Error, ImportError) as exc:
+            except (KeyError, TypeError, ValueError, ArithmeticError, RecursionError, OSError, sqlite3.Error, ImportError) as exc:
                 self._send(400, {"error": str(exc)})
 
     return ThreadingHTTPServer(("127.0.0.1", port), Handler), research

@@ -1,5 +1,13 @@
 # Changelog
 
+## Não publicado — coesão do perfil local alpha
+
+- Entrada unificada e verificável para biblioteca Python, CLI, catálogo, notebook e desktop: `nabla catalog`, `nabla calc` e rotas locais `/api/catalog` / `/api/calculate` partilham o mesmo `CalculationSession`.
+- Novo conjunto de 29 operações científicas exatas experimentais agrupadas por teoria dos números, álgebra de corpos finitos, análise rigorosa, grafos e probabilidade; 69 operações no catálogo total. A cobertura de domínio é finita.
+- O desktop mostra recibos multidomínio sem gravá-los indevidamente no SQLite legado de expressões, preservando semântica de reexecução.
+- Smoke offline do fluxo CLI–sessão–notebook–desktop (`tools/cohesion_smoke.py`) e testes HTTP de autenticação/origem; CI focada em Linux/Windows e cancelamento de workflows obsoletos por branch.
+- [Critérios de aceite do primeiro alpha coeso](docs/acceptance/COHESIVE_LOCAL_ALPHA.md); bundles consolidados, CI, wheel e revisão ainda requerem evidência antes de merge/release. A versão do pacote continua `0.1.0a1` até aprovação explícita.
+
 ## Não publicado — preparação do perfil local 1.0
 
 - Contrato de API/catálogo e schemas congelado, incluído no wheel e verificado

@@ -25,7 +25,18 @@ e [changelog](CHANGELOG.md). A versão permanece alpha até o aceite do commit e
 dos artefatos exatos. Para conferir todos os 212 caminhos e o contrato instalado,
 execute `python tools/release_readiness.py`.
 
-Novo [laboratório de matemática exata](docs/math/EXACT_LABORATORY.md): implementação independente de dependências externas, com contratos finitos e testes específicos.
+Novo [laboratório de matemática exata](docs/math/EXACT_LABORATORY.md), com [extensões algébricas, numéricas, combinatórias e probabilísticas integradas ao cálculo](docs/math/ADVANCED_EXACT_EXPANSION.md): implementação independente de dependências externas, com contratos finitos e testes específicos.
+
+## Primeira experiência coesa (alpha)
+
+O [perfil local de primeira versão](docs/acceptance/COHESIVE_LOCAL_ALPHA.md) organiza **69 operações** sob o mesmo catálogo `nabla catalog`, acessível na CLI, no motor de notebooks e no cartão científico do desktop. É um candidato alpha: as verificações ainda precisam passar no SHA final, incluindo atualização dos bundles de código e smoke de wheel. Não equivale à certificação da visão científica inteira.
+
+```sh
+nabla catalog
+nabla calc analysis_integral --arguments '{"coefficients":[0,0,1],"lower":0,"upper":1}' --notebook primeiro-nabla.json
+nabla replay-notebook primeiro-nabla.json
+python tools/cohesion_smoke.py
+```
 
 ## Começar
 
@@ -34,11 +45,12 @@ O núcleo requer **Python 3.10–3.14**. Em um ambiente Python ativado, na raiz 
 ```sh
 python -m pip install -e .
 nabla doctor
+nabla catalog
 nabla run "(x+x)/x" --value x=3
 nabla desktop
 ```
 
-`nabla desktop` oferece a interface local no navegador, vinculada a `127.0.0.1`. Dados do aplicativo ficam em `~/NablaMath`. A interface cobre um subconjunto das APIs; veja o [guia do aplicativo](docs/DESKTOP.md). Windows tem receita de [instalador](packaging/windows/) e scripts `setup.cmd`/`setup.ps1`; Linux/macOS têm `setup.sh`. Consulte o workflow antes de considerar um instalador disponível e validado.
+`nabla desktop` oferece a interface local no navegador, vinculada a `127.0.0.1`. Dados do aplicativo ficam em `~/NablaMath`. O cartão de catálogo permite executar também as operações matemáticas avançadas e consultar os recibos. O banco antigo de expressões permanece separado desses recibos até uma migração tipada explícita; veja o [guia do aplicativo](docs/DESKTOP.md). Windows tem receita de [instalador](packaging/windows/) e scripts `setup.cmd`/`setup.ps1`; Linux/macOS têm `setup.sh`. Consulte o workflow antes de considerar um instalador disponível e validado.
 
 ```python
 from nablamath.calc.session import CalculationSession

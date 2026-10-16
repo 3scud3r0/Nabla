@@ -2,13 +2,17 @@
 
 ## Começar e desenvolver
 
+- [Primeira versão local coesa — guia de uso, limites e critérios de aceite](acceptance/COHESIVE_LOCAL_ALPHA.md).
+
+Consulte as operações instaladas com `nabla catalog`; execute qualquer operação declarada com `nabla calc <operação> --arguments '{"campo":"valor"}'`. A interface desktop local usa o mesmo motor do catálogo e mostra recibos de cálculo; o fluxo de expressão/SQLite anterior permanece disponível.
+
 - [Instalação e uso](../README.md), [aplicativo local](DESKTOP.md) e [contribuição](../CONTRIBUTING.md).
 - [Estrutura do repositório](architecture/repository-layout.md) e [módulos canônicos](architecture/current-modules.md).
 - [Ferramentas de reprodução](../tools/README.md) e [exemplos](../examples/README.md).
 
 ## Implementação científica
 
-- [Laboratório de matemática racional exata](math/EXACT_LABORATORY.md): álgebra polinomial, Sturm, interpolação, álgebra linear, teoria dos números, cadeias e otimização com limites.
+- [Laboratório de matemática racional exata](math/EXACT_LABORATORY.md) e [ampliação integrada com 29 operações](math/ADVANCED_EXACT_EXPANSION.md): álgebra polinomial, Sturm, interpolação, álgebra linear, teoria dos números, cadeias e otimização com limites.
 
 
 | Tema | Guia |

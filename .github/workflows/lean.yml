@@ -1,4 +1,8 @@
 name: Pinned Mathlib bridge
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
 on:
   push:
     paths: ['lean/**', 'src/nablamath/formal/**', 'scripts/setup*', 'tools/check_formal_environment.py', '.github/workflows/lean.yml']

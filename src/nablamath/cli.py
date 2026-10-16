@@ -112,6 +112,7 @@ def main(argv: list[str] | None = None) -> int:
     forge.add_argument("--sizes", type=int, nargs="+")
     forge.add_argument("--calibrate", action="store_true")
     forge.add_argument("--solver-budget", type=int, default=1000000)
+    commands.add_parser("catalog", help="Listar operações científicas e contratos em JSON")
     calculator = commands.add_parser("calc", help="Operacao cientifica com parametros JSON e notebook opcional")
     calculator.add_argument("operation")
     calculator.add_argument("--arguments", default="{}", help="Objeto JSON de argumentos")
@@ -410,6 +411,10 @@ def main(argv: list[str] | None = None) -> int:
             valid=verify_scene_bundle(args.directory)
             print(json.dumps({'valid':valid}))
             return 0 if valid else 1
+        if args.command == "catalog":
+            from .calc.catalog import catalog
+            print(json.dumps(catalog(), ensure_ascii=False, indent=2))
+            return 0
         if args.command == "calc":
             from .calc import CalculationSession,Notebook
             arguments=json.loads(args.arguments)

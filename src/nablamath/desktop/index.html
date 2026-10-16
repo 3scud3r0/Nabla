@@ -2,7 +2,7 @@
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NablaMath · Laboratório local</title>
 <style>
 :root{color-scheme:dark;--bg:#090f1c;--panel:#142034;--line:#31415b;--text:#f1f6fb;--muted:#aabdd1;--a:#41dcc5;--b:#8dc1ff}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 75% -10%,#173354,transparent 36%),var(--bg);color:var(--text);font:16px/1.55 system-ui,Segoe UI,sans-serif}header,main,footer{max-width:1160px;margin:auto;padding:22px}header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.brand{font-size:1.38rem;font-weight:800;letter-spacing:.04em}.brand b{color:var(--a)}.badge{padding:6px 12px;border:1px solid var(--a);border-radius:30px;color:var(--a);font-size:.82rem}.hero{padding:40px 0 22px}.hero h1{max-width:760px;margin:0;font-size:clamp(2.1rem,5vw,4rem);line-height:1.12}.hero p{max-width:740px;color:var(--muted)}.metrics{display:flex;gap:10px;flex-wrap:wrap}.metric{background:#15233a;border:1px solid var(--line);padding:10px 20px;border-radius:12px}.metric strong{display:block;font-size:1.6rem;color:var(--a)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:23px;box-shadow:0 15px 40px #0003}.card.wide{grid-column:1/-1}.card h2{font-size:1.2rem;margin:0 0 12px}.card p,.muted{color:var(--muted)}label{display:block;font-size:.85rem;color:var(--muted);margin:12px 0 5px}input{width:100%;border:1px solid #43516a;border-radius:8px;padding:11px;background:#0d1728;color:var(--text);font:inherit}input:focus,button:focus{outline:2px solid var(--a);outline-offset:2px}.row{display:flex;gap:12px}.row>*{flex:1}button{border:0;border-radius:9px;padding:12px 18px;margin:13px 8px 0 0;background:var(--a);color:#071522;font:700 .95rem system-ui;cursor:pointer}button.secondary{background:#28445e;color:#fff}button.danger{background:#df8790;color:#1b0611}button:hover{filter:brightness(1.12)}pre{white-space:pre-wrap;word-break:break-word;background:#0b1526;border:1px solid var(--line);padding:14px;border-radius:9px;max-height:360px;overflow:auto;font-size:.82rem}.check{display:flex;align-items:center;gap:9px}.check input{width:auto}.notice{border-left:3px solid var(--a);padding:12px;background:#0d2633;color:var(--muted)}#message{min-height:28px;color:var(--b)}.step{padding:8px 0;border-bottom:1px solid var(--line)}small{color:var(--muted)}footer{color:var(--muted);font-size:.82rem}@media(max-width:760px){.grid{grid-template-columns:1fr}.row{display:block}header{gap:10px}.hero{padding-top:25px}}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 75% -10%,#173354,transparent 36%),var(--bg);color:var(--text);font:16px/1.55 system-ui,Segoe UI,sans-serif}header,main,footer{max-width:1160px;margin:auto;padding:22px}header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.brand{font-size:1.38rem;font-weight:800;letter-spacing:.04em}.brand b{color:var(--a)}.badge{padding:6px 12px;border:1px solid var(--a);border-radius:30px;color:var(--a);font-size:.82rem}.hero{padding:40px 0 22px}.hero h1{max-width:760px;margin:0;font-size:clamp(2.1rem,5vw,4rem);line-height:1.12}.hero p{max-width:740px;color:var(--muted)}.metrics{display:flex;gap:10px;flex-wrap:wrap}.metric{background:#15233a;border:1px solid var(--line);padding:10px 20px;border-radius:12px}.metric strong{display:block;font-size:1.6rem;color:var(--a)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:23px;box-shadow:0 15px 40px #0003}.card.wide{grid-column:1/-1}.card h2{font-size:1.2rem;margin:0 0 12px}.card p,.muted{color:var(--muted)}textarea,select{width:100%;border:1px solid #43516a;border-radius:8px;padding:11px;background:#0d1728;color:var(--text);font:inherit}textarea{min-height:110px;resize:vertical}label{display:block;font-size:.85rem;color:var(--muted);margin:12px 0 5px}input{width:100%;border:1px solid #43516a;border-radius:8px;padding:11px;background:#0d1728;color:var(--text);font:inherit}input:focus,button:focus{outline:2px solid var(--a);outline-offset:2px}.row{display:flex;gap:12px}.row>*{flex:1}button{border:0;border-radius:9px;padding:12px 18px;margin:13px 8px 0 0;background:var(--a);color:#071522;font:700 .95rem system-ui;cursor:pointer}button.secondary{background:#28445e;color:#fff}button.danger{background:#df8790;color:#1b0611}button:hover{filter:brightness(1.12)}pre{white-space:pre-wrap;word-break:break-word;background:#0b1526;border:1px solid var(--line);padding:14px;border-radius:9px;max-height:360px;overflow:auto;font-size:.82rem}.check{display:flex;align-items:center;gap:9px}.check input{width:auto}.notice{border-left:3px solid var(--a);padding:12px;background:#0d2633;color:var(--muted)}#message{min-height:28px;color:var(--b)}.step{padding:8px 0;border-bottom:1px solid var(--line)}small{color:var(--muted)}footer{color:var(--muted);font-size:.82rem}@media(max-width:760px){.grid{grid-template-columns:1fr}.row{display:block}header{gap:10px}.hero{padding-top:25px}}
 </style></head><body><header><div class="brand">∇ <b>NABLA</b>MATH</div><div class="badge">LOCAL · 127.0.0.1</div></header>
 <main><section class="hero"><h1>Seu laboratório matemático, no seu computador.</h1><p>Calcule instâncias exatas, acompanhe cada passo, guarde o histórico e escolha se deseja compartilhar um lote curado. A interface e o banco funcionam sem conta ou IA. As execuções ficam locais; o aplicativo não as envia em tempo real para uma rede global.</p><div class="metrics"><div class="metric"><strong id="count">—</strong>registros locais</div><div class="metric"><strong id="state">—</strong>estado do loop</div><div class="metric"><strong id="attempts">—</strong>tentativas nesta sessão</div></div></section>
 <div class="grid"><section class="card"><h2>01 · Calcular</h2><p>Expressões racionais de um subconjunto explícito, com condições e etapas.</p><label for="expr">Expressão</label><input id="expr" value="(x+x)/x"><label for="value">Valor de x (inteiro ou fração)</label><input id="value" value="3"><button id="calculate">Calcular e armazenar</button><button class="secondary" id="latex">Gerar LaTeX</button><div id="steps"></div></section>
@@ -10,6 +10,14 @@
 <section class="card"><h2>03 · Experimentos físicos</h2><p>Modelos delimitados: órbita terrestre circular ideal e fluxo laminar analítico em tubo. Não representam dinâmica perturbada ou CFD geral.</p><label for="altitude">Altitude orbital (m)</label><input id="altitude" type="number" value="400000"><button id="orbit">Calcular órbita</button><div class="row"><div><label for="radius">Raio do tubo (m)</label><input id="radius" type="number" value="0.01" step="0.001"></div><div><label for="length">Comprimento (m)</label><input id="length" type="number" value="2" step="0.1"></div></div><label for="pressure">Queda de pressão (Pa)</label><input id="pressure" type="number" value="5"><button id="fluid">Calcular fluxo</button><pre id="science">Aguardando cálculo.</pre></section>
 <section class="card"><h2>04 · Banco local</h2><p>Exportação reexecuta os registros e cria JSONL com manifesto SHA-256. A importação lê <code>incoming.jsonl</code> e <code>incoming.jsonl.manifest.json</code> da pasta exibida abaixo.</p><button id="export">Exportar snapshot</button><button class="secondary" id="import">Importar arquivo local</button><label for="license">Licença declarada</label><input id="license" value="CC0-1.0"><label for="provenance">Procedência declarada</label><input id="provenance" value="cálculos gerados localmente neste computador"><button class="secondary" id="curate">Criar lote curado local</button><pre id="archive">Aguardando ação.</pre></section>
 <section class="card wide"><h2>05 · Enviar para a nuvem (opcional)</h2><p>Publicação pública no seu repositório de datasets Hugging Face. Requer token de escrita, conta, revisão dos registros e confirmação de que você possui direito de redistribuir tudo. Nada é enviado automaticamente pelo loop.</p><div class="row"><div><label for="repo">Dataset de destino (organização/nome)</label><input id="repo" placeholder="conta/meu-dataset"></div><div><label for="reviewer">Responsável pela revisão</label><input id="reviewer" placeholder="nome ou identificador"></div></div><label for="attribution">Atribuição, quando exigida</label><input id="attribution" placeholder="fonte e autoria"><label for="token">Token Hugging Face (não armazenado)</label><input id="token" type="password" autocomplete="off"><label class="check"><input id="redistribute" type="checkbox">Declaro ter os direitos de redistribuição.</label><label class="check"><input id="consent" type="checkbox">Revisei o lote e quero publicá-lo no dataset informado.</label><button id="upload">Publicar lote revisado</button><p class="notice">Provas Lean não são geradas por este loop. O cartão e o manifesto descrevem somente a reexecução de instâncias racionais.</p></section>
+<section class="card wide" aria-labelledby="scientific-catalog-title">
+<h2 id="scientific-catalog-title">06 · Catálogo científico integrado</h2>
+<p>O mesmo mecanismo exato de <code>nabla calc</code>, com argumentos JSON, validação de domínio e recibos reproduzíveis. Os resultados desta área são exibidos localmente, sem entrar automaticamente no banco legado de expressões.</p>
+<label for="scientific-operation">Operação científica</label><select id="scientific-operation"><option value="">Carregando catálogo…</option></select>
+<p id="scientific-contract" class="muted"></p>
+<label for="scientific-arguments">Argumentos JSON</label><textarea id="scientific-arguments" spellcheck="false">{"n":97}</textarea>
+<button id="scientific-calculate" type="button">Executar operação</button><button class="secondary" id="scientific-save" type="button">Salvar notebook local</button>
+<pre id="scientific-output" role="status" aria-live="polite">Selecione uma operação.</pre></section>
 <section class="card wide"><h2>Registros recentes</h2><div id="recent">Nenhum registro.</div></section></div><p id="message" role="status" aria-live="polite"></p><section class="card wide" aria-labelledby="experiment-title"><h2 id="experiment-title">Experimento com evidências</h2>
 <label for="experiment-expression">Expressão racional</label><input id="experiment-expression" value="x*x+1">
 <label for="experiment-values">Atribuições JSON</label><input id="experiment-values" value='{"x":"2"}'>
@@ -27,6 +35,59 @@ el('latex').onclick=()=>action(async()=>show('archive',await api('report',{expre
 el('start').onclick=()=>action(async()=>api('start',{max_examples:Number(el('max').value),interval_seconds:Number(el('interval').value)}));el('stop').onclick=()=>action(async()=>api('stop',{}));el('orbit').onclick=()=>action(async()=>show('science',await api('orbit',{altitude_m:Number(el('altitude').value)})));el('fluid').onclick=()=>action(async()=>show('science',await api('fluid',{radius_m:Number(el('radius').value),length_m:Number(el('length').value),pressure_pa:Number(el('pressure').value)})));
 el('export').onclick=()=>action(async()=>show('archive',await api('export',{})));el('import').onclick=()=>action(async()=>show('archive',await api('import',{})));el('curate').onclick=()=>action(async()=>show('archive',await api('curate',{license_id:el('license').value,provenance:el('provenance').value})));
 el('upload').onclick=()=>action(async()=>{if(!confirm('Publicar publicamente o lote revisado em '+el('repo').value+'?'))return;try{let r=await api('upload',{repo_id:el('repo').value,reviewer:el('reviewer').value,license_id:el('license').value,provenance:el('provenance').value,attribution:el('attribution').value,token:el('token').value,redistributable:el('redistribute').checked,consent:el('consent').checked});show('archive',r)}finally{el('token').value=''}});
+const scientificExamples={
+ 'nt_primality':{n:97},
+ 'nt_factorization':{n:72},
+ 'nt_modular_roots':{a:2,prime:7},
+ 'ff_extension':{prime:2,modulus:[1,1,1],element:[0,1]},
+ 'analysis_integral':{coefficients:[0,0,1],lower:0,upper:1},
+ 'analysis_root':{coefficients:[-2,0,1],lower:1,upper:2,steps:32},
+ 'graph_max_flow':{vertices:['s','t'],edges:[['s','t','3/2']],source:'s',sink:'t'},
+ 'prob_stationary':{transition:[['1/2','1/2'],['1/4','3/4']]}
+};
+let scientificCatalog=[];
+function selectScientificOperation(){
+ const operation=el('scientific-operation').value;
+ const metadata=scientificCatalog.find(row=>row.name===operation);
+ el('scientific-contract').textContent=metadata?
+   'Área: '+metadata.area+' · Obrigatórios: '+metadata.required.join(', ')+' · '+metadata.contract:'';
+ const example=scientificExamples[operation];
+ if(example){el('scientific-arguments').value=JSON.stringify(example,null,2)}
+ else if(metadata){el('scientific-arguments').value=JSON.stringify(Object.fromEntries(metadata.required.map(key=>[key,null])),null,2)}
+}
+async function loadScientificCatalog(){
+ try{
+  const data=await api('catalog');
+  if(!Array.isArray(data.operations))throw Error('Catálogo inválido');
+  scientificCatalog=data.operations;
+  const select=el('scientific-operation');
+  select.replaceChildren(...data.operations.map(operation=>{
+   const option=document.createElement('option');
+   option.value=operation.name;
+   option.textContent=operation.area+' · '+operation.name;
+   return option;
+  }));
+  if(scientificCatalog.some(row=>row.name==='nt_primality'))select.value='nt_primality';
+  selectScientificOperation();
+ }catch(error){el('scientific-output').textContent='Falha ao carregar catálogo: '+error.message}
+}
+el('scientific-operation').onchange=selectScientificOperation;
+el('scientific-calculate').onclick=()=>action(async()=>{
+ const args=JSON.parse(el('scientific-arguments').value);
+ if(!args||typeof args!=='object'||Array.isArray(args))throw Error('Arguments precisa ser objeto JSON');
+ const result=await api('calculate',{operation:el('scientific-operation').value,arguments:args});
+ show('scientific-output',result);
+ el('message').textContent='Operação matemática executada; recibo exibido abaixo.';
+});
+el('scientific-save').onclick=()=>action(async()=>{
+ const args=JSON.parse(el('scientific-arguments').value);
+ if(!args||typeof args!=='object'||Array.isArray(args))throw Error('Arguments precisa ser objeto JSON');
+ const saved=await api('save-calculation',{operation:el('scientific-operation').value,arguments:args});
+ show('scientific-output',saved);
+ el('message').textContent=saved.already_present?'Notebook revalidado (já existente).':'Notebook gravado e reexecutado localmente.';
+});
+loadScientificCatalog();
+
 refresh();setInterval(refresh,2500);
 </script><script>
 document.getElementById('experiment-run').addEventListener('click',async()=>{
