@@ -109,11 +109,11 @@ class FiniteDistribution:
     def scale(self, factor: int) -> FiniteDistribution:
         if type(factor) is not int:
             raise TypeError("Scale factor must be integer")
-        return FiniteDistribution.from_weights({
-            x*factor: sum((q for y, q in self.masses if y*factor == x*factor),
-                          Fraction(0))
-            for x, _ in self.masses
-        })
+        masses: dict[int, Fraction] = {}
+        for x, p in self.masses:
+            mapped = x * factor
+            masses[mapped] = masses.get(mapped, Fraction(0)) + p
+        return FiniteDistribution(tuple(masses.items()))
 
     def convolve(self, other: FiniteDistribution) -> FiniteDistribution:
         """Distribution of X+Y, assuming INDEPENDENT X and Y."""
@@ -304,7 +304,9 @@ def unique_markov_stationary(transition: Sequence[Sequence[object]]) -> dict:
     """
     matrix = RationalMatrix(tuple(tuple(row) for row in transition))
     n, cols = matrix.shape
-    if n != cols or n == 1 and matrix.rows[0][0] != 1:
+    if n > 31:
+        raise ValueError("Stationary calculation limited to 31 states by augmented matrix budget")
+    if n != cols or (n == 1 and matrix.rows[0][0] != 1):
         raise ValueError("Expected a square stochastic transition matrix")
     if any(any(p < 0 or p > 1 for p in row) or sum(row) != 1 for row in matrix.rows):
         raise ValueError("Transition rows must be stochastic")

@@ -2,6 +2,8 @@
 
 Código: [laboratory.py](../../src/nablamath/math/exact/laboratory.py) · Testes: [test_exact_laboratory.py](../../tests/math/test_exact_laboratory.py).
 
+**Continuação:** [ampliação avançada integrada com 29 operações](ADVANCED_EXACT_EXPANSION.md).
+
 Este módulo concentra algoritmos de **matemática exata delimitada** num arquivo de implementação de grande porte, com API pequena e agrupamento por responsabilidades. Amplia a cobertura computacional sem reivindicar resolver toda a matemática, generalizar automaticamente para números reais não racionais ou produzir provas Lean.
 
 ## Domínios implementados

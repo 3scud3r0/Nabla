@@ -434,8 +434,8 @@
         "area": "number_theory",
         "required": [
           "base",
-          "target",
-          "prime"
+          "prime",
+          "target"
         ],
         "optional": [],
         "contract": "BSGS exact subgroup discrete log, prime<=10^9"
