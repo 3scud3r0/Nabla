@@ -2,9 +2,9 @@
 
 Base de comparação: `origin/main`. Inventário de todos os arquivos versionados presentes, incluindo os existentes.
 
-**1421 arquivos; 200,220 linhas físicas; 60,407 linhas de código fora do histórico.**
+**1440 arquivos; 225,539 linhas físicas; 60,782 linhas de código fora do histórico.**
 
-Novos: 235; alterações/movimentações: {'alterado': 27, 'novo': 235}. Removidos: 0.
+Novos: 254; alterações/movimentações: {'alterado': 27, 'novo': 254}. Removidos: 0.
 
 Linhas físicas incluem comentários e espaços. Código Python conta linhas com tokens, incluindo docstrings; outros formatos de código contam linhas não vazias sem comentários de linha inteira (estimativa). “—” significa formato não código/binário. O bundle `math.txt` e resultados gerados não entram no total de código. Histórico movido não representa código novo. Os dois relatórios deste inventário são excluídos para evitar autocontagem. Caches, ambientes virtuais, builds e amostras locais ignoradas não são arquivos do PR.
 
@@ -28,7 +28,7 @@ Nenhum.
 | `.github/PULL_REQUEST_TEMPLATE.md` | existente | infraestrutura/outros | 11 | — |
 | `.github/workflows/accelerator-optional.yml` | existente | infraestrutura/outros | 38 | — |
 | `.github/workflows/archive-audit.yml` | existente | infraestrutura/outros | 44 | — |
-| `.github/workflows/ci.yml` | alterado | infraestrutura/outros | 25 | — |
+| `.github/workflows/ci.yml` | alterado | infraestrutura/outros | 37 | — |
 | `.github/workflows/dataset-publish.yml` | existente | infraestrutura/outros | 36 | — |
 | `.github/workflows/full-integration.yml` | existente | infraestrutura/outros | 28 | — |
 | `.github/workflows/interop.yml` | existente | infraestrutura/outros | 15 | — |
@@ -44,6 +44,7 @@ Nenhum.
 | `.github/workflows/security.yml` | existente | infraestrutura/outros | 25 | — |
 | `.github/workflows/windows-installer.yml` | existente | infraestrutura/outros | 86 | — |
 | `.gitignore` | existente | infraestrutura/outros | 18 | — |
+| `AGENTS.md` | novo | infraestrutura/outros | 24 | — |
 | `CITATION.cff` | existente | infraestrutura/outros | 7 | — |
 | `CODE_OF_CONDUCT.md` | existente | infraestrutura/outros | 3 | — |
 | `CONTRIBUTING.md` | existente | infraestrutura/outros | 33 | — |
@@ -308,12 +309,13 @@ Nenhum.
 | `docs/PHASES_MATURITY_EXPANSION.md` | existente | documentação | 60 | — |
 | `docs/PLANO_MESTRE_2026_2056.md` | alterado | documentação | 314 | — |
 | `docs/PUBLISHING.md` | existente | documentação | 10 | — |
-| `docs/README.md` | alterado | documentação | 57 | — |
+| `docs/README.md` | alterado | documentação | 59 | — |
 | `docs/RELEASE_POLICY.md` | existente | documentação | 46 | — |
 | `docs/ROADMAP_GLOBAL_RESEARCH.md` | existente | documentação | 179 | — |
 | `docs/SCIENTIFIC_CYCLE.md` | existente | documentação | 152 | — |
 | `docs/THREAT_MODEL.md` | existente | documentação | 12 | — |
 | `docs/UPLOAD_REMAINING_ARCHIVE.md` | existente | documentação | 37 | — |
+| `docs/acceptance/VISION_READINESS.md` | novo | documentação | 50 | — |
 | `docs/acceptance/backlog_traceability.json` | novo | documentação | 3155 | — |
 | `docs/acceptance/bounded_research_profiles.md` | novo | documentação | 47 | — |
 | `docs/acceptance/delivery_profiles_20261016.md` | novo | documentação | 40 | — |
@@ -391,6 +393,21 @@ Nenhum.
 | `docs/audits/remaining85-evidence/minimal-tests.xml` | novo | documentação | 1 | — |
 | `docs/audits/remaining85-evidence/wheel-sbom.spdx.json` | novo | documentação | 42 | — |
 | `docs/audits/remaining85-evidence/wheel-verification.json` | novo | documentação | 1 | — |
+| `docs/audits/vision-readiness-20261016/REPORT.md` | novo | documentação | 4347 | — |
+| `docs/audits/vision-readiness-20261016/bundle.log.json` | novo | documentação | 5 | — |
+| `docs/audits/vision-readiness-20261016/calibration.json` | novo | documentação | 1 | — |
+| `docs/audits/vision-readiness-20261016/calibration.log.json` | novo | documentação | 5 | — |
+| `docs/audits/vision-readiness-20261016/contracts.log.json` | novo | documentação | 5 | — |
+| `docs/audits/vision-readiness-20261016/laboratory-assurance.log.json` | novo | documentação | 5 | — |
+| `docs/audits/vision-readiness-20261016/laboratory-science.log.json` | novo | documentação | 5 | — |
+| `docs/audits/vision-readiness-20261016/laboratory.log.json` | novo | documentação | 5 | — |
+| `docs/audits/vision-readiness-20261016/longley.json` | novo | documentação | 42 | — |
+| `docs/audits/vision-readiness-20261016/longley.log.json` | novo | documentação | 5 | — |
+| `docs/audits/vision-readiness-20261016/manifest.json` | novo | documentação | 61 | — |
+| `docs/audits/vision-readiness-20261016/preservation.log.json` | novo | documentação | 5 | — |
+| `docs/audits/vision-readiness-20261016/pytest.log.json` | novo | documentação | 5 | — |
+| `docs/audits/vision-readiness-20261016/report.json` | novo | documentação | 20293 | — |
+| `docs/audits/vision-readiness-20261016/roadmap.log.json` | novo | documentação | 5 | — |
 | `docs/future/2035_2045_2056_criteria.md` | existente | documentação | 21 | — |
 | `docs/future/F13_OPEN_RESEARCH.md` | existente | documentação | 28 | — |
 | `docs/governance/independent_review_policy.md` | existente | documentação | 40 | — |
@@ -1395,6 +1412,7 @@ Nenhum.
 | `tests/test_tensor_autodiff.py` | existente | testes | 27 | 23 |
 | `tests/test_units.py` | existente | testes | 21 | 17 |
 | `tests/test_universal_lean_translation.py` | existente | testes | 19 | 17 |
+| `tests/test_vision_readiness_dashboard.py` | novo | testes | 152 | 116 |
 | `tests/test_visualization.py` | existente | testes | 21 | 18 |
 | `tests/training/test_registry.py` | existente | testes | 10 | 8 |
 | `tests/unit/__init__.py` | existente | testes | 1 | 1 |
@@ -1426,6 +1444,7 @@ Nenhum.
 | `tools/update_public_contracts.py` | novo | infraestrutura/outros | 169 | 158 |
 | `tools/validate_longley.py` | existente | infraestrutura/outros | 44 | 40 |
 | `tools/verify_wheel.py` | existente | infraestrutura/outros | 89 | 83 |
+| `tools/vision_readiness.py` | novo | infraestrutura/outros | 285 | 259 |
 | `vision.md` | alterado | infraestrutura/outros | 456 | — |
 | `website/.nojekyll` | existente | infraestrutura/outros | 1 | — |
 | `website/app.js` | alterado | infraestrutura/outros | 114 | 106 |

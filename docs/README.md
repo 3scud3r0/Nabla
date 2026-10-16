@@ -19,6 +19,8 @@
 
 ## Evidências e limites
 
+- [Benchmark permanente da visão](acceptance/VISION_READINESS.md): comando obrigatório, 213 lacunas e resultados atuais.
+
 - [Entrega integrada de 16/10/2026](audits/DELIVERY_2026_10_16.md) e
   [contratos e reprodução](acceptance/delivery_profiles_20261016.md).
 
