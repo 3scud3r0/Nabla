@@ -1,0 +1,16 @@
+{
+  "publisher_authenticated": false,
+  "sbom": {
+    "filename": "sbom.spdx.json",
+    "sha256": "f5a43187c0a08b4d0e25d69dfb146814cfebf6a36760d9ede2c93c38fbba9acc"
+  },
+  "schema": "nabla.build-provenance.v1",
+  "scope": "local artifact consistency; external attestation and publisher trust are separate",
+  "source_binding": "declared-not-reproduced",
+  "source_commit": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+  "source_dirty": false,
+  "wheel": {
+    "filename": "nablamath-1.0.0-py3-none-any.whl",
+    "sha256": "42abc1943f39c7e033e6eb0b0d46732c7a7bba44d939fcaabcc3caf8c37daf2a"
+  }
+}

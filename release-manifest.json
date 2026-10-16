@@ -1,0 +1,150 @@
+{
+  "schema": "nabla.personal-release.v1",
+  "version": "1.0.0",
+  "profile": "single-owner-local-cpu",
+  "created": "2026-10-16T16:43:37.205815-03:00",
+  "source_commit": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+  "source_clean": true,
+  "pull_request": "https://github.com/3scud3r0/Nabla/pull/21",
+  "environment": {
+    "python": "3.12.14",
+    "system": "Linux-6.18.44-x86_64-with-glibc2.41"
+  },
+  "engineering_checks_passed": true,
+  "pytest_summary": "2426 passed, 2 skipped, 17 warnings, 390 subtests passed in 324.18s (0:05:24)",
+  "test_counts": {
+    "skipped": 2,
+    "passed": 2426
+  },
+  "skipped": [
+    {
+      "test": "tests.benchmark.test_gpu_real_hardware.test_cuda_exact_f4_hardware",
+      "reason": "could not import 'cupy': No module named 'cupy'"
+    },
+    {
+      "test": "tests.benchmark.test_gpu_real_hardware.test_triton_parent_lookup_hardware",
+      "reason": "could not import 'torch': No module named 'torch'"
+    }
+  ],
+  "steps": [
+    {
+      "name": "roadmap",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.143
+    },
+    {
+      "name": "contracts",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.2
+    },
+    {
+      "name": "preservation",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 2.156
+    },
+    {
+      "name": "bundle",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 1.957
+    },
+    {
+      "name": "source-bundle",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.596
+    },
+    {
+      "name": "release-contract",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.699
+    },
+    {
+      "name": "pytest",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 325.598
+    },
+    {
+      "name": "longley",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.114
+    },
+    {
+      "name": "laboratory",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 54.927
+    },
+    {
+      "name": "calibration",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 9.347
+    }
+  ],
+  "scientific_demo": {
+    "catalog_operations": 69,
+    "notebook_replayed_cells": 69,
+    "finite_campaign": {
+      "independently_checked_cases": 176
+    },
+    "forge": {
+      "families": 8,
+      "solver_verifier_runs": 16,
+      "seed": 42,
+      "size": 3
+    },
+    "physical_models": {
+      "idealized_models": 16,
+      "domain_replay": true,
+      "diffusion_errors": [
+        0.00018368569878068897,
+        4.594622140752236e-05
+      ],
+      "diffusion_refinement_ratio": 3.9978412403379,
+      "experimental_validation": false
+    },
+    "formal": {
+      "status": "passed",
+      "proved_statements": 3,
+      "false_statement_rejected": true,
+      "scope": "Displayed conditional rational propositions; translation review is separate."
+    },
+    "interfaces": {
+      "http_calculation": true,
+      "cli_identical_receipt": true,
+      "desktop_saved_notebook": true,
+      "http_receipts": 69,
+      "cli_receipts": 69,
+      "invalid_token_rejected": true,
+      "sqlite_backup_restore": true
+    }
+  },
+  "formal_corpus": {
+    "accepted_theorems": 30000,
+    "expected_theorems": 30000,
+    "all_passed": true,
+    "report_id": "4f8e14c001b760f68b98ae5bdcebab36b0f78326133a395e7e767ffbbebe27ac",
+    "tool_version": "Lean (version 4.34.0, x86_64-unknown-linux-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)"
+  },
+  "wheel_offline_install_passed": true,
+  "publisher_authenticated": false,
+  "external_gate_disposition": {
+    "authorization": "Repository owner explicitly requested personal-only use and waived external requirements in chat; recorded in source docs/acceptance/PERSONAL_USE_1_0.md.",
+    "security_mathematics_license_independent_reviews": "waived, not performed",
+    "signed_publisher_acceptance": "waived; no key, signature or external authority fabricated",
+    "windows_and_other_python_versions": "not locally executed; platform CI queue status is recorded separately"
+  },
+  "public_signed_release_accepted": false,
+  "full_vision_acceptance_established": false,
+  "vision_matrix_statuses": {
+    "partial": 213
+  },
+  "scope": "Finite local CPU experiments and pinned formal corpus; not universal mathematical correctness, empirical physical validation or independent certification."
+}

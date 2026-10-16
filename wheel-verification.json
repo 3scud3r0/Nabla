@@ -1,0 +1,1569 @@
+{
+  "schema_version": 1,
+  "version": "1.0.0",
+  "profile": "nabla-local-cpu-v1",
+  "inventory": [
+    {
+      "path": "vision1.md",
+      "section": "01 — Produto, versão e contratos públicos",
+      "acceptance": "Revisar e aprovar escopo e responsáveis; manter coerência com a documentação publicada.",
+      "present": true,
+      "sha256": "85a54e49d9eea45ff829f79179810f766c7a69894a6ea05d8338d43ae158d6b9"
+    },
+    {
+      "path": "pyproject.toml",
+      "section": "01 — Produto, versão e contratos públicos",
+      "acceptance": "Mudar para 1.0 somente após os gates; build isolado, dependências e SBOM coerentes.",
+      "present": true,
+      "sha256": "cdeff32630b3f35ee5d28ae4d398d0fe86230221bbe9dadaeb6c023464d58681"
+    },
+    {
+      "path": "src/nablamath/__init__.py",
+      "section": "01 — Produto, versão e contratos públicos",
+      "acceptance": "Versão alinhada ao wheel e política de importação compatível.",
+      "present": true,
+      "sha256": "0c99b7f89948146dc678578678b44f5a464f730cdfc344822bab70ab5b268314"
+    },
+    {
+      "path": "src/nablamath/compatibility.json",
+      "section": "01 — Produto, versão e contratos públicos",
+      "acceptance": "Coincidir com a matriz realmente executada para o commit do release.",
+      "present": true,
+      "sha256": "e8a2e58b54c38ab769f392d1003cf7b6b7299e7cc6b6b383bc3806f166ce2cf2"
+    },
+    {
+      "path": "src/nablamath/compatibility.py",
+      "section": "01 — Produto, versão e contratos públicos",
+      "acceptance": "Distinguir disponível, indisponível, incompatível e não verificado.",
+      "present": true,
+      "sha256": "1f926e25bab1cbe5252920ce472d1cb6846f777b8fcd6b945446744a92e735b4"
+    },
+    {
+      "path": "README.md",
+      "section": "01 — Produto, versão e contratos públicos",
+      "acceptance": "Receita reproduzida em ambiente limpo; sem números históricos apresentados como atuais.",
+      "present": true,
+      "sha256": "2db3b07e68821a73ef0005e7172cbe1bc69a5c02fea7aed95d10718e892f8329"
+    },
+    {
+      "path": "docs/COMPATIBILITY.md",
+      "section": "01 — Produto, versão e contratos públicos",
+      "acceptance": "Links dos jobs do commit exato; backends opcionais separados.",
+      "present": true,
+      "sha256": "d5b959adab52a1c3bf786eaa6798280405e99ec1bd810e235a82ded47780d540"
+    },
+    {
+      "path": "docs/API_STABILITY.md",
+      "section": "01 — Produto, versão e contratos públicos",
+      "acceptance": "Publicar o conjunto estável e política de quebra/migração; reaproveitar contratos existentes.",
+      "present": true,
+      "sha256": "6e124ea2b5b3bc2bb3dd213d4d758094194da633a8d96e49b22ef2eb7613cf77"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "section": "01 — Produto, versão e contratos públicos",
+      "acceptance": "Descrever diferenças reais, incompatibilidades e problemas conhecidos da 1.0.",
+      "present": true,
+      "sha256": "46ed80e5710611510009913a3bbd7ea69a58a29d087d9145c35c23bb6445e107"
+    },
+    {
+      "path": "SECURITY.md",
+      "section": "01 — Produto, versão e contratos públicos",
+      "acceptance": "Revisão do escopo local, dependências, ameaças e caminho de reporte.",
+      "present": true,
+      "sha256": "e867702f1226f5a5635c513aa34be3dde6695b432581fcf80e6442c5bd52354a"
+    },
+    {
+      "path": "LICENSE",
+      "section": "01 — Produto, versão e contratos públicos",
+      "acceptance": "Preservar avisos e identificar licenças dos componentes/artefatos de terceiros.",
+      "present": true,
+      "sha256": "d00df08f310c9adcbab365ece0d09d75ea304cf5b9cd954c4fc40cac9c0e42e8"
+    },
+    {
+      "path": "src/nablamath/expression.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Recusar sintaxe não suportada; preservar hipóteses e limites de custo.",
+      "present": true,
+      "sha256": "c4d1c5118e0f7ecef5c9d15539a38a1d4d8fa870820b9144c6a1a9ba28c89e2f"
+    },
+    {
+      "path": "src/nablamath/core/semantic_ir.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Roundtrip e hashes estáveis sob o contrato versionado.",
+      "present": true,
+      "sha256": "39d8950c2a2fef86ce43f9fe8182366f503d1839a96d9f27d73bb413ffe84a6d"
+    },
+    {
+      "path": "src/nablamath/core/semantic_contracts.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Rejeitar dados ambíguos, não finitos, excessivos ou incompatíveis.",
+      "present": true,
+      "sha256": "a91753f55e609d39d3f3451ecb5a0736096407228f336fbd43777ea0143df7f1"
+    },
+    {
+      "path": "src/nablamath/core/types.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Distinguir escalares/vetores/matrizes e domínios sem conversões silenciosas.",
+      "present": true,
+      "sha256": "6a9e1150a9c6acb2a25340bb090c77ee222da6f48f2815d5d7d3679bf2de7946"
+    },
+    {
+      "path": "src/nablamath/core/units.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Propagação dimensional e rejeição de combinações incompatíveis.",
+      "present": true,
+      "sha256": "524a508c7f7112b5fcea637504490830ee6d575a7f3cf8e1078e77221924794d"
+    },
+    {
+      "path": "src/nablamath/core/precision.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Precisão solicitada satisfeita ou falha explícita, sem confundir aproximação com exatidão.",
+      "present": true,
+      "sha256": "41f705ba25ea0d0a866fa0d03b4567cad7151fb7efaf9204677b4bb89ece30a4"
+    },
+    {
+      "path": "src/nablamath/core/obligations.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Preservar polos removíveis, restrições de denominadores e potências.",
+      "present": true,
+      "sha256": "d64961e3f851c22501dbf6d0eba77894840fb2229ff6cc6d89f5724226d220dc"
+    },
+    {
+      "path": "src/nablamath/core/uncertainty.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Explicitar pressupostos, dependências e diferença entre erro estimado e limite rigoroso.",
+      "present": true,
+      "sha256": "02caff0e4f53d674d10e91d26863b688f0efd38c3cbd86b88c00d1b2ace45f0f"
+    },
+    {
+      "path": "src/nablamath/core/migration_registry.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Fixtures antigas migradas ou recusadas com mensagem clara; sem downgrade silencioso.",
+      "present": true,
+      "sha256": "1b79781c8cc39fbf98d88e4fa5202df103711ed3f6fea0b162d026c57983ae3b"
+    },
+    {
+      "path": "src/nablamath/core/scientific_artifact.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Rejeitar pais ausentes, adulterações, nós órfãos e conteúdo fora do perfil.",
+      "present": true,
+      "sha256": "d23b75b846dc27085e128f2d29815b150a87668c2adf89f3bb9a22f1c67113a6"
+    },
+    {
+      "path": "src/nablamath/core/capabilities.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Contrato corresponder ao que é executável; recusas honestas.",
+      "present": true,
+      "sha256": "e16b2917a45a523331337e9c6fe4b0ea78db055a54a746fce998fb558d0a8398"
+    },
+    {
+      "path": "src/nablamath/core/resource_profiles.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Tempo, memória, volume e cancelamento definidos para as operações do release.",
+      "present": true,
+      "sha256": "3d1ecdc70ad65195d01eae65fab8b1363eb64a6fa7f90a11d6614b4883065ee8"
+    },
+    {
+      "path": "src/nablamath/schema/expression.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Leitura/validação de fixtures normativas e rejeição de estruturas inválidas.",
+      "present": true,
+      "sha256": "324cb1b892a7771ce173ea015687df9565b1cbea78d95731ee85644ef84fe1b4"
+    },
+    {
+      "path": "src/nablamath/schema/units.py",
+      "section": "02 — Núcleo semântico e precisão",
+      "acceptance": "Preservar significado dimensional no roundtrip e no replay.",
+      "present": true,
+      "sha256": "e27a781b38c77a63a235e19ac9918b6bbc35a01a3ef53dddfc58fc509abe48de"
+    },
+    {
+      "path": "src/nablamath/calc/catalog.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Congelar schemas, limites e erros de todas as operações declaradas estáveis.",
+      "present": true,
+      "sha256": "32aac8fdabba83ce122aeae774e9836e4c20d97c0347855e64ff839cbc8ad272"
+    },
+    {
+      "path": "src/nablamath/calc/session.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Replay determinístico dos contratos exatos e tolerâncias explícitas dos aproximados.",
+      "present": true,
+      "sha256": "5ce161e301ce80db24ef7a6ab6d736cf60e68aa336bcdeaca64e05ba58b33d86"
+    },
+    {
+      "path": "src/nablamath/calc/notebook.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Compatibilidade de formatos, adulterações detectadas e migração documentada.",
+      "present": true,
+      "sha256": "61ae39f4a5c27b6d03e6dbf3bb4b510e13f1b38cbf1f98e39db625dfd80bbc95"
+    },
+    {
+      "path": "src/nablamath/symbolic/differentiate.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Hipóteses preservadas e comparação independente por classe de expressão.",
+      "present": true,
+      "sha256": "18a93dff5dc2ced335034d5fd764d2c82c505cf166131fa66692d82df4833189"
+    },
+    {
+      "path": "src/nablamath/symbolic/integrate.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Certificados por diferenciação e recusas fora do domínio.",
+      "present": true,
+      "sha256": "691599c603c3a99ae987d8a4c70f737335ebf55264484ee6471615a90cf4b769"
+    },
+    {
+      "path": "src/nablamath/symbolic/egraph.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Preservar domínios e informar saturação incompleta/limite de recursos.",
+      "present": true,
+      "sha256": "a6c100faa7d40091e93321ea5221fd74305cc09682f5aa578e8c5f230d63caf6"
+    },
+    {
+      "path": "src/nablamath/math/calculus/polynomial.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Consistência entre derivadas, integrais, limites e séries suportados.",
+      "present": true,
+      "sha256": "6916eae4759d187c23ffb2b8f30cba1821a5ee9796f36801eaca420528d4a47d"
+    },
+    {
+      "path": "src/nablamath/math/calculus/rational_functions.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Identidade algébrica separada da equivalência dos domínios originais.",
+      "present": true,
+      "sha256": "d7718bc6b203f718182f341e999e004cadd292ad993ad2f602823ba7fa2860fe"
+    },
+    {
+      "path": "src/nablamath/math/calculus/limits.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Sinais, inexistência bilateral, domínio e replay conferidos.",
+      "present": true,
+      "sha256": "87bdb48924c2789cbd31ba448438a3ba03fd0a34840214d66b50ca8675b4d755"
+    },
+    {
+      "path": "src/nablamath/math/calculus/risch.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Publicar fragmento realmente suportado; não declarar Risch geral implementado.",
+      "present": true,
+      "sha256": "5bc799fe09d6dbf1410b5b88945115413d0ce71e271a1c6bb1b88595b9410ff3"
+    },
+    {
+      "path": "src/nablamath/math/analysis/intervals.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Revisar majorantes, custo e compatibilidade com os intervalos numéricos existentes.",
+      "present": true,
+      "sha256": "55c26a4640bd52b018037c29b447af5e513f4879016326899bad92009e51a46f"
+    },
+    {
+      "path": "src/nablamath/math/analysis/quadrature.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Intervalo conter a integral; orçamento insuficiente produzir falha, não sucesso parcial.",
+      "present": true,
+      "sha256": "4459c47e61db281dc2ffd0c6d0c274caa0ef4d7bae1fea52521442adec02ae3f"
+    },
+    {
+      "path": "src/nablamath/math/analysis/certified_functions.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Domínios e restos revisados; certificados Python identificados como não Lean.",
+      "present": true,
+      "sha256": "9b9abd0abe9caca62516cf91a11160fb68f56878944dfc50e019d8002a88c001"
+    },
+    {
+      "path": "src/nablamath/numeric/intervals.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Definir interoperabilidade e arredondamento sem semânticas concorrentes.",
+      "present": true,
+      "sha256": "1643ff40951f1a37876b4bf91521bc109b1844189843e5cda9f1972bc9a2a018"
+    },
+    {
+      "path": "src/nablamath/math/linear_algebra/matrices.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Dimensões, singularidade e invariantes conferidos.",
+      "present": true,
+      "sha256": "e50aa4bb2e13ece9f354ef15f514a5df9c7cacce5737b5c846dcee8511442c51"
+    },
+    {
+      "path": "src/nablamath/math/linear_algebra/solvers.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Resíduos/reconstrução e distinção entre solução única, infinita e inconsistente.",
+      "present": true,
+      "sha256": "26e42403733854662a8d966f1a392f77339784a0e4e5a661275579bef3b87116"
+    },
+    {
+      "path": "src/nablamath/math/probability/absorption.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Momentos condicionais/incondicionais separados; resíduos exatos e periodicidade explícita.",
+      "present": true,
+      "sha256": "22b8cfe3066243cef234867d5b9ab10f2febdef859c30f99497c68092ffbfa82"
+    },
+    {
+      "path": "src/nablamath/math/statistics/multivariate.py",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Referência NIST, rank, pesos e graus de liberdade verificados.",
+      "present": true,
+      "sha256": "b1b68f1d8a7398230d733f4dff3adf79e18177b49a669b2d300513805617042c"
+    },
+    {
+      "path": "docs/acceptance/scientific_capabilities.yaml",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Refletir o catálogo suportado; não promover aceitação sem evidência.",
+      "present": true,
+      "sha256": "aa88684d9526d437e8d85466d70b25f4a29a16e9939722be1f27e4d71fe7d490"
+    },
+    {
+      "path": "docs/CERTIFIED_MATHEMATICS.md",
+      "section": "03 — Calculadora, matemática e certificados numéricos",
+      "acceptance": "Exemplos reproduzidos e fronteiras das garantias explícitas.",
+      "present": true,
+      "sha256": "28428c9bae99581230e9e298467b8c4b2243d056925f9432e535a73026e29a88"
+    },
+    {
+      "path": "src/nablamath/formal/statement.py",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Hipóteses explícitas e serialização sem perda de significado.",
+      "present": true,
+      "sha256": "353156bf7e015e3ade0042b94db7ca362336ef6cc130aef5d2753a894d311802"
+    },
+    {
+      "path": "src/nablamath/formal/lean_std.py",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Toolchain fixada, ausência de admissions e rejeição de certificados adulterados.",
+      "present": true,
+      "sha256": "7635fc4d081d80beef7bb01fab259bb175d5f0a526fca90c1b2783d390674a3b"
+    },
+    {
+      "path": "src/nablamath/formal/lean_bridge.py",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Fonte regenerável e coerência estrutural com o enunciado.",
+      "present": true,
+      "sha256": "495bf8b5ff49cee29c15eb1f70c773bf27ffe9380c3e22ea8edf0c4f167a607f"
+    },
+    {
+      "path": "src/nablamath/formal/lean_checker.py",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Resolver o timeout atual e preservar diagnóstico de pré-requisito/erro real.",
+      "present": true,
+      "sha256": "6e97534c69b86344f8793b5e1b6ea9a6c152a769ad59d411950722a24be2ecf6"
+    },
+    {
+      "path": "src/nablamath/formal/translation_review.py",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Revisão humana do significado; identidade declarada não é autenticação independente.",
+      "present": true,
+      "sha256": "a1d5ba2d7637154a6d6d6d4bd747d068357e5ac0d06cbb2c636b72db9ca6baa5"
+    },
+    {
+      "path": "src/nablamath/formal/smt_bridge.py",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Contraexemplo reexecutado exatamente; status SMT separado de prova pelo kernel Lean.",
+      "present": true,
+      "sha256": "f92a725bac806e4383cc4e60e1202a523a6a1835e9a5f6823eee6468abf4cb6b"
+    },
+    {
+      "path": "src/nablamath/falsifier/search.py",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Distinguir contraexemplo encontrado de busca inconclusiva.",
+      "present": true,
+      "sha256": "b4a684eb5b1a30291da0ccd37177a9ee67fbe895a2d24f3897869feb8cc9760e"
+    },
+    {
+      "path": "src/nablamath/falsifier/shrink.py",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Caso reduzido ainda refutar o enunciado original sob as hipóteses.",
+      "present": true,
+      "sha256": "5f83a3502b641b871344653c5ec1ae2a8739cc0f28d03639a2f9ee53da1a9f3e"
+    },
+    {
+      "path": "src/nablamath/verify/certificate.py",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Reexecutar o backend e vincular fonte, versão, hipóteses e resultado.",
+      "present": true,
+      "sha256": "6c757d5ac2ac3a6ba1a43a111fa97cd044428d76696741e51522e0e3f4e0a828"
+    },
+    {
+      "path": "lean/lean-toolchain",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Fixação consistente com instaladores e CI.",
+      "present": true,
+      "sha256": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632"
+    },
+    {
+      "path": "lean/lakefile.toml",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Build dos alvos do release sem mudar semântica ou dependências silenciosamente.",
+      "present": true,
+      "sha256": "795f06255cc9147110aea8b9e24aa766b13c8abb7d7fde66e093ec8f1c5cd73f"
+    },
+    {
+      "path": "lean/lake-manifest.json",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Instalação congelada e reproduzível; não usar atualização livre para esconder falhas.",
+      "present": true,
+      "sha256": "0abd7e57062a42dfd36fe2d5f7cb83051c8eb298304c5a3421e1de5675417a55"
+    },
+    {
+      "path": "scripts/setup_formal.sh",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Checksum e build concluídos no orçamento suportado.",
+      "present": true,
+      "sha256": "070782c132ed11f034842597c9c1c00431d33a9f31afa9573afeee46b9045e96"
+    },
+    {
+      "path": "scripts/setup_lean_std.sh",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Repetibilidade com checksum e sem reinstalação concorrente durante execução.",
+      "present": true,
+      "sha256": "847fb768336f153ce9154ede316418a961a8fd0bbe05ed5727cfabcfa34e340f"
+    },
+    {
+      "path": "tools/rational_proof_corpus.py",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "30.000 nomes esperados verificados; falhas/timeouts preservados.",
+      "present": true,
+      "sha256": "55bf5b87d7a981f8b3707a4a5d930b1211aff58fd8c856245bb3f691e1c52da6"
+    },
+    {
+      "path": "lean/Conformance/manifest.json",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Corresponder às fontes emitidas e à evidência do kernel.",
+      "present": true,
+      "sha256": "0826b2bde488be4d42b5c82c3fe784153ad0079e1811ffdcfa9b887cfe9dadea"
+    },
+    {
+      "path": "docs/LEAN_STD.md",
+      "section": "04 — Provas, formalização e refutação",
+      "acceptance": "Distinguir teorema condicionado, hipóteses satisfatíveis e evidência científica.",
+      "present": true,
+      "sha256": "58a22811eecc6cbdb15a42b726c5a00a9590f5066127375b83f1e8414625a06b"
+    },
+    {
+      "path": "src/nablamath/forge/task_spec.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Versão, origem, semente e domínio definidos.",
+      "present": true,
+      "sha256": "ee10fb51a8f1ae357cd8ccc2ada3b684048e64fe54e5b241f083cbc28b8d9b3e"
+    },
+    {
+      "path": "src/nablamath/forge/reverse_builder.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Problema resolvido/verificado sem depender do testemunho do construtor.",
+      "present": true,
+      "sha256": "316497f21f0012ee69631e2c4449aaa9045135e31261e096fa16d73ceab1fcad"
+    },
+    {
+      "path": "src/nablamath/verify/trace.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Rejeitar vínculos e passos adulterados.",
+      "present": true,
+      "sha256": "4b66407634b5c36221b6e3d30372afcf955a077dc744b53042a078d6f57b9d5d"
+    },
+    {
+      "path": "src/nablamath/pipeline/scientific_cycle.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Reexecução e detecção de adulteração de cada ligação.",
+      "present": true,
+      "sha256": "69ca8ef45094d8f4f4cdf977e4df35db3c1d81840dd68f2d136da17617ef541e"
+    },
+    {
+      "path": "src/nablamath/pipeline/artifact_store.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Nenhum destino aceito parcialmente em caso de falha.",
+      "present": true,
+      "sha256": "8b2dde94864764face9d8a318d94337046ab81a78d9c44899887029d4e2cc2db"
+    },
+    {
+      "path": "src/nablamath/pipeline/provenance.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Identificar fontes e separar declaração de procedência de autenticação.",
+      "present": true,
+      "sha256": "e0e63368324d0c8e4f9d75d74164a3cf642fb31cc7e581bf8444c07ef4396461"
+    },
+    {
+      "path": "src/nablamath/datasets/schema.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Versões, campos e migrações congelados.",
+      "present": true,
+      "sha256": "111510dd5520cb74a15c5cdb01da810cbf63974674a78f3d89d235a2eeb9c127"
+    },
+    {
+      "path": "src/nablamath/datasets/serializer.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Leitura/escrita com limites, erros e hashes coerentes.",
+      "present": true,
+      "sha256": "13fa1780df16580372497e94db019fee433b21d28c7f44a1342603a8dfe4a4d8"
+    },
+    {
+      "path": "src/nablamath/datasets/semantic_fingerprint.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Casos equivalentes conhecidos e limitações documentados.",
+      "present": true,
+      "sha256": "a389f4741f844c2d6f2ea76d8736902c4b8b9d92d17af7b7e7a11f8859f3bce7"
+    },
+    {
+      "path": "src/nablamath/datasets/split_policy.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Não usar avaliação reservada para selecionar geração ou parâmetros.",
+      "present": true,
+      "sha256": "4a82fa2dbde550257392b2e76bccb9170c390925574fb5bd95667c80124e69aa"
+    },
+    {
+      "path": "src/nablamath/datasets/curation.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Rejeitar conteúdo sem requisitos de redistribuição satisfeitos.",
+      "present": true,
+      "sha256": "2c557d2eb91096f12c36913ec18a0a7337e2ae116f0cae1958ffb2d455f6fd33"
+    },
+    {
+      "path": "src/nablamath/datasets/quality_gate.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Casos negativos e adulterações não produzirem artefato aceito.",
+      "present": true,
+      "sha256": "fde8430cf3b977ac5d69d79eb1ce136792d699f3e8faeb5d0709f5c0e9e0189f"
+    },
+    {
+      "path": "src/nablamath/datasets/model_card.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Descrever origem, finalidade, partições e limites reais.",
+      "present": true,
+      "sha256": "b6302887fe355e54d5c5cd9884fa03fc966b54ed4c8b6160df73b3be94a337f2"
+    },
+    {
+      "path": "src/nablamath/export/jsonl.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Roundtrip, limites e falha atômica.",
+      "present": true,
+      "sha256": "8f3e58e40a5d43584ad98dd188d7e94e640578208ff314d8bebb1004a8947725"
+    },
+    {
+      "path": "src/nablamath/export/parquet.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Mesmo significado dos registros e recusa clara sem dependência instalada.",
+      "present": true,
+      "sha256": "1522cbcca87ea4d2b1fe629d77768150bb4d9b572dbb22503af353f889d7b9f9"
+    },
+    {
+      "path": "src/nablamath/export/bundle.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Importação revalidada e proteção contra adulteração.",
+      "present": true,
+      "sha256": "267a8dffd6bd46e0d09c169f321361dc85ab63cf21185f90ebaaaa27a962a6ea"
+    },
+    {
+      "path": "src/nablamath/export/huggingface.py",
+      "section": "05 — Artefatos, dados e exportação",
+      "acceptance": "Destino/licença/consentimento explícitos; valores secretos não persistidos indevidamente.",
+      "present": true,
+      "sha256": "12f7105fa079301886d84705d9bd0cf42e1f38426d6715e949ab700fba33e5ee"
+    },
+    {
+      "path": "src/nablamath/cli.py",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Fluxo principal reproduzível e erros estáveis para automação.",
+      "present": true,
+      "sha256": "929bb313b177927e7ac61c898a6f50fcbc3f590fcba13f41d2d4a152a4356f0b"
+    },
+    {
+      "path": "src/nablamath/storage.py",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Preservar registros anteriores ou fornecer migração explícita.",
+      "present": true,
+      "sha256": "aeecc08d8e8ddfa314bcd46f02c3905ea9446945368a8521f7b7e689fc5c3275"
+    },
+    {
+      "path": "src/nablamath/store/migrations/__init__.py",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Upgrade de todas as versões declaradas suportadas e recusa de banco inválido.",
+      "present": true,
+      "sha256": "46511574baac5612b4e21dbacd0a7e458cdd88d11470ec9f459986d32d4bc01e"
+    },
+    {
+      "path": "src/nablamath/store/backup.py",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Restauração exercitada com fixtures de versões anteriores.",
+      "present": true,
+      "sha256": "0f22165d417910a230a390afc21ed5081ebcf93eb25b4116d19a5c105ec20b3d"
+    },
+    {
+      "path": "src/nablamath/desktop/app.py",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Cálculo, histórico, exportação, erros e consentimento testados por HTTP.",
+      "present": true,
+      "sha256": "533cb02e5060edd09c76a1672a5125af5deffcb86bd36294d42398c81404f30a"
+    },
+    {
+      "path": "src/nablamath/desktop/index.html",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Revisão de usabilidade/acessibilidade e prevenção de alegações científicas indevidas.",
+      "present": true,
+      "sha256": "f3a7f224c47855b041e11fa55ac8aba783784512dcd5f233c6514b1b69bc229a"
+    },
+    {
+      "path": "src/nablamath/desktop/launcher.py",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Instalação/inicialização/encerramento nos SOs suportados.",
+      "present": true,
+      "sha256": "72f747274fad14897a76c900ee462d0b9cdedc649032c709c1a74741c030aa31"
+    },
+    {
+      "path": "src/nablamath/desktop/workflows.py",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Histórico, artefatos e consentimento coerentes com o backend.",
+      "present": true,
+      "sha256": "8d081e492e1772a2f098d92c4865e43e97c9c304badf801efd3880c1100577e9"
+    },
+    {
+      "path": "src/nablamath/agents/sandbox.py",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Preservar recusa até existir sandbox real validado; não substituir por eval/subprocess irrestrito.",
+      "present": true,
+      "sha256": "66ae7622c442f665d9a66b5a4525ec6e457f8d8d9af5dd3e5e93bb0e90294435"
+    },
+    {
+      "path": "src/nablamath/agents/permissions.py",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Sem escalada implícita de autoridade ou acesso.",
+      "present": true,
+      "sha256": "f8146ea2c61766e1c03feb5897ac1b83d4029b2fd6641eea4c8a1bb709e8ec5a"
+    },
+    {
+      "path": "src/nablamath/agents/tool_registry.py",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Schemas, limites, efeitos e versões declarados.",
+      "present": true,
+      "sha256": "15a49c17929ec83936429177ad632104b16830b2fc53c90b402d8dcdea6e0f7c"
+    },
+    {
+      "path": "configs/profiles/cpu_conservative.yaml",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Limites medidos, cancelamento e mensagens de orçamento documentados.",
+      "present": true,
+      "sha256": "2522836a0a0abdb71cffce4bc616f1364b60cd6d59482778e6f7063b271172f4"
+    },
+    {
+      "path": "configs/profiles/cpu_balanced.yaml",
+      "section": "06 — Persistência, CLI, desktop e operação segura",
+      "acceptance": "Mesmo contrato científico e diferenças de recurso declaradas.",
+      "present": true,
+      "sha256": "e478d0d8ae1188ffe2ec61a934edba13f5fb3b47bf10787958a8f0eaec37cd67"
+    },
+    {
+      "path": "packaging/offline_release.py",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Instalação sem downloads inesperados e integridade do conjunto.",
+      "present": true,
+      "sha256": "47ef3661650779db2e83ad67cce4c59c954768ec298364dd2e1b2d459cc7108a"
+    },
+    {
+      "path": "packaging/staged_release.py",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Não promover release com gate obrigatório falho.",
+      "present": true,
+      "sha256": "0f01085ff4115fc4828de521a98cea07498f8ab880dfe41f09d23b7bd430aef5"
+    },
+    {
+      "path": "packaging/signed_release.py",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Autoridade real configurada e verificação pelo destinatário; não inventar assinatura.",
+      "present": true,
+      "sha256": "73ab1d0da5c8c50814f43807bc64c711d5b2a1907d2d8f6299d068742500206c"
+    },
+    {
+      "path": "packaging/windows/nablamath.iss",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Instalar/atualizar/desinstalar em máquina limpa e preservar dados pessoais.",
+      "present": true,
+      "sha256": "a280f7534edec446d5fc971a3c98d730f2c9e7fc977f8c56c8c5d5fdd81f638f"
+    },
+    {
+      "path": "setup.sh",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Não prometer suporte a SO não exercitado.",
+      "present": true,
+      "sha256": "36e267165b0a7839ccef16e7e60d265f0e60e244d10b9b415f69ece87d1b321d"
+    },
+    {
+      "path": "setup.ps1",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Dependências e erros diagnósticos coerentes com o instalador.",
+      "present": true,
+      "sha256": "575d30f0dd77d7baedc05c0343709e3eae879cc79954857164c80dd655d6680c"
+    },
+    {
+      "path": "setup.cmd",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Delegação previsível e propagação do exit status.",
+      "present": true,
+      "sha256": "0241bef408ecd99653c1ed0d11b2981665c02035860382013ee2d6742c8a9039"
+    },
+    {
+      "path": "protocol/schema/nabla-object-v1.json",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Fixtures normativas e migração de versão sem quebra silenciosa.",
+      "present": true,
+      "sha256": "23d8767e1b8f517d4db4cbe92c91e514c06a57cf929f407bca43b0b29a15a05c"
+    },
+    {
+      "path": "protocol/schema/nabla-task-v1.json",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Validação equivalente entre implementações suportadas.",
+      "present": true,
+      "sha256": "1bd4f9604a5a9e7f744e415841c259df82075a23a7c572f8de12adff26e03123"
+    },
+    {
+      "path": "protocol/schema/nabla-receipt-v1.json",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Hipóteses, status e versões preservados entre linguagens.",
+      "present": true,
+      "sha256": "3b1133c35ff57a1a0ba726190091f64cdd7235469274383f758dfadeb1722e58"
+    },
+    {
+      "path": "sdk/python/client.py",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Conformidade, erros e timeout; endpoints não congelados permanecem experimentais.",
+      "present": true,
+      "sha256": "35383c06e05fb1aca367c8384c07e85a36a7df65fecb013cf24cc3920f69b4c3"
+    },
+    {
+      "path": "sdk/typescript/client.ts",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Executar no runtime suportado e comparar fixtures comuns.",
+      "present": true,
+      "sha256": "b62f78bfb7f137a20099259f29f943648bc537b53106960d404b640a996c400f"
+    },
+    {
+      "path": "sdk/rust/src/client.rs",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Execução real Rust; auditoria de API/ABI antes de alegar estabilidade.",
+      "present": true,
+      "sha256": "1b5190c45fe5c53f49ef8d158a71a5b7e2efe646cca61e404f6acbda87d65f2e"
+    },
+    {
+      "path": "sdk/c/nabla_fraction.c",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Golden vectors iguais aos demais bindings.",
+      "present": true,
+      "sha256": "1b3985d51a8de9500dbc9661dc7e2d342616bd622c16dd7776cbd1c4420b9d58"
+    },
+    {
+      "path": "sdk/c/nabla_fraction.h",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Contrato de memória/erros e compatibilidade explícitos.",
+      "present": true,
+      "sha256": "a96b230e999f27d0ccb1a17bd88fea2118df512acdeb5b8013ce01077fb15483"
+    },
+    {
+      "path": "sdk/cpp/nabla_fraction.hpp",
+      "section": "07 — Distribuição e superfície opcional dos SDKs",
+      "acceptance": "Mesmo contrato matemático e casos de erro.",
+      "present": true,
+      "sha256": "293558e5108032e648fa7d5ed7d3f4db0002d8399c0a6e4675e3e60bbbe56cc3"
+    },
+    {
+      "path": "src/nablamath/documents/document_model.py",
+      "section": "08 — Documentos e recursos visuais do perfil local",
+      "acceptance": "Vínculos entre afirmações, equações, tabelas, figuras e evidências.",
+      "present": true,
+      "sha256": "7adf25deb3eba8dfb21785a280faf76f2088d3cf183bda0e231298af88c5b3f9"
+    },
+    {
+      "path": "src/nablamath/documents/html_exporter.py",
+      "section": "08 — Documentos e recursos visuais do perfil local",
+      "acceptance": "Escapamento, links e conteúdo coerentes com os artefatos originais.",
+      "present": true,
+      "sha256": "09687a980b08dbc047489d529e28ac280ae906373743493e40718411a57de1d3"
+    },
+    {
+      "path": "src/nablamath/documents/latex_exporter.py",
+      "section": "08 — Documentos e recursos visuais do perfil local",
+      "acceptance": "Conteúdo reproduzível e erros de backend explícitos.",
+      "present": true,
+      "sha256": "e40a808c6f41bd5f8ecfee767e6b61d05c29390e33a3901a1e2a84f27f43cd5e"
+    },
+    {
+      "path": "src/nablamath/documents/typst_exporter.py",
+      "section": "08 — Documentos e recursos visuais do perfil local",
+      "acceptance": "Semântica editorial coerente com HTML/LaTeX.",
+      "present": true,
+      "sha256": "e97a9d051a3965761a139f0fc6b4cf5f131827c05619427da7723739952903b0"
+    },
+    {
+      "path": "src/nablamath/documents/pdf_builder.py",
+      "section": "08 — Documentos e recursos visuais do perfil local",
+      "acceptance": "Compilação real e revisão visual separadas; ausência de compilador não vira sucesso.",
+      "present": true,
+      "sha256": "5e67c1febe52b429d0d02d8213076717fb2095cdaea0a6ff6608a97020432df8"
+    },
+    {
+      "path": "src/nablamath/graphics/scene_graph.py",
+      "section": "08 — Documentos e recursos visuais do perfil local",
+      "acceptance": "Figuras vinculadas ao cálculo e às suas unidades/hipóteses.",
+      "present": true,
+      "sha256": "361cecced025e6f9a7a730b6fecc5b91cbd58edd4beeed340a0db85fef83e5c9"
+    },
+    {
+      "path": "src/nablamath/graphics/svg_renderer.py",
+      "section": "08 — Documentos e recursos visuais do perfil local",
+      "acceptance": "Determinismo, escaping e limites do formato.",
+      "present": true,
+      "sha256": "3e25a3197f5d70939ba55c81ce34105a0b9bb3efacf2e7e5aeab1174cea03705"
+    },
+    {
+      "path": "src/nablamath/graphics/raster_renderer.py",
+      "section": "08 — Documentos e recursos visuais do perfil local",
+      "acceptance": "Comparação com cena de origem e disponibilidade explícita do backend.",
+      "present": true,
+      "sha256": "0a2c88fe56a30848a2184849cb2067e9f7937c2a2b89c573f632b3423c751642"
+    },
+    {
+      "path": "docs/DESKTOP.md",
+      "section": "08 — Documentos e recursos visuais do perfil local",
+      "acceptance": "Explicar armazenamento, ações, exportação, consentimento e limites.",
+      "present": true,
+      "sha256": "7f5e0e67577d1bdf3c7955eccbc7ca185f1ddef37efe3ccd15ce8af2effe7052"
+    },
+    {
+      "path": "tests/regression/test_public_api.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Fixtures reais de versões anteriores e casos de quebra rejeitada.",
+      "present": true,
+      "sha256": "0a7bb60de096c0f19c2c475dfd0b752a0cad4ce12aabb6750d902a6b5cb770e0"
+    },
+    {
+      "path": "tests/regression/test_portable_io.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Resultados coerentes em Linux/Windows.",
+      "present": true,
+      "sha256": "29e3b918144844da2209067db917a94a394817d460e07e42b32536bb946e1784"
+    },
+    {
+      "path": "tests/integration/test_cli_local.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Exit status e efeitos esperados, inclusive falhas.",
+      "present": true,
+      "sha256": "c9465700f15203a35f05a67ae4c5b3281c4ab897ee58c89b2a14e183ace7ee20"
+    },
+    {
+      "path": "tests/integration/test_desktop.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Requisição funcional, persistência e proteção de sessão/origem.",
+      "present": true,
+      "sha256": "56cf03e97c399583db668b3c0fc10499f7253ed7b33533cea88fd0bb0427c2c6"
+    },
+    {
+      "path": "tests/integration/test_backup_restore.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Integridade e compatibilidade das versões suportadas.",
+      "present": true,
+      "sha256": "14cdd6284d33b4ed43dbcc983e0f6ec840aecbc0856599b52c5a53ed948ff4a9"
+    },
+    {
+      "path": "tests/integration/test_scientific_artifact.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Reexecução de todos os nós e recusa de conteúdo inconsistente.",
+      "present": true,
+      "sha256": "fd53ec12f34ed74785c10e86d19ee9672320fcc0cdb38fa0e93f16a639a1559e"
+    },
+    {
+      "path": "tests/integration/test_global_scientific_cycle.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Perfil 1.0 executado sem simular aprovação de módulos indisponíveis.",
+      "present": true,
+      "sha256": "cb818be56ded423555ce4ef1487d9e534903a62bbb544be2b3a27d362e23505c"
+    },
+    {
+      "path": "tests/security/test_agent_sandbox.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Não declarar resistência a escapes de sandbox inexistente.",
+      "present": true,
+      "sha256": "57dc18de79ce74217083e54ce7a25dc9373a36f23bc46baaf96c3e43704bbde9"
+    },
+    {
+      "path": "tests/security/test_supply_chain.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Adulteração de fonte/artefato/dependência detectada.",
+      "present": true,
+      "sha256": "6a122faf19c1050194d31ac5467962d28dd30a894c73e068b9ddcd91bed66bd1"
+    },
+    {
+      "path": "tests/math/test_certified_analysis.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Casos-limite, orçamento e adulterações com hash recalculado.",
+      "present": true,
+      "sha256": "948b0834f90c8977d9da7fe63c0b8d46ce3c4c4cb36ee61036af0669818fb20c"
+    },
+    {
+      "path": "tests/math/test_markov_analysis.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Distinguir condicionamento, recorrência, período e divergência.",
+      "present": true,
+      "sha256": "ac1fd2e43f325980e01fe58d1169a0645c4cc1d6e72d541d233c512b46cf7265"
+    },
+    {
+      "path": "tests/test_rational_sided_limits.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Polos, buracos de domínio e casos fora do perfil.",
+      "present": true,
+      "sha256": "7c44dcd4c013e9b91f2cbeddfd992ba7fa19064d51ac19c43b05baccdd9c87ab"
+    },
+    {
+      "path": "tests/test_lean_std.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Executar kernel e auditoria; skips não são aprovação.",
+      "present": true,
+      "sha256": "d7e193ba3075ca9406f86d168d7dbaff586ffb22fa0fd91920de0369ac815fb8"
+    },
+    {
+      "path": "tests/test_proof_corpus_sharding.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Nenhum teorema omitido/duplicado entre unidades.",
+      "present": true,
+      "sha256": "631a81ea3301634be2abf1fe6c1e606c5236ec823982ee18be78d22e12d2fb1c"
+    },
+    {
+      "path": "tests/test_nabla_bundle.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Bytes, CRLF, mudanças, dados excluídos e recusa de symlinks.",
+      "present": true,
+      "sha256": "8d3a8acd078a983141999071a5cce6d2faa6cc4c6f9966a653d83ff5465da43b"
+    },
+    {
+      "path": "tests/test_math_bundle.py",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Bundle idêntico ao gerado das fontes canônicas.",
+      "present": true,
+      "sha256": "375bb8085beefdcc32b21dc8d4f36696a68e7c524ec843f133bbee55103e7a8c"
+    },
+    {
+      "path": ".github/workflows/python-core.yml",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Execução verde no commit do release, com resultados preservados.",
+      "present": true,
+      "sha256": "9f14b7d6fcfe1fc53632efb4a97769ee87a4f850dfdba3f0c4a27ca83f650f81"
+    },
+    {
+      "path": ".github/workflows/windows-installer.yml",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Artefato exato e ciclo real de instalação validados.",
+      "present": true,
+      "sha256": "11fae354a5c5252be5e24fe9d5738221750e20b27f85e78baee404d1b1f59ee6"
+    },
+    {
+      "path": ".github/workflows/lean.yml",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Dependências fixadas; resolver o timeout conhecido.",
+      "present": true,
+      "sha256": "e7fb54935dfe932f4d97231d81f8f15508c654b41d623b448f71198861eb1938"
+    },
+    {
+      "path": ".github/workflows/lean-core.yml",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Compilar e auditar os alvos declarados.",
+      "present": true,
+      "sha256": "4981e7a2bacd441c67f1f14bae11eee565e8dd96d06028641d58a24788b6d8c0"
+    },
+    {
+      "path": ".github/workflows/rational-conformance.yml",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "60 unidades e 30.000 auditorias aprovadas.",
+      "present": true,
+      "sha256": "ce30e201028730ac48201a57636c36f11298d1be0931f8c1bbf56897d0b1f0f2"
+    },
+    {
+      "path": ".github/workflows/security.yml",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Relatar limites e completar revisão humana apropriada.",
+      "present": true,
+      "sha256": "2aeeae28fbf39a23fed763b83b7ca5f90331679cb2c3f39239b57a8a72d629e5"
+    },
+    {
+      "path": ".github/workflows/full-integration.yml",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Não encobrir módulos pulados nem pré-requisitos ausentes.",
+      "present": true,
+      "sha256": "450bf6e4533068618cff64ecea84f17f931b18a1fd13dcde2b748d7334a847fa"
+    },
+    {
+      "path": ".github/workflows/release-attestation.yml",
+      "section": "09 — Testes de aceite e CI do commit exato",
+      "acceptance": "Vincular commit, build, SBOM e artefato publicado.",
+      "present": true,
+      "sha256": "5dc17570ae2fcf36d5f593f7f2c981ce24bf5d4923d07bdcdee923c6cb15a6af"
+    },
+    {
+      "path": "tools/check_roadmap.py",
+      "section": "10 — Ferramentas, evidências e arquivos finais",
+      "acceptance": "Preservar estados parciais até haver aceite pertinente.",
+      "present": true,
+      "sha256": "2e2357563e0cc54a21730ba9e143bce6979f00988f47eee14e6d06e6953903e4"
+    },
+    {
+      "path": "tools/check_public_contracts.py",
+      "section": "10 — Ferramentas, evidências e arquivos finais",
+      "acceptance": "Sem alegações incompatíveis entre README, documentação e matriz.",
+      "present": true,
+      "sha256": "f9cb2024bc3a4dd29f1734a18a754b268ad11d17a9c0fda570f7802ce2fce602"
+    },
+    {
+      "path": "tools/vision_readiness.py",
+      "section": "10 — Ferramentas, evidências e arquivos finais",
+      "acceptance": "Ler falhas, skips e bloqueios; não usar inventory-only como aprovação.",
+      "present": true,
+      "sha256": "ec47eba782c0f3bceca04b3195c0a176ce6b74b06acbde7bee8c6c471e183787"
+    },
+    {
+      "path": "tools/validate_longley.py",
+      "section": "10 — Ferramentas, evidências e arquivos finais",
+      "acceptance": "Resultados e tolerâncias preservados com proveniência.",
+      "present": true,
+      "sha256": "98151b4d408b51cba37f9d5a779c9b3aac371342050cfeceeedbbebfdc92e063"
+    },
+    {
+      "path": "tools/calibrate_readiness.py",
+      "section": "10 — Ferramentas, evidências e arquivos finais",
+      "acceptance": "Publicar denominadores e recusar conclusão universal a partir do recorte.",
+      "present": true,
+      "sha256": "1ffbf0fabf07cb95bb3a53ff6ae0bf9cb3b828e02a30546371935a666503f1cf"
+    },
+    {
+      "path": "tools/build_math_bundle.py",
+      "section": "10 — Ferramentas, evidências e arquivos finais",
+      "acceptance": "Fontes canônicas e índice coerentes; não contar cópias como código novo.",
+      "present": true,
+      "sha256": "7f26c204e3724be1d8567813b178c5a3b52d8338ea1d746b78187273d2b7f5a4"
+    },
+    {
+      "path": "tools/build_nabla_bundle.py",
+      "section": "10 — Ferramentas, evidências e arquivos finais",
+      "acceptance": "Bytes e hashes por arquivo, sem dependências/cache e sem recursão dos bundles.",
+      "present": true,
+      "sha256": "1d704d1e86419c517766322b2000c4bb30905c3226980d6f9ab12122c696275e"
+    },
+    {
+      "path": ".gitattributes",
+      "section": "10 — Ferramentas, evidências e arquivos finais",
+      "acceptance": "NABLA.TXT preservado byte a byte; histórico não normalizado indevidamente.",
+      "present": true,
+      "sha256": "c18006a267829ab0fbe6e0a56564bd5576ec57cefff160e3831c07a0c1d0a4a0"
+    },
+    {
+      "path": "math.txt",
+      "section": "10 — Ferramentas, evidências e arquivos finais",
+      "acceptance": "Regenerar das fontes e verificar antes de distribuir.",
+      "present": true,
+      "sha256": "e474720a97ae4491c2f7ebcf92079690352fedd2eff8f74c08a89f2b0a6e42a0"
+    },
+    {
+      "path": "NABLA.TXT",
+      "section": "10 — Ferramentas, evidências e arquivos finais",
+      "acceptance": "Hash e conteúdo corresponderem ao commit distribuído.",
+      "present": true,
+      "sha256": "098d735902183c8c0584be3e54b5bb65af66b12ad32b0ae0f4af09d3613233b3"
+    },
+    {
+      "path": "docs/SOURCE_BUNDLES.md",
+      "section": "10 — Ferramentas, evidências e arquivos finais",
+      "acceptance": "Explicar que são agregações de fontes, não executáveis binários.",
+      "present": true,
+      "sha256": "636f4ec68fcd6e809b97c483281a28b39e6f29fc65ef3ef81cf81ac6da74c928"
+    },
+    {
+      "path": "lean/Conformance/affine_square.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "8549836e7e12edccbf478ec11bd4aeb48f1b9ec3fbff6ce5619a52568c78fa2e"
+    },
+    {
+      "path": "lean/Conformance/affine_square_part002.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "48803e0676005f0831eb4f15b7edb331ad0e80712d3392953033e238f0d4de71"
+    },
+    {
+      "path": "lean/Conformance/affine_square_part003.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "42b853306cac0b48f44d5987dc2537b2c007052709ef23b40494d1cdeca43c44"
+    },
+    {
+      "path": "lean/Conformance/affine_square_part004.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "a3ffa88f9e64eb19bb8b4862ee2e4916ec454b39113c2964b7a03ab0e0a3e589"
+    },
+    {
+      "path": "lean/Conformance/affine_square_part005.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "7f59c05e3cd374aaa8bf4f30ff046382139f8e45afd6baf842e82089939c0b48"
+    },
+    {
+      "path": "lean/Conformance/affine_square_part006.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "bb1e937b3959f8ce910865e10c9a6edfc7f7ac66f07ba5baa8436d7a988ad4d1"
+    },
+    {
+      "path": "lean/Conformance/bounded_square.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "760c8484968e4c5023106c8d6b21684553911333925ecc408d2039b30d096c55"
+    },
+    {
+      "path": "lean/Conformance/bounded_square_part002.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "5d2e313298a0fca7a7b020279d8e49c9c96f7a30617efb7547bac1321b7599a5"
+    },
+    {
+      "path": "lean/Conformance/bounded_square_part003.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "01665ccebd29365348486630a34f11a73b560c77f4904422b1785620f825b389"
+    },
+    {
+      "path": "lean/Conformance/bounded_square_part004.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "7eaecce60c69aad33cfdbd5b2efb71dab073eda16049bdce9b747f79f1b5d1d2"
+    },
+    {
+      "path": "lean/Conformance/bounded_square_part005.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "756e5fb5ae8b21c5cc7aa439553cfb2511a64925f22a73ebf70d3086618b49ef"
+    },
+    {
+      "path": "lean/Conformance/bounded_square_part006.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "55ddcbcf6c836af94e42ee4d90058432fc9342a265b284b581a0e10717c5ceff"
+    },
+    {
+      "path": "lean/Conformance/closed_rational.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "cd58d5a33774c706c751b3423e3a46edcd716218f91cb1ae46b71b8c11c7ab6d"
+    },
+    {
+      "path": "lean/Conformance/closed_rational_part002.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "24b59b2a40dc80ed26ed4a11dc97eacd05b3f15da72f779147ef39757edec5b3"
+    },
+    {
+      "path": "lean/Conformance/closed_rational_part003.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "50e4e3cfce7cb9720ebd3eb0a50e9908142d72f86149f47d302d9e5218aa79bb"
+    },
+    {
+      "path": "lean/Conformance/closed_rational_part004.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "d97ae21f32765363c6047c84da2d117e75437dc024db1baf3d79c70959e681de"
+    },
+    {
+      "path": "lean/Conformance/closed_rational_part005.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "c2795414016c439bda8b2c7cc50af4296b22093e786209d6e6276c31baa26e03"
+    },
+    {
+      "path": "lean/Conformance/closed_rational_part006.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "f7a4113169a689703ef165d02b0e63cbc006a5c83470edf1c531f5e680596b3b"
+    },
+    {
+      "path": "lean/Conformance/difference_squares.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "8016cba7b3e9e36575fa48441a31798725716217503d51455cea1995bee4d006"
+    },
+    {
+      "path": "lean/Conformance/difference_squares_part002.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "efb152c8d57945003c212cc24b7900171f7d595d0d68b2da6074dce07ca31210"
+    },
+    {
+      "path": "lean/Conformance/difference_squares_part003.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "06e9d2ea0831456815e276b3cc1727e124238b2345970da1a7afa266094b2078"
+    },
+    {
+      "path": "lean/Conformance/difference_squares_part004.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "1d8823e8065d1e6dac377e7c915c0e6776028716d58f35f45f2017ce6dda9638"
+    },
+    {
+      "path": "lean/Conformance/difference_squares_part005.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "a6e8b8fe54e0c2b12f09271f0a4ebde2dd3ad0250b7a3dbcb685b3e2a0fa64c8"
+    },
+    {
+      "path": "lean/Conformance/difference_squares_part006.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "06781a0cfeed1393a3fd654b4de91edaa36f868ec893a8fcb88c615a647aaa62"
+    },
+    {
+      "path": "lean/Conformance/distributive.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "db2486dc184ecaf98e836580e3da842e08b0560b089df831f93d2002e2b68d09"
+    },
+    {
+      "path": "lean/Conformance/distributive_part002.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "7a997a2519d5e74cee596d1ff719b20b7f745ec2c6b364488fda26b3c69daabf"
+    },
+    {
+      "path": "lean/Conformance/distributive_part003.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "d7b26f592ac907e408b7b51e1ed471524f4764267e5f3235a68d3cc7f6d599f2"
+    },
+    {
+      "path": "lean/Conformance/distributive_part004.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "fa7e3912648247690de7179c0b26aa1345598739ee9a34bf7753a279f17e5f96"
+    },
+    {
+      "path": "lean/Conformance/distributive_part005.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "a9ac953b8413d6f20c56e37ff444fbe6de9a6af823e52721bba2d56b2a6b5d54"
+    },
+    {
+      "path": "lean/Conformance/distributive_part006.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "252d5f6cf828ed16dbe1a3392cfcf1a613ab8513a3d93d9b108285d67a44e9fa"
+    },
+    {
+      "path": "lean/Conformance/fraction_sum.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "89c7da1d8f51b0cbcf92998ba107ed5a1f1a6a81c285c616629e67b3825ce387"
+    },
+    {
+      "path": "lean/Conformance/fraction_sum_part002.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "e56de38db69f1b925167920ee90bfbb519594f960a2d6e38295fa122330bcf3c"
+    },
+    {
+      "path": "lean/Conformance/fraction_sum_part003.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "b48f857e3daa48a63d2626bebbf3ce86a9595a300eb500127d61677b6f4b169f"
+    },
+    {
+      "path": "lean/Conformance/fraction_sum_part004.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "69fb3b13f58e40fdaf076c574512abf5ba820bfc13812fed5ec18e00f5a3d9d6"
+    },
+    {
+      "path": "lean/Conformance/fraction_sum_part005.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "13079f15e74438d18baa14186ca345584a745c5d4438b03c68eecc185f86aedb"
+    },
+    {
+      "path": "lean/Conformance/fraction_sum_part006.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "0595d41563d4b8b437ddfa5380077fff13f1973cc7cf1d673d261253dbfc69ce"
+    },
+    {
+      "path": "lean/Conformance/guarded_inverse.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "430c5efa0ee868ab1683b8a6ab1925c9265aa81e09c866d3a9dcdb23405b1290"
+    },
+    {
+      "path": "lean/Conformance/guarded_inverse_part002.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "11d9de369899be8383c5d4f9ef94a62bd3597653f39d518672c7af2694cc56b6"
+    },
+    {
+      "path": "lean/Conformance/guarded_inverse_part003.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "35bd66edecc2d2f98124d7e0f16b7275b28a0932ecdb4a27ccf4bdd51d26f2a1"
+    },
+    {
+      "path": "lean/Conformance/guarded_inverse_part004.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "b2d948345cbc5e53abb01f6ac5fb50cb10471a359fbed196320d1b07381be308"
+    },
+    {
+      "path": "lean/Conformance/guarded_inverse_part005.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "fa94da83950bcffa8827d85d00c17add1e7c74a2caacf229879baac58ee7b5dd"
+    },
+    {
+      "path": "lean/Conformance/guarded_inverse_part006.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "5e69e80a848958dc41daf1d0b21808fa843a09bb41682b0177a257dbd501a213"
+    },
+    {
+      "path": "lean/Conformance/monotone_affine.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "6c2aa59f34295fa96e7be44fc3851a353c9625b2894bf625273146af60bad4dc"
+    },
+    {
+      "path": "lean/Conformance/monotone_affine_part002.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "281e48666fa97df10bfe055b7835bc6da64e60f632b8b24b737af73a154a7d09"
+    },
+    {
+      "path": "lean/Conformance/monotone_affine_part003.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "d2dd5371db3aa023e002b858779abb152ded25a2641448150a8afc79ced500f0"
+    },
+    {
+      "path": "lean/Conformance/monotone_affine_part004.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "c31e477982b75baee028e47f6d9ec58156d7509ec136abb100d05871bb65743d"
+    },
+    {
+      "path": "lean/Conformance/monotone_affine_part005.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "f6f6c27956c17ba8651af3a5405d44c146460a1b54b8e3d58d4e598d5470c79e"
+    },
+    {
+      "path": "lean/Conformance/monotone_affine_part006.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "0ea974c259710e00ade5209b0c1921158f155f4da36b62cc7a7252f5ac0ede1a"
+    },
+    {
+      "path": "lean/Conformance/nonnegative_square.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "b0f5786bb3a3ff8174076b19e16a8bad4f50cd03a53c91bc111c4e6a7abb3ed2"
+    },
+    {
+      "path": "lean/Conformance/nonnegative_square_part002.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "ba5fc8daf37724151b34d97d8f9f1222bf71461ccd45a55d057ebb38e5e07a09"
+    },
+    {
+      "path": "lean/Conformance/nonnegative_square_part003.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "686cbecff4c8604d12442e583b95a6d4aaf25f60ccdd7f182b52a2a79d1aa413"
+    },
+    {
+      "path": "lean/Conformance/nonnegative_square_part004.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "f9b90740283958acf1fe87245fa353683e0e4d2d4ad6a851319e70c3366f7ca3"
+    },
+    {
+      "path": "lean/Conformance/nonnegative_square_part005.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "f1c3dd3fe310baa1d4b65b03bd75114d21e6b604c1f95c5e574a3ffa6ff93744"
+    },
+    {
+      "path": "lean/Conformance/nonnegative_square_part006.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "f64060af237430ac1ed552cd0183140d7e3bf5e60a5e3f66c29e370a18adec99"
+    },
+    {
+      "path": "lean/Conformance/quadratic_minimum.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "80f4ad4db20ba9d43448aa76d5aa0ee0addb46b4620bf6a5a0a13c9a52c99ec1"
+    },
+    {
+      "path": "lean/Conformance/quadratic_minimum_part002.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "26ba8fd682a009b8949c45a87978bf7ace7c795b59b0bc4692affc9368a3d5e1"
+    },
+    {
+      "path": "lean/Conformance/quadratic_minimum_part003.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "3a412771f55e9295ca9c8bb4007c57e665896a9a79c8c8472f8ee3828006d29a"
+    },
+    {
+      "path": "lean/Conformance/quadratic_minimum_part004.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "1924ccc56f21529276618712dc8df720d54e2c201c9e662c26564729cca7c93f"
+    },
+    {
+      "path": "lean/Conformance/quadratic_minimum_part005.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "f4dd79e0bfa6325ae65fc5b935f9256abb15de54c73d8641a553b18ad6e7ca62"
+    },
+    {
+      "path": "lean/Conformance/quadratic_minimum_part006.lean",
+      "section": "Arquivos gerados adicionais: cada unidade de prova",
+      "acceptance": "Lean fixado compila; todos os nomes e axiomas são conferidos.",
+      "present": true,
+      "sha256": "29e33f11a7981428a2574e28ec7a2915e61434bc2f3e4d7bb48cb86c8303cb29"
+    }
+  ],
+  "public_api": {
+    "profile": "nabla-local-cpu-v1",
+    "operations": 69,
+    "scope": "public signatures and descriptions; not universal mathematical acceptance"
+  },
+  "external_gates": [
+    {
+      "gate": "exact_commit_platform_ci",
+      "status": "not_established_by_local_checks"
+    },
+    {
+      "gate": "windows_install_upgrade_uninstall",
+      "status": "not_established_by_local_checks"
+    },
+    {
+      "gate": "independent_security_review",
+      "status": "not_established_by_local_checks"
+    },
+    {
+      "gate": "mathematical_translation_review",
+      "status": "not_established_by_local_checks"
+    },
+    {
+      "gate": "license_and_provenance_review",
+      "status": "not_established_by_local_checks"
+    },
+    {
+      "gate": "publisher_authority_and_release_acceptance",
+      "status": "not_established_by_local_checks"
+    }
+  ],
+  "stable_release_accepted": false,
+  "source_commit": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+  "wheel": {
+    "schema_version": 1,
+    "name": "nablamath",
+    "version": "1.0.0",
+    "wheel_sha256": "42abc1943f39c7e033e6eb0b0d46732c7a7bba44d939fcaabcc3caf8c37daf2a",
+    "files_verified": 616,
+    "requires_dist": [
+      "huggingface_hub<2,>=0.25; extra == \"cloud\"",
+      "pytest<10,>=8; extra == \"test\"",
+      "jax; extra == \"accelerate\"",
+      "scipy<2,>=1.11; extra == \"scipy\"",
+      "cupy-cuda12x<15,>=13; (platform_system == \"Linux\" or platform_system == \"Windows\") and extra == \"cuda12\"",
+      "torch<3,>=2.4; (platform_system == \"Linux\" and platform_machine == \"x86_64\") and extra == \"triton\"",
+      "triton<4,>=3; (platform_system == \"Linux\" and platform_machine == \"x86_64\") and extra == \"triton\"",
+      "z3-solver<5,>=4.16; extra == \"formal\"",
+      "Pillow<13,>=10.1; extra == \"graphics\"",
+      "typst<0.15,>=0.13; extra == \"documents\"",
+      "pyarrow<24,>=18; extra == \"data\"",
+      "cryptography<47,>=43; extra == \"federation\"",
+      "sympy<2,>=1.13; extra == \"research\"",
+      "numpy<3,>=2; extra == \"research\""
+    ],
+    "scope": "wheel RECORD integrity only; publisher authenticity and dependency safety not established",
+    "clean_offline_install": true,
+    "smoke": {
+      "artifact_id": "ebe791bb4441f9c6d52cf3964d905ee144b6cfe0377bd55c946f3e54f08ffb3a",
+      "desktop": {
+        "advanced_receipt": true,
+        "catalog_operations": 69,
+        "http": true,
+        "invalid_token_rejected": true,
+        "saved_notebook_replayed": true
+      },
+      "notebook_cells": 1,
+      "scope": "local CPU workflow; no external acceptance",
+      "stored_records": 1,
+      "version": "1.0.0"
+    },
+    "scientific_demonstration": {
+      "passed": true,
+      "version": "1.0.0",
+      "operations": 69,
+      "reference_cases": 176
+    }
+  }
+}

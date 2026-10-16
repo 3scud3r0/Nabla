@@ -1,0 +1,259 @@
+{
+  "source_commit": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+  "observed_utc": "2026-10-16 19:43:36 UTC",
+  "scope": "Remote queue snapshot, not platform approval",
+  "runs": [
+    {
+      "id": 38955107713,
+      "name": "Optional accelerator backend",
+      "status": "queued",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107713"
+    },
+    {
+      "id": 38955107842,
+      "name": "Python core",
+      "status": "queued",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107842"
+    },
+    {
+      "id": 38955107740,
+      "name": "Security contracts and wheel integrity",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107740"
+    },
+    {
+      "id": 38955107765,
+      "name": "Canonical source bundle integrity",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107765"
+    },
+    {
+      "id": 38955107712,
+      "name": "Bounded end-to-end scientific integration",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107712"
+    },
+    {
+      "id": 38955107682,
+      "name": "Archive and Python syntax audit",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107682"
+    },
+    {
+      "id": 38955107770,
+      "name": "Interoperability",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107770"
+    },
+    {
+      "id": 38955107867,
+      "name": "Windows installer",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107867"
+    },
+    {
+      "id": 38955107879,
+      "name": "Lean formal core",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107879"
+    },
+    {
+      "id": 38955107791,
+      "name": "Scientific maturity profiles",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107791"
+    },
+    {
+      "id": 38955107709,
+      "name": "NablaMath CI",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107709"
+    },
+    {
+      "id": 38955107763,
+      "name": "Scientific phases 9–12 and audit",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107763"
+    },
+    {
+      "id": 38955107914,
+      "name": "Scientific phases 5–8",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107914"
+    },
+    {
+      "id": 38955107828,
+      "name": "Rational interval and kernel conformance",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107828"
+    },
+    {
+      "id": 38955107758,
+      "name": "Cohesive local alpha",
+      "status": "pending",
+      "conclusion": null,
+      "event": "pull_request",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955107758"
+    },
+    {
+      "id": 38955100393,
+      "name": "Interoperability",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100393"
+    },
+    {
+      "id": 38955100365,
+      "name": "Python core",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100365"
+    },
+    {
+      "id": 38955100386,
+      "name": "Scientific maturity profiles",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100386"
+    },
+    {
+      "id": 38955100380,
+      "name": "Rational interval and kernel conformance",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100380"
+    },
+    {
+      "id": 38955100462,
+      "name": "Archive and Python syntax audit",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100462"
+    },
+    {
+      "id": 38955100473,
+      "name": "Scientific phases 5–8",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100473"
+    },
+    {
+      "id": 38955100363,
+      "name": "Scientific phases 9–12 and audit",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100363"
+    },
+    {
+      "id": 38955100448,
+      "name": "Canonical source bundle integrity",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100448"
+    },
+    {
+      "id": 38955100431,
+      "name": "Security contracts and wheel integrity",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100431"
+    },
+    {
+      "id": 38955100471,
+      "name": "NablaMath CI",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100471"
+    },
+    {
+      "id": 38955100430,
+      "name": "Bounded end-to-end scientific integration",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100430"
+    },
+    {
+      "id": 38955100391,
+      "name": "Lean formal core",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100391"
+    },
+    {
+      "id": 38955100353,
+      "name": "Cohesive local alpha",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "head_sha": "52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "url": "https://github.com/3scud3r0/Nabla/actions/runs/38955100353"
+    }
+  ]
+}

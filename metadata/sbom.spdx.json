@@ -1,0 +1,42 @@
+{
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "annotations": [],
+  "comment": "{\"declared_requirements\": [\"huggingface_hub<2,>=0.25; extra == \\\"cloud\\\"\", \"pytest<10,>=8; extra == \\\"test\\\"\", \"jax; extra == \\\"accelerate\\\"\", \"scipy<2,>=1.11; extra == \\\"scipy\\\"\", \"cupy-cuda12x<15,>=13; (platform_system == \\\"Linux\\\" or platform_system == \\\"Windows\\\") and extra == \\\"cuda12\\\"\", \"torch<3,>=2.4; (platform_system == \\\"Linux\\\" and platform_machine == \\\"x86_64\\\") and extra == \\\"triton\\\"\", \"triton<4,>=3; (platform_system == \\\"Linux\\\" and platform_machine == \\\"x86_64\\\") and extra == \\\"triton\\\"\", \"z3-solver<5,>=4.16; extra == \\\"formal\\\"\", \"Pillow<13,>=10.1; extra == \\\"graphics\\\"\", \"typst<0.15,>=0.13; extra == \\\"documents\\\"\", \"pyarrow<24,>=18; extra == \\\"data\\\"\", \"cryptography<47,>=43; extra == \\\"federation\\\"\", \"sympy<2,>=1.13; extra == \\\"research\\\"\", \"numpy<3,>=2; extra == \\\"research\\\"\"], \"python\": \"<3.15,>=3.10\", \"signed\": false}",
+  "creationInfo": {
+    "comment": "Deterministic inventory date; not an authenticated build timestamp.",
+    "created": "2026-10-15T00:00:00Z",
+    "creators": [
+      "Tool: Nabla offline_release"
+    ]
+  },
+  "dataLicense": "CC0-1.0",
+  "documentNamespace": "https://github.com/3scud3r0/Nabla/sbom/42abc1943f39c7e033e6eb0b0d46732c7a7bba44d939fcaabcc3caf8c37daf2a",
+  "name": "nablamath-wheel-inventory",
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-nablamath",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "42abc1943f39c7e033e6eb0b0d46732c7a7bba44d939fcaabcc3caf8c37daf2a"
+        }
+      ],
+      "comment": "Source binding is caller-declared; optional requirements are not installed inventory.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "name": "nablamath",
+      "sourceInfo": "Declared source commit: 52b5d908f7ccab8766ead10f1cf6ceb6783e4133",
+      "versionInfo": "1.0.0"
+    }
+  ],
+  "relationships": [
+    {
+      "relatedSpdxElement": "SPDXRef-nablamath",
+      "relationshipType": "DESCRIBES",
+      "spdxElementId": "SPDXRef-DOCUMENT"
+    }
+  ],
+  "spdxVersion": "SPDX-2.3"
+}
