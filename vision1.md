@@ -58,8 +58,8 @@ Não se exige reescrever um componente cujo contrato já passe nos gates pertine
 | `src/nablamath/compatibility.py` | existente | Diagnóstico de compatibilidade e integrações opcionais. | Distinguir disponível, indisponível, incompatível e não verificado. |
 | `README.md` | existente | Instalação, primeiros usos, escopo e limitações da 1.0. | Receita reproduzida em ambiente limpo; sem números históricos apresentados como atuais. |
 | `docs/COMPATIBILITY.md` | existente | Matriz de plataformas, versões e evidências CI. | Links dos jobs do commit exato; backends opcionais separados. |
-| `docs/API_STABILITY.md` | proposto/ausente | Política proposta de estabilidade de APIs, formatos, erros e depreciações. | Publicar o conjunto estável e política de quebra/migração; reaproveitar contratos existentes. |
-| `CHANGELOG.md` | proposto/ausente | Notas propostas de release: funcionalidades, correções, migração e limitações. | Descrever diferenças reais, incompatibilidades e problemas conhecidos da 1.0. |
+| `docs/API_STABILITY.md` | existente | Política proposta de estabilidade de APIs, formatos, erros e depreciações. | Publicar o conjunto estável e política de quebra/migração; reaproveitar contratos existentes. |
+| `CHANGELOG.md` | existente | Notas propostas de release: funcionalidades, correções, migração e limitações. | Descrever diferenças reais, incompatibilidades e problemas conhecidos da 1.0. |
 | `SECURITY.md` | existente | Política de reporte e limites operacionais de segurança. | Revisão do escopo local, dependências, ameaças e caminho de reporte. |
 | `LICENSE` | existente | Licença do código distribuído. | Preservar avisos e identificar licenças dos componentes/artefatos de terceiros. |
 
@@ -216,7 +216,7 @@ Não se exige reescrever um componente cujo contrato já passe nos gates pertine
 | `tests/integration/test_scientific_artifact.py` | existente | Ciclo do artefato e adulterações de vínculos. | Reexecução de todos os nós e recusa de conteúdo inconsistente. |
 | `tests/integration/test_global_scientific_cycle.py` | existente | Integração de componentes públicos. | Perfil 1.0 executado sem simular aprovação de módulos indisponíveis. |
 | `tests/security/test_agent_sandbox.py` | existente | Recusas e limites de ferramentas. | Não declarar resistência a escapes de sandbox inexistente. |
-| `tests/security/test_supply_chain.py` | proposto/ausente | Integridade da cadeia de distribuição. | Adulteração de fonte/artefato/dependência detectada. |
+| `tests/security/test_supply_chain.py` | existente | Integridade da cadeia de distribuição. | Adulteração de fonte/artefato/dependência detectada. |
 | `tests/math/test_certified_analysis.py` | existente | Enclosures e quadratura contra referências independentes. | Casos-limite, orçamento e adulterações com hash recalculado. |
 | `tests/math/test_markov_analysis.py` | existente | Probabilidades e momentos contra leis e oráculos. | Distinguir condicionamento, recorrência, período e divergência. |
 | `tests/test_rational_sided_limits.py` | existente | Limites laterais/infinito e replay. | Polos, buracos de domínio e casos fora do perfil. |
@@ -364,3 +364,18 @@ maiores que o perfil 1.0; não é necessário concluir F13 para lançar uma vers
 local honestamente delimitada.
 
 Total deste plano: **152 arquivos individuais de produto/aceite e 60 unidades Lean geradas**, sem contar dependências instaladas, caches ou outputs locais.
+
+## Execução da preparação local
+
+Os 212 caminhos estão presentes após a implementação dos arquivos documentais e
+dos testes de cadeia de distribuição antes ausentes. Presença não é aceite.
+`tools/vision1_inventory.py` confere cada caminho, bytes, hash e critério descrito
+acima, recusando duplicatas e caminhos inseguros. Execute com `--output` apontando
+para um arquivo novo para preservar a fotografia; o relatório não aprova release.
+
+Nesta preparação, notebooks passaram a validar JSON estrito e comparar replay
+canônico com distinção de tipos. O diagnóstico formal separa versão compatível do
+compilador de disponibilidade Mathlib ainda não verificada. Consulte CHANGELOG.md
+e docs/API_STABILITY.md para contratos e limites. Backup/restore agora valida
+manifestos estritos, schema real e concorrência sem sobrescrever um novo destino. Os gates externos acima continuam
+pendentes até existir evidência pertinente; a versão permanece 0.1.0a1.

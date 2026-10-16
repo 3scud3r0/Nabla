@@ -6,8 +6,12 @@ from contextlib import closing
 from dataclasses import dataclass
 import hashlib
 import json
+import os
+import tempfile
 from pathlib import Path
 import sqlite3
+
+from ..core.semantic_contracts import load_json, require_fields, require_digest
 
 from .migrations import CURRENT_SCHEMA_VERSION, migrate
 
@@ -41,9 +45,14 @@ def backup_database(source: str | Path, destination: str | Path) -> BackupReceip
     if source.resolve() == destination.resolve():
         raise ValueError("Origem e destino do backup devem ser diferentes")
     destination.parent.mkdir(parents=True, exist_ok=True)
-    temporary = destination.with_name(destination.name + ".tmp")
-    temporary.unlink(missing_ok=True)
+    lock = destination.with_name(destination.name + ".backup.lock")
+    lock_descriptor = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+    temporary = None
+    manifest_temporary = None
     try:
+        descriptor, name = tempfile.mkstemp(prefix=".nabla-backup-", suffix=".db", dir=destination.parent)
+        os.close(descriptor)
+        temporary = Path(name)
         with closing(sqlite3.connect(source)) as origin, closing(sqlite3.connect(temporary)) as target:
             migrate(origin)
             origin.backup(target)
@@ -57,14 +66,22 @@ def backup_database(source: str | Path, destination: str | Path) -> BackupReceip
             len(raw),
             integrity,
         )
+        descriptor, name = tempfile.mkstemp(prefix=".nabla-backup-", suffix=".json", dir=destination.parent)
+        manifest_temporary = Path(name)
+        with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+            stream.write(json.dumps(receipt.to_data(), sort_keys=True, indent=2) + "\n")
+            stream.flush()
+            os.fsync(stream.fileno())
         temporary.replace(destination)
-        destination.with_suffix(destination.suffix + ".manifest.json").write_text(
-            json.dumps(receipt.to_data(), sort_keys=True, indent=2) + "\n",
-            encoding="utf-8",
-        )
+        manifest_temporary.replace(destination.with_suffix(destination.suffix + ".manifest.json"))
         return receipt
     finally:
-        temporary.unlink(missing_ok=True)
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+        if manifest_temporary is not None:
+            manifest_temporary.unlink(missing_ok=True)
+        os.close(lock_descriptor)
+        lock.unlink()
 
 
 def restore_database(backup: str | Path, destination: str | Path) -> BackupReceipt:
@@ -73,22 +90,39 @@ def restore_database(backup: str | Path, destination: str | Path) -> BackupRecei
     if destination.exists():
         raise FileExistsError(destination)
     manifest_path = backup.with_suffix(backup.suffix + ".manifest.json")
-    payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if manifest_path.stat().st_size > 4096:
+        raise ValueError("Manifesto de backup excede o limite")
+    payload = load_json(manifest_path.read_text(encoding="utf-8"), max_bytes=4096)
+    require_fields(payload, {"schema_version", "sha256", "size_bytes", "integrity_check"})
+    require_digest(payload["sha256"])
+    if (type(payload["schema_version"]) is not int
+            or type(payload["size_bytes"]) is not int or payload["size_bytes"] < 0
+            or payload["integrity_check"] != "ok"):
+        raise ValueError("Contrato de manifesto de backup inválido")
     raw = backup.read_bytes()
     digest = hashlib.sha256(raw).hexdigest()
     if digest != payload.get("sha256") or len(raw) != payload.get("size_bytes"):
         raise ValueError("Backup não corresponde ao manifesto")
     if payload.get("schema_version") != CURRENT_SCHEMA_VERSION:
         raise ValueError("Versão de backup incompatível")
-    integrity = _integrity(backup)
-    if integrity != "ok":
-        raise ValueError(f"Backup SQLite corrompido: {integrity}")
     destination.parent.mkdir(parents=True, exist_ok=True)
-    temporary = destination.with_name(destination.name + ".tmp")
-    temporary.unlink(missing_ok=True)
+    # Validate the exact bytes to publish, rather than rereading a mutable source.
+    descriptor, name = tempfile.mkstemp(prefix=".nabla-restore-", suffix=".db", dir=destination.parent)
+    temporary = Path(name)
     try:
-        temporary.write_bytes(raw)
-        temporary.replace(destination)
+        with os.fdopen(descriptor, "wb") as stream:
+            stream.write(raw)
+            stream.flush()
+            os.fsync(stream.fileno())
+        integrity = _integrity(temporary)
+        if integrity != "ok":
+            raise ValueError(f"Backup SQLite corrompido: {integrity}")
+        with closing(sqlite3.connect(temporary.resolve().as_uri() + "?mode=ro", uri=True)) as connection:
+            version = connection.execute("PRAGMA user_version").fetchone()[0]
+        if version != payload["schema_version"]:
+            raise ValueError("Schema SQLite diverge do manifesto")
+        # Atomic no-clobber publication: a concurrent creator must win safely.
+        os.link(temporary, destination)
     finally:
         temporary.unlink(missing_ok=True)
     return BackupReceipt(CURRENT_SCHEMA_VERSION, digest, len(raw), integrity)

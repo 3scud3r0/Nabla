@@ -30,3 +30,33 @@ class CompatibilityTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_formal_diagnostic_distinguishes_missing_project(tmp_path):
+    from nablamath.compatibility import formal_runtime_report
+    report = formal_runtime_report(tmp_path)
+    assert report['status'] == 'unavailable'
+    assert report['mathlib_status'] == 'unverified'
+
+
+def test_formal_diagnostic_rejects_unpinned_toolchain(tmp_path):
+    from nablamath.compatibility import formal_runtime_report
+    (tmp_path / 'lean-toolchain').write_text('leanprover/lean4:nightly')
+    assert formal_runtime_report(tmp_path)['status'] == 'incompatible'
+
+
+def test_formal_diagnostic_does_not_call_mathlib_available(monkeypatch, tmp_path):
+    import subprocess
+    from nablamath import compatibility
+    from nablamath.formal import lean_checker
+    (tmp_path / 'lean-toolchain').write_text('leanprover/lean4:v4.34.0')
+    compiler = tmp_path / ('lean.exe' if compatibility.sys.platform == 'win32' else 'lean')
+    compiler.touch()
+    monkeypatch.setattr(lean_checker, 'find_lake', lambda project: tmp_path / 'lake')
+    monkeypatch.setattr(compatibility.subprocess, 'run', lambda *a, **kw: subprocess.CompletedProcess(a, 0, 'Lean (version 4.34.0, x86_64-unknown-linux-gnu)'))
+    report = compatibility.formal_runtime_report(tmp_path)
+    assert report['status'] == 'available'
+    assert report['version'] == '4.34.0'
+    assert report['mathlib_status'] == 'unverified'
+    monkeypatch.setattr(compatibility.subprocess, 'run', lambda *a, **kw: subprocess.CompletedProcess(a, 0, 'Lean (version 4.33.0, test)'))
+    assert compatibility.formal_runtime_report(tmp_path)['status'] == 'incompatible'

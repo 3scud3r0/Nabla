@@ -27,9 +27,11 @@ def require_fields(value: object, fields: set[str]) -> dict:
     return value
 
 
-def validate_json(value: object) -> None:
+def validate_json(value: object, *, max_bytes: int = MAX_BYTES, max_nodes: int = 20000) -> None:
     """Accept only JSON-native values within depth, node and encoded-size budgets."""
-    remaining = 20000
+    if type(max_bytes) is not int or type(max_nodes) is not int or max_bytes < 1 or max_nodes < 1:
+        raise ValueError("JSON budgets must be positive integers")
+    remaining = max_nodes
 
     def visit(node: object, depth: int) -> None:
         nonlocal remaining
@@ -55,7 +57,7 @@ def validate_json(value: object) -> None:
         raise ValueError("Only finite JSON-native values are supported")
 
     visit(value, 0)
-    if len(canonical_json(value).encode("utf-8")) > MAX_BYTES:
+    if len(canonical_json(value).encode("utf-8")) > max_bytes:
         raise ValueError("JSON byte budget exceeded")
 
 
@@ -64,8 +66,10 @@ def canonical_payload(value: object) -> str:
     return canonical_json(value)
 
 
-def load_json(raw: str) -> object:
-    if not isinstance(raw, str) or len(raw.encode("utf-8")) > MAX_BYTES:
+def load_json(raw: str, *, max_bytes: int = MAX_BYTES, max_nodes: int = 20000) -> object:
+    if type(max_bytes) is not int or type(max_nodes) is not int or max_bytes < 1 or max_nodes < 1:
+        raise ValueError("JSON budgets must be positive integers")
+    if not isinstance(raw, str) or len(raw.encode("utf-8")) > max_bytes:
         raise ValueError("JSON byte budget exceeded")
 
     def pairs(items):
@@ -78,7 +82,7 @@ def load_json(raw: str) -> object:
 
     try:
         value = json.loads(raw, object_pairs_hook=pairs)
-        validate_json(value)
+        validate_json(value, max_bytes=max_bytes, max_nodes=max_nodes)
         return value
     except (RecursionError, OverflowError) as error:
         raise ValueError("JSON structural budget exceeded") from error

@@ -4,7 +4,7 @@ Canonical sources remain at the paths recorded below.
 This artifact aggregates implemented code; it does not claim all mathematics is complete.
 FORMAT_VERSION: 1
 SOURCE_FILES: 503
-SOURCE_LINES: 180106
+SOURCE_LINES: 180125
 
 INDEX (path | sha256 | lines)
 lean/Conformance/affine_square.lean | 8549836e7e12edccbf478ec11bd4aeb48f1b9ec3fbff6ce5619a52568c78fa2e | 2007
@@ -113,7 +113,7 @@ src/nablamath/benchmarks/preregistration.py | 0a7ddba92d3cd44310f5eb39c8deb12439
 src/nablamath/benchmarks/readiness.py | 50e6a978cd67e014b9549c892c9230d195054096dfb297f2b91c373a0327bb5b | 244
 src/nablamath/calc/__init__.py | 5cf78433980a583311a62385e0a089f0d7d17fa298a2e3a9e82b0d6d6655e15a | 5
 src/nablamath/calc/catalog.py | e8416a9e5363bcf59e7281f260732fcab8ab2787ccf81134eeeafa2061f99073 | 135
-src/nablamath/calc/notebook.py | 98c3a2e4f6aea1cf6fac44514d8a62b632683bb4a870526004907e103a48ea66 | 62
+src/nablamath/calc/notebook.py | 722080938670a099fe58f0f640d9ecdce5ffee00fb4eb9c8b908830e2048bd1d | 77
 src/nablamath/calc/session.py | 25428b02d897437c8eb52497320135de5d8eea0fc0fd3723b3bc2dbbbd24e438 | 243
 src/nablamath/core/__init__.py | ec9ed35a04f8e0b73c215afffe02dd4152432b956dbd06bb7e072628f8a0e32a | 8
 src/nablamath/core/capabilities.py | e16b2917a45a523331337e9c6fe4b0ea78db055a54a746fce998fb558d0a8398 | 92
@@ -122,7 +122,7 @@ src/nablamath/core/obligations.py | d64961e3f851c22501dbf6d0eba77894840fb2229ff6
 src/nablamath/core/precision.py | 41f705ba25ea0d0a866fa0d03b4567cad7151fb7efaf9204677b4bb89ece30a4 | 57
 src/nablamath/core/resource_profiles.py | 3d1ecdc70ad65195d01eae65fab8b1363eb64a6fa7f90a11d6614b4883065ee8 | 81
 src/nablamath/core/scientific_artifact.py | d23b75b846dc27085e128f2d29815b150a87668c2adf89f3bb9a22f1c67113a6 | 134
-src/nablamath/core/semantic_contracts.py | a91753f55e609d39d3f3451ecb5a0736096407228f336fbd43777ea0143df7f1 | 84
+src/nablamath/core/semantic_contracts.py | 09f58ce85df948ce80cef68e93a2f768192bcd0b5ff65ac7a376a5c73e706c5b | 88
 src/nablamath/core/semantic_ir.py | 39d8950c2a2fef86ce43f9fe8182366f503d1839a96d9f27d73bb413ffe84a6d | 177
 src/nablamath/core/types.py | 6a9e1150a9c6acb2a25340bb090c77ee222da6f48f2815d5d7d3679bf2de7946 | 28
 src/nablamath/core/uncertainty.py | 02caff0e4f53d674d10e91d26863b688f0efd38c3cbd86b88c00d1b2ace45f0f | 47
@@ -150389,14 +150389,15 @@ END FILE: src/nablamath/calc/catalog.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/calc/notebook.py
-SHA256: 98c3a2e4f6aea1cf6fac44514d8a62b632683bb4a870526004907e103a48ea66
-LINES: 62
+SHA256: 722080938670a099fe58f0f640d9ecdce5ffee00fb4eb9c8b908830e2048bd1d
+LINES: 77
 ====================================================================================================
 """Portable immutable cell snapshots, hash-chain checks and full operation replay."""
 import json
 from pathlib import Path
 from ..core.semantic_ir import canonical_json,fingerprint
 from .session import CalculationSession
+from ..core.semantic_contracts import load_json, require_fields, require_digest
 
 
 class Notebook:
@@ -150414,6 +150415,8 @@ class Notebook:
         if len(self._cells)>=1000:
             raise ValueError('Notebook limitado a 1000 celulas')
         data=calculation.to_data()
+        # Snapshot before retaining it: callers cannot mutate an appended result.
+        data=load_json(canonical_json(data), max_bytes=16*1024*1024, max_nodes=500000)
         previous=self._cells[-1]['cell_id'] if self._cells else None
         payload={'previous':previous,'calculation':data}
         self._cells.append({**payload,'cell_id':fingerprint(payload)})
@@ -150430,11 +150433,18 @@ class Notebook:
     def replay(self):
         previous=None
         for cell in self._cells:
+            require_fields(cell, {'previous', 'calculation', 'cell_id'})
+            require_digest(cell['cell_id'])
+            calculation=require_fields(cell['calculation'],
+                {'schema_version', 'request', 'result', 'limitations', 'formal_proof', 'content_id'})
+            if type(calculation['schema_version']) is not int or calculation['schema_version'] != 1 or calculation['formal_proof'] is not False:
+                raise ValueError('Contrato de calculo invalido')
+            require_digest(calculation['content_id'])
             payload={'previous':cell['previous'],'calculation':cell['calculation']}
             if cell['previous']!=previous or cell['cell_id']!=fingerprint(payload):
                 raise ValueError('Cadeia de celulas adulterada')
             result=CalculationSession.replay_request(cell['calculation']['request'])
-            if result.to_data()!=cell['calculation']:
+            if canonical_json(result.to_data())!=canonical_json(cell['calculation']):
                 raise ValueError('Resultado de celula divergente na reexecucao')
             previous=cell['cell_id']
         return len(self._cells)
@@ -150444,10 +150454,15 @@ class Notebook:
         path=Path(path)
         if path.stat().st_size>16*1024*1024:
             raise ValueError('Notebook excede 16 MiB')
-        data=json.loads(path.read_text(encoding='utf-8'))
-        if set(data)!={'schema_version','title','cells','content_id'} or data['schema_version']!=1 or not isinstance(data['cells'],list) or len(data['cells'])>1000:
+        with path.open('rb') as stream:
+            raw=stream.read(16*1024*1024+1)
+        if len(raw)>16*1024*1024:
+            raise ValueError('Notebook excede 16 MiB')
+        data=load_json(raw.decode('utf-8'), max_bytes=16*1024*1024, max_nodes=500000)
+        require_fields(data, {'schema_version','title','cells','content_id'})
+        if set(data)!={'schema_version','title','cells','content_id'} or type(data['schema_version']) is not int or data['schema_version']!=1 or not isinstance(data['cells'],list) or len(data['cells'])>1000:
             raise ValueError('Contrato de notebook invalido')
-        digest=data.pop('content_id')
+        digest=require_digest(data.pop('content_id'))
         if digest!=fingerprint(data):
             raise ValueError('Hash de notebook divergente')
         notebook=cls(data['title'])
@@ -151221,8 +151236,8 @@ END FILE: src/nablamath/core/scientific_artifact.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/core/semantic_contracts.py
-SHA256: a91753f55e609d39d3f3451ecb5a0736096407228f336fbd43777ea0143df7f1
-LINES: 84
+SHA256: 09f58ce85df948ce80cef68e93a2f768192bcd0b5ff65ac7a376a5c73e706c5b
+LINES: 88
 ====================================================================================================
 """Bounded JSON contracts; no coercion, duplicate keys or nonfinite numbers."""
 from __future__ import annotations
@@ -151253,9 +151268,11 @@ def require_fields(value: object, fields: set[str]) -> dict:
     return value
 
 
-def validate_json(value: object) -> None:
+def validate_json(value: object, *, max_bytes: int = MAX_BYTES, max_nodes: int = 20000) -> None:
     """Accept only JSON-native values within depth, node and encoded-size budgets."""
-    remaining = 20000
+    if type(max_bytes) is not int or type(max_nodes) is not int or max_bytes < 1 or max_nodes < 1:
+        raise ValueError("JSON budgets must be positive integers")
+    remaining = max_nodes
 
     def visit(node: object, depth: int) -> None:
         nonlocal remaining
@@ -151281,7 +151298,7 @@ def validate_json(value: object) -> None:
         raise ValueError("Only finite JSON-native values are supported")
 
     visit(value, 0)
-    if len(canonical_json(value).encode("utf-8")) > MAX_BYTES:
+    if len(canonical_json(value).encode("utf-8")) > max_bytes:
         raise ValueError("JSON byte budget exceeded")
 
 
@@ -151290,8 +151307,10 @@ def canonical_payload(value: object) -> str:
     return canonical_json(value)
 
 
-def load_json(raw: str) -> object:
-    if not isinstance(raw, str) or len(raw.encode("utf-8")) > MAX_BYTES:
+def load_json(raw: str, *, max_bytes: int = MAX_BYTES, max_nodes: int = 20000) -> object:
+    if type(max_bytes) is not int or type(max_nodes) is not int or max_bytes < 1 or max_nodes < 1:
+        raise ValueError("JSON budgets must be positive integers")
+    if not isinstance(raw, str) or len(raw.encode("utf-8")) > max_bytes:
         raise ValueError("JSON byte budget exceeded")
 
     def pairs(items):
@@ -151304,7 +151323,7 @@ def load_json(raw: str) -> object:
 
     try:
         value = json.loads(raw, object_pairs_hook=pairs)
-        validate_json(value)
+        validate_json(value, max_bytes=max_bytes, max_nodes=max_nodes)
         return value
     except (RecursionError, OverflowError) as error:
         raise ValueError("JSON structural budget exceeded") from error
