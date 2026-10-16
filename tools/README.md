@@ -12,6 +12,9 @@ As ferramentas usam o pacote em `src/nablamath/`; não são uma segunda implemen
 | `validate_longley.py` | Comparação numérica contra dados/referências fixados do NIST |
 | `assess_vision.py` | Critérios de evidência; não infere conclusão científica pela presença de arquivos |
 | `project_inventory.py` | Inventário de arquivos rastreados e linhas; adicionar novos arquivos ao índice antes |
+| `release_readiness.py` | Confere os 212 caminhos e contratos; `--wheel` instala e reexecuta o fluxo em venv limpo |
+| `release_smoke.py` | Fluxo público CPU usado contra o pacote instalado, sem imports do checkout |
+| `check_formal_environment.py` | Confere revisões Git fixadas e imports compilados, sem build implícito |
 | `build_math_bundle.py` | Gera `math.txt`; `--check` verifica sincronização |
 | `export_source_bundle.py` | Exportação local das fontes atuais, excluindo histórico e dependências |
 | `roadmap_status.py` | Checklist do roadmap inicial F0–F6; não cobre sozinho a visão atual |

@@ -1,5 +1,6 @@
 param([switch]$WithLatex)
 $ErrorActionPreference = 'Stop'
+Set-Location $PSScriptRoot
 $pythonCommand = Get-Command py -ErrorAction SilentlyContinue
 if ($pythonCommand) {
     $python = 'py'
@@ -15,6 +16,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Falha ao criar ambiente virtual.' }
 & .\.venv\Scripts\python.exe -m pip install -e .
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao instalar NablaMath.' }
 & .\.venv\Scripts\nabla.exe doctor
+if ($LASTEXITCODE -ne 0) { throw 'Ambiente fora do contrato suportado; veja o diagnóstico acima.' }
 if ($WithLatex -and -not (Get-Command pdflatex -ErrorAction SilentlyContinue)) {
     Write-Warning 'Instale uma distribuição TeX para gerar PDF; arquivos .tex funcionam sem ela.'
 }

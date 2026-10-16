@@ -8,16 +8,22 @@ Laboratório científico local em Python para cálculo rastreável, geração de
 
 **Alpha de pesquisa.** Há componentes executáveis para F1–F12 do [vision.md](vision.md), com escopos delimitados e artefatos verificáveis. As fases científicas não estão declaradas concluídas.
 
-As capacidades e recusas atuais são registradas na [matriz de aceitação](docs/acceptance/evidence_matrix.json) e nos [contratos científicos](docs/acceptance/scientific_capabilities.yaml). Os baselines aprendidos da campanha congelada continuam em **0/48** no teste reservado. A execução mais recente do laboratório falhou na etapa Mathlib; resultados e falhas estão na [auditoria](docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md). A estimativa técnica de 70,32% pertence a um snapshot histórico e não mede o estado atual ou conclusão científica.
+As capacidades e recusas atuais são registradas na [matriz de aceitação](docs/acceptance/evidence_matrix.json) e nos [contratos científicos](docs/acceptance/scientific_capabilities.yaml). Os baselines aprendidos da campanha congelada continuam em **0/48** no teste reservado. A execução histórica do laboratório registrada em 15/10 falhou na etapa Mathlib; resultados e falhas estão na [auditoria](docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md). A estimativa técnica de 70,32% pertence a um snapshot histórico e não mede o estado atual ou conclusão científica.
 
 | Área | Implementação disponível | Guia |
 |---|---|---|
-| F1–F2: cálculo e Forge | 33 operações, unidades, replay, oito famílias inversas e primitivas racionais | [Cálculo/Forge](docs/PHASES_1_2.md) |
+| F1–F2: cálculo e Forge | Catálogo versionado de operações, unidades, replay, oito famílias inversas e primitivas racionais | [Cálculo/Forge](docs/PHASES_1_2.md) |
 | F3–F4: provas e imagens | Lean/SMT em fragmentos definidos, contraexemplos, cenas SVG/PNG e curvas adaptativas | [Provas/cenas](docs/PHASES_3_4.md) |
 | F5–F6: publicação e dados | AST editorial, Typst/LaTeX/PDF, SQLite, JSONL/Parquet e controle de partições | [Perfis atuais](docs/PHASES_MATURITY_EXPANSION.md) |
 | F7–F8: simulação e agentes | EDO adaptativa, difusão explícita/implícita, agentes retomáveis e aprendizado | [Fases 5–8](docs/PHASES_5_8.md) |
 | F9–F10: descoberta e evolução | Busca de leis em gramática limitada, holdout, portfólios, gates e rollback | [Fases 9–12](docs/PHASES_9_12.md) |
 | F11–F12: disciplinas e conhecimento | Modelos SI idealizados, evidências, claims, assinaturas e revogação | [Perfis atuais](docs/PHASES_MATURITY_EXPANSION.md) |
+
+O preparo da versão local 1.0 está em [vision1.md](vision1.md), com
+[contrato de API](docs/API_STABILITY.md), [gates de aceite](docs/acceptance/version_1_0.md)
+e [changelog](CHANGELOG.md). A versão permanece alpha até o aceite do commit e
+dos artefatos exatos. Para conferir todos os 212 caminhos e o contrato instalado,
+execute `python tools/release_readiness.py`.
 
 ## Começar
 

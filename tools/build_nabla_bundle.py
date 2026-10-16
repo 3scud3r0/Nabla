@@ -56,7 +56,7 @@ def _selected(name):
     # private data, credentials or generated conformance inventories.
     if path.suffix == '.json':
         return (name.startswith(('protocol/schema/', 'templates/', 'examples/', 'configs/'))
-                or name in {'website/package.json', 'src/nablamath/compatibility.json',
+                or name in {'website/package.json', 'src/nablamath/compatibility.json', 'src/nablamath/public_api.json',
                             'lean/lake-manifest.json'}
                 or name.endswith('/package.json'))
     return False

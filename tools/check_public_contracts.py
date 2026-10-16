@@ -8,7 +8,7 @@ from nablamath.core.capabilities import ScientificCapabilities
 from nablamath.core.semantic_contracts import load_json
 
 ROOT = Path(__file__).resolve().parents[1]
-DOCUMENTS = ('README.md', 'description.md', 'vision.md', 'docs/PLANO_MESTRE_2026_2056.md',
+DOCUMENTS = ('docs/API_STABILITY.md', 'docs/acceptance/version_1_0.md', 'CHANGELOG.md', 'README.md', 'description.md', 'vision.md', 'docs/PLANO_MESTRE_2026_2056.md',
     'docs/ARCHITECTURE_AND_ACCEPTANCE.md', 'docs/MATHEMATICS_COMPLETION_AUDIT.md',
     'docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md')
 
@@ -38,6 +38,8 @@ def _bounded_json(path):
 
 def validate(root=ROOT):
     root=Path(root).resolve()
+    from nablamath.stability import validate_public_api
+    validate_public_api()
     registry=ScientificCapabilities.load(root/'docs/acceptance/scientific_capabilities.yaml')
     registry.validate_evidence(root)
     matrix=_bounded_json(root/'docs/acceptance/evidence_matrix.json')

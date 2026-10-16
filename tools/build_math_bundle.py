@@ -45,6 +45,7 @@ FILES = (
     ROOT / "src/nablamath/expression.py",
     ROOT / "src/nablamath/orbits.py",
     ROOT / "src/nablamath/research.py",
+    ROOT / "src/nablamath/stability.py",
     ROOT / "src/nablamath/schema/expression.py",
     ROOT / "src/nablamath/schema/units.py",
 )

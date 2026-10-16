@@ -36,3 +36,13 @@ def test_new_upper_boundary_preserves_typed_domain_guards():
     assert statement.variables == ('x',)
     assert any(predicate.relation == 'ne' for predicate in statement.domain)
     assert statement.content_id == proposition('guarded_inverse',120,25).content_id
+
+
+@pytest.mark.parametrize('kwargs', [{'workers':0},{'workers':True},{'timeout':0},
+                                    {'timeout':True},{'timeout':3601}])
+def test_kernel_budgets_fail_before_creating_an_evidence_directory(tmp_path,kwargs):
+    from tools.rational_proof_corpus import verify
+    output=tmp_path/'evidence'
+    with pytest.raises(ValueError):
+        verify(output,**kwargs)
+    assert not output.exists()

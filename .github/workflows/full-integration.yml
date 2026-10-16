@@ -18,6 +18,7 @@ jobs:
       - run: python -m pip install -e ".[test]"
       - run: python tools/expanded_scientific_cycle.py .nabla/integrated-run
       - run: python -m pytest -q tests/integration/test_global_scientific_cycle.py tests/integration/test_scientific_artifact.py tests/integration/test_coordinator_api.py tests/test_roadmap_worker_execution.py --junitxml=.nabla/integration-tests.xml
+      - run: python tools/release_readiness.py --output .nabla/release-inventory.json
       - run: python tools/check_roadmap.py
       - run: python tools/build_math_bundle.py --check
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

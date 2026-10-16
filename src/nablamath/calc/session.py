@@ -236,8 +236,14 @@ class CalculationSession:
 
     @classmethod
     def replay_request(cls,request):
+        from ..core.semantic_contracts import require_fields
+        require_fields(request,{'operation','arguments','precision','bindings'})
+        if not isinstance(request['bindings'],dict) or len(request['bindings'])>128:
+            raise ValueError('Bindings de replay invalidos')
         session=cls(precision=request['precision'])
         for name,row in request['bindings'].items():
+            require_fields(row,{'value','unit'})
             unit=row['unit']
+            require_fields(unit,{'dimensions','scale'})
             session.bind(name,row['value'],Unit(tuple(unit['dimensions']),rational(unit['scale'])))
         return session.execute(request['operation'],**request['arguments'])

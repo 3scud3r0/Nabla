@@ -30,7 +30,7 @@ def wheel_identity(wheel):
             'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
             'requires_python': message['Requires-Python'],
             'requires_dist': message.get_all('Requires-Dist', []),
-            'license': message.get('License-Expression', 'NOASSERTION')}
+            'license': message.get('License-Expression', message.get('License', 'NOASSERTION'))}
 
 
 def release_plan(wheel, environment, *, expected_sha256, operation='install'):

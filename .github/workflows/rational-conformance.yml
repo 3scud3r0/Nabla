@@ -5,7 +5,7 @@ on:
 jobs:
   exact-mathematics:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -18,7 +18,7 @@ jobs:
       - name: Check generated theorem source and typed manifest
         run: python tools/rational_proof_corpus.py --check
       - name: Kernel check all public theorem instances and audit axioms
-        run: python tools/rational_proof_corpus.py --verify .nabla/corpus-ci --workers 3
+        run: python tools/rational_proof_corpus.py --verify .nabla/corpus-ci --workers 2 --timeout 600
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

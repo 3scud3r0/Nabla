@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from importlib.resources import files
 import json
 import platform
 import shutil
+import subprocess
+import re
 import sys
 from typing import Any
 
@@ -22,6 +24,7 @@ class CompatibilityReport:
     pdflatex_available: bool
     lean_available: bool
     problems: tuple[str, ...]
+    integrations: dict[str, dict[str, object]] = field(default_factory=dict)
 
     def to_data(self) -> dict[str, object]:
         return {
@@ -34,6 +37,7 @@ class CompatibilityReport:
             "pdflatex_available": self.pdflatex_available,
             "lean_available": self.lean_available,
             "problems": list(self.problems),
+            "integrations": self.integrations,
         }
 
 
@@ -56,10 +60,40 @@ def normalize_os(system: str) -> str:
     return names.get(system, system.strip().lower() or "unknown")
 
 
+def integration_report(*, probe: bool = False) -> dict[str, dict[str, object]]:
+    """Separate discovery from a bounded version probe; never imply a proof/build."""
+    contract = support_contract()
+    reports = {}
+    for name in ('lean', 'pdflatex'):
+        executable = shutil.which(name)
+        row = {'status': 'unverified' if executable else 'unavailable',
+               'executable': executable, 'version': None,
+               'scope': 'executable discovery only; scientific workflow not tested'}
+        if executable and probe:
+            try:
+                result = subprocess.run([executable, '--version'], capture_output=True,
+                                        text=True, timeout=5, check=False)
+                output = (result.stdout + result.stderr)[:4096]
+                row['version'] = output.splitlines()[0] if output else ''
+                row['status'] = 'available' if result.returncode == 0 else 'incompatible'
+                if name == 'lean' and result.returncode == 0:
+                    expected = contract['lean']['toolchain'].removeprefix('v')
+                    actual = re.search(r'Lean \(version (\d+\.\d+\.\d+)(?:[, )])', output)
+                    if actual is None or actual[1] != expected:
+                        row['status'] = 'incompatible'
+                row['scope'] = 'bounded version probe only; no proof, dependency build or PDF validation'
+            except (OSError, subprocess.TimeoutExpired) as error:
+                row['status'] = 'unavailable'
+                row['diagnostic'] = type(error).__name__
+        reports[name] = row
+    return reports
+
+
 def runtime_report(
     *,
     python_version: tuple[int, int] | None = None,
     operating_system: str | None = None,
+    probe: bool = False,
 ) -> CompatibilityReport:
     """Compare a runtime with the versioned contract without network access."""
     contract = support_contract()
@@ -89,7 +123,8 @@ def runtime_report(
         pdflatex_available=shutil.which("pdflatex") is not None,
         lean_available=shutil.which("lean") is not None,
         problems=tuple(problems),
+        integrations=integration_report(probe=probe),
     )
 
 
-__all__ = ["CompatibilityReport", "normalize_os", "runtime_report", "support_contract"]
+__all__ = ["CompatibilityReport", "normalize_os", "runtime_report", "support_contract", "integration_report"]

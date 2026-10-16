@@ -129,3 +129,27 @@ def test_root_must_be_checkout_root(tmp_path):
     directory.mkdir()
     with pytest.raises(ValueError,match='checkout root'):
         bundle.source_paths(directory)
+
+
+def test_release_sources_have_checkout_independent_line_endings():
+    """The byte archive must remain current after a Windows checkout."""
+    paths = bundle.source_paths(ROOT)
+    payload = b''.join(p.relative_to(ROOT).as_posix().encode()+b'\0' for p in paths)
+    raw = subprocess.check_output(['git', 'check-attr', '-z', '--stdin', 'text', 'eol'],
+                                  cwd=ROOT, input=payload)
+    fields = raw.decode().split('\0')
+    attrs = {}
+    for index in range(0, len(fields)-1, 3):
+        name, attribute, value = fields[index:index+3]
+        attrs.setdefault(name, {})[attribute] = value
+    for path in paths:
+        name = path.relative_to(ROOT).as_posix()
+        policy = attrs[name]
+        if policy['text'] == 'unset':  # Frozen history is deliberately byte-preserved.
+            continue
+        assert policy['eol'] in {'lf', 'crlf'}, name
+        data = path.read_bytes()
+        if policy['eol'] == 'lf':
+            assert b'\r\n' not in data, name
+        else:
+            assert b'\n' not in data.replace(b'\r\n', b''), name

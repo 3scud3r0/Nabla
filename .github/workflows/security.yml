@@ -15,7 +15,7 @@ jobs:
       - run: python -m pip install -e ".[test,federation]"
       - run: python -m pip check
       - name: Exercise forgery, replay, approvals and archive safety
-        run: python -m pytest -q tests/test_roadmap_network_security.py tests/test_roadmap_agent_controls.py tests/test_roadmap_resources_supplychain.py
+        run: python -m pytest -q tests/security/test_supply_chain.py tests/test_release_contract.py tests/test_roadmap_network_security.py tests/test_roadmap_agent_controls.py tests/test_roadmap_resources_supplychain.py
       - run: python -m pip wheel --no-deps --wheel-dir .nabla/wheels .
       - name: Verify every built wheel without executing its code
         shell: bash
