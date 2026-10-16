@@ -26,6 +26,7 @@ class ScientificDesktopCohesionTests(TestCase):
                     page = response.read().decode("utf-8")
                 self.assertIn('id="scientific-operation"', page)
                 self.assertIn('id="scientific-calculate"', page)
+                self.assertIn('id="scientific-save"', page)
                 token = page.split("const auth='", 1)[1].split("'", 1)[0]
 
                 def request(path, arguments=None, *, auth=token, origin=base):
@@ -64,6 +65,23 @@ class ScientificDesktopCohesionTests(TestCase):
                         self.assertEqual(result["request"]["operation"], operation)
                         self.assertFalse(result["formal_proof"])
                         self.assertTrue(result["content_id"])
+                self.assertEqual(research.count(), 0)
+                stored = request("/api/save-calculation", {
+                    "operation": "analysis_integral",
+                    "arguments": {"coefficients": [0, 0, 1], "lower": 0, "upper": 1}
+                })
+                from nablamath.calc.notebook import Notebook
+                notebook_path = Path(stored["path"])
+                self.assertTrue(notebook_path.is_file())
+                self.assertTrue(stored["replayed"])
+                self.assertFalse(stored["already_present"])
+                self.assertEqual(Notebook.load(notebook_path).replay(), 1)
+                duplicate = request("/api/save-calculation", {
+                    "operation": "analysis_integral",
+                    "arguments": {"coefficients": [0, 0, 1], "lower": 0, "upper": 1}
+                })
+                self.assertTrue(duplicate["already_present"])
+                self.assertEqual(duplicate["path"], stored["path"])
                 self.assertEqual(research.count(), 0)
                 # A rota / permite ambos os nomes loopback; a origem POST
                 # precisa corresponder exatamente ao Host escolhido.

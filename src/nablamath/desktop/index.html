@@ -16,7 +16,7 @@
 <label for="scientific-operation">Operação científica</label><select id="scientific-operation"><option value="">Carregando catálogo…</option></select>
 <p id="scientific-contract" class="muted"></p>
 <label for="scientific-arguments">Argumentos JSON</label><textarea id="scientific-arguments" spellcheck="false">{"n":97}</textarea>
-<button id="scientific-calculate" type="button">Executar operação</button>
+<button id="scientific-calculate" type="button">Executar operação</button><button class="secondary" id="scientific-save" type="button">Salvar notebook local</button>
 <pre id="scientific-output" role="status" aria-live="polite">Selecione uma operação.</pre></section>
 <section class="card wide"><h2>Registros recentes</h2><div id="recent">Nenhum registro.</div></section></div><p id="message" role="status" aria-live="polite"></p><section class="card wide" aria-labelledby="experiment-title"><h2 id="experiment-title">Experimento com evidências</h2>
 <label for="experiment-expression">Expressão racional</label><input id="experiment-expression" value="x*x+1">
@@ -78,6 +78,13 @@ el('scientific-calculate').onclick=()=>action(async()=>{
  const result=await api('calculate',{operation:el('scientific-operation').value,arguments:args});
  show('scientific-output',result);
  el('message').textContent='Operação matemática executada; recibo exibido abaixo.';
+});
+el('scientific-save').onclick=()=>action(async()=>{
+ const args=JSON.parse(el('scientific-arguments').value);
+ if(!args||typeof args!=='object'||Array.isArray(args))throw Error('Arguments precisa ser objeto JSON');
+ const saved=await api('save-calculation',{operation:el('scientific-operation').value,arguments:args});
+ show('scientific-output',saved);
+ el('message').textContent=saved.already_present?'Notebook revalidado (já existente).':'Notebook gravado e reexecutado localmente.';
 });
 loadScientificCatalog();
 
