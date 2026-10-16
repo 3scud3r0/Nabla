@@ -34,6 +34,7 @@ O núcleo requer **Python 3.10–3.14**. Em um ambiente Python ativado, na raiz 
 ```sh
 python -m pip install -e .
 nabla doctor
+nabla catalog
 nabla run "(x+x)/x" --value x=3
 nabla desktop
 ```
