@@ -25,7 +25,7 @@ e [changelog](CHANGELOG.md). A versão permanece alpha até o aceite do commit e
 dos artefatos exatos. Para conferir todos os 212 caminhos e o contrato instalado,
 execute `python tools/release_readiness.py`.
 
-Novo [laboratório de matemática exata](docs/math/EXACT_LABORATORY.md): implementação independente de dependências externas, com contratos finitos e testes específicos.
+Novo [laboratório de matemática exata](docs/math/EXACT_LABORATORY.md), com [extensões algébricas, numéricas, combinatórias e probabilísticas integradas ao cálculo](docs/math/ADVANCED_EXACT_EXPANSION.md): implementação independente de dependências externas, com contratos finitos e testes específicos.
 
 ## Começar
 

@@ -8,7 +8,7 @@
 
 ## Implementação científica
 
-- [Laboratório de matemática racional exata](math/EXACT_LABORATORY.md): álgebra polinomial, Sturm, interpolação, álgebra linear, teoria dos números, cadeias e otimização com limites.
+- [Laboratório de matemática racional exata](math/EXACT_LABORATORY.md) e [ampliação integrada com 29 operações](math/ADVANCED_EXACT_EXPANSION.md): álgebra polinomial, Sturm, interpolação, álgebra linear, teoria dos números, cadeias e otimização com limites.
 
 
 | Tema | Guia |

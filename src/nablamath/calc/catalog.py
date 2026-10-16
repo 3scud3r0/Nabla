@@ -25,6 +25,11 @@ OPERATIONS = {
 }
 
 
+# Additive experimental operations: same session/CLI/notebook receipt path.
+from ..math.exact.adapters import OPERATIONS as ADVANCED_OPERATIONS, execute as execute_advanced
+OPERATIONS.update(ADVANCED_OPERATIONS)
+
+
 def _values(values, minimum=1):
     if not isinstance(values,(list,tuple)) or not minimum <= len(values) <= 10000:
         raise ValueError('Amostra fora dos limites')
@@ -32,6 +37,8 @@ def _values(values, minimum=1):
 
 
 def execute(operation, a):
+    if operation in ADVANCED_OPERATIONS:
+        return execute_advanced(operation, a)
     if operation=='polynomial_range':
         from ..math.analysis.intervals import polynomial_range
         return polynomial_range(**a)
