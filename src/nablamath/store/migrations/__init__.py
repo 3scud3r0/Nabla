@@ -15,7 +15,7 @@ def validate_schema(connection: sqlite3.Connection) -> int:
             f"Banco usa schema {version}, fora do suportado 0–{CURRENT_SCHEMA_VERSION}"
         )
     tables = connection.execute(
-        "SELECT name,type FROM sqlite_master WHERE name NOT LIKE 'sqlite_%'"
+        "SELECT name,type FROM sqlite_master WHERE name NOT GLOB 'sqlite_*'"
     ).fetchall()
     if not tables and version == 0:
         return version

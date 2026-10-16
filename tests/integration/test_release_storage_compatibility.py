@@ -110,3 +110,16 @@ def test_migration_refuses_mislabeled_table_missing_insert_default():
         db.execute('PRAGMA user_version=1')
         with pytest.raises(RuntimeError,match='Default'):
             migrate(db)
+
+
+@pytest.mark.parametrize('object_sql',[
+    'CREATE TABLE sqliteXhidden(value TEXT)',
+    'CREATE VIEW sqliteXview AS SELECT 1',
+    "CREATE TRIGGER sqliteXtrigger AFTER INSERT ON results BEGIN UPDATE results SET payload='{}'; END",
+])
+def test_sqlite_lookalike_names_cannot_hide_unsupported_schema_objects(object_sql):
+    with closing(sqlite3.connect(':memory:')) as db:
+        migrate(db)
+        db.execute(object_sql)
+        with pytest.raises(RuntimeError,match='schema'):
+            migrate(db)
