@@ -137,6 +137,7 @@ class Tensor:
         return self._unary(_log,lambda x:1/x,"log")
     def tanh(self): return self._unary(_tanh,lambda x:1-_tanh(x)**2,"tanh")
     def sum(self,axis:int|None=None,keepdims:bool=False)->"Tensor":
+        if (axis is not None and type(axis) is not int) or type(keepdims) is not bool: raise ValueError("Eixo inteiro e keepdims booleano obrigatórios")
         if axis is None:
             total=sum(self._flat); out_shape=self.shape if False else (() if not keepdims else tuple(1 for _ in self.shape)); out=[total]
             parents=[]
@@ -153,18 +154,20 @@ class Tensor:
             parents.append((self,lambda g,map_=tuple(source_to_out):[g[oi] for oi in map_]))
         return Tensor._from_flat(buckets,out_shape,bool(parents),parents,"sum")
     def mean(self,axis:int|None=None,keepdims:bool=False)->"Tensor":
+        if (axis is not None and (type(axis) is not int or not -self.ndim <= axis < self.ndim)) or type(keepdims) is not bool: raise ValueError("Eixo ou keepdims inválido")
         count=self.size if axis is None else self.shape[axis if axis>=0 else self.ndim+axis]
         return self.sum(axis,keepdims)/count
     def reshape(self,*shape:int)->"Tensor":
         if len(shape)==1 and isinstance(shape[0],(tuple,list)): shape=tuple(shape[0])
-        shape=tuple(int(x) for x in shape)
+        if any(type(x) is not int for x in shape): raise ValueError("reshape exige dimensões inteiras explícitas")
+        shape=tuple(shape)
         if any(x<=0 for x in shape) or _numel(shape)!=self.size: raise ValueError("reshape incompatível")
         parents=[]
         if self.requires_grad: parents.append((self,lambda g:list(g)))
         return Tensor._from_flat(self._flat,shape,bool(parents),parents,"reshape")
     def transpose(self,axes:Sequence[int]|None=None)->"Tensor":
         axes=tuple(reversed(range(self.ndim))) if axes is None else tuple(axes)
-        if sorted(axes)!=list(range(self.ndim)): raise ValueError("Permutação de eixos inválida")
+        if any(type(axis) is not int for axis in axes) or sorted(axes)!=list(range(self.ndim)): raise ValueError("Permutação de eixos inválida")
         out_shape=tuple(self.shape[a] for a in axes); out=[0.0]*self.size; out_to_in=[0]*self.size
         for out_idx in _indices(out_shape):
             in_idx=[0]*self.ndim
@@ -202,7 +205,10 @@ class Tensor:
                 return result
             parents.append((b,back_b))
         return Tensor._from_flat(out,(m,n),bool(parents),parents,"matmul")
-    def __matmul__(self,other): return self.matmul(other)
+    def __matmul__(self,other):
+        if not isinstance(other, (Tensor, int, float, list, tuple)):
+            return NotImplemented
+        return self.matmul(other)
     def _topological(self):
         order = []
         seen = set()

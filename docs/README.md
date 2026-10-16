@@ -19,6 +19,11 @@
 
 ## Evidências e limites
 
+- [Benchmark permanente da visão](acceptance/VISION_READINESS.md): comando obrigatório, 213 lacunas e resultados atuais.
+
+- [Entrega integrada de 16/10/2026](audits/DELIVERY_2026_10_16.md) e
+  [contratos e reprodução](acceptance/delivery_profiles_20261016.md).
+
 - [Fundamentos P0 e integração](audits/P0_INTEGRATION_2026_10_15.md),
   [perfil racional executável](acceptance/phase_profiles.md) e
   [matriz dos 213 requisitos](acceptance/evidence_matrix.json).
@@ -28,10 +33,16 @@
   corpus/snapshots, retrações e API local de coordenação.
 - [Perfis implementados em paralelo](acceptance/parallel_profiles.md): matemática,
   simulação, Forge, controle de agentes, assinaturas, SDKs e recursos.
+- [Novos perfis delimitados](acceptance/bounded_research_profiles.md): integração racional,
+  malhas, física, provas controladas, geração transacional, causalidade e relay local.
 - [Auditoria mais recente](audits/FRONTIER_LAB_SIMULATION_2026_10_15.md): execução simulada, resultados negativos e estimativa das 12 fases.
 - [Benchmarks e resultados](../benchmarks/README.md): dados, protocolos e artefatos reexecutáveis.
 - [Backlog F1–F12](audits/PHASES_1_12_COMPLETION_BACKLOG.md) e [inventário de arquivos/linhas](audits/FILE_INVENTORY.md).
 - Auditorias anteriores ficam em `audits/`, com seus snapshots próprios. Seus resultados não se transferem automaticamente para versões posteriores.
+
+- [Perfis locais dos 85 anteriormente planejados](audits/REMAINING_85_2026_10_15.md),
+  [disposição individual](acceptance/remaining_85_implementation.json) e
+  [contratos consultáveis](acceptance/scientific_capabilities.yaml).
 
 ## Arquitetura, visão e governança
 

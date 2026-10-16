@@ -47,27 +47,44 @@
       "id": 3,
       "target": "`src/nablamath/calc/`",
       "requirement": "**P1 · F1**: ampliar catálogo e sessão científica com operações gerais, diferenciação, rastreamento e erros certificados. **Concluído quando:** comparações externas, exemplos adversariais e especificações por operação.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-3-v1",
+      "implementation": [
+        "src/nablamath/calc/catalog.py",
+        "src/nablamath/calc/session.py"
+      ],
+      "tests": [
+        "tests/test_phase1_calculator.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Existing audited calculator catalog/session provides exact operations, domain obligations, request/result hashing and declared limitations; mapped with regression tests this round. Broad external per-operation certification remains incomplete."
     },
     {
       "id": 4,
       "target": "`src/nablamath/symbolic/`",
       "requirement": "**P1 · F1–F3**: expandir parser/reescrita/e-graphs, funções transcendentes, hipóteses, integrais e certificados de transformação. **Concluído quando:** provas ou verificação independente de regras, preservação de domínio e benchmarks.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-4-v1",
+      "implementation": [
+        "src/nablamath/symbolic/rule_audit.py",
+        "src/nablamath/symbolic/proof.py",
+        "src/nablamath/symbolic/assumptions.py"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py",
+        "tests/test_declarative_egraph.py",
+        "tests/test_egraph.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "New independent finite exact-rational rewrite rule falsifier checks domain mismatch and value mismatch with adversarial tests. Finite scalar grid is not proof for composite expressions or all transcendental rules."
     },
     {
       "id": 5,
@@ -82,7 +99,8 @@
         "tests/test_roadmap_expansion.py"
       ],
       "evidence": [
-        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
       ],
       "reviewer": null,
       "release": null,
@@ -92,40 +110,70 @@
       "id": 6,
       "target": "`src/nablamath/math/`",
       "requirement": "**P1 · F1–F3/F11**: aprofundar a área matemática do módulo, documentar domínio e limitações, adicionar algoritmos gerais e referências competitivas. **Concluído quando:** propriedades matemáticas, benchmarks independentes, provas quando cabíveis e testes de fronteira.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-6-v1",
+      "implementation": [
+        "src/nablamath/math/calculus/risch.py",
+        "src/nablamath/math/calculus/transcendentals.py",
+        "src/nablamath/math/linear_algebra/exact_decompositions.py",
+        "src/nablamath/math/number_theory/factorization_advanced.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_math_extensions.py",
+        "tests/test_roadmap_integration_mesh.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Existing bounded rational integration certificates, Lambert W, exact PLU and bounded factorization now explicitly mapped with regression evidence. Not arbitrary Risch nor general competitive mathematics suite."
     },
     {
       "id": 7,
       "target": "`src/nablamath/autodiff/`",
       "requirement": "**P1 · F1/F7/F8**: expandir forward/reverse AD para tensores e aplicações, broadcasting, controle de gradiente, jacobianas e Hessianas. **Concluído quando:** grad-check, precisão, memória, comparação com JAX/PyTorch e exemplos físicos.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-7-v1",
+      "implementation": [
+        "src/nablamath/autodiff/second_order.py",
+        "src/nablamath/autodiff/tensor.py"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py",
+        "tests/benchmark/test_math_comparison.py",
+        "tests/test_tensor_autodiff.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "New analytic dense second-order tensor AD includes broadcasting, reductions, matrix products, transcendental functions and stop-gradient; SymPy32 Hessian comparisons and reverse-gradient finite differences. Limit64 input coordinates; O(n²m) memory; no PyTorch/JAX comparison claim."
     },
     {
       "id": 8,
       "target": "`src/nablamath/forge/`",
       "requirement": "**P1 · F2**: ampliar construção inversa, deduplicação, diversidade, geração composicional, controle de dificuldade e verificação. **Concluído quando:** corpus inédito, solvers competidores, taxas de validade, novidade estrutural e dificuldade calibrada.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-8-v1",
+      "implementation": [
+        "src/nablamath/forge/compositional_generator.py",
+        "src/nablamath/forge/difficulty_calibration.py",
+        "src/nablamath/forge/novelty_index.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py",
+        "tests/test_phase2_forge.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Local deterministic construction, composition and difficulty evidence; genuinely novel external corpus and competing solver calibration remain external acceptance."
     },
     {
       "id": 9,
@@ -150,105 +198,171 @@
       "id": 10,
       "target": "`src/nablamath/formal/`",
       "requirement": "**P1 · F3**: expandir cobertura Lean/SMT, autoformalização assistida revisada, certificados, lógica e rastreio de axiomas. **Concluído quando:** kernel independente, hipóteses explícitas, correspondência humana auditada e replay.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-10-v1",
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_search_planner.py",
+        "src/nablamath/formal/proof_repair.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Existing reviewed controlled-language autoformalization and bounded Lean/SMT portfolios/replay explicitly mapped with tests. No arbitrary natural-language translation; external human correspondence audit and Mathlib compilation remain unfulfilled."
     },
     {
       "id": 11,
       "target": "`src/nablamath/falsifier/`",
       "requirement": "**P1 · F3/F9**: expandir busca/minimização de contraexemplos, propriedades, domínio e diagnósticos verificáveis. **Concluído quando:** falsificações conhecidas recuperadas e ausência de falso teorema.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-11-v1",
+      "implementation": [
+        "src/nablamath/falsifier/property_engine.py",
+        "src/nablamath/falsifier/counterexample_miner.py",
+        "src/nablamath/falsifier/shrink.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded property/counterexample checks are not completeness for arbitrary theorem falsification."
     },
     {
       "id": 12,
       "target": "`src/nablamath/gpu/`",
       "requirement": "**P2 · F1–F10**: substituir caminhos de referência por kernels reais opcionais, com fallback CPU, profiling, uso de VRAM e verificação numérica. **Concluído quando:** benchmarks em hardware identificado, equivalência e provas de ganho custo/energia.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-12-v1",
+      "implementation": [
+        "src/nablamath/gpu/kernels/f4_cuda.py",
+        "src/nablamath/gpu/cuda_f4_reduction.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "CUDA hardware absent; kernel compilation/execution, speedup and energy require independent real-device runs. Exact CPU oracle checks every device result."
     },
     {
       "id": 13,
       "target": "`src/nablamath/compiler/`",
       "requirement": "**P2 · F1–F10**: estabilizar IR/compilação, otimização semântica, backends e agendamento distribuído. **Concluído quando:** equivalência entre backends, determinismo e custos mensurados.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-13-v1",
+      "implementation": [
+        "src/nablamath/compiler/ir.py",
+        "src/nablamath/compiler/backends.py"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py",
+        "tests/test_compiler_backends.py",
+        "tests/benchmark/test_math_comparison.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "New strict versioned IR decoder validates canonical rational literals, instruction order, bounds and literal integer exponents, preventing silent fractional exponent truncation. Exact Python interpreter equivalence checked128 independent SymPy cases. Optional JAX remains separately declared; distributed scheduling/performance not validated."
     },
     {
       "id": 14,
       "target": "`src/nablamath/physics/`",
       "requirement": "**P1 · F7/F11**: ampliar modelos físicos além das referências, incluindo condições de contorno, incerteza, calibração e validação observacional. **Concluído quando:** casos manufaturados, séries de convergência, dados reais e revisão disciplinar.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-14-v1",
+      "implementation": [
+        "src/nablamath/physics/fluids/channel.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fluids/turbulence.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Stationary no-slip channel reduction and existing 1D Euler reference only; general 2D nonperiodic Navier-Stokes, laboratory data and disciplinary review remain."
     },
     {
       "id": 15,
       "target": "`src/nablamath/worlds/`",
       "requirement": "**P1 · F7**: generalizar modelos de EDO/EDP, malhas, eventos, rigidez, multiphysics, controle de erro e replay. **Concluído quando:** benchmarks por fenômeno, estabilidade/conservação, confronto com medidas e reproducibilidade.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-15-v1",
+      "implementation": [
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py",
+        "tests/test_phase7_worlds.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Existing bounded adaptive integration/mesh profiles; stiff general multiphysics and independent observations remain."
     },
     {
       "id": 16,
       "target": "`src/nablamath/graphics/`",
       "requirement": "**P2 · F4**: implementar cenas e geometria mais gerais, renderizações científicas auditáveis, qualidade visual e exportação multimodal. **Concluído quando:** validação geométrica, inspeção de imagens, performance e semântica das figuras.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-16-v1",
+      "implementation": [
+        "src/nablamath/graphics/scientific_export.py",
+        "src/nablamath/graphics/scientific_renderer.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Multimodal exact sample exports with semantic replay; geometry, pixel fidelity, performance and external visual inspection remain bounded to existing profiles."
     },
     {
       "id": 17,
       "target": "`src/nablamath/viz/`",
       "requirement": "**P2 · F4/F5**: unificar gráficos e animações com dados, escalas, unidades, acessibilidade e metadados de incerteza. **Concluído quando:** replay pixel/semântico, revisão visual e testes de legibilidade.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-17-v1",
+      "implementation": [
+        "src/nablamath/viz/accessible.py",
+        "src/nablamath/graphics/scientific_export.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Accessible sample tables, exact units and declared uncertainty; discrete-frame animation only; human legibility and continuous interpolation unvalidated."
     },
     {
       "id": 18,
@@ -273,14 +387,20 @@
       "id": 19,
       "target": "`src/nablamath/reports/`",
       "requirement": "**P2 · F5**: consolidar relatórios com documentos canônicos, tabelas, passos, provas e vínculos verificáveis. **Concluído quando:** PDF/LaTeX com numeração e integridade reexecutável.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-19-v1",
+      "implementation": [
+        "src/nablamath/reports/canonical_bundle.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Evidence hashes, deterministic object numbering and byte-bound HTML/LaTeX/Typst exports; tests compile real templates via available Typst and pdflatex; scientific endorsement and visual inspection not inferred."
     },
     {
       "id": 20,
@@ -314,7 +434,8 @@
         "tests/test_roadmap_expansion.py"
       ],
       "evidence": [
-        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
       ],
       "reviewer": null,
       "release": null,
@@ -343,14 +464,23 @@
       "id": 23,
       "target": "`src/nablamath/training/`",
       "requirement": "**P1 · F8**: treinar modelos mais capazes, estabelecer avaliações externas, ablações, curricula, contaminação e custo de treino. **Concluído quando:** comparação com/sem Nabla em holdouts verdadeiramente inéditos e ICs pré-especificados.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-23-v1",
+      "implementation": [
+        "src/nablamath/training/reasoning_finetune.py",
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Real bounded supervised numerical reasoning fit and synthetic family transfer; no frontier model gain or independently authored unseen benchmark established."
     },
     {
       "id": 24,
@@ -365,7 +495,8 @@
         "tests/evaluation/test_frozen.py"
       ],
       "evidence": [
-        "docs/audits/FROZEN_EVALUATION_2026_10_15.md"
+        "docs/audits/FROZEN_EVALUATION_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
       ],
       "reviewer": null,
       "release": null,
@@ -375,53 +506,91 @@
       "id": 25,
       "target": "`src/nablamath/agents/`",
       "requirement": "**P1 · F8**: planejamento científico mais capaz, permissões por capacidade, orçamentos, checkpoints, orquestração e isolamento real. **Concluído quando:** ataques simulados, replay, falha segura e custos por tarefa.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-25-v1",
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/agents/permissions.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Existing consented trusted-tool checkpoints, cancellation and process deadlines are tested. Hostile-code OS isolation and externally authenticated authority remain unavailable; arbitrary code stays disabled."
     },
     {
       "id": 26,
       "target": "`src/nablamath/discovery/`",
       "requirement": "**P1 · F9**: ampliar gramáticas, busca de leis/teoremas, experimentos discriminantes e revisão bibliográfica. **Concluído quando:** novidade avaliada externamente, reprodução e registro de descobertas nulas/refutadas.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-26-v1",
+      "implementation": [
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/research_program.py",
+        "src/nablamath/discovery/independent_replication.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/science/test_independent_discovery.py",
+        "tests/test_phase9_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Curated supplied snapshots; reviewer identity and global scientific novelty are not authenticated."
     },
     {
       "id": 27,
       "target": "`src/nablamath/evolution/`",
       "requirement": "**P1 · F10**: permitir propostas de algoritmos novos sob gates isolados, rollback, estatística e autoridade distinta. **Concluído quando:** ganhos contra baseline forte em avaliações congeladas e monitoramento de regressões.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-27-v1",
+      "implementation": [
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "src/nablamath/evolution/rollback.py"
+      ],
+      "tests": [
+        "tests/test_phase10_evolution.py",
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Closed declarative proposals and local rollback; not arbitrary untrusted code sandboxing or externally measured robust algorithmic advances."
     },
     {
       "id": 28,
       "target": "`src/nablamath/domains/`",
       "requirement": "**P1 · F11**: aprofundar modelos disciplinares e suas integrações com instrumentação, medições e especialistas. **Concluído quando:** validação com observações reais e critérios próprios por disciplina.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-28-v1",
+      "implementation": [
+        "src/nablamath/worlds/validation_observational.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Historical rounded Mercury reference and caller-supplied measurements are not independent provenance authentication, discipline-wide validation, or specialist review."
     },
     {
       "id": 29,
@@ -436,7 +605,8 @@
         "tests/test_roadmap_expansion.py"
       ],
       "evidence": [
-        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
       ],
       "reviewer": null,
       "release": null,
@@ -446,40 +616,61 @@
       "id": 30,
       "target": "`src/nablamath/network/`",
       "requirement": "**P2 · F12**: consolidar objetos, manifestos, recibos e protocolos P2P com limites e consistência. **Concluído quando:** testes de rede real, falhas parciais e compatibilidade retroativa.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-30-v1",
+      "implementation": [
+        "src/nablamath/network/framing.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 31,
       "target": "`src/nablamath/p2p/`",
       "requirement": "**P2 · F12**: implementar transporte autenticado, descoberta, rate limits, quarentena e recuperação de peers. **Concluído quando:** rede adversarial e latência/perda medidas.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-31-v1",
+      "implementation": [
+        "src/nablamath/p2p/resilient_peers.py"
+      ],
+      "tests": [
+        "tests/network/test_eclipse.py",
+        "tests/network/test_sybil.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 32,
       "target": "`src/nablamath/node/`",
       "requirement": "**P2 · F12**: operacionalizar nó consentido, controle de recursos, tarefas, verificação e workspace. **Concluído quando:** reprodução em máquinas distintas e telemetria auditável.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-32-v1",
+      "implementation": [
+        "src/nablamath/node/federated_session.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 33,
@@ -513,7 +704,8 @@
         "tests/integration/test_scientific_artifact.py"
       ],
       "evidence": [
-        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+        "docs/audits/P0_INTEGRATION_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
       ],
       "reviewer": null,
       "release": null,
@@ -523,27 +715,44 @@
       "id": 35,
       "target": "`src/nablamath/singularity/`",
       "requirement": "**P3 · F8–F13**: converter protótipos de cognição/memória/engenharia/agentes em componentes mensuráveis, governados e testáveis sem alegar AGI. **Concluído quando:** benchmarks abertos/fechados, segurança, ganhos transferíveis e avaliações independentes.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-35-v1",
+      "implementation": [
+        "src/nablamath/singularity/evaluation/generalization.py",
+        "src/nablamath/singularity/evaluation/safety.py",
+        "src/nablamath/singularity/evaluation/long_horizon.py"
+      ],
+      "tests": [
+        "tests/test_singularity_lab.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Transfer threshold gate recomputes reported outcomes; local synthetic cases do not establish AGI, independent evaluation, or domain transfer in real science."
     },
     {
       "id": 36,
       "target": "`src/nablamath/adapters/`",
       "requirement": "**P2 · F1/F7/F11**: tornar integração NumPy/SciPy/SymPy/Blender/instrumentos explícita, compatível, segura e bidirecional. **Concluído quando:** testes com versões fixadas e coerência de unidades/dados.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-36-v1",
+      "implementation": [
+        "src/nablamath/adapters/numpy.py",
+        "src/nablamath/adapters/scipy.py",
+        "src/nablamath/adapters/registry.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded numeric NumPy wire validation and optional SciPy interoperability; full cross-tool compatibility and upstream version matrix remain."
     },
     {
       "id": 37,
@@ -568,53 +777,82 @@
       "id": 38,
       "target": "`src/nablamath/publisher/`",
       "requirement": "**P2 · F5/F6**: governar publicação autorizada e assinada com direitos por artefato e política de revogação. **Concluído quando:** dry-run, idempotência e testes em destino de homologação.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-38-v1",
+      "implementation": [
+        "src/nablamath/publisher/authorization.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Ed25519 authorization binds exact artifact bytes and destination; opt-in rights declaration, revocation, dry-run idempotency. State is process-local; no remote staging publication performed and rights are operator declarations."
     },
     {
       "id": 39,
       "target": "`src/nablamath/benchmarks/`",
       "requirement": "**P0 · F1–F12**: pré-registrar protocolos e incluir baselines independentes, métricas e falhas reexecutáveis. **Concluído quando:** replicação por terceiros, holdouts novos e relatórios negativos.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-39-v1",
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Preregistered fixed model/cohort/metric/stopping-rule ledger and exact descriptive paired comparisons. Third-party replication, private novel holdout, inferential independence and model execution identity are not established."
     },
     {
       "id": 40,
       "target": "`src/nablamath/desktop/`",
       "requirement": "**P2 · F1–F12**: expor workflows científicos completos, revisão humana, datasets e rastreio em UX local segura. **Concluído quando:** testes acessibilidade/usabilidade e equivalência CLI/API.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-40-v1",
+      "implementation": [
+        "src/nablamath/desktop/workflows.py",
+        "src/nablamath/desktop/app.py",
+        "src/nablamath/desktop/index.html"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Complete exact-instance experiment/evidence/report workflow in loopback UI with consent. Existing UI covers more bounded operations, not all scientific subsystems; human accessibility/usability review outstanding."
     },
     {
       "id": 41,
       "target": "`src/nablamath/`",
       "requirement": "**P1 · F0–F12**: manter contratos, CLI, compatibilidade e workflows integrados; eliminar caminhos paralelos sem migração. **Concluído quando:** smokes da API pública, documentação e integração de ponta a ponta.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-41-v1",
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/compatibility.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py",
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "CLI exposes finite contracts and refusals; Lean support pin aligned. The open-ended public workflow and compatibility matrix still require releases and cross-platform external verification."
     },
     {
       "id": 42,
@@ -629,7 +867,8 @@
         "tests/test_semantic_contracts.py"
       ],
       "evidence": [
-        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+        "docs/audits/P0_INTEGRATION_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
       ],
       "reviewer": null,
       "release": null,
@@ -639,40 +878,62 @@
       "id": 43,
       "target": "`lean/`",
       "requirement": "**P1 · F3**: ampliar demonstrações Lean além dos fragmentos atuais; pin da toolchain, livre de sorry/admit e revisão de tradução. **Concluído quando:** compilação reproduzível, kernel verificando teoremas e auditoria de axiomas.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-43-v1",
+      "implementation": [
+        "lean/Nabla/KernelContracts.lean",
+        "lean/Nabla.lean",
+        "lean/lean-toolchain"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Six new kernel-only Lean4.34.0 theorems compiled successfully and #print axioms reports zero dependencies for each. Full imported Mathlib project still unavailable; no Python translator correspondence proof."
     },
     {
       "id": 44,
       "target": "`protocol/`",
       "requirement": "**P0 · F0/F12**: padronizar codificação canônica, schemas de objetos/recibos e interop de clientes. **Concluído quando:** golden vectors e testes cruzados C/C++/Rust/Python.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-44-v1",
+      "implementation": [
+        "protocol/fixtures/cross-language/rational-v1.json"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 45,
       "target": "`sdk/`",
       "requirement": "**P2 · F12**: evoluir parsers de frações para SDKs científicos e transporte autenticado interoperáveis. **Concluído quando:** conformidade protocolar, ABI/API estáveis e fuzzing.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-45-v1",
+      "implementation": [
+        "sdk/python/rational.py",
+        "sdk/typescript/rational.ts",
+        "sdk/rust/src/client.rs"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 46,
@@ -687,7 +948,8 @@
         "tests/integration/test_coordinator_api.py"
       ],
       "evidence": [
-        "docs/audits/EXPANDED_PROFILES_2026_10_15.md"
+        "docs/audits/EXPANDED_PROFILES_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
       ],
       "reviewer": null,
       "release": null,
@@ -735,14 +997,21 @@
       "id": 49,
       "target": "`docs/history/`",
       "requirement": "**P3 · Histórico**: preservar material original sem confundir aspiração histórica com implementação. **Concluído quando:** hash e índice de origem validados.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-49-v1",
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Historical bytes and declared repository commit pinned; original claims not treated as delivered behavior."
     },
     {
       "id": 50,
@@ -767,66 +1036,103 @@
       "id": 51,
       "target": "`benchmarks/results/`",
       "requirement": "**P0 · Evidência**: preservar resultado congelado, inclusive falhas e modelos negativos; criar novos resultados em campanhas distintas. **Concluído quando:** SHA-256, protocolo, licença, replay semântico e cadeia de custódia.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-51-v1",
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Frozen result bytes include negative results; campaign hash chain and canonical JSON semantic check do not reexecute scientific experiment or authenticate custodian."
     },
     {
       "id": 52,
       "target": "`benchmarks/fixtures/`",
       "requirement": "**P0 · Evidência**: manter fixture original e fonte licenciada; incluir novas referências identificadas e imutáveis. **Concluído quando:** hash, proveniência e correspondência com referências independentes.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-52-v1",
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Longley mirror commit, three SHA256 files, source paths, license and reference checked offline; no new independent publisher retrieval."
     },
     {
       "id": 53,
       "target": "`benchmarks/`",
       "requirement": "**P1 · F1–F12**: definir protocolos e baselines comparativos novos sem reescrever resultados históricos. **Concluído quando:** reexecução, métricas estatísticas e replicação.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-53-v1",
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Preregistered fixed model/cohort/metric/stopping-rule ledger and exact descriptive paired comparisons. Third-party replication, private novel holdout, inferential independence and model execution identity are not established."
     },
     {
       "id": 54,
       "target": "`legacy/`",
       "requirement": "**P3 · Histórico**: congelar e catalogar código legado; migrar somente funcionalidades comprovadas para src/ com testes. **Concluído quando:** arquivos preservados por hash e nenhuma fonte dupla em produção.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-54-v1",
+      "implementation": [
+        "tools/preserve_evidence.py",
+        "docs/history/preservation-index.json"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Legacy bytes frozen; AST audit rejects explicit production legacy/archive imports; dynamic imports not comprehensively audited."
     },
     {
       "id": 55,
       "target": "`website/`",
       "requirement": "**P2 · Produto**: substituir indicadores promocionais por status derivado das evidências, melhorar transparência e documentação. **Concluído quando:** testes de interface, métricas rastreáveis, privacidade e acessibilidade.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-55-v1",
+      "implementation": [
+        "website/src/evidence.js",
+        "website/build.mjs",
+        "website/app.js",
+        "website/index.html"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Built site status derived from actual213 matrix, no promotional completion inference. No live deployment or human accessibility review performed."
     },
     {
       "id": 56,
@@ -841,7 +1147,8 @@
         "tests/test_roadmap_contract.py"
       ],
       "evidence": [
-        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+        "docs/audits/P0_INTEGRATION_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
       ],
       "reviewer": null,
       "release": null,
@@ -851,53 +1158,79 @@
       "id": 57,
       "target": "`scripts/`",
       "requirement": "**P1 · F0**: tornar instalação/importação idempotentes, reexecutáveis e seguros em todas as plataformas. **Concluído quando:** testes de recuperação e compatibilidade de arquivos históricos.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-57-v1",
+      "implementation": [
+        "scripts/preserved_archive.py"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned bounded ZIP import is idempotent, refuses historical overwrite, case/path/symlink collisions and preserves destination on failure; tested on current Linux only."
     },
     {
       "id": 58,
       "target": "`examples/`",
       "requirement": "**P2 · Documentação**: criar exemplos reproduzíveis de pipelines completos e documentar limites. **Concluído quando:** execução automatizada de cada exemplo publicado.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-58-v1",
+      "implementation": [
+        "examples/audited_local_experiment.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "All five published Python examples auto-executed in isolated temporary outputs; fixtures are synthetic and not evidence of scientific discovery."
     },
     {
       "id": 59,
       "target": "`templates/`",
       "requirement": "**P2 · F5**: ampliar modelos de relatórios com origem de cada alegação, dados e revisão editorial. **Concluído quando:** compilação de todos os templates e conferência visual.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-59-v1",
+      "implementation": [
+        "templates/engineering_report/example.document.json",
+        "templates/teaching/example.document.json"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Three canonical report templates exported and compiled with available real Typst and LaTeX compilers; external visual/editorial review not performed."
     },
     {
       "id": 60,
       "target": "`packaging/`",
       "requirement": "**P1 · Produto**: assegurar instaladores assinados quando possível, atestados, atualização segura e desinstalação reversível. **Concluído quando:** instalação/upgrade/downgrade em máquinas limpas.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-60-v1",
+      "implementation": [
+        "packaging/offline_release.py"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Real offline clean-venv synthetic package install, upgrade, downgrade, repair, uninstall and restoration tested on current Linux; no Windows/macOS, signed installer or publisher authenticity claim."
     },
     {
       "id": 61,
@@ -922,118 +1255,195 @@
       "id": 62,
       "target": "`pyproject.toml`",
       "requirement": "intervenção específica: alinhar dependências opcionais, versões, entrypoints, perfis Python, metadados, SBOM e origem do wheel. **Aceite:** build e importação isolada, matriz de versões e release alinhada.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-62-v1",
+      "implementation": [
+        "packaging/offline_release.py"
+      ],
+      "tests": [
+        "tests/test_remaining_release.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "SPDX 2.3 wheel SBOM source commit declaration, metadata, optional requirement and SHA binding reuse existing wheel verifier; source origin is caller-declared, Python version matrix not run."
     },
     {
       "id": 63,
       "target": "`README.md`",
       "requirement": "intervenção específica: documentar limites reais, quickstart, módulos avaliados, indicadores reproduzíveis e diferença visão/entrega. **Aceite:** todos os links e comandos revisados por CI.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-63-v1",
+      "implementation": [
+        "README.md",
+        "tools/check_public_contracts.py",
+        ".github/workflows/ci.yml"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Current evidence and historical estimates distinguished, contract/link checks added to CI. Interactive browser startup, every optional external service and all platform commands require independent runtime review."
     },
     {
       "id": 64,
       "target": "`vision.md`",
       "requirement": "intervenção específica: converter aspirações 2026–2056+ em perfis versionados sem apagar o horizonte aberto; explicitar hipóteses e critérios de fechamento. **Aceite:** matriz bidirecional visão→requisitos→testes→evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-64-v1",
+      "implementation": [
+        "vision.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
     },
     {
       "id": 65,
       "target": "`description.md`",
       "requirement": "intervenção específica: sincronizar a descrição atual com evidências e release; evitar alegar avanços futuros como atuais. **Aceite:** toda alegação inclui versão e comprovação.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-65-v1",
+      "implementation": [
+        "description.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
     },
     {
       "id": 66,
       "target": "`docs/PLANO_MESTRE_2026_2056.md`",
       "requirement": "intervenção específica: manter contrato integrado, dependências, perfis de recursos e decisões por fase; atualizar custos e riscos. **Aceite:** alinhamento verificável entre metas, issues e entregas.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-66-v1",
+      "implementation": [
+        "docs/PLANO_MESTRE_2026_2056.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
     },
     {
       "id": 67,
       "target": "`docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md`",
       "requirement": "intervenção específica: mapear os 104 itens aos módulos responsáveis, testes e evidências; adicionar fases F0/F13 e perfis de avanço posteriores. **Aceite:** cada requisito tem estado e prova de aceite.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-67-v1",
+      "implementation": [
+        "docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
     },
     {
       "id": 68,
       "target": "`docs/ARCHITECTURE_AND_ACCEPTANCE.md`",
       "requirement": "intervenção específica: materializar os critérios de render, física, relatórios, formalização e estabilidade em testes automatizados. **Aceite:** nenhum requisito crítico pendente sem sinalização.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-68-v1",
+      "implementation": [
+        "docs/ARCHITECTURE_AND_ACCEPTANCE.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
     },
     {
       "id": 69,
       "target": "`docs/MATHEMATICS_COMPLETION_AUDIT.md`",
       "requirement": "intervenção específica: verificar algoritmos matemáticos gerais faltantes e manter recusas explícitas em domínios não cobertos. **Aceite:** matriz por classe de problema, benchmark e prova.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-69-v1",
+      "implementation": [
+        "docs/MATHEMATICS_COMPLETION_AUDIT.md",
+        "tools/update_public_contracts.py",
+        "tools/check_public_contracts.py",
+        "docs/acceptance/vision_traceability.json"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Machine-checked original requirement/phase/evidence references and finite-domain contract. This is consistent local traceability, not proof of all original algorithms, external review, costs, closed issues, or scientific phase completion. Historical backlog items remain individually unresolved where acceptance evidence is missing."
     },
     {
       "id": 70,
       "target": "`src/nablamath/agents/sandbox.py`",
       "requirement": "intervenção específica: preservar proibição de código não confiável até existir sandbox real; não trocar bloqueio por eval/subprocess sem isolamento. **Aceite:** ataques e escapes bloqueados em ambiente isolado.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-70-v1",
+      "implementation": [
+        "src/nablamath/agents/sandbox.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/test_agents.py",
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "The existing complete prohibition of arbitrary code is preserved and verified; this is not execution of hostile code in a real OS sandbox. Escape-resistance certification remains blocked by that missing capability."
     },
     {
       "id": 71,
@@ -1058,105 +1468,170 @@
       "id": 72,
       "target": "`src/nablamath/desktop/app.py`",
       "requirement": "intervenção específica: migrar UI local limitada para interface integrada de todos os workflows sem abrir serviços inseguros. **Aceite:** E2E de um experimento completo com consentimento.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-72-v1",
+      "implementation": [
+        "src/nablamath/desktop/app.py",
+        "src/nablamath/desktop/workflows.py",
+        "src/nablamath/desktop/index.html"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Real loopback HTTP E2E exact experiment with explicit consent and byte-identical API/direct receipt. No unrestricted execution, remote publishing, or claim of all-workflow UI coverage."
     },
     {
       "id": 73,
       "target": "`src/nablamath/physics/fluids/navier_stokes.py`",
       "requirement": "intervenção específica: ultrapassar solver 2D periódico de referência com fronteiras, discretizações robustas e validação experimental. **Aceite:** benchmarks CFD, convergência e erro verificado.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-73-v1",
+      "implementation": [
+        "src/nablamath/physics/fluids/channel.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fluids/turbulence.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Stationary no-slip channel reduction and existing 1D Euler reference only; general 2D nonperiodic Navier-Stokes, laboratory data and disciplinary review remain."
     },
     {
       "id": 74,
       "target": "`src/nablamath/physics/relativity/general.py`",
       "requirement": "intervenção específica: ampliar geometria Schwarzschild para tensores, geodésicas e perfis de GR definidos, não declarar solver geral prematuramente. **Aceite:** invariantes, testes de limite e confronto com referências.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-74-v1",
+      "implementation": [
+        "src/nablamath/physics/relativity/einstein_solver.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded analytic spatially-flat perfect-fluid FLRW plus Schwarzschild; not general numerical Einstein solver; historical rounded Mercury comparison is not new experimental validation."
     },
     {
       "id": 75,
       "target": "`src/nablamath/gpu/cuda_f4_reduction.py`",
       "requirement": "intervenção específica: implementar backend CUDA/Triton verdadeiro e não atribuir aceleração ao fallback CPU. **Aceite:** speedup, hardware, exatidão e memória medidos.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-75-v1",
+      "implementation": [
+        "src/nablamath/gpu/kernels/f4_cuda.py",
+        "src/nablamath/gpu/cuda_f4_reduction.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "CUDA hardware absent; kernel compilation/execution, speedup and energy require independent real-device runs. Exact CPU oracle checks every device result."
     },
     {
       "id": 76,
       "target": "`src/nablamath/discovery/novelty_screen.py`",
       "requirement": "intervenção específica: integrar busca bibliográfica externa curada e revisão independente; não equiparar ausência local à novidade. **Aceite:** rastreio de referências, falsos positivos e revisão.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-76-v1",
+      "implementation": [
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/novelty_screen.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/science/test_independent_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Traceable curated source/retrieval metadata and false-positive review; operator declarations only, no live comprehensive search or authenticated independent reviewers."
     },
     {
       "id": 77,
       "target": "`src/nablamath/training/baselines.py`",
       "requirement": "intervenção específica: adicionar baselines fortes e métricas; manter vizinhos próximos como referência pequena, não como prova de ganho científico. **Aceite:** reprodução entre sementes, dados separados por família e comparação externa.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-77-v1",
+      "implementation": [
+        "src/nablamath/training/reasoning_finetune.py",
+        "src/nablamath/training/baselines.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Actual deterministic fitted linear baseline; stronger LLM baselines and real external benchmark comparisons remain unfulfilled."
     },
     {
       "id": 78,
       "target": "`src/nablamath/training/multimodal_network.py`",
       "requirement": "intervenção específica: evoluir demonstração de equações/imagens para tarefas multimodais científicas relevantes com ablações. **Aceite:** ganho fora da distribuição em benchmarks congelados.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-78-v1",
+      "implementation": [
+        "src/nablamath/training/multimodal_network.py",
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/test_phase8_agents_training.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Existing multimodal neural fit plus generic transfer protocol; no claimed OOD scientific multimodal gain."
     },
     {
       "id": 79,
       "target": "`src/nablamath/evolution/search.py`",
       "requirement": "intervenção específica: substituir busca apenas Euler/RK4 por propostas algorítmicas mais amplas avaliadas isoladamente. **Aceite:** ganho robusto contra baseline forte e rollback reproduzível.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-79-v1",
+      "implementation": [
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "src/nablamath/evolution/rollback.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_phase10_evolution.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Typed bounded proposals only; not general algorithm synthesis or demonstrated robust gain."
     },
     {
       "id": 80,
@@ -1171,7 +1646,8 @@
         "tests/test_math_bundle.py"
       ],
       "evidence": [
-        "docs/audits/P0_INTEGRATION_2026_10_15.md"
+        "docs/audits/P0_INTEGRATION_2026_10_15.md",
+        "docs/audits/DELIVERY_2026_10_16.md"
       ],
       "reviewer": null,
       "release": null,
@@ -1219,14 +1695,21 @@
       "id": 83,
       "target": "CRIAR `docs/acceptance/scientific_capabilities.yaml`",
       "requirement": "Especificar domínios suportados, recusados e tolerâncias. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-83-v1",
+      "implementation": [
+        "docs/acceptance/scientific_capabilities.yaml",
+        "src/nablamath/core/capabilities.py"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Versioned queryable finite domains, explicit refusals and exact tolerance declarations are validated locally. Independent scientific review and release-specific acceptance remain pending."
     },
     {
       "id": 84,
@@ -1422,14 +1905,20 @@
       "id": 94,
       "target": "CRIAR `src/nablamath/math/calculus/risch.py`",
       "requirement": "Pesquisar integração simbólica abrangente sob domínios declarados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "rational-linear-factor-integration-v1",
+      "implementation": [
+        "src/nablamath/math/calculus/risch.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_integration_mesh.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "General Risch integration and independent validation are not implemented."
     },
     {
       "id": 95,
@@ -1644,40 +2133,64 @@
       "id": 106,
       "target": "CRIAR `src/nablamath/formal/autoformalization.py`",
       "requirement": "Pipeline de tradução com verificação humana e kernel. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "controlled-reviewed-proof-portfolio-v1",
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Controlled grammar only; review identity is caller supplied. Lean/Mathlib execution, human correspondence review and scalable proof search remain unvalidated."
     },
     {
       "id": 107,
       "target": "CRIAR `src/nablamath/formal/proof_repair.py`",
       "requirement": "Correção assistida de demonstrações sem suprimir obrigações. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "controlled-reviewed-proof-portfolio-v1",
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Controlled grammar only; review identity is caller supplied. Lean/Mathlib execution, human correspondence review and scalable proof search remain unvalidated."
     },
     {
       "id": 108,
       "target": "CRIAR `src/nablamath/formal/proof_search_planner.py`",
       "requirement": "Busca escalável guiada por hipóteses e provas verificáveis. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "controlled-reviewed-proof-portfolio-v1",
+      "implementation": [
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Controlled grammar only; review identity is caller supplied. Lean/Mathlib execution, human correspondence review and scalable proof search remain unvalidated."
     },
     {
       "id": 109,
@@ -1702,40 +2215,62 @@
       "id": 110,
       "target": "CRIAR `src/nablamath/gpu/kernels/f4_cuda.py`",
       "requirement": "Backend de referência para kernel CUDA verificável. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-110-v1",
+      "implementation": [
+        "src/nablamath/gpu/kernels/f4_cuda.py",
+        "src/nablamath/gpu/cuda_f4_reduction.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "CUDA hardware absent; kernel compilation/execution, speedup and energy require independent real-device runs. Exact CPU oracle checks every device result."
     },
     {
       "id": 111,
       "target": "CRIAR `src/nablamath/gpu/kernels/egraph_triton.py`",
       "requirement": "Backend Triton opcional para operações bateladas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-111-v1",
+      "implementation": [
+        "src/nablamath/gpu/kernels/egraph_triton.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Triton execution requires hardware/dependency validation; implements parent canonicalization only, not full GPU e-graph saturation."
     },
     {
       "id": 112,
       "target": "CRIAR `src/nablamath/gpu/profiler.py`",
       "requirement": "Telemetria reprodutível de VRAM, tempo e energia. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-112-v1",
+      "implementation": [
+        "src/nablamath/gpu/profiler.py",
+        "benchmarks/resources/hardware_profiles.json"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "No GPU available. Energy integration and peak VRAM absent explicitly null; no speedup claim."
     },
     {
       "id": 113,
@@ -1760,14 +2295,20 @@
       "id": 114,
       "target": "CRIAR `src/nablamath/worlds/mesh/adaptive.py`",
       "requirement": "Refino adaptativo com estimadores de erro. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "adaptive-scalar-mesh-v1",
+      "implementation": [
+        "src/nablamath/worlds/mesh/adaptive.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_integration_mesh.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Sampled indicators are not a global error certificate; general multidimensional meshes remain pending."
     },
     {
       "id": 115,
@@ -1811,79 +2352,127 @@
       "id": 117,
       "target": "CRIAR `src/nablamath/physics/fluids/turbulence.py`",
       "requirement": "Modelos de turbulência delimitados e calibrados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-axial-fe-euler-mixing-length-v1",
+      "implementation": [
+        "src/nablamath/physics/fluids/turbulence.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fea/nonlinear.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Only declared 1D models and local analytic/synthetic checks; external calibration, experimental provenance and independent validation remain pending."
     },
     {
       "id": 118,
       "target": "CRIAR `src/nablamath/physics/fluids/compressible.py`",
       "requirement": "Fluxos compressíveis e choques com validação. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-axial-fe-euler-mixing-length-v1",
+      "implementation": [
+        "src/nablamath/physics/fluids/turbulence.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fea/nonlinear.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Only declared 1D models and local analytic/synthetic checks; external calibration, experimental provenance and independent validation remain pending."
     },
     {
       "id": 119,
       "target": "CRIAR `src/nablamath/physics/relativity/einstein_solver.py`",
       "requirement": "Estudo modular de soluções de Einstein sem alegar generalidade automática. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-119-v1",
+      "implementation": [
+        "src/nablamath/physics/relativity/einstein_solver.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Bounded analytic spatially-flat perfect-fluid FLRW plus Schwarzschild; not general numerical Einstein solver; historical rounded Mercury comparison is not new experimental validation."
     },
     {
       "id": 120,
       "target": "CRIAR `src/nablamath/physics/fea/nonlinear.py`",
       "requirement": "Elementos finitos não lineares e verificação. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "bounded-axial-fe-euler-mixing-length-v1",
+      "implementation": [
+        "src/nablamath/physics/fluids/turbulence.py",
+        "src/nablamath/physics/fluids/compressible.py",
+        "src/nablamath/physics/fea/nonlinear.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_physics_extensions.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Only declared 1D models and local analytic/synthetic checks; external calibration, experimental provenance and independent validation remain pending."
     },
     {
       "id": 121,
       "target": "CRIAR `src/nablamath/graphics/visual_regression.py`",
       "requirement": "Comparar renderização semântica e imagens de referência. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "scientific-svg-declared-linear-scm-v1",
+      "implementation": [
+        "src/nablamath/graphics/visual_regression.py",
+        "src/nablamath/graphics/scientific_renderer.py",
+        "src/nablamath/discovery/causal_hypothesis.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_graphics_causality.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Declared linear SCM only, no causal discovery from correlation; human visual review and empirical causal validation remain pending."
     },
     {
       "id": 122,
       "target": "CRIAR `src/nablamath/graphics/scientific_renderer.py`",
       "requirement": "Renderização científica avançada rastreável ao modelo. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "scientific-svg-declared-linear-scm-v1",
+      "implementation": [
+        "src/nablamath/graphics/visual_regression.py",
+        "src/nablamath/graphics/scientific_renderer.py",
+        "src/nablamath/discovery/causal_hypothesis.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_graphics_causality.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Declared linear SCM only, no causal discovery from correlation; human visual review and empirical causal validation remain pending."
     },
     {
       "id": 123,
@@ -1946,66 +2535,99 @@
       "id": 126,
       "target": "CRIAR `src/nablamath/datasets/semantic_leakage.py`",
       "requirement": "Detecção avançada de contaminação e semelhança. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "transactional-forge-lineage-leakage-v1",
+      "implementation": [
+        "src/nablamath/datasets/semantic_leakage.py",
+        "src/nablamath/datasets/large_scale_pipeline.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_dataset_pipeline.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Declared local equivalences and lineage only; no universal semantic detector or independently evaluated production scale."
     },
     {
       "id": 127,
       "target": "CRIAR `src/nablamath/datasets/large_scale_pipeline.py`",
       "requirement": "Geração controlada em escala sem degradar qualidade. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "transactional-forge-lineage-leakage-v1",
+      "implementation": [
+        "src/nablamath/datasets/semantic_leakage.py",
+        "src/nablamath/datasets/large_scale_pipeline.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_dataset_pipeline.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Declared local equivalences and lineage only; no universal semantic detector or independently evaluated production scale."
     },
     {
       "id": 128,
       "target": "CRIAR `src/nablamath/training/frontier_adapter.py`",
       "requirement": "Adaptadores opcionais de modelos de fronteira com consentimento. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-128-v1",
+      "implementation": [
+        "src/nablamath/training/frontier_adapter.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Explicit owner/version/input-digest consent, default disabled, caller-injected transport only. No built-in network or frontier provider evaluation."
     },
     {
       "id": 129,
       "target": "CRIAR `src/nablamath/training/reasoning_finetune.py`",
       "requirement": "Treino de raciocínio com protocolos congelados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-129-v1",
+      "implementation": [
+        "src/nablamath/training/reasoning_finetune.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Content-digest-frozen actual supervised linear fitting, deterministic bounded optimizer. Does not fine tune an LLM or prove learned reasoning."
     },
     {
       "id": 130,
       "target": "CRIAR `src/nablamath/training/cross_domain_eval.py`",
       "requirement": "Medir generalização entre famílias e disciplinas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-130-v1",
+      "implementation": [
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Task/family/semantic overlap checks and per-domain Wilson intervals on supplied cases. True external unseen cases remain external."
     },
     {
       "id": 131,
@@ -2030,14 +2652,23 @@
       "id": 132,
       "target": "CRIAR `src/nablamath/agents/secure_execution.py`",
       "requirement": "Sandbox operacional para código não confiável. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "fail-closed-trusted-tool-trials-v1",
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
     },
     {
       "id": 133,
@@ -2081,27 +2712,42 @@
       "id": 135,
       "target": "CRIAR `src/nablamath/discovery/literature_search.py`",
       "requirement": "Busca de antecedentes em fontes científicas externas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-135-v1",
+      "implementation": [
+        "src/nablamath/discovery/literature_search.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/science/test_independent_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Curated supplied external metadata snapshots; no built-in live fetch, source authentication, comprehensive coverage or novelty guarantee."
     },
     {
       "id": 136,
       "target": "CRIAR `src/nablamath/discovery/causal_hypothesis.py`",
       "requirement": "Hipóteses causais testáveis com pressupostos declarados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "scientific-svg-declared-linear-scm-v1",
+      "implementation": [
+        "src/nablamath/graphics/visual_regression.py",
+        "src/nablamath/graphics/scientific_renderer.py",
+        "src/nablamath/discovery/causal_hypothesis.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_graphics_causality.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Declared linear SCM only, no causal discovery from correlation; human visual review and empirical causal validation remain pending."
     },
     {
       "id": 137,
@@ -2145,14 +2791,23 @@
       "id": 139,
       "target": "CRIAR `src/nablamath/evolution/code_proposals.py`",
       "requirement": "Propostas de mudanças algorítmicas versionadas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "fail-closed-trusted-tool-trials-v1",
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
     },
     {
       "id": 140,
@@ -2177,14 +2832,23 @@
       "id": 141,
       "target": "CRIAR `src/nablamath/evolution/secure_trials.py`",
       "requirement": "Testes isolados de descendentes candidatos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "fail-closed-trusted-tool-trials-v1",
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
     },
     {
       "id": 142,
@@ -2209,27 +2873,39 @@
       "id": 143,
       "target": "CRIAR `src/nablamath/knowledge/institutional_identity.py`",
       "requirement": "Vínculo de identidade real e competências auditáveis. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-143-v1",
+      "implementation": [
+        "src/nablamath/knowledge/institutional_identity.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 144,
       "target": "CRIAR `src/nablamath/knowledge/distributed_provenance.py`",
       "requirement": "Proveniência multioperador e revogação verificável. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-144-v1",
+      "implementation": [
+        "src/nablamath/knowledge/distributed_provenance.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 145,
@@ -2352,27 +3028,42 @@
       "id": 151,
       "target": "CRIAR `services/worker/isolation.py`",
       "requirement": "Isolamento operacional e política de recursos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "fail-closed-trusted-tool-trials-v1",
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
     },
     {
       "id": 152,
       "target": "CRIAR `services/federation/reconciliation.py`",
       "requirement": "Federação entre organizações e resolução de conflitos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-152-v1",
+      "implementation": [
+        "services/federation/reconciliation.py"
+      ],
+      "tests": [
+        "tests/network/test_partition.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 153,
@@ -2416,14 +3107,20 @@
       "id": 155,
       "target": "CRIAR `sdk/rust/src/client.rs`",
       "requirement": "Cliente Rust de protocolo científico completo. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-155-v1",
+      "implementation": [
+        "sdk/rust/src/client.rs"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 156,
@@ -2467,14 +3164,23 @@
       "id": 158,
       "target": "CRIAR `tests/security/test_agent_sandbox.py`",
       "requirement": "Tentativas de escape e falha segura. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "fail-closed-trusted-tool-trials-v1",
+      "implementation": [
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/secure_trials.py",
+        "services/worker/isolation.py"
+      ],
+      "tests": [
+        "tests/security/test_agent_sandbox.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Arbitrary code is refused. Hostile-code OS sandbox, capability isolation and escape-resistance validation are NOT implemented; this is a trusted-tool operational precursor."
     },
     {
       "id": 159,
@@ -2499,79 +3205,122 @@
       "id": 160,
       "target": "CRIAR `tests/benchmark/test_math_comparison.py`",
       "requirement": "Benchmarks de solvers especializados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-160-v1",
+      "implementation": [
+        "src/nablamath/compiler/ir.py",
+        "src/nablamath/autodiff/second_order.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_math_comparison.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Version1 correctness comparison contract records owner, fixed seeds and128 exact rational plus32 analytic Hessian independent SymPy cases. No speed ranking, no external approval asserted; performance benchmarking and independent reviewer remain pending."
     },
     {
       "id": 161,
       "target": "CRIAR `tests/benchmark/test_gpu_real_hardware.py`",
       "requirement": "Aceleração real mensurada e conferida. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-161-v1",
+      "implementation": [
+        "src/nablamath/gpu/profiler.py",
+        "benchmarks/resources/hardware_profiles.json"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "No GPU available. Energy integration and peak VRAM absent explicitly null; no speedup claim."
     },
     {
       "id": 162,
       "target": "CRIAR `tests/benchmark/test_holdout_generalization.py`",
       "requirement": "Generalização fora do treino sem vazamento. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-162-v1",
+      "implementation": [
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Executed synthetic family holdouts, negative results and contamination rejection, not a measured frontier generalization gain."
     },
     {
       "id": 163,
       "target": "CRIAR `tests/science/test_observational_validation.py`",
       "requirement": "Dados empíricos, calibração e incerteza. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-163-v1",
+      "implementation": [
+        "src/nablamath/worlds/validation_observational.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_worlds_observations.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Historical rounded Mercury reference and caller-supplied measurements are not independent provenance authentication, discipline-wide validation, or specialist review."
     },
     {
       "id": 164,
       "target": "CRIAR `tests/science/test_independent_discovery.py`",
       "requirement": "Reprodução de resultados científicos com revisores externos. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-164-v1",
+      "implementation": [
+        "src/nablamath/discovery/independent_replication.py"
+      ],
+      "tests": [
+        "tests/science/test_independent_discovery.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Actual protocol conformance and negative replication bookkeeping; test fixtures are not external reviewers or independent scientific replication."
     },
     {
       "id": 165,
       "target": "CRIAR `tests/distributed/test_multihost_failures.py`",
       "requirement": "Redes reais, perdas, partições e recuperação. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-165-v1",
+      "implementation": [
+        "services/federation/reconciliation.py"
+      ],
+      "tests": [
+        "tests/distributed/test_multihost_failures.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 166,
@@ -2596,14 +3345,22 @@
       "id": 167,
       "target": "CRIAR `benchmarks/resources/hardware_profiles.json`",
       "requirement": "Ambientes de referência e budgets documentados. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-167-v1",
+      "implementation": [
+        "src/nablamath/gpu/profiler.py",
+        "benchmarks/resources/hardware_profiles.json"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/benchmark/test_gpu_real_hardware.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "No GPU available. Energy integration and peak VRAM absent explicitly null; no speedup claim."
     },
     {
       "id": 168,
@@ -2875,157 +3632,272 @@
       "id": 182,
       "target": "CRIAR `services/registry/app.py`",
       "requirement": "Registro seguro e opt-in de nós e capacidades. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 183,
       "target": "CRIAR `services/registry/api.py`",
       "requirement": "API de descoberta e permissões versionadas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 184,
       "target": "CRIAR `services/registry/db.py`",
       "requirement": "Persistência de peers, chaves e estado de revogação. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 185,
       "target": "CRIAR `services/registry/metrics.py`",
       "requirement": "Métricas anonimizadas e limites operacionais. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 186,
       "target": "CRIAR `services/relay/app.py`",
       "requirement": "Relay autenticado com quotas e desligamento seguro. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 187,
       "target": "CRIAR `services/relay/protocol.py`",
       "requirement": "Protocolos para NAT/retransmissão com proteção anti-replay. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 188,
       "target": "CRIAR `services/relay/abuse.py`",
       "requirement": "Prevenção de Sybil/eclipse/poisoning e registros auditáveis. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "loopback-durable-opt-in-registry-relay-v1",
+      "implementation": [
+        "services/registry/app.py",
+        "services/registry/api.py",
+        "services/registry/db.py",
+        "services/registry/metrics.py",
+        "services/relay/app.py",
+        "services/relay/protocol.py",
+        "services/relay/abuse.py"
+      ],
+      "tests": [
+        "tests/network/test_registry_relay.py"
+      ],
+      "evidence": [
+        "docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Loopback deployment only. No NAT traversal, general Sybil/eclipse/poisoning resistance, institutional identity, anonymity proof or independent Internet-scale validation."
     },
     {
       "id": 189,
       "target": "CRIAR `tests/network/test_sybil.py`",
       "requirement": "Testes de identidades artificiais e resiliência de federação. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-189-v1",
+      "implementation": [
+        "src/nablamath/p2p/resilient_peers.py"
+      ],
+      "tests": [
+        "tests/network/test_sybil.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 190,
       "target": "CRIAR `tests/network/test_poisoning.py`",
       "requirement": "Injeção de resultados, hashes e assinaturas adulteradas. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-190-v1",
+      "implementation": [
+        "src/nablamath/knowledge/distributed_provenance.py"
+      ],
+      "tests": [
+        "tests/network/test_poisoning.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 191,
       "target": "CRIAR `tests/network/test_eclipse.py`",
       "requirement": "Isolamento de peers e respostas resistentes a eclipse. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-191-v1",
+      "implementation": [
+        "src/nablamath/p2p/resilient_peers.py"
+      ],
+      "tests": [
+        "tests/network/test_eclipse.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 192,
       "target": "CRIAR `tests/network/test_partition.py`",
       "requirement": "Partições prolongadas de rede e reconciliação. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-192-v1",
+      "implementation": [
+        "services/federation/reconciliation.py"
+      ],
+      "tests": [
+        "tests/network/test_partition.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 193,
       "target": "CRIAR `tests/network/test_interop.py`",
       "requirement": "Interoperabilidade real entre implementações de protocolo. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-193-v1",
+      "implementation": [
+        "sdk/python/rational.py",
+        "sdk/typescript/rational.ts"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 194,
@@ -3297,27 +4169,40 @@
       "id": 208,
       "target": "CRIAR `protocol/fixtures/cross-language/README.md`",
       "requirement": "Vetores normativos verificados por SDKs C/C++/Rust/TS/Python. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-208-v1",
+      "implementation": [
+        "protocol/fixtures/cross-language/README.md",
+        "protocol/fixtures/cross-language/rational-v1.json"
+      ],
+      "tests": [
+        "tests/network/test_interop.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Pinned local trust and measured loopback/process tests only; independent institutional verification, independent multihost/WAN deployment, real Sybil resistance and release/API/ABI audit remain unvalidated. Rust canonical-fraction and bounded loopback HTTP client executed; remote TLS/full SDK/API/ABI audit still pending."
     },
     {
       "id": 209,
       "target": "CRIAR `src/nablamath/singularity/evaluation/generalization.py`",
       "requirement": "Benchmark multidisciplinar de transferibilidade sem declarar AGI. Só criar após aprovar contrato e responsável; exigir testes, versionamento, avaliação independente e evidência.",
-      "status": "planned",
-      "profile": null,
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "status": "partial",
+      "profile": "remaining-85-local-209-v1",
+      "implementation": [
+        "src/nablamath/singularity/evaluation/generalization.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "evidence": [
+        "docs/audits/REMAINING_85_2026_10_15.md"
+      ],
       "reviewer": null,
       "release": null,
-      "remaining": "Not implemented or audited by this change."
+      "remaining": "Fail-closed report consistency, duplicate-task rejection and declared per-domain thresholds; no AGI or independent benchmark authenticity claim."
     },
     {
       "id": 210,

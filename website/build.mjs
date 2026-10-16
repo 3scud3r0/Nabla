@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {deriveEvidenceStatus} from './src/evidence.js';
+const rawMatrix = fs.readFileSync('../docs/acceptance/evidence_matrix.json', 'utf8');
+const matrix = JSON.parse(rawMatrix);
+const evidence = {...deriveEvidenceStatus(matrix), matrix_sha256: createHash('sha256').update(rawMatrix).digest('hex')};
+fs.mkdirSync('dist/data', {recursive:true});
+fs.mkdirSync('dist/src', {recursive:true});
+for (const f of ['index.html','styles.css','app.js','worker.js']) fs.copyFileSync(f, `dist/${f}`);
+for (const f of ['lab.js','evidence.js']) fs.copyFileSync(`src/${f}`, `dist/src/${f}`);
+const existing = JSON.parse(fs.readFileSync('data/status.json','utf8'));
+fs.writeFileSync('dist/data/status.json', JSON.stringify({...existing, evidence}, null, 2)+'\n');
+fs.writeFileSync('dist/data/evidence_matrix.json', JSON.stringify(matrix)+'\n');

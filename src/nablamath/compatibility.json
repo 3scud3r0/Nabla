@@ -11,7 +11,7 @@
     "experimental": ["macos"]
   },
   "lean": {
-    "toolchain": "v4.24.0",
+    "toolchain": "v4.34.0",
     "required": false
   },
   "latex": {

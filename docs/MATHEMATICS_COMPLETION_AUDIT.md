@@ -32,3 +32,17 @@ Uma linha só pode migrar para “completa” após API, casos negativos, propri
 referência independente, benchmark, documentação de domínio e — quando a alegação
 for formal — prova aceita pelo kernel. O `math.txt` é regenerado a partir das fontes
 atuais e substitui integralmente a versão anterior, mas não altera esta auditoria.
+
+<!-- nabla:contracts:start -->
+## Contratos executáveis e pendências atuais
+
+A matriz registra 213 requisitos com perfis parciais, 0 planejados e 0 integralmente validados. Uma referência de implementação não equivale à aceitação integral.
+
+- [Matriz original dos 213 requisitos](acceptance/evidence_matrix.json).
+- [Rastreabilidade de fases, requisitos, testes e evidências](acceptance/vision_traceability.json).
+- [Domínios, operações, recusas e tolerâncias](acceptance/scientific_capabilities.yaml).
+
+F0 explicita contratos e infraestrutura; F13 continua horizonte aberto. Os perfis de software não demonstram autonomia científica geral. Provas formais exigem kernel e auditoria de hipóteses; GPU exige execução identificada; observações e revisão externa não são substituídas por fixtures ou identidade declarada.
+
+Verificar: `python tools/check_roadmap.py` e `python tools/check_public_contracts.py`, na raiz do repositório.
+<!-- nabla:contracts:end -->

@@ -1,0 +1,4 @@
+{
+  "raw_sha256": "7459122eb570aef0d84f2f714e274a1f874e41ae0ee768344db50b1b9604febc",
+  "text": "Traceback (most recent call last):\n  File \"/workspace/Nabla/tools/simulate_frontier_lab.py\", line 231, in <module>\n    raise SystemExit(0 if (worker(args) if args.worker else run(args)) else 1)\n                           ^^^^^^^^^^^^\n  File \"/workspace/Nabla/tools/simulate_frontier_lab.py\", line 114, in worker\n    return assurance(args.destination)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/Nabla/tools/simulate_frontier_lab.py\", line 49, in assurance\n    envelope = source.delta()[0]\n               ~~~~~~~~~~~~~~^^^\nIndexError: list index out of range\n"
+}

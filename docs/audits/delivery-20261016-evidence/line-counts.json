@@ -1,0 +1,259 @@
+{
+  "baseline": "38ff4caa9b51df97d29895e52f2ca911e296816b",
+  "new_python_files": 50,
+  "physical_lines": 16456,
+  "token_bearing_lines": 14356,
+  "files": [
+    {
+      "path": "packaging/signed_release.py",
+      "physical": 732,
+      "token_bearing": 653
+    },
+    {
+      "path": "packaging/staged_release.py",
+      "physical": 764,
+      "token_bearing": 709
+    },
+    {
+      "path": "services/federation/access_sessions.py",
+      "physical": 133,
+      "token_bearing": 122
+    },
+    {
+      "path": "services/federation/checkpoints.py",
+      "physical": 267,
+      "token_bearing": 249
+    },
+    {
+      "path": "services/federation/http.py",
+      "physical": 161,
+      "token_bearing": 150
+    },
+    {
+      "path": "services/federation/inventory.py",
+      "physical": 269,
+      "token_bearing": 255
+    },
+    {
+      "path": "services/worker/dag_executor.py",
+      "physical": 199,
+      "token_bearing": 175
+    },
+    {
+      "path": "src/nablamath/agents/dag_contracts.py",
+      "physical": 127,
+      "token_bearing": 103
+    },
+    {
+      "path": "src/nablamath/agents/dag_inspection.py",
+      "physical": 129,
+      "token_bearing": 124
+    },
+    {
+      "path": "src/nablamath/agents/dag_recovery.py",
+      "physical": 177,
+      "token_bearing": 163
+    },
+    {
+      "path": "src/nablamath/agents/dag_replay.py",
+      "physical": 132,
+      "token_bearing": 128
+    },
+    {
+      "path": "src/nablamath/agents/dag_scheduler.py",
+      "physical": 275,
+      "token_bearing": 254
+    },
+    {
+      "path": "src/nablamath/agents/durable_dag.py",
+      "physical": 480,
+      "token_bearing": 448
+    },
+    {
+      "path": "src/nablamath/autodiff/linalg.py",
+      "physical": 438,
+      "token_bearing": 370
+    },
+    {
+      "path": "src/nablamath/datasets/revision_quality.py",
+      "physical": 183,
+      "token_bearing": 165
+    },
+    {
+      "path": "src/nablamath/datasets/revision_release.py",
+      "physical": 158,
+      "token_bearing": 139
+    },
+    {
+      "path": "src/nablamath/datasets/revision_store.py",
+      "physical": 312,
+      "token_bearing": 281
+    },
+    {
+      "path": "src/nablamath/evaluation/clustered.py",
+      "physical": 228,
+      "token_bearing": 197
+    },
+    {
+      "path": "src/nablamath/knowledge/revocation_monitor.py",
+      "physical": 226,
+      "token_bearing": 216
+    },
+    {
+      "path": "src/nablamath/math/linear_algebra/exact_spectral.py",
+      "physical": 308,
+      "token_bearing": 261
+    },
+    {
+      "path": "src/nablamath/math/linear_algebra/invariant_decomposition.py",
+      "physical": 262,
+      "token_bearing": 235
+    },
+    {
+      "path": "src/nablamath/math/polynomials/exact_algebra.py",
+      "physical": 254,
+      "token_bearing": 217
+    },
+    {
+      "path": "src/nablamath/math/polynomials/finite_field.py",
+      "physical": 380,
+      "token_bearing": 325
+    },
+    {
+      "path": "src/nablamath/math/polynomials/real_roots.py",
+      "physical": 376,
+      "token_bearing": 322
+    },
+    {
+      "path": "src/nablamath/network/merkle_inventory.py",
+      "physical": 197,
+      "token_bearing": 167
+    },
+    {
+      "path": "src/nablamath/numeric/reaction_diffusion_2d.py",
+      "physical": 590,
+      "token_bearing": 522
+    },
+    {
+      "path": "src/nablamath/numeric/transport_2d.py",
+      "physical": 417,
+      "token_bearing": 370
+    },
+    {
+      "path": "src/nablamath/p2p/federation_transport.py",
+      "physical": 314,
+      "token_bearing": 292
+    },
+    {
+      "path": "src/nablamath/physics/fluids/shallow_water_2d.py",
+      "physical": 464,
+      "token_bearing": 406
+    },
+    {
+      "path": "src/nablamath/pipeline/delivery_cycle.py",
+      "physical": 249,
+      "token_bearing": 230
+    },
+    {
+      "path": "src/nablamath/training/forge_symbolic.py",
+      "physical": 187,
+      "token_bearing": 160
+    },
+    {
+      "path": "src/nablamath/training/sparse_symbolic.py",
+      "physical": 190,
+      "token_bearing": 165
+    },
+    {
+      "path": "src/nablamath/training/symbolic_beam.py",
+      "physical": 276,
+      "token_bearing": 230
+    },
+    {
+      "path": "src/nablamath/training/symbolic_derivatives.py",
+      "physical": 124,
+      "token_bearing": 106
+    },
+    {
+      "path": "src/nablamath/training/symbolic_protocol.py",
+      "physical": 246,
+      "token_bearing": 215
+    },
+    {
+      "path": "src/nablamath/training/symbolic_stability.py",
+      "physical": 156,
+      "token_bearing": 135
+    },
+    {
+      "path": "tests/test_delivery_agents_20261016.py",
+      "physical": 772,
+      "token_bearing": 660
+    },
+    {
+      "path": "tests/test_delivery_agents_review_20261016.py",
+      "physical": 140,
+      "token_bearing": 113
+    },
+    {
+      "path": "tests/test_delivery_autodiff_linalg_20261016.py",
+      "physical": 323,
+      "token_bearing": 267
+    },
+    {
+      "path": "tests/test_delivery_clustered_20261016.py",
+      "physical": 133,
+      "token_bearing": 101
+    },
+    {
+      "path": "tests/test_delivery_cycle_20261016.py",
+      "physical": 94,
+      "token_bearing": 74
+    },
+    {
+      "path": "tests/test_delivery_datasets_20261016.py",
+      "physical": 281,
+      "token_bearing": 239
+    },
+    {
+      "path": "tests/test_delivery_federation_20261016.py",
+      "physical": 891,
+      "token_bearing": 767
+    },
+    {
+      "path": "tests/test_delivery_learning_20261016.py",
+      "physical": 720,
+      "token_bearing": 576
+    },
+    {
+      "path": "tests/test_delivery_math_20261016.py",
+      "physical": 489,
+      "token_bearing": 411
+    },
+    {
+      "path": "tests/test_delivery_reaction_transport_20261016.py",
+      "physical": 431,
+      "token_bearing": 359
+    },
+    {
+      "path": "tests/test_delivery_release_20261016.py",
+      "physical": 1094,
+      "token_bearing": 944
+    },
+    {
+      "path": "tests/test_delivery_revision_quality_20261016.py",
+      "physical": 120,
+      "token_bearing": 96
+    },
+    {
+      "path": "tests/test_delivery_simulation_20261016.py",
+      "physical": 564,
+      "token_bearing": 471
+    },
+    {
+      "path": "tools/delivery_cycle.py",
+      "physical": 24,
+      "token_bearing": 19
+    }
+  ],
+  "scope": "New Python implementation and tests only; excludes regenerated math.txt, documents and existing-file edits"
+}

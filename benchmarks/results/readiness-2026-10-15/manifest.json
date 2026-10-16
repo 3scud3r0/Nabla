@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "scope": "local report integrity, not external authentication",
+  "files": {
+    "calibration-final.json": "1230fa1f66d95dd0d722691f4b8b3164c837dd5732636aa16c9a6387febd71c3",
+    "calibration-initial.json": "6d534c1bfcf8c3dea8f47ffcb0f2718472394a54e564ef1ac328b8ba2341cb41",
+    "initial-laboratory/assurance.log.json": "c78bb1a28b7790e54430b9c058aac3bbaa70329a051ea4bb1135bd82149ea838",
+    "initial-laboratory/independent-analysis.json": "a05d4237b5c9637b4db2a7a4d10bf4cdbb46d52385955b854d2f77a6dbaa9282",
+    "initial-laboratory/independent.json": "ad5b4211bb25c2220bbeccfebe321a9b6ad9f4eee84cac64ba15cddee4c7bdef",
+    "initial-laboratory/journal.json": "28634ec24f9f1de0998ba311bc7fb00198a86a3350b596cf132b752bd14c9bd5",
+    "initial-laboratory/protocol.json": "e5941a4bf8a910c0336b265fc5dcf58a495ffbb66e192430288c7754781f2f6a",
+    "initial-laboratory/science.log.json": "483a0736554e6e4a118299df9c98d8e833dce02b218a5117f9c0321a9fad1b69",
+    "initial-laboratory/summary.json": "80050fb732272272ae95ba74d962e7719091e7366ac6578d01d1e12f1f5c1b7e",
+    "initial-laboratory/workload/protocol.json": "ceba2a158f1c3bd17bdf0f9e272fa5ce5aae7b920c02ed7417e72f1ab85b22fd",
+    "initial-laboratory/workload/summary.json": "c6b130e0c690ddbb25eed7f9a06c2ff0f85df436b7b8e502c03f3b015fa8f513",
+    "lean-core-smoke.log.json": "401bc361534f474f8262b7ec90cc9d527035b5a5cb59c44ae849bc8895ddb9ab",
+    "lean-installed-laboratory/assurance.json": "57e958a40e6722db2c7f9bc5540b7253be090dcd5c07c36735ecbd77e2a57948",
+    "lean-installed-laboratory/assurance.log.json": "8d30d860373c0b772df8dd36e988eb0d26709834ce23ee6e0fbb3f5ed98a29c7",
+    "lean-installed-laboratory/independent-analysis.json": "7dfe040fd853991b164099db33322c2b35b9bcdc3cfbc8f6d1226bbfc9c8e44d",
+    "lean-installed-laboratory/independent.json": "66ebbe5ae100dc291f667a80a0a0b3d3411a95c74479aa0e581cde75d73fd3eb",
+    "lean-installed-laboratory/journal.json": "ad26110a07c12e29890b7409333b4c79c18b942d7926ef825680b5355ed9215f",
+    "lean-installed-laboratory/protocol.json": "278d29657b982d87e25f3c2067ae17bdb1e461f73da442937a518078cbf3999f",
+    "lean-installed-laboratory/science.log.json": "255846185198986787bbac74836f13a91c0833f48cd371dbcd1effb80295a481",
+    "lean-installed-laboratory/summary.json": "a217b398b5a561d4a85c6ee7e1b0b94e461c929938126104e8b8ac88585e66f0",
+    "lean-installed-laboratory/workload/summary.json": "c6b130e0c690ddbb25eed7f9a06c2ff0f85df436b7b8e502c03f3b015fa8f513",
+    "line-counts.json": "1a160450578ba26e41d7c5f08b33ddc5ae0372629e98042b9dd27dea18f5cba5",
+    "longley.json": "b9386bdb67e4cea316dd9dedfb3f69d92053b97091bc46bf23e0808920f79c52",
+    "wheel-verification.json": "f0a5bb3991d49efadfa0cab80b45a7d955be0fcd230b88786e983c9a0d00c687"
+  }
+}

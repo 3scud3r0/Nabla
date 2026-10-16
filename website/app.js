@@ -102,3 +102,13 @@ function setupLocalContribution() {
 
 loadSnapshot();
 setupLocalContribution();
+
+// Evidence-derived project status is independent of the local demonstration.
+import {renderEvidenceStatus} from './src/evidence.js';
+const evidenceNode = document.getElementById('evidence-status');
+if (evidenceNode) {
+  fetch('data/evidence_matrix.json', {credentials:'omit', cache:'no-store'})
+    .then(response => { if (!response.ok) throw new Error('Evidence unavailable'); return response.json(); })
+    .then(matrix => renderEvidenceStatus(evidenceNode, matrix))
+    .catch(() => { evidenceNode.textContent = 'Matriz de evidências indisponível; nenhum status de conclusão inferido.'; });
+}

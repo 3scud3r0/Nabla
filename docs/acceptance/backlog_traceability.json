@@ -1,0 +1,3155 @@
+{
+  "schema_version": 1,
+  "original_source_sha256": "25a1d660195c8a8bf5a2a4a946f580702aecee9be84b4ef91d755bfae0b9f6ab",
+  "count": 104,
+  "items": [
+    {
+      "id": "F01-01",
+      "phase": "F1",
+      "original_acceptance": "Serialização/replay preservam tipos e hipóteses; dimensões incompatíveis e obrigações não satisfeitas são recusadas.",
+      "declared_paths": [
+        "src/nablamath/core/semantic_ir.py",
+        "src/nablamath/core/types.py",
+        "src/nablamath/core/obligations.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        1,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/core/scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F01-02",
+      "phase": "F1",
+      "original_acceptance": "Uma matriz publicada de operações cobre cada área do vision.md e cada operação tem replay, exemplo válido e caso fora do domínio.",
+      "declared_paths": [
+        "src/nablamath/calc/session.py",
+        "src/nablamath/calc/notebook.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        3,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/calc/catalog.py",
+        "src/nablamath/calc/session.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase1_calculator.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F01-03",
+      "phase": "F1",
+      "original_acceptance": "Casos regulares e singulares conferidos por oráculo independente; integrais impróprias divergentes e resultados condicionais não são aceitos como valores exatos incondicionais.",
+      "declared_paths": [
+        "src/nablamath/math/calculus/",
+        "src/nablamath/symbolic/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        4,
+        6,
+        41,
+        93,
+        94
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/math/calculus/risch.py",
+        "src/nablamath/math/calculus/transcendentals.py",
+        "src/nablamath/math/linear_algebra/exact_decompositions.py",
+        "src/nablamath/math/number_theory/factorization_advanced.py",
+        "src/nablamath/symbolic/assumptions.py",
+        "src/nablamath/symbolic/proof.py",
+        "src/nablamath/symbolic/rule_audit.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_declarative_egraph.py",
+        "tests/test_egraph.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_math_compiler.py",
+        "tests/test_roadmap_integration_mesh.py",
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F01-04",
+      "phase": "F1",
+      "original_acceptance": "Reconstrução/resíduo e limites de erro verificados em sistemas bem condicionados, singulares e quase singulares.",
+      "declared_paths": [
+        "src/nablamath/math/linear_algebra/",
+        "src/nablamath/core/precision.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        1,
+        6,
+        41,
+        95
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/core/scientific_artifact.py",
+        "src/nablamath/math/calculus/risch.py",
+        "src/nablamath/math/calculus/transcendentals.py",
+        "src/nablamath/math/linear_algebra/exact_decompositions.py",
+        "src/nablamath/math/number_theory/factorization_advanced.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_integration_mesh.py",
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F01-05",
+      "phase": "F1",
+      "original_acceptance": "Casos de referência reproduzidos; amostras inválidas e aplicação fora das hipóteses geram diagnóstico explícito.",
+      "declared_paths": [
+        "src/nablamath/math/probability/",
+        "src/nablamath/math/statistics/",
+        "src/nablamath/calc/session.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        3,
+        6,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/calc/catalog.py",
+        "src/nablamath/calc/session.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/math/calculus/risch.py",
+        "src/nablamath/math/calculus/transcendentals.py",
+        "src/nablamath/math/linear_algebra/exact_decompositions.py",
+        "src/nablamath/math/number_theory/factorization_advanced.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase1_calculator.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_integration_mesh.py",
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F01-06",
+      "phase": "F1",
+      "original_acceptance": "Viabilidade e otimalidade não são confundidas; transformações preservam relações; operações discretas têm testemunho verificável.",
+      "declared_paths": [
+        "src/nablamath/math/optimization/",
+        "src/nablamath/math/geometry/",
+        "src/nablamath/math/graph_theory/",
+        "src/nablamath/calc/session.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        3,
+        6,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/calc/catalog.py",
+        "src/nablamath/calc/session.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/math/calculus/risch.py",
+        "src/nablamath/math/calculus/transcendentals.py",
+        "src/nablamath/math/linear_algebra/exact_decompositions.py",
+        "src/nablamath/math/number_theory/factorization_advanced.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase1_calculator.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_integration_mesh.py",
+        "tests/test_roadmap_math_extensions.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F01-07",
+      "phase": "F1",
+      "original_acceptance": "Análise dimensional atravessa a sessão e o notebook; precisão solicitada é cumprida ou a impossibilidade é declarada.",
+      "declared_paths": [
+        "src/nablamath/core/units.py",
+        "src/nablamath/core/precision.py",
+        "src/nablamath/calc/session.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        1,
+        3,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/calc/catalog.py",
+        "src/nablamath/calc/session.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/core/scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase1_calculator.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F01-08",
+      "phase": "F1",
+      "original_acceptance": "Todas as operações do perfil possuem evidência externa ou referência analítica, testes de falha e resultados auditáveis; revisão matemática dos contratos registrada.",
+      "declared_paths": [
+        "tests/test_phase1_calculator.py",
+        "benchmarks/calculator/"
+      ],
+      "paths_not_present": [
+        "benchmarks/calculator/"
+      ],
+      "related_requirement_ids": [
+        42,
+        53
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py",
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F02-01",
+      "phase": "F2",
+      "original_acceptance": "Regeração por semente é idêntica e adulterações de solução, hipótese ou testemunho são detectadas.",
+      "declared_paths": [
+        "src/nablamath/forge/task_spec.py",
+        "src/nablamath/forge/reverse_builder.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        8,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/forge/compositional_generator.py",
+        "src/nablamath/forge/difficulty_calibration.py",
+        "src/nablamath/forge/novelty_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase2_forge.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F02-02",
+      "phase": "F2",
+      "original_acceptance": "Cada família possui variantes estruturalmente distintas; dificuldade não é atribuída pelo tamanho ou pela escolha de coeficientes.",
+      "declared_paths": [
+        "src/nablamath/forge/constructors/",
+        "src/nablamath/verify/trace.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        8,
+        9,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/forge/compositional_generator.py",
+        "src/nablamath/forge/difficulty_calibration.py",
+        "src/nablamath/forge/novelty_index.py",
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase2_forge.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F02-03",
+      "phase": "F2",
+      "original_acceptance": "Duplicatas semânticas conhecidas são agrupadas e relatório de diversidade separa famílias, templates e instâncias.",
+      "declared_paths": [
+        "src/nablamath/forge/sampling.py",
+        "src/nablamath/forge/deduplicate.py",
+        "src/nablamath/datasets/semantic_fingerprint.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        8,
+        21,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/datasets/corpus_registry.py",
+        "src/nablamath/forge/compositional_generator.py",
+        "src/nablamath/forge/difficulty_calibration.py",
+        "src/nablamath/forge/novelty_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase2_forge.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py",
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F02-04",
+      "phase": "F2",
+      "original_acceptance": "Rótulos possuem evidência versionada e não promovem caso sem suporte a difícil; resultados podem ser reproduzidos fora do gerador.",
+      "declared_paths": [
+        "src/nablamath/forge/difficulty.py",
+        "benchmarks/independent.py"
+      ],
+      "paths_not_present": [
+        "benchmarks/independent.py"
+      ],
+      "related_requirement_ids": [
+        8,
+        41,
+        53
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/forge/compositional_generator.py",
+        "src/nablamath/forge/difficulty_calibration.py",
+        "src/nablamath/forge/novelty_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase2_forge.py",
+        "tests/test_public_contracts.py",
+        "tests/test_registered_comparison.py",
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F02-05",
+      "phase": "F2",
+      "original_acceptance": "Auditoria acusa colisões por testemunho, template e equivalência; nenhuma decisão de geração usa o holdout final.",
+      "declared_paths": [
+        "src/nablamath/datasets/splits.py",
+        "src/nablamath/datasets/split_policy.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        21,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F02-06",
+      "phase": "F2",
+      "original_acceptance": "Instâncias, versões, limites e respostas verificadas constam do relatório; parcela de desafios permanece inédita para seleção.",
+      "declared_paths": [
+        "benchmarks/independent.py",
+        "benchmarks/forge_challenge/"
+      ],
+      "paths_not_present": [
+        "benchmarks/independent.py",
+        "benchmarks/forge_challenge/"
+      ],
+      "related_requirement_ids": [
+        53
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F02-07",
+      "phase": "F2",
+      "original_acceptance": "Execução encerrável produz apenas tarefas verificadas; falhas e rejeições permanecem no relatório sem seleção retrospectiva dos sucessos.",
+      "declared_paths": [
+        "src/nablamath/forge/reverse_builder.py",
+        "src/nablamath/datasets/quality_gate.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        8,
+        21,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/datasets/corpus_registry.py",
+        "src/nablamath/forge/compositional_generator.py",
+        "src/nablamath/forge/difficulty_calibration.py",
+        "src/nablamath/forge/novelty_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase2_forge.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py",
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F02-08",
+      "phase": "F2",
+      "original_acceptance": "Saída da F2 demonstrada nas oito famílias; a exigência de dificuldade avançada continua aberta se os baselines resolverem tudo.",
+      "declared_paths": [
+        "tests/test_phase2_forge.py",
+        "benchmarks/results/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        42,
+        51,
+        53
+      ],
+      "implementation": [
+        "docs/history/preservation-index.json",
+        "src/nablamath/benchmarks/preregistration.py",
+        "tests/integration/test_scientific_artifact.py",
+        "tools/preserve_evidence.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_remaining_release.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F03-01",
+      "phase": "F3",
+      "original_acceptance": "Troca de pergunta, quantificador, domínio ou hipótese invalida a vinculação; aprovação humana não é simulada por flag automática.",
+      "declared_paths": [
+        "src/nablamath/formal/translation_review.py",
+        "src/nablamath/forge/task_spec.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        8,
+        10,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/forge/compositional_generator.py",
+        "src/nablamath/forge/difficulty_calibration.py",
+        "src/nablamath/forge/novelty_index.py",
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase2_forge.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_forge_discovery.py",
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F03-02",
+      "phase": "F3",
+      "original_acceptance": "Corpus de traduções positivas/negativas e exemplos equivalentes conferidos; nenhum sorry ou axioma não autorizado.",
+      "declared_paths": [
+        "src/nablamath/formal/lean_bridge.py",
+        "lean/Nabla/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        10,
+        41,
+        43
+      ],
+      "implementation": [
+        "lean/Nabla.lean",
+        "lean/Nabla/KernelContracts.lean",
+        "lean/lean-toolchain",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_math_compiler.py",
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F03-03",
+      "phase": "F3",
+      "original_acceptance": "Modelos são reconferidos; unknown/timeouts não viram prova; SMT não é apresentado como certificado Lean.",
+      "declared_paths": [
+        "src/nablamath/formal/smt_bridge.py",
+        "src/nablamath/verify/certificate.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        9,
+        10,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py",
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F03-04",
+      "phase": "F3",
+      "original_acceptance": "Terceiro reconstrói o certificado sem cache do autor; alteração de fonte ou dependência é detectada.",
+      "declared_paths": [
+        "src/nablamath/formal/lean_checker.py",
+        "src/nablamath/verify/certificate.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        9,
+        10,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py",
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F03-05",
+      "phase": "F3",
+      "original_acceptance": "Contraexemplo é reavaliado no enunciado original; busca inconclusiva nunca é prova de validade.",
+      "declared_paths": [
+        "src/nablamath/falsifier/search.py",
+        "src/nablamath/falsifier/counterexample_miner.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        11,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/falsifier/counterexample_miner.py",
+        "src/nablamath/falsifier/property_engine.py",
+        "src/nablamath/falsifier/shrink.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F03-06",
+      "phase": "F3",
+      "original_acceptance": "Resultado diz mínimo no escopo ou apenas reduzido; exemplos impossíveis de minimizar conservam o testemunho válido.",
+      "declared_paths": [
+        "src/nablamath/falsifier/shrink.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        11,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/falsifier/counterexample_miner.py",
+        "src/nablamath/falsifier/property_engine.py",
+        "src/nablamath/falsifier/shrink.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F03-07",
+      "phase": "F3",
+      "original_acceptance": "Pipeline e documento preservam distinção entre igualdade exata, prova formal e teste finito.",
+      "declared_paths": [
+        "src/nablamath/formal/translation_review.py",
+        "src/nablamath/knowledge/provenance_audit.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        10,
+        29,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/formal/autoformalization.py",
+        "src/nablamath/formal/proof_repair.py",
+        "src/nablamath/formal/proof_search_planner.py",
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py",
+        "tests/test_roadmap_formal_workflows.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F03-08",
+      "phase": "F3",
+      "original_acceptance": "Todos os fragmentos declarados têm taxa de cobertura e erros publicada; correspondência pergunta-teorema é auditada externamente.",
+      "declared_paths": [
+        "tests/test_phase3_formal.py",
+        "benchmarks/formal/"
+      ],
+      "paths_not_present": [
+        "benchmarks/formal/"
+      ],
+      "related_requirement_ids": [
+        42,
+        53
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py",
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F04-01",
+      "phase": "F4",
+      "original_acceptance": "Cena serializada reconstrói o modelo sem inferir matemática de pixels; objetos inválidos são recusados.",
+      "declared_paths": [
+        "src/nablamath/graphics/scene_graph.py",
+        "src/nablamath/graphics/geometry_constraints.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        16,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/graphics/scientific_export.py",
+        "src/nablamath/graphics/scientific_renderer.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_product.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F04-02",
+      "phase": "F4",
+      "original_acceptance": "Casos colineares, tangentes, paralelos e sem interseção têm resultados explícitos e verificáveis.",
+      "declared_paths": [
+        "src/nablamath/forge/constructors/geometry.py",
+        "src/nablamath/verify/geometry.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        8,
+        9,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/forge/compositional_generator.py",
+        "src/nablamath/forge/difficulty_calibration.py",
+        "src/nablamath/forge/novelty_index.py",
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase2_forge.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F04-03",
+      "phase": "F4",
+      "original_acceptance": "Curvas não atravessam polos; metadados indicam tolerância, limite de amostras e erro conhecido ou não certificado.",
+      "declared_paths": [
+        "src/nablamath/graphics/sampling.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        16,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/graphics/scientific_export.py",
+        "src/nablamath/graphics/scientific_renderer.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_product.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F04-04",
+      "phase": "F4",
+      "original_acceptance": "Transformações reversíveis preservam coordenadas; nenhum objeto requerido desaparece sem diagnóstico.",
+      "declared_paths": [
+        "src/nablamath/graphics/coordinate_system.py",
+        "src/nablamath/graphics/layout.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        16,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/graphics/scientific_export.py",
+        "src/nablamath/graphics/scientific_renderer.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_product.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F04-05",
+      "phase": "F4",
+      "original_acceptance": "SVG/PNG correspondem à mesma cena; testes conferem orientação, escala e dados embutidos.",
+      "declared_paths": [
+        "src/nablamath/graphics/svg_renderer.py",
+        "src/nablamath/graphics/raster_renderer.py",
+        "src/nablamath/graphics/rendering.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        16,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/graphics/scientific_export.py",
+        "src/nablamath/graphics/scientific_renderer.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_product.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F04-06",
+      "phase": "F4",
+      "original_acceptance": "Editar modelo exige nova verificação; imagem alterada ou metadado inconsistente é detectado.",
+      "declared_paths": [
+        "src/nablamath/graphics/artifacts.py",
+        "src/nablamath/datasets/alignments.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        16,
+        21,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/datasets/corpus_registry.py",
+        "src/nablamath/graphics/scientific_export.py",
+        "src/nablamath/graphics/scientific_renderer.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_product.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F04-07",
+      "phase": "F4",
+      "original_acceptance": "Diferenças relevantes falham no CI; alterações de referência exigem inspeção registrada.",
+      "declared_paths": [
+        "tests/test_phase4_graphics.py",
+        "tests/visual/"
+      ],
+      "paths_not_present": [
+        "tests/visual/"
+      ],
+      "related_requirement_ids": [
+        42
+      ],
+      "implementation": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F04-08",
+      "phase": "F4",
+      "original_acceptance": "Relatório identifica cenas/revisores/defeitos e correções; não é necessário competir com AlphaGeometry para cumprir a saída delimitada de F4.",
+      "declared_paths": [
+        "benchmarks/results/graphics-review/"
+      ],
+      "paths_not_present": [
+        "benchmarks/results/graphics-review/"
+      ],
+      "related_requirement_ids": [
+        51,
+        53
+      ],
+      "implementation": [
+        "docs/history/preservation-index.json",
+        "src/nablamath/benchmarks/preregistration.py",
+        "tools/preserve_evidence.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_remaining_release.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F05-01",
+      "phase": "F5",
+      "original_acceptance": "Artigo, relatório e apostila são expressos pelo modelo comum sem inserir fontes específicas de um compilador no conteúdo canônico.",
+      "declared_paths": [
+        "src/nablamath/documents/document_model.py",
+        "src/nablamath/documents/equation_blocks.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        18,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F05-02",
+      "phase": "F5",
+      "original_acceptance": "Referência ausente, duplicada ou sem origem é sinalizada; bibliografia não é inventada pelo exportador.",
+      "declared_paths": [
+        "src/nablamath/documents/citations.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        18,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F05-03",
+      "phase": "F5",
+      "original_acceptance": "Resultado numérico publicado é reconstituído da evidência; hash válido não é tratado como prova da narrativa.",
+      "declared_paths": [
+        "src/nablamath/documents/figures.py",
+        "src/nablamath/documents/publication.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        18,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F05-04",
+      "phase": "F5",
+      "original_acceptance": "Mesmo documento mantém conteúdo científico, numeração e referências em todos os formatos.",
+      "declared_paths": [
+        "src/nablamath/documents/latex_exporter.py",
+        "src/nablamath/documents/typst_exporter.py",
+        "src/nablamath/documents/html_exporter.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        18,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F05-05",
+      "phase": "F5",
+      "original_acceptance": "Bundle reconstrói offline no ambiente declarado; falhas e timeout conservam diagnóstico e não retornam PDF antigo.",
+      "declared_paths": [
+        "src/nablamath/documents/pdf_builder.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        18,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F05-06",
+      "phase": "F5",
+      "original_acceptance": "Todos compilam pelos backends suportados sem referências quebradas ou alegações sem fonte.",
+      "declared_paths": [
+        "templates/research_paper/",
+        "templates/engineering_report/",
+        "templates/teaching/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        59
+      ],
+      "implementation": [
+        "templates/engineering_report/example.document.json",
+        "templates/teaching/example.document.json"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F05-07",
+      "phase": "F5",
+      "original_acceptance": "Truncamento, caracteres ausentes e referências inválidas são detectados; revisão visual humana registrada.",
+      "declared_paths": [
+        "tests/test_phase5_studio.py",
+        "tests/visual/documents/"
+      ],
+      "paths_not_present": [
+        "tests/visual/documents/"
+      ],
+      "related_requirement_ids": [
+        42
+      ],
+      "implementation": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F05-08",
+      "phase": "F5",
+      "original_acceptance": "Revisor consegue recompilar e seguir os dados até as conclusões; alegações não demonstradas permanecem marcadas.",
+      "declared_paths": [
+        "src/nablamath/documents/publication.py",
+        "benchmarks/results/publication-review/"
+      ],
+      "paths_not_present": [
+        "benchmarks/results/publication-review/"
+      ],
+      "related_requirement_ids": [
+        18,
+        41,
+        51,
+        53
+      ],
+      "implementation": [
+        "docs/history/preservation-index.json",
+        "src/nablamath/benchmarks/preregistration.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/pipeline/scientific_cycle.py",
+        "tools/preserve_evidence.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_registered_comparison.py",
+        "tests/test_remaining_release.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F06-01",
+      "phase": "F6",
+      "original_acceptance": "Cada perfil tem campos obrigatórios, limites e verificadores; migração preserva IDs de origem e não fabrica evidência.",
+      "declared_paths": [
+        "src/nablamath/datasets/schema.py",
+        "src/nablamath/datasets/serializer.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        21,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F06-02",
+      "phase": "F6",
+      "original_acceptance": "Uma figura ou trace equivalente não reaparece no holdout com outro nome; colisões são reportadas.",
+      "declared_paths": [
+        "src/nablamath/datasets/semantic_fingerprint.py",
+        "src/nablamath/datasets/split_policy.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        21,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F06-03",
+      "phase": "F6",
+      "original_acceptance": "Registros incompatíveis são rejeitados com razão reproduzível; amostra de auditoria independente mede falsos aceites.",
+      "declared_paths": [
+        "src/nablamath/datasets/curation.py",
+        "src/nablamath/datasets/quality_gate.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        21,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F06-04",
+      "phase": "F6",
+      "original_acceptance": "Roundtrip sem perda e exportação interrompida não produzem release aparentemente íntegro; consumo de memória é medido.",
+      "declared_paths": [
+        "src/nablamath/datasets/serializer.py",
+        "src/nablamath/export/parquet.py",
+        "src/nablamath/export/jsonl.py",
+        "src/nablamath/export/bundle.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        21,
+        22,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/core/scientific_artifact.py",
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F06-05",
+      "phase": "F6",
+      "original_acceptance": "Download do release reconfere hashes e card; teste mock não é descrito como upload real.",
+      "declared_paths": [
+        "src/nablamath/datasets/model_card.py",
+        "src/nablamath/export/huggingface.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        21,
+        22,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/core/scientific_artifact.py",
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F06-06",
+      "phase": "F6",
+      "original_acceptance": "Resultados por família/template e intervalos de confiança são publicados, incluindo falhas.",
+      "declared_paths": [
+        "src/nablamath/datasets/quality_gate.py",
+        "benchmarks/datasets/"
+      ],
+      "paths_not_present": [
+        "benchmarks/datasets/"
+      ],
+      "related_requirement_ids": [
+        21,
+        41,
+        53
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_registered_comparison.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F06-07",
+      "phase": "F6",
+      "original_acceptance": "Dado correto e dado útil têm relatórios separados; resultados negativos não são filtrados.",
+      "declared_paths": [
+        "src/nablamath/training/controlled_experiment.py",
+        "src/nablamath/training/ablation.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        23,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/training/cross_domain_eval.py",
+        "src/nablamath/training/reasoning_finetune.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py",
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F06-08",
+      "phase": "F6",
+      "original_acceptance": "Critérios de qualidade definidos no card passam em problemas reservados; a tese de melhoria continua aberta enquanto o ganho não for demonstrado.",
+      "declared_paths": [
+        "tests/test_phase6_datasets.py",
+        "benchmarks/results/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        42,
+        51,
+        53
+      ],
+      "implementation": [
+        "docs/history/preservation-index.json",
+        "src/nablamath/benchmarks/preregistration.py",
+        "tests/integration/test_scientific_artifact.py",
+        "tools/preserve_evidence.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_remaining_release.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F07-01",
+      "phase": "F7",
+      "original_acceptance": "Modelo mal posto, unidades incompatíveis e condições não suportadas falham antes da integração.",
+      "declared_paths": [
+        "src/nablamath/worlds/model_spec.py",
+        "src/nablamath/worlds/ode/",
+        "src/nablamath/worlds/pde/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        15,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase7_worlds.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F07-02",
+      "phase": "F7",
+      "original_acceptance": "Tolerâncias são verificadas contra solução analítica e solver independente; exaustão de passos gera falha explícita.",
+      "declared_paths": [
+        "src/nablamath/worlds/integrators/",
+        "src/nablamath/worlds/ode/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        15,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase7_worlds.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F07-03",
+      "phase": "F7",
+      "original_acceptance": "Condições e estabilidade são verificadas; refinamento espacial/temporal mede erro para cada configuração suportada.",
+      "declared_paths": [
+        "src/nablamath/worlds/pde/",
+        "src/nablamath/worlds/mesh/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        15,
+        41,
+        114
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase7_worlds.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_integration_mesh.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F07-04",
+      "phase": "F7",
+      "original_acceptance": "Relatório distingue erro de discretização e de modelo; regressão de ordem ou conservação bloqueia release do perfil afetado.",
+      "declared_paths": [
+        "src/nablamath/worlds/conservation.py",
+        "src/nablamath/worlds/convergence.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        15,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase7_worlds.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F07-05",
+      "phase": "F7",
+      "original_acceptance": "Previsões são comparadas com dados não usados no ajuste; incompatibilidades e discrepâncias permanecem no relatório.",
+      "declared_paths": [
+        "src/nablamath/worlds/validation.py",
+        "src/nablamath/adapters/instruments/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        15,
+        36,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/adapters/numpy.py",
+        "src/nablamath/adapters/registry.py",
+        "src/nablamath/adapters/scipy.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase7_worlds.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_physics_gpu.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F07-06",
+      "phase": "F7",
+      "original_acceptance": "Casos analíticos verificam sensibilidade; análise registra não identificabilidade e parâmetros correlacionados.",
+      "declared_paths": [
+        "src/nablamath/worlds/sensitivity.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        15,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase7_worlds.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F07-07",
+      "phase": "F7",
+      "original_acceptance": "Animação não suaviza ou esconde instabilidade; cada frame pode ser reconstruído dos dados.",
+      "declared_paths": [
+        "src/nablamath/worlds/animation.py",
+        "src/nablamath/graphics/artifacts.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        15,
+        16,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/graphics/scientific_export.py",
+        "src/nablamath/graphics/scientific_renderer.py",
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase7_worlds.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_product.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F07-08",
+      "phase": "F7",
+      "original_acceptance": "Cada alegação tem convergência, limites e validação aplicável; perfis exclusivamente matemáticos são identificados como tais.",
+      "declared_paths": [
+        "tests/test_phase7_worlds.py",
+        "benchmarks/worlds/"
+      ],
+      "paths_not_present": [
+        "benchmarks/worlds/"
+      ],
+      "related_requirement_ids": [
+        42,
+        53
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py",
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F08-01",
+      "phase": "F8",
+      "original_acceptance": "Cada alinhamento reconduz ao mesmo problema; respostas e certificados ficam fora da entrada quando são alvos.",
+      "declared_paths": [
+        "src/nablamath/datasets/multimodal.py",
+        "src/nablamath/datasets/alignments.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        21,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/datasets/corpus_registry.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F08-02",
+      "phase": "F8",
+      "original_acceptance": "Modelo realmente aprende de pixels e símbolos, em vez de apenas hash de texto SVG; inferência limpa reconstrói previsões salvas.",
+      "declared_paths": [
+        "src/nablamath/training/multimodal_model.py",
+        "src/nablamath/training/registry.py"
+      ],
+      "paths_not_present": [
+        "src/nablamath/training/multimodal_model.py"
+      ],
+      "related_requirement_ids": [
+        23,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/training/cross_domain_eval.py",
+        "src/nablamath/training/reasoning_finetune.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py",
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F08-03",
+      "phase": "F8",
+      "original_acceptance": "Controle e tratamento diferem somente pelo fator estudado; protocolo é congelado antes do holdout final.",
+      "declared_paths": [
+        "src/nablamath/training/curriculum.py",
+        "src/nablamath/training/controlled_experiment.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        23,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/training/cross_domain_eval.py",
+        "src/nablamath/training/reasoning_finetune.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py",
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F08-04",
+      "phase": "F8",
+      "original_acceptance": "Relatório declara contaminação desconhecida e separa familiaridade do modelo de generalização inédita.",
+      "declared_paths": [
+        "src/nablamath/training/contamination.py",
+        "src/nablamath/training/evaluation.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        23,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/training/cross_domain_eval.py",
+        "src/nablamath/training/reasoning_finetune.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py",
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F08-05",
+      "phase": "F8",
+      "original_acceptance": "Resultados por seed e previsões são publicados; ganho zero/negativo não é convertido em sucesso científico.",
+      "declared_paths": [
+        "src/nablamath/training/ablation.py",
+        "src/nablamath/training/evaluation.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        23,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/training/cross_domain_eval.py",
+        "src/nablamath/training/reasoning_finetune.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_holdout_generalization.py",
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F08-06",
+      "phase": "F8",
+      "original_acceptance": "Agente executa tarefa inédita em múltiplas etapas e seus dados de entrada/saída são reexecutáveis; não apenas sequência fixa demonstrativa.",
+      "declared_paths": [
+        "src/nablamath/agents/planner.py",
+        "src/nablamath/agents/proposals.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        25,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/agents/permissions.py",
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F08-07",
+      "phase": "F8",
+      "original_acceptance": "Timeout de subprocesso não é vendido como sandbox; testes mostram limites de arquivos, rede e recursos do perfil externo.",
+      "declared_paths": [
+        "src/nablamath/agents/permissions.py",
+        "src/nablamath/agents/tool_registry.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        25,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/agents/permissions.py",
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_agent_controls.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F08-08",
+      "phase": "F8",
+      "original_acceptance": "Pipeline de avaliação está completo mesmo com resultado negativo; a tese adicional de aumentar capacidade só fecha com ganho robusto e reprodução independente.",
+      "declared_paths": [
+        "tests/test_phase8_agents_training.py",
+        "benchmarks/agents_multimodal/"
+      ],
+      "paths_not_present": [
+        "benchmarks/agents_multimodal/"
+      ],
+      "related_requirement_ids": [
+        42,
+        53
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py",
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F09-01",
+      "phase": "F9",
+      "original_acceptance": "Modelos de dimensões inválidas são rejeitados; recuperação de leis conhecidas e falhas é medida em corpus reservado.",
+      "declared_paths": [
+        "src/nablamath/discovery/hypothesis.py",
+        "src/nablamath/discovery/symbolic_regression.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        26,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/discovery/independent_replication.py",
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/research_program.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_independent_discovery.py",
+        "tests/test_phase9_discovery.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F09-02",
+      "phase": "F9",
+      "original_acceptance": "Escolha de modelo não consulta holdout; intervalo de validade e comparação com alternativas acompanham a hipótese.",
+      "declared_paths": [
+        "src/nablamath/discovery/symbolic_regression.py",
+        "src/nablamath/worlds/validation.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        15,
+        26,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/discovery/independent_replication.py",
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/research_program.py",
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_independent_discovery.py",
+        "tests/test_phase7_worlds.py",
+        "tests/test_phase9_discovery.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F09-03",
+      "phase": "F9",
+      "original_acceptance": "Antecedentes relevantes de um corpus de referência são recuperados; ausência na busca não implica novidade global.",
+      "declared_paths": [
+        "src/nablamath/knowledge/literature.py",
+        "src/nablamath/discovery/novelty_screen.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        26,
+        29,
+        41,
+        76
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/discovery/independent_replication.py",
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/novelty_screen.py",
+        "src/nablamath/discovery/research_program.py",
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_independent_discovery.py",
+        "tests/test_phase9_discovery.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F09-04",
+      "phase": "F9",
+      "original_acceptance": "Conexão conserva hipóteses; exemplo com domínio diferente não é declarado mesmo teorema.",
+      "declared_paths": [
+        "src/nablamath/discovery/theorem_search.py",
+        "src/nablamath/knowledge/claim_graph.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        26,
+        29,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/discovery/independent_replication.py",
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/research_program.py",
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_independent_discovery.py",
+        "tests/test_phase9_discovery.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F09-05",
+      "phase": "F9",
+      "original_acceptance": "Plano discrimina modelos em dados reservados; propor experimento não é registrado como executá-lo.",
+      "declared_paths": [
+        "src/nablamath/discovery/experimental_design.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        26,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/discovery/independent_replication.py",
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/research_program.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_independent_discovery.py",
+        "tests/test_phase9_discovery.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F09-06",
+      "phase": "F9",
+      "original_acceptance": "Refutação é reproduzível na hipótese original; orçamento esgotado permanece inconclusivo.",
+      "declared_paths": [
+        "src/nablamath/falsifier/counterexample_miner.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        11,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/falsifier/counterexample_miner.py",
+        "src/nablamath/falsifier/property_engine.py",
+        "src/nablamath/falsifier/shrink.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_forge_discovery.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F09-07",
+      "phase": "F9",
+      "original_acceptance": "Histórico permite reconstruir escolhas e hipóteses abandonadas; relatório não seleciona apenas descobertas aparentes.",
+      "declared_paths": [
+        "src/nablamath/discovery/research_program.py",
+        "src/nablamath/documents/publication.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        18,
+        26,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/discovery/independent_replication.py",
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/research_program.py",
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_independent_discovery.py",
+        "tests/test_phase9_discovery.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F09-08",
+      "phase": "F9",
+      "original_acceptance": "Novidade é avaliada por pesquisadores e antecedentes; código só registra o resultado, não concede novidade a si mesmo.",
+      "declared_paths": [
+        "tests/test_phase9_discovery.py",
+        "benchmarks/discovery/"
+      ],
+      "paths_not_present": [
+        "benchmarks/discovery/"
+      ],
+      "related_requirement_ids": [
+        42,
+        53
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py",
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F10-01",
+      "phase": "F10",
+      "original_acceptance": "Propostas fora do contrato são rejeitadas; cada família de política possui interpretador e invariantes verificáveis.",
+      "declared_paths": [
+        "src/nablamath/evolution/policy_genome.py",
+        "src/nablamath/evolution/proposal_validator.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        27,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/rollback.py",
+        "src/nablamath/evolution/secure_trials.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_phase10_evolution.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F10-02",
+      "phase": "F10",
+      "original_acceptance": "Melhoria não depende somente de reduzir erro em EDOs; correção perdida bloqueia promoção.",
+      "declared_paths": [
+        "src/nablamath/evolution/search.py",
+        "src/nablamath/evolution/evaluator.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        27,
+        41,
+        79
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/rollback.py",
+        "src/nablamath/evolution/secure_trials.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_phase10_evolution.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F10-03",
+      "phase": "F10",
+      "original_acceptance": "Reabrir outro gerente não permite reutilizar conjunto conhecido; acessos e consumo ficam auditados.",
+      "declared_paths": [
+        "src/nablamath/evolution/holdout_manager.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        27,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/rollback.py",
+        "src/nablamath/evolution/secure_trials.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_phase10_evolution.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F10-04",
+      "phase": "F10",
+      "original_acceptance": "Proponente não consegue modificar avaliador e depois obter promoção válida; recibo forjado ou contrato diferente é rejeitado.",
+      "declared_paths": [
+        "src/nablamath/evolution/evaluator.py",
+        "src/nablamath/evolution/release_gate.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        27,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/rollback.py",
+        "src/nablamath/evolution/secure_trials.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_phase10_evolution.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F10-05",
+      "phase": "F10",
+      "original_acceptance": "Taxa de falsos positivos é verificada em controles nulos; aceitação exige significância e efeito prático definidos antes da seleção.",
+      "declared_paths": [
+        "src/nablamath/evolution/statistical_tests.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        27,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/rollback.py",
+        "src/nablamath/evolution/secure_trials.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_phase10_evolution.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F10-06",
+      "phase": "F10",
+      "original_acceptance": "Código candidato não acessa segredos/holdouts/avaliador; testes adversariais verificam fronteiras e nenhum código é promovido só por autodeclaração.",
+      "declared_paths": [
+        "src/nablamath/evolution/code_sandbox.py",
+        "src/nablamath/evolution/proposal_validator.py"
+      ],
+      "paths_not_present": [
+        "src/nablamath/evolution/code_sandbox.py"
+      ],
+      "related_requirement_ids": [
+        27,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/rollback.py",
+        "src/nablamath/evolution/secure_trials.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_phase10_evolution.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F10-07",
+      "phase": "F10",
+      "original_acceptance": "Falha após promoção restaura estado e dependências verificadas; revisão e decisão permanecem no histórico.",
+      "declared_paths": [
+        "src/nablamath/evolution/lineage.py",
+        "src/nablamath/evolution/rollback.py",
+        "src/nablamath/evolution/release_gate.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        27,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/evolution/code_proposals.py",
+        "src/nablamath/evolution/rollback.py",
+        "src/nablamath/evolution/secure_trials.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_phase10_evolution.py",
+        "tests/test_public_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F10-08",
+      "phase": "F10",
+      "original_acceptance": "Melhoria de eficiência/capacidade reproduzida fora da campanha; não se exige nem se afirma autoaperfeiçoamento irrestrito.",
+      "declared_paths": [
+        "tests/test_phase10_evolution.py",
+        "benchmarks/evolution/"
+      ],
+      "paths_not_present": [
+        "benchmarks/evolution/"
+      ],
+      "related_requirement_ids": [
+        42,
+        53
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py",
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F11-01",
+      "phase": "F11",
+      "original_acceptance": "Cada saída declara regime de validade e tem referência independente; não promete engenharia universal.",
+      "declared_paths": [
+        "src/nablamath/domains/contracts.py",
+        "src/nablamath/domains/engineering/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        28,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_observational_validation.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F11-02",
+      "phase": "F11",
+      "original_acceptance": "Benchmarks conferidos com simulador de circuitos independente; circuitos singulares têm diagnóstico.",
+      "declared_paths": [
+        "src/nablamath/domains/circuits/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        28,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_observational_validation.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F11-03",
+      "phase": "F11",
+      "original_acceptance": "Curvas e incertezas são comparadas com referências/ensaios; extrapolação de regime é identificada.",
+      "declared_paths": [
+        "src/nablamath/domains/materials/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        28,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_observational_validation.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F11-04",
+      "phase": "F11",
+      "original_acceptance": "Casos de referência preservam massa/carga; resultados termodinâmicos usam parâmetros e bases rastreáveis.",
+      "declared_paths": [
+        "src/nablamath/domains/chemistry/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        28,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_observational_validation.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F11-05",
+      "phase": "F11",
+      "original_acceptance": "Respostas e propriedades são comparadas com biblioteca de controle independente; instabilidade não é ocultada por horizonte curto.",
+      "declared_paths": [
+        "src/nablamath/domains/control/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        28,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_observational_validation.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F11-06",
+      "phase": "F11",
+      "original_acceptance": "Limites de identificação, incerteza e viés de observações constam dos resultados; especialistas revisam a adequação dos modelos.",
+      "declared_paths": [
+        "src/nablamath/domains/earth/",
+        "src/nablamath/domains/biology/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        28,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/domains/chemistry/kinetics.py",
+        "src/nablamath/domains/materials/elasticity.py",
+        "src/nablamath/physics/relativity/general.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_observational_validation.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F11-07",
+      "phase": "F11",
+      "original_acceptance": "Acoplamento fecha balanços e estudo de convergência; dados de instrumento são distinguíveis de fixtures sintéticas.",
+      "declared_paths": [
+        "src/nablamath/worlds/multiphysics/",
+        "src/nablamath/adapters/instruments/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        15,
+        36,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/adapters/numpy.py",
+        "src/nablamath/adapters/registry.py",
+        "src/nablamath/adapters/scipy.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/worlds/integrators/adaptive.py",
+        "src/nablamath/worlds/mesh/adaptive.py",
+        "src/nablamath/worlds/validation_observational.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_phase7_worlds.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_physics_gpu.py",
+        "tests/test_roadmap_worlds_observations.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F11-08",
+      "phase": "F11",
+      "original_acceptance": "Cada perfil reivindicado possui validação específica; expansão de domínio cria novo contrato em vez de elevar artificialmente a cobertura de toda a ciência.",
+      "declared_paths": [
+        "tests/test_phase11_domains.py",
+        "benchmarks/domains/"
+      ],
+      "paths_not_present": [
+        "benchmarks/domains/"
+      ],
+      "related_requirement_ids": [
+        42,
+        53
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py",
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F12-01",
+      "phase": "F12",
+      "original_acceptance": "Mesma conclusão sob hipóteses distintas não é fundida; evidência de integridade não vira automaticamente evidência científica.",
+      "declared_paths": [
+        "src/nablamath/knowledge/versioned_claims.py",
+        "src/nablamath/knowledge/claim_graph.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        29,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F12-02",
+      "phase": "F12",
+      "original_acceptance": "Importador autentica autor/versão e rejeita alterações, replay inadequado e chave revogada; HMAC compartilhado não é chamado assinatura de autoria individual.",
+      "declared_paths": [
+        "src/nablamath/knowledge/federation.py",
+        "src/nablamath/knowledge/identity.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        29,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F12-03",
+      "phase": "F12",
+      "original_acceptance": "Dois pares independentes sincronizam após desconexão sem perder histórico; conteúdo inválido não entra no conjunto confiável.",
+      "declared_paths": [
+        "src/nablamath/knowledge/federation.py",
+        "src/nablamath/knowledge/storage.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        29,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F12-04",
+      "phase": "F12",
+      "original_acceptance": "Não equivalente permanece separado; disputa não desaparece por escolher a revisão mais recente.",
+      "declared_paths": [
+        "src/nablamath/knowledge/semantic_reconciliation.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        29,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F12-05",
+      "phase": "F12",
+      "original_acceptance": "Refutação chega a todos os claims afetados; rerun registra novas revisões e conserva evidências anteriores.",
+      "declared_paths": [
+        "src/nablamath/knowledge/dependency_impact.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        29,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F12-06",
+      "phase": "F12",
+      "original_acceptance": "Revisor não aprova a própria alegação; revisão antiga não aprova automaticamente nova versão; agentes locais não se passam por especialistas externos.",
+      "declared_paths": [
+        "src/nablamath/knowledge/peer_review.py",
+        "src/nablamath/agents/scientific_teams.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        25,
+        29,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/agents/permissions.py",
+        "src/nablamath/agents/secure_execution.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/security/test_agent_sandbox.py",
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_agent_controls.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F12-07",
+      "phase": "F12",
+      "original_acceptance": "Terceiro recupera cadeia de evidências e reconfere claims computacionais; observações e revisões externas mantêm seus limites de autenticação.",
+      "declared_paths": [
+        "src/nablamath/knowledge/provenance_audit.py",
+        "src/nablamath/discovery/research_program.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        26,
+        29,
+        41
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/discovery/independent_replication.py",
+        "src/nablamath/discovery/literature_search.py",
+        "src/nablamath/discovery/research_program.py",
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/science/test_independent_discovery.py",
+        "tests/test_phase9_discovery.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_learning.py",
+        "tests/test_roadmap_expansion.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "F12-08",
+      "phase": "F12",
+      "original_acceptance": "Reprodução externa percorre dependências e contradições; sistema preserva incertezas e não anuncia banco infalível de verdades.",
+      "declared_paths": [
+        "tests/test_phase12_knowledge.py",
+        "benchmarks/federation/"
+      ],
+      "paths_not_present": [
+        "benchmarks/federation/"
+      ],
+      "related_requirement_ids": [
+        42,
+        53
+      ],
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py",
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "T-01",
+      "phase": "F0",
+      "original_acceptance": "Codificar manifesto de critérios por fase e vincular cada check a artefatos, versão e limites. Relatório deve distinguir falhou, não executado, inconclusivo e não aplicável com justificativa; presença de arquivo não aprova fase.",
+      "declared_paths": [
+        "docs/acceptance/phase_profiles.md",
+        "tools/assess_vision.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        50,
+        56,
+        81
+      ],
+      "implementation": [
+        "docs/acceptance/phase_profiles.md",
+        "tools/check_roadmap.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_contract.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "T-02",
+      "phase": "F0",
+      "original_acceptance": "Política comum de versão, migração, IDs, ambiente e compatibilidade. Fixtures antigas continuam legíveis ou recebem erro de migração explícito; nenhuma mudança silenciosa do significado de um ID.",
+      "declared_paths": [
+        "src/nablamath/core/",
+        "src/nablamath/datasets/schema.py",
+        "src/nablamath/knowledge/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        1,
+        21,
+        29,
+        41,
+        89,
+        90,
+        91,
+        92,
+        143,
+        144,
+        145,
+        146,
+        194,
+        195,
+        196,
+        197
+      ],
+      "implementation": [
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "src/nablamath/core/migration_registry.py",
+        "src/nablamath/core/scientific_artifact.py",
+        "src/nablamath/core/semantic_contracts.py",
+        "src/nablamath/core/uncertainty.py",
+        "src/nablamath/datasets/corpus_registry.py",
+        "src/nablamath/knowledge/curriculum.py",
+        "src/nablamath/knowledge/difficulty.py",
+        "src/nablamath/knowledge/distributed_provenance.py",
+        "src/nablamath/knowledge/institutional_identity.py",
+        "src/nablamath/knowledge/lineage.py",
+        "src/nablamath/knowledge/novelty.py",
+        "src/nablamath/knowledge/replication_protocol.py",
+        "src/nablamath/knowledge/retraction_index.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_federation.py",
+        "tests/test_roadmap_editorial_governance.py",
+        "tests/test_roadmap_expansion.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "T-03",
+      "phase": "F0",
+      "original_acceptance": "Executar conformidade dos perfis em Linux/Windows, toolchains formais e dependências opcionais relevantes. Jobs científicos caros podem ser agendados; ausência deles bloqueia alegação de validação daquele release.",
+      "declared_paths": [
+        ".github/workflows/",
+        "tests/integration/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        42,
+        47,
+        61,
+        156,
+        157,
+        169,
+        170,
+        171,
+        172
+      ],
+      "implementation": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/full-integration.yml",
+        ".github/workflows/release-attestation.yml",
+        ".github/workflows/scientific-benchmarks.yml",
+        ".github/workflows/security.yml",
+        "tests/integration/test_scientific_artifact.py",
+        "tools/expanded_scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_global_scientific_cycle.py",
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_roadmap_math_extensions.py",
+        "tests/test_roadmap_network_security.py",
+        "tests/test_roadmap_resources_supplychain.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "T-04",
+      "phase": "F0",
+      "original_acceptance": "Protocolos congelados, seleção de amostra, seeds, orçamento, baselines e critérios estatísticos antes dos testes finais. Registrar todos os resultados e revisões de protocolo; rerun no mesmo holdout não é novo teste independente.",
+      "declared_paths": [
+        "benchmarks/protocols/",
+        "benchmarks/results/"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        51,
+        53,
+        166
+      ],
+      "implementation": [
+        "benchmarks/protocols/README.md",
+        "docs/history/preservation-index.json",
+        "src/nablamath/benchmarks/preregistration.py",
+        "tools/preserve_evidence.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py",
+        "tests/test_remaining_release.py",
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "T-05",
+      "phase": "F0",
+      "original_acceptance": "Exercitar o artefato completo do vision.md: problema, hipóteses, modelo, solução, trace, verificação, contraexemplos, SVG/PNG, trajetória, certificado aplicável, documento e manifesto. Adulteração de cada ligação deve falhar. Ausência de prova/observação aplicável precisa ficar explícita.",
+      "declared_paths": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        42,
+        156
+      ],
+      "implementation": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_semantic_contracts.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "T-06",
+      "phase": "F0",
+      "original_acceptance": "Versionar dependências/ambientes e procedimentos de reconstrução; validar wheel e instalador em ambiente limpo. Preservar compatibilidade pública e limites documentados. Não refazer a correção Windows já aprovada sem nova falha.",
+      "declared_paths": [
+        "pyproject.toml",
+        "src/nablamath/ferramentas de build/instalador",
+        "docs/"
+      ],
+      "paths_not_present": [
+        "src/nablamath/ferramentas de build/instalador"
+      ],
+      "related_requirement_ids": [
+        41,
+        48,
+        49,
+        50,
+        62,
+        66,
+        67,
+        68,
+        69,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        212,
+        213
+      ],
+      "implementation": [
+        "docs/ARCHITECTURE_AND_ACCEPTANCE.md",
+        "docs/MATHEMATICS_COMPLETION_AUDIT.md",
+        "docs/PLANO_MESTRE_2026_2056.md",
+        "docs/acceptance/evidence_matrix.json",
+        "docs/acceptance/phase_profiles.md",
+        "docs/acceptance/scientific_capabilities.yaml",
+        "docs/acceptance/vision_traceability.json",
+        "docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md",
+        "docs/future/2035_2045_2056_criteria.md",
+        "docs/future/F13_OPEN_RESEARCH.md",
+        "docs/governance/independent_review_policy.md",
+        "docs/governance/scientific_claims_policy.md",
+        "docs/history/preservation-index.json",
+        "docs/strategy/annual_reassessment.md",
+        "docs/strategy/roadmap_2026_2056.json",
+        "docs/strategy/scientific_risk_register.md",
+        "packaging/offline_release.py",
+        "src/nablamath/cli.py",
+        "src/nablamath/compatibility.json",
+        "src/nablamath/core/capabilities.py",
+        "tools/check_public_contracts.py",
+        "tools/preserve_evidence.py",
+        "tools/update_public_contracts.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py",
+        "tests/test_public_contracts.py",
+        "tests/test_remaining_release.py",
+        "tests/test_roadmap_contract.py",
+        "tests/test_roadmap_policy_links.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "T-07",
+      "phase": "F0",
+      "original_acceptance": "Medir memória, disco, tempo, cancelamento e retomada em volumes do perfil; falha por orçamento não gera artefato aceito ou truncado silenciosamente.",
+      "declared_paths": [
+        "benchmarks/resources/",
+        "ferramentas de avaliação"
+      ],
+      "paths_not_present": [
+        "ferramentas de avaliação"
+      ],
+      "related_requirement_ids": [
+        53,
+        167
+      ],
+      "implementation": [
+        "benchmarks/resources/hardware_profiles.json",
+        "src/nablamath/benchmarks/preregistration.py",
+        "src/nablamath/gpu/profiler.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_gpu_real_hardware.py",
+        "tests/test_registered_comparison.py",
+        "tests/test_remaining_physics_gpu.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    },
+    {
+      "id": "T-08",
+      "phase": "F0",
+      "original_acceptance": "Registrar revisão independente e rastrear correções dos achados por versão. O software valida assinaturas e conteúdo estruturado; não inventa identidade, independência ou aprovação dos revisores.",
+      "declared_paths": [
+        "docs/audits/",
+        "tools/assess_vision.py"
+      ],
+      "paths_not_present": [],
+      "related_requirement_ids": [
+        48,
+        50,
+        56,
+        67
+      ],
+      "implementation": [
+        "docs/acceptance/evidence_matrix.json",
+        "docs/acceptance/phase_profiles.md",
+        "docs/acceptance/vision_traceability.json",
+        "docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md",
+        "tools/check_public_contracts.py",
+        "tools/check_roadmap.py",
+        "tools/update_public_contracts.py"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py",
+        "tests/test_roadmap_contract.py"
+      ],
+      "acceptance_status": "pending_completion",
+      "mapping_scope": "Path overlap only; linked tests do not establish this entire acceptance criterion"
+    }
+  ],
+  "all_backlog_acceptance_established": false
+}

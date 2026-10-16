@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "scope": "Pinned local evidence bytes, not authenticated external review",
+  "files": {
+    "contracts-final.log.json": {
+      "sha256": "182c6fd2d9246d30ac21f6ea143683397e7321ebcce9491e8239789a699e9f41",
+      "bytes": 267
+    },
+    "full-final.xml.json": {
+      "sha256": "9af1a3c2913c61b6f11f29b70a5dfcd7382632bc9b2f5363f5f3113e5aaa3f98",
+      "bytes": 2493939
+    },
+    "full.xml.json": {
+      "sha256": "c7019939377913b240ce82bd3aa7897d7e6af5ac27eef1a2167bd362db03fc40",
+      "bytes": 2494982
+    },
+    "integrated-assessment.json": {
+      "sha256": "2ffcdc5cded13c8fc805e0046cb4b9076981ec96e7e4bc41ea87113cbac90d50",
+      "bytes": 1348
+    },
+    "integrated-campaign.json": {
+      "sha256": "37e14cc794b78a963d2eab7eb2fa116f6b56eac97004e94c5d3f4415310b844d",
+      "bytes": 2389
+    },
+    "integrated-learning.json": {
+      "sha256": "d6f78c1d7f54d4d1ba1d6293aa74eeaeb924d4f3034ccf50a3639a874c9120f0",
+      "bytes": 4553
+    },
+    "integrated-manifest.json": {
+      "sha256": "beca464d6e21dce7eedc5d36e6b8285850ff9f72cf0393233839f316c9fb5817",
+      "bytes": 1569
+    },
+    "integrated-protocol.json": {
+      "sha256": "446dad942a0ad827ea6d97fcec687d3279ee38548c2ad52ae50a9fa5c91f84bc",
+      "bytes": 616
+    },
+    "integrated-release-receipt.json": {
+      "sha256": "9ca218402a183b01e0af32b8c92f35e70acf0121bb9eee72a28dd2bf44b15330",
+      "bytes": 3705
+    },
+    "integrated-result.json": {
+      "sha256": "19ea948a48cb2f745bd4c32147ac57a9f22857bb9af837a7077ec2244110e9e8",
+      "bytes": 821
+    },
+    "integrated-roots.json": {
+      "sha256": "6c5d6a7624728a09617347e4af897994da4e510cc2889db09d668a3a0ba295a5",
+      "bytes": 632
+    },
+    "integrated-selection.json": {
+      "sha256": "08ae13bea8866d9bf7c022b29b951d7ba5a718e053af6c687a44cbb43001e7f5",
+      "bytes": 337718
+    },
+    "integrated-statistics.json": {
+      "sha256": "6a559d6bf08ae4587cf163f70e1fb00af095cfb46669d21dcc8fbb03b7c81a14",
+      "bytes": 1193
+    },
+    "integrated-summary.json": {
+      "sha256": "22be2e8cc7a99f1665dd2ecb5fce7fcb7fc8253b4ac0dec39544b315a4f63e71",
+      "bytes": 718
+    },
+    "integrated-training.json": {
+      "sha256": "f76d55d0cd80d5327546e07d5eb47dfa1c572f0e4c1cf9185c6587de705ba662",
+      "bytes": 6470
+    },
+    "integrated-water.json": {
+      "sha256": "c1792ae1bde55d424bb2aa94e320a0144e0ed1e01f09db9316dcfd2f12535d10",
+      "bytes": 3084
+    },
+    "learning-evidence.json": {
+      "sha256": "10f3d946f546c8b26324d1e8cbd79822ea3bbb5e1b54344e4ffc6e83d9bd80c2",
+      "bytes": 50788
+    },
+    "learning-implementation-report.json": {
+      "sha256": "6c84e95ce08342086b5015990310614c7bd85ffd01ce1b1b1ea6cfacf493e28d",
+      "bytes": 3071
+    },
+    "learning-protocol.json": {
+      "sha256": "01000b1d7043bcaaefcc8d83118ac9a2bb35c393b3b44b17f7fee264b6fc5418",
+      "bytes": 5407
+    },
+    "learning-selection.json": {
+      "sha256": "2aefe9d76d6150b0c614ba7ee5742bc1019cc907713f952918d6441a27d15f75",
+      "bytes": 941939
+    },
+    "line-counts.json": {
+      "sha256": "8f4fdb822c93e51d6c39e2db49fd7a7ad3be4b3af766fccc3dabfdda4bbf73f7",
+      "bytes": 6323
+    },
+    "math-implementation-report.json": {
+      "sha256": "45d2b1a484c5bb654e6d64031f41dafa0fc3f3828b28b6db2eacec46b8d0dc47",
+      "bytes": 4319
+    },
+    "minimal.xml.json": {
+      "sha256": "07e091fd2842f59ae0c04c6dc18738bf69322a6dc705b901331864cbbe1035a5",
+      "bytes": 2563245
+    },
+    "release-implementation-report.json": {
+      "sha256": "a67bf231930e8833c5917c87fa216ef1d4021f258da9493b322ec12ec1033c41",
+      "bytes": 3925
+    },
+    "simulation-implementation-report.json": {
+      "sha256": "847a248bb3a2579f84ffee3f822781b7f22f0606693e7e27f67030daf42ad7c3",
+      "bytes": 2435
+    },
+    "validation.json": {
+      "sha256": "86979da8dd790be1c24a3cdcc0918d077f1ba5f11d50bd680618f2b88f8aef44",
+      "bytes": 1426
+    },
+    "wheel-verification.json.json": {
+      "sha256": "ffdfe9bc8e6b78a3b435fa1354db8cbab07a1949fa45f0d7fc14ec3b5d76972b",
+      "bytes": 1376
+    }
+  }
+}

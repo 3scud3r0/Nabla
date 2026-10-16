@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "profiles": [
+    {
+      "schema_version": 1,
+      "system": "Linux",
+      "machine": "x86_64",
+      "processor": "",
+      "python": "3.12.14",
+      "logical_cpus": 5,
+      "cuda_devices": [],
+      "gpu_probe_error": "nvidia-smi unavailable",
+      "profile_id": "cloud-observed-2026-10-15",
+      "budgets": {
+        "f4_max_cells": 10000000,
+        "f4_max_prime": 32749,
+        "profiler_max_repetitions": 100
+      },
+      "acceptance": {
+        "gpu_speedup_measured": false,
+        "energy_measured": false
+      },
+      "limitations": "Observed session host only; absent GPU is not evidence of hardware acceleration."
+    }
+  ]
+}

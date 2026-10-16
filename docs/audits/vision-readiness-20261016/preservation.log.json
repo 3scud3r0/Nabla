@@ -1,0 +1,5 @@
+{
+  "original_name": "preservation.log",
+  "sha256": "78a2da347196d0ba076be46243a99b857880a94d8b05592e9987b912ef36ee2a",
+  "utf8_content": "{\n  \"preservation\": {\n    \"verified_files\": 341,\n    \"index_id\": \"9a7fdf20ae15bafa641205a7b52c43c21647ec3abaf74162718dce59d8acb535\",\n    \"scientific_validation\": false\n  },\n  \"boundary\": {\n    \"explicit_legacy_imports\": 0,\n    \"dynamic_imports_audited\": false\n  }\n}\n"
+}

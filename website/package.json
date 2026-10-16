@@ -3,7 +3,12 @@
   "private": true,
   "type": "module",
   "version": "0.1.0",
-  "description": "Site estático com estado verificável do NablaMath",
-  "scripts": {"build": "node -e \"const fs=require('fs'); const path=require('path'); fs.mkdirSync('dist/data',{recursive:true}); fs.mkdirSync('dist/src',{recursive:true}); for (const f of ['index.html','styles.css','app.js','worker.js']) fs.copyFileSync(f,path.join('dist',f)); fs.copyFileSync('src/lab.js','dist/src/lab.js'); fs.copyFileSync('data/status.json','dist/data/status.json')\"", "test": "node --test ../tests/website/*.mjs"},
-  "engines": {"node": ">=18"}
+  "description": "Site est\u00e1tico com estado verific\u00e1vel do NablaMath",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test ../tests/website/*.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }

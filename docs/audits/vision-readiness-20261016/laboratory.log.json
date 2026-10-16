@@ -1,0 +1,5 @@
+{
+  "original_name": "laboratory.log",
+  "sha256": "a1cfce702a8fc4584a7f4390404ba7178854418b404dbce1abc96c7fa6a48ec6",
+  "utf8_content": "Running workload\nworkload: passed\nRunning science\nscience: failed\nRunning independent\nindependent: passed\nRunning portfolio\nportfolio: passed\nRunning assurance\nassurance: failed\n"
+}

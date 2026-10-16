@@ -1,0 +1,5 @@
+{
+  "original_name": "calibration.log",
+  "sha256": "4aeaab66d79b851a9046d98a047bf891b36de77d5028b19eae1eed1c1e394c85",
+  "utf8_content": "{\"finite_checks_passed\":true,\"fully_calibrated_and_ready\":false,\"roadmap_counts\":{\"partial\":213,\"planned\":0,\"validated\":0}}\n"
+}

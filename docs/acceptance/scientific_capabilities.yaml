@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "owner": "Nabla maintainers; implementation reviewed through repository PR",
+  "profiles": [
+    {
+      "id": "exact-artifact",
+      "requirements": [
+        25,
+        41,
+        63,
+        68
+      ],
+      "domain": "Two exact rational task families with semantic DAG replay",
+      "operations": [
+        "create_artifact",
+        "replay_artifact"
+      ],
+      "refused": [
+        "arbitrary_code",
+        "general_scientific_validation"
+      ],
+      "absolute_tolerance": "0",
+      "relative_tolerance": "0",
+      "implementation": [
+        "src/nablamath/core/scientific_artifact.py",
+        "src/nablamath/pipeline/scientific_cycle.py"
+      ],
+      "tests": [
+        "tests/integration/test_scientific_artifact.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    },
+    {
+      "id": "rational-integration",
+      "requirements": [
+        3,
+        4,
+        6,
+        94
+      ],
+      "domain": "Polynomials and denominators split into rational linear factors",
+      "operations": [
+        "integrate_rational",
+        "verify_derivative_identity"
+      ],
+      "refused": [
+        "general_risch",
+        "transcendental_towers"
+      ],
+      "absolute_tolerance": "0",
+      "relative_tolerance": "0",
+      "implementation": [
+        "src/nablamath/math/calculus/risch.py"
+      ],
+      "tests": [
+        "tests/test_roadmap_integration_mesh.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    },
+    {
+      "id": "tensor-ad",
+      "requirements": [
+        7
+      ],
+      "domain": "Dense scalar/tensor programs under the declared coordinate and shape budgets",
+      "operations": [
+        "jacobian",
+        "hessian",
+        "broadcast"
+      ],
+      "refused": [
+        "unbounded_tensors",
+        "general_control_flow"
+      ],
+      "absolute_tolerance": "1/1000000",
+      "relative_tolerance": "1/1000000",
+      "implementation": [
+        "src/nablamath/autodiff/second_order.py"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    },
+    {
+      "id": "compiled-ir",
+      "requirements": [
+        13
+      ],
+      "domain": "Closed arithmetic tensor instruction set with typed serialization",
+      "operations": [
+        "compile",
+        "execute",
+        "roundtrip"
+      ],
+      "refused": [
+        "arbitrary_source",
+        "distributed_speedup_claim"
+      ],
+      "absolute_tolerance": "1/1000000",
+      "relative_tolerance": "1/1000000",
+      "implementation": [
+        "src/nablamath/compiler/ir.py"
+      ],
+      "tests": [
+        "tests/test_remaining_math_compiler.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    },
+    {
+      "id": "controlled-proofs",
+      "requirements": [
+        10,
+        43,
+        106,
+        107,
+        108
+      ],
+      "domain": "Controlled rational predicates and closed tactic portfolio",
+      "operations": [
+        "parse_controlled_statement",
+        "plan_proof",
+        "repair_tactic"
+      ],
+      "refused": [
+        "free_natural_language",
+        "unverified_kernel_success"
+      ],
+      "absolute_tolerance": "0",
+      "relative_tolerance": "0",
+      "implementation": [
+        "src/nablamath/formal/proof_search_planner.py",
+        "lean/Nabla/KernelContracts.lean"
+      ],
+      "tests": [
+        "tests/test_roadmap_formal_workflows.py",
+        "tests/test_remaining_math_compiler.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    },
+    {
+      "id": "device-kernels",
+      "requirements": [
+        12,
+        75,
+        110,
+        111,
+        112,
+        161
+      ],
+      "domain": "Optional modular elimination CUDA and parent lookup Triton",
+      "operations": [
+        "cuda_modular_rref",
+        "triton_parent_lookup",
+        "profile_wall_time"
+      ],
+      "refused": [
+        "cpu_as_gpu",
+        "unmeasured_energy_claim"
+      ],
+      "absolute_tolerance": "0",
+      "relative_tolerance": "0",
+      "implementation": [
+        "src/nablamath/gpu/kernels/f4_cuda.py",
+        "src/nablamath/gpu/kernels/egraph_triton.py"
+      ],
+      "tests": [
+        "tests/benchmark/test_gpu_real_hardware.py",
+        "tests/test_remaining_physics_gpu.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. Device execution remains untested on this host."
+    },
+    {
+      "id": "bounded-physics",
+      "requirements": [
+        14,
+        15,
+        28,
+        73,
+        74,
+        119,
+        163
+      ],
+      "domain": "Declared 1D Euler/channel/FLRW ideal models with finite checks",
+      "operations": [
+        "channel_stokes",
+        "flrw_residual",
+        "flrw_geodesic"
+      ],
+      "refused": [
+        "general_einstein_solver",
+        "experimental_validation_claim"
+      ],
+      "absolute_tolerance": "1/1000000",
+      "relative_tolerance": "1/1000000",
+      "implementation": [
+        "src/nablamath/physics/fluids/channel.py",
+        "src/nablamath/physics/relativity/einstein_solver.py"
+      ],
+      "tests": [
+        "tests/test_remaining_physics_gpu.py",
+        "tests/science/test_observational_validation.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    },
+    {
+      "id": "audited-train",
+      "requirements": [
+        23,
+        77,
+        78,
+        128,
+        129,
+        130,
+        162
+      ],
+      "domain": "Frozen bounded supervised linear training and declared family transfer",
+      "operations": [
+        "fit_linear_reasoning",
+        "cross_domain_evaluate"
+      ],
+      "refused": [
+        "llm_finetuning_claim",
+        "secret_holdout_claim"
+      ],
+      "absolute_tolerance": "1/1000000",
+      "relative_tolerance": "1/1000000",
+      "implementation": [
+        "src/nablamath/training/reasoning_finetune.py",
+        "src/nablamath/training/cross_domain_eval.py"
+      ],
+      "tests": [
+        "tests/test_remaining_learning.py",
+        "tests/benchmark/test_holdout_generalization.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    },
+    {
+      "id": "curated-literature",
+      "requirements": [
+        26,
+        76,
+        135,
+        164
+      ],
+      "domain": "Queries over source-identified snapshots and declared review records",
+      "operations": [
+        "search_curated_snapshot",
+        "record_review"
+      ],
+      "refused": [
+        "global_novelty_claim",
+        "authenticated_human_review_claim"
+      ],
+      "absolute_tolerance": "0",
+      "relative_tolerance": "0",
+      "implementation": [
+        "src/nablamath/discovery/literature_search.py"
+      ],
+      "tests": [
+        "tests/science/test_independent_discovery.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    },
+    {
+      "id": "consented-product",
+      "requirements": [
+        16,
+        17,
+        19,
+        38,
+        40,
+        55,
+        58,
+        59,
+        72
+      ],
+      "domain": "Local consent-bound experiment, canonical documents and publication dry-run",
+      "operations": [
+        "local_experiment",
+        "replay_experiment",
+        "publication_dry_run",
+        "accessible_plot"
+      ],
+      "refused": [
+        "remote_publication_without_consent",
+        "visual_review_claim"
+      ],
+      "absolute_tolerance": "0",
+      "relative_tolerance": "0",
+      "implementation": [
+        "src/nablamath/desktop/workflows.py",
+        "src/nablamath/publisher/authorization.py",
+        "src/nablamath/reports/canonical_bundle.py"
+      ],
+      "tests": [
+        "tests/test_remaining_product.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    },
+    {
+      "id": "federation",
+      "requirements": [
+        30,
+        31,
+        32,
+        143,
+        144,
+        152,
+        165
+      ],
+      "domain": "Pinned-key attestations and durable local provenance/reconciliation",
+      "operations": [
+        "verify_attestation",
+        "reconcile_provenance"
+      ],
+      "refused": [
+        "institutional_identity_without_trust",
+        "internet_multihost_claim"
+      ],
+      "absolute_tolerance": "0",
+      "relative_tolerance": "0",
+      "implementation": [
+        "src/nablamath/knowledge/distributed_provenance.py",
+        "src/nablamath/knowledge/institutional_identity.py"
+      ],
+      "tests": [
+        "tests/test_remaining_federation.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    },
+    {
+      "id": "registered-comparison",
+      "requirements": [
+        39,
+        53
+      ],
+      "domain": "Fixed exact cohort and model commitments with one-time result ledger",
+      "operations": [
+        "register_study",
+        "score_paired_models",
+        "replay_study"
+      ],
+      "refused": [
+        "posthoc_metric_selection",
+        "external_generalization_claim"
+      ],
+      "absolute_tolerance": "0",
+      "relative_tolerance": "0",
+      "implementation": [
+        "src/nablamath/benchmarks/preregistration.py"
+      ],
+      "tests": [
+        "tests/test_registered_comparison.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    },
+    {
+      "id": "capability-contracts",
+      "requirements": [
+        64,
+        66,
+        67,
+        68,
+        69,
+        83
+      ],
+      "domain": "Finite authored domains and bidirectional original requirement references",
+      "operations": [
+        "query_capability",
+        "validate_traceability"
+      ],
+      "refused": [
+        "infer_scientific_completion"
+      ],
+      "absolute_tolerance": "0",
+      "relative_tolerance": "0",
+      "implementation": [
+        "src/nablamath/core/capabilities.py",
+        "tools/check_public_contracts.py"
+      ],
+      "tests": [
+        "tests/test_public_contracts.py"
+      ],
+      "limitations": "Local bounded contract only; independent scientific acceptance is not established. "
+    }
+  ],
+  "scope": "Authored finite software contracts, not all mathematics or full-roadmap certification"
+}

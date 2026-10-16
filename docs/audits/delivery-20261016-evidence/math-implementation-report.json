@@ -1,0 +1,126 @@
+{
+  "files": [
+    "src/nablamath/math/polynomials/real_roots.py",
+    "src/nablamath/math/polynomials/exact_algebra.py",
+    "src/nablamath/math/polynomials/finite_field.py",
+    "src/nablamath/math/linear_algebra/exact_spectral.py",
+    "src/nablamath/math/linear_algebra/invariant_decomposition.py",
+    "tests/test_delivery_math_20261016.py",
+    "src/nablamath/autodiff/linalg.py",
+    "src/nablamath/autodiff/__init__.py",
+    "tests/test_delivery_autodiff_linalg_20261016.py"
+  ],
+  "line_counts": {
+    "src/nablamath/math/polynomials/real_roots.py": {
+      "physical": 376,
+      "token_lines": 322
+    },
+    "src/nablamath/math/polynomials/exact_algebra.py": {
+      "physical": 254,
+      "token_lines": 217
+    },
+    "src/nablamath/math/polynomials/finite_field.py": {
+      "physical": 380,
+      "token_lines": 325
+    },
+    "src/nablamath/math/linear_algebra/exact_spectral.py": {
+      "physical": 308,
+      "token_lines": 261
+    },
+    "src/nablamath/math/linear_algebra/invariant_decomposition.py": {
+      "physical": 262,
+      "token_lines": 235
+    },
+    "tests/test_delivery_math_20261016.py": {
+      "physical": 489,
+      "token_lines": 411
+    },
+    "src/nablamath/autodiff/linalg.py": {
+      "physical": 438,
+      "token_lines": 370
+    },
+    "src/nablamath/autodiff/__init__.py": {
+      "physical": 16,
+      "token_lines": 13
+    },
+    "tests/test_delivery_autodiff_linalg_20261016.py": {
+      "physical": 323,
+      "token_lines": 267
+    }
+  },
+  "apis": {
+    "real_roots": [
+      "square_free_decomposition",
+      "sturm_sequence",
+      "count_real_roots",
+      "isolate_real_roots",
+      "verify_root_isolation"
+    ],
+    "exact_algebra": [
+      "extended_polynomial_gcd",
+      "QuotientElement",
+      "polynomial_crt",
+      "resultant",
+      "discriminant"
+    ],
+    "exact_spectral": [
+      "minimal_polynomial",
+      "spectral_certificate",
+      "verify_spectral_certificate",
+      "generalized_eigenspace",
+      "rational_diagonalization"
+    ],
+    "invariant_decomposition": [
+      "invariant_decomposition",
+      "additive_decomposition",
+      "verify_additive_decomposition"
+    ],
+    "finite_field": [
+      "FpPolynomial",
+      "is_irreducible",
+      "berlekamp_basis",
+      "factor_finite_field",
+      "verify_finite_field_factorization"
+    ],
+    "autodiff.linalg": [
+      "solve",
+      "inverse",
+      "determinant",
+      "slogdet",
+      "logdet",
+      "cholesky",
+      "spd_solve",
+      "gaussian_negative_log_likelihood",
+      "solve_jvp",
+      "solve_vjp",
+      "solve_diagnostics",
+      "matrix_from_entries",
+      "stack_vector",
+      "diagonal_matrix",
+      "trace"
+    ]
+  },
+  "validation": {
+    "new": "106 passed",
+    "mathematics_regression": "266 passed",
+    "independent_oracles": "SymPy32 rational polynomial cases,24 rational matrices,60 finitefield factorizations;182 exhaustive smallfield monic inputs",
+    "warnings": "17 upstream SymPy modularinteger ordering deprecations",
+    "new_math": "108 passed after CRT/Sturm review regressions",
+    "new_linalg": "34 passed",
+    "combined_before_last_two_jvp_tests": "190 passed,1 skipped (optionalLean)"
+  },
+  "limits": [
+    "Rational polynomial inputdegree<=32 coefficients<=512bits; isolation128bits max100000nodes",
+    "Exact spectral matrices dimension<=8/input512bits; rational diagonalization requires supplied spectrum; semisimple over algebraicclosure neednot diagonalizeoverQ",
+    "Finitefield primes<=257 degree<=16; budgetexhaustion raises no partialcertificate",
+    "Certificates are exact algorithmic replay, not Lean kernel proofs; worktelemetry not authenticated",
+    "Quotient algebra doesnotassume modulus irreducible; nonunits reject inversion",
+    "ADlinalg floating referencebackend square dimension<=8, nonsingular pivotthreshold explicit; secondorderO(n\u00b3d\u00b2), noacceleratorclaim. Cholesky uses symmetric extension and SPDprimal checks. Gaussianloss doesnotestablishcalibration."
+  ],
+  "review_fixes": [
+    "CRT residues reduced modulo own modulus before multiplication",
+    "Sturm signvariations sequence capped33 consumingatmost34entries",
+    "Datasetledger64MiBaggregate snapshot SQLpreflight/incoming budget pluscorruptiontypevalidation",
+    "Clustered invalidnoniterables normalizedValueError"
+  ]
+}

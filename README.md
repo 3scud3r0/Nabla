@@ -8,7 +8,7 @@ Laboratório científico local em Python para cálculo rastreável, geração de
 
 **Alpha de pesquisa.** Há componentes executáveis para F1–F12 do [vision.md](vision.md), com escopos delimitados e artefatos verificáveis. As fases científicas não estão declaradas concluídas.
 
-A [auditoria de 15/10/2026](docs/audits/FRONTIER_LAB_SIMULATION_2026_10_15.md) registra uma estimativa técnica ponderada de **70,32%**, com incerteza aproximada de ±10 pontos. É julgamento pela rubrica publicada, não medição de conclusão científica. A campanha local passou pelos cenários selecionados das 12 fases; os baselines aprendidos acertaram **0/48** no teste reservado. Ganho em modelos de fronteira e utilização por laboratórios externos não foram demonstrados.
+As capacidades e recusas atuais são registradas na [matriz de aceitação](docs/acceptance/evidence_matrix.json) e nos [contratos científicos](docs/acceptance/scientific_capabilities.yaml). Os baselines aprendidos da campanha congelada continuam em **0/48** no teste reservado. A execução mais recente do laboratório falhou na etapa Mathlib; resultados e falhas estão na [auditoria](docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md). A estimativa técnica de 70,32% pertence a um snapshot histórico e não mede o estado atual ou conclusão científica.
 
 | Área | Implementação disponível | Guia |
 |---|---|---|
@@ -99,3 +99,17 @@ A [visão 2026–2056+](vision.md), o [plano mestre](docs/PLANO_MESTRE_2026_2056
 Simulações são modelos delimitados, sem validação física geral. Assinaturas autenticam chaves configuradas, não expertise. Provas Lean certificam enunciados sob hipóteses; sua correspondência com texto exige revisão. Publicação no Hub é opcional e depende de destino, direitos e credenciais.
 
 Código sob [MIT](LICENSE); dados e dependências têm licenças próprias. [Contribuição](CONTRIBUTING.md) · [Segurança](SECURITY.md) · [Política de dados](docs/DATA_GOVERNANCE.md).
+
+<!-- nabla:contracts:start -->
+## Contratos executáveis e pendências atuais
+
+A matriz registra 213 requisitos com perfis parciais, 0 planejados e 0 integralmente validados. Uma referência de implementação não equivale à aceitação integral.
+
+- [Matriz original dos 213 requisitos](docs/acceptance/evidence_matrix.json).
+- [Rastreabilidade de fases, requisitos, testes e evidências](docs/acceptance/vision_traceability.json).
+- [Domínios, operações, recusas e tolerâncias](docs/acceptance/scientific_capabilities.yaml).
+
+F0 explicita contratos e infraestrutura; F13 continua horizonte aberto. Os perfis de software não demonstram autonomia científica geral. Provas formais exigem kernel e auditoria de hipóteses; GPU exige execução identificada; observações e revisão externa não são substituídas por fixtures ou identidade declarada.
+
+Verificar: `python tools/check_roadmap.py` e `python tools/check_public_contracts.py`, na raiz do repositório.
+<!-- nabla:contracts:end -->
