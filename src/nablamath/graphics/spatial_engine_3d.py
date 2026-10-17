@@ -729,7 +729,7 @@ class Standalone3DViewer:
     def _engine():
         directory=resources.files('nablamath.graphics').joinpath('vendor')
         raw=directory.joinpath('three-orbit-0.180.0.min.js').read_bytes()
-        manifest=json.loads(directory.joinpath('provenance.json').read_text())
+        manifest=json.loads(directory.joinpath('provenance.json').read_text(encoding='utf-8'))
         import hashlib
         if hashlib.sha256(raw).hexdigest()!=manifest['sha256']:
             raise ValueError('Bundled Three.js/OrbitControls integrity check failed')
@@ -1838,7 +1838,7 @@ class SpatialExperiment:
         root=Path(directory)
         try:
             if root.is_symlink():return False
-            manifest=json.loads((root/'manifest.json').read_text())
+            manifest=json.loads((root/'manifest.json').read_text(encoding='utf-8'))
             if manifest['schema']!='nabla.spatial-artifact.v1':return False
             actual={p.name for p in root.iterdir() if p.is_file() and p.name!='manifest.json'}
             if actual!=set(manifest['files']):return False
@@ -1850,7 +1850,7 @@ class SpatialExperiment:
             GLTFInspector.inspect(root/'scene.glb')
             records=[r for r in bundle['receipts'] if r['content_id']==manifest['observation_receipt']]
             if len(records)!=1:return False
-            mesh=json.loads((root/'mesh.json').read_text());frames=json.loads((root/'frames.json').read_text())
+            mesh=json.loads((root/'mesh.json').read_text(encoding='utf-8'));frames=json.loads((root/'frames.json').read_text(encoding='utf-8'))
             return records[0]['result']=={'mesh_sha256':fingerprint(mesh),'frames_sha256':fingerprint(frames['frames'])}
         except (OSError,ValueError,TypeError,KeyError,ArithmeticError):return False
 

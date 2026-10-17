@@ -4,7 +4,8 @@
 
 O Nabla reúne matemática simbólica e numérica, recibos verificáveis, notebooks
 reexecutáveis, ferramentas para agentes e documentos científicos reativos.
-A versão 1 oferece **133 operações no catálogo**, incluindo **30 operações novas**,
+A versão 1 oferece **134 operações no catálogo**, incluindo **30 operações novas**
+e a macro experimental [OMNI_ENGINE](docs/OMNI_ENGINE.md),
 e **156 ações especializadas de `advanced_math`**. As ações aninhadas não devem
 ser somadas às operações como se fossem áreas matemáticas completas.
 
