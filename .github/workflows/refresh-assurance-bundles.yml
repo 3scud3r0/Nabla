@@ -6,6 +6,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: assurance-source-archive-refresh
+  cancel-in-progress: true
+
 jobs:
   synchronize:
     if: github.repository == '3scud3r0/Nabla' && github.ref == 'refs/heads/fix/integrated-validation-assurance-20261017'
