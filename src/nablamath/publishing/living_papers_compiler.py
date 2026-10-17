@@ -782,6 +782,8 @@ class LivingPaperCompiler:
                 raise ValueError('Publication paths must not be symlinks')
             if self._last_identity==identity and self._last_result is not None:
                 old=self._last_result
+                if old.manifest.is_symlink() or old.manifest.parent.is_symlink():
+                    raise ValueError('Immutable revision must not use symlinks')
                 # A cached result requires both stable deliverables and their
                 # immutable, hash-bound counterparts. Missing or altered
                 # companions must be restored, not reported as unchanged.
@@ -824,6 +826,8 @@ class LivingPaperCompiler:
             if root.is_symlink() or self.output.is_symlink():raise ValueError('Publication paths must not be symlinks')
             root.mkdir(parents=True,exist_ok=True)
             final=root/revision
+            if final.is_symlink() or (final/'manifest.json').is_symlink():
+                raise ValueError('Immutable publication revision must not use symlinks')
             if final.exists():
                 if not (final/'manifest.json').is_file():raise ValueError('Existing incomplete publication revision')
                 metadata=json.loads(_read(final/'manifest.json'))
