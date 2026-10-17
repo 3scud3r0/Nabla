@@ -1,13 +1,13 @@
 """Optional PDF compilation, isolated from the checkout and without shell escape."""
 from pathlib import Path
 import shutil
-import subprocess
 import tempfile
 import importlib.util
 import sys
 
 from .document_model import Document
 from .exporters import to_latex, to_typst
+from ..artifacts.process import run_renderer
 
 
 def build_pdf(document: Document, destination: Path, backend: str = "typst", *, asset_root: Path | None = None) -> Path:
@@ -44,10 +44,13 @@ def build_pdf(document: Document, destination: Path, backend: str = "typst", *, 
             args = [sys.executable, '-c',
                     'import sys,typst; open(sys.argv[2],"wb").write(typst.compile(sys.argv[1], root=sys.argv[3]))',
                     str(source), str(root/'document.pdf'), str(root)]
-        result = subprocess.run(args, cwd=root, capture_output=True, timeout=60, check=False)
+        run_renderer(args,cwd=root,timeout=60)
+        if backend == 'latex':
+            # Repeated table headers, widths and page references settle on pass two.
+            run_renderer(args,cwd=root,timeout=60)
         pdf = root / "document.pdf"
-        if result.returncode or not pdf.is_file() or not pdf.read_bytes().startswith(b'%PDF-'):
-            raise RuntimeError("Compilacao PDF falhou: " + result.stderr.decode(errors="replace")[-500:])
+        if not pdf.is_file() or not pdf.read_bytes().startswith(b'%PDF-'):
+            raise RuntimeError("Compilacao PDF falhou: PDF ausente ou inválido")
         destination.parent.mkdir(parents=True, exist_ok=True)
         with destination.open('xb') as output:
             output.write(pdf.read_bytes())

@@ -1,0 +1,640 @@
+{
+  "schema_version": 1,
+  "reference": "MSC 2020, two-digit branches",
+  "reference_url": "https://msc2020.org/",
+  "taxonomy_scope": "63 major codes; descriptive labels and implementation mapping authored for Nabla. The full MSC text is not redistributed.",
+  "scientific_completion_established": false,
+  "classifications": [
+    {
+      "code": "00",
+      "area": "Infraestrutura matemática",
+      "source": "src/nablamath/calc/catalog.py",
+      "module": "nablamath.calc.catalog",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Catálogo e contratos de operações computacionais",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "01",
+      "area": "Fontes históricas e bibliográficas",
+      "source": "src/nablamath/documents/citations.py",
+      "module": "nablamath.documents.citations",
+      "operation": null,
+      "coverage": "documentary_only",
+      "scope": "Metadados bibliográficos fornecidos; não pesquisa historiográfica automática",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "03",
+      "area": "Fundamentos e lógica",
+      "source": "src/nablamath/math/logic/smt_linear.py",
+      "module": "nablamath.math.logic.smt_linear",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Proposições e aritmética linear em fragmentos controlados",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "05",
+      "area": "Combinatória",
+      "source": "src/nablamath/math/combinatorics/enumerative.py",
+      "module": "nablamath.math.combinatorics.enumerative",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Contagem finita e identidades combinatórias",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "06",
+      "area": "Ordens e reticulados",
+      "source": "src/nablamath/ops/order_theory.py",
+      "module": "nablamath.ops.order_theory",
+      "operation": "order_theory",
+      "coverage": "added_bounded_profile",
+      "scope": "finite partial orders, Hasse covers and lattice joins/meets; 64 elements",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "08",
+      "area": "Álgebras universais",
+      "source": "src/nablamath/ops/universal_algebra.py",
+      "module": "nablamath.ops.universal_algebra",
+      "operation": "universal_algebra",
+      "coverage": "added_bounded_profile",
+      "scope": "finite binary algebras, generated subalgebras and congruence quotients",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "11",
+      "area": "Teoria dos números",
+      "source": "src/nablamath/math/exact/advanced_number_theory.py",
+      "module": "nablamath.math.exact.advanced_number_theory",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Problemas inteiros e modulares com orçamentos explícitos",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "12",
+      "area": "Corpos e polinômios",
+      "source": "src/nablamath/math/exact/finite_fields.py",
+      "module": "nablamath.math.exact.finite_fields",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Corpos finitos e extensões polinomiais",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "13",
+      "area": "Álgebra comutativa",
+      "source": "src/nablamath/math/algebra/groebner.py",
+      "module": "nablamath.math.algebra.groebner",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Bases de Gröbner polinomiais em problemas finitos",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "14",
+      "area": "Geometria algébrica",
+      "source": "src/nablamath/ops/algebraic_geometry.py",
+      "module": "nablamath.ops.algebraic_geometry",
+      "operation": "algebraic_geometry",
+      "coverage": "added_bounded_profile",
+      "scope": "rational points and Zariski tangent spaces of explicitly generated affine schemes",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "15",
+      "area": "Álgebra linear",
+      "source": "src/nablamath/math/linear_algebra/solvers.py",
+      "module": "nablamath.math.linear_algebra.solvers",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Sistemas e decomposições racionais exatas",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "16",
+      "area": "Anéis associativos",
+      "source": "src/nablamath/math/algebra/rings.py",
+      "module": "nablamath.math.algebra.rings",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Estruturas e verificações algébricas finitas",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "17",
+      "area": "Álgebras de Lie",
+      "source": "src/nablamath/ops/lie_algebra.py",
+      "module": "nablamath.ops.lie_algebra",
+      "operation": "lie_algebra",
+      "coverage": "added_bounded_profile",
+      "scope": "rational Lie brackets, Jacobi verification, center and Killing form; dimension at most six",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "18",
+      "area": "Categorias e estruturas homológicas",
+      "source": "src/nablamath/math/category_theory/functors.py",
+      "module": "nablamath.math.category_theory.functors",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Categorias finitas, funtores e transformações naturais",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "19",
+      "area": "Invariantes K",
+      "source": "src/nablamath/ops/k_theory.py",
+      "module": "nablamath.ops.k_theory",
+      "operation": "k_theory",
+      "coverage": "added_bounded_profile",
+      "scope": "exact K0 presentation of finite graph Leavitt path algebras, not general higher K-theory",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "20",
+      "area": "Grupos",
+      "source": "src/nablamath/math/algebra/groups.py",
+      "module": "nablamath.math.algebra.groups",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Grupos finitos e operações estruturais",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "22",
+      "area": "Grupos de Lie",
+      "source": "src/nablamath/ops/lie_groups.py",
+      "module": "nablamath.ops.lie_groups",
+      "operation": "lie_groups",
+      "coverage": "added_bounded_profile",
+      "scope": "numerical SO(3) exponential, quaternion and left Jacobian in radians",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "26",
+      "area": "Análise real",
+      "source": "src/nablamath/math/analysis/certified_functions.py",
+      "module": "nablamath.math.analysis.certified_functions",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Envoltórias racionais de funções em domínios delimitados",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "28",
+      "area": "Medida e integração",
+      "source": "src/nablamath/ops/measure_theory.py",
+      "module": "nablamath.ops.measure_theory",
+      "operation": "measure_theory",
+      "coverage": "added_bounded_profile",
+      "scope": "finite atomic measure integrals and exact conditional expectation",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "30",
+      "area": "Análise complexa univariada",
+      "source": "src/nablamath/ops/complex_analysis.py",
+      "module": "nablamath.ops.complex_analysis",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Contornos numéricos e mapas de Möbius",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "31",
+      "area": "Potencial discreto",
+      "source": "src/nablamath/ops/potential_theory.py",
+      "module": "nablamath.ops.potential_theory",
+      "operation": "potential_theory",
+      "coverage": "added_bounded_profile",
+      "scope": "exact finite weighted-graph Dirichlet solution, residuals and energy",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "32",
+      "area": "Várias variáveis complexas",
+      "source": "src/nablamath/ops/several_complex_variables.py",
+      "module": "nablamath.ops.several_complex_variables",
+      "operation": "several_complex_variables",
+      "coverage": "added_bounded_profile",
+      "scope": "exact Gaussian-rational holomorphic polynomial Jacobians and local inverse criterion",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "33",
+      "area": "Funções especiais",
+      "source": "src/nablamath/ops/special_functions.py",
+      "module": "nablamath.ops.special_functions",
+      "operation": "special_functions",
+      "coverage": "added_bounded_profile",
+      "scope": "real Gamma/Beta/error functions and optional SciPy Bessel/Legendre/Airy evaluation",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "34",
+      "area": "Equações diferenciais ordinárias",
+      "source": "src/nablamath/numeric/ode.py",
+      "module": "nablamath.numeric.ode",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Integração numérica com modelos e tolerâncias declarados",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "35",
+      "area": "Equações diferenciais parciais",
+      "source": "src/nablamath/numeric/pde_general.py",
+      "module": "nablamath.numeric.pde_general",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Perfis de Poisson e domínios de fronteira específicos",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "37",
+      "area": "Dinâmica",
+      "source": "src/nablamath/math/dynamical_systems/discrete.py",
+      "module": "nablamath.math.dynamical_systems.discrete",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Iteração finita e sistemas discretos",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "39",
+      "area": "Equações de diferenças",
+      "source": "src/nablamath/ops/difference_equations.py",
+      "module": "nablamath.ops.difference_equations",
+      "operation": "difference_equations",
+      "coverage": "added_bounded_profile",
+      "scope": "exact affine constant-coefficient recurrence with explicit index and bit budgets",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "40",
+      "area": "Sequências e séries",
+      "source": "src/nablamath/math/analysis/sequences.py",
+      "module": "nablamath.math.analysis.sequences",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Sequências e séries sob condições declaradas",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "41",
+      "area": "Aproximação e interpolação",
+      "source": "src/nablamath/ops/approximation_theory.py",
+      "module": "nablamath.ops.approximation_theory",
+      "operation": "approximation_theory",
+      "coverage": "added_bounded_profile",
+      "scope": "exact rational barycentric interpolation and query Lebesgue amplification",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "42",
+      "area": "Análise harmônica euclidiana",
+      "source": "src/nablamath/ops/spectral.py",
+      "module": "nablamath.ops.spectral",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "FFT, Haar e sinais amostrados finitos",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "43",
+      "area": "Harmônica em grupos",
+      "source": "src/nablamath/ops/abstract_harmonic_analysis.py",
+      "module": "nablamath.ops.abstract_harmonic_analysis",
+      "operation": "abstract_harmonic_analysis",
+      "coverage": "added_bounded_profile",
+      "scope": "numerical Fourier characters on finite products of cyclic groups",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "44",
+      "area": "Transformadas integrais",
+      "source": "src/nablamath/ops/integral_transforms.py",
+      "module": "nablamath.ops.integral_transforms",
+      "operation": "integral_transforms",
+      "coverage": "added_bounded_profile",
+      "scope": "exact polynomial Laplace/unit-Mellin and finite real rational Z transforms",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "45",
+      "area": "Equações integrais",
+      "source": "src/nablamath/ops/integral_equations.py",
+      "module": "nablamath.ops.integral_equations",
+      "operation": "integral_equations",
+      "coverage": "added_bounded_profile",
+      "scope": "exact nonsingular second-kind Fredholm equation with polynomial finite-rank kernel",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "46",
+      "area": "Espaços funcionais",
+      "source": "src/nablamath/ops/functional_analysis.py",
+      "module": "nablamath.ops.functional_analysis",
+      "operation": "functional_analysis",
+      "coverage": "added_bounded_profile",
+      "scope": "exact finite weighted-Hilbert projection, orthogonality and Pythagoras identity",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "47",
+      "area": "Operadores",
+      "source": "src/nablamath/ops/operator_theory.py",
+      "module": "nablamath.ops.operator_theory",
+      "operation": "operator_theory",
+      "coverage": "added_bounded_profile",
+      "scope": "finite rational operators, adjoints, induced norms, positivity and resolvents",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "49",
+      "area": "Cálculo variacional",
+      "source": "src/nablamath/ops/variational_calculus.py",
+      "module": "nablamath.ops.variational_calculus",
+      "operation": "variational_calculus",
+      "coverage": "added_bounded_profile",
+      "scope": "exact scalar polynomial first-order Euler-Lagrange equation, momentum and energy",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "51",
+      "area": "Geometria",
+      "source": "src/nablamath/math/geometry/euclidean.py",
+      "module": "nablamath.math.geometry.euclidean",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Geometria euclidiana e coordenadas exatas",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "52",
+      "area": "Convexidade",
+      "source": "src/nablamath/math/geometry/convex.py",
+      "module": "nablamath.math.geometry.convex",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Objetos convexos finitos e algoritmos geométricos",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "53",
+      "area": "Geometria diferencial",
+      "source": "src/nablamath/ops/differential_geometry.py",
+      "module": "nablamath.ops.differential_geometry",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Métricas locais e curvatura em dimensão limitada",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "54",
+      "area": "Topologia geral",
+      "source": "src/nablamath/math/topology/general.py",
+      "module": "nablamath.math.topology.general",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Espaços topológicos finitos",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "55",
+      "area": "Topologia algébrica",
+      "source": "src/nablamath/math/topology/homology.py",
+      "module": "nablamath.math.topology.homology",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Complexos finitos e homologia racional",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "57",
+      "area": "Superfícies e variedades trianguladas",
+      "source": "src/nablamath/ops/manifold_topology.py",
+      "module": "nablamath.ops.manifold_topology",
+      "operation": "manifold_topology",
+      "coverage": "added_bounded_profile",
+      "scope": "finite triangulated surface links, boundaries, orientability and closed orientable genus",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "58",
+      "area": "Análise global discreta",
+      "source": "src/nablamath/ops/global_analysis.py",
+      "module": "nablamath.ops.global_analysis",
+      "operation": "global_analysis",
+      "coverage": "added_bounded_profile",
+      "scope": "finite simplicial Hodge Laplacian and exact harmonic projection",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "60",
+      "area": "Probabilidade e processos estocásticos",
+      "source": "src/nablamath/math/probability/stochastic.py",
+      "module": "nablamath.math.probability.stochastic",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Processos e caminhos amostrados em modelos declarados",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "62",
+      "area": "Estatística",
+      "source": "src/nablamath/math/statistics/multivariate.py",
+      "module": "nablamath.math.statistics.multivariate",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Ajustes e inferência em modelos delimitados",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "65",
+      "area": "Análise numérica",
+      "source": "src/nablamath/numeric/linear.py",
+      "module": "nablamath.numeric.linear",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Álgebra e aproximação numérica com contratos específicos",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "68",
+      "area": "Computação matemática",
+      "source": "src/nablamath/math/formal_languages/automata.py",
+      "module": "nablamath.math.formal_languages.automata",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Autômatos e linguagens finitas",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "70",
+      "area": "Mecânica de sistemas",
+      "source": "src/nablamath/physics/orbital/dynamics.py",
+      "module": "nablamath.physics.orbital.dynamics",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Dinâmica de partículas e gravitação em modelos finitos",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "74",
+      "area": "Mecânica de sólidos",
+      "source": "src/nablamath/physics/fea/truss2d.py",
+      "module": "nablamath.physics.fea.truss2d",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Elementos finitos de treliças e materiais declarados",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "76",
+      "area": "Mecânica de fluidos",
+      "source": "src/nablamath/physics/fluids/navier_stokes.py",
+      "module": "nablamath.physics.fluids.navier_stokes",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Perfis numéricos com malha e condições de contorno",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "78",
+      "area": "Eletromagnetismo aplicado",
+      "source": "src/nablamath/domains/circuits/resistive.py",
+      "module": "nablamath.domains.circuits.resistive",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Circuitos resistivos e modelos elétricos delimitados",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "80",
+      "area": "Transferência térmica",
+      "source": "src/nablamath/worlds/pde/diffusion.py",
+      "module": "nablamath.worlds.pde.diffusion",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Difusão térmica discreta em modelos de fronteira específicos",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "81",
+      "area": "Matemática quântica",
+      "source": "src/nablamath/domain/quantum.py",
+      "module": "nablamath.domain.quantum",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Circuitos unitários ideais em espaço de estados limitado",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "82",
+      "area": "Mecânica estatística",
+      "source": "src/nablamath/ops/statistical_mechanics.py",
+      "module": "nablamath.ops.statistical_mechanics",
+      "operation": "statistical_mechanics",
+      "coverage": "added_bounded_profile",
+      "scope": "stable finite canonical ensemble in caller-consistent units; no thermodynamic limit",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "83",
+      "area": "Relatividade",
+      "source": "src/nablamath/physics/relativity/general.py",
+      "module": "nablamath.physics.relativity.general",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Modelos relativísticos específicos e suas hipóteses",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "85",
+      "area": "Modelos astronômicos",
+      "source": "src/nablamath/physics/orbital/dynamics.py",
+      "module": "nablamath.physics.orbital.dynamics",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Órbitas e gravitação em perfis locais",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "86",
+      "area": "Modelos geofísicos",
+      "source": "src/nablamath/ops/geophysics.py",
+      "module": "nablamath.ops.geophysics",
+      "operation": "geophysics",
+      "coverage": "added_bounded_profile",
+      "scope": "vertical layered acoustic times/reflections or infinite Bouguer slab in SI units",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "90",
+      "area": "Pesquisa operacional",
+      "source": "src/nablamath/math/exact/discrete_optimization.py",
+      "module": "nablamath.math.exact.discrete_optimization",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Otimização e grafos finitos",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "91",
+      "area": "Jogos e decisões",
+      "source": "src/nablamath/math/game_theory/normal_form.py",
+      "module": "nablamath.math.game_theory.normal_form",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Jogos finitos em forma normal",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "92",
+      "area": "Matemática biológica",
+      "source": "src/nablamath/domain/bioinformatics.py",
+      "module": "nablamath.domain.bioinformatics",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Alinhamento de sequências; interpretação biológica externa",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "93",
+      "area": "Controle",
+      "source": "src/nablamath/math/control/linear.py",
+      "module": "nablamath.math.control.linear",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Sistemas lineares e verificações estruturais",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "94",
+      "area": "Informação e códigos",
+      "source": "src/nablamath/math/information/coding.py",
+      "module": "nablamath.math.information.coding",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Códigos e entropia de distribuições finitas",
+      "entire_subject_implemented": false
+    },
+    {
+      "code": "97",
+      "area": "Ensino de matemática",
+      "source": "src/nablamath/forge/reverse_builder.py",
+      "module": "nablamath.forge.reverse_builder",
+      "operation": null,
+      "coverage": "existing_bounded_profile",
+      "scope": "Geração de exercícios com respostas verificáveis; sem avaliação pedagógica geral",
+      "entire_subject_implemented": false
+    }
+  ],
+  "limitations": "One bounded profile is not complete coverage of a major branch or its subclasses. History is documentary; all scientific acceptance gates remain independent."
+}

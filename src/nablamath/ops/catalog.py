@@ -1,5 +1,9 @@
 """Additive catalog entries for the scientific ecosystem adapters."""
 OPERATIONS = {
+    'spectral': ('spectral', {'kind','values'}, {'other','levels','sample_rate','cutoff','window_size','hop'}, 'O(n log n) numerical FFT/Bluestein, Haar, convolution and sampled signal processing'),
+    'complex_analysis': ('complex_analysis', {'kind'}, {'source','contour','points','coefficients','tolerance','max_evaluations','closed'}, 'adaptive contour quadrature or conformal Mobius map; numerical estimates, not certified holomorphy'),
+    'differential_geometry': ('geometry', {'metric'}, {'coordinates','point','first','second'}, 'exact metric two-jets or optional symbolic local Levi-Civita curvature; coordinate domain required'),
+    'abstract_algebra': ('algebra', {'kind'}, {'n','value','exponent','modulus','rounds','prime','polynomial','left','right','field_operation','certificate'}, 'finite Galois fields, 4096-bit modular arithmetic and explicitly classified prime evidence'),
     'tensor': ('tensor', {'kind','values'}, {'other','axis','shape','axes'}, 'bounded floating point N-D tensor operations'),
     'autograd': ('tensor', {'nodes','inputs','output'}, set(), 'closed scalar DAG reverse-mode differentiation; no arbitrary source'),
     'mcmc_normal': ('probability', {'mean','standard_deviation'}, {'samples','burn_in','thin','proposal_scale','seed'}, 'seeded Metropolis normal sampling; convergence not established'),
@@ -9,8 +13,16 @@ OPERATIONS = {
     'quantum_circuit': ('quantum', {'qubits','gates'}, {'shots','seed','density_matrix'}, 'bounded ideal unitary state-vector simulation'),
 }
 
+from .area_catalog import OPERATIONS as AREA_OPERATIONS,execute as execute_area
+OPERATIONS.update(AREA_OPERATIONS)
+
 
 def execute(operation, arguments):
+    if operation in AREA_OPERATIONS:
+        return execute_area(operation,arguments)
+    if operation in {'spectral','complex_analysis','differential_geometry','abstract_algebra'}:
+        from importlib import import_module
+        return getattr(import_module('.'+operation,__package__),operation)(**arguments)
     from .tensor_math import tensor_operation
     from .autograd import differentiate_graph
     from .mcmc import sample_normal

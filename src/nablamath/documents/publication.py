@@ -57,7 +57,7 @@ def publish(document: Document, destination: Path, *, asset_root=None, pdf_backe
         (stage/'document.json').write_text(canonical_json(document.to_data())+'\n', encoding='utf-8')
         if pdf_backend:
             build_pdf(document, stage/'document.pdf', pdf_backend, asset_root=stage)
-        manifest = {'schema_version': 1, 'document_id': document.content_id, 'pdf_backend': pdf_backend,
+        manifest = {'schema_version': 1, 'render_profile':'nabla-print-v2','document_id': document.content_id, 'pdf_backend': pdf_backend,
                     'evidence': evidence, 'unresolved_evidence': sorted(requested-set(evidence)),
                     'files': {p.relative_to(stage).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                               for p in sorted(stage.rglob('*')) if p.is_file()}}
@@ -91,7 +91,14 @@ def verify_publication(root):
         document = Document.from_data(json.loads((root/'document.json').read_text(encoding='utf-8')))
         if document.content_id != manifest['document_id']:
             return False
-        for suffix, exporter in [('html', to_html), ('tex', to_latex), ('typ', to_typst)]:
+        profile = manifest.get('render_profile','nabla-print-v1')
+        if profile=='nabla-print-v1':
+            from .legacy_exporters import to_html as html,to_latex as latex,to_typst as typst
+        elif profile=='nabla-print-v2':
+            html,latex,typst = to_html,to_latex,to_typst
+        else:
+            return False
+        for suffix, exporter in [('html', html), ('tex', latex), ('typ', typst)]:
             if (root/f'document.{suffix}').read_text(encoding='utf-8') != exporter(document):
                 return False
         expected = {'document.json', 'document.html', 'document.tex', 'document.typ'}

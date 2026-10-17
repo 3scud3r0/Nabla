@@ -30,6 +30,10 @@ CATALOG_CASES={
 
 # Keep the all-operation replay gate complete when the shared catalog grows.
 CATALOG_CASES.update({
+ 'spectral': {'kind': 'fft', 'values': [1, 0, 0, 0]},
+ 'complex_analysis': {'kind': 'contour', 'source': '1', 'contour': [[0, 0], [1, 0], [1, 1], [0, 1]], 'closed': True},
+ 'differential_geometry': {'metric': [[1, 0], [0, 1]]},
+ 'abstract_algebra': {'kind': 'primality', 'n': 97},
  'tensor': {'kind':'matmul','values':[[1,2]],'other':[[3],[4]]},
  'autograd': {'inputs':{'x':3},'nodes':[{'op':'input','name':'x'},{'op':'multiply','args':[0,0]}],'output':1},
  'beta_binomial': {'successes':2,'trials':3},
@@ -67,6 +71,12 @@ CATALOG_CASES.update({
  'prob_stationary': {'transition': [['1/2','1/2'],['1/4','3/4']]},
  'prob_propagate': {'transition': [[1,0],[0,1]], 'initial': [1,0], 'steps': 4},
 })
+
+
+# Additional MSC profiles share explicit example inputs with the CLI/HTTP campaign.
+from nablamath.ops.area_catalog import OPERATIONS as MSC_OPERATIONS
+_MSC_EXAMPLES=json.loads((Path(__file__).resolve().parents[1]/"examples/science/catalog_cases.json").read_text())
+CATALOG_CASES.update({name:_MSC_EXAMPLES[name] for name in MSC_OPERATIONS})
 
 
 class CatalogTests(unittest.TestCase):

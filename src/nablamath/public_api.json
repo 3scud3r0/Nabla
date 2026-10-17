@@ -19,6 +19,50 @@
     "schema_version": 1,
     "operations": [
       {
+        "name": "abstract_algebra",
+        "area": "algebra",
+        "required": [
+          "kind"
+        ],
+        "optional": [
+          "certificate",
+          "exponent",
+          "field_operation",
+          "left",
+          "modulus",
+          "n",
+          "polynomial",
+          "prime",
+          "right",
+          "rounds",
+          "value"
+        ],
+        "contract": "finite Galois fields, 4096-bit modular arithmetic and explicitly classified prime evidence"
+      },
+      {
+        "name": "abstract_harmonic_analysis",
+        "area": "spectral",
+        "required": [
+          "group_orders",
+          "values"
+        ],
+        "optional": [
+          "inverse"
+        ],
+        "contract": "numerical Fourier characters on finite products of cyclic groups"
+      },
+      {
+        "name": "algebraic_geometry",
+        "area": "geometry",
+        "required": [
+          "equations",
+          "point",
+          "variables"
+        ],
+        "optional": [],
+        "contract": "rational points and Zariski tangent spaces of explicitly generated affine schemes"
+      },
+      {
         "name": "analysis_extrema",
         "area": "calculus",
         "required": [
@@ -87,6 +131,17 @@
         ],
         "optional": [],
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "approximation_theory",
+        "area": "analysis",
+        "required": [
+          "nodes",
+          "points",
+          "values"
+        ],
+        "optional": [],
+        "contract": "exact rational barycentric interpolation and query Lebesgue amplification"
       },
       {
         "name": "autograd",
@@ -161,6 +216,23 @@
         "contract": "exact polynomial quadrature with rigorous derivative remainder and explicit budget"
       },
       {
+        "name": "complex_analysis",
+        "area": "complex_analysis",
+        "required": [
+          "kind"
+        ],
+        "optional": [
+          "closed",
+          "coefficients",
+          "contour",
+          "max_evaluations",
+          "points",
+          "source",
+          "tolerance"
+        ],
+        "contract": "adaptive contour quadrature or conformal Mobius map; numerical estimates, not certified holomorphy"
+      },
+      {
         "name": "condition",
         "area": "numerical",
         "required": [
@@ -177,6 +249,33 @@
         ],
         "optional": [],
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "difference_equations",
+        "area": "analysis",
+        "required": [
+          "coefficients",
+          "index",
+          "initial"
+        ],
+        "optional": [
+          "forcing"
+        ],
+        "contract": "exact affine constant-coefficient recurrence with explicit index and bit budgets"
+      },
+      {
+        "name": "differential_geometry",
+        "area": "geometry",
+        "required": [
+          "metric"
+        ],
+        "optional": [
+          "coordinates",
+          "first",
+          "point",
+          "second"
+        ],
+        "contract": "exact metric two-jets or optional symbolic local Levi-Civita curvature; coordinate domain required"
       },
       {
         "name": "differentiate",
@@ -242,6 +341,18 @@
         "contract": "Rabin irreducibility test for prime field polynomials"
       },
       {
+        "name": "functional_analysis",
+        "area": "analysis",
+        "required": [
+          "basis",
+          "target"
+        ],
+        "optional": [
+          "weights"
+        ],
+        "contract": "exact finite weighted-Hilbert projection, orthogonality and Pythagoras identity"
+      },
+      {
         "name": "geo_distance",
         "area": "geospatial",
         "required": [
@@ -261,6 +372,33 @@
         ],
         "optional": [],
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "geophysics",
+        "area": "geophysics",
+        "required": [
+          "kind"
+        ],
+        "optional": [
+          "densities",
+          "density",
+          "height",
+          "thicknesses",
+          "velocities"
+        ],
+        "contract": "vertical layered acoustic times/reflections or infinite Bouguer slab in SI units"
+      },
+      {
+        "name": "global_analysis",
+        "area": "topology",
+        "required": [
+          "facets"
+        ],
+        "optional": [
+          "degree",
+          "form"
+        ],
+        "contract": "finite simplicial Hodge Laplacian and exact harmonic projection"
       },
       {
         "name": "graph_apsp",
@@ -336,6 +474,31 @@
         "contract": "deterministic Tarjan strongly connected components"
       },
       {
+        "name": "integral_equations",
+        "area": "analysis",
+        "required": [
+          "kernel",
+          "rhs"
+        ],
+        "optional": [
+          "coupling",
+          "lower",
+          "upper"
+        ],
+        "contract": "exact nonsingular second-kind Fredholm equation with polynomial finite-rank kernel"
+      },
+      {
+        "name": "integral_transforms",
+        "area": "analysis",
+        "required": [
+          "kind",
+          "parameter",
+          "values"
+        ],
+        "optional": [],
+        "contract": "exact polynomial Laplace/unit-Mellin and finite real rational Z transforms"
+      },
+      {
         "name": "integrate",
         "area": "calculus",
         "required": [
@@ -349,6 +512,15 @@
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
       },
       {
+        "name": "k_theory",
+        "area": "algebra",
+        "required": [
+          "adjacency"
+        ],
+        "optional": [],
+        "contract": "exact K0 presentation of finite graph Leavitt path algebras, not general higher K-theory"
+      },
+      {
         "name": "least_squares",
         "area": "statistics",
         "required": [
@@ -360,6 +532,27 @@
           "weights"
         ],
         "contract": "exact multivariate weighted least squares; full-rank design, positive residual degrees of freedom"
+      },
+      {
+        "name": "lie_algebra",
+        "area": "algebra",
+        "required": [
+          "structure"
+        ],
+        "optional": [
+          "left",
+          "right"
+        ],
+        "contract": "rational Lie brackets, Jacobi verification, center and Killing form; dimension at most six"
+      },
+      {
+        "name": "lie_groups",
+        "area": "geometry",
+        "required": [
+          "rotation_vector"
+        ],
+        "optional": [],
+        "contract": "numerical SO(3) exponential, quaternion and left Jacobian in radians"
       },
       {
         "name": "limit",
@@ -392,6 +585,15 @@
         ],
         "optional": [],
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "manifold_topology",
+        "area": "topology",
+        "required": [
+          "facets"
+        ],
+        "optional": [],
+        "contract": "finite triangulated surface links, boundaries, orientability and closed orientable genus"
       },
       {
         "name": "markov",
@@ -480,6 +682,18 @@
           "thin"
         ],
         "contract": "seeded Metropolis normal sampling; convergence not established"
+      },
+      {
+        "name": "measure_theory",
+        "area": "analysis",
+        "required": [
+          "values",
+          "weights"
+        ],
+        "optional": [
+          "partition"
+        ],
+        "contract": "finite atomic measure integrals and exact conditional expectation"
       },
       {
         "name": "nt_discrete_log",
@@ -571,6 +785,17 @@
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
       },
       {
+        "name": "operator_theory",
+        "area": "analysis",
+        "required": [
+          "matrix"
+        ],
+        "optional": [
+          "parameter"
+        ],
+        "contract": "finite rational operators, adjoints, induced norms, positivity and resolvents"
+      },
+      {
         "name": "optimize",
         "area": "optimization",
         "required": [
@@ -582,6 +807,15 @@
           "constraints"
         ],
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "order_theory",
+        "area": "order_theory",
+        "required": [
+          "relation"
+        ],
+        "optional": [],
+        "contract": "finite partial orders, Hasse covers and lattice joins/meets; 64 elements"
       },
       {
         "name": "orthogonal_basis",
@@ -604,6 +838,16 @@
           "subdivisions"
         ],
         "contract": "exact rational Bernstein range enclosure, not necessarily sharp extrema"
+      },
+      {
+        "name": "potential_theory",
+        "area": "analysis",
+        "required": [
+          "boundary",
+          "conductance"
+        ],
+        "optional": [],
+        "contract": "exact finite weighted-graph Dirichlet solution, residuals and energy"
       },
       {
         "name": "prob_binomial",
@@ -783,6 +1027,17 @@
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
       },
       {
+        "name": "several_complex_variables",
+        "area": "complex_analysis",
+        "required": [
+          "point",
+          "sources",
+          "variables"
+        ],
+        "optional": [],
+        "contract": "exact Gaussian-rational holomorphic polynomial Jacobians and local inverse criterion"
+      },
+      {
         "name": "shortest_paths",
         "area": "discrete",
         "required": [
@@ -813,6 +1068,49 @@
         ],
         "optional": [],
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "special_functions",
+        "area": "analysis",
+        "required": [
+          "kind",
+          "x"
+        ],
+        "optional": [
+          "order",
+          "y"
+        ],
+        "contract": "real Gamma/Beta/error functions and optional SciPy Bessel/Legendre/Airy evaluation"
+      },
+      {
+        "name": "spectral",
+        "area": "spectral",
+        "required": [
+          "kind",
+          "values"
+        ],
+        "optional": [
+          "cutoff",
+          "hop",
+          "levels",
+          "other",
+          "sample_rate",
+          "window_size"
+        ],
+        "contract": "O(n log n) numerical FFT/Bluestein, Haar, convolution and sampled signal processing"
+      },
+      {
+        "name": "statistical_mechanics",
+        "area": "statistical_mechanics",
+        "required": [
+          "energies"
+        ],
+        "optional": [
+          "boltzmann",
+          "degeneracies",
+          "temperature"
+        ],
+        "contract": "stable finite canonical ensemble in caller-consistent units; no thermodynamic limit"
       },
       {
         "name": "statistics",
@@ -867,6 +1165,27 @@
         ],
         "optional": [],
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "universal_algebra",
+        "area": "algebra",
+        "required": [
+          "tables"
+        ],
+        "optional": [
+          "generators",
+          "partition"
+        ],
+        "contract": "finite binary algebras, generated subalgebras and congruence quotients"
+      },
+      {
+        "name": "variational_calculus",
+        "area": "calculus",
+        "required": [
+          "lagrangian"
+        ],
+        "optional": [],
+        "contract": "exact scalar polynomial first-order Euler-Lagrange equation, momentum and energy"
       }
     ],
     "scope": "declared bounded operations, not complete mathematical coverage"

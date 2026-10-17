@@ -2,6 +2,11 @@
 from dataclasses import asdict,dataclass,is_dataclass
 from fractions import Fraction
 import math
+import copy
+import json
+from concurrent.futures import ThreadPoolExecutor, CancelledError
+from functools import cached_property
+from threading import BoundedSemaphore, RLock, Condition
 
 from ..core.semantic_ir import SemanticExpression,canonical_json,fingerprint,rational
 from ..core.types import ScientificType
@@ -61,17 +66,167 @@ class Calculation:
     result_json: str
     limitations: str
 
-    def to_data(self):
-        import json
+    @cached_property
+    def _receipt_json(self):
         payload={'schema_version':1,'request':json.loads(self.request_json),'result':json.loads(self.result_json),
                  'limitations':self.limitations,'formal_proof':False}
-        return {**payload,'content_id':fingerprint(payload)}
+        return canonical_json({**payload,'content_id':fingerprint(payload)})
+
+    def to_data(self):
+        return json.loads(self._receipt_json)
+
+
+class PendingCalculation:
+    """An already computed result whose immutable receipt is being packaged.
+
+    Reading receipt fields or calling to_data waits for packaging, not for math.
+    The result property is a detached snapshot, so callers cannot rewrite history.
+    """
+    def __init__(self, result, future):
+        self._result, self._future = result, future
+
+    @property
+    def result(self):
+        return copy.deepcopy(self._result)
+
+    @property
+    def request_json(self):
+        return self._future.result().request_json
+
+    @property
+    def result_json(self):
+        return self._future.result().result_json
+
+    @property
+    def limitations(self):
+        return self._future.result().limitations
+
+    def to_data(self):
+        return self._future.result().to_data()
+
+    def done(self):
+        return self._future.done()
 
 
 class CalculationSession:
-    def __init__(self,*,precision=34):
+    def __init__(self,*,precision=34,background_receipts=False,max_pending=128,receipt_sink=None):
+        if type(background_receipts) is not bool or type(max_pending) is not int or not 1<=max_pending<=65536:
+            raise ValueError('Invalid background receipt configuration')
+        if receipt_sink is not None and not callable(receipt_sink):
+            raise TypeError('receipt_sink must be callable')
         self.precision=PrecisionPolicy(precision)
         self._bindings={}
+        self.background_receipts=background_receipts
+        self._sink=receipt_sink
+        self._executor=None
+        self._slots=BoundedSemaphore(max_pending)
+        self._pending=set()
+        self._receipt_error=None
+        self._lock=RLock()
+        self._completion=Condition(self._lock)
+        self._closed=False
+
+    def _submit_receipt(self, function, *args):
+        # Backpressure is explicit: an audit record is never silently dropped.
+        with self._lock:
+            if self._closed:
+                raise RuntimeError('Calculation session is closed')
+            if not self._slots.acquire(blocking=False):
+                raise BufferError('Receipt buffer full; flush before continuing')
+            try:
+                if self._executor is None:
+                    self._executor=ThreadPoolExecutor(max_workers=1,thread_name_prefix='nabla-receipts')
+                future=self._executor.submit(function,*args)
+                self._pending.add(future)
+                def completed(done):
+                    with self._completion:
+                        self._pending.discard(done)
+                        error=CancelledError('Accepted audit record was cancelled') if done.cancelled() else done.exception()
+                        if error is not None and self._receipt_error is None:
+                            self._receipt_error=error
+                        self._slots.release()
+                        self._completion.notify_all()
+                future.add_done_callback(completed)
+                return future
+            except BaseException:
+                self._slots.release()
+                raise
+
+    def flush(self):
+        """Wait for every accepted record; expose worker/sink errors to the caller."""
+        with self._lock:
+            pending=list(self._pending)
+        errors=[]
+        results=[]
+        for future in pending:
+            try:
+                results.append(future.result())
+            except Exception as error:
+                errors.append(error)
+        with self._completion:
+            # Future.result() may return before its done callbacks finish.
+            # Wait for slot release and error bookkeeping before reporting flush.
+            self._completion.wait_for(lambda:not any(future in self._pending for future in pending))
+            if self._receipt_error is not None:
+                errors.insert(0,self._receipt_error)
+                self._receipt_error=None
+        if errors:
+            raise errors[0]
+        return results
+
+    def close(self):
+        with self._lock:
+            self._closed=True
+        try:
+            self.flush()
+        finally:
+            if self._executor is not None:
+                self._executor.shutdown(wait=True)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self,*exception):
+        self.close()
+
+    def record_observation(self,operation,inputs,result,*,backend='python',metadata=None,parents=()):
+        """Queue metadata-only native executions; tensor contents are never inspected here."""
+        from .receipt import receipt
+        if type(operation) is not str or not operation.strip() or type(backend) is not str or not backend.strip():
+            raise ValueError('Observation operation/backend must be nonempty strings')
+        if not isinstance(parents,(list,tuple)) or any(type(p) is not str or len(p)!=64 or any(c not in '0123456789abcdef' for c in p) for p in parents):
+            raise ValueError('Observation parents must be SHA-256 content IDs')
+        stack=[(inputs,0),(result,0),(metadata,0)]
+        visited=0
+        while stack:
+            value,depth=stack.pop(); visited+=1
+            if depth>64 or visited>1000000:
+                raise ValueError('Observation JSON structure exceeds budget')
+            if value is None or type(value) in (str,bool,int,float):
+                continue
+            if type(value) in (list,tuple):
+                stack.extend((item,depth+1) for item in value)
+            elif type(value) is dict and all(type(key) is str for key in value):
+                stack.extend((item,depth+1) for item in value.values())
+            else:
+                raise TypeError('Observation values must be JSON metadata; native tensors must remain on their backend')
+        snapshot=copy.deepcopy((inputs,result,metadata,tuple(parents)))
+        def package():
+            record=receipt(operation,snapshot[0],snapshot[1],backend=backend,
+                           metadata=snapshot[2],parents=snapshot[3])
+            if self._sink is not None:
+                self._sink(copy.deepcopy(record))
+            return record
+        return self._submit_receipt(package)
+
+    def execute_accelerated(self,operation,*,dispatcher=None,capture_values=False,require_cuda=True,**arguments):
+        """Explicit approximate/native execution; the exact execute() path is unchanged."""
+        if self._closed:
+            raise RuntimeError('Calculation session is closed')
+        if dispatcher is None:
+            from ..backends.cuda_dispatcher import CudaDispatcher
+            dispatcher=CudaDispatcher(require_cuda=require_cuda)
+        return dispatcher.execute(operation,audit_session=self,capture_values=capture_values,**arguments)
 
     def bind(self,name,value,unit=ONE):
         Symbol(name)
@@ -79,6 +234,8 @@ class CalculationSession:
         return self
 
     def execute(self,operation,**arguments):
+        if self._closed:
+            raise RuntimeError('Calculation session is closed')
         if operation not in AREAS:
             raise ValueError('Operacao nao suportada')
         if not REQUIRED[operation]<=arguments.keys() or set(arguments)-(REQUIRED[operation]|OPTIONAL.get(operation,set())):
@@ -92,11 +249,26 @@ class CalculationSession:
         arguments=encode(arguments)
         request={'operation':operation,'arguments':arguments,'precision':self.precision.digits,
                  'bindings':{n:{'value':str(q.value),'unit':q.unit.to_data()} for n,q in sorted(self._bindings.items())}}
-        if len(canonical_json(request))>100000:
+        request_json=canonical_json(request)
+        if len(request_json)>100000:
             raise ValueError('Requisicao excede o limite')
+        # Freeze mutable arguments before math; the request and execution see one snapshot.
+        arguments=json.loads(request_json)['arguments']
         result=self._execute(operation,arguments)
         limitations='Dominio limitado declarado; evidencia computacional, sem prova formal ou validacao externa.'
-        return Calculation(canonical_json(request),canonical_json(encode(result)),limitations)
+        snapshot=encode(result)
+        def package():
+            calculation=Calculation(request_json,canonical_json(snapshot),limitations)
+            # Cache the canonical body/hash once, on the packaging thread when enabled.
+            if self.background_receipts or self._sink is not None:
+                data=calculation.to_data()
+                if self._sink is not None:
+                    self._sink(data)
+            return calculation
+        if self.background_receipts:
+            frozen=copy.deepcopy(snapshot)
+            return PendingCalculation(frozen,self._submit_receipt(package))
+        return package()
 
     def evaluate(self,source,values=None):
         return self.execute('evaluate',source=source,values=values or {})

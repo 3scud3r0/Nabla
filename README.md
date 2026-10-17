@@ -28,7 +28,7 @@ Novo [laboratório de matemática exata](docs/math/EXACT_LABORATORY.md), com [ex
 
 ## Primeira experiência coesa
 
-O [perfil local de primeira versão](docs/acceptance/COHESIVE_LOCAL_ALPHA.md) organiza **76 operações** sob o mesmo catálogo `nabla catalog`, acessível na CLI, no motor de notebooks e no cartão científico do desktop. A entrega pessoal exige agregados consistentes e smoke do wheel no SHA final. Não equivale à certificação da visão científica inteira.
+O [perfil local de primeira versão](docs/acceptance/COHESIVE_LOCAL_ALPHA.md) organiza **102 operações** sob o mesmo catálogo `nabla catalog`, acessível na CLI, no motor de notebooks e no cartão científico do desktop. A entrega pessoal exige agregados consistentes e smoke do wheel no SHA final. Não equivale à certificação da visão científica inteira.
 
 ```sh
 nabla catalog
@@ -39,7 +39,7 @@ python tools/cohesion_smoke.py
 
 ## Demonstração científica reproduzível
 
-[Experimentos em código](examples/science/README.md): todas as 76 operações com referências independentes, 176 casos adicionais, oito famílias Forge, hipótese sintética com pontos reservados, notebook/replay, CLI/HTTP e SQLite. Execute `python examples/science/reproduce.py .nabla/meu-experimento` em um destino novo. Os resultados não constituem prova universal nem validação física.
+[Experimentos em código](examples/science/README.md): todas as 102 operações com referências independentes, 176 casos adicionais, oito famílias Forge, hipótese sintética com pontos reservados, notebook/replay, CLI/HTTP e SQLite. Execute `python examples/science/reproduce.py .nabla/meu-experimento` em um destino novo. Os resultados não constituem prova universal nem validação física.
 
 ## Começar
 
@@ -139,6 +139,17 @@ Verificar: `python tools/check_roadmap.py` e `python tools/check_public_contract
 
 ## Extensões do ecossistema científico
 
-O [guia do ecossistema](docs/SCIENTIFIC_ECOSYSTEM.md) documenta as 76 operações,
+O [guia do ecossistema](docs/SCIENTIFIC_ECOSYSTEM.md) documenta as 102 operações,
 autodiferenciação, MCMC, domínios científicos, pontes Pandas/PyTorch, Jupyter,
 VS Code, CUDA/XLA/MPI, MCP e federação assinada, com seus limites e instalação.
+
+O [guia das camadas de execução e publicação](docs/SCIENTIFIC_LAYERS.md) descreve
+recibos em background, trace PyTorch sem leitura para CPU, despacho numérico,
+SMT com prazo de cinco segundos, matemática adicional, GLTF/Manim e Living
+Papers Typst. A [demonstração integrada](examples/science/layers_pipeline.py)
+gera GLB, MP4 e PDF assinado a partir de recibos auditáveis.
+
+O [inventário MSC 2020](docs/MSC2020_COVERAGE.md) mapeia os 63 grandes ramos e
+os 22 novos módulos matemáticos, com escopos executáveis e referências de teste.
+O [guia editorial](docs/EDITORIAL_DESIGN.md) documenta os PDFs, equações, tabelas
+multipágina e preservação de publicações anteriores.
