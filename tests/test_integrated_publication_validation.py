@@ -112,3 +112,16 @@ def test_rebuild_of_same_experiment_does_not_change_revision(paper):
     assert recovered.experiment_hash == initial.experiment_hash
     assert recovered.revision == initial.revision
     assert len(list((output.parent / 'paper.pdf.revisions').iterdir())) == 1
+
+
+def test_watcher_repairs_deleted_audit_without_new_receipt(paper):
+    compiler, output = paper
+    with compiler.watch(delay=.05) as watcher:
+        original = watcher.wait_for_build(count=1, timeout=10)
+        audit = output.parent / 'audit.html'
+        original_bytes = audit.read_bytes()
+        audit.unlink()
+        rebuilt = watcher.wait_for_build(count=2, timeout=10)
+        assert rebuilt.revision == original.revision
+        assert audit.read_bytes() == original_bytes
+        assert watcher.status()['error'] is None
