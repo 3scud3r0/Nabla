@@ -178,7 +178,7 @@ class DeviceRuntime:
     def information(self) -> dict[str, Any]:
         """Report observed hardware, not an inferred acceleration claim."""
         result = {'device': str(self.device), 'dtype': str(self.dtype), 'seed': self.seed,
-                  'torch_version': torch.__version__, 'cuda_build': torch.version.cuda,
+                  'torch_version': str(torch.__version__), 'cuda_build': torch.version.cuda,
                   'gpu_seconds': self.gpu_seconds}
         if self.device.type == 'cuda':
             props = torch.cuda.get_device_properties(self.device)

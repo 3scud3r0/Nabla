@@ -205,3 +205,15 @@ def test_model_constructors_restore_callers_rng(torch):
     assert torch.equal(state,torch.random.get_rng_state())
     o.DeepONet(4,2,8,seed=7)
     assert torch.equal(state,torch.random.get_rng_state())
+
+
+def test_accelerated_catalog_observation_uses_builtin_json_metadata(torch):
+    observed=[]
+    with CalculationSession(receipt_sink=observed.append) as session:
+        result=session.execute('omni_superintelligence',action='train_surrogate_fno',parameters={
+            'inputs':[[[[1]*4]*4]], 'targets':[[[[0]*4]*4]], 'epochs':1,
+            'width':4,'modes':2,'layers':1,'device':'cpu'}).to_data()
+        assert verify_receipt(result)
+    native=[row for row in observed if row.get('kind')=='execution_observation']
+    assert native and all(verify_receipt(row) for row in native)
+    assert type(native[-1]['metadata']['device_execution']['torch_version']) is str
