@@ -4,7 +4,7 @@ Canonical sources remain at the paths recorded below.
 This artifact aggregates implemented code; it does not claim all mathematics is complete.
 FORMAT_VERSION: 1
 SOURCE_FILES: 618
-SOURCE_LINES: 200896
+SOURCE_LINES: 200959
 
 INDEX (path | sha256 | lines)
 lean/Conformance/affine_square.lean | 8549836e7e12edccbf478ec11bd4aeb48f1b9ec3fbff6ce5619a52568c78fa2e | 2007
@@ -562,7 +562,7 @@ src/nablamath/publishing/__init__.py | 92bcaa39ee91791478629cfad9a01359f9c92a38f
 src/nablamath/publishing/_typst_worker.py | 31617478bdaa879b8aaaee8b704534505b380fd9676db28882bbfea5b7db1881 | 13
 src/nablamath/publishing/layout.py | 26858d11a897ee13b519e4df295062091a153f90fd988e7c47d65f4b4f0618c9 | 35
 src/nablamath/publishing/living_paper.py | 1b1d4e37e39470b13cf84c7d07058e272fd2e5f07aae8998039aead1a2a1b50b | 305
-src/nablamath/publishing/living_papers_compiler.py | 0c3582685e69052cee24176c4e604a3b0c379e95e7a9e6fe8d0a11046b7e770d | 2025
+src/nablamath/publishing/living_papers_compiler.py | 05d1b573637245eaa2ff316a8c7cfb10bc07de1d51efa263f465107a02c2056e | 2088
 src/nablamath/research.py | d74d4996123e58e82ff1bb803dbeb4df54b9c7812715e9b6a168bb570d96188f | 119
 src/nablamath/schema/expression.py | 324cb1b892a7771ce173ea015687df9565b1cbea78d95731ee85644ef84fe1b4 | 23
 src/nablamath/schema/units.py | e27a781b38c77a63a235e19ac9918b6bbc35a01a3ef53dddfc58fc509abe48de | 71
@@ -198335,8 +198335,8 @@ END FILE: src/nablamath/publishing/living_paper.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/publishing/living_papers_compiler.py
-SHA256: 0c3582685e69052cee24176c4e604a3b0c379e95e7a9e6fe8d0a11046b7e770d
-LINES: 2025
+SHA256: 05d1b573637245eaa2ff316a8c7cfb10bc07de1d51efa263f465107a02c2056e
+LINES: 2088
 ====================================================================================================
 """Reactive scientific papers: escaped Typst/LaTeX, standalone HTML and PDF.
 
@@ -198968,7 +198968,10 @@ class PaperWatchHandle:
         try:
             while not self.stop_event.is_set():
                 identity=self.compiler.input_identity()
-                if identity!=previous:
+                # Stable publication files can disappear without any input
+                # revision changing. Treat a missing companion as rebuild work.
+                if (identity!=previous or not self.compiler.output.is_file()
+                        or not (self.compiler.output.parent/'audit.html').is_file()):
                     started=time.monotonic()
                     result=self.compiler.build()
                     with self._lock:
@@ -199118,9 +199121,45 @@ class LivingPaperCompiler:
         with self._lock:
             identity=self.input_identity()
             if self._last_identity==identity and self._last_result is not None:
-                if self.output.is_file() and VerifiablePDFWriter.inspect(self.output,trust=self.trust,require_signature=self.require_signature)['bundle']['content_id']==self._last_result.experiment_hash:
-                    old=self._last_result
-                    return ReactiveBuild(old.pdf,old.artifact,old.source,old.manifest,old.experiment_hash,old.revision,False)
+                old=self._last_result
+                stable_audit=self.output.parent/'audit.html'
+                revision_audit=old.manifest.parent/'audit.html'
+                # A valid PDF alone is not a valid cached publication. Repair
+                # missing/modified companions from the immutable revision.
+                if (self.output.is_file() and not self.output.is_symlink()
+                        and stable_audit.is_file() and not stable_audit.is_symlink()
+                        and revision_audit.is_file() and not revision_audit.is_symlink()
+                        and old.manifest.is_file() and not old.manifest.is_symlink()):
+                    try:
+                        recorded=json.loads(_read(old.manifest))
+                        audit_digest=recorded.get('audit_sha256')
+                        immutable_files=(
+                            ('paper.pdf','pdf_sha256',256*1024*1024),
+                            ('audit.html','audit_sha256',64*1024*1024),
+                            ('artifact.json','artifact_sha256',_MAX_BYTES),
+                            ('compiled.source','source_sha256',_MAX_BYTES),
+                            ('template.source','template_sha256',_MAX_BYTES),
+                            ('provenance-badge.svg','badge_sha256',_MAX_BYTES),
+                        )
+                        revision_intact=all(
+                            recorded.get(key) is not None
+                            and (old.manifest.parent/name).is_file()
+                            and not (old.manifest.parent/name).is_symlink()
+                            and hashlib.sha256(_read(old.manifest.parent/name,limit)).hexdigest()==recorded[key]
+                            for name,key,limit in immutable_files
+                        )
+                        if (audit_digest is not None and revision_intact
+                                and recorded.get('experiment_hash')==old.experiment_hash
+                                and recorded.get('revision')==old.revision
+                                and hashlib.sha256(_read(stable_audit,64*1024*1024)).hexdigest()==audit_digest
+                                and hashlib.sha256(_read(self.output,256*1024*1024)).hexdigest()==recorded['pdf_sha256']
+                                and VerifiablePDFWriter.inspect(self.output,trust=self.trust,
+                                    require_signature=self.require_signature)['bundle']['content_id']==old.experiment_hash):
+                            return ReactiveBuild(old.pdf,old.artifact,old.source,old.manifest,
+                                                 old.experiment_hash,old.revision,False)
+                    except (OSError,ValueError,KeyError,TypeError):
+                        # The immutable revision is checked below before recovery.
+                        pass
             original=_read(self.template,1048576).decode('utf-8');bundle=self._current_bundle()
             # Validate a signature's actual scope before running any renderer.
             _signature(bundle,self.signature,self.trust,self.require_signature)
@@ -199135,12 +199174,32 @@ class LivingPaperCompiler:
             if root.is_symlink() or self.output.is_symlink():raise ValueError('Publication paths must not be symlinks')
             root.mkdir(parents=True,exist_ok=True)
             final=root/revision
-            if final.exists():
-                if not (final/'manifest.json').is_file():raise ValueError('Existing incomplete publication revision')
+            if final.exists() or final.is_symlink():
+                if final.is_symlink() or not final.is_dir():
+                    raise ValueError('Existing publication revision is not a safe directory')
+                required=('manifest.json','paper.pdf','audit.html','artifact.json','compiled.source',
+                          'template.source','provenance-badge.svg')
+                if any((final/name).is_symlink() or not (final/name).is_file() for name in required):
+                    raise ValueError('Existing incomplete publication revision')
                 metadata=json.loads(_read(final/'manifest.json'))
-                if metadata['pdf_sha256']!=hashlib.sha256(_read(final/'paper.pdf',256*1024*1024)).hexdigest():
-                    raise ValueError('Existing publication revision was altered')
-                VerifiablePDFWriter.inspect(final/'paper.pdf',trust=self.trust,require_signature=self.require_signature)
+                if (metadata.get('revision')!=revision or metadata.get('input_id')!=identity
+                        or metadata.get('experiment_hash')!=bundle['content_id']):
+                    raise ValueError('Existing publication revision identity was altered')
+                checks=(('paper.pdf','pdf_sha256',256*1024*1024),
+                        ('audit.html','audit_sha256',64*1024*1024),
+                        ('artifact.json','artifact_sha256',_MAX_BYTES),
+                        ('compiled.source','source_sha256',_MAX_BYTES),
+                        ('template.source','template_sha256',_MAX_BYTES),
+                        ('provenance-badge.svg','badge_sha256',_MAX_BYTES))
+                for name,key,limit in checks:
+                    if key in metadata and metadata[key]!=hashlib.sha256(_read(final/name,limit)).hexdigest():
+                        raise ValueError('Existing publication revision was altered: '+name)
+                if 'pdf_sha256' not in metadata:
+                    raise ValueError('Existing publication revision lacks PDF integrity')
+                inspected=VerifiablePDFWriter.inspect(final/'paper.pdf',trust=self.trust,
+                                                       require_signature=self.require_signature)
+                if inspected['bundle']['content_id']!=bundle['content_id']:
+                    raise ValueError('Existing publication revision points to the wrong experiment')
             else:
                 with tempfile.TemporaryDirectory(prefix='.revision-',dir=root) as temporary:
                     stage=Path(temporary)/'completed';stage.mkdir()
@@ -199178,7 +199237,11 @@ class LivingPaperCompiler:
                     metadata={'schema':'nabla.reactive-paper.v1','input_id':identity,'revision':revision,
                               'experiment_hash':bundle['content_id'],'renderer':renderer,
                               'pdf_sha256':hashlib.sha256(_read(stage/'paper.pdf',256*1024*1024)).hexdigest(),
-                              'source_sha256':hashlib.sha256(compiled_source.encode()).hexdigest(),
+                              'audit_sha256':hashlib.sha256(_read(stage/'audit.html',64*1024*1024)).hexdigest(),
+                              'artifact_sha256':hashlib.sha256(_read(stage/'artifact.json')).hexdigest(),
+                              'source_sha256':hashlib.sha256(_read(stage/'compiled.source')).hexdigest(),
+                              'template_sha256':hashlib.sha256(_read(stage/'template.source')).hexdigest(),
+                              'badge_sha256':hashlib.sha256(_read(stage/'provenance-badge.svg')).hexdigest(),
                               'scientific_claims_certified':False}
                     (stage/'manifest.json').write_text(canonical_json(metadata),encoding='utf-8')
                     stage.rename(final)
