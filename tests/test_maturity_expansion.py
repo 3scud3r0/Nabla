@@ -9,6 +9,7 @@ from nablamath.core.semantic_ir import canonical_json
 from nablamath.forge.reverse_builder import generate_task
 
 CATALOG_CASES={
+ 'omni_superintelligence':{'action':'verify_chain_of_thought','parameters':{'reasoning':'x+x=2*x'}},
  'polynomial_range':{'coefficients':[0,0,1],'lower':-1,'upper':1,'subdivisions':2},
  'certified_integral':{'coefficients':[0,0,1],'lower':0,'upper':1},
  'certified_function':{'kind':'exp','value':1},

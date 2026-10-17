@@ -22,6 +22,7 @@ DIRECTORIES = (
     ROOT / "src/nablamath/gpu",
     ROOT / "src/nablamath/core",
     ROOT / "src/nablamath/calc",
+    ROOT / "src/nablamath/superintelligence",
     ROOT / "src/nablamath/ops",
     ROOT / "src/nablamath/domain",
     ROOT / "src/nablamath/data",

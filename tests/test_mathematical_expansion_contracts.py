@@ -23,7 +23,7 @@ def test_frozen_catalog_and_packaged_implementation_status():
     from nablamath.stability import validate_public_api
     from nablamath.math.coverage import coverage,expansion
     from nablamath.ops.advanced_math import ACTIONS
-    assert validate_public_api()['operations']==133
+    assert validate_public_api()['operations']==134
     inventory=expansion()
     assert {row['action'] for row in inventory['actions']}==set(ACTIONS)
     for row in inventory['actions']:

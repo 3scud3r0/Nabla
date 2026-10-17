@@ -29,6 +29,7 @@ from nablamath.store.backup import backup_database, restore_database
 # closed formulas, enumerating tiny finite sets, or the analytic decay solution.
 # They must never be regenerated from Nabla output.
 REFERENCES = {
+ 'omni_superintelligence': ('reward', 1),  # x+x=2*x by distributivity.
  'order_theory': ('is_lattice', True),
  'universal_algebra': ('quotient_tables', [[[0]]]),
  'algebraic_geometry': ('tangent_dimension', 1),
@@ -365,7 +366,7 @@ def run(destination, *, cases_path=None, formal_project=None):
     from nablamath.ops.v1_catalog import OPERATIONS as OPTIONAL_V1_OPERATIONS
     require(set(cases)==names-set(OPTIONAL_V1_OPERATIONS)==set(REFERENCES)|SPECIAL,'Catalog/inputs/references coverage mismatch')
     root=Path(destination);root.mkdir(parents=True,exist_ok=False)
-    session=CalculationSession();notebook=Notebook('103 bounded operations with independent references')
+    session=CalculationSession();notebook=Notebook('104 bounded operations with independent references')
     rows=[]
     for name,arguments in cases.items():
         receipt=session.execute(name,**arguments);data=receipt.to_data()

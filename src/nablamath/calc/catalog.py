@@ -4,6 +4,7 @@ from ..core.semantic_ir import rational
 
 # area, mandatory keys, optional keys, exact/approximate contract
 OPERATIONS = {
+ 'omni_superintelligence': ('frontier_science', {'action'}, {'parameters'}, 'bounded optional frontier-science algorithms; observation receipts certify execution, not scientific correctness'),
  'polynomial_range': ('calculus', {'coefficients','lower','upper'}, {'subdivisions'}, 'exact rational Bernstein range enclosure, not necessarily sharp extrema'),
  'certified_integral': ('calculus', {'coefficients','lower','upper'}, {'method','tolerance','max_pieces'}, 'exact polynomial quadrature with rigorous derivative remainder and explicit budget'),
  'certified_function': ('numerical', {'kind','value'}, {'tolerance','max_terms'}, 'rational Taylor enclosures of exp/log/sin/cos on bounded arguments'),
@@ -39,7 +40,10 @@ def _values(values, minimum=1):
     return tuple(rational(v) for v in values)
 
 
-def execute(operation, a):
+def execute(operation, a, *, session=None):
+    if operation == 'omni_superintelligence':
+        from ..superintelligence.omni_engine import OmniEngine
+        return OmniEngine.execute_action(a['action'], a.get('parameters', {}), session=session)
     if operation in ECOSYSTEM_OPERATIONS:
         return execute_ecosystem(operation, a)
     if operation in ADVANCED_OPERATIONS:

@@ -700,6 +700,12 @@
     "model": "exponential_decay",
     "rtol": 1e-08
   },
+  "omni_superintelligence": {
+    "action": "verify_chain_of_thought",
+    "parameters": {
+      "reasoning": "x+x=2*x"
+    }
+  },
   "operator_theory": {
     "matrix": [
       [

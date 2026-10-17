@@ -1162,6 +1162,17 @@
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
       },
       {
+        "name": "omni_superintelligence",
+        "area": "frontier_science",
+        "required": [
+          "action"
+        ],
+        "optional": [
+          "parameters"
+        ],
+        "contract": "bounded optional frontier-science algorithms; observation receipts certify execution, not scientific correctness"
+      },
+      {
         "name": "operator_theory",
         "area": "analysis",
         "required": [

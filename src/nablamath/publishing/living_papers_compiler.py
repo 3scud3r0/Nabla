@@ -781,7 +781,7 @@ class LivingPaperCompiler:
         with self._lock:
             identity=self.input_identity()
             stable_audit=self.output.parent/'audit.html'
-            if self.output.is_symlink() or stable_audit.is_symlink():
+            if self.output.is_symlink():
                 raise ValueError('Publication paths must not be symlinks')
             if self._last_identity==identity and self._last_result is not None:
                 old=self._last_result
@@ -796,7 +796,9 @@ class LivingPaperCompiler:
                     checked=(('paper.pdf','pdf_sha256',self.output,256*1024*1024),
                              ('audit.html','audit_sha256',stable_audit,16*1024*1024))
                     pinned=(('artifact.json','artifact_sha256'),
-                            ('compiled.source','source_sha256'))
+                            ('compiled.source','source_sha256'),
+                            ('template.source','template_sha256'),
+                            ('provenance-badge.svg','badge_sha256'))
                     if (not old.manifest.is_symlink()
                             and metadata['input_id']==identity and metadata['revision']==old.revision
                             and metadata['experiment_hash']==old.experiment_hash
@@ -805,6 +807,7 @@ class LivingPaperCompiler:
                                     for name,digest in pinned)
                             and all(not (final/name).is_symlink()
                                     and hashlib.sha256(_read(final/name,limit)).hexdigest()==metadata[digest]
+                                    and not stable.is_symlink()
                                     and hashlib.sha256(_read(stable,limit)).hexdigest()==metadata[digest]
                                     for name,digest,stable,limit in checked)
                             and VerifiablePDFWriter.inspect(self.output,trust=self.trust,
@@ -823,7 +826,7 @@ class LivingPaperCompiler:
                 if self.signature is not None:
                     _signature(bundle,self.signature,self.trust,self.require_signature)
             else:source=original
-            revision=fingerprint({'publication_contract':2,'input_id':identity,
+            revision=fingerprint({'publication_contract':3,'input_id':identity,
                                   'evaluated_bundle':bundle,'evaluated_source':source})
             root=self.output.parent/(self.output.name+'.revisions')
             if root.is_symlink() or self.output.is_symlink():raise ValueError('Publication paths must not be symlinks')
@@ -832,7 +835,12 @@ class LivingPaperCompiler:
             if final.is_symlink() or (final/'manifest.json').is_symlink():
                 raise ValueError('Immutable publication revision must not use symlinks')
             if final.exists():
-                if not (final/'manifest.json').is_file():raise ValueError('Existing incomplete publication revision')
+                required=('manifest.json','paper.pdf','audit.html','artifact.json',
+                          'compiled.source','template.source','provenance-badge.svg')
+                if any(not (final/name).is_file() for name in required):
+                    raise ValueError('Existing incomplete publication revision')
+                if any((final/name).is_symlink() for name in required):
+                    raise ValueError('Existing publication revision was altered: symlink companion')
                 metadata=json.loads(_read(final/'manifest.json'))
                 if (metadata['input_id']!=identity or metadata['revision']!=revision
                         or metadata['experiment_hash']!=bundle['content_id']):
@@ -840,7 +848,9 @@ class LivingPaperCompiler:
                 for name,digest,limit in (('paper.pdf','pdf_sha256',256*1024*1024),
                                            ('audit.html','audit_sha256',16*1024*1024),
                                            ('artifact.json','artifact_sha256',16*1024*1024),
-                                           ('compiled.source','source_sha256',16*1024*1024)):
+                                           ('compiled.source','source_sha256',16*1024*1024),
+                                           ('template.source','template_sha256',16*1024*1024),
+                                           ('provenance-badge.svg','badge_sha256',16*1024*1024)):
                     target=final/name
                     if target.is_symlink() or hashlib.sha256(_read(target,limit)).hexdigest()!=metadata[digest]:
                         raise ValueError('Existing publication revision was altered: '+name)
@@ -886,7 +896,9 @@ class LivingPaperCompiler:
                               'pdf_sha256':hashlib.sha256(_read(stage/'paper.pdf',256*1024*1024)).hexdigest(),
                               'audit_sha256':hashlib.sha256(_read(stage/'audit.html',16*1024*1024)).hexdigest(),
                               'artifact_sha256':hashlib.sha256(_read(stage/'artifact.json',16*1024*1024)).hexdigest(),
-                              'source_sha256':hashlib.sha256(compiled_source.encode()).hexdigest(),
+                              'source_sha256':hashlib.sha256(_read(stage/'compiled.source',16*1024*1024)).hexdigest(),
+                              'template_sha256':hashlib.sha256(_read(stage/'template.source',16*1024*1024)).hexdigest(),
+                              'badge_sha256':hashlib.sha256(_read(stage/'provenance-badge.svg',16*1024*1024)).hexdigest(),
                               'scientific_claims_certified':False}
                     (stage/'manifest.json').write_text(canonical_json(metadata),encoding='utf-8')
                     stage.rename(final)

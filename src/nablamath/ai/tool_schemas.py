@@ -134,6 +134,9 @@ def schema_for(operation):
     if operation['name']=='advanced_math':
         from ..ops.advanced_math import schema
         return schema()
+    if operation['name']=='omni_superintelligence':
+        from ..superintelligence.omni_engine import OmniEngine
+        return OmniEngine.catalog_schema()
     from .area_tool_schemas import FIELDS,schema
     name = operation['name']
     if name in FIELDS:

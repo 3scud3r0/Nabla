@@ -14,8 +14,8 @@ def test_scientist_full_experiment_and_reserved_points(tmp_path):
     destination=tmp_path/'experiment'
     report=science.run(destination)
     assert report['passed']
-    assert report['catalog_operations']==103
-    assert report['notebook_replayed_cells']==103
+    assert report['catalog_operations']==104
+    assert report['notebook_replayed_cells']==104
     assert report['finite_campaign']['independently_checked_cases']==176
     assert report['forge']['solver_verifier_runs']==16
     assert report['negative_controls']['count']==9
@@ -23,8 +23,8 @@ def test_scientist_full_experiment_and_reserved_points(tmp_path):
     assert report['physical_models']['diffusion_refinement_ratio']>3.8
     assert report['formal']['status']=='not_requested'
     assert report['hypothesis']['wrong_law_rejected']
-    assert report['interfaces']['http_receipts']==103
-    assert report['interfaces']['cli_receipts']==103
+    assert report['interfaces']['http_receipts']==104
+    assert report['interfaces']['cli_receipts']==104
     assert all(row['valid'] for row in report['artifacts'])
     assert len(list(destination.glob('*.svg')))==2
     assert len(list(destination.glob('*.html')))==2

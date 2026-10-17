@@ -3,6 +3,9 @@ import json
 
 from ..core.semantic_ir import canonical_json, fingerprint
 
+# Public spelling used by amalgamated integrations.
+canonical = canonical_json
+
 MAX_BYTES = 16 * 1024 * 1024
 
 

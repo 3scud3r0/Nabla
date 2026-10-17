@@ -1,0 +1,63 @@
+name: OMNI_ENGINE archives and real CUDA validation
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/omni-engine-cuda]
+permissions:
+  contents: read
+jobs:
+  cuda:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: [self-hosted, linux, x64, gpu]
+    timeout-minutes: 30
+    env:
+      NABLA_REQUIRE_CUDA: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+      - name: Install CUDA-enabled Torch and scientific extras
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cu128
+          python -m pip install -e '.[test,superintelligence,ai]'
+      - name: Require actual NVIDIA hardware
+        run: |
+          nvidia-smi
+          python -c 'import torch; assert torch.cuda.is_available(); print(torch.cuda.get_device_name())'
+      - name: Execute actual CUDA kernels and CPU parity checks
+        run: python -m pytest -q tests/test_omni_engine.py tests/test_omni_engine_devices.py --junitxml=omni-cuda.xml
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: omni-cuda-evidence
+          path: omni-cuda.xml
+  archives:
+    if: github.event_name == 'push' && github.repository == '3scud3r0/Nabla' && github.ref == 'refs/heads/feat/omni-engine-cuda'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: feat/omni-engine-cuda
+          persist-credentials: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+      - name: Regenerate exact source archives on this isolated branch
+        run: |
+          python tools/build_math_bundle.py
+          python tools/build_nabla_bundle.py
+          python tools/build_math_bundle.py --check
+          python tools/build_nabla_bundle.py --check
+      - name: Publish generated archives without force-pushing
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add math.txt NABLA.TXT
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore(omni): synchronize deterministic source archives'
+            git push origin HEAD:refs/heads/feat/omni-engine-cuda
+          fi
