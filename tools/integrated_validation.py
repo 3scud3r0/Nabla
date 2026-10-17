@@ -86,7 +86,11 @@ def run_step(name, command, timeout, pytest_step, output, *, cwd=ROOT):
     junit = output / (name + '.xml') if pytest_step else None
     argv = command + (['--junitxml=' + str(junit.resolve())] if junit else [])
     started = time.monotonic()
-    code, timed_out = _run(argv, cwd, timeout, stdout, stderr)
+    try:
+        code, timed_out = _run(argv, cwd, timeout, stdout, stderr)
+    except OSError as error:
+        code, timed_out = None, False
+        stderr.write_text('Process could not start: ' + str(error) + '\n', encoding='utf-8')
     evidence = {'stdout': {'file': stdout.name, 'sha256': sha256(stdout), 'bytes': stdout.stat().st_size},
                 'stderr': {'file': stderr.name, 'sha256': sha256(stderr), 'bytes': stderr.stat().st_size}}
     row = {'name': name, 'argv': command, 'timeout_seconds': timeout,
@@ -120,7 +124,10 @@ def verify(directory):
         raise ValueError('Incomplete or reordered validation campaign')
     if data.get('passed') is not True or data.get('stable_release_accepted') is not False:
         raise ValueError('Campaign failed or incorrectly claimed stable release')
-    for row in rows:
+    for row, (name, command, timeout, pytest_step) in zip(rows, checks(data['profile'])):
+        if (row.get('argv') != command or row.get('timeout_seconds') != timeout
+                or ('pytest' in row) != pytest_step):
+            raise ValueError('Validation command, timeout or test policy differs from contract')
         if row.get('status') != 'passed' or row.get('exit_code') != 0 or row.get('timed_out'):
             raise ValueError('A required check did not pass')
         if not isinstance(row.get('evidence'), dict) or set(row['evidence']) != (
