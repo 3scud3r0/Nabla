@@ -83,3 +83,32 @@ def complex_analysis(kind, *, source=None, contour=None, points=None, coefficien
 def calculate(kind, **options):
     from ..calc.session import CalculationSession
     return CalculationSession().execute('complex_analysis',kind=kind,**options)
+
+
+def meromorphic_analysis(source,variable='z',point=0,order=6):
+    from ..math._structured import expression,sympy
+    sp=sympy();f,(z,)=expression(source,[variable]);a,_=expression(point,[variable])
+    if a.free_symbols or type(order) is not int or not 1<=order<=16:raise ValueError('Constant expansion point and bounded order required')
+    numerator,denominator=sp.fraction(sp.cancel(f));poles=None
+    if denominator.is_polynomial(z):poles=list(map(str,sp.solve(denominator,z)))
+    residue=sp.residue(f,z,a)
+    return {'residue':str(residue),'laurent_series':str(sp.series(f,z,a,order)),
+            'candidate_poles_of_reduced_rational_part':poles,'branch':'principal elementary branches',
+            'scope':'Local symbolic expansion; branch points are not classified as poles and global analyticity is not inferred.'}
+
+
+def contour_clearance(source,contour,*,minimum_distance=1e-6):
+    from ..math._structured import expression,sympy
+    sp=sympy();f,(z,)=expression(source,['z'],functions=False);p,q=map(lambda v:sp.Poly(v,z,domain=sp.QQ),sp.fraction(sp.cancel(f)))
+    if q.degree()>16 or minimum_distance<=0:raise ValueError('Rational-pole budget exceeded')
+    roots=[complex(v) for v in sp.nroots(q,maxsteps=200)] if q.degree()>0 else []
+    points=[_complex(v) for v in contour]
+    if not 2<=len(points)<=1024:raise ValueError('Polygonal contour required')
+    clearance=float('inf')
+    for a,b in zip(points,points[1:]):
+        if a==b:raise ValueError('Degenerate segment')
+        for root in roots:
+            t=max(0.,min(1.,((root-a)*(b-a).conjugate()).real/abs(b-a)**2));clearance=min(clearance,abs(root-(a+t*(b-a))))
+    if clearance<minimum_distance:raise ValueError('Contour is too close to a computed pole')
+    return {'computed_poles':[[v.real,v.imag] for v in roots],'minimum_computed_clearance':None if not roots else clearance,
+            'certified_enclosure':False,'scope':'Numerical rational pole detection; use certified root isolation for proof obligations.'}

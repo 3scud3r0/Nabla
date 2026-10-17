@@ -68,3 +68,13 @@ def manifold_topology(facets):
 
 
 def calculate(**arguments):return _calculate('manifold_topology',**arguments)
+
+
+def complex_invariants(facets):
+    from ..math.topology.homology import SimplicialComplex,integral_homology
+    if len(facets)>128 or any(len(f)>6 for f in facets):raise ValueError('Complex budget exceeded')
+    c=SimplicialComplex(facets)
+    if len(c.simplices)>512:raise ValueError('Cell budget exceeded')
+    return {'dimension':c.dimension,'rational_betti':list(c.betti_numbers()),
+            'integer_homology':[integral_homology(facets,k) for k in range(c.dimension+1)],
+            'scope':'Simplicial invariants, not a high-dimensional manifold recognition algorithm.'}

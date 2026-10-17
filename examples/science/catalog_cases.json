@@ -15,6 +15,17 @@
       0
     ]
   },
+  "advanced_math": {
+    "action": "sets.operations",
+    "parameters": {
+      "left": [
+        []
+      ],
+      "right": [
+        []
+      ]
+    }
+  },
   "algebraic_geometry": {
     "equations": [
       "y-x**2"

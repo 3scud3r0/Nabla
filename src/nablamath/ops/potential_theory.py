@@ -34,3 +34,29 @@ def potential_theory(conductance, boundary):
 
 
 def calculate(**arguments):return _calculate('potential_theory',**arguments)
+
+
+def green_function(distance,dimension=3):
+    import math
+    if type(distance) not in (int,float) or not math.isfinite(distance) or distance<=0:raise ValueError('Positive finite separation required')
+    if dimension==3:return {'value':1/(4*math.pi*distance),'operator':'-Laplacian','domain':'free space R^3'}
+    if dimension==2:return {'value':-math.log(distance)/(2*math.pi),'operator':'-Laplacian','domain':'free space R^2; logarithmic reference scale one'}
+    raise ValueError('Green function supports dimensions two and three')
+
+
+def boundary_single_layer(vertices,values):
+    """Constant-panel collocation for the 2D Laplace single-layer potential."""
+    import numpy as np
+    from ..math._structured import numeric_array
+    p=numeric_array(vertices,ndim=2,maximum=512);f=numeric_array(values,ndim=1,maximum=256)
+    if p.shape[1]!=2 or not 3<=len(p)<=256 or len(f)!=len(p):raise ValueError('Closed polygon and panel boundary values required')
+    end=np.roll(p,-1,axis=0);length=np.linalg.norm(end-p,axis=1)
+    if np.any(length<=1e-12):raise ValueError('Degenerate boundary panel')
+    centers=(p+end)/2;distance=np.linalg.norm(centers[:,None,:]-centers[None,:,:],axis=2)
+    if np.any(distance[np.triu_indices(len(p),1)]<=1e-12):raise ValueError('Coincident collocation points')
+    np.fill_diagonal(distance,1)
+    matrix=-np.log(distance)*length[None,:]/(2*np.pi)
+    np.fill_diagonal(matrix,length*(1-np.log(length/2))/(2*np.pi))
+    density=np.linalg.solve(matrix,f)
+    return {'density':density.tolist(),'centers':centers.tolist(),'residual_inf':float(np.linalg.norm(matrix@density-f,np.inf)),
+            'scope':'Polygonal midpoint collocation; exact self-panel logarithmic integral, approximate off-diagonal quadrature, no certified error bound.'}

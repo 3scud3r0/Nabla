@@ -27,3 +27,31 @@ def global_analysis(facets, *, degree=0, form=None):
 
 
 def calculate(**arguments):return _calculate('global_analysis',**arguments)
+
+
+def de_rham_derivative(coordinates,components):
+    from ..math.geometry.differential_forms import exterior_derivative
+    derivative=exterior_derivative(coordinates,components)
+    return {'derivative':derivative,'d_squared':exterior_derivative(coordinates,derivative),
+            'scope':'Coordinate de Rham differential on the supplied smooth expression chart.'}
+
+
+def weighted_hodge(facets,degree,weights):
+    from ..math._structured import rational_matrix,sympy,data
+    sp=sympy();c=SimplicialComplex(facets)
+    if len(c.simplices)>128 or not 0<=degree<=3:raise ValueError('Weighted Hodge budget exceeded')
+    ns=[len(c.cells(k)) for k in range(c.dimension+1)]
+    if degree>=len(ns) or len(weights)!=len(ns):raise ValueError('A positive diagonal inner product is required in each degree')
+    ws=[]
+    for n,values in zip(ns,weights):
+        if len(values)!=n:raise ValueError('Hodge star dimension mismatch')
+        v=vector(values,maximum=128,minimum=0)
+        if any(x<=0 for x in v):raise ValueError('Hodge weights must be positive')
+        ws.append(sp.diag(*(sp.Rational(str(x)) for x in v)))
+    n=ns[degree];lap=sp.zeros(n)
+    if degree>0:
+        d=sp.Matrix(c.boundary_matrix(degree)).T;lap+=d*ws[degree-1].inv()*d.T*ws[degree]
+    if degree<c.dimension:
+        d=sp.Matrix(c.boundary_matrix(degree+1)).T;lap+=ws[degree].inv()*d.T*ws[degree+1]*d
+    return {'laplacian':data(lap),'harmonic_basis':data(lap.nullspace()),'betti_number':c.betti_number(degree),
+            'scope':'Finite-element/discrete positive inner-product Hodge profile; not arbitrary smooth elliptic theory.'}

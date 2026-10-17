@@ -49,6 +49,7 @@ REFERENCES = {
  'variational_calculus': ('acceleration_denominator', '1'),
  'manifold_topology': ('euler_characteristic', 2),
  'global_analysis': ('harmonic_dimension', 1),
+ 'advanced_math': ('result.equal', True),
  'statistical_mechanics': ('probabilities', [0.5, 0.5]),
  'geophysics': ('two_way_times_seconds', [0.2, 0.4]),
 
@@ -363,7 +364,7 @@ def run(destination, *, cases_path=None, formal_project=None):
     names={row['name'] for row in catalog()['operations']}
     require(set(cases)==names==set(REFERENCES)|SPECIAL,'Catalog/inputs/references coverage mismatch')
     root=Path(destination);root.mkdir(parents=True,exist_ok=False)
-    session=CalculationSession();notebook=Notebook('102 bounded operations with independent references')
+    session=CalculationSession();notebook=Notebook('103 bounded operations with independent references')
     rows=[]
     for name,arguments in cases.items():
         receipt=session.execute(name,**arguments);data=receipt.to_data()

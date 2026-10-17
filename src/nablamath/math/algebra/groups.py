@@ -58,3 +58,25 @@ def cyclic_group(order: int) -> FiniteGroup[int]:
 
 
 __all__ = ["FiniteGroup", "cyclic_group"]
+
+
+def permutation_group(generators,*,subgroup_generators=None):
+    from .._structured import sympy
+    sympy()
+    from sympy.combinatorics import Permutation,PermutationGroup
+    if not isinstance(generators,list) or not 1<=len(generators)<=32:raise ValueError('Permutation generator budget exceeded')
+    n=len(generators[0])
+    if not 1<=n<=128 or any(sorted(g)!=list(range(n)) for g in generators):raise ValueError('Total equal-degree permutations required')
+    group=PermutationGroup([Permutation(g) for g in generators]);group.schreier_sims()
+    result={'order':int(group.order()),'base':list(group.base),'strong_generators':[list(g.array_form) for g in group.strong_gens],
+            'abelian':bool(group.is_abelian),'solvable':bool(group.is_solvable),'orbits':[sorted(orbit) for orbit in group.orbits()]}
+    if subgroup_generators is not None:
+        if not subgroup_generators or len(subgroup_generators)>32 or any(sorted(g)!=list(range(n)) for g in subgroup_generators):raise ValueError('Invalid subgroup generators')
+        h=PermutationGroup([Permutation(g) for g in subgroup_generators])
+        if not h.is_subgroup(group):raise ValueError('Proposed subgroup lies outside the group')
+        result['subgroup_order']=int(h.order());result['normal']=bool(h.is_normal(group));result['index']=int(group.order()//h.order())
+        result['quotient_table_available']=bool(result['normal'] and group.order()<=10000 and result['index']<=64)
+        if result['quotient_table_available']:
+            cosets=group.coset_transversal(h);result['coset_representatives']=[list(g.array_form) for g in cosets]
+            result['quotient_table']=[[next(k for k,c in enumerate(cosets) if h.contains(a*b*c**-1)) for b in cosets] for a in cosets]
+    return result

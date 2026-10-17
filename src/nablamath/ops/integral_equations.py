@@ -20,3 +20,24 @@ def integral_equations(kernel, rhs, *, lower=0, upper=1, coupling=1):
 
 
 def calculate(**arguments):return _calculate('integral_equations',**arguments)
+
+
+def numerical_integral_equation(kernel,rhs,*,lower=0.,upper=1.,coupling=1.,nodes=32,kind='fredholm',regularization=0.):
+    import numpy as np
+    from ..math._structured import expression,sympy
+    if type(nodes) is not int or not 4<=nodes<=256 or not lower<upper or not np.isfinite([lower,upper,coupling,regularization]).all() or regularization<0:raise ValueError('Invalid quadrature equation parameters')
+    sp=sympy();k,(x,t)=expression(kernel,['x','t']);f,(z,)=expression(rhs,['x'])
+    if kind=='fredholm':
+        points,weights=np.polynomial.legendre.leggauss(nodes);points=(lower+upper)/2+(upper-lower)*points/2;weights*=((upper-lower)/2)
+        quadrature=np.broadcast_to(weights,(nodes,nodes)).copy()
+    elif kind=='volterra':
+        points=np.linspace(lower,upper,nodes);h=(upper-lower)/(nodes-1);quadrature=np.zeros((nodes,nodes))
+        for i in range(1,nodes):quadrature[i,:i+1]=h;quadrature[i,0]=h/2;quadrature[i,i]=h/2
+    else:raise ValueError('Unsupported integral equation kind')
+    values=np.array([[float(k.subs({x:float(a),t:float(b)})) for b in points] for a in points]);b=np.array([float(f.subs(z,float(a))) for a in points])
+    system=np.eye(nodes)-coupling*values*quadrature
+    if not np.isfinite(system).all() or not np.isfinite(b).all():raise ValueError('Kernel or rhs undefined at quadrature nodes')
+    solution=np.linalg.solve(system.T@system+regularization*np.eye(nodes),system.T@b) if regularization else np.linalg.solve(system,b)
+    return {'points':points.tolist(),'values':solution.tolist(),'residual_inf':float(np.linalg.norm(system@solution-b,np.inf)),
+            'condition_number':float(np.linalg.cond(system)),'regularization':regularization,
+            'scope':'Second-kind Nystrom discretization; optional Tikhonov regularization. Residual is discrete, not a continuum error bound.'}

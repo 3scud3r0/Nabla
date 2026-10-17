@@ -23,3 +23,26 @@ def functional_analysis(basis, target, *, weights=None):
 
 
 def calculate(**arguments):return _calculate('functional_analysis',**arguments)
+
+
+def orthogonal_series(coefficients,weights,tail_bound):
+    from ._area_utils import scalar
+    c,w=vector(coefficients,maximum=4096),vector(weights,maximum=4096);bound=scalar(tail_bound)
+    if len(c)!=len(w) or any(v<=0 for v in w) or bound<0:raise ValueError('Positive basis norms and nonnegative tail bound required')
+    norm=sum(a*a*b for a,b in zip(c,w))
+    return {'truncation_norm_squared':norm,'full_norm_squared_interval':[norm,norm+bound*bound],
+            'error_norm_upper_bound':bound,'conditional_on':'Orthogonality/completeness and the supplied certified tail bound; no inferred convergence.'}
+
+
+def contraction_fixed_point(matrix,offset,tolerance=1e-10,max_iterations=10000):
+    import numpy as np
+    from ..math._structured import numeric_array
+    a,b=numeric_array(matrix,ndim=2,maximum=4096),numeric_array(offset,ndim=1,maximum=64)
+    if a.shape!=(len(b),len(b)) or not 0<tolerance<1 or type(max_iterations) is not int or not 1<=max_iterations<=100000:raise ValueError('Invalid fixed-point data')
+    q=float(np.linalg.norm(a,np.inf))
+    if q>=1:raise ValueError('Infinity-norm contraction was not established')
+    current=np.zeros(len(b))
+    for iteration in range(1,max_iterations+1):
+        new=a@current+b;bound=q/(1-q)*float(np.linalg.norm(new-current,np.inf));current=new
+        if bound<=tolerance:return {'fixed_point':current.tolist(),'iterations':iteration,'a_posteriori_bound':bound,'contraction_factor':q,'arithmetic':'floating_point; rounding not enclosed'}
+    raise ArithmeticError('Contraction iteration budget exhausted')

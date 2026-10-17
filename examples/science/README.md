@@ -13,14 +13,14 @@ SQLite com backup e restore e os dados de uma hipótese sintética.
 
 | Pergunta | Experimento e evidência |
 |---|---|
-| As 102 operações do catálogo são executáveis? | `catalog_cases.json` fixa os argumentos. Cada operação tem uma referência explícita em `reproduce.py`, comparada antes de salvar o recibo. O conjunto deve corresponder exatamente ao catálogo instalado. |
+| As 103 operações do catálogo são executáveis? | `catalog_cases.json` fixa os argumentos. Cada operação tem uma referência explícita em `reproduce.py`, comparada antes de salvar o recibo. O conjunto deve corresponder exatamente ao catálogo instalado. |
 | É apenas um snapshot do próprio resultado? | Não. Referências são fórmulas e valores declarados no código: integração de x², determinante 2×2, PA=LU, ortogonalidade, distribuição binomial, limites racionais e solução analítica de decaimento. Não existe comando para regenerá-las a partir do Nabla. |
 | As referências se sustentam em mais de um exemplo? | Campanha de 176 casos: primalidade por divisão tentativa para n=0…127, raízes modulares por enumeração em cinco corpos primos e nove leis binomiais por combinações. |
 | Podemos formular e testar uma hipótese? | Lei conhecida y=1+2x: oito pontos de treino, ajuste exato e oito pontos reservados. Uma lei errada é rejeitada nos pontos reservados. Dados sintéticos não demonstram descoberta inédita. |
 | Podemos construir problemas e verificar soluções? | As oito famílias Forge executam duas estratégias de solução e seu verificador. Duas famílias também produzem um artefato encadeado com dados, figura, documento e replay. |
 | Há simulação física com referência analítica? | Dezesseis casos idealizados de elasticidade, RLC, cinética e hidrostática, com unidades SI e replay. Difusão em duas malhas é comparada à solução senoidal da equação do calor, exigindo convergência de segunda ordem. Não utiliza dados medidos. |
 | O notebook preserva os cálculos? | As 102 células são persistidas e reexecutadas. Uma cópia com resultado adulterado deve ser rejeitada. |
-| CLI e desktop usam a mesma matemática? | Todas as 102 operações retornam recibos idênticos pela CLI instalada e pelo servidor HTTP real, com referências matemáticas conferidas. O desktop salva e reexecuta um notebook e rejeita token inválido. |
+| CLI e desktop usam a mesma matemática? | Todas as 103 operações retornam recibos idênticos pela CLI instalada e pelo servidor HTTP real, com referências matemáticas conferidas. O desktop salva e reexecuta um notebook e rejeita token inválido. |
 | Dados sobrevivem ao backup? | Uma expressão é gravada em SQLite, copiada, restaurada e comparada byte a byte no payload. |
 | O programa rejeita uso inválido? | Nove controles negativos: singularidade, divisão por zero, domínio de primalidade, polinômio redutível, massa incompleta, orçamento de atribuição, argumento desconhecido, unidades incompatíveis e notebook adulterado. |
 

@@ -26,3 +26,31 @@ def measure_theory(weights, values, *, partition=None):
 
 
 def calculate(**arguments):return _calculate('measure_theory',**arguments)
+
+
+def radon_nikodym(reference,target):
+    reference,target=vector(reference),vector(target)
+    if len(reference)!=len(target) or any(v<0 for v in reference+target):raise ValueError('Paired nonnegative atomic measures required')
+    if any(a==0 and b!=0 for a,b in zip(reference,target)):raise ValueError('Target measure is not absolutely continuous')
+    derivative=[b/a if a else Fraction(0) for a,b in zip(reference,target)]
+    return {'density':derivative,'null_atom_convention':0,'reconstruction_verified':all(a*d==b for a,b,d in zip(reference,target,derivative))}
+
+
+def product_measure(left,right):
+    a,b=vector(left,maximum=256),vector(right,maximum=256)
+    if any(v<0 for v in a+b):raise ValueError('Nonnegative measures required')
+    return {'weights':[[x*y for y in b] for x in a],'total_measure':sum(a)*sum(b)}
+
+
+def continuous_integral(density,integrand,lower,upper,variable='x'):
+    from ..math._structured import expression,sympy
+    from ._area_utils import scalar
+    sp=sympy();p,(x,)=expression(density,[variable],functions=False);f,_=expression(integrand,[variable])
+    poly=sp.Poly(p,x,domain=sp.QQ);a,b=(sp.Rational(str(scalar(v))) for v in (lower,upper))
+    if a>=b or poly.degree()>16:raise ValueError('Invalid interval or density degree')
+    # Exact polynomial critical points and endpoints determine the minimum.
+    minimum=sp.calculus.util.minimum(p,x,sp.Interval(a,b))
+    if minimum.is_nonnegative is not True:raise ValueError('Density nonnegativity could not be established')
+    mass=sp.integrate(p,(x,a,b));value=sp.integrate(p*f,(x,a,b))
+    return {'mass':str(mass),'integral':str(value),'evaluated':not value.has(sp.Integral),
+            'density_nonnegative':True,'scope':'Continuous polynomial density on the declared bounded interval.'}

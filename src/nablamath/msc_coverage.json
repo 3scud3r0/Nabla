@@ -33,7 +33,22 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Proposições e aritmética linear em fragmentos controlados",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "proofs.check",
+          "constructive.type_check",
+          "models.satisfaction",
+          "sets.operations",
+          "sets.axiom",
+          "sets.derivation",
+          "formal.translate",
+          "models.linear_integers",
+          "sets.progression"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "05",
@@ -53,7 +68,16 @@
       "operation": "order_theory",
       "coverage": "added_bounded_profile",
       "scope": "finite partial orders, Hasse covers and lattice joins/meets; 64 elements",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "order.heyting",
+          "order.boolean",
+          "order.symbolic"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "08",
@@ -63,7 +87,16 @@
       "operation": "universal_algebra",
       "coverage": "added_bounded_profile",
       "scope": "finite binary algebras, generated subalgebras and congruence quotients",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "universal.signature",
+          "universal.congruences",
+          "universal.free"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "11",
@@ -73,7 +106,18 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Problemas inteiros e modulares com orçamentos explícitos",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "integers.factor",
+          "integers.certificate",
+          "elliptic.rational_points",
+          "elliptic.isogeny",
+          "elliptic.add"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "12",
@@ -83,7 +127,16 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Corpos finitos e extensões polinomiais",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "galois.polynomial",
+          "fields.primitive",
+          "fields.arithmetic"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "13",
@@ -103,7 +156,23 @@
       "operation": "algebraic_geometry",
       "coverage": "added_bounded_profile",
       "scope": "rational points and Zariski tangent spaces of explicitly generated affine schemes",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "schemes.affine",
+          "schemes.eliminate",
+          "schemes.saturate",
+          "schemes.primary",
+          "schemes.projective_chart",
+          "sheaves.sections",
+          "sheaves.cech",
+          "algebraic.ideals",
+          "schemes.radical",
+          "schemes.primary_zero_dimensional"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "15",
@@ -113,7 +182,14 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Sistemas e decomposições racionais exatas",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "linear.algebraic_spectral"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "16",
@@ -123,7 +199,16 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Estruturas e verificações algébricas finitas",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "modules.presentation",
+          "modules.homomorphism",
+          "modules.resolution"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "17",
@@ -133,7 +218,17 @@
       "operation": "lie_algebra",
       "coverage": "added_bounded_profile",
       "scope": "rational Lie brackets, Jacobi verification, center and Killing form; dimension at most six",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "lie.structure",
+          "lie.decomposition",
+          "lie.pbw",
+          "lie.roots"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "18",
@@ -143,7 +238,19 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Categorias finitas, funtores e transformações naturais",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "homological.complex",
+          "homological.chain_map",
+          "homological.ext_tor",
+          "homological.homotopy",
+          "categories.paths",
+          "categories.adjunction"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "19",
@@ -153,7 +260,15 @@
       "operation": "k_theory",
       "coverage": "added_bounded_profile",
       "scope": "exact K0 presentation of finite graph Leavitt path algebras, not general higher K-theory",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "k.groups",
+          "k.higher_finite_field"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "20",
@@ -163,7 +278,18 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Grupos finitos e operações estruturais",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "representations.validate",
+          "representations.intertwiners",
+          "representations.characters",
+          "groups.permutation",
+          "representations.decompose"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "22",
@@ -173,7 +299,16 @@
       "operation": "lie_groups",
       "coverage": "added_bounded_profile",
       "scope": "numerical SO(3) exponential, quaternion and left Jacobian in radians",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "lie.matrix_group",
+          "lie.se3_adjoint",
+          "lie.integrate"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "26",
@@ -183,7 +318,14 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Envoltórias racionais de funções em domínios delimitados",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "calculus.elementary"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "28",
@@ -193,7 +335,16 @@
       "operation": "measure_theory",
       "coverage": "added_bounded_profile",
       "scope": "finite atomic measure integrals and exact conditional expectation",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "measure.radon_nikodym",
+          "measure.product",
+          "measure.continuous"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "30",
@@ -203,7 +354,15 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Contornos numéricos e mapas de Möbius",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "complex.meromorphic",
+          "complex.clearance"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "31",
@@ -213,7 +372,15 @@
       "operation": "potential_theory",
       "coverage": "added_bounded_profile",
       "scope": "exact finite weighted-graph Dirichlet solution, residuals and energy",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "potential.green",
+          "potential.boundary"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "32",
@@ -223,7 +390,14 @@
       "operation": "several_complex_variables",
       "coverage": "added_bounded_profile",
       "scope": "exact Gaussian-rational holomorphic polynomial Jacobians and local inverse criterion",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "complex.holomorphic_jet"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "33",
@@ -233,7 +407,14 @@
       "operation": "special_functions",
       "coverage": "added_bounded_profile",
       "scope": "real Gamma/Beta/error functions and optional SciPy Bessel/Legendre/Airy evaluation",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "special.precision"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "34",
@@ -243,7 +424,14 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Integração numérica com modelos e tolerâncias declarados",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "ode.stiff"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "35",
@@ -253,7 +441,16 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Perfis de Poisson e domínios de fronteira específicos",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "pde.poisson",
+          "pde.fem",
+          "pde.adaptive"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "37",
@@ -273,7 +470,15 @@
       "operation": "difference_equations",
       "coverage": "added_bounded_profile",
       "scope": "exact affine constant-coefficient recurrence with explicit index and bit budgets",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "recurrence.symbolic",
+          "recurrence.system"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "40",
@@ -293,7 +498,18 @@
       "operation": "approximation_theory",
       "coverage": "added_bounded_profile",
       "scope": "exact rational barycentric interpolation and query Lebesgue amplification",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "approximation.spline",
+          "approximation.chebyshev",
+          "approximation.minimax",
+          "approximation.pade",
+          "approximation.remez"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "42",
@@ -303,7 +519,17 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "FFT, Haar e sinais amostrados finitos",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "spectral.multidimensional",
+          "spectral.wavelet",
+          "spectral.nonuniform",
+          "spectral.diagnostics"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "43",
@@ -313,7 +539,15 @@
       "operation": "abstract_harmonic_analysis",
       "coverage": "added_bounded_profile",
       "scope": "numerical Fourier characters on finite products of cyclic groups",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "harmonic.group_fourier",
+          "harmonic.convolution"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "44",
@@ -323,7 +557,15 @@
       "operation": "integral_transforms",
       "coverage": "added_bounded_profile",
       "scope": "exact polynomial Laplace/unit-Mellin and finite real rational Z transforms",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "transforms.symbolic",
+          "transforms.oscillatory"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "45",
@@ -333,7 +575,14 @@
       "operation": "integral_equations",
       "coverage": "added_bounded_profile",
       "scope": "exact nonsingular second-kind Fredholm equation with polynomial finite-rank kernel",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "integral_equations.nystrom"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "46",
@@ -343,7 +592,21 @@
       "operation": "functional_analysis",
       "coverage": "added_bounded_profile",
       "scope": "exact finite weighted-Hilbert projection, orthogonality and Pythagoras identity",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "distributions.pairing",
+          "distributions.derivative",
+          "distributions.fourier",
+          "distributions.regular",
+          "sobolev.norm",
+          "sobolev.tail",
+          "functional.series",
+          "functional.fixed_point"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "47",
@@ -353,7 +616,14 @@
       "operation": "operator_theory",
       "coverage": "added_bounded_profile",
       "scope": "finite rational operators, adjoints, induced norms, positivity and resolvents",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "operators.sparse_spectrum"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "49",
@@ -363,7 +633,15 @@
       "operation": "variational_calculus",
       "coverage": "added_bounded_profile",
       "scope": "exact scalar polynomial first-order Euler-Lagrange equation, momentum and energy",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "variations.fields",
+          "variations.density"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "51",
@@ -393,7 +671,20 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Métricas locais e curvatura em dimensão limitada",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "bundles.verify",
+          "bundles.sections",
+          "bundles.connection",
+          "geometry.pullback",
+          "geometry.geodesic",
+          "geometry.covariant",
+          "bundles.transport"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "54",
@@ -403,7 +694,14 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Espaços topológicos finitos",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "topology.continuity"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "55",
@@ -413,7 +711,20 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Complexos finitos e homologia racional",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "homotopy.fundamental_group",
+          "homotopy.simplicial_map",
+          "topology.integral_homology",
+          "topology.cup",
+          "topology.cohomology",
+          "topology.integral_cohomology",
+          "topology.cup_class"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "57",
@@ -423,7 +734,14 @@
       "operation": "manifold_topology",
       "coverage": "added_bounded_profile",
       "scope": "finite triangulated surface links, boundaries, orientability and closed orientable genus",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "manifolds.invariants"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "58",
@@ -433,7 +751,19 @@
       "operation": "global_analysis",
       "coverage": "added_bounded_profile",
       "scope": "finite simplicial Hodge Laplacian and exact harmonic projection",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "forms.derivative",
+          "forms.wedge",
+          "forms.pullback",
+          "forms.integrate",
+          "global.de_rham",
+          "global.weighted_hodge"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "60",
@@ -443,7 +773,17 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Processos e caminhos amostrados em modelos declarados",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "stochastic.ito",
+          "stochastic.system",
+          "stochastic.refinement",
+          "stochastic.adaptive"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "62",
@@ -453,7 +793,17 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Ajustes e inferência em modelos delimitados",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "bayesian.conjugate",
+          "bayesian.hierarchy",
+          "bayesian.sample",
+          "bayesian.diagnostics"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "65",
@@ -463,7 +813,16 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Álgebra e aproximação numérica com contratos específicos",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "autograd.jet",
+          "autograd.implicit",
+          "autograd.solve_vjp"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "68",
@@ -543,7 +902,16 @@
       "operation": "statistical_mechanics",
       "coverage": "added_bounded_profile",
       "scope": "stable finite canonical ensemble in caller-consistent units; no thermodynamic limit",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "ensembles.microcanonical",
+          "ensembles.grand",
+          "ensembles.ising"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "83",
@@ -573,7 +941,16 @@
       "operation": "geophysics",
       "coverage": "added_bounded_profile",
       "scope": "vertical layered acoustic times/reflections or infinite Bouguer slab in SI units",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "geophysics.gravity",
+          "geophysics.inverse",
+          "geophysics.wave"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "90",
@@ -583,7 +960,15 @@
       "operation": null,
       "coverage": "existing_bounded_profile",
       "scope": "Otimização e grafos finitos",
-      "entire_subject_implemented": false
+      "entire_subject_implemented": false,
+      "additional_implementation": {
+        "catalog_entry": "advanced_math",
+        "actions": [
+          "optimization.conic",
+          "optimization.certificate"
+        ],
+        "validation_status": "not_executed_user_instruction"
+      }
     },
     {
       "code": "91",

@@ -22,3 +22,11 @@ def algebraic_geometry(equations, variables, point):
 
 
 def calculate(**arguments):return _calculate('algebraic_geometry',**arguments)
+
+
+def ideal_analysis(equations,variables,*,remove=(),denominator=None):
+    from ..math.geometry.schemes import affine_scheme,eliminate,saturate
+    result=affine_scheme(equations,variables)
+    if remove:result['elimination']=eliminate(equations,variables,remove)
+    if denominator is not None:result['localization']=saturate(equations,variables,denominator)
+    return result

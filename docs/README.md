@@ -14,6 +14,7 @@ Consulte as operações instaladas com `nabla catalog`; execute qualquer operaç
 
 - [Camadas de execução, MCP/SMT, matemática adicional, GLTF/Manim e Living Papers Typst](SCIENTIFIC_LAYERS.md).
 - [Mapa dos 63 ramos MSC 2020 e 22 módulos adicionais](MSC2020_COVERAGE.md).
+- [Expansão matemática: módulos, ações e testes escritos sem execução](MATHEMATICAL_EXPANSION.md).
 - [Composição científica dos PDFs e demonstrações editoriais](EDITORIAL_DESIGN.md).
 
 - [Laboratório de matemática racional exata](math/EXACT_LABORATORY.md) e [ampliação integrada com 29 operações](math/ADVANCED_EXACT_EXPANSION.md): álgebra polinomial, Sturm, interpolação, álgebra linear, teoria dos números, cadeias e otimização com limites.

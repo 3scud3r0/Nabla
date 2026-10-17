@@ -54,3 +54,14 @@ def verify_translation_binding(binding, *, question, statement, task_id):
         return expected == binding
     except (ValueError, TypeError, KeyError):
         return False
+
+
+def bind_certificate_review(question,certificate,receipt_id,*,reviewer,notes,accepted):
+    from .translate import certificate_statements
+    from ..core.semantic_ir import fingerprint
+    if type(accepted) is not bool or any(type(v) is not str or not v.strip() for v in (question,reviewer,notes)) or type(receipt_id) is not str or len(receipt_id)!=64 or any(c not in '0123456789abcdef' for c in receipt_id):raise ValueError('Explicit question, review and receipt SHA-256 required')
+    statements=certificate_statements(certificate)
+    payload={'question_id':fingerprint(question),'certificate_id':fingerprint(certificate),'receipt_id':receipt_id,
+             'statement_ids':[s.content_id for s in statements],'reviewer':reviewer,'notes':notes,'accepted':accepted,
+             'reviewer_identity_authenticated':False,'semantic_equivalence_machine_proved':False}
+    return {**payload,'binding_id':fingerprint(payload)}

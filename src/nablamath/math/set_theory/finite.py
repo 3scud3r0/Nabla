@@ -46,3 +46,24 @@ def is_surjective(domain: frozenset[T], codomain: frozenset[U], function: Callab
 
 
 __all__ = ["cartesian_product", "equivalence_classes", "is_injective", "is_surjective", "power_set"]
+class IntegerProgression:
+    """Decidable infinite arithmetic progression, represented without enumeration."""
+    def __init__(self,modulus=1,residue=0,lower=None):
+        if type(modulus) is not int or not 1<=modulus<=10**12 or type(residue) is not int or (lower is not None and type(lower) is not int):raise ValueError('Invalid integer progression')
+        self.modulus,self.residue,self.lower=modulus,residue%modulus,lower
+
+    def contains(self,value):
+        return type(value) is int and (self.lower is None or value>=self.lower) and value%self.modulus==self.residue
+
+    def prefix(self,count,start=0):
+        if type(count) is not int or not 0<=count<=10000:raise ValueError('Finite prefix budget exceeded')
+        start=max(start,self.lower) if self.lower is not None else start
+        first=start+(self.residue-start)%self.modulus
+        return [first+i*self.modulus for i in range(count)]
+
+
+def progression(modulus,residue,values,*,lower=None,count=10,start=0):
+    if len(values)>10000 or type(start) is not int:raise ValueError('Progression query budget exceeded')
+    represented=IntegerProgression(modulus,residue,lower)
+    return {'membership':[represented.contains(v) for v in values],'prefix':represented.prefix(count,start),
+            'scope':'Exact symbolic integer progression; finite membership and prefix queries.'}

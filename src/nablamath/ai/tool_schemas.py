@@ -128,6 +128,9 @@ def operation_properties(name, fields):
 
 
 def schema_for(operation):
+    if operation['name']=='advanced_math':
+        from ..ops.advanced_math import schema
+        return schema()
     from .area_tool_schemas import FIELDS,schema
     name = operation['name']
     if name in FIELDS:

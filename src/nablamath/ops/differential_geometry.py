@@ -12,6 +12,45 @@ from ..math.geometry.riemannian import MetricJet, riemannian_tensors
 from ._expressions import ScientificExpression
 
 
+def coordinate_pullback(metric,coordinates,new_coordinates,mapping):
+    from ..math._structured import expression,sympy,names,data
+    sp=sympy();coordinates=names(coordinates,4);new_coordinates=names(new_coordinates,4)
+    if len(mapping)!=len(coordinates) or len(metric)!=len(coordinates):raise ValueError('Chart map dimensions differ')
+    functions=[expression(v,new_coordinates)[0] for v in mapping]
+    old=tuple(map(sp.Symbol,coordinates));new=tuple(map(sp.Symbol,new_coordinates));sub=dict(zip(old,functions))
+    g=sp.Matrix([[expression(v,coordinates)[0].subs(sub,simultaneous=True) for v in row] for row in metric])
+    if g.shape!=(len(old),len(old)):raise ValueError('Square metric required')
+    if g!=g.T:raise ValueError('Metric must be symmetric')
+    jac=sp.Matrix(functions).jacobian(new);pullback=(jac.T*g*jac).applyfunc(sp.simplify)
+    return {'metric':data(pullback),'jacobian':data(jac),'nondegenerate_where':str(pullback.det())+' != 0',
+            'scope':'Local metric pullback; atlas overlap and global injectivity are separate hypotheses.'}
+
+
+def geodesic(metric,coordinates,position,velocity,duration=1.,steps=100):
+    from ..math._structured import expression,sympy,numeric_array
+    from scipy.integrate import solve_ivp
+    import numpy as np
+    result=symbolic_metric(metric,coordinates);sp=sympy();n=len(coordinates)
+    if len(position)!=n or len(velocity)!=n or type(steps) is not int or not 1<=steps<=10000 or not 0<duration<=10000:raise ValueError('Invalid geodesic initial data')
+    symbols=tuple(map(sp.Symbol,coordinates));gamma=[[[expression(v,coordinates)[0] for v in row] for row in layer] for layer in result['christoffel']]
+    def rhs(t,y):
+        sub=dict(zip(symbols,y[:n]));v=y[n:];acc=[-sum(float(gamma[k][i][j].subs(sub))*v[i]*v[j] for i in range(n) for j in range(n)) for k in range(n)]
+        return list(v)+acc
+    initial=numeric_array(list(position)+list(velocity),ndim=1)
+    solution=solve_ivp(rhs,(0,duration),initial,t_eval=np.linspace(0,duration,steps+1),rtol=1e-9,atol=1e-11)
+    if not solution.success or not np.isfinite(solution.y).all():raise ArithmeticError('Geodesic integration failed: '+solution.message)
+    return {'times':solution.t.tolist(),'states':solution.y.T.tolist(),'scope':'Local chart numerical geodesic; chart-domain validity must be supplied by the caller.'}
+
+
+def covariant_derivative(metric,coordinates,vector):
+    from ..math._structured import expression,sympy,data
+    sp=sympy();n=len(coordinates)
+    if len(vector)!=n:raise ValueError('Vector dimension mismatch')
+    values=[expression(v,coordinates)[0] for v in vector];gamma=symbolic_metric(metric,coordinates)['christoffel']
+    result=[[sp.diff(values[k],sp.Symbol(coordinates[i]))+sum(expression(gamma[k][i][j],coordinates)[0]*values[j] for j in range(n)) for i in range(n)] for k in range(n)]
+    return {'components':data([[sp.simplify(v) for v in row] for row in result]),'convention':'components[k][i] = nabla_i V^k'}
+
+
 def _data(value):
     if isinstance(value,(tuple,list)):
         return [_data(v) for v in value]

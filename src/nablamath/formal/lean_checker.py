@@ -123,3 +123,22 @@ def check_lean(translation,project=Path('lean'),timeout=120):
 
 def prove_statement(statement,project=Path('lean'),strategy='auto',timeout=120):
     return check_lean(translate_statement(statement,strategy),project,timeout)
+
+
+def check_exact_certificate(certificate,project=Path('lean'),timeout=120):
+    """Compile every scalar obligation under one shared wall-clock budget."""
+    import time
+    import math
+    from .translate import certificate_statements
+    from ..core.semantic_ir import fingerprint
+    if type(timeout) is not int or not 1<=timeout<=300:raise ValueError('Certificate timeout must be 1–300 seconds')
+    started=time.monotonic();checks=[]
+    for statement in certificate_statements(certificate):
+        remaining=timeout-(time.monotonic()-started)
+        if remaining<1:
+            return {'status':'timeout','formal_proof':False,'checks':checks,'certificate_id':fingerprint(certificate)}
+        result=prove_statement(statement,project=project,timeout=min(300,max(1,math.floor(remaining))))
+        checks.append(result.to_data())
+        if not result.verified:return {'status':result.status,'formal_proof':False,'checks':checks,'certificate_id':fingerprint(certificate)}
+    return {'status':'proved','formal_proof':True,'checks':checks,'certificate_id':fingerprint(certificate),
+            'scope':'Only the explicit algebraic certificate obligations; physical validity and prose are not proved.'}

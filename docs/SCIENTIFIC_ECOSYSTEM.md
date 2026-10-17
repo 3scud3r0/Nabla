@@ -2,7 +2,7 @@
 
 A implementação segue o layout real `src/nablamath`. Os novos caminhos reutilizam
 os motores existentes e acrescentam operações executáveis, bibliotecas opcionais
-e transportes explícitos. O catálogo passa de 69 para **102 operações**. A CLI,
+e transportes explícitos. O catálogo passa de 69 para **103 operações**. A CLI,
 o desktop e os notebooks usam a mesma `CalculationSession`.
 
 ## Instalação e execução
@@ -15,7 +15,7 @@ nabla calc autograd --arguments '{"inputs":{"x":3},"nodes":[{"op":"input","name"
 python examples/science/reproduce.py .nabla/ecosystem-demo
 ```
 
-O último comando compara todas as 102 operações com referências explícitas,
+O último comando compara todas as 103 operações com referências explícitas,
 persiste e reexecuta um notebook, e compara os recibos da CLI e do servidor HTTP.
 
 | Caminho | Implementação e limites |
@@ -141,7 +141,7 @@ Configuração de um cliente MCP:
 ```
 
 O servidor usa o SDK oficial e transporte stdio; oferece listagem e execução das
-102 operações. Por conexão, o padrão permite até 100 chamadas de até 10 segundos.
+103 operações. Por conexão, o padrão permite até 100 chamadas de até 10 segundos.
 Não oferece shell ou execução de Python enviado pelo cliente.
 
 `ai.sandbox_verifier.verify_claim` recebe `FormalStatement`, verifica no fragmento

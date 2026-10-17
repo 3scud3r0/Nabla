@@ -52,6 +52,16 @@
         "contract": "numerical Fourier characters on finite products of cyclic groups"
       },
       {
+        "name": "advanced_math",
+        "area": "mathematics",
+        "required": [
+          "action",
+          "parameters"
+        ],
+        "optional": [],
+        "contract": "allowlisted advanced algebra, geometry, analysis, logic and numerical profiles; closed per-action schemas, explicit domains and no universal proof claim"
+      },
+      {
         "name": "algebraic_geometry",
         "area": "geometry",
         "required": [

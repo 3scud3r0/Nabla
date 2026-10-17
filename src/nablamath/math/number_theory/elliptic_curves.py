@@ -8,6 +8,69 @@ Point = tuple[int, int] | None
 
 
 @dataclass(frozen=True)
+class EllipticCurveQ:
+    a: object
+    b: object
+
+    def __post_init__(self):
+        from fractions import Fraction
+        object.__setattr__(self,'a',Fraction(self.a));object.__setattr__(self,'b',Fraction(self.b))
+        if 4*self.a**3+27*self.b**2==0:raise ValueError('Singular elliptic curve')
+
+    def contains(self,point):
+        from fractions import Fraction
+        if point is None:return True
+        x,y=map(Fraction,point);return y*y==x*x*x+self.a*x+self.b
+
+    def add(self,left,right):
+        from fractions import Fraction
+        if not self.contains(left) or not self.contains(right):raise ValueError('Point outside rational curve')
+        if left is None:return right
+        if right is None:return left
+        x,y=map(Fraction,left);u,v=map(Fraction,right)
+        if x==u and y==-v:return None
+        slope=(3*x*x+self.a)/(2*y) if x==u else (v-y)/(u-x)
+        target=slope*slope-x-u;return target,slope*(x-target)-y
+
+    def search(self,height=16):
+        from fractions import Fraction
+        from math import isqrt
+        if type(height) is not int or not 1<=height<=128:raise ValueError('Rational height search budget exceeded')
+        points=set()
+        for denominator in range(1,height+1):
+            for numerator in range(-height,height+1):
+                x=Fraction(numerator,denominator);value=x**3+self.a*x+self.b
+                if value<0:continue
+                p,q=isqrt(value.numerator),isqrt(value.denominator)
+                if p*p==value.numerator and q*q==value.denominator:points.add((x,Fraction(p,q)));points.add((x,-Fraction(p,q)))
+        return sorted(points)
+
+
+def rational_points(a,b,height=16):
+    curve=EllipticCurveQ(a,b)
+    return {'points':[[str(x),str(y)] for x,y in curve.search(height)],'scope':'Bounded rational-x height search, not a complete Mordell–Weil computation.'}
+
+
+def two_isogeny(a,b,point):
+    """Vélu degree-two map for y^2=x^3+a*x^2+b*x, kernel {O,(0,0)}."""
+    from fractions import Fraction
+    a,b=Fraction(a),Fraction(b)
+    if b==0 or a*a==4*b:raise ValueError('Nonsingular 2-torsion model required')
+    target_a,target_b=-2*a,a*a-4*b
+    if point is None:return {'a':str(target_a),'b':str(target_b),'point':None}
+    x,y=map(Fraction,point)
+    if y*y!=x**3+a*x*x+b*x:raise ValueError('Point outside source curve')
+    if x==0:return {'a':str(target_a),'b':str(target_b),'point':None}
+    u=x+a+b/x;v=y*(1-b/x**2)
+    return {'a':str(target_a),'b':str(target_b),'point':[str(u),str(v)]}
+
+
+def rational_add(a,b,left,right):
+    curve=EllipticCurveQ(a,b);point=curve.add(left,right)
+    return {'point':None if point is None else list(map(str,point)),'point_at_infinity':point is None}
+
+
+@dataclass(frozen=True)
 class EllipticCurveFp:
     prime: int
     a: int

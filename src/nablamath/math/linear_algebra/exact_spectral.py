@@ -306,3 +306,21 @@ def rational_diagonalization(matrix,eigenvalues):
 __all__=['SpectralCertificate','spectral_certificate','verify_spectral_certificate',
          'evaluate_matrix_polynomial','minimal_polynomial','nullspace','generalized_eigenspace',
          'eigenvalue_multiplicity','RationalDiagonalization','rational_diagonalization']
+def algebraic_spectral(matrix):
+    from .._structured import rational_matrix,sympy,data
+    sp=sympy();a=rational_matrix(matrix,maximum=8)
+    if a.rows!=a.cols:raise ValueError('Square exact matrix required')
+    p=a.charpoly().as_poly();roots=p.all_roots(radicals=False);groups=[]
+    for value in dict.fromkeys(roots):
+        from sympy.polys.matrices import DomainMatrix
+        field=sp.QQ if value.is_Rational else sp.QQ.algebraic_field(value)
+        scalar=field.from_sympy(value)
+        shifted=DomainMatrix([[field.from_sympy(a[i,j])-(scalar if i==j else field.zero) for j in range(a.cols)] for i in range(a.rows)],a.shape,field)
+        null=shifted.nullspace();rows=null.to_Matrix();basis=[rows.row(i).T for i in range(rows.rows)]
+        groups.append({'eigenvalue':str(value),'algebraic_multiplicity':roots.count(value),'eigenvectors':data(basis),
+                       'residuals_zero':bool(shifted.matmul(null.transpose()).is_zero_matrix)})
+    real,complex_=p.intervals(all=True,eps=sp.Rational(1,10**12))
+    return {'characteristic_polynomial':str(p.as_expr()),'eigenspaces':groups,
+            'real_root_isolations':data(real),'complex_root_isolations':data(complex_),
+            'diagonalizable_over_algebraic_closure':sum(len(g['eigenvectors']) for g in groups)==a.rows,
+            'scope':'Exact algebraic roots and checked eigenvectors over Qbar, bounded dense rational matrices.'}
