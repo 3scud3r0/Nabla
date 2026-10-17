@@ -1,0 +1,69 @@
+name: Frontier Foundry v3 — native Nabla evaluation
+
+on:
+  push:
+    branches: [feat/frontier-foundry-v3-20261017]
+  pull_request:
+    paths:
+      - tools/frontier_foundry.py
+      - tests/test_frontier_foundry.py
+      - docs/frontier_foundry.md
+      - .github/workflows/frontier-foundry.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-100-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Install native Nabla and exact CAS
+        run: python -m pip install -e '.[test,research]'
+      - name: Test mathematical verifiers, tamper rejection and native receipts
+        run: python -m unittest discover -s tests -p 'test_frontier_foundry.py' -v
+      - name: Generate 100 with native Nabla receipts
+        run: python tools/frontier_foundry.py --count 100 --output .nabla/frontier-v3/dataset_frontier_foundry_100.txt
+      - name: Replay exact outputs and receipts
+        run: python tools/frontier_foundry.py --verify --output .nabla/frontier-v3/dataset_frontier_foundry_100.txt
+      - name: Upload exact benchmark components
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: nabla-foundry-v3-native-${{ github.sha }}
+          path: .nabla/frontier-v3/dataset_frontier_foundry_100.*
+
+  branch-archives:
+    if: github.repository == '3scud3r0/Nabla' && github.event_name == 'push' && github.ref == 'refs/heads/feat/frontier-foundry-v3-20261017'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate and verify canonical Nabla archives
+        run: |
+          python tools/build_math_bundle.py
+          python tools/build_nabla_bundle.py
+          python tools/build_math_bundle.py --check
+          python tools/build_nabla_bundle.py --check
+      - name: Commit both bundles only on isolated PR branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add math.txt NABLA.TXT
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore(bundles): refresh frontier foundry v3 archives'
+            git push origin HEAD:refs/heads/feat/frontier-foundry-v3-20261017
+          fi
