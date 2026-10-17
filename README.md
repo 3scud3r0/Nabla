@@ -12,6 +12,10 @@ ser somadas às operações como se fossem áreas matemáticas completas.
 [Instalação](#instalação) · [Contrato da versão 1](docs/releases/V1.md) ·
 [Documentação](docs/README.md) · [Resultados da validação](docs/releases/V1_VALIDATION.md)
 
+O [gerador procedural de trajetórias matemáticas](docs/SYNTHETIC_TRAJECTORIES.md)
+oferece 100 famílias de exercícios, erros rotulados e correções auditáveis, com
+exportação TXT/MD, JSONL, SFT e DPO, sem inferência neural.
+
 ## Instalação
 
 Python **3.10–3.14**. O núcleo não tem dependências obrigatórias; instale extras
