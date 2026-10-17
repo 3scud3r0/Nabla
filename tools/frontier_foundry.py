@@ -36,6 +36,12 @@ def digest(v):
     return hashlib.sha256(canonical(v).encode('utf-8')).hexdigest()
 
 
+def require(condition, explanation):
+    """Fail closed also under `python -O` (unlike Python assert statements)."""
+    if not condition:
+        raise ArithmeticError(explanation)
+
+
 def q(value):
     return str(sp.Rational(value))
 
@@ -94,10 +100,10 @@ def polynomial_ideal(j, rng):
     expected = sp.groebner(base, x, y, z, modulus=p, order='lex')
     # Two-sided ideal membership, plus independent Buchberger basis construction.
     for g in mixed:
-        assert expected.reduce(g)[1] == 0
+        require(expected.reduce(g)[1] == 0, "Invariant verification failed at check 103")
     for g in base:
-        assert G.reduce(g)[1] == 0
-    assert {tuple(v.LM(order='lex').exponents) for v in G.polys} == {(1,0,0),(0,1,0),(0,0,degree)}
+        require(G.reduce(g)[1] == 0, "Invariant verification failed at check 105")
+    require({tuple(v.LM(order='lex').exponents) for v in G.polys} == {(1,0,0),(0,1,0),(0,0,degree)}, "Invariant verification failed at check 106")
     roots = [r for r in range(p) if pow(r, degree, p) == t]
     answer = {'reduced_basis': [poly_terms(g.as_expr(), (x,y,z), p) for g in G.polys],
               'quotient_dimension': degree, 'rational_point_count': len(roots), 'rational_z_roots': roots}
@@ -121,12 +127,12 @@ def potential_recovery(j, rng):
     P=sum(rng.randint(-4,4)*term for term in monomials)+rng.randint(-6,6)
     P=sp.expand(P.subs({x:x+(1+j%3)*y,y:y+(1+j%2)*z}, simultaneous=True))
     gradients=[sp.diff(P,v) for v in variables]
-    assert all(sp.expand(sp.diff(gradients[i],variables[k])-sp.diff(gradients[k],variables[i]))==0 for i in range(3) for k in range(3))
+    require(all(sp.expand(sp.diff(gradients[i],variables[k])-sp.diff(gradients[k],variables[i]))==0 for i in range(3) for k in range(3)), "Invariant verification failed at check 130")
     c=P.subs({x:0,y:0,z:0})
     # Reconstruction from the path integral, not from the planted coefficients.
     radial=sum(v*g.subs({x:t*x,y:t*y,z:t*z}, simultaneous=True) for v,g in zip(variables,gradients))
     restored=sp.expand(c+sp.integrate(radial,(t,0,1)))
-    assert sp.expand(P-restored)==0
+    require(sp.expand(P-restored)==0, "Invariant verification failed at check 135")
     hessian=sp.hessian(P,variables)
     answer={'potential_terms': poly_terms(restored,variables),
             'gradient_at_origin':[q(g.subs({x:0,y:0,z:0})) for g in gradients],
@@ -156,7 +162,7 @@ def lie_conjugation(j,rng):
     E,F,H=(U*M*Ui for M in (E,F,H))
     C=sp.Rational(1,2)*H*H+E*F+F*E
     eigen=sp.Rational(m*(m+2),2)
-    assert C==eigen*sp.eye(n) and H*E-E*H==2*E and H*F-F*H==-2*F and E*F-F*E==H
+    require(C==eigen*sp.eye(n) and H*E-E*H==2*E and H*F-F*H==-2*F and E*F-F*E==H, "Invariant verification failed at check 165")
     answer={'casimir_eigenvalue':q(eigen),'irrep_dimension':n,
             'trace_h_square':q(sp.trace(H*H)), 'raising_nilpotency_order':m+1}
     problem=(f'Considere E,F,H ∈ Mat_{n}(Q), numa base desconhecida, dados por '
@@ -179,12 +185,12 @@ def stochastic_invariant(j,rng):
     shape=sp.Rational(s,2)
     normalized=2*lam**shape / sp.gamma(shape)*x**exponent*sp.exp(-lam*x*x)
     current=sp.simplify(mu*normalized-sp.Rational(1,2)*sp.diff(volatility**2*normalized,x))
-    assert current==0
+    require(current==0, "Invariant verification failed at check 188")
     Z=sp.gamma(shape)/(2*lam**shape)
-    assert sp.simplify(sp.integrate(x**exponent*sp.exp(-lam*x*x),(x,0,sp.oo))-Z)==0
+    require(sp.simplify(sp.integrate(x**exponent*sp.exp(-lam*x*x),(x,0,sp.oo))-Z)==0, "Invariant verification failed at check 190")
     mean2=shape/lam;mean4=shape*(shape+1)/lam**2
     generator_check=sp.simplify((2*alpha+sigma*sigma)*mean2-2*beta*mean4)
-    assert generator_check==0
+    require(generator_check==0, "Invariant verification failed at check 193")
     answer={'stratonovich_linear':q(alpha-sp.Rational(sigma*sigma,2)),
             'stratonovich_cubic':q(-beta), 'stationary_power':exponent,
             'stationary_rate':q(lam), 'normalization_Z':str(sp.simplify(Z)),
@@ -211,7 +217,7 @@ def conformal_geometry(j,rng):
     Gamma=[[[sp.expand((int(k==i)*grad[jj]+int(k==jj)*grad[i])-Q[i,jj]*sum(Qi[k,l]*grad[l] for l in range(2))) for jj in range(2)] for i in range(2)] for k in range(2)]
     Ric=sp.Matrix(2,2,lambda i,jj:sp.expand(sum(sp.diff(Gamma[k][i][jj],v[k])-sp.diff(Gamma[k][i][k],v[jj]) for k in range(2)) + sum(Gamma[k][k][l]*Gamma[l][i][jj]-Gamma[k][jj][l]*Gamma[l][i][k] for k in range(2) for l in range(2))))
     lap=sp.expand(sum(Qi[i,jj]*sp.diff(u,v[i],v[jj]) for i in range(2) for jj in range(2)))
-    assert Ric==(-lap)*Q
+    require(Ric==(-lap)*Q, "Invariant verification failed at check 220")
     scalar_factor=sp.expand(-2*lap)
     answer={'scalar_curvature_prefactor':poly_terms(scalar_factor,v),
             'scalar_curvature_at_origin':q(scalar_factor.subs({x:0,y:0})),
@@ -241,14 +247,14 @@ def finite_field_invariants(j,rng):
     if f is None:raise ArithmeticError('Could not find irreducible polynomial')
     a=rng.randrange(1,p); b=rng.randrange(p)
     new=sp.Poly(sum(int(c)*a**(degree-i)*(t-b)**i for i,c in enumerate(reversed(f.all_coeffs()))),t,modulus=p)
-    assert new.degree()==degree and new.LC()%p==1
+    require(new.degree()==degree and new.LC()%p==1, "Invariant verification failed at check 250")
     M=sp.zeros(degree)
     for col in range(degree):
         rem=sp.Poly((a*x+b)*x**col,x,modulus=p).rem(f)
         for row in range(degree): M[row,col]=int(rem.nth(row))%p
     trace=int(sp.trace(M))%p;norm=int(M.det())%p
-    assert trace==(-new.nth(degree-1))%p
-    assert norm==((-1)**degree*new.nth(0))%p
+    require(trace==(-new.nth(degree-1))%p, "Invariant verification failed at check 256")
+    require(norm==((-1)**degree*new.nth(0))%p, "Invariant verification failed at check 257")
     answer={'minimal_polynomial_coefficients_ascending':[int(new.nth(i))%p for i in range(degree+1)],
             'field_trace':trace,'field_norm':norm,'extension_degree':degree}
     problem=(f'Em F_{p^degree}=F_{p}[x]/(f), f(x)={f.as_expr()} irredutível, '
@@ -287,15 +293,15 @@ def kirchhoff_graph(j,rng):
             if acyclic and len({find(v) for v in range(n)})==1:
                 total+=math.prod(w for _,_,w in subset)
         return total
-    assert tau==count_tree_weight()
+    require(tau==count_tree_weight(), "Invariant verification failed at check 296")
     u=0;v=n-1
     Lg=L[:n-1,:n-1]
     bvec=sp.Matrix([1 if i==u else (-1 if i==v else 0) for i in range(n-1)])
     potentials=Lg.inv()*bvec
     resist=(bvec.T*potentials)[0]
-    assert resist>0
+    require(resist>0, "Invariant verification failed at check 302")
     energy=sum(w*((potentials[a] if a<n-1 else 0)-(potentials[b] if b<n-1 else 0))**2 for a,b,w in edges)
-    assert sp.simplify(energy-resist)==0
+    require(sp.simplify(energy-resist)==0, "Invariant verification failed at check 304")
     answer={'weighted_spanning_tree_count':int(tau),'effective_resistance':q(resist),
             'effective_conductance':q(1/resist)}
     problem=(f'Rede resistiva com {n} vértices e condutâncias nas arestas (u,v,c): {edges}. '
@@ -321,7 +327,7 @@ def syndrome_code(j,rng):
         if dmin>=3:P=cand;break
     if P is None:raise ArithmeticError('Could not construct 1-error-correcting code')
     H=sp.Matrix.hstack(P,sp.eye(r));G=sp.Matrix.hstack(sp.eye(k),-P.T)
-    assert all(int(v)%p==0 for v in H*G.T)
+    require(all(int(v)%p==0 for v in H*G.T), "Invariant verification failed at check 330")
     msg=[rng.randrange(p) for _ in range(k)]
     encoded=[int(v)%p for v in (G.T*sp.Matrix(msg))]
     pos=rng.randrange(n);delta=rng.randrange(1,p)
@@ -331,7 +337,7 @@ def syndrome_code(j,rng):
     for i in range(n):
         for e in range(1,p):
             if [int(v*e)%p for v in H[:,i]]==syndrome:candidates.append((i,e))
-    assert candidates==[(pos,delta)]
+    require(candidates==[(pos,delta)], "Invariant verification failed at check 340")
     answer={'message':msg,'codeword':encoded,'error_position':pos,'error_symbol':delta,
             'minimum_distance':dmin,'syndrome':syndrome}
     problem=(f'Código linear C⊂F_{p}^{n} com matriz de paridade H={matrix_data(H)} '
@@ -356,11 +362,11 @@ def discrete_lyapunov(j,rng):
     C=S.T*Q*S
     C=sp.Matrix(n,n,lambda i,k:sp.simplify(C[i,k]/(1-eigen[i]*eigen[k])))
     P=S.inv().T*C*S.inv()
-    assert P==P.T and sp.simplify(P-A.T*P*A-Q)==sp.zeros(n)
+    require(P==P.T and sp.simplify(P-A.T*P*A-Q)==sp.zeros(n), "Invariant verification failed at check 365")
     principals=[sp.factor(P[:i,:i].det()) for i in range(1,n+1)]
-    assert all(a>0 for a in principals)
+    require(all(a>0 for a in principals), "Invariant verification failed at check 367")
     # Uniqueness follows |lambda_i lambda_j|<1 for all pairs.
-    assert all(abs(a*b)<1 for a in eigen for b in eigen)
+    require(all(abs(a*b)<1 for a in eigen for b in eigen), "Invariant verification failed at check 369")
     answer={'lyapunov_solution':matrix_data(P),'leading_principal_minors':list(map(q,principals)),
             'spectral_radius':q(max(abs(t) for t in eigen))}
     problem=(f'Para dinâmica x_(t+1)=A x_t e Q>0, A={matrix_data(A)}, Q={matrix_data(Q)}, '
@@ -384,14 +390,14 @@ def rational_walks(j,rng):
     num,den=sp.fraction(func)
     dc=sp.Poly(den,z,domain=sp.QQ)
     factor=dc.nth(0)
-    assert factor!=0
+    require(factor!=0, "Invariant verification failed at check 393")
     numerator=sp.Poly(sp.cancel(num/factor),z,domain=sp.QQ)
     denominator=sp.Poly(sp.cancel(den/factor),z,domain=sp.QQ)
     coeff=[q((A**k)[origin,target]) for k in range(9)]
     # Independent coefficient extraction from generating-function power series.
     expanded=sp.series(func,z,0,9).removeO()
-    assert all(sp.Rational(coeff[k])==expanded.coeff(z,k) for k in range(9))
-    assert sp.cancel(func-numerator.as_expr()/denominator.as_expr())==0
+    require(all(sp.Rational(coeff[k])==expanded.coeff(z,k) for k in range(9)), "Invariant verification failed at check 399")
+    require(sp.cancel(func-numerator.as_expr()/denominator.as_expr())==0, "Invariant verification failed at check 400")
     answer={'numerator_ascending':[q(numerator.nth(i)) for i in range(numerator.degree()+1)],
             'denominator_ascending':[q(denominator.nth(i)) for i in range(denominator.degree()+1)],
             'walk_counts_length_0_through_8':coeff}
@@ -408,7 +414,7 @@ def rational_walks(j,rng):
 # Ten genuinely different optional verification obligations in each base grammar:
 # all six pairs and all four triples of the four domain-specific operators.
 OPERATOR_SETS = list(itertools.combinations(range(4), 2)) + list(itertools.combinations(range(4), 3))
-assert len(OPERATOR_SETS) == 10
+require(len(OPERATOR_SETS) == 10, "Invariant verification failed at check 417")
 
 
 def _from_mat(rows):
@@ -438,7 +444,7 @@ def enrichment(family, variant, parameters, answer):
                 'geometric_point_count_with_multiplicity':d}
         descriptions=['coeficientes do eliminante em z','forma normal de xz','forma normal de y²',
                       'número de pontos sobre o fecho algébrico com multiplicidades']
-        assert G.reduce(rem_xz-x*z)[1]==0 and G.reduce(rem_yy-y*y)[1]==0
+        require(G.reduce(rem_xz-x*z)[1]==0 and G.reduce(rem_yy-y*y)[1]==0, "Invariant verification failed at check 447")
     elif family == 1:
         x,y,z=sp.symbols('x y z');v=(x,y,z)
         G=[sp.sympify(s,locals={'x':x,'y':y,'z':z}) for s in parameters['gradient']]
@@ -449,7 +455,7 @@ def enrichment(family, variant, parameters, answer):
                 'directional_derivative_111':q(sum(g.subs({x:1,y:1,z:1}) for g in G))}
         descriptions=['gradiente em (1,0,0)','det Hess(V) na origem',
                       'polinômio div G','derivada direcional na direção (1,1,1) no ponto (1,1,1)']
-        assert H==H.T
+        require(H==H.T, "Invariant verification failed at check 458")
     elif family == 2:
         E,F,H=[_from_mat(parameters[k]) for k in ('E','F','H')]
         t=sp.symbols('t')
@@ -458,7 +464,7 @@ def enrichment(family, variant, parameters, answer):
                 'determinant_H':q(H.det()),
                 'characteristic_H_ascending':[q(sp.Poly(char,t).nth(i)) for i in range(H.rows+1)]}
         descriptions=['posto do operador E','traço(EF)','determinante de H','polinômio característico de H']
-        assert int(E.rank())==E.rows-1
+        require(int(E.rank())==E.rows-1, "Invariant verification failed at check 467")
     elif family == 3:
         s=parameters['shape'];lam=sp.Rational(answer['stationary_rate'])
         moments=lambda k:sp.prod(sp.Rational(s,2)+i for i in range(k))/lam**k
@@ -469,7 +475,7 @@ def enrichment(family, variant, parameters, answer):
                 'generator_x4_residual':q((4*alpha+6*sigma**2)*moments(2)-4*beta*moments(3))}
         descriptions=['momento estacionário E[X⁶]','momento estacionário E[X⁸]',
                       'quadrado da moda da densidade','resíduo de E[L X⁴]']
-        assert sp.Rational(values['generator_x4_residual'])==0
+        require(sp.Rational(values['generator_x4_residual'])==0, "Invariant verification failed at check 478")
     elif family == 4:
         x,y=sp.symbols('x y');Q=_from_mat(parameters['Q']);Qi=Q.inv()
         u=sp.sympify(parameters['u'],locals={'x':x,'y':y})
@@ -481,7 +487,7 @@ def enrichment(family, variant, parameters, answer):
                 'scalar_curvature_prefactor_at_1_1':q((-2*lap).subs({x:1,y:1}))}
         descriptions=['fator de K(x,y) multiplicando e^(-2u)','inversa de Q',
                       'tensor de Ricci na origem','fator de R em (1,1)']
-        assert Ric==Ric.T
+        require(Ric==Ric.T, "Invariant verification failed at check 490")
     elif family == 5:
         p=parameters['p']; degree=len(parameters['f_ascending'])-1
         x=sp.symbols('x'); f=sp.Poly(sum(c*x**i for i,c in enumerate(parameters['f_ascending'])),x,modulus=p)
@@ -498,7 +504,7 @@ def enrichment(family, variant, parameters, answer):
                 'minimal_polynomial_squarefree':sp.gcd(min_poly,min_poly.diff()).degree()==0,
                 'trace_alpha_cubed':int(sp.trace(M*M*M))%p}
         descriptions=['traço de α²','norma de α+1','separabilidade do polinômio mínimo','traço de α³']
-        assert values['minimal_polynomial_squarefree']
+        require(values['minimal_polynomial_squarefree'], "Invariant verification failed at check 507")
     elif family == 6:
         n=parameters['vertices'];edges=parameters['edges']
         def lapl(weighted):
@@ -517,7 +523,7 @@ def enrichment(family, variant, parameters, answer):
                 'effective_resistance_0_1':q(resistance(0,1))}
         descriptions=['árvores geradoras desconsiderando pesos','resistência efetiva (1,n−1)',
                       'grau ponderado do vértice 0','resistência efetiva (0,1)']
-        assert values['unweighted_spanning_trees']>0
+        require(values['unweighted_spanning_trees']>0, "Invariant verification failed at check 526")
     elif family == 7:
         p=parameters['p'];H=_from_mat(parameters['H']);r,k=H.rows,H.cols-H.rows
         P=H[:,:k];G=sp.Matrix.hstack(sp.eye(k),-P.T)
@@ -532,7 +538,7 @@ def enrichment(family, variant, parameters, answer):
                 'minimum_nonzero_weight_count':weights[str(answer['minimum_distance'])]}
         descriptions=['cardinalidade do código','enumerador de pesos completo',
                       'posto da matriz de paridade','número de palavras de peso mínimo']
-        assert sum(weights.values())==p**k
+        require(sum(weights.values())==p**k, "Invariant verification failed at check 541")
     elif family == 8:
         P=_from_mat(answer['lyapunov_solution']);A=_from_mat(parameters['A']);Q=_from_mat(parameters['Q'])
         resid=P-A.T*P*A-Q
@@ -541,7 +547,7 @@ def enrichment(family, variant, parameters, answer):
                 'energy_for_all_ones':q((sp.ones(P.rows,1).T*P*sp.ones(P.rows,1))[0])}
         descriptions=['tr P','det P','norma de Frobenius ao quadrado do resíduo',
                       'energia V(1,…,1)']
-        assert resid==sp.zeros(P.rows)
+        require(resid==sp.zeros(P.rows), "Invariant verification failed at check 550")
     else:
         A=_from_mat(parameters['adjacency']);src=parameters['source'];dst=parameters['target']
         z=sp.symbols('z');n=A.rows
@@ -552,12 +558,12 @@ def enrichment(family, variant, parameters, answer):
                 'closed_walks_length_6':int(sp.trace(A**6))}
         descriptions=['passeios de comprimento 9','passeios de comprimento 10',
                       'polinômio característico de A','número de passeios fechados de comprimento 6']
-        assert values['closed_walks_length_6']>=0
+        require(values['closed_walks_length_6']>=0, "Invariant verification failed at check 561")
     names=list(values)
     picked={names[k]:values[names[k]] for k in chosen}
     requested=[descriptions[k] for k in chosen]
     operators=['optional:'+names[k] for k in chosen]
-    assert len(picked)==len(chosen)
+    require(len(picked)==len(chosen), "Invariant verification failed at check 566")
     return picked, requested, operators
 
 
@@ -573,7 +579,7 @@ def create_record(index,make_receipt,verify_receipt,backend_name):
     seed=202610170000+index*104729
     rng=random.Random(seed)
     parameters,problem,answer,derivation,operations,checks=GENERATORS[family](variant,rng)
-    assert all(value is True for value in checks.values())
+    require(all(value is True for value in checks.values()), "Invariant verification failed at check 582")
     extensions, additional_tasks, optional_ops=enrichment(family,variant,parameters,answer)
     answer={**answer, **extensions}
     operations=[*operations,*optional_ops]
