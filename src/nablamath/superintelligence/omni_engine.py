@@ -23549,6 +23549,25 @@ class FormalMCTSModule(FormalMCTSSearcher):
 class SyntheticForgeModule(InverseProblemSynthesizer):
     """Public exact inverse-task stream and recipe generation module."""
 
+    def procedural_stream(self, count=100, *, difficulty=4, depth=8, error_rate=.35,
+                          families=None, start_index=0):
+        """Procedural catalog-wide exercises; no neural inference is performed.
+
+        For an import path which also avoids loading optional Torch, use
+        synthetic_cot_unroller.SimulatedReasoningTrace directly.
+        """
+        from .synthetic_cot_unroller import GenerationConfig, SimulatedReasoningTrace
+        config = GenerationConfig(self.seed,difficulty,depth,error_rate)
+        return SimulatedReasoningTrace(config).stream(count,families,start_index)
+
+    def export_procedural(self, destination, *, count=100, difficulty=4, depth=8,
+                          error_rate=.35, families=None, start_index=0):
+        """Export canonical records, clean SFT, local DPO, TXT and coverage."""
+        from .synthetic_cot_unroller import GenerationConfig, export_dataset
+        return export_dataset(destination,count=count,
+            config=GenerationConfig(self.seed,difficulty,depth,error_rate),
+            families=families,start_index=start_index)
+
 
 class ProcessRewardModule(ProcessRewardVerifier):
     """Public exact/SMT process reward module with fail-closed step auditing."""
