@@ -80,15 +80,17 @@ def test_stable_publication_is_recovered_from_verified_revision(paper, damage):
     assert not compiler.build().changed
 
 
-@pytest.mark.parametrize('name', ['paper.pdf', 'audit.html', 'artifact.json', 'compiled.source'])
+@pytest.mark.parametrize('name', ['paper.pdf', 'audit.html', 'artifact.json', 'compiled.source',
+                                  'template.source', 'provenance-badge.svg'])
 def test_tampered_immutable_revision_fails_closed(paper, name):
     compiler, output = paper
     initial = compiler.build()
     original_pdf = output.read_bytes()
     immutable_file = initial.manifest.parent / name
     immutable_file.write_bytes(immutable_file.read_bytes() + b'ATTACK')
-    (output.parent / 'audit.html').unlink()
 
+    # Even an otherwise healthy stable PDF/audit must not mask a corrupted
+    # immutable revision during a cache hit.
     with pytest.raises(ValueError, match='altered'):
         compiler.build()
     assert output.read_bytes() == original_pdf
@@ -125,3 +127,19 @@ def test_watcher_repairs_deleted_audit_without_new_receipt(paper):
         assert rebuilt.revision == original.revision
         assert audit.read_bytes() == original_bytes
         assert watcher.status()['error'] is None
+
+
+def test_stable_audit_symlink_is_never_trusted_as_a_cache_hit(paper, tmp_path):
+    compiler, output = paper
+    compiler.build()
+    audit = output.parent / 'audit.html'
+    outside = tmp_path / 'untrusted.html'
+    outside.write_text('untrusted', encoding='utf-8')
+    audit.unlink()
+    try:
+        audit.symlink_to(outside)
+    except (NotImplementedError, OSError):
+        pytest.skip('Symlinks unavailable on this runner')
+    assert compiler.build().changed
+    assert not audit.is_symlink()
+    assert outside.read_text(encoding='utf-8') == 'untrusted'
