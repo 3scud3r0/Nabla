@@ -23,13 +23,13 @@ def test_frozen_catalog_and_packaged_implementation_status():
     from nablamath.stability import validate_public_api
     from nablamath.math.coverage import coverage,expansion
     from nablamath.ops.advanced_math import ACTIONS
-    assert validate_public_api()['operations']==103
+    assert validate_public_api()['operations']==133
     inventory=expansion()
     assert {row['action'] for row in inventory['actions']}==set(ACTIONS)
     for row in inventory['actions']:
         encoded=json.dumps(ACTIONS[row['action']]['schema'],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()
         assert row['parameter_schema_sha256']==hashlib.sha256(encoded).hexdigest()
-    assert inventory['test_execution']=='not_run_by_explicit_user_request'
+    assert inventory['test_execution']=='see_version_1_validation'
     assert not inventory['scientific_acceptance_established']
     assert all(not row['entire_subject_implemented'] for row in coverage()['classifications'])
 
@@ -100,5 +100,8 @@ def test_direct_dispatch_never_imports_request_paths(monkeypatch):
 def test_cli_cases_cover_added_catalog_without_optional_dependencies():
     from nablamath.calc.catalog import catalog
     cases=json.loads((Path(__file__).resolve().parents[1]/'examples/science/catalog_cases.json').read_text())
-    assert set(cases)=={entry['name'] for entry in catalog()['operations']}
+    from nablamath.ops.v1_catalog import ENTRIES
+    assert set(cases)=={entry['name'] for entry in catalog()['operations']}-set(ENTRIES)
+    v1=json.loads((Path(__file__).resolve().parents[1]/'examples/v1/catalog_cases.json').read_text())
+    assert set(v1)==set(ENTRIES)
     assert cases['advanced_math']['action']=='sets.operations'

@@ -52,6 +52,8 @@ DIRECTORIES = (
     ROOT / "lean",
 )
 FILES = (
+    ROOT / "src/nablamath/living_papers_compiler.py",
+    ROOT / "src/nablamath/spatial_engine_3d.py",
     ROOT / "src/nablamath/expression.py",
     ROOT / "src/nablamath/orbits.py",
     ROOT / "src/nablamath/research.py",

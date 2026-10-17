@@ -19,7 +19,7 @@ def classification(code):
 
 
 def expansion():
-    """Return authored implementation inventory with explicit unexecuted status."""
+    """Return authored implementation inventory with explicit validation-report reference."""
     return load_json(files('nablamath').joinpath('mathematical_expansion.json').read_text(encoding='utf-8'))
 
 

@@ -235,6 +235,20 @@ def main(argv: list[str] | None = None) -> int:
     learning.add_argument('dataset', type=Path); learning.add_argument('destination', type=Path)
     learning.add_argument('--train-count', type=int, default=256); learning.add_argument('--test-count', type=int, default=128)
     learning.add_argument('--steps', type=int, default=500)
+    living = commands.add_parser("living-paper", help="Compilar ou inspecionar uma publicação auditável")
+    living_commands = living.add_subparsers(dest="living_command", required=True)
+    living_build = living_commands.add_parser("build")
+    living_build.add_argument("template", type=Path)
+    living_build.add_argument("--artifact", type=Path, required=True)
+    living_build.add_argument("--output", type=Path, required=True)
+    living_build.add_argument("--bindings", default="{}", help="Objeto JSON: nome -> JSON Pointer")
+    living_build.add_argument("--timeout", type=float, default=60)
+    living_build.add_argument("--watch", action="store_true")
+    living_build.add_argument("--delay", type=float, default=.2)
+    living_build.add_argument("--latex-fallback", type=Path)
+    living_inspect = living_commands.add_parser("inspect")
+    living_inspect.add_argument("pdf", type=Path)
+    living_inspect.add_argument("--extract", type=Path)
     args = parser.parse_args(argv)
     def save_json(path,payload):
         path.parent.mkdir(parents=True,exist_ok=True)
@@ -411,6 +425,35 @@ def main(argv: list[str] | None = None) -> int:
             valid=verify_scene_bundle(args.directory)
             print(json.dumps({'valid':valid}))
             return 0 if valid else 1
+        if args.command == "living-paper":
+            from ..publishing.living_papers_compiler import LivingPaperCompiler
+            if args.living_command == "inspect":
+                inspected = LivingPaperCompiler.inspect(args.pdf)
+                if args.extract is not None:
+                    with args.extract.open("x", encoding="utf-8") as stream:
+                        from ..core.semantic_ir import canonical_json
+                        stream.write(canonical_json(inspected["bundle"])+"\n")
+                print(json.dumps(inspected, ensure_ascii=True, sort_keys=True))
+                return 0
+            compiler = LivingPaperCompiler(args.template, args.artifact, args.output,
+                bindings=json.loads(args.bindings), timeout=args.timeout,
+                latex_fallback=args.latex_fallback)
+            if args.watch:
+                import time
+                with compiler.watch(args.delay) as handle:
+                    try:
+                        while handle.thread.is_alive():
+                            time.sleep(.2)
+                        if handle.error is not None:
+                            raise handle.error
+                    except KeyboardInterrupt:
+                        pass
+                return 0
+            built = compiler.build()
+            print(json.dumps({"pdf":str(built.pdf),"artifact":str(built.artifact),
+                "manifest":str(built.manifest),"experiment_hash":built.experiment_hash,
+                "revision":built.revision,"changed":built.changed}, sort_keys=True))
+            return 0
         if args.command == "catalog":
             from ..calc.catalog import catalog
             print(json.dumps(catalog(), ensure_ascii=False, indent=2))
@@ -557,7 +600,7 @@ def main(argv: list[str] | None = None) -> int:
             if pdf:
                 print("PDF:", pdf)
         return 0
-    except (ValueError, KeyError, TypeError, ArithmeticError, RuntimeError, OSError, sqlite3.Error, DomainError) as exc:
+    except (ValueError, KeyError, TypeError, ArithmeticError, RuntimeError, ImportError, OSError, sqlite3.Error, DomainError) as exc:
         print("Erro:", exc, file=sys.stderr)
         return 1
 

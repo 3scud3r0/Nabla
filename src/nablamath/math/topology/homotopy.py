@@ -16,7 +16,7 @@ def fundamental_group(facets):
         for b in adjacency[a]:
             if b not in seen:seen.add(b);queue.append(b);tree.add(frozenset((a,b)))
     if len(seen)!=len(vertices):raise ValueError('Choose a connected component/base point first')
-    generators={edge:i+1 for edge in edges if frozenset(edge) not in tree}
+    generators={edge:i+1 for i,edge in enumerate(edge for edge in edges if frozenset(edge) not in tree)}
     def edge_word(a,b):
         edge=next((e for e in edges if frozenset(e)==frozenset((a,b))),None)
         value=generators.get(edge,0)

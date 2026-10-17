@@ -77,6 +77,7 @@ CATALOG_CASES.update({
 from nablamath.ops.area_catalog import OPERATIONS as MSC_OPERATIONS
 _MSC_EXAMPLES=json.loads((Path(__file__).resolve().parents[1]/"examples/science/catalog_cases.json").read_text())
 CATALOG_CASES.update({name:_MSC_EXAMPLES[name] for name in MSC_OPERATIONS})
+CATALOG_CASES["advanced_math"] = _MSC_EXAMPLES["advanced_math"]
 
 
 class CatalogTests(unittest.TestCase):
@@ -84,7 +85,8 @@ class CatalogTests(unittest.TestCase):
         from nablamath.calc.session import CalculationSession
         from nablamath.calc.catalog import catalog
         from nablamath.calc.catalog import OPERATIONS
-        self.assertEqual(set(CATALOG_CASES),set(OPERATIONS))
+        from nablamath.ops.v1_catalog import OPERATIONS as V1_OPERATIONS
+        self.assertEqual(set(CATALOG_CASES),set(OPERATIONS)-set(V1_OPERATIONS))
         self.assertTrue(set(CATALOG_CASES)<={r['name'] for r in catalog()['operations']})
         results={}
         for name,kwargs in CATALOG_CASES.items():

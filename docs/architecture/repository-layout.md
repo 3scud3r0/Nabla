@@ -42,3 +42,16 @@ apresentação atual e do código canônico.
 ## Organização desta revisão
 
 Os quatro guias de fases foram agrupados em `docs/phases/`, mantendo arquivos de encaminhamento em `docs/`. Novas operações exatas ficam em `src/nablamath/math/exact/`, com documentação em `docs/math/`, testes em `tests/math/` e exemplos em `examples/math/`. Bibliotecas legadas e `dataset/` versus `datasets/` não foram movidas porque seus caminhos importáveis fazem parte de contratos existentes. Essa organização evita quebrar usuários e fornece fronteiras claras para novas contribuições.
+
+## Interfaces da versão 1
+
+As três interfaces matemáticas coesas ficam em `src/nablamath/ops/`; publicação e cenas em `src/nablamath/living_papers_compiler.py` e `spatial_engine_3d.py`. Seus motores especializados mantêm os caminhos públicos. `docs/releases/` reúne escopo e validação da entrega. `NABLA.TXT` e `math.txt` são saídas dos geradores canônicos.
+
+### Caminhos canônicos dos motores v1
+
+Os três módulos matemáticos densos ficam em `src/nablamath/ops/`. O compilador
+editorial fica em `src/nablamath/publishing/living_papers_compiler.py` e o motor
+espacial em `src/nablamath/graphics/spatial_engine_3d.py`. Os arquivos homônimos
+na raiz do pacote apenas preservam imports anteriores. `ops/v1_catalog.py`
+centraliza os 30 contratos novos; `graphics/vendor/` preserva a distribuição
+Three.js/OrbitControls com licença e hash. Testes da versão usam `test_v1_*.py`.

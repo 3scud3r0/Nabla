@@ -1,16 +1,16 @@
-# Expansão matemática: implementação sem execução de testes
+# Expansão matemática e consolidação da versão 1
 
 Esta entrega amplia os módulos identificados no roteiro anterior e cria os 14
 módulos especializados propostos. As funções ficam acessíveis pela API Python e
 pela operação auditável `advanced_math`, que reúne ações nomeadas, assinaturas
 fechadas e esquemas MCP próprios. O catálogo principal tem 103 operações.
 
-**Estado desta entrega: código e testes escritos; testes não executados por
-instrução explícita do usuário.** Nenhum resultado da auditoria anterior se
-aplica automaticamente a estes novos bytes. Não foram executados pytest,
-coleta de testes, exemplos, benchmarks, renderizadores ou `vision_readiness.py`.
-A revisão feita nesta entrega é de fonte, assinaturas e sintaxe. A aceitação
-científica e os 213 critérios permanecem parciais.
+**Atualização da versão 1:** os testes antes mantidos sem execução foram
+incluídos na campanha atual, agora autorizada pelo usuário. Consulte os
+[resultados e falhas preservadas](releases/V1_VALIDATION.md). As 139 ações
+originais receberam 17 ações novas, totalizando 156, sem alterar as 103
+operações do catálogo principal. A aceitação científica dos 213 critérios
+permanece separada da execução de testes.
 
 ## Novos módulos
 
@@ -73,7 +73,7 @@ record = CalculationSession().mathematics(
 print(record.to_data())
 ```
 
-O exemplo acima é documentação de uso e **não foi executado nesta entrega**.
+O exemplo acima documenta a API. A campanha da versão 1 verifica sessão e recibos.
 
 `formal/translate.py` transforma identidades e testemunhas matriciais em
 obrigações escalares independentes. `formal/lean_checker.py` pode verificar todas
@@ -99,7 +99,7 @@ todo ideal, convergência de qualquer MCMC ou solução de qualquer EDP. As APIs
 implementam classes computáveis e recusam entradas fora delas. Isso preserva os
 limites matemáticos reais do roteiro.
 
-## Testes escritos, sem execução
+## Testes da expansão original
 
 - `tests/test_mathematical_expansion_exact.py`: referências algébricas,
   topológicas, lógicas, diferenciais e certificados exatos.
@@ -113,10 +113,10 @@ limites matemáticos reais do roteiro.
 ## Inventário das ações
 
 O arquivo `src/nablamath/mathematical_expansion.json` distribui os nomes, módulos,
-funções, arquivos e o estado `not_executed_user_instruction` no wheel. A tabela
+funções, arquivos e a referência de validação no wheel. A tabela
 abaixo é gerada estaticamente a partir da lista autorizada, sem executar as ações.
 
-Total: **139 ações avançadas**. Os hashes dos schemas de parâmetros também ficam no inventário.
+Total atual: **156 ações avançadas**; 139 da expansão original e 17 da versão 1. Os hashes dos schemas de parâmetros também ficam no inventário.
 
 | Ação | Arquivo | Função |
 |---|---|---|
@@ -259,3 +259,35 @@ Total: **139 ações avançadas**. Os hashes dos schemas de parâmetros também 
 | `fields.arithmetic` | [src/nablamath/math/algebra/extensions.py](../src/nablamath/math/algebra/extensions.py) | `field_arithmetic` |
 | `sets.progression` | [src/nablamath/math/set_theory/finite.py](../src/nablamath/math/set_theory/finite.py) | `progression` |
 | `elliptic.add` | [src/nablamath/math/number_theory/elliptic_curves.py](../src/nablamath/math/number_theory/elliptic_curves.py) | `rational_add` |
+
+## Ações da consolidação 1.0
+
+| Ação | Implementação |
+|---|---|
+| `manifold.metric` | `ops.advanced_calculus_manifold:symbolic_metric` |
+| `manifold.interior` | `ops.advanced_calculus_manifold:interior_product` |
+| `manifold.bracket` | `ops.advanced_calculus_manifold:lie_bracket` |
+| `manifold.lie_derivative` | `ops.advanced_calculus_manifold:lie_derivative` |
+| `manifold.hodge` | `ops.advanced_calculus_manifold:hodge_star` |
+| `manifold.stokes` | `ops.advanced_calculus_manifold:stokes_box` |
+| `algebra_crypto.field` | `ops.abstract_algebra_crypto:finite_field` |
+| `algebra_crypto.elliptic` | `ops.abstract_algebra_crypto:elliptic` |
+| `algebra_crypto.groebner` | `ops.abstract_algebra_crypto:groebner_basis` |
+| `stochastic_info.generator` | `ops.stochastic_and_information:stochastic_generator` |
+| `stochastic_info.fokker_planck` | `ops.stochastic_and_information:fokker_planck_1d` |
+| `stochastic_info.gaussian` | `ops.stochastic_and_information:gaussian_information` |
+| `stochastic_info.discrete` | `ops.stochastic_and_information:discrete_information` |
+| `stochastic_info.channel` | `ops.stochastic_and_information:channel_capacity` |
+| `stochastic_info.gp` | `ops.stochastic_and_information:gaussian_process` |
+| `stochastic_info.gaussian_copula` | `ops.stochastic_and_information:gaussian_copula` |
+| `stochastic_info.clayton_copula` | `ops.stochastic_and_information:clayton_copula` |
+
+## Catálogo da entrega 1.0
+
+A expansão v1 acrescenta 30 operações canônicas (133 no total), além das
+156 ações especializadas já inventariadas. Seus contratos vivem em
+`src/nablamath/ops/v1_catalog.py`; os 30 casos reproduzíveis estão em
+`examples/v1/catalog_cases.json`. Os cinco módulos canônicos têm mais de
+10 mil linhas de implementações próprias e integração, não uma concatenação
+dos motores anteriores. Consulte [o contrato](releases/V1.md) e os
+[resultados executados](releases/V1_VALIDATION.md) para limites e evidências.

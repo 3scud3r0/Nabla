@@ -362,7 +362,8 @@ def run(destination, *, cases_path=None, formal_project=None):
     cases_path=Path(cases_path) if cases_path else Path(__file__).with_name('catalog_cases.json')
     cases=json.loads(cases_path.read_text(encoding='utf-8'))
     names={row['name'] for row in catalog()['operations']}
-    require(set(cases)==names==set(REFERENCES)|SPECIAL,'Catalog/inputs/references coverage mismatch')
+    from nablamath.ops.v1_catalog import OPERATIONS as OPTIONAL_V1_OPERATIONS
+    require(set(cases)==names-set(OPTIONAL_V1_OPERATIONS)==set(REFERENCES)|SPECIAL,'Catalog/inputs/references coverage mismatch')
     root=Path(destination);root.mkdir(parents=True,exist_ok=False)
     session=CalculationSession();notebook=Notebook('103 bounded operations with independent references')
     rows=[]
@@ -390,7 +391,8 @@ def run(destination, *, cases_path=None, formal_project=None):
             if node.kind=='figure':(root/(family+'.svg')).write_text(node.payload['svg'],encoding='utf-8')
             if node.kind=='document':(root/(family+'.html')).write_text(node.payload['html'],encoding='utf-8')
         artifacts.append(replay)
-    report={'schema_version':1,'version':__version__,'passed':True,'catalog_operations':len(rows),
+    report={'schema_version':1,'version':__version__,'passed':True,'catalog_operations':len(rows),'available_catalog_operations':len(names),
+            'profile':'core_without_optional_dependencies','optional_v1_operations':sorted(OPTIONAL_V1_OPERATIONS),
             'operations':rows,'notebook_replayed_cells':len(rows),'physical_models':physical,'formal':formal,'forge':forge,'hypothesis':study,'finite_campaign':campaign,
             'negative_controls':controls,'interfaces':interface,'artifacts':artifacts,
             'limitations':['Finite examples do not prove correctness for all possible inputs.',

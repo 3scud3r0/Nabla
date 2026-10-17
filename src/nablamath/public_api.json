@@ -62,6 +62,48 @@
         "contract": "allowlisted advanced algebra, geometry, analysis, logic and numerical profiles; closed per-action schemas, explicit domains and no universal proof claim"
       },
       {
+        "name": "algebra_field_factorization",
+        "area": "algebra",
+        "required": [
+          "coefficients",
+          "modulus",
+          "p"
+        ],
+        "optional": [
+          "seed"
+        ],
+        "contract": "Square-free, distinct/equal-degree finite-field factorization with exact reconstruction"
+      },
+      {
+        "name": "algebra_ntt",
+        "area": "algebra",
+        "required": [
+          "prime",
+          "values"
+        ],
+        "optional": [
+          "inverse",
+          "root"
+        ],
+        "contract": "Exact radix-two modular NTT, prime below 2^31; no constant-time claim"
+      },
+      {
+        "name": "algebra_reed_solomon",
+        "area": "algebra",
+        "required": [
+          "message_length",
+          "modulus",
+          "nodes",
+          "p",
+          "values"
+        ],
+        "optional": [
+          "errors",
+          "kind"
+        ],
+        "contract": "Exact evaluation coding and verified Berlekamp-Welch unique error correction"
+      },
+      {
         "name": "algebraic_geometry",
         "area": "geometry",
         "required": [
@@ -310,6 +352,36 @@
         "contract": "approximate normal/exponential/Poisson CDF and moments"
       },
       {
+        "name": "elliptic_curve_pairing",
+        "area": "algebra",
+        "required": [],
+        "optional": [
+          "curve",
+          "g1",
+          "g2"
+        ],
+        "contract": "Subgroup-checked optimal Ate pairing via optional py_ecc backend; no SNARK protocol claim"
+      },
+      {
+        "name": "euler_lagrange_solve",
+        "area": "calculus",
+        "required": [
+          "fields",
+          "lagrangian",
+          "position",
+          "velocity"
+        ],
+        "optional": [
+          "atol",
+          "duration",
+          "method",
+          "rtol",
+          "samples",
+          "time"
+        ],
+        "contract": "Regular first-order mechanical Lagrangian; derived dynamics and numerical energy diagnostics"
+      },
+      {
         "name": "evaluate",
         "area": "algebra",
         "required": [
@@ -351,6 +423,22 @@
         "contract": "Rabin irreducibility test for prime field polynomials"
       },
       {
+        "name": "fokker_planck_solve",
+        "area": "probability",
+        "required": [
+          "centers",
+          "density",
+          "diffusion",
+          "drift"
+        ],
+        "optional": [
+          "duration",
+          "method",
+          "steps"
+        ],
+        "contract": "Conservative variable-coefficient 1D finite volumes with reflecting boundary"
+      },
+      {
         "name": "functional_analysis",
         "area": "analysis",
         "required": [
@@ -363,6 +451,21 @@
         "contract": "exact finite weighted-Hilbert projection, orthogonality and Pythagoras identity"
       },
       {
+        "name": "galois_field_op",
+        "area": "algebra",
+        "required": [
+          "left",
+          "modulus",
+          "p"
+        ],
+        "optional": [
+          "exponent",
+          "field_operation",
+          "right"
+        ],
+        "contract": "Exact bounded GF(p^n); Python arithmetic is variable-time"
+      },
+      {
         "name": "geo_distance",
         "area": "geospatial",
         "required": [
@@ -373,6 +476,24 @@
           "radius"
         ],
         "contract": "spherical great-circle distance in meters; input longitude/latitude degrees"
+      },
+      {
+        "name": "geodesic_solve",
+        "area": "geometry",
+        "required": [
+          "coordinates",
+          "metric",
+          "position",
+          "velocity"
+        ],
+        "optional": [
+          "atol",
+          "duration",
+          "method",
+          "rtol",
+          "samples"
+        ],
+        "contract": "Adaptive local geodesic with observed tangent norm drift, not certified error"
       },
       {
         "name": "geometry",
@@ -484,6 +605,130 @@
         "contract": "deterministic Tarjan strongly connected components"
       },
       {
+        "name": "graphics_compile_manim",
+        "area": "geometry",
+        "required": [
+          "audit_receipt",
+          "triangles",
+          "vertices"
+        ],
+        "optional": [
+          "duration",
+          "equations",
+          "frames",
+          "variables"
+        ],
+        "contract": "Generated native Manim script; renderer and optional TeX required for MP4"
+      },
+      {
+        "name": "graphics_export_gltf",
+        "area": "geometry",
+        "required": [
+          "audit_receipt",
+          "triangles",
+          "vertices"
+        ],
+        "optional": [
+          "binary",
+          "colors"
+        ],
+        "contract": "In-memory glTF/GLB serialization; supplied geometry remains distinct from receipt replay"
+      },
+      {
+        "name": "graphics_export_html3d",
+        "area": "geometry",
+        "required": [
+          "audit_receipt",
+          "triangles",
+          "vertices"
+        ],
+        "optional": [
+          "frames",
+          "scalars",
+          "times",
+          "title"
+        ],
+        "contract": "Offline embedded Three.js/OrbitControls viewer; device-dependent performance"
+      },
+      {
+        "name": "graphics_surface_parametric",
+        "area": "geometry",
+        "required": [
+          "bounds",
+          "components",
+          "parameters"
+        ],
+        "optional": [
+          "periodic",
+          "shape"
+        ],
+        "contract": "Sampled parametric triangular surface; topology and sampling error remain explicit"
+      },
+      {
+        "name": "grobner_basis_solve",
+        "area": "algebra",
+        "required": [
+          "generators",
+          "variables"
+        ],
+        "optional": [
+          "max_pairs",
+          "order"
+        ],
+        "contract": "Own bounded Buchberger over QQ with exact S-criterion verification"
+      },
+      {
+        "name": "information_channel_capacity",
+        "area": "probability",
+        "required": [
+          "noise_variances",
+          "power"
+        ],
+        "optional": [
+          "gains",
+          "tolerance"
+        ],
+        "contract": "Water-filling capacity of independent real Gaussian subchannels, bits/use"
+      },
+      {
+        "name": "information_divergence_kl",
+        "area": "probability",
+        "required": [
+          "probabilities",
+          "reference"
+        ],
+        "optional": [
+          "base"
+        ],
+        "contract": "Discrete KL with explicit infinite-divergence support mismatch"
+      },
+      {
+        "name": "information_gaussian_process",
+        "area": "probability",
+        "required": [
+          "query_x",
+          "train_x",
+          "train_y"
+        ],
+        "optional": [
+          "length_scale",
+          "noise",
+          "variance"
+        ],
+        "contract": "Finite RBF Gaussian-process posterior; supplied hyperparameters and noise variance"
+      },
+      {
+        "name": "information_mutual",
+        "area": "probability",
+        "required": [
+          "joint"
+        ],
+        "optional": [
+          "base"
+        ],
+        "contract": "Discrete-law mutual information; no causal inference or estimator calibration"
+      },
+      {
         "name": "integral_equations",
         "area": "analysis",
         "required": [
@@ -556,6 +801,19 @@
         "contract": "rational Lie brackets, Jacobi verification, center and Killing form; dimension at most six"
       },
       {
+        "name": "lie_algebra_bch",
+        "area": "algebra",
+        "required": [
+          "kind",
+          "left",
+          "right"
+        ],
+        "optional": [
+          "order"
+        ],
+        "contract": "Exact matrix BCH through degree four; convergence beyond formal truncation not established"
+      },
+      {
         "name": "lie_groups",
         "area": "geometry",
         "required": [
@@ -595,6 +853,115 @@
         ],
         "optional": [],
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "manifold_adm",
+        "area": "geometry",
+        "required": [
+          "coordinates",
+          "metric"
+        ],
+        "optional": [],
+        "contract": "3+1 split; positive lapse squared and spatial positive definiteness are hypotheses"
+      },
+      {
+        "name": "manifold_christoffel",
+        "area": "geometry",
+        "required": [
+          "coordinates",
+          "metric"
+        ],
+        "optional": [
+          "kind",
+          "point"
+        ],
+        "contract": "Local Levi-Civita symbols, explicit chart domain and kind"
+      },
+      {
+        "name": "manifold_ricci",
+        "area": "geometry",
+        "required": [
+          "coordinates",
+          "metric"
+        ],
+        "optional": [
+          "cosmological_constant"
+        ],
+        "contract": "Ricci, scalar and Einstein contractions; no automatic physical field validation"
+      },
+      {
+        "name": "manifold_riemann",
+        "area": "geometry",
+        "required": [
+          "coordinates",
+          "metric"
+        ],
+        "optional": [
+          "covariant"
+        ],
+        "contract": "Exact local symbolic curvature; nonsingularity and smoothness hypotheses"
+      },
+      {
+        "name": "manifold_stress_maxwell",
+        "area": "geometry",
+        "required": [
+          "coordinates",
+          "metric",
+          "potential"
+        ],
+        "optional": [],
+        "contract": "Four-dimensional Maxwell stress and source-free residual under explicit conventions"
+      },
+      {
+        "name": "manifold_stress_scalar",
+        "area": "geometry",
+        "required": [
+          "coordinates",
+          "field",
+          "metric"
+        ],
+        "optional": [
+          "field_symbol",
+          "potential"
+        ],
+        "contract": "Local minimally coupled scalar stress and field residual, c=1"
+      },
+      {
+        "name": "manifold_surface_fem",
+        "area": "geometry",
+        "required": [
+          "kind",
+          "triangles",
+          "vertices"
+        ],
+        "optional": [
+          "count",
+          "dirichlet",
+          "duration",
+          "source",
+          "steps",
+          "values",
+          "zero_mean"
+        ],
+        "contract": "Sparse triangular-surface FEM; numerical continuum error remains uncertified"
+      },
+      {
+        "name": "manifold_tensor",
+        "area": "geometry",
+        "required": [
+          "components",
+          "coordinates",
+          "kind",
+          "variance"
+        ],
+        "optional": [
+          "metric",
+          "other",
+          "other_variance",
+          "scalar",
+          "slots"
+        ],
+        "contract": "Rank <=5 mixed tensor operations on one chart"
       },
       {
         "name": "manifold_topology",
@@ -949,6 +1316,18 @@
         "contract": "unique rational stationary Markov law or rejection"
       },
       {
+        "name": "publishing_badge_svg",
+        "area": "geometry",
+        "required": [
+          "experiment_hash",
+          "timestamp"
+        ],
+        "optional": [
+          "verification_link"
+        ],
+        "contract": "Escaped local-link SVG provenance badge; hash integrity is not scientific certification"
+      },
+      {
         "name": "quadratic_optimize",
         "area": "optimization",
         "required": [
@@ -1008,6 +1387,42 @@
           "decision_limit"
         ],
         "contract": "bounded DPLL; assignment verification; unsat not a Lean theorem"
+      },
+      {
+        "name": "sde_euler_maruyama",
+        "area": "probability",
+        "required": [
+          "diffusion",
+          "drift",
+          "initial",
+          "variables"
+        ],
+        "optional": [
+          "convention",
+          "duration",
+          "paths",
+          "seed",
+          "steps"
+        ],
+        "contract": "Seeded SDE; Milstein requires commuting noise; convergence orders require regularity"
+      },
+      {
+        "name": "sde_milstein",
+        "area": "probability",
+        "required": [
+          "diffusion",
+          "drift",
+          "initial",
+          "variables"
+        ],
+        "optional": [
+          "convention",
+          "duration",
+          "paths",
+          "seed",
+          "steps"
+        ],
+        "contract": "Seeded SDE; Milstein requires commuting noise; convergence orders require regularity"
       },
       {
         "name": "sequence_align",
@@ -1136,6 +1551,19 @@
           "window"
         ],
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "stochastic_linear_transition",
+        "area": "probability",
+        "required": [
+          "diffusion_matrix",
+          "drift_matrix",
+          "duration"
+        ],
+        "optional": [
+          "offset"
+        ],
+        "contract": "Van Loan transition and process covariance for affine constant-coefficient SDE"
       },
       {
         "name": "tensor",

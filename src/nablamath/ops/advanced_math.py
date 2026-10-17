@@ -189,6 +189,28 @@ _add('sets.progression','math.set_theory.finite:progression',{'modulus':I,'resid
 _add('elliptic.add','math.number_theory.elliptic_curves:rational_add',{'a':Q,'b':Q,'left':{'anyOf':[{'type':'null'},arr(Q,2,2)]},'right':{'anyOf':[{'type':'null'},arr(Q,2,2)]}})
 
 
+# Version 1 cohesive interfaces, retaining the stable top-level catalog.
+_add('manifold.metric','ops.advanced_calculus_manifold:symbolic_metric',{'metric':EM,'coordinates':S,'point':mapping(EX)},['metric','coordinates'])
+_add('manifold.interior','ops.advanced_calculus_manifold:interior_product',{'coordinates':S,'vector':EV,'components':FORM})
+_add('manifold.bracket','ops.advanced_calculus_manifold:lie_bracket',{'coordinates':S,'left':EV,'right':EV})
+_add('manifold.lie_derivative','ops.advanced_calculus_manifold:lie_derivative',{'coordinates':S,'vector':EV,'components':FORM})
+_add('manifold.hodge','ops.advanced_calculus_manifold:hodge_star',{'coordinates':S,'metric':EM,'components':FORM,'orientation':{'enum':[-1,1]}},['coordinates','metric','components'])
+_add('manifold.stokes','ops.advanced_calculus_manifold:stokes_box',{'coordinates':S,'components':FORM,'bounds':arr(arr(Q,2,2),4,1)})
+_add('algebra_crypto.field','ops.abstract_algebra_crypto:finite_field',{'p':I,'modulus':arr(I,17,2),'left':{'anyOf':[I,arr(I,64)]},'right':{'anyOf':[I,arr(I,64)]},'operation':{'enum':['add','subtract','multiply','divide','power','inverse']},'exponent':I},['p','modulus','left'])
+FIELD_ELEMENT={'anyOf':[I,arr(I,16,1)]}
+FIELD_POINT={'anyOf':[{'type':'null'},arr(FIELD_ELEMENT,2,2)]}
+_add('algebra_crypto.elliptic','ops.abstract_algebra_crypto:elliptic',{'p':I,'modulus':arr(I,17,2),'a':FIELD_ELEMENT,'b':FIELD_ELEMENT,'left':FIELD_POINT,'right':FIELD_POINT,'scalar':I,'operation':{'enum':['add','multiply','pairing']},'r':I},['p','modulus','a','b','left'])
+_add('algebra_crypto.groebner','ops.abstract_algebra_crypto:groebner_basis',{'equations':S,'variables':S,'order':{'enum':['lex','grlex','grevlex']},'prime':I},['equations','variables'])
+_add('stochastic_info.generator','ops.stochastic_and_information:stochastic_generator',{'variables':S,'drift':EV,'diffusion':EM,'density':EX,'convention':{'enum':['ito','stratonovich']},'time':T},['variables','drift','diffusion','density'])
+_add('stochastic_info.fokker_planck','ops.stochastic_and_information:fokker_planck_1d',{'density':NV,'drift':N,'diffusion':N,'spacing':N,'time_step':N,'steps':I})
+_add('stochastic_info.gaussian','ops.stochastic_and_information:gaussian_information',{'mean':NV,'covariance':NM,'reference_mean':NV,'reference_covariance':NM},['mean','covariance'])
+_add('stochastic_info.discrete','ops.stochastic_and_information:discrete_information',{'probabilities':NV,'reference':NV,'base':N},['probabilities'])
+_add('stochastic_info.channel','ops.stochastic_and_information:channel_capacity',{'channel':NM,'tolerance':N,'max_iterations':I},['channel'])
+_add('stochastic_info.gp','ops.stochastic_and_information:gaussian_process',{'train_x':NM,'train_y':NV,'query_x':NM,'length_scale':N,'variance':N,'noise':N},['train_x','train_y','query_x'])
+_add('stochastic_info.gaussian_copula','ops.stochastic_and_information:gaussian_copula',{'uniforms':NV,'correlation':NM})
+_add('stochastic_info.clayton_copula','ops.stochastic_and_information:clayton_copula',{'uniforms':NV,'theta':N})
+
+
 def definitions():
     proposition={'oneOf':[{'type':'string','pattern':'^[A-Za-z][A-Za-z0-9_]*$','maxLength':64},
         {'type':'array','prefixItems':[{'const':'bottom'}],'items':False,'minItems':1,'maxItems':1},

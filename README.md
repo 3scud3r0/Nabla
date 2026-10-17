@@ -1,129 +1,180 @@
-# ∇ Nabla
+# ∇ Nabla 1.0
 
-Laboratório científico local em Python para cálculo rastreável, geração de problemas, verificação matemática, datasets, simulações e publicação reproduzível.
+**Laboratório científico local para calcular, auditar, visualizar e publicar experimentos reproduzíveis.**
 
-[Começar](#começar) · [Documentação](docs/README.md) · [Estrutura](docs/architecture/repository-layout.md) · [Resultados](benchmarks/README.md) · [Contribuir](CONTRIBUTING.md)
+O Nabla reúne matemática simbólica e numérica, recibos verificáveis, notebooks
+reexecutáveis, ferramentas para agentes e documentos científicos reativos.
+A versão 1 oferece **133 operações no catálogo**, incluindo **30 operações novas**,
+e **156 ações especializadas de `advanced_math`**. As ações aninhadas não devem
+ser somadas às operações como se fossem áreas matemáticas completas.
 
-## Estado do projeto
+[Instalação](#instalação) · [Contrato da versão 1](docs/releases/V1.md) ·
+[Documentação](docs/README.md) · [Resultados da validação](docs/releases/V1_VALIDATION.md)
 
-**Versão 1.0.0 para uso pessoal local CPU.** O proprietário dispensou os gates externos de revisão e aceite para seu uso individual; isso não constitui validação independente ou conclusão da visão científica. Consulte o [escopo pessoal](docs/acceptance/PERSONAL_USE_1_0.md). Há componentes executáveis para F1–F12 do [vision.md](vision.md), com escopos delimitados e artefatos verificáveis. As fases científicas não estão declaradas concluídas.
+## Instalação
 
-As capacidades e recusas atuais são registradas na [matriz de aceitação](docs/acceptance/evidence_matrix.json) e nos [contratos científicos](docs/acceptance/scientific_capabilities.yaml). Os baselines aprendidos da campanha congelada continuam em **0/48** no teste reservado. A execução histórica do laboratório registrada em 15/10 falhou na etapa Mathlib; resultados e falhas estão na [auditoria](docs/audits/FIVE_THOUSAND_LINES_2026_10_15.md). A estimativa técnica de 70,32% pertence a um snapshot histórico e não mede o estado atual ou conclusão científica.
-
-| Área | Implementação disponível | Guia |
-|---|---|---|
-| F1–F2: cálculo e Forge | Catálogo versionado de operações, unidades, replay, oito famílias inversas e primitivas racionais | [Cálculo/Forge](docs/phases/PHASES_1_2.md) |
-| F3–F4: provas e imagens | Lean/SMT em fragmentos definidos, contraexemplos, cenas SVG/PNG e curvas adaptativas | [Provas/cenas](docs/phases/PHASES_3_4.md) |
-| F5–F6: publicação e dados | AST editorial, Typst/LaTeX/PDF, SQLite, JSONL/Parquet e controle de partições | [Perfis atuais](docs/PHASES_MATURITY_EXPANSION.md) |
-| F7–F8: simulação e agentes | EDO adaptativa, difusão explícita/implícita, agentes retomáveis e aprendizado | [Fases 5–8](docs/phases/PHASES_5_8.md) |
-| F9–F10: descoberta e evolução | Busca de leis em gramática limitada, holdout, portfólios, gates e rollback | [Fases 9–12](docs/phases/PHASES_9_12.md) |
-| F11–F12: disciplinas e conhecimento | Modelos SI idealizados, evidências, claims, assinaturas e revogação | [Perfis atuais](docs/PHASES_MATURITY_EXPANSION.md) |
-
-O preparo da versão local 1.0 está em [vision1.md](vision1.md), com
-[contrato de API](docs/API_STABILITY.md), [gates de aceite](docs/acceptance/version_1_0.md)
-e [changelog](CHANGELOG.md). A entrega pessoal 1.0 usa o escopo e as dispensas registrados no documento de aceite pessoal. Os gates de distribuição pública continuam separados. Para conferir todos os 212 caminhos e o contrato instalado,
-execute `python tools/release_readiness.py`.
-
-Novo [laboratório de matemática exata](docs/math/EXACT_LABORATORY.md), com [extensões algébricas, numéricas, combinatórias e probabilísticas integradas ao cálculo](docs/math/ADVANCED_EXACT_EXPANSION.md): implementação independente de dependências externas, com contratos finitos e testes específicos.
-
-## Primeira experiência coesa
-
-O [perfil local de primeira versão](docs/acceptance/COHESIVE_LOCAL_ALPHA.md) organiza **103 operações** sob o mesmo catálogo `nabla catalog`, acessível na CLI, no motor de notebooks e no cartão científico do desktop. A entrega pessoal exige agregados consistentes e smoke do wheel no SHA final. Não equivale à certificação da visão científica inteira.
-
-A [expansão matemática adicional](docs/MATHEMATICAL_EXPANSION.md) acrescenta ações especializadas em `advanced_math`. Seu código e seus testes foram escritos, mas **os testes desta expansão não foram executados, por instrução explícita do usuário**. Resultados de auditorias anteriores não validam essa expansão.
+Python **3.10–3.14**. O núcleo não tem dependências obrigatórias; instale extras
+conforme os motores que for utilizar:
 
 ```sh
-nabla catalog
-nabla calc analysis_integral --arguments '{"coefficients":[0,0,1],"lower":0,"upper":1}' --notebook primeiro-nabla.json
-nabla replay-notebook primeiro-nabla.json
-python tools/cohesion_smoke.py
-```
-
-## Demonstração científica reproduzível
-
-[Experimentos em código](examples/science/README.md): todas as 103 operações com referências independentes, 176 casos adicionais, oito famílias Forge, hipótese sintética com pontos reservados, notebook/replay, CLI/HTTP e SQLite. Execute `python examples/science/reproduce.py .nabla/meu-experimento` em um destino novo. Os resultados não constituem prova universal nem validação física.
-
-## Começar
-
-O núcleo requer **Python 3.10–3.14**. Em um ambiente Python ativado, na raiz do checkout:
-
-```sh
-python -m pip install -e .
+python -m venv .venv
+# Linux/macOS: source .venv/bin/activate
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+python -m pip install -e ".[test,advanced,scipy,formal,publishing,graphics,pairing,editorial]"
 nabla doctor
 nabla catalog
-nabla run "(x+x)/x" --value x=3
 nabla desktop
 ```
 
-`nabla desktop` oferece a interface local no navegador, vinculada a `127.0.0.1`. Dados do aplicativo ficam em `~/NablaMath`. O cartão de catálogo permite executar também as operações matemáticas avançadas e consultar os recibos. O banco antigo de expressões permanece separado desses recibos até uma migração tipada explícita; veja o [guia do aplicativo](docs/DESKTOP.md). Windows tem receita de [instalador](packaging/windows/) e scripts `setup.cmd`/`setup.ps1`; Linux/macOS têm `setup.sh`. Consulte o workflow antes de considerar um instalador disponível e validado.
+`publishing` instala Typst, pypdf, qrcode e Pillow; `pairing` instala py-ecc;
+`editorial` instala a inspeção PDF com PyMuPDF. O extra `animation` exige também
+os requisitos do Manim: Cairo/Pango, FFmpeg e, para MathTex, LaTeX e dvisvgm.
+CUDA, MPI, PyTorch, XLA, MCP e Jupyter têm extras próprios. Veja
+[instalação e interface](docs/DESKTOP.md) e [compatibilidade](docs/API_STABILITY.md).
+
+## Calcular, registrar e conferir
 
 ```python
-from nablamath.calc.session import CalculationSession
+from nablamath.calc import CalculationSession
+from nablamath.calc.receipt import verify_receipt
 
-receipt = CalculationSession().execute(
-    'least_squares', predictors=[[0], [1], [2]], response=[1, 3, 5]
+session = CalculationSession()
+calculation = session.execute(
+    "manifold_ricci", coordinates=["theta", "phi"],
+    metric=[[1, 0], [0, "sin(theta)**2"]])
+audit = calculation.to_data()
+assert verify_receipt(audit)
+print(audit["result"])
+```
+
+```sh
+nabla calc analysis_integral --arguments '{"coefficients":[0,0,1],"lower":0,"upper":1}' --notebook experimento.json
+nabla replay-notebook experimento.json
+```
+
+Cada recibo vincula entradas, resultados, backend e metadados por hash. Usar
+`CalculationSession.execute` também permite replay das operações novas. As
+schemas de tool calling são fechadas e verificadas contra suas assinaturas.
+O perfil de reprodução sem extras conserva as 103 operações anteriores;
+o [exemplo completo da versão 1](examples/v1/reproduce.py) usa os motores opcionais.
+
+## Cinco módulos científicos densos
+
+Os cinco arquivos contêm mais de **10 mil linhas de código-fonte Python**,
+com algoritmos novos e integração aos motores existentes. Seus caminhos
+canônicos são:
+
+| Módulo em `src/nablamath/` | Implementações principais |
+|---|---|
+| `ops/advanced_calculus_manifold.py` | Tensores mistos, Christoffel, Riemann/Ricci/Einstein/Weyl, geodésicas adaptativas, transporte paralelo, Jacobi, formas/Hodge/Stokes, Euler–Lagrange, Hamilton, Cartan, spin local, ADM e FEM em superfícies |
+| `ops/abstract_algebra_crypto.py` | GF(pⁿ), polinômios/fatoração, Reed–Solomon, NTT, curvas jacobianas, Miller/Tate/Weil, isogenias de Vélu, BN254/BLS12-381 via py-ecc, Buchberger, Lie/BCH, LLL, Hensel e aritmética p-ádica finita |
+| `ops/stochastic_and_information.py` | Itô/Stratonovich, Euler–Maruyama/Milstein, Fokker–Planck conservativo, GP, cópulas, transporte ótimo, filtros Kalman/partículas, CTMC, sobrevivência e inferência reamostrada |
+| `publishing/living_papers_compiler.py` | AST editorial, equações nativas, citações, tabelas, Typst/LaTeX/MathML, watch, PDF com JSON/XMP, QR/SVG, arquivos portáveis e inspeção de layout |
+| `graphics/spatial_engine_3d.py` | Three.js/OrbitControls offline, GLB/glTF binário com animações/texturas, malhas e volumes, BVH, clipping, campos/tensores, orbitais e cenas Manim |
+
+As classes podem ser utilizadas diretamente. Operações catalogadas passam pela
+sessão para emitir recibos; APIs auxiliares retornam resultados e diagnósticos
+sem inventar certificações. O [inventário](docs/MATHEMATICAL_EXPANSION.md) e o
+[mapa MSC 2020](docs/MSC2020_COVERAGE.md) documentam os demais ramos.
+
+## Artigos vivos com matemática nativa
+
+```python
+from nablamath.artifacts.bundle import create_bundle
+from nablamath.publishing.living_papers_compiler import (
+    ScientificPaper, ScientificPaperProject, VerifiablePDFWriter,
 )
-print(receipt.to_data())
+
+paper = ScientificPaper(
+    "Curvatura da esfera", authors=["Meu laboratório"],
+    abstract="Cálculo simbólico em uma carta local da esfera unitária.")
+paper.section("Geometria", "sec:geometry")
+paper.equation("sin(theta)**2", ["theta"], "eq:metric")
+paper.paragraph("O resultado auditado está anexado ao documento.")
+project = ScientificPaperProject(paper, create_bundle([audit]), "artigo")
+built = project.build()
+assert VerifiablePDFWriter.inspect(built.pdf)["bundle"]["receipts"][0] == audit
 ```
 
-Para os fluxos científicos completos:
+O projeto produz PDF tipografado pelo Typst, HTML com MathML offline, fontes
+Typst/LaTeX, figuras e dados. Revisões preservam os bytes anteriores; bindings
+JSON Pointer atualizam valores a partir dos recibos. Os perfis editoriais
+oferecem hierarquia, tipografia, legendas e referências; não representam
+aprovação de uma revista. A inspeção mede fontes, limites de texto e rodapés.
 
 ```sh
-python -m pip install -e ".[test,formal,graphics,documents,data,research,federation]"
+nabla living-paper build template.typ --artifact run.json --output paper.pdf
+nabla living-paper inspect paper.pdf --extract experiment.json
 ```
 
-Lean/Mathlib e compiladores PDF têm preparação própria. O laboratório completo foi executado em Python 3.12; veja [contribuição](CONTRIBUTING.md) e [reprodução](docs/FRONTIER_LAB_SIMULATION.md) para requisitos opcionais.
+Templates locais confiáveis aceitam `#nabla-val("nome")` e
+`#nabla-calc("operacao", {"argumento": "valor"})`. São documentos executáveis
+Typst; a entrada estruturada é a opção para conteúdo não confiável. O modo
+`--watch` recompila mudanças com timeout e estado de erro observável.
+O PDF incorpora os dados e hashes em anexos e XMP. Criptografia opcional e
+assinaturas de laboratório têm políticas explícitas; anexos/XMP não conferem
+conformidade PDF/A nem constituem assinatura digital PDF.
 
-O perfil integrado racional liga problema, solução, certificado, dataset, figura
-e relatório em um artefato reexecutável, sem serviços externos:
+## Visualização offline e exportação
 
-```sh
-nabla artifact .nabla/artifact.json --license MIT --provenance "synthetic local experiment"
-nabla check-artifact .nabla/artifact.json
-python tools/check_roadmap.py
+```python
+from nablamath.graphics.spatial_engine_3d import (
+    MeshData, Standalone3DViewer, GLTFExporter,
+)
+
+mesh = MeshData(((0., 0., 0.), (1., 0., 0.), (0., 1., 0.)), ((0, 1, 2),))
+Standalone3DViewer().write(mesh, "scene.html", audit_receipt=audit)
+GLTFExporter().write(mesh, "scene.glb", audit_receipt=audit)
 ```
 
-Use um destino novo. O [contrato do perfil](docs/acceptance/phase_profiles.md)
-documenta limites e a [matriz dos 213 requisitos](docs/acceptance/evidence_matrix.json)
-mantém pendências explícitas. Esse perfil não conclui as fases científicas.
+Three.js e OrbitControls estão incorporados, com licença MIT e hash conferido:
+sem CDN, Node ou servidor para abrir a cena. Há órbita, zoom, cores, controle
+temporal e download do recibo. `SpatialExperiment` empacota HTML, GLB, amostras
+e proveniência em um diretório verificável. Amostras vinculadas a recibos podem
+ser conferidas por JSON Pointer. Uma visualização associada a um recibo não é,
+por isso só, uma solução científica comprovada. A taxa de quadros depende da cena
+e do dispositivo; vídeos exigem o renderizador Manim.
 
-## Reproduzir e verificar
+## Validação e limites
 
 ```sh
-OPENBLAS_NUM_THREADS=1 python -m pytest -q
+python -m pytest -q
+python tools/vision_readiness.py
 python tools/build_math_bundle.py --check
-python tools/validate_longley.py --output .nabla/nist.json
-python tools/simulate_frontier_lab.py .nabla/laboratory-run --per-family 24 --seed 951017
+python tools/build_nabla_bundle.py --check
 ```
 
-No PowerShell, configure `$env:OPENBLAS_NUM_THREADS='1'` antes dos comandos Python. Use destino novo para cada campanha. A simulação é local e não publica dados.
+Veja os resultados executados, falhas corrigidas e bloqueios em
+[V1_VALIDATION.md](docs/releases/V1_VALIDATION.md). A versão 1 entrega um
+laboratório local com contratos delimitados. Não há porcentagem universal de
+cobertura matemática. Recibos provam integridade; correção matemática,
+adequação física e revisão científica exigem evidências próprias.
 
-O snapshot científico `5aca9ba` foi validado com **468 testes e 312 subtestes**, wheel isolado e controles de contaminação, adulteração e revogação. Esses números se referem ao snapshot auditado; consulte o estado atual nas [Actions](https://github.com/3scud3r0/Nabla/actions). Os [artefatos](benchmarks/results/frontier-lab-951017/summary.json) incluem protocolo, dados, modelos, avaliações, PDFs, logs e hashes.
+Aritmética criptográfica Python é variável no tempo e voltada a pesquisa.
+Milstein multidimensional exige ruído comutativo; cálculos de variedades usam
+cartas regulares; estimativas estatísticas dependem de suas hipóteses.
+Testes CPU não certificam GPU ou clusters. Lean/Mathlib requer seu ambiente
+formal preparado; a matriz de aceitação abaixo conserva as pendências.
 
 ## Organização
 
-| Caminho | Conteúdo |
+| Caminho | Responsabilidade |
 |---|---|
-| `src/nablamath/` | Fonte canônica do pacote Python e suas APIs |
-| `tests/`, `lean/` | Testes Python e projeto formal fixado |
-| `docs/` | Guias, arquitetura, governança, histórico e auditorias |
-| `benchmarks/` | Protocolos, fixtures, resultados e evidências versionadas |
-| `examples/`, `templates/` | Exemplos e perfis de documentos |
-| `tools/`, `scripts/` | Auditoria/reprodução e preparação/importação |
-| `protocol/`, `sdk/`, `services/` | Contratos, interoperabilidade e protótipos |
-| `packaging/`, `website/` | Empacotamento e site estático |
-| `legacy/`, `docs/history/` | Código e documentos históricos preservados |
-| `math.txt` | Bundle gerado; não editar à mão |
+| `src/nablamath/` | Fonte canônica do pacote instalável |
+| `tests/` | Referências independentes, propriedades, contratos e integrações |
+| `docs/`, `examples/`, `templates/` | Guias, relatórios e experimentos |
+| `benchmarks/`, `lean/` | Referências científicas e projeto formal |
+| `tools/`, `scripts/` | Geração, auditoria e preparação |
+| `plugins/`, `sdk/`, `protocol/`, `services/` | Integrações e contratos |
+| `packaging/`, `website/`, `legacy/` | Distribuição, site e fontes históricas |
+| `NABLA.TXT`, `math.txt` | Bundles gerados; fontes individuais continuam canônicas |
 
-Veja o [mapa completo](docs/architecture/repository-layout.md) e o [inventário de arquivos e linhas](docs/audits/FILE_INVENTORY.md). Ambientes, caches, builds e execuções locais ficam fora do controle de versão.
+Ambientes e resultados de execução ficam em diretórios ignorados. Os antigos
+imports dos compiladores na raiz são compatíveis com os módulos canônicos em
+`publishing/` e `graphics/`. Veja o [mapa de pastas](docs/architecture/repository-layout.md).
 
-## Visão, limites e participação
-
-A [visão 2026–2056+](vision.md), o [plano mestre](docs/PLANO_MESTRE_2026_2056.md) e o [backlog das 12 fases](docs/audits/PHASES_1_12_COMPLETION_BACKLOG.md) orientam a evolução. O [resumo do projeto](description.md) distingue entrega e ambição; o material original está preservado no [histórico](docs/history/README.md).
-
-Simulações são modelos delimitados, sem validação física geral. Assinaturas autenticam chaves configuradas, não expertise. Provas Lean certificam enunciados sob hipóteses; sua correspondência com texto exige revisão. Publicação no Hub é opcional e depende de destino, direitos e credenciais.
-
-Código sob [MIT](LICENSE); dados e dependências têm licenças próprias. [Contribuição](CONTRIBUTING.md) · [Segurança](SECURITY.md) · [Política de dados](docs/DATA_GOVERNANCE.md).
+Código sob [MIT](LICENSE). [Contribuir](CONTRIBUTING.md) · [Segurança](SECURITY.md) ·
+[Changelog](CHANGELOG.md).
 
 <!-- nabla:contracts:start -->
 ## Contratos executáveis e pendências atuais
@@ -138,20 +189,3 @@ F0 explicita contratos e infraestrutura; F13 continua horizonte aberto. Os perfi
 
 Verificar: `python tools/check_roadmap.py` e `python tools/check_public_contracts.py`, na raiz do repositório.
 <!-- nabla:contracts:end -->
-
-## Extensões do ecossistema científico
-
-O [guia do ecossistema](docs/SCIENTIFIC_ECOSYSTEM.md) documenta as 103 operações,
-autodiferenciação, MCMC, domínios científicos, pontes Pandas/PyTorch, Jupyter,
-VS Code, CUDA/XLA/MPI, MCP e federação assinada, com seus limites e instalação.
-
-O [guia das camadas de execução e publicação](docs/SCIENTIFIC_LAYERS.md) descreve
-recibos em background, trace PyTorch sem leitura para CPU, despacho numérico,
-SMT com prazo de cinco segundos, matemática adicional, GLTF/Manim e Living
-Papers Typst. A [demonstração integrada](examples/science/layers_pipeline.py)
-gera GLB, MP4 e PDF assinado a partir de recibos auditáveis.
-
-O [inventário MSC 2020](docs/MSC2020_COVERAGE.md) mapeia os 63 grandes ramos e
-os 22 novos módulos matemáticos, com escopos executáveis e referências de teste.
-O [guia editorial](docs/EDITORIAL_DESIGN.md) documenta os PDFs, equações, tabelas
-multipágina e preservação de publicações anteriores.

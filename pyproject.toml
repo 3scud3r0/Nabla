@@ -37,7 +37,9 @@ jupyter = ["ipython>=8,<10"]
 mpi = ["mpi4py>=4,<5"]
 ai = ["jsonschema>=4,<5"]
 mcp = ["mcp>=1.12,<2", "jsonschema>=4,<5"]
-publishing = ["typst>=0.13,<0.15", "pypdf>=5,<7"]
+publishing = ["typst>=0.13,<0.15", "pypdf>=5,<7", "qrcode>=8,<9", "Pillow>=10.1,<13"]
+editorial = ["PyMuPDF>=1.25,<2"]
+pairing = ["py-ecc>=8,<9"]
 animation = ["manim>=0.19,<0.21"]
 
 [project.scripts]
@@ -49,6 +51,7 @@ nabla-mcp = "nablamath.ai.mcp_server:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
+"nablamath.graphics" = ["vendor/*.js", "vendor/*.txt", "vendor/*.json"]
 "nablamath.desktop" = ["index.html"]
 "nablamath" = ["compatibility.json", "public_api.json", "msc_coverage.json", "mathematical_expansion.json"]
 "nablamath.publishing" = ["templates/*.typ"]
