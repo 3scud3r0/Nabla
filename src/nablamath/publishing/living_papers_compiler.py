@@ -628,7 +628,10 @@ class PaperWatchHandle:
         try:
             while not self.stop_event.is_set():
                 identity=self.compiler.input_identity()
-                if identity!=previous:
+                # Stable publication files can disappear without any input
+                # revision changing. Treat a missing companion as rebuild work.
+                if (identity!=previous or not self.compiler.output.is_file()
+                        or not (self.compiler.output.parent/'audit.html').is_file()):
                     started=time.monotonic()
                     result=self.compiler.build()
                     with self._lock:
