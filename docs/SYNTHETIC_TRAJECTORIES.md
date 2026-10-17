@@ -4,8 +4,8 @@ O gerador produz exercícios resolvidos, candidatos deliberadamente incorretos,
 diagnósticos e correções sem inferência neural. Usa o catálogo matemático do
 Nabla e registra os cálculos em recibos reexecutáveis. Não requer Torch ou GPU.
 
-São **100 famílias autoradas**, incluindo seis trajetórias especiais e 94 receitas
-do catálogo. A cobertura inclui álgebra, análise, cálculo, geometria, topologia,
+São **120 famílias autoradas**, incluindo seis trajetórias especiais, 94 receitas
+do catálogo e 20 desafios compostos. A cobertura inclui álgebra, análise, cálculo, geometria, topologia,
 teoria dos números, probabilidade, estatística, otimização, grafos, lógica,
 transformadas e mecânica estatística. Uma receita é um perfil limitado de uma
 área; não significa cobertura integral dessa área ou de todas as funções Python.
@@ -64,9 +64,13 @@ em descobertas científicas nem em pensamento neural mais fiel.
 | Arquivo | Conteúdo |
 | --- | --- |
 | `amostras.txt`, `amostras.md` | Todas as amostras, cálculos, erros rotulados, diagnósticos e correções |
+| `amostras_traduzidas.txt` | Tradução determinística em português, sem JSON bruto e com mutações, diagnóstico e correção explicados |
+| `narration.jsonl` | Eventos da máquina de estados, regras escolhidas pela gramática e recibos que sustentam cada etapa |
 | `dataset.jsonl` | Registros completos, configuração, respostas, passos e recibos |
 | `sft.jsonl` | Mensagens user/assistant com resultados aceitos; candidatos corrompidos ficam fora desse texto |
 | `dpo.jsonl` | Pares locais prompt/chosen/rejected para cada mutação detectada |
+| `sft_natural.jsonl` | Mensagens em português com tentativas sintéticas explicitamente rotuladas e correções |
+| `dpo_natural.jsonl` | Preferências locais em português entre os campos divergentes, sem apagar a diferença na tradução |
 | `train.jsonl`, `validation.jsonl`, `test.jsonl` | Partições determinísticas agrupadas pela família construtora |
 | `coverage.json` | Todas as operações e ações avançadas registradas, com receitas disponíveis e lacunas |
 | `card.json` | Configuração, contagens, versões, hashes das fontes do gerador e limitações |
@@ -105,6 +109,114 @@ Os rótulos positivos/negativos são supervisão procedural local. Não são
 preferências humanas nem métricas empíricas de qualidade ou utilidade de treino.
 Os dados precisam de avaliação externa antes de sustentar alegações de ganho de
 capacidade em modelos.
+
+`amostras_traduzidas.txt` usa uma voz conversacional em primeira pessoa para
+explicar os registros: apresenta um palpite, descreve a checagem, localiza a
+diferença observada e indica o ajuste. O fluxo evita rótulos de relatório como
+“Tentativa sintética” e “Diagnóstico do verificador”; esses estados continuam
+disponíveis nos metadados. Cada fala é gerada a partir dos valores, recibos e
+certificados registrados. O cabeçalho identifica o texto como simulação
+narrativa procedural, não como pensamento espontâneo ou privado de uma rede
+neural. A gramática não inventa surpresa, causa ou justificativa que os dados
+não sustentem.
+
+A versão atual evita duplicar os objetos completos de resultado na fala: a
+correção aponta os campos alterados, enquanto a resposta integral permanece na
+projeção matemática e nos recibos. A checagem é descrita como comparação com o
+cálculo registrado; ela só é chamada de independente quando há certificado de
+referência adicional.
+
+## Gramática procedural com proveniência
+
+A versão 2 substitui a tradução plana por uma gramática ponderada de
+não terminais e slots fechados, combinada com uma máquina de estados finita.
+Cada etapa com candidato rejeitado segue `plan → attempt → check → diagnose →
+correct → confirm`. Sem erro registrado, segue `plan → execute → confirm`.
+Não são inventadas falhas para preencher a narrativa. Os estados organizam uma
+demonstração algorítmica; a apresentação em primeira pessoa melhora a leitura,
+sem transformar a demonstração em deliberação neural.
+
+As palavras variam com `--wording-seed`, separadamente da semente matemática
+`--seed`. Cada escolha é derivada da versão da gramática, identificador do
+registro, índice da etapa e estado. Alterar a semente de redação não altera o
+problema, as respostas ou as mutações. As escolhas de produção ficam em
+`narration.jsonl`, com referência ao recibo e às dependências reais da etapa.
+
+Os perfis semânticos vinculam o plano à operação executada: BBᵀ e a Hessiana
+em Itô, fatores invariantes em Smith, sinais orientados em formas, domínio
+em funções racionais, dualidade em otimização e assim por diante. Precauções
+conceituais são apresentadas como precauções, não como causas supostamente
+descobertas de uma alteração numérica. Um inteiro modificado não é chamado de
+erro de dimensão sem evidência sobre esse papel.
+
+O narrador recusa diagnósticos que não correspondam aos valores efetivamente
+diferentes entre candidato e recibo, bem como correções sem rejeição ou
+dependências futuras. Slots não aceitam acesso a atributos; a expansão tem
+orçamento de profundidade e número de produções. Fórmulas são inseridas como
+dados depois da expansão, sem execução de código ou expansão recursiva do texto
+matemático.
+
+A detecção distingue reexecução, referência adicional que rejeita o candidato,
+referência que continua válida apenas em suas afirmações limitadas e ausência
+de referência. Assim, um teste do determinante não é apresentado como validação
+do posto. A narração é reconstituída durante `--verify`; recalcular o hash de
+uma história adulterada não basta para aprová-la.
+
+`dpo_natural.jsonl` compara propostas nos mesmos campos do mesmo passo. Pares
+que perdessem sua distinção ao renderizar não são publicados. São preferências
+locais computacionais, sem ranking de soluções completas. O SFT natural contém
+erros rotulados como sintéticos e sua correção; o SFT técnico original mantém a
+projeção só com resultados aceitos. Nenhum formato tem utilidade de treino
+demonstrada por esses testes.
+
+## Lote de vinte desafios compostos
+
+```sh
+python gerar_raciocinio_longo.py --suite advanced20 --difficulty 8 --error-rate 1 --wording-seed 42 --output .nabla/advanced20
+python gerar_raciocinio_longo.py --verify .nabla/advanced20
+```
+
+Esse comando seleciona uma instância de cada um dos vinte perfis a seguir.
+O TXT para leitura é `amostras_traduzidas.txt`. Os perfis têm cargas estruturais
+autoradas e limitadas; `depth` não os transforma em provas maiores. Há
+subáreas diferentes, incluindo especializações relacionadas entre si.
+"Avançado" descreve o conteúdo; não existe classificação empírica de dificuldade
+contra o1/o3, Opus ou matemáticos humanos. O catálogo não resolve problemas
+abertos por aumentar números ou acrescentar frases.
+
+| Subárea | Desafio e carga matemática |
+| --- | --- |
+| Controle e equações matriciais | Lyapunov 7×7 denso, 28 incógnitas simétricas, 49 resíduos e 7 menores |
+| Teoria dos números diofantina | Pell para 61,109,181,661, com identidades inteiras de grandes soluções |
+| Álgebra comutativa e módulos | Apresentação inteira densa 8×8, oito fatores invariantes e torção |
+| Álgebra homológica | Complexo 6←12←6, bases densas e homotopia contrátil verificada por produtos racionais |
+| Representações | Regular de S3, multiplicidades 1,1,2 e comutante com 36 incógnitas |
+| Álgebras de Lie | Takiff sl2[ε]/ε², Killing degenerada, radical e redução PBW de comprimento dez |
+| Geometria algébrica | Cúbica torcida por eliminação em seis variáveis, saturação e dimensão do cone |
+| Topologia algébrica | Homologia e cohomologia de T²∨RP²∨S², incluindo a torção e sua mudança de grau |
+| Geometria diferencial | Métrica densa em carta polinomial não ortogonal e derivada covariante |
+| Cálculo exterior | Pullback de 2-forma em dimensão quatro, naturalidade de d e integral orientada |
+| Cálculo estocástico | Itô tridimensional de polinômio de grau seis, ruído multiplicativo e jet de ordem quatro |
+| Cálculo das variações | Dois campos, três coordenadas, cinética não linear, potencial sêxtico e Hessiana 6×6 |
+| Análise complexa | Quatro polos de multiplicidades 4,3,2,2, Laurent e soma global de resíduos |
+| Análise funcional | Projeção ponderada de dimensão cinco em Q^10, pertinência e ortogonalidade exatas |
+| Distribuições | Doze derivadas de Dirac, dualidade de D³ e Fourier de função-teste de grau vinte |
+| Processos de Markov | Oito estados, duas absorções, momentos condicionais e Bellman descontado |
+| Grafos | Fluxo racional em doze vértices comparado a todos os 1.024 cortes possíveis |
+| Otimização convexa | Dez variáveis, dezoito restrições, complementaridade e certificado primal-dual |
+| Aproximação | Padé [10/10] de exp e 21 coeficientes de convolução racional verificados |
+| Equações integrais | Fredholm com núcleo 8×8, solução de grau onze e cota de contração em C[0,1] |
+
+Certificados informam se usam `int/Fraction` separadamente do algoritmo produtor
+ou se compartilham o CAS. Por exemplo, a comparação simbólica da fórmula de Itô
+usa o mesmo CAS e não é anunciada como referência independente. Em Pell, a
+substituição verifica x²−Dy²=1, sem provar a minimalidade. Em Fredholm, a cota
+racional menor que um justifica a unicidade em C[0,1] pela série de Neumann.
+
+Os manifestos e cartões de exportação são versão 2. A reprodução estrita dos
+artefatos antigos exige as fontes antigas; não há migração silenciosa para a
+gramática nova. Milhares de linhas de software, fluência, comprimento e
+checagens locais não estabelecem equivalência a um modelo de fronteira.
 
 ## API Python e integração
 

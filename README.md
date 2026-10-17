@@ -13,8 +13,9 @@ ser somadas às operações como se fossem áreas matemáticas completas.
 [Documentação](docs/README.md) · [Resultados da validação](docs/releases/V1_VALIDATION.md)
 
 O [gerador procedural de trajetórias matemáticas](docs/SYNTHETIC_TRAJECTORIES.md)
-oferece 100 famílias de exercícios, erros rotulados e correções auditáveis, com
-exportação TXT/MD, JSONL, SFT e DPO, sem inferência neural.
+oferece 120 famílias, incluindo 20 desafios compostos de subáreas distintas,
+erros rotulados e correções auditáveis. A gramática procedural gera explicações
+em português, com exportação TXT/MD, JSONL, SFT e DPO, sem inferência neural.
 
 ## Instalação
 
