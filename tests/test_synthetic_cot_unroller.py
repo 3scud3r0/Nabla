@@ -77,7 +77,8 @@ def test_family_splits_do_not_leak_and_sft_omits_corrupt_candidates(tmp_path):
     translated=(dest/'amostras_traduzidas.txt').read_text()
     assert translated.count('AMOSTRA ')==4
     assert 'Requisição: {' not in translated and 'Resultado aceito: {' not in translated
-    assert 'Diagnóstico do verificador:' in translated and 'Correção:' in translated
+    assert any(phrase in translated for phrase in ('Opa, ', 'Já achei:', 'O que não bate:'))
+    assert any(phrase in translated for phrase in ('Vou corrigir isso:', 'Com a correção,', 'O ajuste fica assim:'))
     with pytest.raises(FileExistsError):export_dataset(dest,count=1)
 
 
@@ -85,11 +86,12 @@ def test_translator_explains_chain_rule_mutation_without_raw_json():
     record=SimulatedReasoningTrace(GenerationConfig(depth=3,error_rate=1)).generate('chain_rule')
     translated=TextualReasoningFormatter.translated_solution(record)
     assert 'derivar' in translated
-    assert 'omissão intencional do fator da regra da cadeia' in translated
-    assert 'Diagnóstico do verificador:' in translated and 'Correção:' in translated
-    assert 'esperado ' in translated and 'observado ' in translated
+    assert 'omissão da regra da cadeia' in translated
+    assert any(phrase in translated for phrase in ('Opa, ', 'Já achei:', 'O que não bate:'))
+    assert any(phrase in translated for phrase in ('Vou corrigir isso:', 'Com a correção,', 'O ajuste fica assim:'))
+    assert 'eu propus' in translated and 'cálculo registrado dá' in translated
     assert '"arguments"' not in translated and '"operation"' not in translated
-    assert 'não representa pensamento interno de uma rede neural' in translated
+    assert 'não é um relato de pensamento espontâneo nem de raciocínio interno de uma rede neural' in translated.lower()
 
 
 def test_rehashed_corruption_is_rejected_by_regeneration(tmp_path):

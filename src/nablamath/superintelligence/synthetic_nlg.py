@@ -11,7 +11,7 @@ import random
 import re
 from string import Formatter
 
-GRAMMAR_VERSION = 'grounded-nlg-v1'
+GRAMMAR_VERSION = 'grounded-nlg-v3'
 
 
 @dataclass(frozen=True)
@@ -21,31 +21,59 @@ class Production:
 
 
 GRAMMAR = {
-    'plan': ((3, '<opening> {action}. {strategy}. <discipline>'),),
-    'opening': ((2, 'Vamos começar por'), (2, 'A estratégia desta etapa é'),
-                (1, 'O próximo objetivo é'), (1, 'Para avançar, precisamos de')),
-    'discipline': ((2, 'Vou preservar as hipóteses de domínio durante o cálculo.'),
-                   (1, 'Os dados desta etapa fixam o alcance da conclusão.')),
-    'attempt': ((2, 'Introduzimos uma tentativa deliberadamente alterada: {candidate}.'),
-                (1, 'Vamos explorar o efeito de uma falha controlada: {candidate}.'),
-                (1, 'O candidato rotulado como incorreto contém esta alteração: {candidate}.'),
-                (1, 'Antes de aceitar o cálculo, vamos testar o candidato sintético: {candidate}.')),
-    'check': ((2, 'Antes de prosseguir, verifico a consistência com a requisição original: {check}.'),
-              (1, 'A aceitação depende da checagem, que consiste em {check}.'),
-              (2, 'Agora submeto a tentativa à checagem registrada: {check}.')),
-    'diagnose': ((2, 'A divergência ficou localizada: {diagnosis}.'),
-                 (1, 'A comparação fornece um diagnóstico concreto: {diagnosis}.'),
-                 (1, 'O teste rejeitou a tentativa. O ponto concreto é este: {diagnosis}.')),
-    'correct': ((2, 'Refazendo essa escolha, conservamos {result}.'),
-                (1, 'Descarto a alteração rejeitada. O resultado que permanece é {result}.'),
-                (1, 'A correção é substituir o candidato pelo resultado reexecutado: {result}.')),
-    'execute': ((2, 'Com os dados declarados, o cálculo resulta em {result}.'),
-                (1, 'Mantendo as convenções do problema, chegamos a {result}.'),
-                (1, 'Efetuando a operação indicada, obtemos {result}.')),
-    'confirm': ((2, 'A conclusão desta etapa está limitada à evidência disponível: {evidence}.'),
-                (1, 'O recibo sustenta a seguinte conclusão delimitada: {evidence}.'),
-                (1, 'Podemos registrar o resultado com este alcance: {evidence}.')),
+    'plan': ((3, '<opening> {action}. {strategy}.'),),
+    'opening': ((2, 'Vou'), (2, 'Quero'), (1, 'A ideia é'), (1, 'Nesta etapa, quero')),
+    'attempt': ((2, 'Meu primeiro palpite é {candidate}. Vou conferir se ele satisfaz a relação original.'),
+                (1, 'Estou considerando {candidate}; antes de seguir, quero testar esse valor na conta.'),
+                (1, 'Por enquanto, fico com {candidate}. Agora vou verificar se fecha com os dados.'),
+                (1, 'Uma possibilidade é {candidate}. Vou comparar esse palpite com a equação do problema.')),
+    'check': ((2, 'Vou comparar esse palpite com o cálculo registrado e conferir os campos alterados.'),
+              (1, 'Antes de aceitar esse valor, vou verificar como ele se compara ao resultado calculado.'),
+              (2, 'Agora confiro o palpite com a operação e o resultado registrados.')),
+    'diagnose': ((2, 'Opa, {diagnosis}.'),
+                 (1, 'Já achei: {diagnosis}.'),
+                 (1, 'O que não bate: {diagnosis}.')),
+    'correct': ((2, 'Vou corrigir isso: {correction}.'),
+                (1, 'Com a correção, {correction}.'),
+                (1, 'O ajuste fica assim: {correction}.'),),
+    'execute': ((2, 'Fazendo a conta com os dados declarados, obtenho {result}.'),
+                (1, 'Seguindo as convenções do problema, chego a {result}.'),
+                (1, 'Ao executar essa operação, encontro {result}.'),),
+    'confirm': ((2, 'A checagem confirma o alcance desta etapa: {evidence}.'),
+                (1, 'Com essa conferência, registro a conclusão: {evidence}.'),
+                (1, 'Essa verificação sustenta o resultado neste passo: {evidence}.'),),
 }
+
+
+def _narrative_result(value, render_value):
+    """Summarize common structured calculator results without dumping their payloads."""
+    if isinstance(value, dict) and 'action' in value and 'result' in value:
+        value = value['result']
+    if isinstance(value, dict):
+        if 'inverse' in value:
+            return 'a inversa é ' + render_value(value['inverse'])
+        if {'particular', 'rank', 'status'} <= set(value):
+            size = len(value['particular']) if isinstance(value['particular'], list) else 0
+            return (f"uma solução {value['status']} de posto {value['rank']} "
+                    f"com vetor particular de {size} componentes")
+        if {'determinant', 'rank'} <= set(value):
+            return f"determinante {render_value(value['determinant'])} e posto {render_value(value['rank'])}"
+        if {'identity', 'x', 'y'} <= set(value):
+            return (f"{value['identity']}, com x = {render_value(value['x'])} "
+                    f"e y = {render_value(value['y'])}")
+    return render_value(value)
+
+
+def _narrative_answer(value, render_value):
+    if isinstance(value, list):
+        return '; '.join(_narrative_answer(item, render_value) for item in value)
+    if isinstance(value, dict):
+        if {'identity', 'x', 'y'} <= set(value):
+            return (f"x = {render_value(value['x'])}, y = {render_value(value['y'])}; "
+                    f"a identidade {value['identity']} confere")
+        if 'inverse' in value:
+            return 'inversa: ' + render_value(value['inverse'])
+    return _narrative_result(value, render_value)
 
 
 class WeightedGrammar:
@@ -99,7 +127,7 @@ class ProceduralNarrator:
 
     def events(self, record):
         # Lazy import prevents the formatter/narrator import cycle.
-        from .synthetic_cot_unroller import _natural_value, _natural_request, _mutation_prose
+        from .synthetic_cot_unroller import _natural_value, _natural_request
         from .synthetic_nlg_semantics import profile_for, describe_path, explain_difference
         events = []
         for step in record['steps']:
@@ -109,34 +137,47 @@ class ProceduralNarrator:
             error = step.get('error')
             if error:
                 _validate_error_evidence(step)
-            result = _natural_value(step['receipt']['result'])
+            result = _narrative_result(step['receipt']['result'], _natural_value)
             certificate = step.get('certificate')
-            evidence = 'concordância com a reexecução do mesmo motor; não é prova independente'
+            evidence = 'a comparação coincide com o resultado calculado nesta etapa'
             if certificate:
                 if certificate.get('independent_of_producing_solver'):
-                    evidence = 'verificação de referência adicional: ' + _natural_value(certificate.get('claims', []))
+                    claims = certificate.get('claims', [])
+                    claim_text = _natural_value(claims[0]) if isinstance(claims, list) and len(claims) == 1 else _natural_value(claims)
+                    evidence = 'uma verificação adicional confirmou ' + claim_text.rstrip('. ')
                 elif certificate.get('kind') == 'exact_residual':
-                    evidence = 'substituição com resíduo exato ' + str(certificate['value'])
+                    evidence = 'ao substituir na equação, o resíduo exato foi ' + str(certificate['value'])
                 elif certificate.get('kind') == 'deliberate_false_identity':
-                    evidence = (_mutation_prose(certificate.get('mutation', '')) +
-                                ' testada como identidade falsa por comparação racional')
+                    evidence = 'a comparação racional rejeitou a igualdade proposta'
                 else:
                     evidence += '; certificado delimitado: ' + _natural_value(certificate)
             differences = error['detection']['differences'] if error else []
             candidate = '; '.join(
-                describe_path(d['path']) + ', valor proposto ' + _natural_value(d['observed'])
+                describe_path(d['path']) + ': ' + _natural_value(d['observed'])
                 for d in differences)
-            # A numeric mutation is never relabelled as a dimensional or physical error.
-            diagnosis = (_mutation_prose(error['mutation']['kind']) + '; ' +
-                         '; '.join(explain_difference(d, _natural_value) for d in differences)) if error else ''
+            corrections = []
+            for difference in differences:
+                where = describe_path(difference['path'])
+                if where.startswith('entrada '):
+                    corrections.append(f'a {where} fica em {_natural_value(difference["expected"])}')
+                elif where.startswith('componente '):
+                    corrections.append(f'a {where} fica em {_natural_value(difference["expected"])}')
+                elif where == 'posto':
+                    corrections.append(f'o posto passa a ser {_natural_value(difference["expected"])}')
+                elif where == 'determinante':
+                    corrections.append(f'o determinante passa a ser {_natural_value(difference["expected"])}')
+                else:
+                    corrections.append(f'o valor de {where} passa a ser {_natural_value(difference["expected"])}')
+            correction = '; '.join(corrections)
+            # Diagnose only the observed mismatch; the mutation label remains metadata.
+            diagnosis = '; '.join(explain_difference(d, _natural_value) for d in differences) if error else ''
             profile = profile_for(step['receipt']['request'])
-            strategy = ('Estratégia: ' + profile.strategy) if profile else 'A operação e seus parâmetros definem o método desta etapa'
-            check = 'comparar o resultado com a reexecução do catálogo'
-            if error and error['detection'].get('reference_check', {}).get('status') == 'rejects_candidate':
-                check += '; a referência racional adicional também rejeitou o candidato nas afirmações que ela cobre'
+            strategy = profile.strategy if profile else 'vou seguir a operação e os parâmetros declarados'
+            strategy = strategy[:1].upper() + strategy[1:]
             slots = {'action': profile.goal if profile else _natural_request(step['receipt']['request']).replace('**', '^'),
-                     'result': result, 'candidate': candidate or 'estrutura divergente do recibo',
-                     'check': check, 'strategy':strategy,
+                     'result': result, 'candidate': candidate or 'uma estrutura diferente do resultado calculado',
+                     'correction': correction or result,
+                     'strategy':strategy,
                      'diagnosis': diagnosis, 'evidence': evidence}
             states = ('plan', 'attempt', 'check', 'diagnose', 'correct', 'confirm') if error else ('plan', 'execute', 'confirm')
             previous = None
@@ -156,26 +197,20 @@ class ProceduralNarrator:
         # Generic recipes previously embedded raw request JSON in their prompt.
         prompt = _natural_prompt(record)
         lines = [prompt, '', 'Método: ' + record['method'],
-                 'Narração procedural sintética, produzida por gramática; não representa pensamento interno de uma rede neural.']
+                 'O texto a seguir é uma simulação narrativa em primeira pessoa, montada a partir de cálculos e verificações registrados. Não é um relato de pensamento espontâneo nem de raciocínio interno de uma rede neural.']
         if record.get('challenge_profile'):
             lines.append('Carga matemática: ' + record['challenge_profile']['burden'])
         grouped = {}
         for event in self.events(record):
             grouped.setdefault(event['step'], []).append(event)
         for step in record['steps']:
-            lines += ['', f"Etapa {step['index']} — {step['description']}"]
-            arguments = step['receipt']['request']['arguments']
-            lines.append('Dados: ' + _natural_value(arguments))
-            labels = {'plan':'Plano', 'attempt':'Tentativa sintética', 'check':'Checagem',
-                      'diagnose':'Diagnóstico do verificador', 'correct':'Correção',
-                      'execute':'Cálculo', 'confirm':'Confirmação'}
-            lines += [labels[event['state']] + ': ' + event['text'] for event in grouped[step['index']]]
+            lines += ['', f"{step['description']}"]
+            lines += [event['text'] for event in grouped[step['index']]]
             from .synthetic_nlg_semantics import profile_for
             profile = profile_for(step['receipt']['request'])
             if profile:
-                lines.append('Cuidado de interpretação: ' + profile.caution + '.')
-            lines.append('Recibo: ' + step['receipt']['content_id'])
-        lines += ['', 'Resposta final: ' + _natural_value(record['answer']),
+                lines.append('Só preciso tomar cuidado com um ponto: ' + profile.caution + '.')
+        lines += ['', 'Resposta final: ' + _narrative_answer(record['answer'], _natural_value),
                   'Dificuldade: perfil avançado autorado, não calibrado por comparação externa. '
                   'Validade e utilidade de treino não se inferem do comprimento ou da fluência.']
         return '\n'.join(lines)

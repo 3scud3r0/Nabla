@@ -110,10 +110,21 @@ preferências humanas nem métricas empíricas de qualidade ou utilidade de trei
 Os dados precisam de avaliação externa antes de sustentar alegações de ganho de
 capacidade em modelos.
 
-`amostras_traduzidas.txt` usa modelos de frase e renderização de expressões
-fechadas para explicar os registros em português natural. O tradutor não infere
-intenções, não acrescenta justificativas ausentes e não representa pensamento
-interno de uma rede neural.
+`amostras_traduzidas.txt` usa uma voz conversacional em primeira pessoa para
+explicar os registros: apresenta um palpite, descreve a checagem, localiza a
+diferença observada e indica o ajuste. O fluxo evita rótulos de relatório como
+“Tentativa sintética” e “Diagnóstico do verificador”; esses estados continuam
+disponíveis nos metadados. Cada fala é gerada a partir dos valores, recibos e
+certificados registrados. O cabeçalho identifica o texto como simulação
+narrativa procedural, não como pensamento espontâneo ou privado de uma rede
+neural. A gramática não inventa surpresa, causa ou justificativa que os dados
+não sustentem.
+
+A versão atual evita duplicar os objetos completos de resultado na fala: a
+correção aponta os campos alterados, enquanto a resposta integral permanece na
+projeção matemática e nos recibos. A checagem é descrita como comparação com o
+cálculo registrado; ela só é chamada de independente quando há certificado de
+referência adicional.
 
 ## Gramática procedural com proveniência
 
@@ -121,8 +132,9 @@ A versão 2 substitui a tradução plana por uma gramática ponderada de
 não terminais e slots fechados, combinada com uma máquina de estados finita.
 Cada etapa com candidato rejeitado segue `plan → attempt → check → diagnose →
 correct → confirm`. Sem erro registrado, segue `plan → execute → confirm`.
-Não são inventadas falhas para preencher a narrativa. Os estados descrevem
-uma demonstração algorítmica; não pretendem recuperar deliberações neurais.
+Não são inventadas falhas para preencher a narrativa. Os estados organizam uma
+demonstração algorítmica; a apresentação em primeira pessoa melhora a leitura,
+sem transformar a demonstração em deliberação neural.
 
 As palavras variam com `--wording-seed`, separadamente da semente matemática
 `--seed`. Cada escolha é derivada da versão da gramática, identificador do

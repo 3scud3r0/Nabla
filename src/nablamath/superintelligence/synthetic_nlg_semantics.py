@@ -183,18 +183,26 @@ PATH_WORDS = {
     'coefficients':'coeficientes', 'duality_gap':'lacuna de dualidade',
     'betti_numbers':'números de Betti', 'torsion':'torção', 'free_rank':'posto livre',
     'multiplicities':'multiplicidades', 'killing_form':'forma de Killing',
+    'domain_equivalence_established':'equivalência de domínio estabelecida',
+    'equal_on_common_domain':'igualdade no domínio comum',
+    'characteristic_polynomial':'polinômio característico',
+    'shape':'dimensão', 'status':'situação', 'nullspace':'núcleo',
+    'particular':'solução particular', 'pivots':'pivôs',
+    'obligations':'condições', 'expression':'expressão',
 }
 
 
 def describe_path(path):
     if not path:
         return 'estrutura do resultado'
-    return ' → '.join(f'índice {part} (base zero)' if type(part) is int
+    if len(path) == 3 and path[0] in {'inverse', 'matrix'} and all(type(part) is int for part in path[1:]):
+        name = PATH_WORDS.get(path[0], path[0])
+        return f"entrada ({path[1] + 1}, {path[2] + 1}) da {name}"
+    return ' → '.join(f'componente {part + 1}' if type(part) is int
                       else PATH_WORDS.get(part, str(part).replace('_', ' ')) for part in path)
 
 
 def explain_difference(difference, render_value):
     where = describe_path(difference['path'])
-    return (f"{where}: o candidato contém {render_value(difference['observed'])}, "
-            f"observado {render_value(difference['observed'])}; "
-            f"esperado {render_value(difference['expected'])} pela reexecução")
+    return (f"em {where}, eu propus {render_value(difference['observed'])}, "
+            f"mas o cálculo registrado dá {render_value(difference['expected'])}")

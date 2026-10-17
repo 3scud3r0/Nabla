@@ -110,11 +110,22 @@ def test_integer_mutation_is_not_described_as_a_dimensional_or_physical_error():
     assert 'numerador correto' not in text
 
 
+def test_natural_text_uses_first_person_without_engineering_stage_labels(arithmetic_record):
+    text = TextualReasoningFormatter.translated_solution(arithmetic_record)
+    assert 'eu propus' in text and 'Vou' in text
+    assert 'vou conferir' in text.lower() or 'vou verificar' in text.lower()
+    assert 'Tentativa sintética:' not in text
+    assert 'Diagnóstico do verificador:' not in text
+    assert 'perturbação intencional' not in text
+    assert 'Recibo:' not in text
+    assert 'simulação narrativa em primeira pessoa' in text
+
+
 def test_generic_recipe_translation_has_no_embedded_api_request_json():
     record = SimulatedReasoningTrace(GenerationConfig(depth=1,error_rate=1)).generate('matrix_inverse')
     text = TextualReasoningFormatter.translated_solution(record)
     assert '"operation"' not in text and '"arguments"' not in text
-    assert 'Dados:' in text and 'Recibo:' in text
+    assert 'eu propus' in text and 'Recibo:' not in text
 
 
 def test_twenty_expert_profiles_cover_twenty_distinct_named_subfields():
