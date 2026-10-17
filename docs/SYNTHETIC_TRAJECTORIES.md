@@ -64,6 +64,7 @@ em descobertas científicas nem em pensamento neural mais fiel.
 | Arquivo | Conteúdo |
 | --- | --- |
 | `amostras.txt`, `amostras.md` | Todas as amostras, cálculos, erros rotulados, diagnósticos e correções |
+| `amostras_traduzidas.txt` | Tradução determinística em português, sem JSON bruto e com mutações, diagnóstico e correção explicados |
 | `dataset.jsonl` | Registros completos, configuração, respostas, passos e recibos |
 | `sft.jsonl` | Mensagens user/assistant com resultados aceitos; candidatos corrompidos ficam fora desse texto |
 | `dpo.jsonl` | Pares locais prompt/chosen/rejected para cada mutação detectada |
@@ -105,6 +106,11 @@ Os rótulos positivos/negativos são supervisão procedural local. Não são
 preferências humanas nem métricas empíricas de qualidade ou utilidade de treino.
 Os dados precisam de avaliação externa antes de sustentar alegações de ganho de
 capacidade em modelos.
+
+`amostras_traduzidas.txt` usa modelos de frase e renderização de expressões
+fechadas para explicar os registros em português natural. O tradutor não infere
+intenções, não acrescenta justificativas ausentes e não representa pensamento
+interno de uma rede neural.
 
 ## API Python e integração
 

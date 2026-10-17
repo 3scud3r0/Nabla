@@ -103,6 +103,88 @@ def _expression_source(node):
     return f"({_expression_source(node['left'])}{node['op']}{_expression_source(node['right'])})"
 
 
+def _natural_value(value):
+    """Render closed result data as compact mathematical prose, never raw JSON."""
+    if isinstance(value, dict):
+        if value.get('kind') in {'number', 'symbol', 'binary'}:
+            return _expression_source(value)
+        if 'equal_on_common_domain' in value:
+            status = 'são equivalentes' if value['equal_on_common_domain'] else 'não são equivalentes'
+            return status + ' no domínio comum'
+        if 'expression' in value:
+            expression = _natural_value(value['expression'])
+            nonzero = value.get('required_nonzero', [])
+            return expression + (('; restrições: ' + ', '.join(map(str, nonzero))) if nonzero else '')
+        if {'path', 'expected', 'observed'} <= set(value):
+            path = '.'.join(map(str, value.get('path', []))) or 'resultado'
+            return (f"campo {path}: esperado {_natural_value(value['expected'])}, "
+                    f"observado {_natural_value(value['observed'])}")
+        if 'value' in value and len(value) <= 3:
+            return _natural_value(value['value'])
+        hidden = {'comparison id', 'comparison_id', 'normal left', 'normal right',
+                  'left domain guards', 'right domain guards', 'scope', 'formal proof'}
+        visible = [(key, child) for key, child in value.items()
+                   if key.replace('_', ' ') not in hidden]
+        if not visible:
+            return 'checagem concluída'
+        return '; '.join(f'{key.replace("_", " ")}: {_natural_value(child)}'
+                         for key, child in visible)
+    if isinstance(value, list):
+        if value and all(isinstance(row, list) for row in value):
+            return '[' + '; '.join('[' + ', '.join(_natural_value(x) for x in row) + ']'
+                                   for row in value) + ']'
+        return '[' + ', '.join(_natural_value(x) for x in value) + ']'
+    if isinstance(value, str):
+        try:
+            q = Fraction(value)
+            return str(q.numerator) if q.denominator == 1 else f'{q.numerator}/{q.denominator}'
+        except (ValueError, ZeroDivisionError):
+            return value.replace('**', '^')
+    if isinstance(value, bool):
+        return 'sim' if value else 'não'
+    return str(value)
+
+
+def _natural_request(request):
+    operation = request['operation']
+    args = request.get('arguments', {})
+    if operation == 'differentiate':
+        return f"derivar {args.get('source', 'a expressão indicada')}"
+    if operation == 'evaluate':
+        return f"avaliar {args.get('source', 'a expressão indicada')}"
+    if operation == 'rational_compare':
+        return (f"comparar as expressões {args.get('left', '?')} e {args.get('right', '?')} "
+                'no domínio declarado')
+    if operation == 'solve_linear':
+        return 'resolver o sistema linear com matriz de coeficientes e vetor de termos independentes'
+    if operation == 'matrix_properties':
+        return 'calcular propriedades da matriz fornecida'
+    if operation == 'advanced_math':
+        action = args.get('action', 'ação matemática')
+        return f"executar a ação matemática {action} com os parâmetros declarados"
+    details = ', '.join(f'{key.replace("_", " ")}: {_natural_value(value)}'
+                        for key, value in args.items())
+    return f"executar {operation.replace('_', ' ')}" + (f' ({details})' if details else '')
+
+
+_MUTATION_PROSE = {
+    'missing_chain_factor': 'omissão intencional do fator da regra da cadeia',
+    'sign_inversion': 'inversão intencional do sinal',
+    'matrix_order_swap': 'troca intencional da ordem dos fatores matriciais',
+    'domain_omission': 'omissão intencional de uma restrição de domínio',
+    'matrix_entry_perturbation': 'perturbação intencional de uma entrada da matriz',
+    'integer_off_by_one': 'alteração inteira de uma unidade',
+    'rational_numerator_perturbation': 'perturbação intencional do numerador racional',
+    'numeric_perturbation': 'perturbação numérica intencional',
+    'boolean_inversion': 'inversão intencional de um valor lógico',
+    'structural_corruption': 'corrupção estrutural intencional do resultado',
+}
+
+
+def _mutation_prose(kind):
+    return _MUTATION_PROSE.get(kind, 'alteração sintética rotulada ' + kind.replace('_', ' '))
+
+
 class ErrorInjectionEngine:
     """Explicit result corruption; conceptual mutations live in special recipes."""
     @staticmethod
@@ -182,6 +264,52 @@ class TextualReasoningFormatter:
         return (f"{'='*88}\nAMOSTRA {number:03d} | {record['family']} | {record['id']}\n"
                 f"Área: {record['area']} | partição por família: {record['split']}\n"
                 +cls.solution(record, include_errors=True)+'\n\n')
+
+    @staticmethod
+    def translated_solution(record):
+        """Translate records to readable Portuguese without claiming model CoT."""
+        lines = [record['prompt'], '', 'Método declarado: ' + record['method'],
+                 'Explicação procedural sintética; não representa pensamento interno de uma rede neural.']
+        for step in record['steps']:
+            request = step['receipt']['request']
+            result = _natural_value(step['receipt']['result'])
+            lines += ['', f"Etapa {step['index']} — {step['description']}",
+                      'Cálculo: ' + _natural_request(request) + '.',
+                      'Resultado calculado: ' + result + '.']
+            if step.get('error'):
+                error = step['error']
+                differences = _natural_value(error['detection']['differences'])
+                lines += [f"Falha sintética: {_mutation_prose(error['mutation']['kind'])}.",
+                          'Diagnóstico do verificador: a reexecução rejeitou o candidato; ' + differences + '.',
+                          'Correção: descartar o candidato rejeitado e conservar o resultado calculado acima.']
+            cert = step.get('certificate')
+            if cert:
+                if cert.get('kind') == 'deliberate_false_identity':
+                    mutation = _mutation_prose(cert.get('mutation', ''))
+                    lines.append('Checagem algébrica: foi testada a ' + mutation +
+                                 '; a identidade proposta foi rejeitada por comparação racional. '
+                                 'A derivada composta inclui o fator da função interna.')
+                elif cert.get('kind') == 'exact_residual':
+                    lines.append('Checagem de resíduo: substituição exata deu ' + _natural_value(cert.get('value')) + '.')
+                elif cert.get('kind') == 'counterexample':
+                    lines.append('Contraexemplo: a perturbação deixa resíduo ' + _natural_value(cert.get('residual')) + '.')
+                else:
+                    lines.append('Certificado adicional: ' + _natural_value(cert) + '.')
+            scope = step['receipt'].get('result', {}).get('scope', step['contract'])
+            if request['operation'] == 'rational_compare':
+                scope = 'comparação racional univariada conservadora no domínio declarado; não é prova formal'
+            lines.append('Alcance da checagem: ' + scope
+                         if isinstance(step['receipt'].get('result'), dict) and step['receipt']['result'].get('scope')
+                         else 'Alcance da checagem: ' + scope)
+            lines.append('Referência de auditoria: ' + step['receipt']['content_id'] + '.')
+        lines += ['', 'Resposta final: ' + _natural_value(record['answer']) + '.', 'Limites: ' + NOTICE]
+        return '\n'.join(lines)
+
+    @classmethod
+    def translated_sample(cls, record, number):
+        return (f"{'='*88}\nAMOSTRA {number:03d} | {record['family']} | {record['id']}\n"
+                f"Área: {record['area']} | partição por família: {record['split']}\n"
+                + cls.translated_solution(record) + '\n\n')
 
 
 class _Builder:
@@ -495,13 +623,16 @@ def export_dataset(destination, *, count=100, config=None, families=None, start_
         raise FileExistsError(destination)
     destination.parent.mkdir(parents=True,exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix='.nabla-trajectories-',dir=destination.parent))
-    names = ('dataset.jsonl','sft.jsonl','dpo.jsonl','amostras.txt','amostras.md','train.jsonl','validation.jsonl','test.jsonl')
+    names = ('dataset.jsonl','sft.jsonl','dpo.jsonl','amostras.txt','amostras.md','amostras_traduzidas.txt','train.jsonl','validation.jsonl','test.jsonl')
     streams = {}
     try:
         for name in names:
             streams[name] = (stage/name).open('w',encoding='utf-8',newline='\n')
         for name in ('amostras.txt','amostras.md'):
             streams[name].write('NABLA — SOLUÇÕES PROCEDURAIS E CORREÇÕES AUDITÁVEIS\n'+NOTICE+'\n\n')
+        streams['amostras_traduzidas.txt'].write(
+            'NABLA — EXPLICAÇÕES PROCEDURAIS EM LINGUAGEM NATURAL\n'
+            'Tradução determinística dos registros; não é cadeia de pensamento neural.\n\n')
         counts,areas,splits = Counter(),Counter(),Counter()
         seen,errors,total_steps = set(),0,0
         # SQLite keeps exact deduplication bounded in RAM for large exports.
@@ -529,6 +660,8 @@ def export_dataset(destination, *, count=100, config=None, families=None, start_
                     errors += 1;streams['dpo.jsonl'].write(canonical_json(pair)+'\n')
                 sample = TextualReasoningFormatter.sample(record,accepted)
                 streams['amostras.txt'].write(sample);streams['amostras.md'].write(sample)
+                streams['amostras_traduzidas.txt'].write(
+                    TextualReasoningFormatter.translated_sample(record,accepted))
         (stage/'.dedup.sqlite').unlink()
         for stream in streams.values():
             stream.close()
@@ -569,7 +702,7 @@ def verify_dataset(directory):
         if manifest_path.is_symlink() or manifest_path.stat().st_size > 1_000_000:
             return False
         manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-        expected_names = {'dataset.jsonl','sft.jsonl','dpo.jsonl','amostras.txt','amostras.md','train.jsonl','validation.jsonl','test.jsonl','coverage.json','card.json'}
+        expected_names = {'dataset.jsonl','sft.jsonl','dpo.jsonl','amostras.txt','amostras.md','amostras_traduzidas.txt','train.jsonl','validation.jsonl','test.jsonl','coverage.json','card.json'}
         if manifest['schema_version'] != 1 or set(manifest['files']) != expected_names or {p.name for p in root.iterdir()} != expected_names|{'manifest.json'}:
             return False
         for name,digest in manifest['files'].items():
