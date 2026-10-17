@@ -1,0 +1,10 @@
+{
+  "package": "three",
+  "version": "0.180.0",
+  "license": "MIT",
+  "bundler": "esbuild 0.25.11",
+  "entry": "export * from 'three'; export { OrbitControls } from 'three/addons/controls/OrbitControls.js';",
+  "sha256": "7f04e8e8019c73baf7e421842cc7d1e9da545bf831d4a04b364002058d044c59",
+  "source": "https://www.npmjs.com/package/three/v/0.180.0",
+  "scope": "Bundled renderer dependency; not counted as newly authored Python"
+}

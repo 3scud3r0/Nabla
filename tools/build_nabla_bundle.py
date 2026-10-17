@@ -29,7 +29,7 @@ SOURCE_SUFFIXES = frozenset({
     '.ipynb', '.toml', '.yaml', '.yml',
 })
 CONFIG_NAMES = frozenset({
-    'LICENSE', 'COPYING', 'NOTICE',
+    'LICENSE', 'COPYING', 'NOTICE', 'THREE-LICENSE.txt',
     '.gitignore', '.gitattributes', '.gitmodules', 'Makefile', 'Dockerfile',
     'lean-toolchain', 'Cargo.lock', 'package-lock.json', 'yarn.lock', 'uv.lock',
 })
@@ -57,7 +57,7 @@ def _selected(name):
     if path.suffix == '.json':
         return (name.startswith(('protocol/schema/', 'templates/', 'examples/', 'configs/'))
                 or name in {'website/package.json', 'src/nablamath/compatibility.json', 'src/nablamath/public_api.json', 'src/nablamath/msc_coverage.json', 'src/nablamath/mathematical_expansion.json',
-                            'lean/lake-manifest.json'}
+                            'src/nablamath/graphics/vendor/provenance.json', 'lean/lake-manifest.json'}
                 or name.endswith('/package.json'))
     return False
 

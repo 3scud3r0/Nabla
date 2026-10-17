@@ -24,3 +24,5 @@ Reprodução: [guia laboratorial](../docs/FRONTIER_LAB_SIMULATION.md) e
 [perfis científicos](../docs/PHASES_MATURITY_EXPANSION.md).
 Preparação e importação ficam em `scripts/`; empacotamento fica em `packaging/`.
 Os helpers de distribuição standalone estão em [singlefile/](singlefile/README.md).
+
+`build_v1_inventory.py` regenera o inventário das ações matemáticas a partir do registro fechado. A evidência de execução fica no relatório da versão 1.

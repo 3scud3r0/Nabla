@@ -128,6 +128,9 @@ def operation_properties(name, fields):
 
 
 def schema_for(operation):
+    from ..ops.v1_catalog import ENTRIES as V1_ENTRIES, schema as v1_schema
+    if operation["name"] in V1_ENTRIES:
+        return v1_schema(operation["name"])
     if operation['name']=='advanced_math':
         from ..ops.advanced_math import schema
         return schema()

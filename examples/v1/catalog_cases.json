@@ -1,0 +1,629 @@
+{
+  "manifold_christoffel": {
+    "coordinates": [
+      "x",
+      "y"
+    ],
+    "metric": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  "manifold_riemann": {
+    "coordinates": [
+      "x",
+      "y"
+    ],
+    "metric": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  "manifold_ricci": {
+    "coordinates": [
+      "x",
+      "y"
+    ],
+    "metric": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  "geodesic_solve": {
+    "coordinates": [
+      "x",
+      "y"
+    ],
+    "metric": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "position": [
+      0,
+      0
+    ],
+    "velocity": [
+      1,
+      2
+    ],
+    "samples": 3,
+    "duration": 0.1
+  },
+  "euler_lagrange_solve": {
+    "lagrangian": "(q_v*q_v-q*q)/2",
+    "fields": [
+      "q"
+    ],
+    "position": [
+      1
+    ],
+    "velocity": [
+      0
+    ],
+    "duration": 0.1,
+    "samples": 3
+  },
+  "galois_field_op": {
+    "p": 5,
+    "modulus": [
+      0,
+      1
+    ],
+    "left": 3,
+    "right": 4,
+    "field_operation": "multiply"
+  },
+  "elliptic_curve_pairing": {
+    "curve": "BN254"
+  },
+  "grobner_basis_solve": {
+    "generators": [
+      "x*x-1"
+    ],
+    "variables": [
+      "x"
+    ]
+  },
+  "lie_algebra_bch": {
+    "kind": "su2",
+    "left": [
+      1,
+      0,
+      0
+    ],
+    "right": [
+      0,
+      1,
+      0
+    ]
+  },
+  "sde_euler_maruyama": {
+    "variables": [
+      "x"
+    ],
+    "drift": [
+      "0"
+    ],
+    "diffusion": [
+      [
+        "1"
+      ]
+    ],
+    "initial": [
+      0
+    ],
+    "steps": 4,
+    "seed": 3
+  },
+  "sde_milstein": {
+    "variables": [
+      "x"
+    ],
+    "drift": [
+      "0"
+    ],
+    "diffusion": [
+      [
+        "1"
+      ]
+    ],
+    "initial": [
+      0
+    ],
+    "steps": 4,
+    "seed": 3
+  },
+  "fokker_planck_solve": {
+    "centers": [
+      -1,
+      0,
+      1
+    ],
+    "drift": [
+      0,
+      0,
+      0
+    ],
+    "diffusion": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "density": [
+      0,
+      1,
+      0
+    ],
+    "steps": 3
+  },
+  "information_divergence_kl": {
+    "probabilities": [
+      0.5,
+      0.5
+    ],
+    "reference": [
+      0.5,
+      0.5
+    ]
+  },
+  "graphics_export_gltf": {
+    "vertices": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ]
+    ],
+    "triangles": [
+      [
+        0,
+        1,
+        2
+      ]
+    ],
+    "audit_receipt": {
+      "content_id": "5afe3b9c97145ff6956115f8044ff89401229c2410dabdc960093dc6338374c8",
+      "formal_proof": false,
+      "limitations": "Dominio limitado declarado; evidencia computacional, sem prova formal ou validacao externa.",
+      "request": {
+        "arguments": {
+          "successes": 2,
+          "trials": 3
+        },
+        "bindings": {},
+        "operation": "beta_binomial",
+        "precision": 34
+      },
+      "result": {
+        "alpha": "3",
+        "arithmetic": "exact_rational",
+        "beta": "2",
+        "mean": "3/5",
+        "model": "iid_bernoulli_with_beta_prior",
+        "predictive_success": "3/5",
+        "variance": "1/25"
+      },
+      "schema_version": 1
+    }
+  },
+  "graphics_export_html3d": {
+    "vertices": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ]
+    ],
+    "triangles": [
+      [
+        0,
+        1,
+        2
+      ]
+    ],
+    "audit_receipt": {
+      "content_id": "5afe3b9c97145ff6956115f8044ff89401229c2410dabdc960093dc6338374c8",
+      "formal_proof": false,
+      "limitations": "Dominio limitado declarado; evidencia computacional, sem prova formal ou validacao externa.",
+      "request": {
+        "arguments": {
+          "successes": 2,
+          "trials": 3
+        },
+        "bindings": {},
+        "operation": "beta_binomial",
+        "precision": 34
+      },
+      "result": {
+        "alpha": "3",
+        "arithmetic": "exact_rational",
+        "beta": "2",
+        "mean": "3/5",
+        "model": "iid_bernoulli_with_beta_prior",
+        "predictive_success": "3/5",
+        "variance": "1/25"
+      },
+      "schema_version": 1
+    }
+  },
+  "graphics_compile_manim": {
+    "vertices": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ]
+    ],
+    "triangles": [
+      [
+        0,
+        1,
+        2
+      ]
+    ],
+    "audit_receipt": {
+      "content_id": "5afe3b9c97145ff6956115f8044ff89401229c2410dabdc960093dc6338374c8",
+      "formal_proof": false,
+      "limitations": "Dominio limitado declarado; evidencia computacional, sem prova formal ou validacao externa.",
+      "request": {
+        "arguments": {
+          "successes": 2,
+          "trials": 3
+        },
+        "bindings": {},
+        "operation": "beta_binomial",
+        "precision": 34
+      },
+      "result": {
+        "alpha": "3",
+        "arithmetic": "exact_rational",
+        "beta": "2",
+        "mean": "3/5",
+        "model": "iid_bernoulli_with_beta_prior",
+        "predictive_success": "3/5",
+        "variance": "1/25"
+      },
+      "schema_version": 1
+    }
+  },
+  "manifold_tensor": {
+    "coordinates": [
+      "x",
+      "y"
+    ],
+    "variance": [
+      1,
+      -1
+    ],
+    "components": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "slots": [
+      0,
+      1
+    ],
+    "kind": "contract"
+  },
+  "manifold_surface_fem": {
+    "vertices": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ]
+    ],
+    "triangles": [
+      [
+        0,
+        1,
+        2
+      ]
+    ],
+    "values": [
+      1,
+      1,
+      1
+    ],
+    "kind": "integral"
+  },
+  "manifold_stress_scalar": {
+    "coordinates": [
+      "t",
+      "x",
+      "y",
+      "z"
+    ],
+    "metric": [
+      [
+        -1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "field": "t"
+  },
+  "manifold_stress_maxwell": {
+    "coordinates": [
+      "t",
+      "x",
+      "y",
+      "z"
+    ],
+    "metric": [
+      [
+        -1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "potential": [
+      "0",
+      "-2*t",
+      "0",
+      "0"
+    ]
+  },
+  "manifold_adm": {
+    "coordinates": [
+      "t",
+      "x",
+      "y",
+      "z"
+    ],
+    "metric": [
+      [
+        -1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ]
+  },
+  "algebra_field_factorization": {
+    "p": 5,
+    "modulus": [
+      0,
+      1
+    ],
+    "coefficients": [
+      -1,
+      0,
+      1
+    ]
+  },
+  "algebra_reed_solomon": {
+    "p": 7,
+    "modulus": [
+      0,
+      1
+    ],
+    "nodes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "message_length": 3,
+    "values": [
+      1,
+      2,
+      3
+    ]
+  },
+  "algebra_ntt": {
+    "values": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "prime": 17
+  },
+  "information_channel_capacity": {
+    "noise_variances": [
+      1,
+      1
+    ],
+    "power": 2
+  },
+  "information_gaussian_process": {
+    "train_x": [
+      [
+        0
+      ]
+    ],
+    "train_y": [
+      2
+    ],
+    "query_x": [
+      [
+        0
+      ]
+    ],
+    "noise": 0.1
+  },
+  "information_mutual": {
+    "joint": [
+      [
+        0.5,
+        0
+      ],
+      [
+        0,
+        0.5
+      ]
+    ]
+  },
+  "stochastic_linear_transition": {
+    "drift_matrix": [
+      [
+        -1
+      ]
+    ],
+    "diffusion_matrix": [
+      [
+        2
+      ]
+    ],
+    "duration": 1
+  },
+  "graphics_surface_parametric": {
+    "components": [
+      "u",
+      "v",
+      "0"
+    ],
+    "parameters": [
+      "u",
+      "v"
+    ],
+    "bounds": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "shape": [
+      2,
+      2
+    ]
+  },
+  "publishing_badge_svg": {
+    "experiment_hash": "28982186b0821c7818a13c780d3c109eb48a2d8c489b184a7ad153a41d22c8d4",
+    "timestamp": "2026-10-17T00:00:00Z"
+  }
+}

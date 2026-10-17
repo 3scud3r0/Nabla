@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.0 — módulos científicos, editoriais e espaciais
+
+- 30 operações novas no catálogo (133 no total), schemas e replay por sessão.
+- Cinco módulos densos com mais de 10 mil linhas: cálculo em variedades,
+  álgebra/corpos finitos, estocástica/informação, artigos vivos e cenas 3D.
+- Typst com matemática nativa, MathML offline, dados PDF/XMP, revisão e replay.
+- Three.js/OrbitControls incorporados sob MIT, GLB animado e cenas Manim.
+- Testes independentes e integrações executadas; limites formais preservados
+  no relatório `docs/releases/V1_VALIDATION.md`.
+
+## Consolidação local 1.0 — 2026-10-17
+
+- Cinco interfaces para cálculo em variedades, álgebra finita, processos estocásticos/informação, publicações e cenas 3D.
+- 17 ações auditáveis adicionais (156 no total), PDF com dados anexados, QR e HTML offline.
+- Testes matemáticos, renderização real e correção da enumeração dos geradores do grupo fundamental.
+- Escopo e validação: [guia](docs/releases/V1.md), [relatório](docs/releases/V1_VALIDATION.md).
+
 ## 1.0.0 — 2026-10-16 — uso pessoal local CPU
 
 - Demonstração científica em código: 69 operações com referências independentes, campanha de 176 casos, oito famílias Forge, hipótese e controles negativos. Executada também contra o wheel instalado em venv isolada.

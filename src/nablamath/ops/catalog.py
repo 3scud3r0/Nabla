@@ -17,8 +17,13 @@ OPERATIONS = {
 from .area_catalog import OPERATIONS as AREA_OPERATIONS,execute as execute_area
 OPERATIONS.update(AREA_OPERATIONS)
 
+from .v1_catalog import OPERATIONS as V1_OPERATIONS, execute as execute_v1
+OPERATIONS.update(V1_OPERATIONS)
+
 
 def execute(operation, arguments):
+    if operation in V1_OPERATIONS:
+        return execute_v1(operation,arguments)
     if operation == 'advanced_math':
         from .advanced_math import advanced_math
         return advanced_math(**arguments)
