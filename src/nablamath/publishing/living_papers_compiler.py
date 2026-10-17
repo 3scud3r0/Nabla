@@ -795,8 +795,8 @@ class LivingPaperCompiler:
                         audit_digest=recorded.get('audit_sha256')
                         if (audit_digest is not None
                                 and recorded.get('experiment_hash')==old.experiment_hash
-                                and hashlib.sha256(_read(stable_audit)).hexdigest()==audit_digest
-                                and hashlib.sha256(_read(revision_audit)).hexdigest()==audit_digest
+                                and hashlib.sha256(_read(stable_audit,64*1024*1024)).hexdigest()==audit_digest
+                                and hashlib.sha256(_read(revision_audit,64*1024*1024)).hexdigest()==audit_digest
                                 and hashlib.sha256(_read(self.output,256*1024*1024)).hexdigest()==recorded['pdf_sha256']
                                 and VerifiablePDFWriter.inspect(self.output,trust=self.trust,
                                     require_signature=self.require_signature)['bundle']['content_id']==old.experiment_hash):
@@ -830,7 +830,7 @@ class LivingPaperCompiler:
                         or metadata.get('experiment_hash')!=bundle['content_id']):
                     raise ValueError('Existing publication revision identity was altered')
                 checks=(('paper.pdf','pdf_sha256',256*1024*1024),
-                        ('audit.html','audit_sha256',_MAX_BYTES),
+                        ('audit.html','audit_sha256',64*1024*1024),
                         ('artifact.json','artifact_sha256',_MAX_BYTES),
                         ('compiled.source','source_sha256',_MAX_BYTES))
                 for name,key,limit in checks:
@@ -879,7 +879,7 @@ class LivingPaperCompiler:
                     metadata={'schema':'nabla.reactive-paper.v1','input_id':identity,'revision':revision,
                               'experiment_hash':bundle['content_id'],'renderer':renderer,
                               'pdf_sha256':hashlib.sha256(_read(stage/'paper.pdf',256*1024*1024)).hexdigest(),
-                              'audit_sha256':hashlib.sha256(_read(stage/'audit.html')).hexdigest(),
+                              'audit_sha256':hashlib.sha256(_read(stage/'audit.html',64*1024*1024)).hexdigest(),
                               'artifact_sha256':hashlib.sha256(_read(stage/'artifact.json')).hexdigest(),
                               'source_sha256':hashlib.sha256(_read(stage/'compiled.source')).hexdigest(),
                               'scientific_claims_certified':False}
