@@ -46,7 +46,7 @@ def test_tampering_and_incomplete_campaign_are_rejected(tmp_path, monkeypatch):
     err.write_bytes(b'')
     report = {'schema': gate.SCHEMA, 'profile': 'ci', 'passed': True,
               'stable_release_accepted': False, 'checks': [{
-                  'name': 'pass', 'status': 'passed', 'exit_code': 0, 'timed_out': False,
+                  'name': 'pass', 'argv': ['python'], 'timeout_seconds': 5, 'status': 'passed', 'exit_code': 0, 'timed_out': False,
                   'evidence': {'stdout': {'file': out.name, 'sha256': gate.sha256(out), 'bytes': out.stat().st_size},
                                'stderr': {'file': err.name, 'sha256': gate.sha256(err), 'bytes': err.stat().st_size}}
               }]}
@@ -73,8 +73,27 @@ def test_rejects_symlinked_evidence(tmp_path, monkeypatch):
         return {'file': name, 'sha256': gate.sha256(path), 'bytes': path.stat().st_size}
     (tmp_path / 'report.json').write_text(json.dumps({
         'schema': gate.SCHEMA, 'profile': 'ci', 'passed': True,
-        'stable_release_accepted': False, 'checks': [{'name': 'one', 'status': 'passed',
+        'stable_release_accepted': False, 'checks': [{'name': 'one', 'argv': ['python'], 'timeout_seconds': 5, 'status': 'passed',
         'exit_code': 0, 'timed_out': False, 'evidence': {'stdout': evidence('one.stdout'),
                                                         'stderr': evidence('one.stderr')}}]}))
     with pytest.raises(ValueError, match='tampered'):
+        gate.verify(tmp_path)
+
+def test_missing_executable_fails_closed(tmp_path):
+    row = gate.run_step('missing', ['/absolutely/not-an-executable'], 5, False, tmp_path)
+    assert row['status'] == 'failed' and row['exit_code'] is None
+    assert b'could not start' in (tmp_path / 'missing.stderr').read_bytes()
+
+
+def test_changed_command_cannot_reuse_evidence(tmp_path, monkeypatch):
+    monkeypatch.setattr(gate, 'checks', lambda profile: [('command', ['expected'], 5, False)])
+    (tmp_path / 'command.stdout').write_bytes(b'ok')
+    (tmp_path / 'command.stderr').write_bytes(b'')
+    row = {'name':'command', 'argv':['forged'], 'timeout_seconds':5, 'status':'passed',
+           'exit_code':0, 'timed_out':False, 'evidence':{
+           k:{'file':f'command.{k}', 'bytes':(tmp_path / f'command.{k}').stat().st_size,
+              'sha256':gate.sha256(tmp_path / f'command.{k}')} for k in ('stdout', 'stderr')}}
+    (tmp_path / 'report.json').write_text(json.dumps({'schema':gate.SCHEMA,'profile':'ci',
+        'passed':True,'stable_release_accepted':False,'checks':[row]}))
+    with pytest.raises(ValueError, match='contract'):
         gate.verify(tmp_path)
