@@ -790,8 +790,14 @@ class LivingPaperCompiler:
                     final=old.manifest.parent
                     checked=(('paper.pdf','pdf_sha256',self.output,256*1024*1024),
                              ('audit.html','audit_sha256',stable_audit,16*1024*1024))
-                    if (metadata['input_id']==identity and metadata['revision']==old.revision
+                    pinned=(('artifact.json','artifact_sha256'),
+                            ('compiled.source','source_sha256'))
+                    if (not old.manifest.is_symlink()
+                            and metadata['input_id']==identity and metadata['revision']==old.revision
                             and metadata['experiment_hash']==old.experiment_hash
+                            and all(not (final/name).is_symlink()
+                                    and hashlib.sha256(_read(final/name,16*1024*1024)).hexdigest()==metadata[digest]
+                                    for name,digest in pinned)
                             and all(not (final/name).is_symlink()
                                     and hashlib.sha256(_read(final/name,limit)).hexdigest()==metadata[digest]
                                     and hashlib.sha256(_read(stable,limit)).hexdigest()==metadata[digest]
