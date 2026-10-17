@@ -10,7 +10,7 @@ import pytest
 
 from nablamath.superintelligence.synthetic_cot_unroller import (
     FAMILIES, GenerationConfig, SimulatedReasoningTrace, export_dataset,
-    verify_dataset, verify_record, coverage_report,
+    verify_dataset, verify_record, coverage_report, TextualReasoningFormatter,
 )
 from nablamath.superintelligence.synthetic_certificates import reference_certificate
 
@@ -74,7 +74,22 @@ def test_family_splits_do_not_leak_and_sft_omits_corrupt_candidates(tmp_path):
     sft=[json.loads(line) for line in (dest/'sft.jsonl').read_text().splitlines()]
     assert all('Candidato deliberadamente incorreto' not in r['messages'][1]['content'] for r in sft)
     assert (dest/'amostras.txt').read_text().count('AMOSTRA ')==4
+    translated=(dest/'amostras_traduzidas.txt').read_text()
+    assert translated.count('AMOSTRA ')==4
+    assert 'Requisição: {' not in translated and 'Resultado aceito: {' not in translated
+    assert 'Diagnóstico do verificador:' in translated and 'Correção:' in translated
     with pytest.raises(FileExistsError):export_dataset(dest,count=1)
+
+
+def test_translator_explains_chain_rule_mutation_without_raw_json():
+    record=SimulatedReasoningTrace(GenerationConfig(depth=3,error_rate=1)).generate('chain_rule')
+    translated=TextualReasoningFormatter.translated_solution(record)
+    assert 'derivar' in translated
+    assert 'omissão intencional do fator da regra da cadeia' in translated
+    assert 'Diagnóstico do verificador:' in translated and 'Correção:' in translated
+    assert 'esperado ' in translated and 'observado ' in translated
+    assert '"arguments"' not in translated and '"operation"' not in translated
+    assert 'não representa pensamento interno de uma rede neural' in translated
 
 
 def test_rehashed_corruption_is_rejected_by_regeneration(tmp_path):
