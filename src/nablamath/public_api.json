@@ -89,6 +89,17 @@
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
       },
       {
+        "name": "autograd",
+        "area": "tensor",
+        "required": [
+          "inputs",
+          "nodes",
+          "output"
+        ],
+        "optional": [],
+        "contract": "closed scalar DAG reverse-mode differentiation; no arbitrary source"
+      },
+      {
         "name": "bayes",
         "area": "probability",
         "required": [
@@ -97,6 +108,19 @@
         ],
         "optional": [],
         "contract": "exact finite Bayes; positive evidence"
+      },
+      {
+        "name": "beta_binomial",
+        "area": "probability",
+        "required": [
+          "successes",
+          "trials"
+        ],
+        "optional": [
+          "alpha",
+          "beta"
+        ],
+        "contract": "exact conjugate Beta-Binomial update"
       },
       {
         "name": "binomial",
@@ -216,6 +240,18 @@
         ],
         "optional": [],
         "contract": "Rabin irreducibility test for prime field polynomials"
+      },
+      {
+        "name": "geo_distance",
+        "area": "geospatial",
+        "required": [
+          "first",
+          "second"
+        ],
+        "optional": [
+          "radius"
+        ],
+        "contract": "spherical great-circle distance in meters; input longitude/latitude degrees"
       },
       {
         "name": "geometry",
@@ -428,6 +464,22 @@
         ],
         "optional": [],
         "contract": "exact rational capacity max flow"
+      },
+      {
+        "name": "mcmc_normal",
+        "area": "probability",
+        "required": [
+          "mean",
+          "standard_deviation"
+        ],
+        "optional": [
+          "burn_in",
+          "proposal_scale",
+          "samples",
+          "seed",
+          "thin"
+        ],
+        "contract": "seeded Metropolis normal sampling; convergence not established"
       },
       {
         "name": "nt_discrete_log",
@@ -657,6 +709,20 @@
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
       },
       {
+        "name": "quantum_circuit",
+        "area": "quantum",
+        "required": [
+          "gates",
+          "qubits"
+        ],
+        "optional": [
+          "density_matrix",
+          "seed",
+          "shots"
+        ],
+        "contract": "bounded ideal unitary state-vector simulation"
+      },
+      {
         "name": "rational_compare",
         "area": "algebra",
         "required": [
@@ -688,6 +754,20 @@
           "decision_limit"
         ],
         "contract": "bounded DPLL; assignment verification; unsat not a Lean theorem"
+      },
+      {
+        "name": "sequence_align",
+        "area": "bioinformatics",
+        "required": [
+          "first",
+          "second"
+        ],
+        "optional": [
+          "gap",
+          "match",
+          "mismatch"
+        ],
+        "contract": "global alignment with linear gaps; no biological interpretation"
       },
       {
         "name": "series",
@@ -748,6 +828,21 @@
           "window"
         ],
         "contract": "bounded legacy scientific operation; explicit receipt and domain checks"
+      },
+      {
+        "name": "tensor",
+        "area": "tensor",
+        "required": [
+          "kind",
+          "values"
+        ],
+        "optional": [
+          "axes",
+          "axis",
+          "other",
+          "shape"
+        ],
+        "contract": "bounded floating point N-D tensor operations"
       },
       {
         "name": "time_series",
