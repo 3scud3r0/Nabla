@@ -4,6 +4,7 @@ import importlib.util
 import json
 from pathlib import Path
 import sys
+import time
 
 import pytest
 
@@ -104,7 +105,25 @@ def test_subprocess_failure_is_retained_with_exact_log(tmp_path):
     assert step['log_sha256'] == r.digest(tmp_path/'negative.log')
 
 
-def test_timeout_is_distinct_from_failure_and_keeps_output(tmp_path):
+def test_timeout_is_distinct_from_failure_and_keeps_output(tmp_path, monkeypatch):
+    original_popen = r.subprocess.Popen
+
+    def start_after_output(*args, **kwargs):
+        # Synchronize interpreter startup before testing the actual wait timeout.
+        # A busy host may take longer than 200 ms to start Python itself.
+        process = original_popen(*args, **kwargs)
+        deadline = time.monotonic() + 5
+        while time.monotonic() < deadline:
+            if 'started' in (tmp_path/'timeout.log').read_text():
+                return process
+            if process.poll() is not None:
+                break
+            time.sleep(.005)
+        process.kill()
+        process.wait(timeout=5)
+        pytest.fail('Child did not reach the timeout-test readiness marker')
+
+    monkeypatch.setattr(r.subprocess, 'Popen', start_after_output)
     step = r.run_step('timeout', [sys.executable, '-c', 'import time;print("started",flush=True);time.sleep(20)'], tmp_path, timeout=.2)
     assert step['status'] == 'timeout' and step['exit_code'] is None
     assert 'started' in (tmp_path/'timeout.log').read_text()

@@ -29,6 +29,33 @@ from nablamath.store.backup import backup_database, restore_database
 # closed formulas, enumerating tiny finite sets, or the analytic decay solution.
 # They must never be regenerated from Nabla output.
 REFERENCES = {
+ 'order_theory': ('is_lattice', True),
+ 'universal_algebra': ('quotient_tables', [[[0]]]),
+ 'algebraic_geometry': ('tangent_dimension', 1),
+ 'lie_algebra': ('center_basis', [['1', '0'], ['0', '1']]),
+ 'k_theory': ('K0_torsion', [2]),
+ 'measure_theory': ('conditional_expectation', ['2', '2']),
+ 'lie_groups': ('rotation', [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]),
+ 'potential_theory': ('values', ['0', '1/2', '1']),
+ 'special_functions': ('value', 24.0),
+ 'difference_equations': ('value', '55'),
+ 'approximation_theory': ('values', ['2']),
+ 'integral_transforms': ('value', '1/4'),
+ 'integral_equations': ('coefficients', ['1', '3/4']),
+ 'several_complex_variables': ('values', [['0', '2']]),
+ 'abstract_harmonic_analysis': ('values', [[1.0, 0.0], [1.0, 0.0], [1.0, 0.0], [1.0, 0.0]]),
+ 'functional_analysis': ('projection', ['1', '0']),
+ 'operator_theory': ('orthogonal_projection', True),
+ 'variational_calculus': ('acceleration_denominator', '1'),
+ 'manifold_topology': ('euler_characteristic', 2),
+ 'global_analysis': ('harmonic_dimension', 1),
+ 'statistical_mechanics': ('probabilities', [0.5, 0.5]),
+ 'geophysics': ('two_way_times_seconds', [0.2, 0.4]),
+
+ 'spectral': ('values', [[1.,0.]]*4),
+ 'complex_analysis': ('value',[0.,0.]),
+ 'differential_geometry': ('scalar_curvature','0'),
+ 'abstract_algebra': ('classification','prime'),
  'tensor': ('values', [[4.],[10.]]),
  'autograd': ('gradient', {'x':6.}),
  'beta_binomial': ('mean','3/5'),
@@ -336,7 +363,7 @@ def run(destination, *, cases_path=None, formal_project=None):
     names={row['name'] for row in catalog()['operations']}
     require(set(cases)==names==set(REFERENCES)|SPECIAL,'Catalog/inputs/references coverage mismatch')
     root=Path(destination);root.mkdir(parents=True,exist_ok=False)
-    session=CalculationSession();notebook=Notebook('76 bounded operations with independent references')
+    session=CalculationSession();notebook=Notebook('102 bounded operations with independent references')
     rows=[]
     for name,arguments in cases.items():
         receipt=session.execute(name,**arguments);data=receipt.to_data()

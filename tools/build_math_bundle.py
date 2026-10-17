@@ -36,6 +36,7 @@ DIRECTORIES = (
     ROOT / "src/nablamath/verify",
     ROOT / "src/nablamath/formal",
     ROOT / "src/nablamath/graphics",
+    ROOT / "src/nablamath/publishing",
     ROOT / "src/nablamath/worlds",
     ROOT / "src/nablamath/falsifier",
     ROOT / "src/nablamath/evolution",

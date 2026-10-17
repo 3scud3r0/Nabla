@@ -8,3 +8,7 @@ from .scene_graph import GeometryScene,Point,Segment,Circle,Polyline,Arrow
 from .coordinate_system import CoordinateSystem
 from .geometry_constraints import GeometryConstraint
 __all__ += ['GeometryScene','Point','Segment','Circle','Polyline','Arrow','CoordinateSystem','GeometryConstraint']
+
+from .webgl_exporter import WebGLExporter
+from .manim_animator import ManimAnimator
+__all__ += ['WebGLExporter','ManimAnimator']

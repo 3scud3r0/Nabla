@@ -35,7 +35,9 @@ torch = ["torch>=2.4,<3"]
 jupyter = ["ipython>=8,<10"]
 mpi = ["mpi4py>=4,<5"]
 ai = ["jsonschema>=4,<5"]
-mcp = ["mcp>=1.9,<2", "jsonschema>=4,<5"]
+mcp = ["mcp>=1.12,<2", "jsonschema>=4,<5"]
+publishing = ["typst>=0.13,<0.15", "pypdf>=5,<7"]
+animation = ["manim>=0.19,<0.21"]
 
 [project.scripts]
 nabla = "nablamath.cli:main"
@@ -47,7 +49,8 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 "nablamath.desktop" = ["index.html"]
-"nablamath" = ["compatibility.json", "public_api.json"]
+"nablamath" = ["compatibility.json", "public_api.json", "msc_coverage.json"]
+"nablamath.publishing" = ["templates/*.typ"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
