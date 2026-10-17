@@ -1,0 +1,40 @@
+name: Regenerate canonical source bundles (assurance branch only)
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: assurance-source-archive-refresh
+  cancel-in-progress: true
+
+jobs:
+  synchronize:
+    if: github.repository == '3scud3r0/Nabla' && github.ref == 'refs/heads/fix/integrated-validation-assurance-20261017'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild both exact-byte deterministic source archives
+        run: |
+          python tools/build_math_bundle.py
+          python tools/build_nabla_bundle.py
+          python tools/build_math_bundle.py --check
+          python tools/build_nabla_bundle.py --check
+      - name: Push the generated archives on the isolated PR branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add math.txt NABLA.TXT
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(bundles): regenerate both exact-source archives"
+            git push origin HEAD:refs/heads/fix/integrated-validation-assurance-20261017
+          fi
