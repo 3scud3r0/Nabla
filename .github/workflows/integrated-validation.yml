@@ -1,0 +1,93 @@
+name: Integrated validation gates
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validation-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source-integrity:
+    name: Deterministic source integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify mathematical source archive
+        run: python tools/build_math_bundle.py --check
+      - name: Verify complete source archive
+        run: python tools/build_nabla_bundle.py --check
+      - name: Verify public contracts
+        run: python tools/check_public_contracts.py
+      - name: Verify roadmap invariants
+        run: python tools/check_roadmap.py
+
+  test-matrix:
+    name: Python ${{ matrix.python-version }} tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.12', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install core package and test runner
+        run: python -m pip install -e '.[test]'
+      - name: Compile Python sources
+        run: python -m compileall -q src tests tools
+      - name: Run core unit tests
+        run: python -m unittest discover -s tests -v
+
+  package-smoke:
+    name: Build and install distributable wheel
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build wheel and source distribution
+        run: |
+          python -m pip install build
+          python -m build
+      - name: Install wheel in isolated environment
+        run: |
+          python -m venv /tmp/nabla-wheel-check
+          /tmp/nabla-wheel-check/bin/python -m pip install dist/*.whl
+          /tmp/nabla-wheel-check/bin/python -c "import nablamath; print(nablamath.__file__)"
+      - name: Verify archive contents
+        run: |
+          python - <<'PY'
+          import pathlib
+          import tarfile
+          import zipfile
+          wheels = list(pathlib.Path('dist').glob('*.whl'))
+          sdists = list(pathlib.Path('dist').glob('*.tar.gz'))
+          assert len(wheels) == len(sdists) == 1, (wheels, sdists)
+          with zipfile.ZipFile(wheels[0]) as archive:
+              assert archive.testzip() is None
+              assert any(name.startswith('nablamath/') for name in archive.namelist())
+          with tarfile.open(sdists[0]) as archive:
+              assert archive.getmembers()
+          PY
