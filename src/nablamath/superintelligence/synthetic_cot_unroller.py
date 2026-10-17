@@ -26,8 +26,9 @@ from ..calc.session import CalculationSession, AREAS, EXTENDED_OPERATIONS
 from ..core.semantic_ir import canonical_json, fingerprint
 from .synthetic_recipes import RECIPES, NUMERICAL_FAMILIES
 from .synthetic_certificates import reference_certificate
+from .synthetic_challenges import CHALLENGES, ADVANCED_20
 
-VERSION = 'procedural-trajectories-v1'
+VERSION = 'procedural-trajectories-v2'
 NOTICE = ('Trajetórias sintéticas de soluções matemáticas, produzidas por regras. '
           'Não são pensamentos internos de redes neurais nem reproduções de o1/o3. '
           'Reexecução não é verificação independente; hashes não são provas. '
@@ -40,7 +41,7 @@ SPECIAL = {
     'matrix_noncommutativity': ('Produtos não comutativos e comutador', 'linear_algebra'),
     'rational_domain': ('Identidades racionais com domínio parcial', 'algebra'),
 }
-FAMILIES = tuple(SPECIAL) + tuple(RECIPES)
+FAMILIES = tuple(SPECIAL) + tuple(RECIPES) + tuple(CHALLENGES)
 MAX_DEPTH = 256
 
 
@@ -106,8 +107,10 @@ def _expression_source(node):
 def _natural_value(value):
     """Render closed result data as compact mathematical prose, never raw JSON."""
     if isinstance(value, dict):
+        if 'action' in value and 'result' in value:
+            return _natural_value(value['result'])
         if value.get('kind') in {'number', 'symbol', 'binary'}:
-            return _expression_source(value)
+            return _expression_source(value).replace('**', '^')
         if 'equal_on_common_domain' in value:
             status = 'são equivalentes' if value['equal_on_common_domain'] else 'não são equivalentes'
             return status + ' no domínio comum'
@@ -131,8 +134,9 @@ def _natural_value(value):
                          for key, child in visible)
     if isinstance(value, list):
         if value and all(isinstance(row, list) for row in value):
-            return '[' + '; '.join('[' + ', '.join(_natural_value(x) for x in row) + ']'
-                                   for row in value) + ']'
+            separator = '\n ' if len(value) > 3 else '; '
+            return '[' + separator.join('[' + ', '.join(_natural_value(x) for x in row) + ']'
+                                         for row in value) + ']'
         return '[' + ', '.join(_natural_value(x) for x in value) + ']'
     if isinstance(value, str):
         try:
@@ -231,8 +235,19 @@ class ContradictionDetector:
                     except (ValueError, ZeroDivisionError, KeyError):
                         pass
                     differences.append(row)
+        reference = {'status':'not_available'}
+        try:
+            certificate = reference_certificate(audit['request']['operation'],audit['request']['arguments'],candidate)
+            if certificate is not None:
+                reference = {'status':'holds_for_checked_claims', 'certificate':certificate,
+                             'scope':'As afirmações da referência não cobrem necessariamente o campo mutado.'}
+        except ArithmeticError as exc:
+            reference = {'status':'rejects_candidate', 'independent_of_producing_solver':True,
+                         'scope':'Rejeição apenas nas afirmações cobertas pelo verificador de referência.',
+                         'diagnostic':str(exc)}
         return {'accepted':candidate == actual['result'], 'method':'catalog_reexecution',
                 'independent':False,'differences':differences,
+                'reference_check':reference,
                 'scope':'Concordância com o cálculo reexecutado; não valida prosa nem prova verdade universal.'}
 
 
@@ -266,50 +281,15 @@ class TextualReasoningFormatter:
                 +cls.solution(record, include_errors=True)+'\n\n')
 
     @staticmethod
-    def translated_solution(record):
-        """Translate records to readable Portuguese without claiming model CoT."""
-        lines = [record['prompt'], '', 'Método declarado: ' + record['method'],
-                 'Explicação procedural sintética; não representa pensamento interno de uma rede neural.']
-        for step in record['steps']:
-            request = step['receipt']['request']
-            result = _natural_value(step['receipt']['result'])
-            lines += ['', f"Etapa {step['index']} — {step['description']}",
-                      'Cálculo: ' + _natural_request(request) + '.',
-                      'Resultado calculado: ' + result + '.']
-            if step.get('error'):
-                error = step['error']
-                differences = _natural_value(error['detection']['differences'])
-                lines += [f"Falha sintética: {_mutation_prose(error['mutation']['kind'])}.",
-                          'Diagnóstico do verificador: a reexecução rejeitou o candidato; ' + differences + '.',
-                          'Correção: descartar o candidato rejeitado e conservar o resultado calculado acima.']
-            cert = step.get('certificate')
-            if cert:
-                if cert.get('kind') == 'deliberate_false_identity':
-                    mutation = _mutation_prose(cert.get('mutation', ''))
-                    lines.append('Checagem algébrica: foi testada a ' + mutation +
-                                 '; a identidade proposta foi rejeitada por comparação racional. '
-                                 'A derivada composta inclui o fator da função interna.')
-                elif cert.get('kind') == 'exact_residual':
-                    lines.append('Checagem de resíduo: substituição exata deu ' + _natural_value(cert.get('value')) + '.')
-                elif cert.get('kind') == 'counterexample':
-                    lines.append('Contraexemplo: a perturbação deixa resíduo ' + _natural_value(cert.get('residual')) + '.')
-                else:
-                    lines.append('Certificado adicional: ' + _natural_value(cert) + '.')
-            scope = step['receipt'].get('result', {}).get('scope', step['contract'])
-            if request['operation'] == 'rational_compare':
-                scope = 'comparação racional univariada conservadora no domínio declarado; não é prova formal'
-            lines.append('Alcance da checagem: ' + scope
-                         if isinstance(step['receipt'].get('result'), dict) and step['receipt']['result'].get('scope')
-                         else 'Alcance da checagem: ' + scope)
-            lines.append('Referência de auditoria: ' + step['receipt']['content_id'] + '.')
-        lines += ['', 'Resposta final: ' + _natural_value(record['answer']) + '.', 'Limites: ' + NOTICE]
-        return '\n'.join(lines)
+    def translated_solution(record, *, wording_seed=0):
+        from .synthetic_nlg import ProceduralNarrator
+        return ProceduralNarrator(wording_seed).render(record)
 
     @classmethod
-    def translated_sample(cls, record, number):
-        return (f"{'='*88}\nAMOSTRA {number:03d} | {record['family']} | {record['id']}\n"
-                f"Área: {record['area']} | partição por família: {record['split']}\n"
-                + cls.translated_solution(record) + '\n\n')
+    def translated_sample(cls, record, number, *, wording_seed=0):
+        return (f"{'='*88}\nAMOSTRA {number:03d} | {record['title']}\n"
+                f"Área: {record['area']} | identificação: {record['id']}\n"
+                + cls.translated_solution(record, wording_seed=wording_seed) + '\n\n')
 
 
 class _Builder:
@@ -506,37 +486,46 @@ class SimulatedReasoningTrace:
             raise ValueError('Família desconhecida: '+str(family))
         _integer(index,0,100_000_000,'index')
         b = _Builder(self.config,family,index)
-        if family in BUILDERS:
-            prompt, answer, method = BUILDERS[family](b)
-            title,area = SPECIAL[family]
-        else:
-            recipe = RECIPES[family];title,area = recipe.title,recipe.area
-            tasks,answer,seen_requests = [],[],set()
-            for attempt in range(self.config.depth*20):
-                stage = len(tasks)
-                if stage == self.config.depth:
-                    break
-                parameter = b.rng.randint(2,40)+attempt
-                request = recipe.make(parameter,self.config.difficulty)
-                identifier = fingerprint(request)
-                if identifier in seen_requests:
-                    continue
-                seen_requests.add(identifier)
-                tasks.append(request)
-                answer.append(b.calc(request['operation'],f'Subproblema {stage+1}: {title}. '+recipe.method,**request['arguments']))
-            prompt = f'Resolva a suíte de {len(tasks)} subproblemas de {title}. As instâncias são exercícios distintos do mesmo construtor, não etapas de uma única prova. Requisições: '+canonical_json(tasks)
-            method = recipe.method
-        record = {'schema_version':1,'generator_version':VERSION,'synthetic':True,
-                  'private_model_reasoning':False,'formal_proof':False,'family':family,
-                  'title':title,'area':area,'config':self.config.data(),'index':index,
-                  'prompt':prompt,'method':method,'steps':b.steps,'answer':answer,
-                  'split':_split(family),'difficulty':'uncalibrated','notice':NOTICE,
-                  'arithmetic':'numerical_not_enclosed' if family in NUMERICAL_FAMILIES else 'exact_or_symbolic_bounded',
-                  'verification_independent':False}
-        record['task_id'] = fingerprint([family,prompt])
-        record['id'] = fingerprint(record)
-        b.session.close()
-        return record
+        try:
+            if family in BUILDERS:
+                prompt, answer, method = BUILDERS[family](b)
+                title,area = SPECIAL[family]
+            elif family in CHALLENGES:
+                challenge = CHALLENGES[family]
+                prompt,answer,method = challenge.build(b)
+                title,area = challenge.title,challenge.area
+            else:
+                recipe = RECIPES[family];title,area = recipe.title,recipe.area
+                tasks,answer,seen_requests = [],[],set()
+                for attempt in range(self.config.depth*20):
+                    stage = len(tasks)
+                    if stage == self.config.depth:
+                        break
+                    parameter = b.rng.randint(2,40)+attempt
+                    request = recipe.make(parameter,self.config.difficulty)
+                    identifier = fingerprint(request)
+                    if identifier in seen_requests:
+                        continue
+                    seen_requests.add(identifier)
+                    tasks.append(request)
+                    answer.append(b.calc(request['operation'],f'Subproblema {stage+1}: {title}. '+recipe.method,**request['arguments']))
+                prompt = f'Resolva a suíte de {len(tasks)} subproblemas de {title}. As instâncias são exercícios distintos do mesmo construtor, não etapas de uma única prova. Requisições: '+canonical_json(tasks)
+                method = recipe.method
+            record = {'schema_version':1,'generator_version':VERSION,'synthetic':True,
+                      'private_model_reasoning':False,'formal_proof':False,'family':family,
+                      'title':title,'area':area,'config':self.config.data(),'index':index,
+                      'prompt':prompt,'method':method,'steps':b.steps,'answer':answer,
+                      'split':_split(family),'difficulty':'uncalibrated','notice':NOTICE,
+                      'arithmetic':'numerical_not_enclosed' if family in NUMERICAL_FAMILIES else 'exact_or_symbolic_bounded',
+                      'verification_independent':False}
+            if family in CHALLENGES:
+                record['challenge_profile'] = {'level':'expert_authored_not_calibrated',
+                                               'burden':CHALLENGES[family].burden}
+            record['task_id'] = fingerprint([family,prompt])
+            record['id'] = fingerprint(record)
+            return record
+        finally:
+            b.session.close()
 
     def stream(self, count=100, families=None, start_index=0):
         _integer(count,1,100_000_000,'count')
@@ -566,6 +555,8 @@ def coverage_report(families):
                                'sampled':operation in selected}
     actions = {name:{'status':'recipe_available' if name in RECIPES else 'no_recipe','sampled':name in selected} for name in sorted(ACTIONS)}
     return {'catalog_operations':coverage,'advanced_actions':actions,'special_families':list(SPECIAL),
+            'challenge_profiles':{name:{'title':c.title,'area':c.area,'burden':c.burden,'sampled':name in selected}
+                                  for name,c in CHALLENGES.items()},
             'available_families':list(FAMILIES),'sampled_families':sorted(selected),
             'scope':'Inventário das operações registradas, não de todas as funções Python. no_recipe não significa indisponibilidade matemática.'}
 
@@ -574,6 +565,15 @@ def _sft(record):
     return {'id':record['id'],'task_id':record['task_id'],'family':record['family'],'split':record['split'],
             'messages':[{'role':'user','content':record['prompt']},
                         {'role':'assistant','content':TextualReasoningFormatter.solution(record)}]}
+
+
+def _natural_prompt(record):
+    prompt,separator,_ = record['prompt'].partition(' Requisições:')
+    if not separator:
+        return prompt
+    return prompt + '\nDados dos subproblemas:\n' + '\n'.join(
+        step['description']+' Dados: '+_natural_value(step['receipt']['request']['arguments'])
+        for step in record['steps'])
 
 
 def _preferences(record):
@@ -586,6 +586,37 @@ def _preferences(record):
                'rejected':canonical_json(step['error']['candidate']),
                'verification':step['error']['detection'],
                'scope':'Preferência computacional sintética local; não preferência humana nem prova independente.'}
+
+
+def _natural_preferences(record):
+    """Local natural-language pairs; expose changed fields instead of API JSON.
+
+    A full-result summary can hide a changed coefficient. Each side therefore
+    renders precisely the witnessed differing fields, including field absence.
+    """
+    from .synthetic_nlg_semantics import describe_path
+    for step in record['steps']:
+        if not step.get('error'):
+            continue
+        error = step['error']
+        expected_paths = dict(_leaves(step['receipt']['result']))
+        observed_paths = dict(_leaves(error['candidate']))
+        chosen,rejected = [],[]
+        for difference in error['detection']['differences']:
+            path = tuple(difference['path'])
+            where = describe_path(path)
+            good = _natural_value(expected_paths[path]) if path in expected_paths else 'campo ausente'
+            bad = _natural_value(observed_paths[path]) if path in observed_paths else 'campo ausente'
+            chosen.append(where + ': ' + good)
+            rejected.append(where + ': ' + bad)
+        chosen = 'Proposta de resultado: ' + '; '.join(chosen)
+        rejected = 'Proposta de resultado: ' + '; '.join(rejected)
+        if chosen == rejected:
+            continue  # Never publish a preference that loses its distinction in rendering.
+        yield {'record_id':record['id'],'step':step['index'],'family':record['family'],'split':record['split'],
+               'prompt':step['description']+'\nDados: '+_natural_value(step['receipt']['request']['arguments']),
+               'chosen':chosen,'rejected':rejected,'receipt_id':step['receipt']['content_id'],
+               'scope':'Preferência local entre campos divergentes; não ranking de soluções completas nem preferência humana.'}
 
 
 def _digest(path):
@@ -604,12 +635,15 @@ def _runtime():
         except PackageNotFoundError:
             dependencies[package] = None
     sources = {name:_digest(Path(__file__).with_name(name)) for name in
-               ('synthetic_cot_unroller.py','synthetic_recipes.py','synthetic_certificates.py')}
+               ('synthetic_cot_unroller.py','synthetic_recipes.py','synthetic_certificates.py',
+                'synthetic_nlg.py','synthetic_nlg_semantics.py','synthetic_challenges.py')}
     return {'python':platform.python_version(),'dependencies':dependencies,'generator_sources_sha256':sources}
 
 
-def export_dataset(destination, *, count=100, config=None, families=None, start_index=0):
+def export_dataset(destination, *, count=100, config=None, families=None, start_index=0, wording_seed=0):
     """Streaming, deduplicated, atomic export into a new directory; no overwrite."""
+    from .synthetic_nlg import ProceduralNarrator, GRAMMAR_VERSION
+    narrator = ProceduralNarrator(wording_seed)
     config = config or GenerationConfig()
     generator = SimulatedReasoningTrace(config)
     families = tuple(families or FAMILIES)
@@ -623,7 +657,7 @@ def export_dataset(destination, *, count=100, config=None, families=None, start_
         raise FileExistsError(destination)
     destination.parent.mkdir(parents=True,exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix='.nabla-trajectories-',dir=destination.parent))
-    names = ('dataset.jsonl','sft.jsonl','dpo.jsonl','amostras.txt','amostras.md','amostras_traduzidas.txt','train.jsonl','validation.jsonl','test.jsonl')
+    names = ('dataset.jsonl','sft.jsonl','dpo.jsonl','sft_natural.jsonl','dpo_natural.jsonl','amostras.txt','amostras.md','amostras_traduzidas.txt','narration.jsonl','train.jsonl','validation.jsonl','test.jsonl')
     streams = {}
     try:
         for name in names:
@@ -634,7 +668,7 @@ def export_dataset(destination, *, count=100, config=None, families=None, start_
             'NABLA — EXPLICAÇÕES PROCEDURAIS EM LINGUAGEM NATURAL\n'
             'Tradução determinística dos registros; não é cadeia de pensamento neural.\n\n')
         counts,areas,splits = Counter(),Counter(),Counter()
-        seen,errors,total_steps = set(),0,0
+        seen,errors,total_steps,natural_pairs = set(),0,0,0
         # SQLite keeps exact deduplication bounded in RAM for large exports.
         import sqlite3
         from contextlib import closing
@@ -658,17 +692,29 @@ def export_dataset(destination, *, count=100, config=None, families=None, start_
                 streams['sft.jsonl'].write(canonical_json(_sft(record))+'\n')
                 for pair in _preferences(record):
                     errors += 1;streams['dpo.jsonl'].write(canonical_json(pair)+'\n')
+                for pair in _natural_preferences(record):
+                    natural_pairs += 1;streams['dpo_natural.jsonl'].write(canonical_json(pair)+'\n')
+                streams['sft_natural.jsonl'].write(canonical_json({
+                    'id':record['id'],'family':record['family'],'split':record['split'],
+                    'trajectory_kind':'synthetic_explicitly_labeled_corrections',
+                    'messages':[{'role':'user','content':_natural_prompt(record)},
+                                {'role':'assistant','content':narrator.render(record)}]})+'\n')
                 sample = TextualReasoningFormatter.sample(record,accepted)
                 streams['amostras.txt'].write(sample);streams['amostras.md'].write(sample)
                 streams['amostras_traduzidas.txt'].write(
-                    TextualReasoningFormatter.translated_sample(record,accepted))
+                    TextualReasoningFormatter.translated_sample(record,accepted,wording_seed=wording_seed))
+                streams['narration.jsonl'].write(canonical_json({
+                    'record_id':record['id'],'grammar_version':GRAMMAR_VERSION,
+                    'wording_seed':wording_seed,'events':narrator.events(record)})+'\n')
         (stage/'.dedup.sqlite').unlink()
         for stream in streams.values():
             stream.close()
         coverage = coverage_report(seen)
         (stage/'coverage.json').write_text(canonical_json(coverage)+'\n',encoding='utf-8')
-        card = {'schema_version':1,'generator_version':VERSION,'config':config.data(),'count':count,
+        card = {'schema_version':2,'generator_version':VERSION,'config':config.data(),'count':count,
                 'families_requested':list(families),'start_index':start_index,'next_index':attempt,
+                'wording_seed':wording_seed,'narrative_grammar':GRAMMAR_VERSION,
+                'natural_preference_pairs':natural_pairs,
                 'families':dict(counts),'areas':dict(areas),'splits':dict(splits),
                 'steps':total_steps,'rejected_candidates':errors,'neural_inference':False,
                 'verification':'Replayable catalog calculations; explicit certificates where available; no independent oracle for generic recipes.',
@@ -678,7 +724,7 @@ def export_dataset(destination, *, count=100, config=None, families=None, start_
                 'training_utility_evaluated':False,'full_mathematical_coverage':False,
                 'runtime':_runtime()}
         (stage/'card.json').write_text(canonical_json(card)+'\n',encoding='utf-8')
-        manifest = {'schema_version':1,'files':{p.name:_digest(p) for p in sorted(stage.iterdir()) if p.is_file()}}
+        manifest = {'schema_version':2,'files':{p.name:_digest(p) for p in sorted(stage.iterdir()) if p.is_file()}}
         (stage/'manifest.json').write_text(canonical_json(manifest)+'\n',encoding='utf-8')
         if destination.exists():
             raise FileExistsError(destination)
@@ -702,8 +748,8 @@ def verify_dataset(directory):
         if manifest_path.is_symlink() or manifest_path.stat().st_size > 1_000_000:
             return False
         manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-        expected_names = {'dataset.jsonl','sft.jsonl','dpo.jsonl','amostras.txt','amostras.md','amostras_traduzidas.txt','train.jsonl','validation.jsonl','test.jsonl','coverage.json','card.json'}
-        if manifest['schema_version'] != 1 or set(manifest['files']) != expected_names or {p.name for p in root.iterdir()} != expected_names|{'manifest.json'}:
+        expected_names = {'dataset.jsonl','sft.jsonl','dpo.jsonl','sft_natural.jsonl','dpo_natural.jsonl','amostras.txt','amostras.md','amostras_traduzidas.txt','narration.jsonl','train.jsonl','validation.jsonl','test.jsonl','coverage.json','card.json'}
+        if manifest['schema_version'] != 2 or set(manifest['files']) != expected_names or {p.name for p in root.iterdir()} != expected_names|{'manifest.json'}:
             return False
         for name,digest in manifest['files'].items():
             path = root/name
@@ -714,7 +760,8 @@ def verify_dataset(directory):
         with tempfile.TemporaryDirectory(prefix='nabla-verify-') as temporary:
             target = Path(temporary)/'regenerated'
             export_dataset(target,count=card['count'],config=GenerationConfig(**card['config']),
-                           families=card['families_requested'],start_index=card['start_index'])
+                           families=card['families_requested'],start_index=card['start_index'],
+                           wording_seed=card['wording_seed'])
             return (target/'manifest.json').read_bytes() == manifest_path.read_bytes()
     except (OSError,ValueError,KeyError,TypeError,ArithmeticError,RuntimeError,ImportError,RecursionError):
         return False
@@ -722,7 +769,9 @@ def verify_dataset(directory):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--count',type=int,default=100)
+    parser.add_argument('--count',type=int,default=None)
+    parser.add_argument('--suite',choices=['catalog','advanced20'],default='catalog')
+    parser.add_argument('--wording-seed',type=int,default=0,help='Varia apenas a redação, sem alterar a matemática')
     parser.add_argument('--seed',type=int,default=20261017)
     parser.add_argument('--difficulty',type=int,default=4)
     parser.add_argument('--depth',type=int,default=8,help='Derivadas sucessivas ou tamanho da suíte de subproblemas, 1..256')
@@ -741,7 +790,12 @@ def main(argv=None):
             print('Verificação: '+('APROVADA (escopo computacional)' if valid else 'REPROVADA'))
             return 0 if valid else 1
         config = GenerationConfig(args.seed,args.difficulty,args.depth,args.error_rate)
-        card = export_dataset(args.output,count=args.count,config=config,families=args.families,start_index=args.start_index)
+        if args.suite == 'advanced20' and args.families:
+            raise ValueError('--suite advanced20 não combina com --families')
+        families = ADVANCED_20 if args.suite == 'advanced20' else args.families
+        count = args.count if args.count is not None else (20 if args.suite == 'advanced20' else 100)
+        card = export_dataset(args.output,count=count,config=config,families=families,
+                              start_index=args.start_index,wording_seed=args.wording_seed)
         print(canonical_json({'output':str(args.output),'count':card['count'],'families':len(card['families']),'steps':card['steps'],'rejected_candidates':card['rejected_candidates']}))
         return 0
     except (ValueError,ArithmeticError,FileExistsError,ImportError,RuntimeError) as exc:
