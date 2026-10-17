@@ -793,10 +793,25 @@ class LivingPaperCompiler:
                     try:
                         recorded=json.loads(_read(old.manifest))
                         audit_digest=recorded.get('audit_sha256')
-                        if (audit_digest is not None
+                        immutable_files=(
+                            ('paper.pdf','pdf_sha256',256*1024*1024),
+                            ('audit.html','audit_sha256',64*1024*1024),
+                            ('artifact.json','artifact_sha256',_MAX_BYTES),
+                            ('compiled.source','source_sha256',_MAX_BYTES),
+                            ('template.source','template_sha256',_MAX_BYTES),
+                            ('provenance-badge.svg','badge_sha256',_MAX_BYTES),
+                        )
+                        revision_intact=all(
+                            recorded.get(key) is not None
+                            and (old.manifest.parent/name).is_file()
+                            and not (old.manifest.parent/name).is_symlink()
+                            and hashlib.sha256(_read(old.manifest.parent/name,limit)).hexdigest()==recorded[key]
+                            for name,key,limit in immutable_files
+                        )
+                        if (audit_digest is not None and revision_intact
                                 and recorded.get('experiment_hash')==old.experiment_hash
+                                and recorded.get('revision')==old.revision
                                 and hashlib.sha256(_read(stable_audit,64*1024*1024)).hexdigest()==audit_digest
-                                and hashlib.sha256(_read(revision_audit,64*1024*1024)).hexdigest()==audit_digest
                                 and hashlib.sha256(_read(self.output,256*1024*1024)).hexdigest()==recorded['pdf_sha256']
                                 and VerifiablePDFWriter.inspect(self.output,trust=self.trust,
                                     require_signature=self.require_signature)['bundle']['content_id']==old.experiment_hash):
@@ -822,7 +837,8 @@ class LivingPaperCompiler:
             if final.exists() or final.is_symlink():
                 if final.is_symlink() or not final.is_dir():
                     raise ValueError('Existing publication revision is not a safe directory')
-                required=('manifest.json','paper.pdf','audit.html','artifact.json','compiled.source','template.source')
+                required=('manifest.json','paper.pdf','audit.html','artifact.json','compiled.source',
+                          'template.source','provenance-badge.svg')
                 if any((final/name).is_symlink() or not (final/name).is_file() for name in required):
                     raise ValueError('Existing incomplete publication revision')
                 metadata=json.loads(_read(final/'manifest.json'))
@@ -832,7 +848,9 @@ class LivingPaperCompiler:
                 checks=(('paper.pdf','pdf_sha256',256*1024*1024),
                         ('audit.html','audit_sha256',64*1024*1024),
                         ('artifact.json','artifact_sha256',_MAX_BYTES),
-                        ('compiled.source','source_sha256',_MAX_BYTES))
+                        ('compiled.source','source_sha256',_MAX_BYTES),
+                        ('template.source','template_sha256',_MAX_BYTES),
+                        ('provenance-badge.svg','badge_sha256',_MAX_BYTES))
                 for name,key,limit in checks:
                     if key in metadata and metadata[key]!=hashlib.sha256(_read(final/name,limit)).hexdigest():
                         raise ValueError('Existing publication revision was altered: '+name)
@@ -882,6 +900,8 @@ class LivingPaperCompiler:
                               'audit_sha256':hashlib.sha256(_read(stage/'audit.html',64*1024*1024)).hexdigest(),
                               'artifact_sha256':hashlib.sha256(_read(stage/'artifact.json')).hexdigest(),
                               'source_sha256':hashlib.sha256(_read(stage/'compiled.source')).hexdigest(),
+                              'template_sha256':hashlib.sha256(_read(stage/'template.source')).hexdigest(),
+                              'badge_sha256':hashlib.sha256(_read(stage/'provenance-badge.svg')).hexdigest(),
                               'scientific_claims_certified':False}
                     (stage/'manifest.json').write_text(canonical_json(metadata),encoding='utf-8')
                     stage.rename(final)
