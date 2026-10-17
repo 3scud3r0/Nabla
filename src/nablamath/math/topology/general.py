@@ -25,3 +25,15 @@ class FiniteTopology:
 
 
 __all__ = ["FiniteTopology"]
+
+
+def polynomial_continuity(source,lower,upper,variable='x'):
+    from .._structured import expression,sympy
+    from ...ops._area_utils import scalar
+    sp=sympy();f,(x,)=expression(source,[variable],functions=False);sp.Poly(f,x,domain=sp.QQ)
+    a,b=(sp.Rational(str(scalar(v))) for v in (lower,upper))
+    if a>=b:raise ValueError('Nonempty compact interval required')
+    derivative=sp.diff(f,x);squared=derivative**2;maximum=sp.calculus.util.maximum(squared,x,sp.Interval(a,b))
+    if maximum.is_nonnegative is not True:raise ValueError('Could not certify derivative maximum')
+    return {'continuous':True,'uniformly_continuous':True,'lipschitz_constant':str(sp.sqrt(maximum)),
+            'domain':[str(a),str(b)],'reason':'Polynomial on a compact interval; mean value theorem and exact derivative supremum.'}

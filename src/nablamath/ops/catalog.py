@@ -1,5 +1,6 @@
 """Additive catalog entries for the scientific ecosystem adapters."""
 OPERATIONS = {
+    'advanced_math': ('mathematics', {'action','parameters'}, set(), 'allowlisted advanced algebra, geometry, analysis, logic and numerical profiles; closed per-action schemas, explicit domains and no universal proof claim'),
     'spectral': ('spectral', {'kind','values'}, {'other','levels','sample_rate','cutoff','window_size','hop'}, 'O(n log n) numerical FFT/Bluestein, Haar, convolution and sampled signal processing'),
     'complex_analysis': ('complex_analysis', {'kind'}, {'source','contour','points','coefficients','tolerance','max_evaluations','closed'}, 'adaptive contour quadrature or conformal Mobius map; numerical estimates, not certified holomorphy'),
     'differential_geometry': ('geometry', {'metric'}, {'coordinates','point','first','second'}, 'exact metric two-jets or optional symbolic local Levi-Civita curvature; coordinate domain required'),
@@ -18,6 +19,9 @@ OPERATIONS.update(AREA_OPERATIONS)
 
 
 def execute(operation, arguments):
+    if operation == 'advanced_math':
+        from .advanced_math import advanced_math
+        return advanced_math(**arguments)
     if operation in AREA_OPERATIONS:
         return execute_area(operation,arguments)
     if operation in {'spectral','complex_analysis','differential_geometry','abstract_algebra'}:

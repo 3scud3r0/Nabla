@@ -60,3 +60,27 @@ def several_complex_variables(sources, variables, point):
 
 
 def calculate(**arguments):return _calculate('several_complex_variables',**arguments)
+
+
+def holomorphic_jet(sources,variables,point,order=2):
+    from itertools import product
+    from ..math._structured import expression,sympy
+    sp=sympy()
+    if type(order) is not int or not 0<=order<=6 or not 1<=len(variables)<=4 or len(point)!=len(variables) or not 1<=len(sources)<=4:raise ValueError('Holomorphic jet budget exceeded')
+    values=[expression(v,variables)[0] for v in sources];symbols=tuple(map(sp.Symbol,variables))
+    coordinates=[]
+    for raw in point:
+        if isinstance(raw,list) and len(raw)==2:coordinates.append(sp.Rational(str(raw[0]))+sp.I*sp.Rational(str(raw[1])))
+        else:coordinates.append(sp.Rational(str(raw)))
+    subs=dict(zip(symbols,coordinates));result=[]
+    for value in values:
+        derivatives={}
+        for powers in product(range(order+1),repeat=len(variables)):
+            if sum(powers)>order:continue
+            derivative=value
+            for s,n in zip(symbols,powers):derivative=sp.diff(derivative,s,n)
+            coefficient=sp.simplify(derivative.subs(subs)/sp.prod(sp.factorial(n) for n in powers))
+            if coefficient.has(sp.zoo,sp.oo,-sp.oo,sp.nan):raise ValueError('Point outside the declared analytic expression domain')
+            derivatives[','.join(map(str,powers))]=str(coefficient)
+        result.append(derivatives)
+    return {'taylor_coefficients':result,'order':order,'scope':'Local expression jets on principal branches, conditional on holomorphy near the supplied point; no convergence-radius certificate.'}

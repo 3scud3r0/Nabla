@@ -52,3 +52,45 @@ class NaturalTransformation:
 
 
 __all__ = ["Functor", "NaturalTransformation"]
+
+
+def compose_functors(left,right):
+    if right.target!=left.source:raise ValueError('Functor endpoints do not compose')
+    return Functor(right.source,left.target,{k:left.object_map[v] for k,v in right.object_map.items()},
+                   {k:left.morphism_map[v] for k,v in right.morphism_map.items()})
+
+
+def identity_functor(category):
+    return Functor(category,category,{o:o for o in category.objects},{a.name:a.name for a in category.morphisms})
+
+
+def adjunction(left,right,unit,counit):
+    if left.source!=right.target or left.target!=right.source:raise ValueError('Adjunction functors have incompatible endpoints')
+    eta=NaturalTransformation(identity_functor(left.source),compose_functors(right,left),unit)
+    epsilon=NaturalTransformation(compose_functors(left,right),identity_functor(left.target),counit)
+    for obj in left.source.objects:
+        image=left.object_map[obj]
+        if left.target.compose(counit[image],left.morphism_map[unit[obj]])!=left.target.identities[image]:raise ValueError('Left triangle identity fails')
+    for obj in right.source.objects:
+        image=right.object_map[obj]
+        if right.target.compose(right.morphism_map[counit[obj]],unit[image])!=right.target.identities[image]:raise ValueError('Right triangle identity fails')
+    def is_iso(category,name):
+        arrow=category.arrow(name)
+        return any(a.source==arrow.target and a.target==arrow.source and category.compose(a.name,name)==category.identities[arrow.source] and category.compose(name,a.name)==category.identities[arrow.target] for a in category.morphisms)
+    equivalence=all(is_iso(left.source,v) for v in unit.values()) and all(is_iso(left.target,v) for v in counit.values())
+    return {'adjunction':True,'equivalence':equivalence,'triangle_identities_verified':True}
+
+
+def finite_adjunction(source,target,left,right,unit,counit):
+    from .categories import Morphism
+    def category(raw):
+        if set(raw)!={'objects','morphisms','identities','composition'} or len(raw['objects'])>16 or len(raw['morphisms'])>64:raise ValueError('Bounded closed category data required')
+        composition={}
+        for entry in raw['composition']:
+            if set(entry)!={'after','before','result'} or (entry['after'],entry['before']) in composition:raise ValueError('Unique composition records required')
+            composition[entry['after'],entry['before']]=entry['result']
+        return FiniteCategory(tuple(raw['objects']),tuple(Morphism(**v) for v in raw['morphisms']),raw['identities'],composition)
+    a,b=category(source),category(target)
+    if set(left)!={'objects','morphisms'} or set(right)!={'objects','morphisms'}:raise ValueError('Explicit closed functor maps required')
+    f=Functor(a,b,left['objects'],left['morphisms']);g=Functor(b,a,right['objects'],right['morphisms'])
+    return adjunction(f,g,unit,counit)

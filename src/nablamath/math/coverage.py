@@ -18,4 +18,9 @@ def classification(code):
     raise KeyError('MSC major code is not in this inventory: '+code)
 
 
-__all__=['coverage','classification']
+def expansion():
+    """Return authored implementation inventory with explicit unexecuted status."""
+    return load_json(files('nablamath').joinpath('mathematical_expansion.json').read_text(encoding='utf-8'))
+
+
+__all__=['coverage','classification','expansion']

@@ -44,3 +44,14 @@ def ito_formula(function: Polynomial, drift: Polynomial,
 
 
 __all__ = ["ItoDifferential", "ito_formula"]
+
+
+def multivariate_ito(function,drift,diffusion,variables,time='t'):
+    from .._structured import expression,sympy,data
+    sp=sympy();n=len(variables)
+    if time in variables or not 1<=n<=8 or len(drift)!=n or len(diffusion)!=n or not diffusion or not 1<=len(diffusion[0])<=8 or any(len(row)!=len(diffusion[0]) for row in diffusion):raise ValueError('Invalid Ito system dimensions')
+    names=[time]+list(variables);f,symbols=expression(function,names);t=symbols[0];x=symbols[1:]
+    a=sp.Matrix([expression(v,names)[0] for v in drift]);b=sp.Matrix([[expression(v,names)[0] for v in row] for row in diffusion]);gradient=sp.Matrix([sp.diff(f,v) for v in x]);hessian=sp.hessian(f,x)
+    dt=sp.diff(f,t)+(gradient.T*a)[0]+sp.trace(b*b.T*hessian)/2;dw=gradient.T*b
+    return {'dt':str(sp.simplify(dt)),'dW':data(dw.applyfunc(sp.simplify)),
+            'hypotheses':'f is C^(1,2) on the trajectory domain; independent standard Brownian drivers and Ito convention.'}

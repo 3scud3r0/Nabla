@@ -30,3 +30,29 @@ def abstract_harmonic_analysis(group_orders, values, *, inverse=False):
 
 
 def calculate(**arguments):return _calculate('abstract_harmonic_analysis',**arguments)
+
+
+def group_fourier(table,values,representations):
+    import numpy as np
+    from ..math.algebra.representations import representation
+    if not 1<=len(table)<=64 or len(values)!=len(table) or not representations or len(representations)>64:raise ValueError('Finite Fourier dimensions invalid')
+    f=np.array([_complex(v) for v in values]);blocks=[];dimension_sum=0
+    for matrices in representations:
+        representation(table,matrices);rho=np.asarray(matrices,dtype=float)
+        if any(np.linalg.norm(a.T@a-np.eye(len(a)))>1e-9 for a in rho):raise ValueError('Supplied rational representations must be orthogonal')
+        block=sum((f[i]*rho[i].T for i in range(len(table))),np.zeros(rho[0].shape,dtype=complex))
+        blocks.append([[[float(v.real),float(v.imag)] for v in row] for row in block]);dimension_sum+=rho.shape[1]**2
+    return {'blocks':blocks,'sum_squared_dimensions':dimension_sum,
+            'scope':'Fourier coefficients for supplied unitary representations; completeness/irreducibility are not inferred from dimension counts.'}
+
+
+def group_convolution(table,left,right):
+    from ..math.algebra.groups import FiniteGroup
+    n=len(table)
+    if not 1<=n<=64 or len(left)!=n or len(right)!=n or any(not isinstance(row,list) or len(row)!=n or any(type(v) is not int or not 0<=v<n for v in row) for row in table):raise ValueError('Finite convolution dimensions invalid')
+    identity=next((e for e in range(n) if all(table[e][i]==i and table[i][e]==i for i in range(n))),None)
+    if identity is None:raise ValueError('Group identity missing')
+    group=FiniteGroup(tuple(range(n)),identity,{(i,j):table[i][j] for i in range(n) for j in range(n)})
+    a,b=[_complex(v) for v in left],[_complex(v) for v in right]
+    values=[sum(a[y]*b[table[group.inverse(y)][x]] for y in range(n)) for x in range(n)]
+    return [[v.real,v.imag] for v in values]

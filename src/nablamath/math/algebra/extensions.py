@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from fractions import Fraction
 from math import gcd
+from math import isqrt
 from typing import Iterable
 
 Coefficients = tuple[Fraction, ...]  # low degree first
@@ -82,6 +83,10 @@ def _integer_polynomial(values: Coefficients) -> tuple[int, ...]:
 
 def _has_rational_root(values: Coefficients) -> bool:
     integers = _integer_polynomial(values)
+    if max(abs(v) for v in integers)>100000:
+        from .._structured import sympy
+        sp=sympy();x=sp.Symbol('x')
+        return not sp.Poly(sum(int(v)*x**i for i,v in enumerate(integers)),x,domain=sp.QQ).is_irreducible
     constant, leading = integers[0], integers[-1]
     if constant == 0:
         return True
@@ -104,12 +109,22 @@ class AlgebraicField:
     def __post_init__(self) -> None:
         polynomial = _trim(self.minimal_polynomial)
         degree = len(polynomial) - 1
-        if degree not in (2, 3):
-            raise ValueError("Este backend certifica extensões apenas de grau 2 ou 3")
+        if not 2 <= degree <= 16:
+            raise ValueError("Extension degree must be between two and sixteen")
         if polynomial[-1] != 1:
             polynomial = tuple(value / polynomial[-1] for value in polynomial)
-        if _has_rational_root(polynomial):
-            raise ValueError("Polinômio não é irredutível sobre Q")
+        if any(max(v.numerator.bit_length(),v.denominator.bit_length())>4096 for v in polynomial):
+            raise ValueError('Algebraic coefficient input budget exceeded')
+        if degree == 2:
+            discriminant=polynomial[1]**2-4*polynomial[0]*polynomial[2]
+            reducible=(discriminant>=0 and isqrt(discriminant.numerator)**2==discriminant.numerator and isqrt(discriminant.denominator)**2==discriminant.denominator)
+        elif degree == 3:
+            reducible = _has_rational_root(polynomial)
+        else:
+            from .._structured import sympy
+            sp=sympy();x=sp.Symbol('x')
+            reducible = not sp.Poly(sum(sp.Rational(str(v))*x**i for i,v in enumerate(polynomial)),x,domain=sp.QQ).is_irreducible
+        if reducible:raise ValueError("Polinômio não é irredutível sobre Q")
         object.__setattr__(self, "minimal_polynomial", polynomial)
 
     @property
@@ -133,6 +148,8 @@ class AlgebraicNumber:
     def __post_init__(self) -> None:
         if len(self.coefficients) != self.field.degree:
             raise ValueError("Representante fora da dimensão da extensão")
+        if any(max(Fraction(v).numerator.bit_length(),Fraction(v).denominator.bit_length())>65536 for v in self.coefficients):
+            raise ValueError('Algebraic element arithmetic budget exceeded')
 
     def _coerce(self, other: AlgebraicNumber | Fraction | int) -> AlgebraicNumber:
         if isinstance(other, AlgebraicNumber):
@@ -171,8 +188,8 @@ class AlgebraicNumber:
         return self * self._coerce(other).inverse()
 
     def __pow__(self, exponent: int) -> AlgebraicNumber:
-        if type(exponent) is not int:
-            raise ValueError("Expoente deve ser inteiro")
+        if type(exponent) is not int or abs(exponent)>10000:
+            raise ValueError("Expoente deve ser inteiro entre -10000 e 10000")
         if exponent < 0:
             return self.inverse() ** -exponent
         result, factor = self.field.element((1,)), self
@@ -185,3 +202,40 @@ class AlgebraicNumber:
 
 
 __all__ = ["AlgebraicField", "AlgebraicNumber", "Coefficients"]
+
+
+def number_field(radicals,polynomial=None,variable='x'):
+    """Construct the primitive element of a supplied tower of algebraic generators."""
+    from .._structured import expression,sympy,data
+    sp=sympy()
+    if not isinstance(radicals,list) or not 1<=len(radicals)<=8:raise ValueError('Require 1–8 algebraic generators')
+    values=[]
+    for raw in radicals:
+        value,_=expression(raw,[variable])
+        if value.free_symbols or value.is_algebraic is not True:raise ValueError('Constant algebraic generators required')
+        values.append(value)
+    primitive=sp.polys.numberfields.to_number_field(values)
+    result={'primitive_element':str(primitive.as_expr()),'minimal_polynomial':str(primitive.minpoly.as_expr()),
+            'degree':primitive.minpoly.degree(),'generator_coordinates':[data(sp.polys.numberfields.to_number_field(v,primitive).coeffs()) for v in values]}
+    if result['degree']>64:raise ValueError('Primitive extension degree budget exceeded')
+    if polynomial is not None:
+        p,(x,)=expression(polynomial,[variable],functions=False)
+        coefficient,factors=sp.factor_list(p,x,extension=values)
+        result['factorization']={'coefficient':str(coefficient),'factors':[[str(f),m] for f,m in factors]}
+    return result
+
+
+def field_arithmetic(polynomial,left,*,right=None,operation='multiply',exponent=1):
+    from ...ops._area_utils import vector
+    field=AlgebraicField(tuple(vector(polynomial,maximum=17)));a=field.element(vector(left,maximum=64))
+    if operation=='inverse':value=a.inverse()
+    elif operation=='power':value=a**exponent
+    else:
+        if right is None:raise ValueError('Binary field operation requires right operand')
+        b=field.element(vector(right,maximum=64))
+        if operation=='add':value=a+b
+        elif operation=='subtract':value=a-b
+        elif operation=='multiply':value=a*b
+        elif operation=='divide':value=a/b
+        else:raise ValueError('Unknown field operation')
+    return {'coefficients':list(map(str,value.coefficients)),'degree':field.degree,'arithmetic':'exact_Q_extension'}

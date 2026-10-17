@@ -5,6 +5,49 @@ Nonlinear optimization returns local solver evidence, never a global certificate
 import math
 
 
+def conic_program(objective,*,inequalities=(),second_order=(),semidefinite=None,solver=None):
+    """Conic/SDP adapter with numerical primal/dual results, never exact proof."""
+    try:import cvxpy as cp
+    except ImportError as error:raise ImportError('Install nablamath[advanced] for conic optimization') from error
+    from ..math._structured import numeric_array
+    np,_=_modules();c=numeric_array(objective,ndim=1,maximum=256);x=cp.Variable(len(c));constraints=[]
+    for record in inequalities:
+        if set(record)!={'matrix','upper'}:raise ValueError('Closed linear inequality required')
+        a,b=numeric_array(record['matrix'],ndim=2,maximum=65536),numeric_array(record['upper'],ndim=1)
+        if a.shape!=(len(b),len(c)):raise ValueError('Linear constraint shape mismatch')
+        constraints.append(a@x<=b)
+    for record in second_order:
+        if set(record)!={'matrix','offset','linear','constant'}:raise ValueError('Closed SOC constraint required')
+        a,b,h=(numeric_array(record[k],ndim=n,maximum=65536) for k,n in (('matrix',2),('offset',1),('linear',1)))
+        if a.shape!=(len(b),len(c)) or len(h)!=len(c) or not np.isfinite(record['constant']):raise ValueError('SOC shape mismatch')
+        constraints.append(cp.norm(a@x+b,2)<=h@x+record['constant'])
+    if semidefinite is not None:
+        if len(semidefinite)!=len(c)+1:raise ValueError('SDP requires F0 and one coefficient matrix per variable')
+        fs=[numeric_array(v,ndim=2,maximum=4096) for v in semidefinite];n=fs[0].shape[0]
+        if any(f.shape!=(n,n) or not np.allclose(f,f.T) for f in fs):raise ValueError('Symmetric equal-shape SDP matrices required')
+        constraints.append(fs[0]+sum(x[i]*fs[i+1] for i in range(len(c))) >> 0)
+    allowed=set(cp.installed_solvers())&{'CLARABEL','SCS','CVXOPT'}
+    if solver is None:solver='CLARABEL' if 'CLARABEL' in allowed else 'SCS' if 'SCS' in allowed else None
+    if solver not in allowed:raise ValueError('Supported conic solver unavailable')
+    problem=cp.Problem(cp.Minimize(c@x),constraints);value=problem.solve(solver=solver)
+    point=None if x.value is None else np.asarray(x.value).tolist()
+    return {'status':problem.status,'point':point,'value':float(value) if value is not None and np.isfinite(value) else None,
+            'dual_values':[None if con.dual_value is None else np.asarray(con.dual_value).tolist() for con in constraints],
+            'max_constraint_violation':max((float(np.max(con.violation())) for con in constraints),default=0.) if point is not None else None,
+            'solver':solver,'formal_proof':False,'scope':'Numerical conic evidence; solver status is not an exact optimality certificate.'}
+
+
+def verify_linear_certificate(objective,matrix,lower,point,dual):
+    from ..math._structured import rational_matrix,sympy
+    sp=sympy();a=rational_matrix(matrix);c=rational_matrix([[v] for v in objective]);b=rational_matrix([[v] for v in lower]);x=rational_matrix([[v] for v in point]);y=rational_matrix([[v] for v in dual])
+    if a.shape!=(len(lower),len(objective)) or x.rows!=c.rows or y.rows!=b.rows:raise ValueError('Certificate dimensions differ')
+    primal=all(v>=0 for v in x) and all(v>=0 for v in a*x-b);dual_feasible=all(v>=0 for v in y) and all(v>=0 for v in c-a.T*y)
+    gap=(c.T*x-b.T*y)[0]
+    return {'primal_feasible':bool(primal),'dual_feasible':bool(dual_feasible),'duality_gap':str(gap),
+            'optimal':bool(primal and dual_feasible and gap==0),'arithmetic':'exact_rational',
+            'convention':'min c*x subject A*x>=lower and x>=0; dual max lower*y with A.T*y<=c,y>=0'}
+
+
 def _modules():
     try:
         import numpy as np

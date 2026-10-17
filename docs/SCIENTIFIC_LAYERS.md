@@ -4,7 +4,7 @@ Esta entrega implementa as duas especificações sobre recibos em background,
 PyTorch/CUDA, MCP/SMT, matemática adicional, GLTF/Manim e Typst. Os módulos do
 [ecossistema anterior](SCIENTIFIC_ECOSYSTEM.md), incluindo Pandas, XLA, MPI,
 Jupyter, VS Code e federação, continuam disponíveis. O catálogo compartilhado
-tem **102 operações**. Os novos nomes são `spectral`, `complex_analysis`,
+tem **103 operações**. Os novos nomes são `spectral`, `complex_analysis`,
 `differential_geometry` e `abstract_algebra`, cada um com suboperações explícitas.
 Os 22 perfis adicionais estão no [inventário MSC 2020](MSC2020_COVERAGE.md).
 
@@ -114,7 +114,7 @@ do catálogo. CUDA pode diferir da CPU em arredondamento e reprodutibilidade.
 ## Camada 2: MCP e juiz algorítmico
 
 ```bash
-nabla-mcp                 # 102 ferramentas do catálogo
+nabla-mcp                 # 103 ferramentas do catálogo
 nabla-mcp --verify-claims # Acrescenta verify_conjecture
 ```
 

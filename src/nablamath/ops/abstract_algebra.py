@@ -6,6 +6,29 @@ Pocklington certificates are checked independently by exact modular identities.
 """
 import hashlib
 import math
+
+
+def factor_integer(value,limit=100000):
+    from ..math._structured import sympy
+    sp=sympy();n=_integer(value,minimum=2)
+    if n.bit_length()>256 or type(limit) is not int or not 1<=limit<=1000000:raise ValueError('Factorization resource budget exceeded')
+    factors=sp.factorint(n,limit=limit);reconstructed=math.prod(int(p)**int(e) for p,e in factors.items())
+    return {'factors':[{'factor':str(p),'exponent':int(e),'primality':primality(int(p))} for p,e in sorted(factors.items())],
+            'product_verified':reconstructed==n,'scope':'Bounded factor search; unresolved cofactors retain their actual primality classification.'}
+
+
+def pocklington_certificate(n):
+    from ..math._structured import sympy
+    n=_integer(n,minimum=3)
+    if n>=2**64 or not miller_rabin(n):raise ValueError('Certificate constructor supports odd uint64 primes')
+    factors=sympy().factorint(n-1);rows=[]
+    for p,e in factors.items():
+        p=int(p);witness=next((a for a in range(2,min(n,10002)) if pow(a,n-1,n)==1 and math.gcd(pow(a,(n-1)//p,n)-1,n)==1),None)
+        if witness is None:raise ArithmeticError('Pocklington witness search budget exhausted')
+        rows.append({'prime':str(p),'exponent':int(e),'witness':str(witness)})
+    certificate={'n':str(n),'factors':rows}
+    if not verify_pocklington(certificate):raise ArithmeticError('Generated Pocklington certificate failed exact verification')
+    return certificate
 from ..math.number_theory.primality import miller_rabin
 from ..math.exact.finite_fields import FiniteField, ModPolynomial
 

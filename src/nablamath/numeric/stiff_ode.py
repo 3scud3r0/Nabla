@@ -9,6 +9,34 @@ from typing import Callable
 CONTRACT_VERSION = 1
 
 
+def solve_stiff_system(expressions,variables,initial,*,duration=1.,method='Radau',rtol=1e-8,atol=1e-10,steps=100,events=()):
+    """Adaptive vector BDF/Radau with generated Jacobian and event localization."""
+    import numpy as np
+    from scipy.integrate import solve_ivp
+    from scipy.sparse import csr_matrix
+    from ..math._structured import expression,sympy,numeric_array,names
+    sp=sympy();variables=names(variables,16)
+    if 't' in variables or len(expressions)!=len(variables) or len(initial)!=len(variables) or method not in {'Radau','BDF'} or type(steps) is not int or not 1<=steps<=10000 or not 0<duration<=100000 or not 0<atol<=rtol<1 or len(events)>16:raise ValueError('Invalid stiff-system contract')
+    symbols=(sp.Symbol('t'),)+tuple(map(sp.Symbol,variables));functions=[expression(v,['t']+list(variables))[0] for v in expressions]
+    jacobian=sp.Matrix(functions).jacobian(symbols[1:])
+    def sub(t,y):return dict(zip(symbols,[t]+list(y)))
+    def rhs(t,y):return np.array([float(f.subs(sub(t,y))) for f in functions])
+    def jac(t,y):return csr_matrix(np.array(jacobian.subs(sub(t,y)),dtype=float))
+    callbacks=[]
+    for record in events:
+        if set(record)-{'source','terminal','direction'} or 'source' not in record:raise ValueError('Closed event specification required')
+        value=expression(record['source'],['t']+list(variables))[0]
+        def event(t,y,value=value):return float(value.subs(sub(t,y)))
+        event.terminal=bool(record.get('terminal',False));event.direction=float(record.get('direction',0))
+        if event.direction not in (-1,0,1):raise ValueError('Event direction must be -1,0,1')
+        callbacks.append(event)
+    solution=solve_ivp(rhs,(0,duration),numeric_array(initial,ndim=1),method=method,jac=jac,t_eval=np.linspace(0,duration,steps+1),rtol=rtol,atol=atol,events=callbacks)
+    if not solution.success or not np.isfinite(solution.y).all():raise ArithmeticError('Stiff integration failed: '+solution.message)
+    return {'times':solution.t.tolist(),'values':solution.y.T.tolist(),'event_times':[v.tolist() for v in solution.t_events] if callbacks else [],
+            'evaluations':solution.nfev,'jacobian_evaluations':solution.njev,'method':method,
+            'scope':'Adaptive local-error-controlled floating point solution; event times are numerical roots, not certified bounds.'}
+
+
 @dataclass(frozen=True)
 class ImplicitSolution:
     times: tuple[float, ...]

@@ -45,3 +45,25 @@ def k_theory(adjacency):
 
 
 def calculate(**arguments):return _calculate('k_theory',**arguments)
+
+
+def k_groups(kind,parameter):
+    """Actual computable K profiles: fields and complex topological spheres."""
+    if kind=='finite_field':
+        from ..math.number_theory.primality import miller_rabin
+        if type(parameter) is not int or not 2<=parameter<2**32 or not miller_rabin(parameter):raise ValueError('Prime field cardinality required')
+        return {'K0_free_rank':1,'K1_cyclic_order':parameter-1,'scope':'K0 and K1 of the field F_p; K1 = F_p^*.'}
+    if kind=='complex_sphere':
+        if type(parameter) is not int or not 0<=parameter<=10000:raise ValueError('Sphere dimension budget exceeded')
+        return {'reduced_K0_rank':int(parameter%2==0),'reduced_K1_rank':int(parameter%2==1),
+                'K0_rank':2 if parameter%2==0 else 1,'K1_rank':int(parameter%2==1),
+                'scope':'Complex topological K-theory of S^n by Bott periodicity; not arbitrary spaces.'}
+    raise ValueError('Unsupported K-theory profile')
+
+
+def finite_field_higher_k(prime,degree):
+    from ..math.number_theory.primality import miller_rabin
+    if type(prime) is not int or not 2<=prime<2**32 or not miller_rabin(prime) or type(degree) is not int or not 0<=degree<=64:raise ValueError('Prime field and bounded nonnegative K degree required')
+    if degree==0:return {'free_rank':1,'cyclic_order':None}
+    return {'free_rank':0,'cyclic_order':1 if degree%2==0 else prime**((degree+1)//2)-1,
+            'scope':'Quillen K groups of a finite field; cyclic order one denotes the zero group.'}

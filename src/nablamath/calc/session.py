@@ -109,6 +109,10 @@ class PendingCalculation:
 
 
 class CalculationSession:
+    def mathematics(self,action,**parameters):
+        """Run a named advanced profile through the same immutable audit path."""
+        return self.execute('advanced_math',action=action,parameters=parameters)
+
     def __init__(self,*,precision=34,background_receipts=False,max_pending=128,receipt_sink=None):
         if type(background_receipts) is not bool or type(max_pending) is not int or not 1<=max_pending<=65536:
             raise ValueError('Invalid background receipt configuration')

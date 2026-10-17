@@ -2,7 +2,7 @@
 
 Este inventário usa os 63 códigos principais da [MSC 2020](https://msc2020.org/) como referência de organização. Os nomes descritivos abaixo e o mapeamento são próprios do Nabla; a classificação completa não é redistribuída.
 
-Foram acrescentados **22 módulos matemáticos executáveis**, integrados ao catálogo de **102 operações**, à CLI, ao HTTP, ao MCP, aos notebooks e aos recibos. Os perfis anteriores são reutilizados quando já existem. Cada linha descreve um perfil computacional delimitado, sem afirmar que todo o ramo, seus problemas abertos ou todas as suas subclasses foram implementados.
+Foram acrescentados **22 módulos matemáticos executáveis**, integrados ao catálogo de **103 operações**, à CLI, ao HTTP, ao MCP, aos notebooks e aos recibos. Os perfis anteriores são reutilizados quando já existem. Cada linha descreve um perfil computacional delimitado, sem afirmar que todo o ramo, seus problemas abertos ou todas as suas subclasses foram implementados.
 
 A área 01 é documental: metadados bibliográficos fornecidos pelo usuário. Não representa pesquisa historiográfica automática. A área 97 tem geração de exercícios verificáveis, sem alegação de eficácia pedagógica geral.
 
@@ -86,7 +86,7 @@ print(record.to_data())
 ```bash
 python -m pytest -q tests/test_msc_mathematics.py
 nabla calc integral_equations --arguments '{"kernel":[[0,0],[0,1]],"rhs":[1]}'
-python examples/science/reproduce.py .nabla/experimento-102-operacoes
+python examples/science/reproduce.py .nabla/experimento-103-operacoes
 ```
 
 Os testes incluem referências de grupos finitos, sl(2), forma normal de Smith independente, medidas e condicionamento, resíduos de Fredholm, transformadas diretas, projeção de Hilbert, teorema de Hodge discreto, esfera/torus/plano projetivo, mecânica estatística e modelos geofísicos. Há replay de recibos e notebook para cada módulo novo.

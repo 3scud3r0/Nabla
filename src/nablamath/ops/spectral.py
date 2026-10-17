@@ -10,6 +10,51 @@ import math
 MAX_SAMPLES = 65536
 
 
+def multidimensional_fft(values,*,inverse=False):
+    import numpy as np
+    array=np.asarray(values,dtype=complex)
+    if not 1<=array.ndim<=6 or not 1<=array.size<=MAX_SAMPLES or not np.isfinite(array).all() or type(inverse) is not bool:raise ValueError('FFT shape/data budget exceeded')
+    transformed=np.fft.ifftn(array) if inverse else np.fft.fftn(array)
+    return {'real':transformed.real.tolist(),'imaginary':transformed.imag.tolist(),'shape':list(array.shape),
+            'parseval_residual':float(abs(np.sum(abs(transformed)**2)-(np.sum(abs(array)**2)/array.size if inverse else array.size*np.sum(abs(array)**2))))}
+
+
+def wavelet_transform(values,wavelet='db4',level=None,*,inverse=False):
+    try:import pywt
+    except ImportError as error:raise ImportError('Install PyWavelets for general discrete wavelets') from error
+    import numpy as np
+    if wavelet not in pywt.wavelist(kind='discrete'):raise ValueError('Unknown discrete wavelet')
+    if inverse:
+        if not isinstance(values,list) or not 1<=len(values)<=32:raise ValueError('Coefficient levels required')
+        arrays=[np.asarray(row,dtype=float) for row in values]
+        if any(a.ndim!=1 or not np.isfinite(a).all() for a in arrays) or sum(a.size for a in arrays)>MAX_SAMPLES:raise ValueError('Invalid wavelet coefficient budget')
+        return {'values':pywt.waverec(arrays,wavelet,mode='periodization').tolist(),'mode':'periodization'}
+    a=np.asarray(values,dtype=float)
+    if a.ndim!=1 or not 1<=len(a)<=MAX_SAMPLES or not np.isfinite(a).all():raise ValueError('Invalid wavelet signal')
+    maximum=pywt.dwt_max_level(len(a),pywt.Wavelet(wavelet).dec_len)
+    if level is not None and (type(level) is not int or not 0<=level<=maximum):raise ValueError('Wavelet level exceeds boundary-safe limit')
+    return {'coefficients':[v.tolist() for v in pywt.wavedec(a,wavelet,mode='periodization',level=level)],'mode':'periodization','original_length':len(a)}
+
+
+def nonuniform_dft(locations,values,frequencies):
+    import numpy as np
+    from ..math._structured import numeric_array
+    x,k=(numeric_array(v,ndim=1,maximum=4096) for v in (locations,frequencies));f=np.array(_samples(values))
+    if len(x)!=len(f) or len(x)*len(k)>2**22:raise ValueError('Nonuniform direct transform work budget exceeded')
+    out=np.exp(-2j*np.pi*k[:,None]*x[None,:])@f
+    return {'values':[[v.real,v.imag] for v in out],'algorithm':'direct O(N*M) nonuniform DFT','convention':'locations in cycles; no quadrature weights inferred'}
+
+
+def sampling_diagnostics(values,sample_rate):
+    from ..math._structured import numeric_array
+    import numpy as np
+    a=numeric_array(values,ndim=1,maximum=MAX_SAMPLES)
+    if not len(a) or type(sample_rate) not in (int,float) or not math.isfinite(sample_rate) or sample_rate<=0:raise ValueError('Positive finite sample rate required')
+    power=np.abs(np.fft.rfft(a))**2;total=float(power.sum());edge=float(power[int(.9*len(power)):].sum())
+    return {'nyquist_frequency':sample_rate/2,'frequency_resolution':sample_rate/len(a),'near_nyquist_power_fraction':edge/total if total else 0.,
+            'scope':'High-frequency diagnostic; sampled data alone cannot establish absence of aliasing.'}
+
+
 def _complex(value):
     if isinstance(value,(list,tuple)) and len(value) == 2:
         value = complex(*value)

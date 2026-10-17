@@ -25,3 +25,22 @@ def operator_theory(matrix, *, parameter=None):
 
 
 def calculate(**arguments):return _calculate('operator_theory',**arguments)
+
+
+def sparse_spectrum(size,entries,count=4):
+    import numpy as np
+    from scipy.sparse import coo_matrix
+    from scipy.sparse.linalg import eigsh
+    if type(size) is not int or not 2<=size<=100000 or type(count) is not int or not 1<=count<min(size,33) or len(entries)>1000000:raise ValueError('Sparse spectral budget exceeded')
+    rows=[];cols=[];values=[]
+    for record in entries:
+        if len(record)!=3:raise ValueError('Sparse entry requires row,column,value')
+        i,j,v=record
+        if type(i) is not int or type(j) is not int or not 0<=i<size or not 0<=j<size or not np.isfinite(float(v)):raise ValueError('Invalid sparse entry')
+        rows.append(i);cols.append(j);values.append(float(v))
+    a=coo_matrix((values,(rows,cols)),shape=(size,size)).tocsr()
+    if (a-a.T).nnz:raise ValueError('Symmetric sparse operator required')
+    eigenvalues,vectors=eigsh(a,k=count,which='SA',v0=np.ones(size),maxiter=10000)
+    residuals=[float(np.linalg.norm(a@vectors[:,i]-eigenvalues[i]*vectors[:,i])) for i in range(count)]
+    return {'eigenvalues':eigenvalues.tolist(),'residual_norms':residuals,
+            'scope':'Finite symmetric sparse spectrum approximation. Each residual bounds distance to the matrix spectrum in exact arithmetic; rounding is not enclosed.'}

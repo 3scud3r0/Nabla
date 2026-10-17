@@ -10,6 +10,47 @@ if TYPE_CHECKING:
 
 _LEAN_THEOREM = re.compile(r"[A-Za-z][A-Za-z0-9_']*\Z")
 
+
+def certificate_statements(certificate):
+    """Translate exact structured witnesses to independently checkable goals.
+
+    A matrix witness becomes scalar dot-product equalities, rather than trusting
+    a numerical residual or a CAS boolean. No caller-provided Lean source enters.
+    """
+    from .statement import FormalStatement
+    from ..ops._area_utils import matrix,scalar
+    if not isinstance(certificate,dict):raise ValueError('Structured certificate required')
+    kind=certificate.get('kind');statements=[]
+    if kind=='identity':
+        if set(certificate)!={'kind','left','right'}:raise ValueError('Closed identity certificate required')
+        statements=[FormalStatement.equality(certificate['left'],certificate['right'])]
+    elif kind in {'matrix_product','matrix_inverse','chain_boundary'}:
+        required={'kind','left','right','result'} if kind=='matrix_product' else {'kind','left','right'}
+        if set(certificate)!=required:raise ValueError('Closed matrix certificate required')
+        a,b=matrix(certificate['left'],maximum=16),matrix(certificate['right'],maximum=16)
+        if len(a[0])!=len(b):raise ValueError('Certificate matrix shapes do not compose')
+        if kind=='matrix_product':target=matrix(certificate['result'],maximum=16)
+        elif kind=='matrix_inverse':
+            if len(a)!=len(a[0]) or len(b)!=len(b[0]) or len(a)!=len(b):raise ValueError('Square inverse certificate required')
+            target=[[int(i==j) for j in range(len(a))] for i in range(len(a))]
+        else:target=[[0]*len(b[0]) for _ in a]
+        if len(target)!=len(a) or len(target[0])!=len(b[0]):raise ValueError('Certificate output shape mismatch')
+        for i,row in enumerate(a):
+            for j in range(len(b[0])):
+                source='+'.join(f'({v})*({b[k][j]})' for k,v in enumerate(row))
+                statements.append(FormalStatement.equality(source,str(target[i][j])))
+    else:raise ValueError('Unsupported exact certificate kind')
+    return tuple(statements)
+
+
+def translate_certificate(certificate):
+    from .lean_bridge import translate_statement
+    from ..core.semantic_ir import fingerprint
+    statements=certificate_statements(certificate)
+    return {'certificate_id':fingerprint(certificate),'statements':[s.to_data() for s in statements],
+            'translations':[translate_statement(s).to_data() for s in statements],
+            'formal_proof':False,'scope':'Generated proof obligations; translation itself is not proof execution.'}
+
 def _rational(value: Fraction) -> str:
     numerator=f"({value.numerator} : ℚ)"
     return numerator if value.denominator==1 else f"({numerator} / ({value.denominator} : ℚ))"

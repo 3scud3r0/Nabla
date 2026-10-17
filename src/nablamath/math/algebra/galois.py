@@ -9,6 +9,20 @@ from math import isqrt
 CONTRACT_VERSION = 1
 
 
+def polynomial_galois(coefficients):
+    """Exact SymPy Galois algorithm for irreducible rational polynomials, degree <=6."""
+    from .._structured import sympy
+    from ...ops._area_utils import vector
+    sp=sympy();c=vector(coefficients,maximum=7)
+    if not 3<=len(c)<=7 or not c[-1]:raise ValueError('Ascending coefficients of degree 2–6 required')
+    x=sp.Symbol('x');p=sp.Poly(sum(sp.Rational(str(v))*x**i for i,v in enumerate(c)),x,domain=sp.QQ)
+    if not p.is_irreducible:raise ValueError('Use the irreducible factors separately; a product Galois group is not inferred')
+    group,alternating=sp.polys.numberfields.galois_group(p)
+    return {'order':int(group.order()),'generators':[list(g.array_form) for g in group.generators],
+            'contained_in_alternating':bool(alternating),'discriminant':str(p.discriminant()),
+            'solvable':bool(group.is_solvable),'scope':'Irreducible rational polynomial degree 2–6; explicit permutation Galois group.'}
+
+
 def _rational_sqrt(value: Fraction) -> Fraction | None:
     if value < 0:
         return None

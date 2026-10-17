@@ -328,3 +328,23 @@ def integrate_rational(numerator: Polynomial, denominator: Polynomial,
     if not result.verify():
         raise ArithmeticError("generated derivative certificate failed")
     return result
+def integrate_elementary(source,variable='x',*,rational_only=False):
+    """Rational integration or SymPy's implemented elementary Risch fragment.
+
+    Unsupported transcendental/algebraic towers remain unevaluated; they are
+    never labelled non-elementary just because a heuristic failed.
+    """
+    from .._structured import expression,sympy,domain_conditions
+    sp=sympy();f,(x,)=expression(source,[variable])
+    if rational_only:
+        if not f.is_rational_function(x):raise ValueError('Rational-only mode rejects transcendental functions')
+        from sympy.integrals.rationaltools import ratint
+        primitive=ratint(f,x)
+    else:
+        primitive=sp.integrate(f,x,risch=True)
+    evaluated=not primitive.has(sp.Integral)
+    residual=sp.simplify(sp.diff(primitive,x)-f) if evaluated else None
+    return {'primitive':str(primitive),'evaluated':evaluated,'derivative_residual':str(residual) if residual is not None else None,
+            'derivative_identity_checked':bool(evaluated and residual==0),
+            'original_domain_conditions':domain_conditions(source,[variable]),
+            'scope':'Implemented rational/Risch backend fragment; integration constants and connected domain components remain explicit.'}
