@@ -778,9 +778,30 @@ class LivingPaperCompiler:
         with self._lock:
             identity=self.input_identity()
             if self._last_identity==identity and self._last_result is not None:
-                if self.output.is_file() and VerifiablePDFWriter.inspect(self.output,trust=self.trust,require_signature=self.require_signature)['bundle']['content_id']==self._last_result.experiment_hash:
-                    old=self._last_result
-                    return ReactiveBuild(old.pdf,old.artifact,old.source,old.manifest,old.experiment_hash,old.revision,False)
+                old=self._last_result
+                stable_audit=self.output.parent/'audit.html'
+                revision_audit=old.manifest.parent/'audit.html'
+                # A valid PDF alone is not a valid cached publication. Repair
+                # missing/modified companions from the immutable revision.
+                if (self.output.is_file() and not self.output.is_symlink()
+                        and stable_audit.is_file() and not stable_audit.is_symlink()
+                        and revision_audit.is_file() and not revision_audit.is_symlink()
+                        and old.manifest.is_file() and not old.manifest.is_symlink()):
+                    try:
+                        recorded=json.loads(_read(old.manifest))
+                        audit_digest=recorded.get('audit_sha256')
+                        if (audit_digest is not None
+                                and recorded.get('experiment_hash')==old.experiment_hash
+                                and hashlib.sha256(_read(stable_audit)).hexdigest()==audit_digest
+                                and hashlib.sha256(_read(revision_audit)).hexdigest()==audit_digest
+                                and hashlib.sha256(_read(self.output,256*1024*1024)).hexdigest()==recorded['pdf_sha256']
+                                and VerifiablePDFWriter.inspect(self.output,trust=self.trust,
+                                    require_signature=self.require_signature)['bundle']['content_id']==old.experiment_hash):
+                            return ReactiveBuild(old.pdf,old.artifact,old.source,old.manifest,
+                                                 old.experiment_hash,old.revision,False)
+                    except (OSError,ValueError,KeyError,TypeError):
+                        # The immutable revision is checked below before recovery.
+                        pass
             original=_read(self.template,1048576).decode('utf-8');bundle=self._current_bundle()
             # Validate a signature's actual scope before running any renderer.
             _signature(bundle,self.signature,self.trust,self.require_signature)
@@ -795,12 +816,29 @@ class LivingPaperCompiler:
             if root.is_symlink() or self.output.is_symlink():raise ValueError('Publication paths must not be symlinks')
             root.mkdir(parents=True,exist_ok=True)
             final=root/revision
-            if final.exists():
-                if not (final/'manifest.json').is_file():raise ValueError('Existing incomplete publication revision')
+            if final.exists() or final.is_symlink():
+                if final.is_symlink() or not final.is_dir():
+                    raise ValueError('Existing publication revision is not a safe directory')
+                required=('manifest.json','paper.pdf','audit.html','artifact.json','compiled.source','template.source')
+                if any((final/name).is_symlink() or not (final/name).is_file() for name in required):
+                    raise ValueError('Existing incomplete publication revision')
                 metadata=json.loads(_read(final/'manifest.json'))
-                if metadata['pdf_sha256']!=hashlib.sha256(_read(final/'paper.pdf',256*1024*1024)).hexdigest():
-                    raise ValueError('Existing publication revision was altered')
-                VerifiablePDFWriter.inspect(final/'paper.pdf',trust=self.trust,require_signature=self.require_signature)
+                if (metadata.get('revision')!=revision or metadata.get('input_id')!=identity
+                        or metadata.get('experiment_hash')!=bundle['content_id']):
+                    raise ValueError('Existing publication revision identity was altered')
+                checks=(('paper.pdf','pdf_sha256',256*1024*1024),
+                        ('audit.html','audit_sha256',_MAX_BYTES),
+                        ('artifact.json','artifact_sha256',_MAX_BYTES),
+                        ('compiled.source','source_sha256',_MAX_BYTES))
+                for name,key,limit in checks:
+                    if key in metadata and metadata[key]!=hashlib.sha256(_read(final/name,limit)).hexdigest():
+                        raise ValueError('Existing publication revision was altered: '+name)
+                if 'pdf_sha256' not in metadata:
+                    raise ValueError('Existing publication revision lacks PDF integrity')
+                inspected=VerifiablePDFWriter.inspect(final/'paper.pdf',trust=self.trust,
+                                                       require_signature=self.require_signature)
+                if inspected['bundle']['content_id']!=bundle['content_id']:
+                    raise ValueError('Existing publication revision points to the wrong experiment')
             else:
                 with tempfile.TemporaryDirectory(prefix='.revision-',dir=root) as temporary:
                     stage=Path(temporary)/'completed';stage.mkdir()
@@ -838,7 +876,9 @@ class LivingPaperCompiler:
                     metadata={'schema':'nabla.reactive-paper.v1','input_id':identity,'revision':revision,
                               'experiment_hash':bundle['content_id'],'renderer':renderer,
                               'pdf_sha256':hashlib.sha256(_read(stage/'paper.pdf',256*1024*1024)).hexdigest(),
-                              'source_sha256':hashlib.sha256(compiled_source.encode()).hexdigest(),
+                              'audit_sha256':hashlib.sha256(_read(stage/'audit.html')).hexdigest(),
+                              'artifact_sha256':hashlib.sha256(_read(stage/'artifact.json')).hexdigest(),
+                              'source_sha256':hashlib.sha256(_read(stage/'compiled.source')).hexdigest(),
                               'scientific_claims_certified':False}
                     (stage/'manifest.json').write_text(canonical_json(metadata),encoding='utf-8')
                     stage.rename(final)
