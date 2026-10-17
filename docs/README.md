@@ -67,4 +67,4 @@ backlog e a auditoria atuais. Código histórico fica em `legacy/`.
 
 ## Uso científico reproduzível
 
-[Experimentos em código](../examples/science/README.md): 69 operações na biblioteca, CLI e HTTP; 176 referências finitas; oito famílias Forge; modelos físicos idealizados, difusão e modo de provas Lean. [Aceite pessoal 1.0.0](acceptance/PERSONAL_USE_1_0.md).
+[Experimentos em código](../examples/science/README.md): 76 operações na biblioteca, CLI e HTTP; 176 referências finitas; oito famílias Forge; modelos físicos idealizados, difusão e modo de provas Lean. [Aceite pessoal 1.0.0](acceptance/PERSONAL_USE_1_0.md).

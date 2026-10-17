@@ -29,6 +29,12 @@ from nablamath.store.backup import backup_database, restore_database
 # closed formulas, enumerating tiny finite sets, or the analytic decay solution.
 # They must never be regenerated from Nabla output.
 REFERENCES = {
+ 'tensor': ('values', [[4.],[10.]]),
+ 'autograd': ('gradient', {'x':6.}),
+ 'beta_binomial': ('mean','3/5'),
+ 'sequence_align': ('score',2),
+ 'geo_distance': ('distance',0.),
+ 'quantum_circuit': ('probabilities',[0.,1.]),
  'analysis_integral': ('integral', '1/3'),
  'analysis_pade': ('numerator', ['1','1/2']),
  'bayes': ('posterior.b', '3/4'), 'binomial': ('value', 15),
@@ -69,7 +75,7 @@ REFERENCES = {
 }
 SPECIAL = {'analysis_extrema','analysis_interval','analysis_root','approximate',
            'certified_function','differentiate','integrate','lu','orthogonal_basis',
-           'simplify','ode','ode_adaptive'}
+           'simplify','ode','ode_adaptive','mcmc_normal'}
 
 
 def require(condition, message):
@@ -106,6 +112,11 @@ def reference_check(name, result):
         require(lookup(result,path)==expected, f'{name}: reference mismatch at {path}')
         return {'kind':'closed-form/finite-reference','path':path,'expected':expected}
     require(name in SPECIAL, 'Operation lacks an independent reference: '+name)
+    if name=='mcmc_normal':
+        # A fixed finite campaign compared with the target's analytic mean/variance.
+        sample=[row[0] for row in result['samples']]
+        require(len(sample)==2000 and abs(sum(sample)/len(sample))<.15,'Normal MCMC sample mean')
+        require(abs(sum(x*x for x in sample)/len(sample)-1)<.2,'Normal MCMC sample second moment')
     if name=='analysis_extrema':
         require(F(result['minimum']['lower'])<=0<=F(result['minimum']['upper']), 'Minimum enclosure')
         require(F(result['maximum']['lower'])<=1<=F(result['maximum']['upper']), 'Maximum enclosure')
@@ -325,7 +336,7 @@ def run(destination, *, cases_path=None, formal_project=None):
     names={row['name'] for row in catalog()['operations']}
     require(set(cases)==names==set(REFERENCES)|SPECIAL,'Catalog/inputs/references coverage mismatch')
     root=Path(destination);root.mkdir(parents=True,exist_ok=False)
-    session=CalculationSession();notebook=Notebook('69 bounded operations with independent references')
+    session=CalculationSession();notebook=Notebook('76 bounded operations with independent references')
     rows=[]
     for name,arguments in cases.items():
         receipt=session.execute(name,**arguments);data=receipt.to_data()

@@ -1,0 +1,18 @@
+{
+  "name": "vscode-nabla",
+  "displayName": "Nabla Receipts",
+  "description": "Inspect local Nabla scientific calculation receipts in VS Code and Positron.",
+  "version": "1.0.0",
+  "publisher": "nablamath",
+  "license": "MIT",
+  "engines": {"vscode": "^1.85.0"},
+  "categories": ["Other"],
+  "main": "./out/extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "capabilities": {"untrustedWorkspaces": {"supported": false}},
+  "contributes": {
+    "commands": [{"command": "nabla.showReceipt", "title": "Nabla: Open Receipt"}]
+  },
+  "scripts": {"compile": "tsc -p .", "test": "npm run compile && node --test test/*.cjs", "vscode:prepublish": "npm run compile"},
+  "devDependencies": {"@types/node": "^22.0.0", "@types/vscode": "^1.85.0", "typescript": "^5.7.0"}
+}

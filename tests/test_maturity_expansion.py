@@ -30,6 +30,13 @@ CATALOG_CASES={
 
 # Keep the all-operation replay gate complete when the shared catalog grows.
 CATALOG_CASES.update({
+ 'tensor': {'kind':'matmul','values':[[1,2]],'other':[[3],[4]]},
+ 'autograd': {'inputs':{'x':3},'nodes':[{'op':'input','name':'x'},{'op':'multiply','args':[0,0]}],'output':1},
+ 'beta_binomial': {'successes':2,'trials':3},
+ 'mcmc_normal': {'mean':0,'standard_deviation':1,'samples':20,'seed':31},
+ 'sequence_align': {'first':'ACGT','second':'AGT'},
+ 'geo_distance': {'first':[0,0],'second':[90,0]},
+ 'quantum_circuit': {'qubits':1,'gates':[{'gate':'X','target':0}]},
  'nt_primality': {'n': 97},
  'nt_factorization': {'n': 12},
  'nt_modular_roots': {'a': 2, 'prime': 7},

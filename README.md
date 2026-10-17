@@ -28,7 +28,7 @@ Novo [laboratório de matemática exata](docs/math/EXACT_LABORATORY.md), com [ex
 
 ## Primeira experiência coesa
 
-O [perfil local de primeira versão](docs/acceptance/COHESIVE_LOCAL_ALPHA.md) organiza **69 operações** sob o mesmo catálogo `nabla catalog`, acessível na CLI, no motor de notebooks e no cartão científico do desktop. A entrega pessoal exige agregados consistentes e smoke do wheel no SHA final. Não equivale à certificação da visão científica inteira.
+O [perfil local de primeira versão](docs/acceptance/COHESIVE_LOCAL_ALPHA.md) organiza **76 operações** sob o mesmo catálogo `nabla catalog`, acessível na CLI, no motor de notebooks e no cartão científico do desktop. A entrega pessoal exige agregados consistentes e smoke do wheel no SHA final. Não equivale à certificação da visão científica inteira.
 
 ```sh
 nabla catalog
@@ -39,7 +39,7 @@ python tools/cohesion_smoke.py
 
 ## Demonstração científica reproduzível
 
-[Experimentos em código](examples/science/README.md): todas as 69 operações com referências independentes, 176 casos adicionais, oito famílias Forge, hipótese sintética com pontos reservados, notebook/replay, CLI/HTTP e SQLite. Execute `python examples/science/reproduce.py .nabla/meu-experimento` em um destino novo. Os resultados não constituem prova universal nem validação física.
+[Experimentos em código](examples/science/README.md): todas as 76 operações com referências independentes, 176 casos adicionais, oito famílias Forge, hipótese sintética com pontos reservados, notebook/replay, CLI/HTTP e SQLite. Execute `python examples/science/reproduce.py .nabla/meu-experimento` em um destino novo. Os resultados não constituem prova universal nem validação física.
 
 ## Começar
 
@@ -136,3 +136,9 @@ F0 explicita contratos e infraestrutura; F13 continua horizonte aberto. Os perfi
 
 Verificar: `python tools/check_roadmap.py` e `python tools/check_public_contracts.py`, na raiz do repositório.
 <!-- nabla:contracts:end -->
+
+## Extensões do ecossistema científico
+
+O [guia do ecossistema](docs/SCIENTIFIC_ECOSYSTEM.md) documenta as 76 operações,
+autodiferenciação, MCMC, domínios científicos, pontes Pandas/PyTorch, Jupyter,
+VS Code, CUDA/XLA/MPI, MCP e federação assinada, com seus limites e instalação.

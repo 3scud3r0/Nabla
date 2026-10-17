@@ -29,6 +29,9 @@ OPERATIONS = {
 from ..math.exact.adapters import OPERATIONS as ADVANCED_OPERATIONS, execute as execute_advanced
 OPERATIONS.update(ADVANCED_OPERATIONS)
 
+from ..ops.catalog import OPERATIONS as ECOSYSTEM_OPERATIONS, execute as execute_ecosystem
+OPERATIONS.update(ECOSYSTEM_OPERATIONS)
+
 
 def _values(values, minimum=1):
     if not isinstance(values,(list,tuple)) or not minimum <= len(values) <= 10000:
@@ -37,6 +40,8 @@ def _values(values, minimum=1):
 
 
 def execute(operation, a):
+    if operation in ECOSYSTEM_OPERATIONS:
+        return execute_ecosystem(operation, a)
     if operation in ADVANCED_OPERATIONS:
         return execute_advanced(operation, a)
     if operation=='polynomial_range':

@@ -43,6 +43,25 @@
   "approximate": {
     "value": "1/3"
   },
+  "autograd": {
+    "inputs": {
+      "x": 3
+    },
+    "nodes": [
+      {
+        "name": "x",
+        "op": "input"
+      },
+      {
+        "args": [
+          0,
+          0
+        ],
+        "op": "multiply"
+      }
+    ],
+    "output": 1
+  },
   "bayes": {
     "likelihood": {
       "a": "1/4",
@@ -52,6 +71,10 @@
       "a": "1/2",
       "b": "1/2"
     }
+  },
+  "beta_binomial": {
+    "successes": 2,
+    "trials": 3
   },
   "binomial": {
     "k": 2,
@@ -132,6 +155,16 @@
       1
     ],
     "prime": 2
+  },
+  "geo_distance": {
+    "first": [
+      0,
+      0
+    ],
+    "second": [
+      0,
+      0
+    ]
   },
   "geometry": {
     "points": [
@@ -387,6 +420,13 @@
       "c"
     ]
   },
+  "mcmc_normal": {
+    "burn_in": 200,
+    "mean": 0,
+    "samples": 2000,
+    "seed": 31,
+    "standard_deviation": 1
+  },
   "nt_discrete_log": {
     "base": 3,
     "prime": 7,
@@ -574,6 +614,15 @@
       1
     ]
   },
+  "quantum_circuit": {
+    "gates": [
+      {
+        "gate": "X",
+        "target": 0
+      }
+    ],
+    "qubits": 1
+  },
   "rational_compare": {
     "left": "(x*x-1)/(x-1)",
     "right": "x+1"
@@ -596,6 +645,10 @@
         2
       ]
     ]
+  },
+  "sequence_align": {
+    "first": "ACGT",
+    "second": "AGT"
   },
   "series": {
     "source": "1/(1-x)"
@@ -650,6 +703,27 @@
       3
     ],
     "window": 2
+  },
+  "tensor": {
+    "kind": "matmul",
+    "other": [
+      [
+        2
+      ],
+      [
+        1
+      ]
+    ],
+    "values": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ]
+    ]
   },
   "time_series": {
     "method": "trend",
